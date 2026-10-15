@@ -11,6 +11,7 @@ from pathlib import Path
 from autograde.config import Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.datasets.download import download_all
+from autograde.evaluation.experiments import record_run
 from autograde.evaluation.judge import judge_all, pass_rates
 from autograde.evaluation.metrics import report
 from autograde.llm import build_client
@@ -36,12 +37,19 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--seed", type=int, default=0)
     run.add_argument("--mode", default="pipeline", choices=["pipeline", "baseline"])
     run.add_argument("--name", required=True, help="run folder name under runs/")
+    run.add_argument("--variant", help="label for this design in the experiment log")
+    run.add_argument("--note", default="", help="one line on what this variant changes")
 
     judge = sub.add_parser("judge", help="score the feedback of a finished run")
     judge.add_argument("--name", required=True)
 
     rep = sub.add_parser("report", help="print metrics for a finished run")
     rep.add_argument("--name", required=True)
+
+    logp = sub.add_parser("log", help="add a finished run to experiments/log.jsonl")
+    logp.add_argument("--name", required=True)
+    logp.add_argument("--variant", required=True)
+    logp.add_argument("--note", default="")
 
     view = sub.add_parser("view", help="(re)build runs/<name>/report.html to read the samples")
     view.add_argument("--name", required=True)
@@ -110,6 +118,7 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
     print(json.dumps(summary, indent=2))
     print("usage:", client.usage.as_dict())
     print("report:", _write_view(run_dir, settings))
+    print("logged:", record_run(run_dir, args.variant or args.mode, args.note))
 
 
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
@@ -148,6 +157,8 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "log":
+        print(record_run(settings.paths.runs_dir / args.name, args.variant, args.note))
     elif args.cmd == "view":
         print(_write_view(settings.paths.runs_dir / args.name, settings, args.limit, args.seed))
 
