@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/DLL_2.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly contrasts the two modes: asynchronous sends each character as an independent unit framed by a start bit and a stop bit (simple/cheap, low transmission rate), whereas synchronous sends many characters pooled together as a continuous stream/frame delimited by SYN/flag, needing sender-receiver synchronization (more complex, higher transmission rate). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Award half if only one mode is described correctly, or the modes are described without the contrast (e.g., start/stop bits per character vs. blocks/frames)."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

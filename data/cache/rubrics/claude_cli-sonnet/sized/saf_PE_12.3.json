@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/PE_12.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the independence assumption does not hold for real internet traffic, and justifies it: traffic is bursty / arrivals depend on previous arrivals (e.g., video streaming loads segments in bursts, so utilization is low right after a load). Equivalent correct reasoning about dependence between arrivals earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

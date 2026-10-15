@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names and describes two valid challenges of mobile/wireless routing compared to fixed wired networks (e.g. adaptation to topology changes/node mobility, security, medium access control such as hidden/exposed/near-far terminals, QoS, scalability, heterogeneity, dependability, power consumption). Each challenge must be named and given a correct brief description; equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half credit (0.5) if only one valid challenge is named and described, or if two valid challenges are named but only one (or neither) is described adequately."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

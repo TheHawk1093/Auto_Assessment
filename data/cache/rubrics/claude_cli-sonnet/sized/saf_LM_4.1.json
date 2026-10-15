@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/LM_4.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the collision domain diameter decreases by a factor of 10 (e.g. 300m to 30m). Equivalent wording such as 'becomes ten times smaller' earns the mark. Saying only 'decreases' without the factor of 10 does not.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
