@@ -1,0 +1,21 @@
+{
+  "question_key": "saf/SDN_11.4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table: states that it holds per-flow meter entries / collects flow statistics (rate information), which are used for network management such as QoS, e.g. rate-limiting (equivalent wording accepted).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Flow pipeline: states that it consists of flow tables containing rules/fields (match entries) that determine packet forwarding or the actions applied to packets (i.e. implements the forwarding/routing logic in the switch).",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

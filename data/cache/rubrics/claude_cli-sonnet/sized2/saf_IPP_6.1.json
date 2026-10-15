@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/IPP_6.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least 4 valid objectives of IPv6, e.g. support billions of end-systems (larger address space), reduce routing tables, simplified header/protocol processing, increased security, real-time/QoS support (flow label, traffic class), multicasting, mobility, openness to future change (extension headers), coexistence with existing protocols. Equivalent wording accepted; any correct objectives count.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only 2\u20133 valid objectives are given."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
