@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "autograde"
+version = "0.1.0"
+description = "Automatic grading of STEM answer sheets with per-point marks and student feedback."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.5",
+    "pyyaml>=6",
+    "pandas>=2",
+    "pyarrow>=14",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.40"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+autograde = "autograde.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/autograde"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

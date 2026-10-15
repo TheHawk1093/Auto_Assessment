@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Auto Assessment Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a dashboard read top to bottom: where are we, what is next, what do the numbers say, what is broken.
+   Generated: do not edit. Change tracker.json and run build.py. */
+:root {
+  --bg: #F6F8F9; --surface: #FFFFFF; --ink: #12262E; --muted: #51666F; --line: #D5DEE2;
+  --accent: #0B6E8A; --accent-ink: #FFFFFF; --soft: #E4F1F5;
+  --good: #1E7A4C; --good-soft: #E1F3E9;
+  --warn: #8F5208; --warn-soft: #FBEFD9;
+  --bad: #B3362B; --bad-soft: #FBE6E3;
+  --idle: #8DA0A8;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+    --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+    --good: #6FCF9A; --good-soft: #12301F; --warn: #E4B15C; --warn-soft: #33290F;
+    --bad: #F08B80; --bad-soft: #3A1A17; --idle: #5E757D;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+  --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+  --good: #6FCF9A; --good-soft: #12301F; --warn: #E4B15C; --warn-soft: #33290F;
+  --bad: #F08B80; --bad-soft: #3A1A17; --idle: #5E757D;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--font-body); padding-inline: 16px; padding-block: 0 64px; -webkit-text-size-adjust: 100%; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+a { color: var(--accent); }
+.wrap { max-width: 1040px; margin-inline: auto; display: grid; gap: 36px; }
+
+.top { padding-block: 32px 0; display: grid; gap: 8px; }
+.kicker { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.top h1 { font-size: clamp(28px, 4.6vw, 40px); font-weight: 700; }
+.now { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+.now b { color: var(--ink); font-weight: 600; }
+
+h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+section { min-width: 0; }
+
+/* stage stepper */
+.stages { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.stage { background: var(--surface); border: 1px solid var(--line); padding: 12px 14px; display: grid; gap: 6px; align-content: start; border-top: 4px solid var(--idle); min-width: 0; }
+.stage.active { border-top-color: var(--accent); background: var(--soft); }
+.stage.done { border-top-color: var(--good); }
+.stage .n { font: 500 11px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.stage h3 { font-size: 17px; }
+.stage .d { font-size: 13px; color: var(--muted); }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; background: var(--accent); }
+.stage.done .bar > i { background: var(--good); }
+.stage .pct { font: 500 12px/1 var(--font-mono); color: var(--muted); }
+
+/* pills */
+.pill { display: inline-block; font: 500 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pill.done { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+.pill.doing { color: var(--accent); border-color: var(--accent); background: var(--soft); }
+.pill.blocked { color: var(--bad); border-color: var(--bad); background: var(--bad-soft); }
+.pill.todo { color: var(--muted); }
+.pill.later { color: var(--idle); border-style: dashed; }
+
+/* steps */
+.steps { display: grid; gap: 8px; }
+.step { background: var(--surface); border: 1px solid var(--line); padding: 10px 14px; display: grid; gap: 4px 12px; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: start; }
+.step .no { font: 600 18px/1.2 var(--font-display); color: var(--muted); }
+.step.doing { border-left: 4px solid var(--accent); }
+.step.done .no { color: var(--good); }
+.step .t { font-weight: 600; }
+.step .note { grid-column: 2 / -1; font-size: 13.5px; color: var(--muted); }
+
+/* two-column blocks */
+.cols { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; min-width: 0; }
+.next li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; padding-block: 7px; border-bottom: 1px solid var(--line); }
+.next li:last-child { border-bottom: 0; }
+.next .k { font: 600 16px/1.3 var(--font-display); color: var(--accent); }
+.next .sub { color: var(--muted); font-size: 13.5px; display: block; }
+.issues li { padding: 8px 0 8px 12px; border-bottom: 1px solid var(--line); border-left: 3px solid var(--warn); margin-bottom: 6px; border-bottom: 0; background: var(--warn-soft); padding-right: 10px; }
+.issues li.bad { border-left-color: var(--bad); background: var(--bad-soft); }
+.issues .sub { display: block; color: var(--muted); font-size: 13.5px; }
+.decisions li { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: space-between; padding-block: 7px; border-bottom: 1px solid var(--line); }
+.decisions li:last-child { border-bottom: 0; }
+
+/* results */
+.tw { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font: 500 12px/1.3 var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.pair { display: grid; gap: 4px; min-width: 150px; }
+.pair div { display: grid; grid-template-columns: 1fr 52px; gap: 8px; align-items: center; }
+.pair .bar { height: 8px; }
+.pair .b > i { background: var(--idle); }
+.pair .p > i { background: var(--accent); }
+.pair span { font: 400 12px/1 var(--font-mono); text-align: right; }
+.legend { display: flex; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 8px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 8px; margin-right: 6px; border-radius: 2px; }
+.caption { color: var(--muted); font-size: 13.5px; margin-top: 8px; max-width: 80ch; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">Project tracker</div>
+  <h1 id="title">Auto Assessment</h1>
+  <div class="now" id="now"></div>
+</header>
+
+<noscript><p>This page needs JavaScript to draw the tracker. The same information is in PROJECT.md.</p></noscript>
+
+<section>
+  <h2>Stages</h2>
+  <div class="stages" id="stages"></div>
+</section>
+
+<section>
+  <h2 id="stepsTitle">Current stage steps</h2>
+  <div class="steps" id="steps"></div>
+</section>
+
+<div class="cols">
+  <section>
+    <h2>Next steps</h2>
+    <div class="card"><ol class="next" id="next" style="list-style:none;padding:0;margin:0"></ol></div>
+  </section>
+  <section>
+    <h2>Open issues</h2>
+    <ul class="issues" id="issues"></ul>
+  </section>
+</div>
+
+<section>
+  <h2 id="resTitle">Latest results</h2>
+  <div class="tw"><table id="results"></table></div>
+  <div class="legend"><span><i style="background:var(--idle)"></i>baseline (one prompt)</span><span><i style="background:var(--accent)"></i>pipeline</span></div>
+  <p class="caption" id="resNote"></p>
+</section>
+
+<section>
+  <h2>Decisions</h2>
+  <div class="card"><ul class="decisions" id="decisions"></ul></div>
+</section>
+
+<footer id="foot"></footer>
+</div>
+
+<script id="data" type="application/json">{"project": "Auto Assessment", "updated": "2026-10-15", "current_stage": 1, "current_step": "4. Grader and checks", "summary": "Pipeline v0 runs end to end on real data but does not yet beat the one-prompt baseline.", "stages": [{"n": 1, "name": "Prove the pipeline", "desc": "CS and networking short answers: DigiKlausur, SAF, Mohler", "state": "active"}, {"n": 2, "name": "STEM with working", "desc": "Maths, physics, chemistry; generated practice sheets, ProcessBench, PRM800K", "state": "todo"}, {"n": 3, "name": "Harder formats", "desc": "Handwriting and circuits: EDU-CIRCUIT-HW", "state": "later"}, {"n": 4, "name": "Other fields", "desc": "Optional, only if a good dataset turns up", "state": "later"}], "steps": [{"no": 0, "name": "Set up", "state": "done", "note": "Project folders, config file, model client with Claude CLI and API backends, 26 tests."}, {"no": 1, "name": "Load data", "state": "done", "note": "DigiKlausur, SAF and Mohler downloaded and loaded into one format; dev/test split by question."}, {"no": 2, "name": "Baseline", "state": "done", "note": "One-prompt grader and metrics script. First number to beat, from 24 DigiKlausur answers."}, {"no": 3, "name": "Marking scheme maker", "state": "done", "note": "Schemes written once per question and self-tested. 8 of 8 passed on DigiKlausur dev."}, {"no": 4, "name": "Grader and checks", "state": "doing", "note": "Built, but marks are too strict and the quote check breaks on garbled formulas."}, {"no": 5, "name": "Feedback and its checker", "state": "doing", "note": "Feedback writer and judge are built. Judge has not been run yet."}, {"no": "5b", "name": "Readable report page", "state": "done", "note": "Per-run report.html with equations, numbered reading order, score sum, teacher mark vs ours. Sample view: autograde view --name <run> --limit 10."}, {"no": 6, "name": "Improvement loop", "state": "todo", "note": "Study the biggest misses, adjust prompts, rerun, keep what helps."}, {"no": 7, "name": "Final held-out run", "state": "todo", "note": "Run once on test questions, then write the results table."}], "next": [{"t": "Fix the quote check", "s": "Looser matching for formulas; when it still fails, flag the point instead of removing all credit."}, {"t": "Make marking points core ideas, not copies of the model answer", "s": "One idea per point, each worth marks on its own; drop elaboration. Today one point bundles 3 to 4 facts, so a student with the main idea loses half."}, {"t": "Tell the grader the model answer is one example, not the only answer", "s": "Marks follow the question and the points; correct ideas missing from the model answer still count."}, {"t": "Measure sensitivity to the model answer", "s": "Regrade the same student answers against a paraphrased and a shortened model answer. Report how much the marks move. Automatic, no labels."}, {"t": "Show the grader how this teacher marks", "s": "Add 2 to 3 teacher-graded answers per question from the dataset's dev split. Then adjust bias if it is still strict."}, {"t": "Run the feedback judge and the wider test", "s": "Judge on dk_pipeline, then baseline vs pipeline on SAF and Mohler dev."}], "issues": [{"level": "bad", "t": "Marks depend too much on the model answer", "s": "Each marking point copies several facts from it, and partial credit needs all of them. Seen in Q6 (SVM) and Q10 (backpropagation)."}, {"level": "bad", "t": "Pipeline does not beat baseline yet", "s": "Correlation 0.67 vs 0.78 on 24 answers. Small sample, so the gap may be noise, but it is not an improvement."}, {"level": "bad", "t": "Quote check zeroes valid answers", "s": "One 2/2 answer made of formulas was marked 0 after the retry also failed to quote exactly."}, {"level": "warn", "t": "Cost is about 5 times the baseline", "s": "$0.70 vs $0.14 per 24 answers at list price. Scheme tests are paid once; marking plus feedback are two calls per answer."}, {"level": "warn", "t": "API backend untested", "s": "No API key yet. The Claude CLI backend is the only one exercised."}, {"level": "warn", "t": "Teacher marks are lenient on DigiKlausur", "s": "Most answers got full marks, so a strict grader looks worse. Check SAF and Mohler before tuning to this one."}, {"level": "warn", "t": "Name clash", "s": "A different project called autograde exists on PyPI. Only matters if we publish."}], "decisions": [{"t": "Typed text first, handwriting later", "state": "decided"}, {"t": "Fully automatic, no human step at run time", "state": "decided"}, {"t": "No hand annotation", "state": "decided"}, {"t": "Plain Python, no LangGraph for now", "state": "decided"}, {"t": "Which model and budget", "state": "pending"}, {"t": "Final project name", "state": "pending"}, {"t": "Output format: file per student or table", "state": "pending"}, {"t": "First git commit", "state": "pending"}], "results_title": "DigiKlausur, dev split, 24 answers, Claude Sonnet via CLI", "results_note": "Single run on a small sample. Treat differences as hints until we measure run-to-run noise. Feedback quality has not been scored yet.", "metrics": [{"name": "Average error (share of total marks)", "better": "lower", "max": 0.5, "baseline": 0.21666666666666665, "pipeline": 0.203125}, {"name": "Correlation with teacher marks", "better": "higher", "max": 1.0, "baseline": 0.7806759646767936, "pipeline": 0.6744841142003354}, {"name": "Agreement score (QWK)", "better": "higher", "max": 1.0, "baseline": 0.6257545271629779, "pipeline": 0.5384615384615384}, {"name": "Bias (negative is strict)", "better": "closer to 0", "max": 0.3, "bias": true, "baseline": -0.12291666666666667, "pipeline": -0.16666666666666666}, {"name": "Cost, US dollars at list price", "better": "lower", "max": 1.0, "baseline": 0.1389374, "pipeline": 0.6959446999999999}]}</script>
+
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  var label = { done: "done", doing: "in progress", todo: "to do", blocked: "blocked", later: "later", active: "current", pending: "pending", decided: "decided" };
+  function pill(state) { return el("span", "pill " + (state === "decided" ? "done" : state === "active" ? "doing" : state), label[state] || state); }
+
+  $("title").textContent = D.project;
+  var now = $("now");
+  [["Updated", D.updated], ["Stage", D.current_stage], ["Step", D.current_step]].forEach(function (p) {
+    var s = el("span"); s.appendChild(document.createTextNode(p[0] + ": ")); s.appendChild(el("b", "", String(p[1]))); now.appendChild(s);
+  });
+  now.appendChild(el("span", "", D.summary));
+
+  var steps = D.steps, doneCount = steps.filter(function (s) { return s.state === "done"; }).length;
+  D.stages.forEach(function (st) {
+    var c = el("div", "stage " + (st.state === "active" ? "active" : st.state === "done" ? "done" : ""));
+    c.appendChild(el("div", "n", "Stage " + st.n));
+    c.appendChild(el("h3", "", st.name));
+    c.appendChild(el("p", "d", st.desc));
+    if (st.n === D.current_stage) {
+      var pct = Math.round(100 * doneCount / steps.length);
+      var bar = el("div", "bar"); var i = el("i"); i.style.width = pct + "%"; bar.appendChild(i);
+      c.appendChild(bar);
+      c.appendChild(el("div", "pct", doneCount + " of " + steps.length + " steps done"));
+    }
+    c.appendChild(pill(st.state));
+    $("stages").appendChild(c);
+  });
+
+  $("stepsTitle").textContent = "Stage " + D.current_stage + " steps";
+  steps.forEach(function (s) {
+    var r = el("div", "step " + s.state);
+    r.appendChild(el("div", "no", String(s.no)));
+    r.appendChild(el("div", "t", s.name));
+    r.appendChild(pill(s.state));
+    r.appendChild(el("div", "note", s.note));
+    $("steps").appendChild(r);
+  });
+
+  D.next.forEach(function (n, i) {
+    var li = el("li");
+    li.appendChild(el("span", "k", String(i + 1)));
+    var d = el("div"); d.appendChild(el("b", "", n.t)); d.appendChild(el("span", "sub", n.s)); li.appendChild(d);
+    $("next").appendChild(li);
+  });
+
+  D.issues.forEach(function (n) {
+    var li = el("li", n.level === "bad" ? "bad" : "");
+    li.appendChild(el("b", "", n.t)); li.appendChild(el("span", "sub", n.s));
+    $("issues").appendChild(li);
+  });
+
+  $("resTitle").textContent = "Latest results: " + D.results_title;
+  var tb = $("results");
+  var head = el("tr");
+  ["Measure", "Better when", "Baseline", "Pipeline", ""].forEach(function (h) { head.appendChild(el("th", "", h)); });
+  tb.appendChild(head);
+  function fmt(v, m) { return (m.name.indexOf("Cost") === 0 ? "$" : "") + (m.bias && v > 0 ? "+" : "") + v.toFixed(m.name.indexOf("Cost") === 0 ? 2 : 3); }
+  D.metrics.forEach(function (m) {
+    var tr = el("tr");
+    tr.appendChild(el("td", "", m.name));
+    tr.appendChild(el("td", "", m.better));
+    tr.appendChild(el("td", "num", fmt(m.baseline, m)));
+    tr.appendChild(el("td", "num", fmt(m.pipeline, m)));
+    var td = el("td"); var pair = el("div", "pair");
+    [["b", m.baseline], ["p", m.pipeline]].forEach(function (x) {
+      var row = el("div"); var bar = el("div", "bar " + x[0]); var i = el("i");
+      i.style.width = Math.min(100, Math.abs(x[1]) / m.max * 100) + "%"; bar.appendChild(i); row.appendChild(bar);
+      row.appendChild(el("span", "", fmt(x[1], m))); pair.appendChild(row);
+    });
+    td.appendChild(pair); tr.appendChild(td); tb.appendChild(tr);
+  });
+  $("resNote").textContent = D.results_note;
+
+  D.decisions.forEach(function (d) {
+    var li = el("li"); li.appendChild(el("span", "", d.t)); li.appendChild(pill(d.state)); $("decisions").appendChild(li);
+  });
+  $("foot").textContent = "Generated from tracker.json. Longer notes live in PROJECT.md and README.md.";
+})();
+</script>
+</body>
+</html>

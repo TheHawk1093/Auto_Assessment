@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Run report</title>
+<!-- Equations are drawn with KaTeX from a CDN. Offline, formulas fall back to plain monospace text. -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+/* Layout concept: one card per answer. Left: what the student was asked and wrote.
+   Right: how it was marked and what the student is told. */
+:root {
+  --bg: #F4F6F7; --surface: #FFFFFF; --ink: #12262E; --muted: #55697A; --line: #D5DEE2;
+  --accent: #0B6E8A; --accent-ink: #FFFFFF; --soft: #E4F1F5;
+  --good: #1E7A4C; --good-soft: #E1F3E9; --warn: #8F5208; --warn-soft: #FBEFD9;
+  --bad: #B3362B; --bad-soft: #FBE6E3; --mark: #FFE88A; --teacher: #12262E;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+    --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+    --good: #6FCF9A; --good-soft: #12301F; --warn: #E4B15C; --warn-soft: #33290F;
+    --bad: #F08B80; --bad-soft: #3A1A17; --mark: #6B5A12; --teacher: #E3EEF1; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+  --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+  --good: #6FCF9A; --good-soft: #12301F; --warn: #E4B15C; --warn-soft: #33290F;
+  --bad: #F08B80; --bad-soft: #3A1A17; --mark: #6B5A12; --teacher: #E3EEF1; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--font-body); padding-inline: 16px; padding-block: 0 64px; }
+.wrap { max-width: 1180px; margin-inline: auto; display: grid; gap: 18px; }
+h1 { font-size: clamp(22px, 3.6vw, 30px); margin: 24px 0 0; line-height: 1.15; }
+h2, h3, h4, p { margin: 0; }
+.muted { color: var(--muted); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* top strip */
+.summary { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.stat { background: var(--surface); border: 1px solid var(--line); padding: 10px 12px; }
+.stat b { display: block; font: 600 19px/1.25 var(--font-mono); }
+.stat span { font-size: 12.5px; color: var(--muted); }
+.toolbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 10px; display: grid; gap: 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.toolbar button, .toolbar select { font: inherit; padding: 5px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; cursor: pointer; }
+.toolbar button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.toolbar :focus-visible, summary:focus-visible, .jump a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.count { margin-left: auto; font-size: 13.5px; color: var(--muted); }
+.hint { font-size: 12.5px; color: var(--muted); }
+.jump { display: flex; flex-wrap: wrap; gap: 6px; }
+.jump a { font: 500 12px/1 var(--font-mono); padding: 6px 8px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; }
+.jump a.ok { border-color: var(--good); } .jump a.near { border-color: var(--warn); } .jump a.off { border-color: var(--bad); background: var(--bad-soft); }
+
+/* card */
+.card { background: var(--surface); border: 1px solid var(--line); min-width: 0; scroll-margin-top: 120px; }
+.card:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.head { padding: 12px 16px; display: grid; gap: 8px 20px; grid-template-columns: minmax(0, 1fr) auto; align-items: center; background: var(--soft); border-bottom: 1px solid var(--line); }
+.head .id { font: 500 12px/1.3 var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.head .qno { font-size: 17px; font-weight: 700; }
+.score { display: grid; gap: 4px; min-width: 240px; }
+.score .line { display: grid; grid-template-columns: 64px minmax(80px, 1fr) 84px; gap: 8px; align-items: center; font-size: 13px; }
+.gauge { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.gauge i { display: block; height: 100%; }
+.gauge.ours i { background: var(--accent); } .gauge.teacher i { background: var(--teacher); }
+.score .num { font: 600 13px/1 var(--font-mono); text-align: right; }
+.gap { font: 600 12px/1 var(--font-mono); padding: 5px 8px; border-radius: 3px; border: 1px solid var(--line); justify-self: end; }
+.gap.ok { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+.gap.near { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.gap.off { color: var(--bad); border-color: var(--bad); background: var(--bad-soft); }
+
+.cols { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .cols > .right { border-left: 1px solid var(--line); } }
+.left, .right { padding: 14px 16px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.label { font: 600 11px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: block; margin-bottom: 6px; }
+.q { font-weight: 600; font-size: 16px; }
+.text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.box { padding: 10px 12px; border: 1px solid var(--line); background: var(--bg); }
+.box.model { border-left: 4px solid var(--good); }
+.box.student { border-left: 4px solid var(--accent); }
+mark { background: var(--mark); color: inherit; padding: 1px 2px; border-radius: 2px; }
+code { font-family: var(--font-mono); font-size: .9em; background: var(--soft); padding: 0 4px; border-radius: 3px; }
+.mathraw { font-family: var(--font-mono); font-size: .92em; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding-block: 2px; }
+
+/* marking */
+.pt { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 2px 10px; padding: 9px 10px; border: 1px solid var(--line); border-left-width: 4px; margin-bottom: 6px; }
+.pt.met { border-left-color: var(--good); } .pt.partial { border-left-color: var(--warn); } .pt.not_met { border-left-color: var(--bad); }
+.pt .ico { font: 700 16px/1.3 var(--font-mono); text-align: center; }
+.pt.met .ico { color: var(--good); } .pt.partial .ico { color: var(--warn); } .pt.not_met .ico { color: var(--bad); }
+.pt .desc { font-weight: 600; font-size: 14px; }
+.pt .got { font: 700 13px/1.5 var(--font-mono); text-align: right; white-space: nowrap; }
+.pt .sub { grid-column: 2 / -1; font-size: 13.5px; color: var(--muted); }
+.pt .ev { grid-column: 2 / -1; font-size: 13.5px; border-left: 3px solid var(--mark); padding-left: 8px; font-style: italic; overflow-wrap: anywhere; }
+
+/* feedback */
+.fb { border: 1px solid var(--accent); background: var(--soft); padding: 12px 14px; display: grid; gap: 10px; }
+.fb h4 { font-size: 13px; margin-bottom: 3px; }
+.fb ul { margin: 0; padding-left: 1.2em; }
+.fb li + li { margin-top: 4px; }
+.imp { padding: 8px 10px; background: var(--surface); border-left: 3px solid var(--warn); display: grid; gap: 3px; }
+.imp .fix b { color: var(--accent); }
+.fb .sum { font-weight: 600; }
+
+details > summary { cursor: pointer; color: var(--accent); font-size: 13.5px; }
+details[open] > summary { margin-bottom: 6px; }
+.teacher { border: 1px dashed var(--muted); padding: 10px 12px; }
+.flags, .judge { display: flex; gap: 6px; flex-wrap: wrap; }
+.flag, .j { font: 500 11px/1 var(--font-mono); padding: 5px 7px; border-radius: 3px; border: 1px solid var(--line); }
+.flag { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.j.t { color: var(--good); border-color: var(--good); background: var(--good-soft); } .j.f { color: var(--bad); border-color: var(--bad); background: var(--bad-soft); }
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); }
+.scheme li { margin-bottom: 3px; }
+.teachermark { padding: 10px 12px; border: 1px solid var(--teacher); }
+.teachermark .big { font-size: 20px; }
+.eq { margin-bottom: 8px; padding: 8px 10px; background: var(--bg); border: 1px solid var(--line); display: grid; gap: 2px; }
+.eq .mono { font-size: 13.5px; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="title">Run report</h1>
+  <p class="muted" style="max-width:80ch">Each card reads top to bottom: 1 question, 2 model answer, 3 student answer, 4 the teacher's mark, 5 our marking with the sum shown, 6 the feedback the student would receive.</p>
+  <div class="summary" id="summary"></div>
+  <div class="toolbar" role="toolbar" aria-label="Filters">
+    <div class="row">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="off" aria-pressed="false">Differs from teacher</button>
+      <button type="button" data-f="flag" aria-pressed="false">Flagged</button>
+      <select id="sort" aria-label="Sort"><option value="gap">Largest gap first</option><option value="order">Original order</option></select>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="jump" id="jump" aria-label="Jump to an answer"></div>
+    <span class="hint">Keys: j next answer, k previous. Yellow = the student's words the grader used as evidence.</span>
+  </div>
+  <div id="list" style="display:grid;gap:18px"></div>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+/* PURE:START - no DOM access in this block, so it can be tested in Node. */
+var MATH_RE = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|\$(?=\S)([^$\n]*?\S)\$(?!\d)/g;
+
+function tokenize(text) {
+  var out = [], last = 0, m;
+  MATH_RE.lastIndex = 0;
+  while ((m = MATH_RE.exec(text)) !== null) {
+    if (m.index > last) out.push({ t: "text", s: last, e: m.index });
+    var body = m[1] || m[2] || m[3] || m[4];
+    out.push({ t: "math", s: m.index, e: m.index + m[0].length, body: body, display: !!(m[1] || m[2]) });
+    last = MATH_RE.lastIndex;
+  }
+  if (last < text.length) out.push({ t: "text", s: last, e: text.length });
+  return out;
+}
+
+/* Where do the quoted fragments sit in the text? Matching ignores case and runs of whitespace. */
+function findSpans(text, quotes) {
+  var norm = "", map = [], prevSpace = false, i, ch;
+  for (i = 0; i < text.length; i++) {
+    ch = text.charAt(i);
+    if (/\s/.test(ch)) { if (prevSpace || norm === "") continue; norm += " "; map.push(i); prevSpace = true; }
+    else { norm += ch.toLowerCase(); map.push(i); prevSpace = false; }
+  }
+  var spans = [];
+  quotes.forEach(function (q) {
+    q.split(/\s*(?:\.\.\.|…)\s*/).forEach(function (frag) {
+      frag = frag.replace(/\s+/g, " ").trim().toLowerCase();
+      if (frag.length < 3) return;
+      var at = norm.indexOf(frag);
+      if (at >= 0) spans.push([map[at], map[at + frag.length - 1] + 1]);
+    });
+  });
+  spans.sort(function (a, b) { return a[0] - b[0]; });
+  var merged = [];
+  spans.forEach(function (s) {
+    var top = merged[merged.length - 1];
+    if (top && s[0] <= top[1]) top[1] = Math.max(top[1], s[1]); else merged.push([s[0], s[1]]);
+  });
+  return merged;
+}
+
+/* Cut [s, e) at span edges: returns [{s, e, hit}] */
+function pieces(s, e, spans) {
+  var out = [], pos = s;
+  spans.forEach(function (sp) {
+    if (sp[1] <= pos || sp[0] >= e) return;
+    var a = Math.max(sp[0], pos), b = Math.min(sp[1], e);
+    if (a > pos) out.push({ s: pos, e: a, hit: false });
+    out.push({ s: a, e: b, hit: true });
+    pos = b;
+  });
+  if (pos < e) out.push({ s: pos, e: e, hit: false });
+  return out;
+}
+function g(n) { return Number(n.toFixed(3)).toString(); }
+/* PURE:END */
+
+var D, filter = "all", cards = [], current = -1;
+function $(id) { return document.getElementById(id); }
+function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+
+function mathNode(tok) {
+  var span = el("span");
+  if (window.katex) {
+    try { span.innerHTML = window.katex.renderToString(tok.body, { displayMode: tok.display, throwOnError: true }); return span; }
+    catch (err) { /* fall through to raw text */ }
+  }
+  span.className = "mathraw"; span.textContent = tok.display ? "$$" + tok.body + "$$" : "$" + tok.body + "$";
+  return span;
+}
+function plainWithMd(parent, str, md) {
+  if (!md) { parent.appendChild(document.createTextNode(str)); return; }
+  str.split(/(`[^`]+`|\*\*[^*]+\*\*)/).forEach(function (part) {
+    if (!part) return;
+    if (part.charAt(0) === "`" && part.length > 2) parent.appendChild(el("code", "", part.slice(1, -1)));
+    else if (part.slice(0, 2) === "**" && part.length > 4) parent.appendChild(el("b", "", part.slice(2, -2)));
+    else parent.appendChild(document.createTextNode(part));
+  });
+}
+/* Render text with equations; optionally highlight spans and light markdown. Returns the parent. */
+function rich(parent, text, spans, md) {
+  spans = spans || [];
+  tokenize(text).forEach(function (tok) {
+    if (tok.t === "math") {
+      var n = mathNode(tok), hit = spans.some(function (sp) { return sp[0] < tok.e && sp[1] > tok.s; });
+      if (hit) { var mk = el("mark"); mk.appendChild(n); parent.appendChild(mk); } else parent.appendChild(n);
+    } else {
+      pieces(tok.s, tok.e, spans).forEach(function (p) {
+        var seg = text.slice(p.s, p.e);
+        if (p.hit) { var m2 = el("mark"); plainWithMd(m2, seg, false); parent.appendChild(m2); } else plainWithMd(parent, seg, md);
+      });
+    }
+  });
+  return parent;
+}
+function block(label, cls, text, spans, md) {
+  var d = el("div"); d.appendChild(el("span", "label", label));
+  var p = el("div", "text " + (cls || "")); rich(p, text, spans, md); d.appendChild(p); return d;
+}
+function gapOf(it) { return it.item.human_mark == null ? null : (it.predicted - it.item.human_mark) / it.item.max_mark; }
+function gapClass(gp) { var a = Math.abs(gp); return a < 0.1 ? "ok" : a < 0.25 ? "near" : "off"; }
+function pct(gp) { return (gp > 0 ? "+" : "") + Math.round(gp * 100) + "%"; }
+
+function scoreLine(label, cls, value, max) {
+  var line = el("div", "line"); line.appendChild(el("span", "", label));
+  var gauge = el("div", "gauge " + cls), i = el("i"); i.style.width = Math.min(100, value / max * 100) + "%"; gauge.appendChild(i);
+  line.appendChild(gauge); line.appendChild(el("span", "num", g(value) + " / " + g(max))); return line;
+}
+
+/* "P1 0.38 + P2 0.38 + P3 0.5 = 1.25 / 2", then one plain sentence comparing with the teacher. */
+function equation(it) {
+  var box = el("div", "eq"), parts = it.grading.verdicts.map(function (v) { return v.point_id + " " + g(v.marks_awarded); });
+  var line = el("p", "mono"); line.appendChild(document.createTextNode(parts.join("  +  ") + "  =  "));
+  line.appendChild(el("b", "", g(it.predicted) + " / " + g(it.item.max_mark))); box.appendChild(line);
+  var lost = it.grading.verdicts.filter(function (v) { var p = it.points[v.point_id]; return p && v.marks_awarded < p.marks - 1e-6; })
+    .map(function (v) { return v.point_id + " (−" + g(it.points[v.point_id].marks - v.marks_awarded) + ")"; });
+  var gp = gapOf(it), msg = lost.length ? "Marks lost on: " + lost.join(", ") + ". " : "Full marks on every point. ";
+  if (gp !== null) {
+    var diff = it.predicted - it.item.human_mark;
+    msg += Math.abs(diff) < 1e-6 ? "Same as the teacher."
+      : "That is " + g(Math.abs(diff)) + " mark" + (Math.abs(diff) === 1 ? "" : "s") + (diff < 0 ? " below" : " above") + " the teacher.";
+  }
+  box.appendChild(el("p", "muted", msg)); return box;
+}
+
+function card(it, idx) {
+  var c = el("article", "card"); c.tabIndex = -1; c.id = "a" + idx;
+  var head = el("div", "head"), left = el("div");
+  left.appendChild(el("div", "qno", "Question " + it.item.question_id));
+  left.appendChild(el("div", "id", it.item.id + (it.mode === "baseline" ? " · baseline (marks only)" : "")));
+  head.appendChild(left);
+  var score = el("div", "score");
+  score.appendChild(scoreLine("Ours", "ours", it.predicted, it.item.max_mark));
+  var gp = gapOf(it);
+  if (gp !== null) {
+    score.appendChild(scoreLine("Teacher", "teacher", it.item.human_mark, it.item.max_mark));
+    score.appendChild(el("span", "gap " + gapClass(gp), "difference " + pct(gp) + " of marks"));
+  }
+  head.appendChild(score); c.appendChild(head);
+
+  var cols = el("div", "cols"), L = el("div", "left"), R = el("div", "right");
+  var quotes = it.grading ? it.grading.verdicts.map(function (v) { return v.evidence; }).filter(Boolean) : [];
+  var spans = findSpans(it.item.student_answer || "", quotes);
+  L.appendChild(block("1 · Question", "q", it.item.question));
+  L.appendChild(block("2 · Model answer (what a full-mark answer says)", "box model", it.item.model_answer));
+  L.appendChild(block("3 · Student answer (yellow = evidence the grader used)", "box student", it.item.student_answer || "(empty)", spans));
+  cols.appendChild(L);
+
+  var tb = el("div", "teachermark");
+  tb.appendChild(el("span", "label", "4 · Teacher's mark"));
+  if (it.item.human_mark != null) {
+    var tl = el("p"); tl.appendChild(el("b", "big mono", g(it.item.human_mark) + " / " + g(it.item.max_mark)));
+    tl.appendChild(document.createTextNode("  given by the teacher. " + (it.item.human_feedback ? "" : "The dataset has no breakdown or comment, only this mark.")));
+    tb.appendChild(tl);
+    if (it.item.human_feedback) { var tf = el("div", "text box"); rich(tf, it.item.human_feedback); tb.appendChild(tf); }
+  } else {
+    tb.appendChild(el("p", "muted", "No teacher mark for this answer."));
+  }
+  R.appendChild(tb);
+
+  if (it.grading) {
+    var m = el("div"); m.appendChild(el("span", "label", "5 · Our marking, point by point"));
+    m.appendChild(equation(it));
+    it.grading.verdicts.forEach(function (v) {
+      var p = it.points[v.point_id] || {}, row = el("div", "pt " + v.status);
+      row.appendChild(el("span", "ico", v.status === "met" ? "✓" : v.status === "partial" ? "◐" : "✗"));
+      var d = el("span", "desc"); rich(d, p.description || v.point_id); row.appendChild(d);
+      row.appendChild(el("span", "got", g(v.marks_awarded) + (p.marks != null ? " / " + g(p.marks) : "")));
+      if (v.evidence) { var ev = el("span", "ev"); rich(ev, "“" + v.evidence + "”"); row.appendChild(ev); }
+      var why = el("span", "sub"); rich(why, v.reason, [], true); row.appendChild(why);
+      m.appendChild(row);
+    });
+    R.appendChild(m);
+  } else {
+    R.appendChild(el("p", "muted", "Baseline mode gives a mark only: no marking points or feedback."));
+  }
+
+  if (it.feedback) {
+    var fb = el("div", "fb"); fb.appendChild(el("span", "label", "6 · Feedback shown to the student"));
+    if (it.feedback.strengths.length) {
+      var s = el("div"); s.appendChild(el("h4", "", "What you did well")); var ul = el("ul");
+      it.feedback.strengths.forEach(function (x) { var li = el("li"); rich(li, x, [], true); ul.appendChild(li); });
+      s.appendChild(ul); fb.appendChild(s);
+    }
+    if (it.feedback.improvements.length) {
+      var w = el("div"); w.appendChild(el("h4", "", "What to improve"));
+      it.feedback.improvements.forEach(function (x) {
+        var d = el("div", "imp"), a = el("span"), f = el("span", "fix");
+        rich(a, x.issue, [], true); f.appendChild(el("b", "", "Try: ")); rich(f, x.fix, [], true);
+        d.appendChild(a); d.appendChild(f); w.appendChild(d);
+      });
+      fb.appendChild(w);
+    }
+    var sm = el("p", "sum"); rich(sm, it.feedback.summary, [], true); fb.appendChild(sm);
+    R.appendChild(fb);
+  }
+
+  var pointIds = Object.keys(it.points);
+  if (pointIds.length) {
+    var det = el("details"), sum = el("summary", "", "Marking scheme for this question" + (it.scheme_ok === false ? " (failed its self-test)" : it.scheme_ok ? " (passed self-test)" : ""));
+    det.appendChild(sum); var sl = el("ul", "scheme");
+    pointIds.forEach(function (id) { var li = el("li"); rich(li, id + " (" + g(it.points[id].marks) + "): " + it.points[id].description); sl.appendChild(li); });
+    det.appendChild(sl);
+    if (it.scheme_notes && it.scheme_notes.length) det.appendChild(el("p", "muted", it.scheme_notes.join(" ")));
+    R.appendChild(det);
+  }
+  if (it.judgement) {
+    var jd = el("div", "judge");
+    Object.keys(it.judgement).forEach(function (k) {
+      var v = it.judgement[k];
+      if (typeof v === "boolean" || v === null) jd.appendChild(el("span", "j " + (v === true ? "t" : v === false ? "f" : ""), k.replace(/_/g, " ") + (v === null ? ": n/a" : "")));
+    });
+    R.appendChild(jd);
+    if (it.judgement.note && it.judgement.note !== "none") R.appendChild(el("p", "muted", "Judge note: " + it.judgement.note));
+  }
+  if (it.flags.length) { var fl = el("div", "flags"); it.flags.forEach(function (x) { fl.appendChild(el("span", "flag", x)); }); R.appendChild(fl); }
+  cols.appendChild(R); c.appendChild(cols);
+  return c;
+}
+
+function render() {
+  var items = D.items.map(function (it, i) { return { it: it, i: i }; }).filter(function (x) {
+    if (filter === "off") return x.it.item.human_mark != null && Math.abs(gapOf(x.it)) >= 0.25;
+    if (filter === "flag") return x.it.flags.length > 0;
+    return true;
+  });
+  if ($("sort").value === "gap") items.sort(function (a, b) { return Math.abs(gapOf(b.it) || 0) - Math.abs(gapOf(a.it) || 0); });
+  var list = $("list"), jump = $("jump"); list.textContent = ""; jump.textContent = ""; cards = []; current = -1;
+  if (!items.length) list.appendChild(el("div", "empty", "Nothing matches this filter."));
+  items.forEach(function (x, n) {
+    var c = card(x.it, n); list.appendChild(c); cards.push(c);
+    var gp = gapOf(x.it), a = el("a", gp === null ? "" : gapClass(gp), "Q" + x.it.item.question_id + (gp === null ? "" : " " + pct(gp)));
+    a.href = "#a" + n; jump.appendChild(a);
+  });
+  $("count").textContent = items.length + " of " + D.items.length + " answers";
+}
+
+function init() {
+  D = JSON.parse($("data").textContent);
+  document.title = D.title; $("title").textContent = D.title;
+  var o = D.metrics.overall || {};
+  [["Answers", o.n], ["Average error", o.mean_abs_error != null ? (o.mean_abs_error * 100).toFixed(1) + "% of marks" : "-"],
+   ["Bias (+ generous)", o.bias != null ? (o.bias > 0 ? "+" : "") + (o.bias * 100).toFixed(1) + "%" : "-"],
+   ["Correlation", o.pearson != null ? o.pearson.toFixed(2) : "-"], ["Flagged", Math.round(D.metrics.flagged_share * 100) + "%"]
+  ].forEach(function (s) { var c = el("div", "stat"); c.appendChild(el("b", "", String(s[1]))); c.appendChild(el("span", "", s[0])); $("summary").appendChild(c); });
+  document.querySelectorAll(".toolbar button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      filter = b.dataset.f;
+      document.querySelectorAll(".toolbar button").forEach(function (o2) { o2.setAttribute("aria-pressed", String(o2 === b)); });
+      render();
+    });
+  });
+  $("sort").addEventListener("change", render);
+  document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "SELECT" || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "j" && e.key !== "k") return;
+    current = Math.max(0, Math.min(cards.length - 1, current + (e.key === "j" ? 1 : -1)));
+    if (cards[current]) { cards[current].focus({ preventScroll: true }); cards[current].scrollIntoView({ block: "start" }); }
+  });
+  render();
+}
+window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

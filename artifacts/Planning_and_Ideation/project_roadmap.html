@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Auto Assessment Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: one reading column, short sections, stages as a vertical timeline. */
+:root {
+  --bg: #F6F8F9;
+  --surface: #FFFFFF;
+  --ink: #12262E;
+  --muted: #51666F;
+  --line: #D5DEE2;
+  --accent: #0B6E8A;
+  --accent-ink: #FFFFFF;
+  --soft: #E4F1F5;
+  --warn: #8F5208;
+  --warn-soft: #FBEFD9;
+  --good: #1E7A4C;
+  --good-soft: #E1F3E9;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+    --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+    --warn: #E4B15C; --warn-soft: #33290F; --good: #6FCF9A; --good-soft: #12301F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1A1F; --surface: #14262D; --ink: #E3EEF1; --muted: #93A9B1; --line: #26414A;
+  --accent: #5BC0DE; --accent-ink: #0D1A1F; --soft: #173540;
+  --warn: #E4B15C; --warn-soft: #33290F; --good: #6FCF9A; --good-soft: #12301F;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--font-body); padding-inline: 16px; padding-block: 0 72px; -webkit-text-size-adjust: 100%; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; max-width: 66ch; }
+ul, ol { margin: 0; padding-left: 1.2em; }
+li + li { margin-top: 4px; }
+code { font-family: var(--font-mono); font-size: .88em; background: var(--soft); padding: 1px 5px; border-radius: 3px; }
+
+.wrap { max-width: 860px; margin-inline: auto; }
+.mast { padding-block: 40px 24px; display: grid; gap: 12px; border-bottom: 1px solid var(--line); }
+.kicker { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mast h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 700; }
+.lede { font-size: 18px; color: var(--muted); }
+
+.nav { display: flex; gap: 6px; overflow-x: auto; padding-block: 12px; font-size: 14px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 2; border-bottom: 1px solid var(--line); }
+.nav a { flex: none; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--ink); background: var(--surface); }
+.nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+main { display: grid; gap: 56px; padding-top: 36px; }
+section { display: grid; gap: 16px; scroll-margin-top: 64px; min-width: 0; }
+h2 { font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; padding-bottom: 8px; border-bottom: 2px solid var(--ink); }
+h3 { font-size: 19px; font-weight: 600; }
+.sub { color: var(--muted); }
+
+.box { background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.box.key { border-left: 4px solid var(--accent); }
+.box.warn { border-left: 4px solid var(--warn); }
+.box h3 { font-size: 16px; }
+.cols { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+
+/* steps */
+.steps { list-style: none; padding: 0; display: grid; gap: 10px; counter-reset: s; }
+.steps li { margin: 0; background: var(--surface); border: 1px solid var(--line); padding: 12px 16px 12px 56px; position: relative; display: grid; gap: 4px; }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 16px; top: 10px; font: 600 24px/1 var(--font-display); color: var(--accent); }
+.steps b { font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+.who { font: 500 11px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .05em; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); display: inline-block; margin-left: 8px; vertical-align: 2px; }
+.who.ai { color: var(--accent); border-color: var(--accent); background: var(--soft); }
+.who.code { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+
+/* stages */
+.stage { background: var(--surface); border: 1px solid var(--line); display: grid; min-width: 0; }
+.stage > header { padding: 14px 16px; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; background: var(--soft); border-bottom: 1px solid var(--line); }
+.stage .n { font: 600 12px/1 var(--font-mono); background: var(--accent); color: var(--accent-ink); padding: 5px 8px; border-radius: 3px; }
+.stage .inner { padding: 14px 16px 16px; display: grid; gap: 14px; }
+.stage dl { margin: 0; display: grid; gap: 10px; }
+.stage dt { font: 500 11px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 4px; }
+.stage dd { margin: 0; }
+.stage.later { opacity: .92; }
+.stage.later > header { background: var(--bg); }
+
+/* tables */
+.tw { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 640px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font: 500 12px/1.3 var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+
+.sources { columns: 2 300px; column-gap: 28px; font-size: 14px; padding-left: 1.2em; }
+.sources li { break-inside: avoid; margin-bottom: 6px; }
+footer { color: var(--muted); font-size: 13px; padding-top: 20px; border-top: 1px solid var(--line); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">Planning and Ideation · v0.2 · 2026-10-11</div>
+  <h1>Auto Assessment roadmap</h1>
+  <p class="lede">What we are building, how it works, and the order we build it in. Written to be read once and followed.</p>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <a href="#problem">Problem and scope</a>
+  <a href="#method">How it works</a>
+  <a href="#stages">Stages</a>
+  <a href="#build">Build steps</a>
+  <a href="#decisions">Decisions</a>
+  <a href="#measure">Measuring</a>
+  <a href="#risks">Risks</a>
+  <a href="#ask">Questions</a>
+</nav>
+
+<main>
+
+<!-- 1 -->
+<section id="problem">
+  <h2>1. Problem and scope</h2>
+  <p><b>The problem.</b> A teacher has a question paper, model answers, sometimes a marking scheme, and a pile of student answer sheets. Marking takes hours, and the student usually gets back a number and a few ticks. We want a system that reads each answer sheet and returns a mark for every question plus feedback the student can learn from.</p>
+  <div class="cols">
+    <div class="box key"><h3>What it must do</h3><ul>
+      <li>Give a fair mark per question, judged against the model answer and marking scheme.</li>
+      <li>Explain each mark: what was right, what lost marks and why, what to do next time.</li>
+      <li>Run start to finish with no human involved.</li>
+    </ul></div>
+    <div class="box"><h3>In scope now</h3><ul>
+      <li>Typed answers.</li>
+      <li>STEM first: explanations, short derivations, numerical working.</li>
+      <li>A few domains, done well, before adding more.</li>
+    </ul></div>
+    <div class="box"><h3>Not now</h3><ul>
+      <li>Handwriting (stage 3).</li>
+      <li>Drawn diagrams and graphs.</li>
+      <li>Plagiarism, curving, a teacher review screen.</li>
+    </ul></div>
+  </div>
+  <div class="box warn">
+    <h3>About "no human"</h3>
+    <p>At run time nobody checks anything. During development we may read a sample of outputs to spot problems. We do not hand-label data. The checks we build (section 6) are automatic so that the system can later run unattended.</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="method">
+  <h2>2. How it works</h2>
+  <p class="sub">Six steps per exam. Steps marked "code" are ordinary programs, which are cheap and never make arithmetic mistakes. Steps marked "AI" call the model.</p>
+  <ol class="steps">
+    <li><b>Read the exam<span class="who code">code</span></b><span>Split the question paper, model answers and each student's sheet into question-by-question pieces.</span></li>
+    <li><b>Get the marking scheme<span class="who ai">AI</span></b><span>If the exam has one, use it. If not, the AI writes one from the question and model answer: a short list of points, each worth some marks, adding up to the question's total. This happens once per question and is reused for every student. It is then tested automatically (section 6).</span></li>
+    <li><b>Mark each answer<span class="who ai">AI</span></b><span>For each point in the scheme, the AI says met, partly met or not met, and quotes the student's own words as proof. One call per question covers all points.</span></li>
+    <li><b>Check the marking<span class="who code">code</span></b><span>Confirm every quote really appears in the answer, marks do not exceed the limit, and the total is added up by the program, not the AI. If a check fails, mark that answer once more.</span></li>
+    <li><b>Write the feedback<span class="who ai">AI</span></b><span>Using only the checked marking, write for each question: what you did well, which points you missed and why, and what to change. It points at the student's actual words.</span></li>
+    <li><b>Produce the report<span class="who code">code</span></b><span>One report per student: marks per question, total, feedback.</span></li>
+  </ol>
+  <h3>Why this shape</h3>
+  <div class="cols">
+    <div class="box"><p>Marking against a list of small points is more consistent than asking for one overall mark. A physics study found this clearly, and found the wording of the scheme mattered more than prompt tricks.</p></div>
+    <div class="box"><p>Giving the AI the model answer helps. Giving it a wrong one hurts, so model answers must come from the dataset or a trusted source.</p></div>
+    <div class="box"><p>Quoting the student forces the AI to point at evidence, and lets code catch invented quotes.</p></div>
+    <div class="box"><p>Writing feedback after the marks are checked means the comments cannot contradict the marks.</p></div>
+  </div>
+  <p class="sub">Cost: about two AI calls per answer (mark, feedback), plus one or two per question for the scheme, paid once.</p>
+</section>
+
+<!-- 3 -->
+<section id="stages">
+  <h2>3. Stages and datasets</h2>
+  <p class="sub">We finish a stage before starting the next. Every dataset below was chosen because it already has model answers or a marking scheme, so nobody has to annotate anything. Full details are in DATASETS.md.</p>
+
+  <article class="stage">
+    <header><span class="n">STAGE 1</span><h3>Prove the pipeline</h3><span class="sub">Computer science and networking answers</span></header>
+    <div class="inner"><dl>
+      <div><dt>Datasets</dt><dd><ul>
+        <li><b>DigiKlausur</b>: neural networks exam, 646 answers, model answers, marks 0 to 2. Open licence.</li>
+        <li><b>SAF</b>: communication networks, 4,519 answers, model answers, marks, and human-written feedback. Open licence.</li>
+        <li><b>Mohler</b>: data structures, about 2,200 answers, model answers, marks 0 to 5 from two teachers.</li>
+      </ul></dd></div>
+      <div><dt>Why these first</dt><dd>Free, small, and already carry the teacher's marks, so we can score ourselves with zero labelling. SAF also gives teacher feedback to compare against. The answers are short, so runs are cheap and fast.</dd></div>
+      <div><dt>What we build</dt><dd>The whole six-step pipeline, the automatic checks, and the evaluation script.</dd></div>
+      <div><dt>Done when</dt><dd>Our marks clearly beat the simple one-prompt baseline, and the feedback scores well on the automatic feedback checks. We set the exact numbers after the first baseline run.</dd></div>
+    </dl></div>
+  </article>
+
+  <article class="stage">
+    <header><span class="n">STAGE 2</span><h3>STEM with working</h3><span class="sub">Maths, physics, chemistry</span></header>
+    <div class="inner"><dl>
+      <div><dt>Datasets</dt><dd><ul>
+        <li><b>Question banks</b> for the questions and solutions: SciBench (college physics, chemistry, maths), UGMathBench (undergraduate maths). First check that SciBench includes full worked solutions; if not, the AI drafts them and we verify against the final answer.</li>
+        <li><b>Practice answer sheets we generate</b>: a different AI plays a student and writes answers of varying quality with planned mistakes, such as a wrong formula, a unit slip or a missing step. Because we planned the mistake, we know the right mark without anyone labelling it.</li>
+        <li><b>ProcessBench and PRM800K</b>: maths solutions with the first wrong step already marked by experts. We use these to test whether our marking finds the right mistake.</li>
+        <li><b>RiceChem</b>: chemistry long answers with marking points. Needs an access request, so it is a bonus, not a dependency.</li>
+      </ul></dd></div>
+      <div><dt>What is new</dt><dd>Marks for method, not just the final answer. Carrying a wrong number forward without being penalised twice. Equivalent answers that look different (units, forms of an equation).</dd></div>
+      <div><dt>Limits</dt><dd>There is no real graded physics data we could find, so physics results come from generated sheets only. Generated answers are tidier than real ones, so we treat those results as indicative.</dd></div>
+      <div><dt>Done when</dt><dd>Marks match planned marks on generated sheets, ProcessBench mistakes are located correctly most of the time, and feedback holds up on the same checks as stage 1.</dd></div>
+    </dl></div>
+  </article>
+
+  <article class="stage later">
+    <header><span class="n">STAGE 3</span><h3>Harder formats</h3><span class="sub">Handwriting, circuits, longer derivations</span></header>
+    <div class="inner"><dl>
+      <div><dt>Datasets</dt><dd><b>EDU-CIRCUIT-HW</b>: 1,334 handwritten circuit solutions with rubrics and teacher marks. Problem statements are withheld by the authors and need a request.</dd></div>
+      <div><dt>Approach</dt><dd>Add a first step where a vision-capable model turns the photo into text, then reuse the same pipeline. We measure that step separately so we know whether a lost mark came from misreading or from misjudging.</dd></div>
+      <div><dt>Start only when</dt><dd>Stages 1 and 2 are stable.</dd></div>
+    </dl></div>
+  </article>
+
+  <article class="stage later">
+    <header><span class="n">STAGE 4</span><h3>Other fields</h3><span class="sub">Optional</span></header>
+    <div class="inner"><dl>
+      <div><dt>Status</dt><dd>Nothing outside STEM stood out in our search. A dataset qualifies if it has model answers or a marking scheme plus teacher marks. We will look again once stage 2 works.</dd></div>
+    </dl></div>
+  </article>
+</section>
+
+<!-- 4 -->
+<section id="build">
+  <h2>4. Build steps</h2>
+  <p class="sub">Stage 1 in order. Effort is relative: small is an afternoon, medium is a day or two, large is several days.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Step</th><th>What we do</th><th>Done when</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>0. Set up</td><td>Project folders, one config file for model and key, and one function that calls the model. Changing model later is a one-line edit.</td><td>A test call works.</td><td>Small</td></tr>
+      <tr><td>1. Load data</td><td>Convert DigiKlausur, SAF and Mohler into one common format: question, model answer, student answer, teacher mark, max mark.</td><td>All three load and print correctly.</td><td>Small</td></tr>
+      <tr><td>2. Baseline</td><td>One simple prompt: question, model answer, student answer, give a mark. Plus a script that compares marks to the teacher's.</td><td>We have a baseline number and know how much it varies between two identical runs.</td><td>Small</td></tr>
+      <tr><td>3. Marking scheme maker</td><td>AI writes the scheme from question and model answer, then the automatic tests run on it (section 6).</td><td>Most schemes pass the tests first time; failures regenerate once.</td><td>Medium</td></tr>
+      <tr><td>4. Grader and checks</td><td>Per-point marking with quotes, program adds the total, quote and limit checks, one retry.</td><td>Beats the baseline on the development part of the data.</td><td>Medium</td></tr>
+      <tr><td>5. Feedback and its checker</td><td>Feedback writer, then an automatic feedback scorer using a different AI model.</td><td>Scorer's judgments look sensible on about 20 samples you read.</td><td>Medium</td></tr>
+      <tr><td>6. Improvement loop</td><td>List the answers where we disagree most with the teacher. For each, ask the AI why, then edit the scheme wording or prompt. Rerun. Keep changes that help.</td><td>Gains level off.</td><td>Medium</td></tr>
+      <tr><td>7. Final run</td><td>Split by question so the same question is never in both parts. Tune on one part. Run once on the held-out part, never retune after.</td><td>Results table written.</td><td>Small</td></tr>
+      <tr><td>8. Stage 2</td><td>Build the practice-sheet generator, add the maths-specific rules, repeat steps 4 to 7.</td><td>Stage 2 done-when met.</td><td>Large</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="decisions">
+  <h2>5. Decisions and reasoning</h2>
+  <p class="sub">Each row is a choice we face. We start with the simple option and move only if the numbers say so.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Decision</th><th>Options</th><th>Start with</th><th>Why, and when to change</th></tr></thead>
+    <tbody>
+      <tr><td>Where the marking scheme comes from</td><td>Use the exam's own; AI writes it; hire people to write it</td><td>Exam's own if it exists, else AI writes it once per question</td><td>Writing by hand is the effort we want to avoid. AI-written schemes are usually acceptable but sometimes differ from how a teacher thinks, so we test them automatically.</td></tr>
+      <tr><td>One call per question or one per scheme point</td><td>One per question; one per point</td><td>One per question</td><td>Cheaper. Switch only if the AI skips points in long schemes.</td></tr>
+      <tr><td>Who adds up the marks</td><td>AI; program</td><td>Program</td><td>Programs do not make arithmetic mistakes. No reason to ask the AI.</td></tr>
+      <tr><td>Feedback in the same call or separate</td><td>Same; separate</td><td>Separate</td><td>Feedback then uses checked marks. The extra call is cheap.</td></tr>
+      <tr><td>Examples inside the prompt</td><td>None; a few fixed; pick the closest per answer</td><td>None</td><td>Costs tokens. Add a few graded examples from the dataset's own training portion only if accuracy is short. No extra labelling needed.</td></tr>
+      <tr><td>Mark several times and take the middle</td><td>No; yes</td><td>No</td><td>Multiplies cost. Try only on borderline answers if budget allows.</td></tr>
+      <tr><td>Correcting a consistent harsh or lenient bias</td><td>Leave; adjust</td><td>Leave</td><td>If the AI is consistently a mark too strict on a dataset, a small adjustment using that dataset's own training marks fixes it. Only then.</td></tr>
+      <tr><td>Which model</td><td>One strong model for everything; cheaper model for easy steps</td><td>One model for all</td><td>You will choose the model. Once it works, test a cheaper one for scheme-writing and feedback and keep it if marks do not drop. The feedback checker should use a different provider, since a model rates its own writing too kindly.</td></tr>
+      <tr><td>Training the model on our data</td><td>No; yes</td><td>No</td><td>Needs lots of labelled data and tends not to carry over to new subjects. Revisit only if everything else plateaus.</td></tr>
+      <tr><td>Checking arithmetic in numeric answers</td><td>AI works it out; run a calculator tool</td><td>AI works it out</td><td>Add a calculator only if stage 2 shows arithmetic slips in the grader.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="measure">
+  <h2>6. How we know it works, without labelling anything</h2>
+  <div class="cols">
+    <div class="box key"><h3>Marks</h3>
+      <p>Compare our marks with the teacher's on the held-out questions. Report two things: how often we give the same mark, and how far off we are on average. Also report whether we lean strict or lenient. Where the dataset has two teachers, their agreement with each other is the best we can expect.</p></div>
+    <div class="box key"><h3>Feedback</h3>
+      <p>A different AI scores each piece of feedback on five yes or no questions:</p>
+      <ol><li>Does it point at what the student actually wrote?</li><li>Does it say which marking point was missed?</li><li>Does it explain why it is wrong?</li><li>Does it say what to do next?</li><li>Is it correct?</li></ol>
+      <p>For SAF we also compare with the teacher's own feedback.</p></div>
+    <div class="box key"><h3>Marking schemes</h3>
+      <p>Three automatic tests per generated scheme: the model answer should get full marks, a blank or irrelevant answer should get none, and the marks should add up to the question total. Schemes that fail are regenerated once.</p></div>
+  </div>
+  <div class="box">
+    <h3>An extra test for "can a student improve from this?"</h3>
+    <p>A model rewrites the student's answer using only our feedback, and we mark the rewrite. If the feedback was useful, the marks on the pointed-out parts should rise. This is our own idea, not a proven method, so we first check it against your own reading of a few examples before trusting it.</p>
+  </div>
+  <p class="sub">Your part: read about 20 outputs per milestone and say whether the feedback would help you. That is the final judge, and it takes minutes, not annotation days.</p>
+</section>
+
+<!-- 7 -->
+<section id="risks">
+  <h2>7. Risks</h2>
+  <div class="cols">
+    <div class="box"><h3>Middle-quality answers</h3><p>Half-right answers are where humans and AI disagree most. We report results separately for weak, middle and strong answers so this does not hide.</p></div>
+    <div class="box"><h3>Generated practice sheets</h3><p>Cleaner than real students. Good for finding bugs and testing feedback, weaker as proof of accuracy. Real datasets give the final marks numbers.</p></div>
+    <div class="box"><h3>Memorised questions</h3><p>Public question banks may be in the model's training data, so it may know the answer. We change numbers in questions where we can.</p></div>
+    <div class="box"><h3>Teachers disagree</h3><p>If two teachers differ by a mark, no system can be exact. We compare against that gap, not against perfection.</p></div>
+    <div class="box"><h3>Thin evidence</h3><p>Research claims we rely on come from single papers, often small and on older models. Treat them as starting guesses and let our own results overrule them.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="ask">
+  <h2>8. Questions for you</h2>
+  <ol>
+    <li>Which model(s) and roughly what budget? It decides whether we can afford extra checks and whether a cheaper model can take the easy steps.</li>
+    <li>In stage 2, which matters most to you: maths, physics, or chemistry? We can go deeper in one.</li>
+    <li>Do you have a real exam from your own courses, with model answers and some student answers, even without marks? It would make a good final demo, because we can read the feedback and judge it directly.</li>
+    <li>Should the output be a file per student (PDF or HTML), or a table plus text is enough for now?</li>
+  </ol>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li><a href="https://arxiv.org/abs/2604.12227">Physics exam scoring with LLMs: checklist rubrics</a></li>
+    <li><a href="https://arxiv.org/abs/2603.14732">Physics: model answers help, wrong ones hurt</a></li>
+    <li><a href="https://arxiv.org/abs/2601.08654">Frozen scheme, evidence, calibration (RULERS)</a></li>
+    <li><a href="https://arxiv.org/abs/2410.02165">Automatic improvement of grading guidelines (GradeOpt)</a></li>
+    <li><a href="https://arxiv.org/abs/2508.05952">Reviewing AI-written feedback (Dean of LLM Tutors)</a></li>
+    <li><a href="https://arxiv.org/abs/2410.21819">Self-preference bias in LLM judges</a></li>
+    <li><a href="https://github.com/DigiKlausur/ASAG-Dataset">DigiKlausur</a></li>
+    <li><a href="https://github.com/SebOchs/SAF">SAF</a></li>
+    <li><a href="https://aclanthology.org/P11-1076/">Mohler</a></li>
+    <li><a href="https://github.com/mandyyyyii/scibench">SciBench</a></li>
+    <li><a href="https://huggingface.co/datasets/Qwen/ProcessBench">ProcessBench</a></li>
+    <li><a href="https://github.com/openai/prm800k">PRM800K</a></li>
+    <li><a href="https://arxiv.org/abs/2404.14316">RiceChem</a></li>
+    <li><a href="https://github.com/gt-learning-innovation/CIRCUIT_EDU_HW_ACL">EDU-CIRCUIT-HW</a></li>
+  </ul>
+  <footer>v0.2. Replaces the first planning page. Findings come from abstracts and summaries, not full-text reads.</footer>
+</section>
+
+</main>
+</div>
+</body>
+</html>

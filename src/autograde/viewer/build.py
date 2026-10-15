@@ -1,0 +1,92 @@
+"""Build a single self-contained HTML page to read a finished run: question, model answer,
+student answer, teacher mark vs ours, marking points with quotes, and the feedback."""
+
+from __future__ import annotations
+
+import json
+import random
+from collections import defaultdict
+from collections.abc import Sequence
+from importlib import resources
+from pathlib import Path
+
+from autograde.evaluation.metrics import report
+from autograde.pipeline.rubric import cached_record
+from autograde.schemas import Result
+
+PLACEHOLDER = "__DATA__"
+
+
+def _safe_json(obj: object) -> str:
+    """JSON that is safe inside a <script> tag."""
+    return json.dumps(obj, ensure_ascii=False).replace("</", "<\\/").replace("<!--", "<\\!--")
+
+
+def sample_spread(results: Sequence[Result], n: int, seed: int = 0) -> list[Result]:
+    """Pick n results spread over as many different questions as possible (round-robin)."""
+    by_question: dict[str, list[Result]] = defaultdict(list)
+    for r in results:
+        by_question[r.item.question_key].append(r)
+    rng = random.Random(seed)
+    queues = list(by_question.values())
+    rng.shuffle(queues)
+    for q in queues:
+        rng.shuffle(q)
+    picked: list[Result] = []
+    while len(picked) < n and any(queues):
+        for q in queues:
+            if q and len(picked) < n:
+                picked.append(q.pop())
+    return picked
+
+
+def build_data(
+    results: Sequence[Result],
+    title: str,
+    cache_dir: Path,
+    client_name: str,
+    judgements: dict[str, dict] | None = None,
+) -> dict:
+    """The JSON the page renders: one entry per answer, with the scheme text attached."""
+    judgements = judgements or {}
+    items = []
+    for r in results:
+        record = cached_record(cache_dir, client_name, r.item.question_key)
+        points = (
+            {p.id: {"description": p.description, "marks": p.marks} for p in record.rubric.points}
+            if record
+            else {}
+        )
+        items.append(
+            {
+                "item": r.item.model_dump(),
+                "mode": r.mode,
+                "predicted": r.predicted_mark,
+                "grading": r.grading.model_dump() if r.grading else None,
+                "feedback": r.feedback.model_dump() if r.feedback else None,
+                "flags": r.flags,
+                "points": points,
+                "scheme_ok": record.selftest_passed if record else None,
+                "scheme_notes": record.selftest_notes if record else [],
+                "judgement": judgements.get(r.item.id),
+            }
+        )
+    return {"title": title, "metrics": report(results), "items": items}
+
+
+def render_html(data: dict) -> str:
+    template = resources.files(__package__).joinpath("report.html").read_text(encoding="utf-8")
+    return template.replace(PLACEHOLDER, _safe_json(data))
+
+
+def write_report(
+    results: Sequence[Result],
+    out_path: Path,
+    title: str,
+    cache_dir: Path,
+    client_name: str,
+    judgements: dict[str, dict] | None = None,
+) -> Path:
+    data = build_data(results, title, cache_dir, client_name, judgements)
+    out_path.write_text(render_html(data), encoding="utf-8")
+    return out_path

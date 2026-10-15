@@ -1,0 +1,192 @@
+{
+  "project": "Auto Assessment",
+  "updated": "2026-10-15",
+  "current_stage": 1,
+  "current_step": "4. Grader and checks",
+  "summary": "Pipeline v0 runs end to end on real data but does not yet beat the one-prompt baseline.",
+  "stages": [
+    {
+      "n": 1,
+      "name": "Prove the pipeline",
+      "desc": "CS and networking short answers: DigiKlausur, SAF, Mohler",
+      "state": "active"
+    },
+    {
+      "n": 2,
+      "name": "STEM with working",
+      "desc": "Maths, physics, chemistry; generated practice sheets, ProcessBench, PRM800K",
+      "state": "todo"
+    },
+    {
+      "n": 3,
+      "name": "Harder formats",
+      "desc": "Handwriting and circuits: EDU-CIRCUIT-HW",
+      "state": "later"
+    },
+    {
+      "n": 4,
+      "name": "Other fields",
+      "desc": "Optional, only if a good dataset turns up",
+      "state": "later"
+    }
+  ],
+  "steps": [
+    {
+      "no": 0,
+      "name": "Set up",
+      "state": "done",
+      "note": "Project folders, config file, model client with Claude CLI and API backends, 26 tests."
+    },
+    {
+      "no": 1,
+      "name": "Load data",
+      "state": "done",
+      "note": "DigiKlausur, SAF and Mohler downloaded and loaded into one format; dev/test split by question."
+    },
+    {
+      "no": 2,
+      "name": "Baseline",
+      "state": "done",
+      "note": "One-prompt grader and metrics script. First number to beat, from 24 DigiKlausur answers."
+    },
+    {
+      "no": 3,
+      "name": "Marking scheme maker",
+      "state": "done",
+      "note": "Schemes written once per question and self-tested. 8 of 8 passed on DigiKlausur dev."
+    },
+    {
+      "no": 4,
+      "name": "Grader and checks",
+      "state": "doing",
+      "note": "Built, but marks are too strict and the quote check breaks on garbled formulas."
+    },
+    {
+      "no": 5,
+      "name": "Feedback and its checker",
+      "state": "doing",
+      "note": "Feedback writer and judge are built. Judge has not been run yet."
+    },
+    {
+      "no": "5b",
+      "name": "Readable report page",
+      "state": "done",
+      "note": "Per-run report.html with equations, numbered reading order, score sum, teacher mark vs ours. Sample view: autograde view --name <run> --limit 10."
+    },
+    {
+      "no": 6,
+      "name": "Improvement loop",
+      "state": "todo",
+      "note": "Study the biggest misses, adjust prompts, rerun, keep what helps."
+    },
+    {
+      "no": 7,
+      "name": "Final held-out run",
+      "state": "todo",
+      "note": "Run once on test questions, then write the results table."
+    }
+  ],
+  "next": [
+    {
+      "t": "Fix the quote check",
+      "s": "Looser matching for formulas; when it still fails, flag the point instead of removing all credit."
+    },
+    {
+      "t": "Make marking points core ideas, not copies of the model answer",
+      "s": "One idea per point, each worth marks on its own; drop elaboration. Today one point bundles 3 to 4 facts, so a student with the main idea loses half."
+    },
+    {
+      "t": "Tell the grader the model answer is one example, not the only answer",
+      "s": "Marks follow the question and the points; correct ideas missing from the model answer still count."
+    },
+    {
+      "t": "Measure sensitivity to the model answer",
+      "s": "Regrade the same student answers against a paraphrased and a shortened model answer. Report how much the marks move. Automatic, no labels."
+    },
+    {
+      "t": "Show the grader how this teacher marks",
+      "s": "Add 2 to 3 teacher-graded answers per question from the dataset's dev split. Then adjust bias if it is still strict."
+    },
+    {
+      "t": "Run the feedback judge and the wider test",
+      "s": "Judge on dk_pipeline, then baseline vs pipeline on SAF and Mohler dev."
+    }
+  ],
+  "issues": [
+    {
+      "level": "bad",
+      "t": "Marks depend too much on the model answer",
+      "s": "Each marking point copies several facts from it, and partial credit needs all of them. Seen in Q6 (SVM) and Q10 (backpropagation)."
+    },
+    {
+      "level": "bad",
+      "t": "Pipeline does not beat baseline yet",
+      "s": "Correlation 0.67 vs 0.78 on 24 answers. Small sample, so the gap may be noise, but it is not an improvement."
+    },
+    {
+      "level": "bad",
+      "t": "Quote check zeroes valid answers",
+      "s": "One 2/2 answer made of formulas was marked 0 after the retry also failed to quote exactly."
+    },
+    {
+      "level": "warn",
+      "t": "Cost is about 5 times the baseline",
+      "s": "$0.70 vs $0.14 per 24 answers at list price. Scheme tests are paid once; marking plus feedback are two calls per answer."
+    },
+    {
+      "level": "warn",
+      "t": "API backend untested",
+      "s": "No API key yet. The Claude CLI backend is the only one exercised."
+    },
+    {
+      "level": "warn",
+      "t": "Teacher marks are lenient on DigiKlausur",
+      "s": "Most answers got full marks, so a strict grader looks worse. Check SAF and Mohler before tuning to this one."
+    },
+    {
+      "level": "warn",
+      "t": "Name clash",
+      "s": "A different project called autograde exists on PyPI. Only matters if we publish."
+    }
+  ],
+  "decisions": [
+    {
+      "t": "Typed text first, handwriting later",
+      "state": "decided"
+    },
+    {
+      "t": "Fully automatic, no human step at run time",
+      "state": "decided"
+    },
+    {
+      "t": "No hand annotation",
+      "state": "decided"
+    },
+    {
+      "t": "Plain Python, no LangGraph for now",
+      "state": "decided"
+    },
+    {
+      "t": "Which model and budget",
+      "state": "pending"
+    },
+    {
+      "t": "Final project name",
+      "state": "pending"
+    },
+    {
+      "t": "Output format: file per student or table",
+      "state": "pending"
+    },
+    {
+      "t": "First git commit",
+      "state": "pending"
+    }
+  ],
+  "compare": {
+    "title": "DigiKlausur, dev split, 24 answers, Claude Sonnet via CLI",
+    "baseline": "dk_baseline",
+    "pipeline": "dk_pipeline",
+    "note": "Single run on a small sample. Treat differences as hints until we measure run-to-run noise. Feedback quality has not been scored yet."
+  }
+}
