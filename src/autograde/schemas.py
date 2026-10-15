@@ -119,6 +119,10 @@ class Grading(BaseModel):
 class Improvement(BaseModel):
     point_id: str
     issue: str = Field(description="What is missing or wrong, in plain words.")
+    why: str = Field(
+        default="",
+        description="Why the missing idea matters or why the student's version is wrong.",
+    )
     fix: str = Field(description="A concrete change the student can make next time.")
 
 

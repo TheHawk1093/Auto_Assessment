@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the star (*) operator returns the object/value/variable that its operand (a pointer) points to in memory, i.e. an alias (synonym) for that object. Equivalent wording such as 'the value stored at the address the pointer holds' is accepted.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the star operator as the dereferencing (indirection) operator.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

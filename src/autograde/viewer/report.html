@@ -368,7 +368,9 @@ function card(it, idx) {
       it.feedback.improvements.forEach(function (x) {
         var d = el("div", "imp"), a = el("span"), f = el("span", "fix");
         rich(a, x.issue, [], true); f.appendChild(el("b", "", "Try: ")); rich(f, x.fix, [], true);
-        d.appendChild(a); d.appendChild(f); w.appendChild(d);
+        d.appendChild(a);
+        if (x.why) { var y = el("span", "fix"); y.appendChild(el("b", "", "Why: ")); rich(y, x.why, [], true); d.appendChild(y); }
+        d.appendChild(f); w.appendChild(d);
       });
       fb.appendChild(w);
     }

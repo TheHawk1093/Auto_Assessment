@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array is initialized only once (e.g. when the function is first called/at program start) and so keeps its contents between function calls, in contrast to a non-static (automatic) array. Equivalent wording earns full marks. The contrast that non-static arrays are re-created/re-initialized on every call is optional and not required for full marks.",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

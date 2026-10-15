@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location in memory (a named storage location/space in the computer's memory).",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that it stores/holds a value (data), which can be used or changed.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

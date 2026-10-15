@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E03.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function signature includes the name of the function (equivalent wording accepted).",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that a function signature includes the types of the parameters (parameter list/types). Optional extras such as return type are not required for full marks.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,9 +1,9 @@
 {
   "project": "Auto Assessment",
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "current_stage": 1,
-  "current_step": "4. Grader and checks",
-  "summary": "Pipeline v0 runs end to end on real data but does not yet beat the one-prompt baseline.",
+  "current_step": "6. Improvement loop",
+  "summary": "Design v2 beats the one-prompt baseline on all three datasets. Held-out test split not run yet.",
   "stages": [
     {
       "n": 1,
@@ -58,14 +58,14 @@
     {
       "no": 4,
       "name": "Grader and checks",
-      "state": "doing",
-      "note": "Built, but marks are too strict and the quote check breaks on garbled formulas."
+      "state": "done",
+      "note": "Read-first pass, essence policy, code prices verdicts (partial = 0.9), schemes sized to the model answer. v2b error 0.069 on DigiKlausur seed 0 vs 0.217 baseline."
     },
     {
       "no": 5,
       "name": "Feedback and its checker",
       "state": "doing",
-      "note": "Feedback writer and judge are built. Judge has not been run yet."
+      "note": "Feedback judge run on 2 runs: anchored 96%, names the missed point 100%, actionable 95-100%, but explains why only 33-55%."
     },
     {
       "no": "5b",
@@ -76,8 +76,8 @@
     {
       "no": 6,
       "name": "Improvement loop",
-      "state": "todo",
-      "note": "Study the biggest misses, adjust prompts, rerun, keep what helps."
+      "state": "doing",
+      "note": "Batch 1 done (v0 to v2b, see experiments/RESULTS.md). Next: feedback explains why; Mohler still strict."
     },
     {
       "no": 7,
@@ -88,65 +88,51 @@
   ],
   "next": [
     {
-      "t": "Fix the quote check",
-      "s": "Looser matching for formulas; when it still fails, flag the point instead of removing all credit."
+      "t": "Run the held-out test split once",
+      "s": "Baseline vs v2b on the test questions of all three datasets. The tuning so far used dev questions only."
     },
     {
-      "t": "Make marking points core ideas, not copies of the model answer",
-      "s": "One idea per point, each worth marks on its own; drop elaboration. Today one point bundles 3 to 4 facts, so a student with the main idea loses half."
+      "t": "Make feedback explain why",
+      "s": "Judge shows only 33% to 55% explain why an idea matters. Change the feedback prompt, then rerun the judge."
     },
     {
-      "t": "Tell the grader the model answer is one example, not the only answer",
-      "s": "Marks follow the question and the points; correct ideas missing from the model answer still count."
+      "t": "Fix remaining strictness on Mohler",
+      "s": "Bias is still -0.13 there. Look at its biggest gaps in the report page."
     },
     {
-      "t": "Measure sensitivity to the model answer",
-      "s": "Regrade the same student answers against a paraphrased and a shortened model answer. Report how much the marks move. Automatic, no labels."
+      "t": "Check robustness to the model answer",
+      "s": "Regrade against a paraphrased and a shortened model answer; report how far marks move."
     },
     {
-      "t": "Show the grader how this teacher marks",
-      "s": "Add 2 to 3 teacher-graded answers per question from the dataset's dev split. Then adjust bias if it is still strict."
-    },
-    {
-      "t": "Run the feedback judge and the wider test",
-      "s": "Judge on dk_pipeline, then baseline vs pipeline on SAF and Mohler dev."
+      "t": "Use a judge from a different provider",
+      "s": "Current judge is the same family as the grader, which tends to rate it kindly."
     }
   ],
   "issues": [
     {
-      "level": "bad",
-      "t": "Marks depend too much on the model answer",
-      "s": "Each marking point copies several facts from it, and partial credit needs all of them. Seen in Q6 (SVM) and Q10 (backpropagation)."
-    },
-    {
-      "level": "bad",
-      "t": "Pipeline does not beat baseline yet",
-      "s": "Correlation 0.67 vs 0.78 on 24 answers. Small sample, so the gap may be noise, but it is not an improvement."
-    },
-    {
-      "level": "bad",
-      "t": "Quote check zeroes valid answers",
-      "s": "One 2/2 answer made of formulas was marked 0 after the retry also failed to quote exactly."
+      "level": "warn",
+      "t": "Settings were chosen on dev samples",
+      "s": "Partial weight 0.9 was picked by looking at DigiKlausur seed 1, SAF and Mohler. The test split has not been touched, so treat dev numbers as optimistic."
     },
     {
       "level": "warn",
       "t": "Cost is about 5 times the baseline",
-      "s": "$0.70 vs $0.14 per 24 answers at list price. Scheme tests are paid once; marking plus feedback are two calls per answer."
+      "s": "About $1.0 to $1.3 per 24 answers vs $0.14 to $0.25 at list price (reading, marking and feedback are three calls per answer)."
+    },
+    {
+      "level": "warn",
+      "t": "Mohler still too strict",
+      "s": "Bias -0.13, error 0.155. Teacher marks there average 4.35 out of 5."
+    },
+    {
+      "level": "warn",
+      "t": "Judge shares a model family with the grader",
+      "s": "Feedback scores are likely a little high."
     },
     {
       "level": "warn",
       "t": "API backend untested",
-      "s": "No API key yet. The Claude CLI backend is the only one exercised."
-    },
-    {
-      "level": "warn",
-      "t": "Teacher marks are lenient on DigiKlausur",
-      "s": "Most answers got full marks, so a strict grader looks worse. Check SAF and Mohler before tuning to this one."
-    },
-    {
-      "level": "warn",
-      "t": "Name clash",
-      "s": "A different project called autograde exists on PyPI. Only matters if we publish."
+      "s": "Only the Claude CLI backend has run."
     }
   ],
   "decisions": [
@@ -179,14 +165,18 @@
       "state": "pending"
     },
     {
-      "t": "First git commit",
-      "state": "pending"
+      "t": "Git: every GT test is committed and tagged locally",
+      "state": "decided"
+    },
+    {
+      "t": "Push to GitHub: manual, when you choose",
+      "state": "decided"
     }
   ],
   "compare": {
-    "title": "DigiKlausur, dev split, 24 answers, Claude Sonnet via CLI",
+    "title": "DigiKlausur, dev split, seed 0, 24 answers. Baseline vs design v2b (Claude Sonnet via CLI)",
     "baseline": "dk_baseline",
-    "pipeline": "dk_pipeline",
-    "note": "Single run on a small sample. Treat differences as hints until we measure run-to-run noise. Feedback quality has not been scored yet."
+    "pipeline": "dk_s0_v2b",
+    "note": "Same 24 answers for both. The settings were tuned on other samples (seed 1, SAF, Mohler), but on the same dev questions. Full history: experiments/RESULTS.md."
   }
 }

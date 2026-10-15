@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure that stores a collection of elements (equivalent wording accepted, e.g. abstract data type/collection of items).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the defining property: the last item added is the first to be removed (last-in-first-out / LIFO). Optional extras such as push/pop are not required.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

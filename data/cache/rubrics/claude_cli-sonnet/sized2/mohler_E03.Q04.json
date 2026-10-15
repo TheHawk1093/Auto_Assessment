@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the main advantage of passing by reference is that it avoids copying the argument (e.g., large data structures/objects) when the function is called, saving memory and/or time. Equivalent wording accepted (e.g., no duplicate made, passes only an address/alias instead of the whole data).",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

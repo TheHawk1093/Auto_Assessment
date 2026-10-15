@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States abstraction as an advantage of object-oriented programming (e.g. hiding complex implementation details and exposing only essential features). Equivalent wording accepted.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States reusability as an advantage of object-oriented programming (e.g. code/classes can be reused via inheritance or reused across programs). Equivalent wording accepted.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

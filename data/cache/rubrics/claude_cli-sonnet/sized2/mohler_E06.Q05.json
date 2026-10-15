@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size of its operand (a type or expression/variable) as a size value, i.e. the amount of memory it occupies.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the size is measured in bytes.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
