@@ -71,13 +71,20 @@ def build_record(question: Question, client: LLMClient, run_selftest: bool = Tru
 class RubricStore:
     """Disk cache of schemes, keyed by model and question, so each is written once."""
 
-    def __init__(self, cache_dir: Path, client: LLMClient, run_selftest: bool = True) -> None:
+    def __init__(
+        self,
+        cache_dir: Path,
+        client: LLMClient,
+        run_selftest: bool = True,
+        variant: str = "generated",
+    ) -> None:
         self.cache_dir = cache_dir
         self.client = client
         self.run_selftest = run_selftest
+        self.variant = variant
 
     def get(self, question: Question) -> RubricRecord:
-        path = rubric_path(self.cache_dir, self.client.name, question.key)
+        path = rubric_path(self.cache_dir, self.client.name, question.key, self.variant)
         if path.exists():
             return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))
         record = build_record(question, self.client, self.run_selftest)
@@ -88,13 +95,20 @@ class RubricStore:
         return record
 
 
-def rubric_path(cache_dir: Path, client_name: str, question_key: str) -> Path:
-    return cache_dir / "rubrics" / _slug(client_name) / f"{_slug(question_key)}.json"
+def rubric_path(
+    cache_dir: Path, client_name: str, question_key: str, variant: str = "generated"
+) -> Path:
+    base = cache_dir / "rubrics" / _slug(client_name)
+    if variant != "generated":
+        base = base / _slug(variant)
+    return base / f"{_slug(question_key)}.json"
 
 
-def cached_record(cache_dir: Path, client_name: str, question_key: str) -> RubricRecord | None:
+def cached_record(
+    cache_dir: Path, client_name: str, question_key: str, variant: str = "generated"
+) -> RubricRecord | None:
     """Read a stored scheme without ever calling a model."""
-    path = rubric_path(cache_dir, client_name, question_key)
+    path = rubric_path(cache_dir, client_name, question_key, variant)
     if not path.exists():
         return None
     return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))

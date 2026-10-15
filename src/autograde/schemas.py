@@ -125,12 +125,23 @@ class Feedback(BaseModel):
     summary: str = Field(description="One or two sentences the student should remember.")
 
 
+class Reading(BaseModel):
+    """A first pass over the student's answer alone, before any marking."""
+
+    gist: str = Field(description="What the student is saying, in one or two plain sentences.")
+    ideas: list[str] = Field(description="Each distinct idea or step stated, in your own words.")
+    problems: list[str] = Field(
+        description="Anything unclear, contradictory or wrong by general knowledge. Empty if none."
+    )
+
+
 class Result(BaseModel):
     """Everything produced for one student answer."""
 
     item: Item
     mode: Literal["pipeline", "baseline"]
     predicted_mark: float
+    reading: Reading | None = None
     grading: Grading | None = None
     feedback: Feedback | None = None
     flags: list[str] = Field(default_factory=list)
