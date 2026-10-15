@@ -5,7 +5,14 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 
-# Data and outputs are reproducible; keep them out of git.
+# Raw data is re-downloadable and runs are large; the marking schemes in data/cache are kept
+# in git because they change the scores and must be restored with the code.
 data/raw/
-data/cache/
 runs/
+
+# secrets and editor files
+.env
+*.key
+.vscode/
+*.log
+runs_*.flag

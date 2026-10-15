@@ -22,6 +22,7 @@ class PipelineConfig(BaseModel):
     rubric_selftest: bool = True
     read_first: bool = True  # a first pass reads the answer before marking
     evidence_policy: Literal["strict", "flag"] = "flag"  # strict: drop credit with unfound quotes
+    policy: Literal["literal", "essence"] = "essence"  # how generously to judge a point
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
     grade_retries: int = 1
     max_workers: int = 4

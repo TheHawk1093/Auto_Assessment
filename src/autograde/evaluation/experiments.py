@@ -91,13 +91,31 @@ def _delta(new: float | None, old: float | None, lower_is_better: bool) -> str:
     return f"{'▲' if better else '▼'} {d:+.3f}"
 
 
+def comparisons(entries: list[dict], i: int) -> tuple[str, str]:
+    """Change in error for entry i against the baseline and the previous run on the same sample."""
+    e, key = entries[i], sample_key(entries[i])
+    err = e["overall"].get("mean_abs_error")
+    earlier = entries[:i]
+    base = next((b for b in reversed(earlier)
+                 if b["mode"] == "baseline" and sample_key(b) == key), None)  # fmt: skip
+    prev = next((p for p in reversed(earlier)
+                 if p["mode"] == e["mode"] and sample_key(p) == key), None)  # fmt: skip
+    if e["mode"] == "baseline" or base is None:
+        vs_base = "-"
+    else:
+        vs_base = _delta(err, base["overall"].get("mean_abs_error"), True)
+    vs_prev = "-" if prev is None else _delta(err, prev["overall"].get("mean_abs_error"), True)
+    return vs_base, vs_prev
+
+
 def render_markdown(entries: list[dict]) -> str:
     """Table of all runs. 'vs base' compares with the baseline on the same sample;
     'vs prev' with the previous run of the same mode on the same sample. ▲ better, ▼ worse."""
     lines = [
         "# Experiment results",
         "",
-        "Generated from `experiments/log.jsonl`. Do not edit. Scores are against the teacher's marks.",
+        "Generated from `experiments/log.jsonl`. Do not edit.",
+        "Scores are against the teacher's marks.",
         "Error = average gap as a share of total marks (lower is better). "
         "Bias below 0 means stricter than the teacher.",
         "▲ better, ▼ worse. Compare only rows on the same sample.",
@@ -109,14 +127,8 @@ def render_markdown(entries: list[dict]) -> str:
     for i, e in enumerate(entries):
         o = e["overall"]
         key = sample_key(e)
-        base = next((b for b in reversed(entries[:i])
-                     if b["mode"] == "baseline" and sample_key(b) == key), None)  # fmt: skip
-        prev = next((p for p in reversed(entries[:i])
-                     if p["mode"] == e["mode"] and sample_key(p) == key), None)  # fmt: skip
         err = o.get("mean_abs_error")
-        vs_base = "-" if e["mode"] == "baseline" or not base else _delta(
-            err, base["overall"].get("mean_abs_error"), True)  # fmt: skip
-        vs_prev = "-" if not prev else _delta(err, prev["overall"].get("mean_abs_error"), True)
+        vs_base, vs_prev = comparisons(entries, i)
         flagged = e.get("flagged_share")
         lines.append(
             f"| {e['ts'][:16].replace('T', ' ')} | {e['variant']} | {e['run']} | {key} "
@@ -130,9 +142,8 @@ def render_markdown(entries: list[dict]) -> str:
     for e in entries:
         seen.setdefault(e["variant"], e)
     for name, e in seen.items():
-        lines.append(
-            f"- **{name}**: {e['note'] or 'no note'}. Settings: `{json.dumps(e['pipeline'])}`"
-        )
+        note = (e["note"] or "no note").rstrip(".")
+        lines.append(f"- **{name}**: {note}. Settings: `{json.dumps(e['pipeline'])}`")
     return "\n".join(lines) + "\n"
 
 

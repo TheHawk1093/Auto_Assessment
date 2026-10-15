@@ -1,0 +1,15 @@
+# The first design: no reading pass, literal marking, quotes strictly enforced.
+# Use: autograde --config configs/v0_citations.yaml run ... --variant v0-citations
+llm:
+  backend: claude_cli
+  model: sonnet
+judge:
+  backend: claude_cli
+  model: haiku
+pipeline:
+  rubric_selftest: true
+  read_first: false
+  evidence_policy: strict
+  policy: literal
+  grade_retries: 1
+  max_workers: 4

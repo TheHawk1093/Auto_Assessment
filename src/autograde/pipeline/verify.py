@@ -8,7 +8,7 @@ from autograde.schemas import EPS, Grading, PointVerdict, Rubric
 
 _FRAGMENT_SPLIT = re.compile(r"\s*(?:\.\.\.|…|\s\|\s)\s*")
 _MIN_FRAGMENT = 3
-_MIN_SQUASHED = 4
+_MIN_SQUASHED = 8
 
 
 def _norm(text: str) -> str:
@@ -19,7 +19,9 @@ def _norm(text: str) -> str:
 
 def _squash(text: str) -> str:
     """Letters and digits only. Lets a quote match even when spacing or symbols differ, as
-    happens with formulas such as 'W(t+1) = W(t) + n*e*X' versus 'W(t+1)=W(t)+n e X'."""
+    happens with formulas such as 'W(t+1) = W(t) + n*e*X' versus 'W(t+1)=W(t)+n e X'.
+    It ignores operators on purpose: the check asks whether the quote was copied from the
+    answer at all, not whether every sign is identical."""
     return re.sub(r"[\W_]+", "", text.lower())
 
 

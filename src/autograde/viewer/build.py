@@ -12,6 +12,7 @@ from pathlib import Path
 
 from autograde.evaluation.metrics import report
 from autograde.pipeline.rubric import cached_record
+from autograde.pipeline.verify import evidence_in_answer
 from autograde.schemas import Result
 
 PLACEHOLDER = "__DATA__"
@@ -40,12 +41,25 @@ def sample_spread(results: Sequence[Result], n: int, seed: int = 0) -> list[Resu
     return picked
 
 
+def _grading_with_checks(r: Result) -> dict | None:
+    """Grading as a dict, with a flag per verdict saying whether its quote is in the answer."""
+    if not r.grading:
+        return None
+    out = r.grading.model_dump()
+    for v in out["verdicts"]:
+        v["evidence_ok"] = bool(v["evidence"]) and evidence_in_answer(
+            v["evidence"], r.item.student_answer
+        )
+    return out
+
+
 def build_data(
     results: Sequence[Result],
     title: str,
     cache_dir: Path,
     client_name: str,
     judgements: dict[str, dict] | None = None,
+    run_info: dict | None = None,
 ) -> dict:
     """The JSON the page renders: one entry per answer, with the scheme text attached."""
     judgements = judgements or {}
@@ -62,7 +76,8 @@ def build_data(
                 "item": r.item.model_dump(),
                 "mode": r.mode,
                 "predicted": r.predicted_mark,
-                "grading": r.grading.model_dump() if r.grading else None,
+                "reading": r.reading.model_dump() if r.reading else None,
+                "grading": _grading_with_checks(r),
                 "feedback": r.feedback.model_dump() if r.feedback else None,
                 "flags": r.flags,
                 "points": points,
@@ -71,7 +86,7 @@ def build_data(
                 "judgement": judgements.get(r.item.id),
             }
         )
-    return {"title": title, "metrics": report(results), "items": items}
+    return {"title": title, "metrics": report(results), "items": items, "run": run_info or {}}
 
 
 def render_html(data: dict) -> str:
@@ -86,7 +101,8 @@ def write_report(
     cache_dir: Path,
     client_name: str,
     judgements: dict[str, dict] | None = None,
+    run_info: dict | None = None,
 ) -> Path:
-    data = build_data(results, title, cache_dir, client_name, judgements)
+    data = build_data(results, title, cache_dir, client_name, judgements, run_info)
     out_path.write_text(render_html(data), encoding="utf-8")
     return out_path

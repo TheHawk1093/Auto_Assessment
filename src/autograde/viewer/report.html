@@ -76,7 +76,20 @@ h2, h3, h4, p { margin: 0; }
 .cols { display: grid; grid-template-columns: 1fr; }
 @media (min-width: 900px) { .cols { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .cols > .right { border-left: 1px solid var(--line); } }
 .left, .right { padding: 14px 16px; display: grid; gap: 14px; align-content: start; min-width: 0; }
-.label { font: 600 11px/1 var(--font-mono); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: block; margin-bottom: 6px; }
+.label { font: 600 11px/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.label .n { background: var(--ink); color: var(--bg); border-radius: 3px; min-width: 20px; padding: 3px 5px; text-align: center; letter-spacing: 0; }
+.label .hint2 { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.runinfo { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); font-size: 13px; }
+.runinfo b { font-weight: 600; }
+.chip { font: 500 11px/1 var(--font-mono); padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); background: var(--bg); }
+.chip.warn { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.chip.okc { color: var(--good); border-color: var(--good); }
+.dir { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--line); margin-top: 6px; }
+.dir i { display: block; height: 100%; }
+.dir .s { background: var(--bad); } .dir .m { background: var(--good); } .dir .g { background: var(--warn); }
+.reading { border: 1px solid var(--line); padding: 10px 12px; display: grid; gap: 6px; background: var(--bg); }
+.reading ul { margin: 0; padding-left: 1.2em; }
+.reading .prob { color: var(--warn); }
 .q { font-weight: 600; font-size: 16px; }
 .text { white-space: pre-wrap; overflow-wrap: anywhere; }
 .box { padding: 10px 12px; border: 1px solid var(--line); background: var(--bg); }
@@ -124,7 +137,8 @@ details[open] > summary { margin-bottom: 6px; }
 <body>
 <div class="wrap">
   <h1 id="title">Run report</h1>
-  <p class="muted" style="max-width:80ch">Each card reads top to bottom: 1 question, 2 model answer, 3 student answer, 4 the teacher's mark, 5 our marking with the sum shown, 6 the feedback the student would receive.</p>
+  <p class="muted" style="max-width:80ch">Each card reads top to bottom: 1 question, 2 model answer, 3 student answer, 4 the teacher's mark, 5 how the grader read the answer, 6 our marking with the sum shown, 7 the feedback the student would receive.</p>
+  <div class="runinfo" id="runinfo"></div>
   <div class="summary" id="summary"></div>
   <div class="toolbar" role="toolbar" aria-label="Filters">
     <div class="row">
@@ -238,8 +252,16 @@ function rich(parent, text, spans, md) {
   });
   return parent;
 }
-function block(label, cls, text, spans, md) {
-  var d = el("div"); d.appendChild(el("span", "label", label));
+/* Section header: "3 · Student answer" becomes a numbered badge plus title, with an optional hint. */
+function lab(text, hint) {
+  var m = /^(\d+) \u00B7 (.*)$/.exec(text), span = el("span", "label");
+  if (m) { span.appendChild(el("span", "n", m[1])); span.appendChild(document.createTextNode(m[2])); }
+  else span.textContent = text;
+  if (hint) span.appendChild(el("span", "hint2", hint));
+  return span;
+}
+function block(label, cls, text, spans, md, hint) {
+  var d = el("div"); d.appendChild(lab(label, hint));
   var p = el("div", "text " + (cls || "")); rich(p, text, spans, md); d.appendChild(p); return d;
 }
 function gapOf(it) { return it.item.human_mark == null ? null : (it.predicted - it.item.human_mark) / it.item.max_mark; }
@@ -287,12 +309,12 @@ function card(it, idx) {
   var quotes = it.grading ? it.grading.verdicts.map(function (v) { return v.evidence; }).filter(Boolean) : [];
   var spans = findSpans(it.item.student_answer || "", quotes);
   L.appendChild(block("1 · Question", "q", it.item.question));
-  L.appendChild(block("2 · Model answer (what a full-mark answer says)", "box model", it.item.model_answer));
-  L.appendChild(block("3 · Student answer (yellow = evidence the grader used)", "box student", it.item.student_answer || "(empty)", spans));
+  L.appendChild(block("2 · Model answer", "box model", it.item.model_answer, [], false, "what a full-mark answer says"));
+  L.appendChild(block("3 · Student answer", "box student", it.item.student_answer || "(empty)", spans, false, "yellow = evidence the grader used"));
   cols.appendChild(L);
 
   var tb = el("div", "teachermark");
-  tb.appendChild(el("span", "label", "4 · Teacher's mark"));
+  tb.appendChild(lab("4 · Teacher's mark"));
   if (it.item.human_mark != null) {
     var tl = el("p"); tl.appendChild(el("b", "big mono", g(it.item.human_mark) + " / " + g(it.item.max_mark)));
     tl.appendChild(document.createTextNode("  given by the teacher. " + (it.item.human_feedback ? "" : "The dataset has no breakdown or comment, only this mark.")));
@@ -303,15 +325,29 @@ function card(it, idx) {
   }
   R.appendChild(tb);
 
+  if (it.reading) {
+    var rd = el("div"); rd.appendChild(lab("5 · How the grader read the answer", "first pass: question and answer only"));
+    var rb = el("div", "reading"), gi = el("p"); rich(gi, it.reading.gist, [], true); rb.appendChild(gi);
+    if (it.reading.ideas.length) { var iu = el("ul"); it.reading.ideas.forEach(function (x) { var li = el("li"); rich(li, x, [], true); iu.appendChild(li); }); rb.appendChild(iu); }
+    it.reading.problems.forEach(function (x) { var pr = el("p", "prob"); rich(pr, "Noticed: " + x, [], true); rb.appendChild(pr); });
+    rd.appendChild(rb); R.appendChild(rd);
+  }
+
   if (it.grading) {
-    var m = el("div"); m.appendChild(el("span", "label", "5 · Our marking, point by point"));
+    var m = el("div"); m.appendChild(lab((it.reading ? 6 : 5) + " · Our marking, point by point", it.reading ? "marked after reading" : ""));
     m.appendChild(equation(it));
     it.grading.verdicts.forEach(function (v) {
       var p = it.points[v.point_id] || {}, row = el("div", "pt " + v.status);
       row.appendChild(el("span", "ico", v.status === "met" ? "✓" : v.status === "partial" ? "◐" : "✗"));
       var d = el("span", "desc"); rich(d, p.description || v.point_id); row.appendChild(d);
       row.appendChild(el("span", "got", g(v.marks_awarded) + (p.marks != null ? " / " + g(p.marks) : "")));
-      if (v.evidence) { var ev = el("span", "ev"); rich(ev, "“" + v.evidence + "”"); row.appendChild(ev); }
+      if (v.evidence) {
+        var ev = el("span", "ev"); rich(ev, "\u201C" + v.evidence + "\u201D");
+        if (v.marks_awarded > 0) ev.appendChild(el("span", "chip " + (v.evidence_ok === false ? "warn" : "okc"), v.evidence_ok === false ? "quote not found in the answer, credit kept" : "quote found"));
+        row.appendChild(ev);
+      } else if (v.marks_awarded > 0) {
+        var ne = el("span", "ev"); ne.appendChild(el("span", "chip warn", "credit given without a quote")); row.appendChild(ne);
+      }
       var why = el("span", "sub"); rich(why, v.reason, [], true); row.appendChild(why);
       m.appendChild(row);
     });
@@ -321,7 +357,7 @@ function card(it, idx) {
   }
 
   if (it.feedback) {
-    var fb = el("div", "fb"); fb.appendChild(el("span", "label", "6 · Feedback shown to the student"));
+    var fb = el("div", "fb"); fb.appendChild(lab((it.reading ? 7 : 6) + " · Feedback shown to the student"));
     if (it.feedback.strengths.length) {
       var s = el("div"); s.appendChild(el("h4", "", "What you did well")); var ul = el("ul");
       it.feedback.strengths.forEach(function (x) { var li = el("li"); rich(li, x, [], true); ul.appendChild(li); });
@@ -388,6 +424,20 @@ function init() {
    ["Bias (+ generous)", o.bias != null ? (o.bias > 0 ? "+" : "") + (o.bias * 100).toFixed(1) + "%" : "-"],
    ["Correlation", o.pearson != null ? o.pearson.toFixed(2) : "-"], ["Flagged", Math.round(D.metrics.flagged_share * 100) + "%"]
   ].forEach(function (s) { var c = el("div", "stat"); c.appendChild(el("b", "", String(s[1]))); c.appendChild(el("span", "", s[0])); $("summary").appendChild(c); });
+  var strict = 0, same = 0, gen = 0;
+  D.items.forEach(function (it) { var gp = gapOf(it); if (gp === null) return; if (gp < -0.1) strict++; else if (gp > 0.1) gen++; else same++; });
+  var tot = strict + same + gen;
+  if (tot) {
+    var c2 = el("div", "stat"); c2.appendChild(el("b", "", strict + " / " + same + " / " + gen)); c2.appendChild(el("span", "", "stricter / within 10% / more generous than the teacher"));
+    var dirbar = el("div", "dir"); [["s", strict], ["m", same], ["g", gen]].forEach(function (x) { var i = el("i", x[0]); i.style.width = (100 * x[1] / tot) + "%"; dirbar.appendChild(i); });
+    c2.appendChild(dirbar); $("summary").appendChild(c2);
+  }
+  var ri = D.run || {}, info = $("runinfo");
+  [["Variant", ri.variant], ["Mode", ri.mode], ["Model", ri.model], ["Prompts", ri.prompts]].forEach(function (x) {
+    if (!x[1]) return; var sp = el("span"); sp.appendChild(el("b", "", x[0] + ": ")); sp.appendChild(document.createTextNode(x[1])); info.appendChild(sp);
+  });
+  Object.keys(ri.settings || {}).forEach(function (k) { info.appendChild(el("span", "chip", k + "=" + ri.settings[k])); });
+  if (!info.children.length) info.hidden = true;
   document.querySelectorAll(".toolbar button").forEach(function (b) {
     b.addEventListener("click", function () {
       filter = b.dataset.f;

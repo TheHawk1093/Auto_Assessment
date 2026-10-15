@@ -11,12 +11,18 @@ from pathlib import Path
 from autograde.config import Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.datasets.download import download_all
-from autograde.evaluation.experiments import record_run
+from autograde.evaluation.experiments import (
+    comparisons,
+    prompt_fingerprint,
+    read_log,
+    record_run,
+)
 from autograde.evaluation.judge import judge_all, pass_rates
 from autograde.evaluation.metrics import report
 from autograde.llm import build_client
 from autograde.pipeline.rubric import RubricStore
 from autograde.pipeline.run import read_results, run_items, to_question
+from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_spread, write_report
 
 log = logging.getLogger("autograde")
@@ -39,6 +45,7 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--name", required=True, help="run folder name under runs/")
     run.add_argument("--variant", help="label for this design in the experiment log")
     run.add_argument("--note", default="", help="one line on what this variant changes")
+    run.add_argument("--no-commit", action="store_true", help="skip the git commit and tag")
 
     judge = sub.add_parser("judge", help="score the feedback of a finished run")
     judge.add_argument("--name", required=True)
@@ -50,6 +57,8 @@ def _parser() -> argparse.ArgumentParser:
     logp.add_argument("--name", required=True)
     logp.add_argument("--variant", required=True)
     logp.add_argument("--note", default="")
+
+    sub.add_parser("history", help="list experiment tags with their scores")
 
     view = sub.add_parser("view", help="(re)build runs/<name>/report.html to read the samples")
     view.add_argument("--name", required=True)
@@ -74,6 +83,16 @@ def _write_view(run_dir: Path, settings: Settings, limit: int | None = None, see
     results = read_results(run_dir / "results.jsonl")
     if limit:
         results = sample_spread(results, limit, seed)
+    info = {}
+    if setup_path.exists():
+        setup = json.loads(setup_path.read_text(encoding="utf-8"))
+        info = {
+            "variant": setup.get("variant"),
+            "mode": setup.get("mode"),
+            "model": client_name,
+            "prompts": prompt_fingerprint()["all"],
+            "settings": setup.get("pipeline", {}) if setup.get("mode") == "pipeline" else {},
+        }
     return write_report(
         results,
         run_dir / ("report_sample.html" if limit else "report.html"),
@@ -81,6 +100,7 @@ def _write_view(run_dir: Path, settings: Settings, limit: int | None = None, see
         settings.paths.cache_dir,
         client_name,
         judged,
+        info,
     )
 
 
@@ -100,6 +120,7 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
         "n": len(items),
         "seed": args.seed,
         "mode": args.mode,
+        "variant": args.variant or args.mode,
         "llm": settings.llm.model_dump(),
         "pipeline": settings.pipeline.model_dump(),
     }
@@ -119,6 +140,13 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
     print("usage:", client.usage.as_dict())
     print("report:", _write_view(run_dir, settings))
     print("logged:", record_run(run_dir, args.variant or args.mode, args.note))
+    if not args.no_commit:
+        entries = read_log()
+        vs_base, vs_prev = comparisons(entries, len(entries) - 1)
+        try:
+            print("committed and tagged:", commit_experiment(entries[-1], vs_base, vs_prev))
+        except GitError as exc:
+            print("git step skipped:", exc)
 
 
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
@@ -127,7 +155,12 @@ def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
     if not results:
         sys.exit("No results with feedback in that run.")
     grader = build_client(settings.llm)  # same cache path as the run, so schemes are reused
-    store = RubricStore(settings.paths.cache_dir, grader, settings.pipeline.rubric_selftest)
+    store = RubricStore(
+        settings.paths.cache_dir,
+        grader,
+        settings.pipeline.rubric_selftest,
+        settings.pipeline.rubric_variant,
+    )
     rubrics = {r.item.question_key: store.get(to_question(r.item)).rubric for r in results}
     judge_client = build_client(settings.judge)
     judgements = judge_all(results, rubrics, judge_client, settings.pipeline.max_workers)
@@ -157,6 +190,8 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "history":
+        print(history())
     elif args.cmd == "log":
         print(record_run(settings.paths.runs_dir / args.name, args.variant, args.note))
     elif args.cmd == "view":

@@ -13,6 +13,10 @@ judge:                      # scores feedback quality; use a different provider 
 
 pipeline:
   rubric_selftest: true     # check each generated scheme on the model answer and a blank answer
+  read_first: true          # first pass reads the answer alone, then marking uses that reading
+  evidence_policy: flag     # strict: drop credit whose quote is not found | flag: keep and report
+  policy: essence           # essence: judge the central idea | literal: original wording
+  rubric_variant: generated # change to keep another scheme source beside the default
   grade_retries: 1          # re-mark once if the checks fail
   max_workers: 4            # parallel calls
 

@@ -1,4 +1,9 @@
-from autograde.pipeline.verify import check_grading, evidence_in_answer, repair
+from autograde.pipeline.verify import (
+    check_grading,
+    evidence_in_answer,
+    repair,
+    unverified_points,
+)
 from autograde.schemas import Grading, PointVerdict, Rubric, RubricPoint
 
 ANSWER = 'A neural network is "massively parallel" and stores knowledge in synaptic weights.'
@@ -67,3 +72,36 @@ def test_repair_caps_over_award():
                           verdict("P2", "not_met", 0)])  # fmt: skip
     fixed, _ = repair(g, RUBRIC, ANSWER)
     assert fixed.verdicts[0].marks_awarded == 1
+
+
+def test_evidence_matches_formulas_despite_spacing_and_symbols():
+    answer = "apply delta rule: W(t+1) = W(t) + n*e*X end"
+    assert evidence_in_answer("W(t+1)=W(t)+n*e*X", answer)
+    assert evidence_in_answer("w ( t+1 ) = w(t) + n * e * x", answer)
+    assert not evidence_in_answer("gradient descent minimises the loss function", answer)
+
+
+def test_squashed_match_needs_enough_characters():
+    assert not evidence_in_answer("a+b", "x = a + b")
+
+
+def test_unverified_points_lists_credit_without_a_found_quote():
+    g = Grading(
+        verdicts=[
+            verdict("P1", "met", 1, "massively parallel"),
+            verdict("P2", "met", 1, "made up words"),
+        ]
+    )
+    assert unverified_points(g, ANSWER) == ["P2"]
+
+
+def test_check_can_ignore_missing_quotes():
+    g = Grading(verdicts=[verdict("P1", "met", 1, "made up"), verdict("P2", "not_met", 0)])
+    assert check_grading(g, RUBRIC, ANSWER, require_evidence=False) == []
+    assert check_grading(g, RUBRIC, ANSWER, require_evidence=True) != []
+
+
+def test_repair_can_keep_unsupported_credit():
+    g = Grading(verdicts=[verdict("P1", "met", 1, "made up"), verdict("P2", "not_met", 0)])
+    fixed, flags = repair(g, RUBRIC, ANSWER, zero_unsupported=False)
+    assert fixed.total == 1 and flags == []

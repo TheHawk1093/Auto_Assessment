@@ -48,6 +48,35 @@ Item -> RubricStore (write once per question, self-test, cache)
 
 Data splits: a question goes to `dev` or `test` by a hash of its id, so no question appears in both. Tune on `dev`; run `test` rarely.
 
+## Experiment workflow (every test against the teacher's marks)
+
+`autograde run ... --variant NAME --note "what changed"` does five things in order:
+grades the sample, scores it against the teacher's marks, appends a line to `experiments/log.jsonl`,
+rebuilds `experiments/RESULTS.md` (all runs, with change against the baseline and the previous run
+on the same sample), then commits the code and tags it.
+
+- Commit subject carries the scores: `exp(v1): error 0.150 | bias -0.04 | r 0.85 | qwk 0.75 | $0.60 [...]`.
+- Tag `exp-<variant>-<run>` holds the full message: `git show exp-v1-dk_s1_v1`.
+- List everything tried: `autograde history` (same as `git tag -n1 -l "exp-*"`).
+- Fall back: `git checkout exp-<variant>-<run>`. Marking schemes in `data/cache/rubrics` are committed,
+  so the exact schemes come back with the code.
+- Nothing is pushed. Push when you choose: `git push --follow-tags`.
+- `--no-commit` skips the git step for throwaway runs.
+
+Compare designs on the **same sample** (same dataset, split, `-n`, `--seed`). Tune on one seed and
+confirm on another so a gain is not just fitting the tuning sample.
+
+## Switches (configs/default.yaml, `pipeline:`)
+
+| Switch | Default | Meaning |
+|---|---|---|
+| `read_first` | true | A first pass reads the answer alone (no model answer, no scheme), then marking uses that reading |
+| `evidence_policy` | flag | `strict`: credit with an unfound quote is removed. `flag`: kept and reported |
+| `policy` | essence | `essence`: judge the central idea, model answer is one example. `literal`: original wording |
+| `rubric_variant` | generated | Folder name for a different marking-scheme source, so schemes can be compared |
+
+`configs/v0_citations.yaml` switches all three off to reproduce the first design.
+
 ## Framework choice
 
 No agent framework (LangGraph, Agents SDK). The flow is a fixed sequence of model calls with code checks between them, so plain functions are simpler to test and debug. Revisit if the flow needs branching or tool use (for example a calculator in stage 2).

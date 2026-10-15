@@ -8,11 +8,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Literal
 
-from autograde.config import Settings
+from autograde.config import PipelineConfig, Settings
 from autograde.llm import LLMClient
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
+from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
 from autograde.schemas import Item, Question, Result, RubricRecord
 
@@ -29,10 +30,20 @@ def to_question(item: Item) -> Question:
     )
 
 
-def grade_item(item: Item, record: RubricRecord, client: LLMClient, retries: int) -> Result:
-    """Stages 3 to 5 for one answer."""
+def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Result:
+    """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback."""
     rubric = record.rubric
-    grading, flags = mark_answer(to_question(item), rubric, item.student_answer, client, retries)
+    reading = read_answer(item, client) if cfg.read_first else None
+    grading, flags = mark_answer(
+        to_question(item),
+        rubric,
+        item.student_answer,
+        client,
+        retries=cfg.grade_retries,
+        reading=reading,
+        evidence_policy=cfg.evidence_policy,
+        policy=cfg.policy,
+    )
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]
     feedback = write_feedback(item, rubric, grading, client)
@@ -40,6 +51,7 @@ def grade_item(item: Item, record: RubricRecord, client: LLMClient, retries: int
         item=item,
         mode="pipeline",
         predicted_mark=grading.total,
+        reading=reading,
         grading=grading,
         feedback=feedback,
         flags=flags,
@@ -74,7 +86,10 @@ def run_items(
     records: dict[str, RubricRecord] = {}
     if mode == "pipeline" and todo:
         store = RubricStore(
-            settings.paths.cache_dir, client, run_selftest=settings.pipeline.rubric_selftest
+            settings.paths.cache_dir,
+            client,
+            run_selftest=settings.pipeline.rubric_selftest,
+            variant=settings.pipeline.rubric_variant,
         )
         questions = {i.question_key: to_question(i) for i in todo}
         with ThreadPoolExecutor(workers) as pool:
@@ -86,7 +101,7 @@ def run_items(
     def work(item: Item) -> Result:
         if mode == "baseline":
             return grade_baseline(item, client)
-        return grade_item(item, records[item.question_key], client, settings.pipeline.grade_retries)
+        return grade_item(item, records[item.question_key], client, settings.pipeline)
 
     results = list(done.values())
     with ThreadPoolExecutor(workers) as pool, out_path.open("a", encoding="utf-8") as sink:

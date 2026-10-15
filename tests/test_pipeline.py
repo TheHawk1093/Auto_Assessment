@@ -3,7 +3,7 @@ from pathlib import Path
 from autograde.config import PathsConfig, PipelineConfig, Settings
 from autograde.pipeline.rubric import build_record
 from autograde.pipeline.run import read_results, run_items
-from autograde.schemas import Feedback, Grading, Item, Question, Rubric
+from autograde.schemas import Feedback, Grading, Item, Question, Reading, Rubric
 from fakes import FakeClient
 
 MODEL_ANSWER = "Gradient descent updates weights against the gradient."
@@ -36,6 +36,7 @@ def grade_handler(user: str) -> dict:
     return verdicts("weights" in answer, "gradient" in answer, answer)
 
 
+READING = {"gist": "It describes updating weights.", "ideas": ["updates weights"], "problems": []}
 FEEDBACK = {"strengths": ["You said it updates weights."], "improvements": [], "summary": "ok"}
 
 
@@ -48,7 +49,12 @@ def settings(tmp_path: Path) -> Settings:
 
 def client() -> FakeClient:
     return FakeClient(
-        {Rubric: rubric_handler, Grading: grade_handler, Feedback: lambda _u: FEEDBACK}
+        {
+            Rubric: rubric_handler,
+            Grading: grade_handler,
+            Feedback: lambda _u: FEEDBACK,
+            Reading: lambda _u: READING,
+        }
     )
 
 
@@ -64,6 +70,20 @@ def test_end_to_end_marks_come_from_code_and_schemes_are_cached(tmp_path: Path):
     # self-test: model answer + a "don't know" answer, plus the two students
     assert c.count(Grading) == 4
     assert c.count(Feedback) == 2
+    assert c.count(Reading) == 2  # one reading per student, none for the self-test
+    assert all(r.reading for r in results)
+
+
+def test_reading_reaches_the_marking_prompt_only_when_enabled(tmp_path: Path):
+    on, off = client(), client()
+    item = [make_item(1, "It updates weights.")]
+    run_items(item, "pipeline", on, settings(tmp_path), tmp_path / "a.jsonl")
+    cfg = settings(tmp_path)
+    cfg.pipeline.read_first = False
+    run_items(item, "pipeline", off, cfg, tmp_path / "b.jsonl")
+    assert any("first reader" in u for m, u in on.calls if m is Grading)
+    assert not any("first reader" in u for m, u in off.calls if m is Grading)
+    assert off.count(Reading) == 0
 
 
 def test_resume_skips_finished_items(tmp_path: Path):
@@ -97,11 +117,43 @@ def test_bad_marking_is_retried_then_accepted(tmp_path: Path):
         return grade_handler(user)
 
     c = FakeClient({Rubric: rubric_handler, Grading: flaky, Feedback: lambda _u: FEEDBACK})
-    out = run_items([make_item(1, "It updates weights.")], "pipeline", c,
-                    Settings(pipeline=PipelineConfig(rubric_selftest=False, max_workers=1),
-                             paths=PathsConfig(cache_dir=tmp_path / "c")),
-                    tmp_path / "r.jsonl")  # fmt: skip
+    cfg = Settings(
+        pipeline=PipelineConfig(
+            rubric_selftest=False, max_workers=1, read_first=False, evidence_policy="strict"
+        ),
+        paths=PathsConfig(cache_dir=tmp_path / "c"),
+    )
+    out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "r.jsonl")
     assert out[0].predicted_mark == 1.0 and "retried" in out[0].flags
+
+
+def invented_quote(_user: str) -> dict:
+    return verdicts(True, False, "completely invented words")
+
+
+def run_with_policy(tmp_path: Path, policy: str):
+    c = FakeClient({Rubric: rubric_handler, Grading: invented_quote, Feedback: lambda _u: FEEDBACK})
+    cfg = Settings(
+        pipeline=PipelineConfig(
+            rubric_selftest=False, max_workers=1, read_first=False, evidence_policy=policy
+        ),
+        paths=PathsConfig(cache_dir=tmp_path / "c"),
+    )
+    out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "r.jsonl")
+    return out[0], c
+
+
+def test_strict_policy_removes_credit_that_has_no_quote(tmp_path: Path):
+    result, c = run_with_policy(tmp_path, "strict")
+    assert result.predicted_mark == 0 and "retried" in result.flags
+    assert c.count(Grading) == 2  # asked again before giving up
+
+
+def test_flag_policy_keeps_credit_and_reports_it_without_retrying(tmp_path: Path):
+    result, c = run_with_policy(tmp_path, "flag")
+    assert result.predicted_mark == 1.0
+    assert "unverified_quote:P1" in result.flags
+    assert c.count(Grading) == 1  # an unfound quote alone does not cost a second call
 
 
 def test_failed_selftest_is_recorded_not_fatal():
