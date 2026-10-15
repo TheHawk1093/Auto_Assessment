@@ -1,0 +1,15 @@
+{
+  "question_key": "saf/DLL_2.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that piggybacking requires two-way communication, i.e. a full-duplex or semi-duplex (half-duplex) connection between sender and receiver, so that data frames flow in both directions. Equivalent: frames must contain an additional acknowledgement field so ACKs can ride on data frames (either statement earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

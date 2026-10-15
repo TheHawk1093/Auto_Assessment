@@ -1,0 +1,27 @@
+{
+  "question_key": "saf/MM_8.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the purpose: both provide broadcasting that is more efficient than flooding, i.e. they minimize the number of duplicate packets in the network.",
+        "marks": 0.3,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Reverse Path Forwarding: a node X receiving a packet from sender S via neighbor N checks its unicast routing table and forwards the packet to all adjacent nodes except N only if it would send packets to S via N (assuming the packet arrived on the best route); otherwise it discards it.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Reverse Path Broadcast: nodes monitor unicast traffic to learn which spanning trees/best paths they are part of, and work like RPF but forward only on edges that belong to a spanning tree (excluding the incoming link N).",
+        "marks": 0.3,
+        "partial_credit": "Half credit if only says it is RPF restricted to tree/selected edges without explaining how nodes learn this from unicast traffic."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

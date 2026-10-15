@@ -12,6 +12,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:01 | baseline | dk_s1_baseline | digiklausur/dev/n24/seed1 | baseline | 0.200 | - | - | -0.092 | 0.76 | 0.65 | 0% | 0.25 | 7ce2dafe |
 | 2026-10-15 23:05 | v1-read-essence | dk_s1_v1 | digiklausur/dev/n24/seed1 | pipeline | 0.174 | ▲ -0.026 | - | -0.143 | 0.83 | 0.74 | 4% | 1.04 | 7ce2dafe |
 | 2026-10-15 23:07 | baseline | saf_s0_baseline | saf/dev/n24/seed0 | baseline | 0.112 | - | - | -0.090 | 0.92 | 0.85 | 0% | 0.22 | 7ce2dafe |
+| 2026-10-15 23:11 | v1-read-essence | saf_s0_v1 | saf/dev/n24/seed0 | pipeline | 0.081 | ▲ -0.031 | - | -0.050 | 0.96 | 0.92 | 0% | 1.37 | 7ce2dafe |
 
 ## Variants
 

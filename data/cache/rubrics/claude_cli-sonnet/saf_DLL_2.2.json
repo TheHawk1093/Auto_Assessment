@@ -1,0 +1,21 @@
+{
+  "question_key": "saf/DLL_2.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Asynchronous transmission: each character is sent as an individual self-contained unit framed by a start bit and a stop bit (simple/cheap but low transmission rate). Equivalent wording accepted.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Synchronous transmission: many characters are grouped into a continuous stream/frames (delimited by SYN or flag), needing sender\u2013receiver synchronization; more complex but higher transmission rate. Equivalent wording accepted.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
