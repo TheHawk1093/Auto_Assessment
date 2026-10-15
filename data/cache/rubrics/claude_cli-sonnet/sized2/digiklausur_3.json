@@ -1,0 +1,27 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup: labels the data as positive/negative classes (e.g. +1/-1) and initializes the weights (randomly or otherwise).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Update rule inside a loop over the data points: if a point is misclassified (e.g. <w,x> <= 0 for the correctly signed/label-adjusted input), update the weights by adding eta times the (label-signed) input, w = w + eta*x. Equivalent formulations of the perceptron update rule are accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Repeats over epochs until a stopping criterion is met (weights no longer change / no misclassifications); may note convergence is guaranteed because the data is linearly separable.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

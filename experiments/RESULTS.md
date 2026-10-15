@@ -23,6 +23,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:33 | v2b-sized-scheme | mohler_s0_v2b | mohler/dev/n24/seed0 | pipeline | 0.155 | ▲ -0.070 | ▲ -0.032 | -0.130 | 0.85 | 0.63 | 8% | 1.28 | 286f1adf |
 | 2026-10-15 23:36 | v2b-sized-scheme | dk_s0_v2b | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | ▲ -0.134 | -0.027 | 0.90 | 0.92 | 0% | 0.96 | 286f1adf |
 | 2026-10-15 23:47 | v3-why-sized2 | mohler_s0_v3 | mohler/dev/n24/seed0 | pipeline | 0.192 | ▲ -0.033 | ▼ +0.036 | -0.162 | 0.85 | 0.62 | 0% | 1.32 | bb2e9f90 |
+| 2026-10-15 23:51 | v3-why-sized2 | dk_s0_v3 | digiklausur/dev/n24/seed0 | pipeline | 0.127 | ▲ -0.090 | ▼ +0.058 | -0.048 | 0.80 | 0.81 | 4% | 1.17 | bb2e9f90 |
 
 ## Variants
 
