@@ -14,6 +14,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:07 | baseline | saf_s0_baseline | saf/dev/n24/seed0 | baseline | 0.112 | - | - | -0.090 | 0.92 | 0.85 | 0% | 0.22 | 7ce2dafe |
 | 2026-10-15 23:11 | v1-read-essence | saf_s0_v1 | saf/dev/n24/seed0 | pipeline | 0.081 | ▲ -0.031 | - | -0.050 | 0.96 | 0.92 | 0% | 1.37 | 7ce2dafe |
 | 2026-10-15 23:12 | baseline | mohler_s0_baseline | mohler/dev/n24/seed0 | baseline | 0.225 | - | - | -0.225 | 0.81 | 0.51 | 0% | 0.19 | 7ce2dafe |
+| 2026-10-15 23:18 | v1-read-essence | mohler_s0_v1 | mohler/dev/n24/seed0 | pipeline | 0.252 | ▼ +0.027 | - | -0.235 | 0.80 | 0.47 | 12% | 1.46 | 7ce2dafe |
 
 ## Variants
 

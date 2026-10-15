@@ -1,0 +1,27 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns a size (the amount of memory/storage occupied) of its operand, i.e. a size value rather than the operand's value.",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if the answer mentions memory/size vaguely (e.g. 'length' or 'space') without clearly tying it to the operand."
+      },
+      {
+        "id": "P2",
+        "description": "States that the size is measured in bytes (equivalent wording such as 'number of bytes' accepted).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Identifies that the size is that of the operand, which may be a variable, expression or data type (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

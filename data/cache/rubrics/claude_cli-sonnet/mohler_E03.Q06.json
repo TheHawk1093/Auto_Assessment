@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E03.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that infinite recursion can be caused by a missing base case (no terminating condition is included in the function), so the recursion never stops.",
+        "marks": 2.5,
+        "partial_credit": "Award 1.25 if the student mentions a base/terminating condition but is vague about it being absent or not reached."
+      },
+      {
+        "id": "P2",
+        "description": "States that infinite recursion can be caused by an incorrectly defined recursion step (e.g. the recursive call does not move the argument toward the base case, so the base case is never reached).",
+        "marks": 2.5,
+        "partial_credit": "Award 1.25 if the student says the recursive call/step is wrong but gives no indication that it fails to approach the base case."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
