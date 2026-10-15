@@ -26,6 +26,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:51 | v3-why-sized2 | dk_s0_v3 | digiklausur/dev/n24/seed0 | pipeline | 0.127 | ▲ -0.090 | ▼ +0.058 | -0.048 | 0.80 | 0.81 | 4% | 1.17 | bb2e9f90 |
 | 2026-10-15 23:54 | v3-why-sized2 | saf_s0_v3 | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.97 | 0.94 | 0% | 1.27 | bb2e9f90 |
 | 2026-10-16 00:10 | model-haiku | dk_s0_m_haiku | digiklausur/dev/n24/seed0 | pipeline | 0.106 | ▲ -0.110 | ▲ -0.021 | -0.031 | 0.83 | 0.83 | 12% | 0.10 | bb2e9f90 |
+| 2026-10-16 00:14 | model-sonnet_low | dk_s0_m_sonnet_low | digiklausur/dev/n24/seed0 | pipeline | 0.071 | ▲ -0.146 | ▲ -0.035 | -0.029 | 0.90 | 0.92 | 4% | 1.12 | bb2e9f90 |
 
 ## Variants
 
@@ -36,3 +37,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **v2b-sized-scheme**: v2a plus schemes sized to the model answer (no invented sub-points). Full re-run. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`
 - **v3-why-sized2**: feedback explains why; scheme folds terminology. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized2", "grade_retries": 1, "max_workers": 4}`
 - **model-haiku**: same pipeline, grader model/effort = haiku. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`
+- **model-sonnet_low**: same pipeline, grader model/effort = sonnet_low. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`

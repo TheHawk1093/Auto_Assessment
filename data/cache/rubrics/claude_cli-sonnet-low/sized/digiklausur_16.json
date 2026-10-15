@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the setup: new data point is added/considered alongside existing labelled (classified/coloured) data, and the k nearest data points to it are found (e.g., by distance, a neighbourhood/sphere of k points). Pseudo code or equivalent step-wise description of this is given.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Counts the class labels among the k nearest neighbours, picks the class with the maximum vote (majority), and assigns the new data point to that class. Pseudo code or equivalent step-wise description is given.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

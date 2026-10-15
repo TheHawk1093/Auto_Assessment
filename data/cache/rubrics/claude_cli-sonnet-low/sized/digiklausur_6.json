@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM is a linear classifier that separates classes with a decision boundary (hyperplane) chosen to maximise the margin.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names support vectors as the data points closest to the decision boundary, which determine the margin. Kernels for non-linearly separable data and/or Quadratic Programming may be mentioned but are not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

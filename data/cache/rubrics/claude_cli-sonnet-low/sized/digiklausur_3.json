@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup: labels data as +/- (e.g. +1/-1) and initializes the weights (randomly or otherwise).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Loop over the data/epochs, applying the update rule: if a point is misclassified (e.g. <w,x> <= 0 for the correct-sign x), update w += eta*x (or equivalent w += eta*y*x), repeating until weights stop changing / no misclassifications. Equivalent wording and correct equivalent update forms earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Initialisation and input sampling: arranges weights in the required lattice topology, initialises them randomly (all different), and samples an input vector from the input space.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Iterative learning loop: finds the winning neuron by similarity matching, updates the winner and its neighbours via the neighbourhood function, reduces neighbourhood/learning rate, and repeats until ordering and convergence are complete (else keeps sampling).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

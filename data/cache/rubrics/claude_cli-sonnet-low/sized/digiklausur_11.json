@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the learning rate controls the speed of convergence (small rate gives slow/overdamped convergence; large rate gives faster but oscillating/zigzagging/underdamped convergence). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the danger: if the learning rate exceeds a critical (maximum) value, learning becomes unstable/diverges.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
