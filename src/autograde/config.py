@@ -27,6 +27,7 @@ class PipelineConfig(BaseModel):
     mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
     partial_weight: float = 0.9  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
+    feedback_variant: Literal["standard", "hints", "critique"] = "standard"
     grade_retries: int = 1
     max_workers: int = 4
 
@@ -40,6 +41,7 @@ class PathsConfig(BaseModel):
 class Settings(BaseModel):
     llm: LLMConfig = LLMConfig()
     judge: LLMConfig = LLMConfig(model="haiku")
+    student: LLMConfig = LLMConfig(model="haiku")  # plays the student in the revision test
     pipeline: PipelineConfig = PipelineConfig()
     paths: PathsConfig = PathsConfig()
 

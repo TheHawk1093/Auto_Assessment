@@ -15,7 +15,7 @@ from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
-from autograde.schemas import Item, Question, Result, RubricRecord
+from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
 
 log = logging.getLogger(__name__)
 Mode = Literal["pipeline", "baseline"]
@@ -30,8 +30,10 @@ def to_question(item: Item) -> Question:
     )
 
 
-def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Result:
-    """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback."""
+def mark_item(
+    item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig
+) -> tuple[Reading | None, Grading, list[str]]:
+    """Stages 3 and 4 for one answer: read it, mark it, check the marking."""
     rubric = record.rubric
     reading = read_answer(item, client) if cfg.read_first else None
     grading, flags = mark_answer(
@@ -47,7 +49,13 @@ def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipelin
     )
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]
-    feedback = write_feedback(item, rubric, grading, client)
+    return reading, grading, flags
+
+
+def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Result:
+    """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback."""
+    reading, grading, flags = mark_item(item, record, client, cfg)
+    feedback = write_feedback(item, record.rubric, grading, client, cfg.feedback_variant)
     return Result(
         item=item,
         mode="pipeline",

@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from autograde.config import Settings, load_settings
@@ -19,7 +20,9 @@ from autograde.evaluation.experiments import (
 )
 from autograde.evaluation.judge import judge_all, pass_rates
 from autograde.evaluation.metrics import report
+from autograde.evaluation.revision import revision_test, summarise
 from autograde.llm import build_client
+from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.rescore import rescore
 from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import read_results, run_items, to_question
@@ -64,6 +67,19 @@ def _parser() -> argparse.ArgumentParser:
     rs.add_argument("--note", default="")
     rs.add_argument("--no-commit", action="store_true")
 
+    rf = sub.add_parser(
+        "refeedback", help="rewrite the feedback of a finished run; marks stay the same"
+    )
+    rf.add_argument("--name", required=True, help="source run")
+    rf.add_argument("--new-name", required=True)
+    rf.add_argument("--feedback", choices=["standard", "hints", "critique"], required=True)
+    rf.add_argument("--variant", required=True)
+    rf.add_argument("--note", default="")
+    rf.add_argument("--no-commit", action="store_true")
+
+    rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
+    rv.add_argument("--name", required=True)
+
     logp = sub.add_parser("log", help="add a finished run to experiments/log.jsonl")
     logp.add_argument("--name", required=True)
     logp.add_argument("--variant", required=True)
@@ -85,6 +101,8 @@ def _write_view(run_dir: Path, settings: Settings, limit: int | None = None, see
     client_name = (
         f"{llm.get('backend', settings.llm.backend)}-{llm.get('model', settings.llm.model)}"
     )
+    if llm.get("effort"):
+        client_name += f"-{llm['effort']}"
     judged = {}
     jpath = run_dir / "feedback_judgements.jsonl"
     if jpath.exists():
@@ -201,6 +219,74 @@ def _cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
     _finish(dst, new, zero, settings, args)
 
 
+def _records(results: list, settings: Settings) -> dict:
+    """Cached marking schemes for the questions in `results` (same cache path as the run)."""
+    store = RubricStore(
+        settings.paths.cache_dir,
+        build_client(settings.llm),
+        settings.pipeline.rubric_selftest,
+        settings.pipeline.rubric_variant,
+    )
+    return {r.item.question_key: store.get(to_question(r.item)) for r in results}
+
+
+def _cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
+    src = settings.paths.runs_dir / args.name
+    dst = settings.paths.runs_dir / args.new_name
+    setup = json.loads((src / "run.json").read_text(encoding="utf-8"))
+    results = read_results(src / "results.jsonl")
+    records = _records(results, settings)
+    client = build_client(settings.llm)
+
+    def redo(r):
+        if r.grading is None:
+            return r
+        rubric = records[r.item.question_key].rubric
+        fb = write_feedback(r.item, rubric, r.grading, client, args.feedback)
+        return r.model_copy(update={"feedback": fb})
+
+    with ThreadPoolExecutor(settings.pipeline.max_workers) as pool:
+        new = list(pool.map(redo, results))
+    dst.mkdir(parents=True, exist_ok=True)
+    setup["variant"] = args.variant
+    setup["pipeline"] = {
+        **setup["pipeline"],
+        "feedback_variant": args.feedback,
+        "refeedback_from": args.name,
+    }
+    (dst / "run.json").write_text(json.dumps(setup, indent=2), encoding="utf-8")
+    (dst / "results.jsonl").write_text(
+        "\n".join(r.model_dump_json() for r in new) + "\n", encoding="utf-8"
+    )
+    _finish(dst, new, client.usage.as_dict(), settings, args)
+
+
+def _cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
+    run_dir = settings.paths.runs_dir / args.name
+    results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
+    if not results:
+        sys.exit("No results with feedback in that run.")
+    grader, student = build_client(settings.llm), build_client(settings.student)
+    rows = revision_test(
+        results,
+        _records(results, settings),
+        grader,
+        student,
+        settings.pipeline,
+        settings.paths.runs_dir / "revision_control.json",
+        settings.pipeline.max_workers,
+    )
+    out = {
+        **summarise(rows),
+        "cost_usd": round(grader.usage.cost_usd + student.usage.cost_usd, 3),
+    }
+    (run_dir / "revision_rows.jsonl").write_text(
+        "\n".join(r.model_dump_json() for r in rows), encoding="utf-8"
+    )
+    (run_dir / "revision_scores.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    print(json.dumps(out, indent=2))
+
+
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
     run_dir = settings.paths.runs_dir / args.name
     results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
@@ -242,6 +328,10 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "refeedback":
+        _cmd_refeedback(args, settings)
+    elif args.cmd == "revision":
+        _cmd_revision(args, settings)
     elif args.cmd == "rescore":
         _cmd_rescore(args, settings)
     elif args.cmd == "history":
