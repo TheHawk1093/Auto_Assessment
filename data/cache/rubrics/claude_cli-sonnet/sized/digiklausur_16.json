@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the setup/first step: new data point is compared with the existing labelled (classified) data, and the k nearest data points (neighbours, by distance) to the new point are identified/selected.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Takes a majority vote among the k nearest neighbours' classes and assigns the new data point to the class with the maximum vote. Equivalent wording accepted. Pseudo code or clear step-by-step algorithm form is acceptable.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

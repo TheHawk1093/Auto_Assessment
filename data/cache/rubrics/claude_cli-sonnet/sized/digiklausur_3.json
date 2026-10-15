@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup: labels the data as positive/negative (e.g. +1/\u22121) and initializes the weights (randomly or otherwise).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Loop/update: repeatedly goes over the data (epochs); for a misclassified point (e.g. <w,x> <= 0 after sign-adjusting by label, or y\u00b7<w,x> <= 0) updates w by adding eta*x (or eta*y*x); stops when weights no longer change / no misclassifications (converges since data is linearly separable). Equivalent wording and equivalent update formulations earn the marks.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

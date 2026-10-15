@@ -1,0 +1,33 @@
+{
+  "question_key": "digiklausur/5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Initialisation: arranges weights in the required lattice/topology and initialises them randomly (all different); then samples an input vector from the input space (equivalent wording accepted).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Similarity matching: finds the winning neuron/best matching unit for the input in the lattice (e.g. minimum distance).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Updates weights of the winning neuron and its neighbours using the neighbourhood function (and learning rate).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Reduces neighbourhood radius and decays learning rate; loops back to sampling until ordering/convergence is complete, then stops.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

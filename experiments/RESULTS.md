@@ -18,6 +18,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:21 | v2a-partial0.9 | dk_s1_v2a | digiklausur/dev/n24/seed1 | pipeline | 0.098 | ▲ -0.102 | ▲ -0.076 | -0.020 | 0.89 | 0.88 | 100% | 0.00 | 286f1adf |
 | 2026-10-15 23:21 | v2a-partial0.9 | saf_s0_v2a | saf/dev/n24/seed0 | pipeline | 0.057 | ▲ -0.056 | ▲ -0.025 | 0.039 | 0.97 | 0.94 | 100% | 0.00 | 286f1adf |
 | 2026-10-15 23:21 | v2a-partial0.9 | mohler_s0_v2a | mohler/dev/n24/seed0 | pipeline | 0.187 | ▲ -0.038 | ▲ -0.065 | -0.157 | 0.84 | 0.63 | 100% | 0.00 | 286f1adf |
+| 2026-10-15 23:26 | v2b-sized-scheme | dk_s1_v2b | digiklausur/dev/n24/seed1 | pipeline | 0.098 | ▲ -0.102 | ▲ -0.001 | 0.006 | 0.86 | 0.84 | 4% | 1.23 | 286f1adf |
 
 ## Variants
 
@@ -25,3 +26,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **v0-citations**: Generated scheme, per-point marking with quotes, quote check zeroes unsupported credit, separate feedback call. Settings: `{"rubric_selftest": true, "grade_retries": 1, "max_workers": 4}`
 - **v1-read-essence**: Read answer first, then mark; essence-based policy; quotes advisory (flag), not removed. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "rubric_variant": "generated", "grade_retries": 1, "max_workers": 4}`
 - **v2a-partial0.9**: Same verdicts as v1, priced in code: partial = 0.9 of a point. No model calls. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "rubric_variant": "generated", "grade_retries": 1, "max_workers": 4, "mark_rule": "status", "partial_weight": 0.9, "rescored_from": "dk_s1_v1"}`
+- **v2b-sized-scheme**: v2a plus schemes sized to the model answer (no invented sub-points). Full re-run. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`
