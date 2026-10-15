@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation propagates the error backwards through the MLP/network, layer by layer (recursively), from the output (last) layer to the first layer, updating the weights to reduce the error. Equivalent wording is accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the answer says the error is propagated backwards from output to input but does not mention that the weights are updated to reduce the error, or the other way round."
+      },
+      {
+        "id": "P2",
+        "description": "States that the weight updates come from the local gradient at each layer, which is computed using partial derivatives of the error with respect to the weights and the chain rule. Equivalent technical wording is accepted, for example a correct formula for dE/dw using the chain rule.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the answer mentions gradients/partial derivatives of the error but not the chain rule, or mentions the chain rule but not gradients/partial derivatives."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
