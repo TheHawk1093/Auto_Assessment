@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that passing by reference avoids copying the argument (data) when the function is called, rather than passing a duplicate (equivalent wording such as 'no copy is made', 'passes the address/original instead of a copy').",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Links this benefit to large data structures (e.g. big arrays, objects), i.e. saving memory/time/improving efficiency for large data.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that all dimensions except the first must be specified (the first dimension's size may be omitted). Equivalent wording, e.g. 'every dimension other than the first', or an example like int a[][10][20] for a 3D array, earns the marks.",
+        "marks": 5.0,
+        "partial_credit": "Award 2.5 if the student says only that dimensions must be specified without correctly identifying that the first can be omitted (e.g. 'all dimensions'), or says the sizes of the later dimensions are needed but is vague about the first."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

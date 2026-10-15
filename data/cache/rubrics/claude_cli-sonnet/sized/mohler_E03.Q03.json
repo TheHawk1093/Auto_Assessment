@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler replaces/expands the inline function call with a copy of the function's code (body) at the point of the call (equivalent wording, e.g. 'substitutes the function body in place of the call', earns the mark).",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this copying happens at every place where the function is called (each call site gets its own copy), rather than a single shared function that is jumped to.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

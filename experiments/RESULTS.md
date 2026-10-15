@@ -20,6 +20,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:21 | v2a-partial0.9 | mohler_s0_v2a | mohler/dev/n24/seed0 | pipeline | 0.187 | ▲ -0.038 | ▲ -0.065 | -0.157 | 0.84 | 0.63 | 100% | 0.00 | 286f1adf |
 | 2026-10-15 23:26 | v2b-sized-scheme | dk_s1_v2b | digiklausur/dev/n24/seed1 | pipeline | 0.098 | ▲ -0.102 | ▲ -0.001 | 0.006 | 0.86 | 0.84 | 4% | 1.23 | 286f1adf |
 | 2026-10-15 23:29 | v2b-sized-scheme | saf_s0_v2b | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | ▼ +0.004 | 0.040 | 0.96 | 0.94 | 0% | 1.28 | 286f1adf |
+| 2026-10-15 23:33 | v2b-sized-scheme | mohler_s0_v2b | mohler/dev/n24/seed0 | pipeline | 0.155 | ▲ -0.070 | ▲ -0.032 | -0.130 | 0.85 | 0.63 | 8% | 1.28 | 286f1adf |
 
 ## Variants
 

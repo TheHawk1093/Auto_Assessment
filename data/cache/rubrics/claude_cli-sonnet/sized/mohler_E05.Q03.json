@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best-case number of operations is N (linear, O(N)), where N is the length of the array. Equivalent wording such as 'n comparisons' or 'linear time' earns the marks.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the best case occurs when the array is already sorted (in the desired order). Equivalent wording earns the marks.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

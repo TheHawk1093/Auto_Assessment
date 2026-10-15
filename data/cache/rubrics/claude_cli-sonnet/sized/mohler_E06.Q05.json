@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size of its operand (a type or expression/variable) in bytes. Equivalent wording accepted (e.g. 'number of bytes occupied by a variable or data type').",
+        "marks": 5.0,
+        "partial_credit": "Award 2.5 if the answer says it returns the 'size' of the operand but does not mention bytes (or the unit), or mentions bytes but not that it relates to the operand."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

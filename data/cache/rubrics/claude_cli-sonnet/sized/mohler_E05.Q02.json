@@ -1,0 +1,27 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the algorithm processes the array one position/element at a time, from left to right (i.e., builds the sorted portion progressively from the left, position by position).",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that for the current position it finds/identifies the minimum element among the remaining (unsorted) elements.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that this minimum is swapped with the element at the current position.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

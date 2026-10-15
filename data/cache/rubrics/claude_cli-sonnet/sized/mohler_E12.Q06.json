@@ -1,0 +1,27 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies a queue as a data structure that stores a collection of elements.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that it follows the first in first out (FIFO) principle, i.e. the element added first is removed first. Equivalent wording accepted.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names the main operations: enqueue (add an element at the rear/back) and dequeue (remove an element from the front).",
+        "marks": 2.0,
+        "partial_credit": "1 mark for naming only one of enqueue or dequeue correctly."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

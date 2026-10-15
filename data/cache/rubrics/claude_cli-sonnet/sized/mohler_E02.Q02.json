@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E02.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that data members can be accessed by any/all member functions of the class (they belong to the class/object and are available throughout the class definition).",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that local variables can only be accessed within the single member function that defines them (their scope is limited to that function).",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
