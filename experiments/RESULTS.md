@@ -31,6 +31,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-16 00:21 | model-opus_medium | dk_s0_m_opus_medium | digiklausur/dev/n24/seed0 | pipeline | 0.089 | ▲ -0.128 | ▲ -0.022 | -0.018 | 0.86 | 0.85 | 0% | 2.90 | bb2e9f90 |
 | 2026-10-16 00:54 | feedback-standard | dk_s0_fb_standard | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | ▲ -0.020 | -0.027 | 0.90 | 0.92 | 0% | 0.33 | 55478d58 |
 | 2026-10-16 00:55 | feedback-hints | dk_s0_fb_hints | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.33 | 55478d58 |
+| 2026-10-16 00:57 | feedback-critique | dk_s0_fb_critique | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.62 | 55478d58 |
 
 ## Variants
 
@@ -46,3 +47,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **model-opus_medium**: same pipeline, grader model/effort = opus_medium. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`
 - **feedback-standard**: same marks as dk_s0_v2b, feedback=standard. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "standard", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-hints**: same marks as dk_s0_v2b, feedback=hints. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "hints", "refeedback_from": "dk_s0_v2b"}`
+- **feedback-critique**: same marks as dk_s0_v2b, feedback=critique. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "critique", "refeedback_from": "dk_s0_v2b"}`
