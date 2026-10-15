@@ -11,5 +11,6 @@ pipeline:
   read_first: false
   evidence_policy: strict
   policy: literal
+  mark_rule: model
   grade_retries: 1
   max_workers: 4

@@ -15,9 +15,11 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:11 | v1-read-essence | saf_s0_v1 | saf/dev/n24/seed0 | pipeline | 0.081 | ▲ -0.031 | - | -0.050 | 0.96 | 0.92 | 0% | 1.37 | 7ce2dafe |
 | 2026-10-15 23:12 | baseline | mohler_s0_baseline | mohler/dev/n24/seed0 | baseline | 0.225 | - | - | -0.225 | 0.81 | 0.51 | 0% | 0.19 | 7ce2dafe |
 | 2026-10-15 23:18 | v1-read-essence | mohler_s0_v1 | mohler/dev/n24/seed0 | pipeline | 0.252 | ▼ +0.027 | - | -0.235 | 0.80 | 0.47 | 12% | 1.46 | 7ce2dafe |
+| 2026-10-15 23:21 | v2a-partial0.9 | dk_s1_v2a | digiklausur/dev/n24/seed1 | pipeline | 0.098 | ▲ -0.102 | ▲ -0.076 | -0.020 | 0.89 | 0.88 | 100% | 0.00 | 286f1adf |
 
 ## Variants
 
 - **baseline**: One prompt: question, model answer, student answer -> mark. Floor every variant must beat. Settings: `{"rubric_selftest": true, "grade_retries": 1, "max_workers": 4}`
 - **v0-citations**: Generated scheme, per-point marking with quotes, quote check zeroes unsupported credit, separate feedback call. Settings: `{"rubric_selftest": true, "grade_retries": 1, "max_workers": 4}`
 - **v1-read-essence**: Read answer first, then mark; essence-based policy; quotes advisory (flag), not removed. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "rubric_variant": "generated", "grade_retries": 1, "max_workers": 4}`
+- **v2a-partial0.9**: Same verdicts as v1, priced in code: partial = 0.9 of a point. No model calls. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "rubric_variant": "generated", "grade_retries": 1, "max_workers": 4, "mark_rule": "status", "partial_weight": 0.9, "rescored_from": "dk_s1_v1"}`

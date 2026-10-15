@@ -23,6 +23,8 @@ class PipelineConfig(BaseModel):
     read_first: bool = True  # a first pass reads the answer before marking
     evidence_policy: Literal["strict", "flag"] = "flag"  # strict: drop credit with unfound quotes
     policy: Literal["literal", "essence"] = "essence"  # how generously to judge a point
+    mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
+    partial_weight: float = 0.9  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
     grade_retries: int = 1
     max_workers: int = 4

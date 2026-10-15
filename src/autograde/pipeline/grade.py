@@ -7,7 +7,12 @@ import logging
 from autograde import prompts
 from autograde.llm import LLMClient
 from autograde.pipeline.read import reading_block
-from autograde.pipeline.verify import check_grading, repair, unverified_points
+from autograde.pipeline.verify import (
+    apply_mark_rule,
+    check_grading,
+    repair,
+    unverified_points,
+)
 from autograde.schemas import Grading, PointVerdict, Question, Reading, Rubric
 
 log = logging.getLogger(__name__)
@@ -32,6 +37,7 @@ def mark_answer(
     reading: Reading | None = None,
     evidence_policy: str = "strict",
     policy: str = "literal",
+    partial_weight: float | None = None,
 ) -> tuple[Grading, list[str]]:
     """Return the checked marking and any flags. Total marks are summed by code, not the model.
 
@@ -61,7 +67,9 @@ def mark_answer(
         problems = check_grading(grading, rubric, answer, require_evidence=strict)
         if not problems:
             flags = ["retried"] if attempt else []
-            return grading, flags + _unverified_flags(grading, answer, strict)
+            return _price(grading, rubric, partial_weight), flags + _unverified_flags(
+                grading, answer, strict
+            )
         log.info("Marking check failed (attempt %d): %s", attempt + 1, problems)
         retry_note = (
             "\nYour previous marking had these problems. Fix them:\n- "
@@ -71,7 +79,14 @@ def mark_answer(
     assert grading is not None
     fixed, flags = repair(grading, rubric, answer, zero_unsupported=strict)
     flags = (["retried"] if retries else []) + flags
-    return fixed, flags + _unverified_flags(fixed, answer, strict)
+    return _price(fixed, rubric, partial_weight), flags + _unverified_flags(fixed, answer, strict)
+
+
+def _price(grading: Grading, rubric: Rubric, partial_weight: float | None) -> Grading:
+    """Apply the mark rule when one is configured; otherwise keep the model's own marks."""
+    if partial_weight is None:
+        return grading
+    return apply_mark_rule(grading, rubric, partial_weight)
 
 
 def _unverified_flags(grading: Grading, answer: str, strict: bool) -> list[str]:

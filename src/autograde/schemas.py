@@ -85,6 +85,9 @@ class PointVerdict(BaseModel):
     point_id: str
     status: Status
     marks_awarded: float = Field(ge=0)
+    model_marks: float | None = Field(
+        default=None, description="Set by code: the marks the model first proposed."
+    )
     evidence: str = Field(
         default="", description="Exact words copied from the student answer. Empty if not_met."
     )

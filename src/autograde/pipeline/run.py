@@ -43,6 +43,7 @@ def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipelin
         reading=reading,
         evidence_policy=cfg.evidence_policy,
         policy=cfg.policy,
+        partial_weight=cfg.partial_weight if cfg.mark_rule == "status" else None,
     )
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]

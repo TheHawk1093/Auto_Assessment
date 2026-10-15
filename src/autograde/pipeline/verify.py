@@ -86,6 +86,33 @@ def _check_verdict(v: PointVerdict, worth: float, answer: str, require_evidence:
     return out
 
 
+def apply_mark_rule(grading: Grading, rubric: Rubric, partial_weight: float) -> Grading:
+    """Turn each verdict into marks in code.
+
+    met = full marks, partial = partial_weight x full marks, not_met = 0.
+
+    The model decides the verdict (what the student achieved). Code decides what a verdict is
+    worth, so one setting controls how generous the marking is and marks always agree with
+    the verdicts that the feedback is written from. The model's own figure is kept in model_marks.
+    """
+    worth = {p.id: p.marks for p in rubric.points}
+    out: list[PointVerdict] = []
+    for v in grading.verdicts:
+        full = worth.get(v.point_id, v.marks_awarded)
+        marks = (
+            full if v.status == "met" else partial_weight * full if v.status == "partial" else 0.0
+        )
+        out.append(
+            v.model_copy(
+                update={
+                    "marks_awarded": round(marks, 6),
+                    "model_marks": v.model_marks if v.model_marks is not None else v.marks_awarded,
+                }
+            )
+        )
+    return Grading(verdicts=out)
+
+
 def unverified_points(grading: Grading, answer: str) -> list[str]:
     """Ids of points that earned marks but whose quote cannot be found in the answer."""
     return [

@@ -20,7 +20,14 @@ NO_CREDIT_SHARE = 0.1  # a "don't know" answer must score at most this share
 NON_ANSWER = "I do not know."
 
 
-def generate_rubric(question: Question, client: LLMClient, note: str = "") -> Rubric:
+def rubric_prompt(variant: str) -> str:
+    """Scheme-writing prompt: rubric.system.md by default, else rubric.<variant>.system.md."""
+    return prompts.system("rubric" if variant == "generated" else f"rubric.{variant}")
+
+
+def generate_rubric(
+    question: Question, client: LLMClient, note: str = "", variant: str = "generated"
+) -> Rubric:
     """Ask for a scheme whose marks add up to the question total, retrying with the error."""
     extra = note
     for _ in range(3):
@@ -31,7 +38,7 @@ def generate_rubric(question: Question, client: LLMClient, note: str = "") -> Ru
             max_mark=f"{question.max_mark:g}",
             extra=extra,
         )
-        rubric = client.ask(prompts.system("rubric"), user, Rubric)
+        rubric = client.ask(rubric_prompt(variant), user, Rubric)
         if abs(rubric.total - question.max_mark) < EPS:
             return rubric
         extra = (
@@ -53,15 +60,17 @@ def selftest(question: Question, rubric: Rubric, client: LLMClient) -> list[str]
     return notes
 
 
-def build_record(question: Question, client: LLMClient, run_selftest: bool = True) -> RubricRecord:
-    rubric = generate_rubric(question, client)
+def build_record(
+    question: Question, client: LLMClient, run_selftest: bool = True, variant: str = "generated"
+) -> RubricRecord:
+    rubric = generate_rubric(question, client, variant=variant)
     if not run_selftest:
         return RubricRecord(question_key=question.key, rubric=rubric)
     notes = selftest(question, rubric, client)
     if notes:
         log.info("Scheme for %s failed its self-test, rewriting once: %s", question.key, notes)
         hint = "\nA previous scheme failed these tests, so avoid repeating its problems:\n- "
-        rubric = generate_rubric(question, client, hint + "\n- ".join(notes) + "\n")
+        rubric = generate_rubric(question, client, hint + "\n- ".join(notes) + "\n", variant)
         notes = selftest(question, rubric, client)
     return RubricRecord(
         question_key=question.key, rubric=rubric, selftest_passed=not notes, selftest_notes=notes
@@ -87,7 +96,7 @@ class RubricStore:
         path = rubric_path(self.cache_dir, self.client.name, question.key, self.variant)
         if path.exists():
             return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))
-        record = build_record(question, self.client, self.run_selftest)
+        record = build_record(question, self.client, self.run_selftest, self.variant)
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(f".{os.getpid()}.tmp")
         tmp.write_text(json.dumps(record.model_dump(), indent=2), encoding="utf-8")

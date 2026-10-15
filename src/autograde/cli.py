@@ -20,7 +20,8 @@ from autograde.evaluation.experiments import (
 from autograde.evaluation.judge import judge_all, pass_rates
 from autograde.evaluation.metrics import report
 from autograde.llm import build_client
-from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.rescore import rescore
+from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import read_results, run_items, to_question
 from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_spread, write_report
@@ -52,6 +53,16 @@ def _parser() -> argparse.ArgumentParser:
 
     rep = sub.add_parser("report", help="print metrics for a finished run")
     rep.add_argument("--name", required=True)
+
+    rs = sub.add_parser(
+        "rescore", help="re-price a finished run's verdicts with another partial weight (free)"
+    )
+    rs.add_argument("--name", required=True, help="source run")
+    rs.add_argument("--new-name", required=True)
+    rs.add_argument("--partial-weight", type=float, required=True)
+    rs.add_argument("--variant", required=True)
+    rs.add_argument("--note", default="")
+    rs.add_argument("--no-commit", action="store_true")
 
     logp = sub.add_parser("log", help="add a finished run to experiments/log.jsonl")
     logp.add_argument("--name", required=True)
@@ -133,11 +144,18 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
         run_dir / "results.jsonl",
         progress=lambda n, total: log.info("graded %d/%d", n, total),
     )
+    _finish(run_dir, results, client.usage.as_dict(), settings, args)
+
+
+def _finish(
+    run_dir: Path, results: list, usage: dict, settings: Settings, args: argparse.Namespace
+) -> None:
+    """Score against the teacher, write the report, log the run, commit and tag."""
     summary = report(results)
     (run_dir / "metrics.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    (run_dir / "usage.json").write_text(json.dumps(client.usage.as_dict(), indent=2))
+    (run_dir / "usage.json").write_text(json.dumps(usage, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
-    print("usage:", client.usage.as_dict())
+    print("usage:", usage)
     print("report:", _write_view(run_dir, settings))
     print("logged:", record_run(run_dir, args.variant or args.mode, args.note))
     if not args.no_commit:
@@ -147,6 +165,38 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
             print("committed and tagged:", commit_experiment(entries[-1], vs_base, vs_prev))
         except GitError as exc:
             print("git step skipped:", exc)
+
+
+def _cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
+    src = settings.paths.runs_dir / args.name
+    dst = settings.paths.runs_dir / args.new_name
+    setup = json.loads((src / "run.json").read_text(encoding="utf-8"))
+    if setup["mode"] != "pipeline":
+        sys.exit("Only pipeline runs have verdicts to re-price.")
+    client_name = f"{setup['llm']['backend']}-{setup['llm']['model']}"
+    variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
+    results = read_results(src / "results.jsonl")
+    rubrics = {}
+    for r in results:
+        rec = cached_record(settings.paths.cache_dir, client_name, r.item.question_key, variant)
+        if rec is None:
+            sys.exit(f"No cached marking scheme for {r.item.question_key}.")
+        rubrics[r.item.question_key] = rec.rubric
+    new = rescore(results, rubrics, args.partial_weight)
+    dst.mkdir(parents=True, exist_ok=True)
+    setup["variant"] = args.variant
+    setup["pipeline"] = {
+        **setup["pipeline"],
+        "mark_rule": "status",
+        "partial_weight": args.partial_weight,
+        "rescored_from": args.name,
+    }
+    (dst / "run.json").write_text(json.dumps(setup, indent=2), encoding="utf-8")
+    (dst / "results.jsonl").write_text(
+        "\n".join(r.model_dump_json() for r in new) + "\n", encoding="utf-8"
+    )
+    zero = {"calls": 0, "input_tokens": 0, "output_tokens": 0, "cost_usd": 0.0}
+    _finish(dst, new, zero, settings, args)
 
 
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
@@ -190,6 +240,8 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "rescore":
+        _cmd_rescore(args, settings)
     elif args.cmd == "history":
         print(history())
     elif args.cmd == "log":

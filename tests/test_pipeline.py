@@ -165,3 +165,39 @@ def test_failed_selftest_is_recorded_not_fatal():
     rec = build_record(q, c, run_selftest=True)
     assert rec.selftest_passed is False and rec.selftest_notes
     assert c.count(Rubric) == 2  # rewritten once
+
+
+def partial_handler(_user: str) -> dict:
+    return {"verdicts": [
+        {"point_id": "P1", "status": "partial", "marks_awarded": 0.2,
+         "evidence": "updates weights", "reason": "r"},
+        {"point_id": "P2", "status": "not_met", "marks_awarded": 0.0, "reason": "r"},
+    ]}  # fmt: skip
+
+
+def test_partial_weight_decides_the_marks_not_the_model(tmp_path: Path):
+    from autograde.pipeline.rescore import rescore
+    from autograde.schemas import Rubric as RubricModel
+
+    cfg = settings(tmp_path)
+    cfg.pipeline.rubric_selftest = False
+    cfg.pipeline.partial_weight = 0.9
+    c = FakeClient({Rubric: rubric_handler, Grading: partial_handler,
+                    Feedback: lambda _u: FEEDBACK, Reading: lambda _u: READING})  # fmt: skip
+    out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "a.jsonl")
+    assert out[0].predicted_mark == 0.9
+    assert out[0].grading.verdicts[0].model_marks == 0.2
+    # re-pricing the saved verdicts needs no model and matches a real run at that weight
+    rubric = RubricModel.model_validate(rubric_handler(""))
+    again = rescore(out, {"t/q1": rubric}, partial_weight=0.5)
+    assert again[0].predicted_mark == 0.5 and "rescored" in again[0].flags
+
+
+def test_model_rule_keeps_the_models_own_marks(tmp_path: Path):
+    cfg = settings(tmp_path)
+    cfg.pipeline.rubric_selftest = False
+    cfg.pipeline.mark_rule = "model"
+    c = FakeClient({Rubric: rubric_handler, Grading: partial_handler,
+                    Feedback: lambda _u: FEEDBACK, Reading: lambda _u: READING})  # fmt: skip
+    out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "b.jsonl")
+    assert out[0].predicted_mark == 0.2

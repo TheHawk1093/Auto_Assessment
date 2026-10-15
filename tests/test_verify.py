@@ -1,4 +1,5 @@
 from autograde.pipeline.verify import (
+    apply_mark_rule,
     check_grading,
     evidence_in_answer,
     repair,
@@ -105,3 +106,22 @@ def test_repair_can_keep_unsupported_credit():
     g = Grading(verdicts=[verdict("P1", "met", 1, "made up"), verdict("P2", "not_met", 0)])
     fixed, flags = repair(g, RUBRIC, ANSWER, zero_unsupported=False)
     assert fixed.total == 1 and flags == []
+
+
+def test_mark_rule_prices_verdicts_in_code():
+    g = Grading(
+        verdicts=[
+            verdict("P1", "partial", 0.3, "massively parallel"),
+            verdict("P2", "met", 1, "synaptic weights"),
+        ]
+    )
+    priced = apply_mark_rule(g, RUBRIC, partial_weight=0.8)
+    assert [v.marks_awarded for v in priced.verdicts] == [0.8, 1.0]
+    assert priced.verdicts[0].model_marks == 0.3  # what the model first said is kept
+    again = apply_mark_rule(priced, RUBRIC, partial_weight=0.5)
+    assert again.verdicts[0].model_marks == 0.3 and again.total == 1.5  # not overwritten
+
+
+def test_not_met_is_always_zero():
+    g = Grading(verdicts=[verdict("P1", "not_met", 0), verdict("P2", "not_met", 0)])
+    assert apply_mark_rule(g, RUBRIC, partial_weight=1.0).total == 0
