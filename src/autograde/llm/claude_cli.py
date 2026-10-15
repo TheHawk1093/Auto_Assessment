@@ -16,9 +16,16 @@ from autograde.llm.base import LLMClient, LLMError, Usage
 
 
 class ClaudeCLIClient(LLMClient):
-    def __init__(self, model: str = "sonnet", timeout_s: int = 240, retries: int = 2) -> None:
+    def __init__(
+        self,
+        model: str = "sonnet",
+        timeout_s: int = 240,
+        retries: int = 2,
+        effort: str | None = None,
+    ) -> None:
         super().__init__(retries)
         self.model = model
+        self.effort = effort
         self.timeout_s = timeout_s
         self._exe = shutil.which("claude")
         if self._exe is None:
@@ -27,7 +34,7 @@ class ClaudeCLIClient(LLMClient):
 
     @property
     def name(self) -> str:
-        return f"claude_cli-{self.model}"
+        return f"claude_cli-{self.model}" + (f"-{self.effort}" if self.effort else "")
 
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:
         cmd = [
@@ -39,6 +46,8 @@ class ClaudeCLIClient(LLMClient):
             "--system-prompt", system,
             "--json-schema", json.dumps(schema),
         ]  # fmt: skip
+        if self.effort:
+            cmd += ["--effort", self.effort]
         try:
             proc = subprocess.run(
                 cmd, input=user, capture_output=True, text=True, encoding="utf-8",

@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a convolutional layer is used, with kernels (filters) that convolve over the input image. Equivalent wording, such as 'convolution layer with filters sliding over the image', earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names the remaining layers of the CNN: an activation layer (ReLU), a pooling layer (max or average), and one or more fully connected layers followed by a softmax layer. Equivalent wording and naming the layers in any sensible order earn the mark. Naming only some of these layers, or naming them without the fully connected/softmax stage, earns half a mark.",
+        "marks": 1.0,
+        "partial_credit": "0.5 marks for naming some but not all of the activation, pooling, fully connected and softmax layers, provided the student does not also name the correct convolution layer under P1."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

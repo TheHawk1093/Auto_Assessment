@@ -25,6 +25,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-15 23:47 | v3-why-sized2 | mohler_s0_v3 | mohler/dev/n24/seed0 | pipeline | 0.192 | ▲ -0.033 | ▼ +0.036 | -0.162 | 0.85 | 0.62 | 0% | 1.32 | bb2e9f90 |
 | 2026-10-15 23:51 | v3-why-sized2 | dk_s0_v3 | digiklausur/dev/n24/seed0 | pipeline | 0.127 | ▲ -0.090 | ▼ +0.058 | -0.048 | 0.80 | 0.81 | 4% | 1.17 | bb2e9f90 |
 | 2026-10-15 23:54 | v3-why-sized2 | saf_s0_v3 | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.97 | 0.94 | 0% | 1.27 | bb2e9f90 |
+| 2026-10-16 00:10 | model-haiku | dk_s0_m_haiku | digiklausur/dev/n24/seed0 | pipeline | 0.106 | ▲ -0.110 | ▲ -0.021 | -0.031 | 0.83 | 0.83 | 12% | 0.10 | bb2e9f90 |
 
 ## Variants
 
@@ -34,3 +35,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **v2a-partial0.9**: Same verdicts as v1, priced in code: partial = 0.9 of a point. No model calls. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "rubric_variant": "generated", "grade_retries": 1, "max_workers": 4, "mark_rule": "status", "partial_weight": 0.9, "rescored_from": "dk_s1_v1"}`
 - **v2b-sized-scheme**: v2a plus schemes sized to the model answer (no invented sub-points). Full re-run. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`
 - **v3-why-sized2**: feedback explains why; scheme folds terminology. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized2", "grade_retries": 1, "max_workers": 4}`
+- **model-haiku**: same pipeline, grader model/effort = haiku. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4}`

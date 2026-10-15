@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Places the new data point among the existing classified (labelled) data and identifies its k nearest neighbours, forming a neighbourhood (the 'sphere') of k points. Equivalent wording such as 'find the k closest labelled points' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Assigns the new data to the class that receives the maximum vote among those k nearest neighbours (majority voting). Equivalent wording such as 'the most common class among the neighbours' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

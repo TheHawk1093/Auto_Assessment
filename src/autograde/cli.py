@@ -174,6 +174,8 @@ def _cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
     if setup["mode"] != "pipeline":
         sys.exit("Only pipeline runs have verdicts to re-price.")
     client_name = f"{setup['llm']['backend']}-{setup['llm']['model']}"
+    if setup["llm"].get("effort"):
+        client_name += f"-{setup['llm']['effort']}"
     variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
     results = read_results(src / "results.jsonl")
     rubrics = {}

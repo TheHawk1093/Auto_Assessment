@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the perceptron update rule applied only to misclassified points: when a training point x(n) with label +/- is misclassified (e.g. <w,x> <= 0 for a positive point, or the equivalent sign test), the weights are updated by adding eta*x(n) (or the equivalent signed form, e.g. eta*y*x). Equivalent notation, sign conventions or a learning rate symbol other than eta earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives the overall iterative structure: weights are initialised (randomly or to zero/small values), the algorithm loops over all training examples in repeated epochs, and it stops when the weights no longer change (or change very little). Equivalent stopping criteria, such as a fixed maximum number of epochs or no misclassifications in an epoch, earn the mark. Mentioning convergence due to linear separability is not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

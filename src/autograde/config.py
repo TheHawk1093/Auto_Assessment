@@ -14,6 +14,7 @@ DEFAULT_CONFIG = Path("configs/default.yaml")
 class LLMConfig(BaseModel):
     backend: Literal["claude_cli", "anthropic"] = "claude_cli"
     model: str = "sonnet"
+    effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
     timeout_s: int = 240
     retries: int = 2
 

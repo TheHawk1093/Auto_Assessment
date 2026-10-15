@@ -13,7 +13,7 @@ def build_client(cfg: LLMConfig) -> LLMClient:
     if cfg.backend == "claude_cli":
         from autograde.llm.claude_cli import ClaudeCLIClient
 
-        return ClaudeCLIClient(cfg.model, cfg.timeout_s, cfg.retries)
+        return ClaudeCLIClient(cfg.model, cfg.timeout_s, cfg.retries, cfg.effort)
     from autograde.llm.anthropic_api import AnthropicClient
 
     return AnthropicClient(cfg.model, cfg.timeout_s, cfg.retries)

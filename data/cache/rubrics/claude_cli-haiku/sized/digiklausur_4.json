@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core difference in output: classification maps data to discrete labels/categories, while regression maps data to continuous values (real numbers). Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States how error is measured in each task: classification error is the number of misclassifications; regression error is the summed distance between true and predicted values. Equivalent wording (e.g. count of wrong predictions; sum of differences between actual and predicted values) earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "Award 0.5 for a correct classification error measure (number of misclassifications) and 0.5 for a correct regression error measure (summed distance between true and predicted values)."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

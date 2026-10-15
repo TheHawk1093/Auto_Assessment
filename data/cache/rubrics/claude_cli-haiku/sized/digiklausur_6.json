@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM classifies data using a decision boundary (hyperplane) chosen to have maximum margin, i.e. the boundary is placed to maximise the gap between the classes. Equivalent wording such as 'linear classifier that separates classes with the widest margin' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that support vectors are the data points lying nearest the decision boundary, and that the margin is determined by these points. Equivalent wording such as 'the margin is defined by the points closest to the boundary, called support vectors' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
