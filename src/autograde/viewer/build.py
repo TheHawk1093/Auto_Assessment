@@ -26,7 +26,7 @@ def _safe_json(obj: object) -> str:
 def sample_spread(results: Sequence[Result], n: int, seed: int = 0) -> list[Result]:
     """Pick n results spread over as many different questions as possible (round-robin)."""
     by_question: dict[str, list[Result]] = defaultdict(list)
-    for r in results:
+    for r in sorted(results, key=lambda r: r.item.id):  # same pick whatever the run order
         by_question[r.item.question_key].append(r)
     rng = random.Random(seed)
     queues = list(by_question.values())
@@ -38,6 +38,24 @@ def sample_spread(results: Sequence[Result], n: int, seed: int = 0) -> list[Resu
         for q in queues:
             if q and len(picked) < n:
                 picked.append(q.pop())
+    return picked
+
+
+def sample_by_mark(results: Sequence[Result], n: int) -> list[Result]:
+    """Pick n results evenly along the teacher's marks (low to high), one per question where
+    possible, so a small sample shows weak, middling and strong answers."""
+    ranked = sorted(results, key=lambda r: (r.item.human_mark / r.item.max_mark, r.item.id))
+    picked: list[Result] = []
+    seen: set[str] = set()
+    for k in range(n):
+        centre = round(k * (len(ranked) - 1) / max(n - 1, 1))
+        order = sorted(range(len(ranked)), key=lambda i: abs(i - centre))
+        for i in order:
+            r = ranked[i]
+            if r.item.id not in {x.item.id for x in picked} and r.item.question_key not in seen:
+                picked.append(r)
+                seen.add(r.item.question_key)
+                break
     return picked
 
 

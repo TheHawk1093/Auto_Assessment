@@ -27,7 +27,8 @@ from autograde.pipeline.rescore import rescore
 from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import read_results, run_items, to_question
 from autograde.vcs import GitError, commit_experiment, history
-from autograde.viewer import sample_spread, write_report
+from autograde.viewer import sample_by_mark, sample_spread, write_report
+from autograde.viewer.compare import write_compare
 
 log = logging.getLogger("autograde")
 
@@ -80,6 +81,19 @@ def _parser() -> argparse.ArgumentParser:
     rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
     rv.add_argument("--name", required=True)
 
+    cp = sub.add_parser("compare", help="one page, one tab per run, the same N answers in each")
+    cp.add_argument(
+        "--run", action="append", required=True, metavar="NAME=LABEL|DESCRIPTION",
+        help="repeat once per tab; the first run decides which answers are shown",
+    )  # fmt: skip
+    cp.add_argument("--limit", type=int, default=5)
+    cp.add_argument("--seed", type=int, default=0)
+    cp.add_argument(
+        "--by", choices=["question", "mark"], default="mark",
+        help="mark: spread over the teacher's marks | question: spread over questions",
+    )  # fmt: skip
+    cp.add_argument("--out", required=True, help="folder name under runs/")
+
     logp = sub.add_parser("log", help="add a finished run to experiments/log.jsonl")
     logp.add_argument("--name", required=True)
     logp.add_argument("--variant", required=True)
@@ -94,7 +108,9 @@ def _parser() -> argparse.ArgumentParser:
     return p
 
 
-def _write_view(run_dir: Path, settings: Settings, limit: int | None = None, seed: int = 0) -> Path:
+def _write_view(
+    run_dir: Path, settings: Settings, limit: int | None = None, seed: int = 0, by: str = "question"
+) -> Path:
     """Build report.html from a run folder: answers, marks, quotes, feedback, judgements."""
     setup_path = run_dir / "run.json"
     llm = json.loads(setup_path.read_text(encoding="utf-8"))["llm"] if setup_path.exists() else {}
@@ -111,7 +127,9 @@ def _write_view(run_dir: Path, settings: Settings, limit: int | None = None, see
             judged[row.pop("id")] = row
     results = read_results(run_dir / "results.jsonl")
     if limit:
-        results = sample_spread(results, limit, seed)
+        results = (
+            sample_by_mark(results, limit) if by == "mark" else sample_spread(results, limit, seed)
+        )
     info = {}
     if setup_path.exists():
         setup = json.loads(setup_path.read_text(encoding="utf-8"))
@@ -287,6 +305,24 @@ def _cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
     print(json.dumps(out, indent=2))
 
 
+def _cmd_compare(args: argparse.Namespace, settings: Settings) -> None:
+    tabs, samples = [], []
+    for spec in args.run:
+        name, _, rest = spec.partition("=")
+        label, _, desc = rest.partition("|")
+        run_dir = settings.paths.runs_dir / name
+        _write_view(run_dir, settings, args.limit, args.seed, args.by)
+        tabs.append((label or name, desc, run_dir))
+        results = read_results(run_dir / "results.jsonl")
+        samples.append(
+            sample_by_mark(results, args.limit)
+            if args.by == "mark"
+            else sample_spread(results, args.limit, args.seed)
+        )
+    out = settings.paths.runs_dir / args.out / "index.html"
+    print(write_compare(tabs, samples, out, f"Methods compared on {args.limit} questions"))
+
+
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
     run_dir = settings.paths.runs_dir / args.name
     results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
@@ -328,6 +364,8 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "compare":
+        _cmd_compare(args, settings)
     elif args.cmd == "refeedback":
         _cmd_refeedback(args, settings)
     elif args.cmd == "revision":
