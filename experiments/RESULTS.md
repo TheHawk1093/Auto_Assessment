@@ -34,6 +34,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-16 00:57 | feedback-critique | dk_s0_fb_critique | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.62 | 55478d58 |
 | 2026-10-17 23:11 | v4-votes3 | dk_s0_votes3 | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 12% | 1.60 | 0dc1c2c8 |
 | 2026-10-17 23:15 | v4-votes3 | saf_s0_votes3 | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 1.44 | 0dc1c2c8 |
+| 2026-10-17 23:17 | baseline | engsaf_s0_baseline | engsaf/test/n60/seed0 | baseline | 0.179 | - | - | -0.096 | 0.76 | 0.73 | 0% | 0.54 | 0dc1c2c8 |
 
 ## Variants
 
