@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/f1be87d27a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid reason for charge on colloidal particles (any one of: ionisation of surface active sites such as OH/COOH groups depending on pH; imperfection in crystal structure, e.g. lower-valency atoms replacing silicon giving net negative charge; adsorption of ions/anions onto the particle surface). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second, different valid reason from the same list. Must be distinct from the first reason.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

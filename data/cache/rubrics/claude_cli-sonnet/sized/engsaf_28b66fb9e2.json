@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/28b66fb9e2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the statement is FALSE.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains that after the handler creates the mapping, the faulting instruction is re-executed (PC is not advanced to the next instruction). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

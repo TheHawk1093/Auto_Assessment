@@ -1,0 +1,33 @@
+{
+  "question_key": "engsaf/d321cc3922",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names Consensus as one principle.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names Industry-wide applicability as one principle (equivalent wording accepted).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names Voluntary nature as one principle (equivalent wording accepted).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "All three principles are given correctly, with no incorrect extra principles replacing them.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/010be1a486",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a higher-priority process/task is prevented from running (does not get the CPU) or is made to wait/blocked.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this is caused by a lower-priority process holding a resource (e.g., lock/semaphore) that the higher-priority process needs. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

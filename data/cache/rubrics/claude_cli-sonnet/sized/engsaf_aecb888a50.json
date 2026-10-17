@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/aecb888a50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that empirical equations are derived from experiments, observations or measured data (rather than from theory).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that they have no rigorous mathematical/theoretical proof or derivation behind them (equivalent wording accepted, e.g. based on curve fitting/experience, not theoretically derived).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

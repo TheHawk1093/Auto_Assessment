@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ce468a17bf",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Lists unbiasedness and consistency as desirable properties of an estimator.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two is given."
+      },
+      {
+        "id": "P2",
+        "description": "Lists efficiency and sufficiency as desirable properties of an estimator.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two is given."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

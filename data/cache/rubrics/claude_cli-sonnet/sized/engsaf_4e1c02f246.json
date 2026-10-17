@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/4e1c02f246",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names dust particles (including clay minerals) as ice nuclei.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names organic particles and ordinary ocean (sea) salts as ice nuclei. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half credit (0.5) if only one of organic material or ocean salts is given."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

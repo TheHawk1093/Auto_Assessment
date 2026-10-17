@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/5a89251dec",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the parameters K and x are constant (do not change with time) for the channel reach, depending only on the reach/channel characteristics (shape).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the storage\u2013discharge relationship is linear (storage related linearly to weighted inflow and outflow, exponent m = 1), and that the method applies to channel routing.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only linearity/m = 1 or only channel-routing applicability is given."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

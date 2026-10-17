@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/d119a19a7a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a valid limitation of wireframe modeling, e.g. the representation is ambiguous / one wireframe can be interpreted as several different solid objects (or equivalently: it becomes messy/confusing, lacks surface and volume information, hidden lines cannot be removed). Equivalent wording accepted; any one valid limitation earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives a brief explanation or consequence of the stated limitation (e.g. one wireframe model can represent different solids so the shape is unclear, or complex models become cluttered and confusing to read).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/1c89ab7d7a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that meteorological drought is a condition arising from a reduction/deficit (e.g. of water/ground water level, as in the model answer) leading to dryness. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that it usually occurs in areas of low rainfall combined with excessive usage of (ground) water. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only low rainfall or only excessive water usage is mentioned."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

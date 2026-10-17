@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/755c9c7e80",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that vapor pressure deficit is a difference (between two moisture quantities): the amount of moisture currently in the air versus the maximum it could hold.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the two quantities correctly: the actual moisture content of the air, and the moisture that saturated air can hold (saturation level) at the same conditions. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

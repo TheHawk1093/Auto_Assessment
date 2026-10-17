@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/0fa4f95afa",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies time scale (e.g. length/duration of the process) as one of the two important scales in hydrology. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Identifies spatial scale (e.g. length/size of the area over which the process occurs) as the other important scale. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

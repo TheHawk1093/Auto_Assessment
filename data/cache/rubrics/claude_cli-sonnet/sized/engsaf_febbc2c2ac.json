@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/febbc2c2ac",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid parameter affecting MRR in ultrasonic machining (e.g. frequency of vibration, amplitude of vibration, abrasive slurry concentration, abrasive particle diameter). Equivalent wording accepted.",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second distinct valid parameter from the same set (or an equivalent correct parameter).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Third distinct valid parameter from the same set (or an equivalent correct parameter).",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

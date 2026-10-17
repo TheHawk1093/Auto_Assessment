@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ee9ee990d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that regularized set operations keep the solid's boundaries properly defined / valid, so the result has no dangling edges or faces (the result is always a valid closed solid).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that no extra edges are created and no edges are lost when combining objects (e.g. intersection), or that the operation follows the defined process in a predefined sequence; equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

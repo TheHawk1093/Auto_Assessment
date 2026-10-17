@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/6c639305d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: the ISA is an abstraction provided by the CPU. Instructions (and registers) map to functionality, and the OS uses them, but how that functionality is implemented in hardware is hidden from the OS. Equivalent wording accepted, e.g. the OS knows the ISA but not implementation details, or the OS must be compiled differently for different ISAs.",
+        "marks": 1.5,
+        "partial_credit": "Half credit if the answer says only that the ISA is an abstraction or that the OS uses ISA instructions, without saying implementation details are hidden from the OS."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

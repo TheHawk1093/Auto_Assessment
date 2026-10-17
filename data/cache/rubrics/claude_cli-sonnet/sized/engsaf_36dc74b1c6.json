@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/36dc74b1c6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that parent and child are separate processes (own address space/independent execution), so the parent is free to perform any operation, including calling exec, regardless of whether the child has terminated. Equivalent wording accepted. A justification is required; without it no marks are given (including for P1).",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

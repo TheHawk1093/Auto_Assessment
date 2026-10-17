@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/7870a031ef",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly gives Strengths and Weaknesses as the first two terms (S = Strength, W = Weakness). Minor spelling errors are accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of Strength or Weakness is correct."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly gives Opportunities and Threats as the last two terms (O = Opportunity, T = Threat). Minor spelling errors are accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of Opportunity or Threat is correct."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/5631b84b94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Hue: states a narrow range of hue around 0\u00b0/360\u00b0 (red).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Saturation: states high saturation, close to 0.8\u20131 (pure colour). Intensity: states a broad range around 0.5 (mid-level, not restrictive).",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) for saturation correct only or intensity correct only."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

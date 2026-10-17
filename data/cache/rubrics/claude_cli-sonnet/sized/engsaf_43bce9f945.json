@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/43bce9f945",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an orthotropic material has 9 independent elastic constants (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that at a point its material properties differ along three mutually orthogonal axes (three orthogonal planes/directions of symmetry; equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

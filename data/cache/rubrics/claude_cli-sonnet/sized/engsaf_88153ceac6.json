@@ -1,0 +1,15 @@
+{
+  "question_key": "engsaf/88153ceac6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a canal fall is provided when the natural (ground) slope of the region/country is steeper (greater) than the canal's designed bed slope.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only says the ground slope is steep or the terrain is sloping, without comparing it to the canal slope (or the comparison is stated unclearly)."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

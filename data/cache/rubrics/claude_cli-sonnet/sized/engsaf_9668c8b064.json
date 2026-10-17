@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/9668c8b064",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the statement is incorrect).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies: each process is an independent entity needing its own separate PCB/OS state (e.g., execution state, memory contents/allocations, open files, stack), so a single shared PCB with a reference counter cannot provide this. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
