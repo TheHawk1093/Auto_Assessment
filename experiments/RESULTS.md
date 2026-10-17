@@ -36,6 +36,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-17 23:15 | v4-votes3 | saf_s0_votes3 | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 1.44 | 0dc1c2c8 |
 | 2026-10-17 23:17 | baseline | engsaf_s0_baseline | engsaf/test/n60/seed0 | baseline | 0.179 | - | - | -0.096 | 0.76 | 0.73 | 0% | 0.54 | 0dc1c2c8 |
 | 2026-10-17 23:27 | v2b-sized-scheme | engsaf_s0_v2b | engsaf/test/n60/seed0 | pipeline | 0.158 | ▲ -0.021 | - | 0.027 | 0.78 | 0.77 | 3% | 3.54 | 0dc1c2c8 |
+| 2026-10-17 23:37 | v2b-mask30 | dk_s0_mask30 | digiklausur/dev/n24/seed0 | pipeline | 0.100 | ▲ -0.117 | ▼ +0.031 | -0.063 | 0.87 | 0.86 | 100% | 1.49 | 0dc1c2c8 |
 
 ## Variants
 
@@ -53,3 +54,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **feedback-hints**: same marks as dk_s0_v2b, feedback=hints. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "hints", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-critique**: same marks as dk_s0_v2b, feedback=critique. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "critique", "refeedback_from": "dk_s0_v2b"}`
 - **v4-votes3**: mark 3 times, majority per point. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 3, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
+- **v2b-mask30**: 30 percent of model answer words blanked. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`

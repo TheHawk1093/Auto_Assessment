@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/10~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation propagates the error (error signal/loss) backwards through the MLP, from the output layer toward the first (input/hidden) layer, level by level, recursively. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the weights are updated/adjusted using the gradient at each layer (gradient descent), where the gradient is computed via partial derivatives of the error with respect to the weights and the chain rule. Must mention gradient and chain rule (or partial derivatives).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 2."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/11~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Role of the learning rate: it controls the speed of convergence of steepest descent (step size). A low learning rate gives slow, smooth convergence; a high learning rate gives faster convergence, but the path may be oscillatory/zigzag (underdamped). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Danger: if the learning rate exceeds a critical (maximum) value, the learning becomes unstable (diverges rather than converges). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 2."
+  ]
+}

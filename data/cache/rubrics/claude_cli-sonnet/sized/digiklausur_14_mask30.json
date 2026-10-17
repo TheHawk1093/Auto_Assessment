@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/14~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the feature-extraction part of a CNN: input image, a convolutional layer whose kernels/filters convolve over the image, followed by a non-linear activation layer (ReLU), and a pooling layer (max or average pooling). Equivalent wording accepted; naming these layers in the correct order earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "Half if only some of these layers (e.g. convolution and pooling but no activation) are given, or the layers are named without the kernel/convolution description."
+      },
+      {
+        "id": "P2",
+        "description": "Describes the classification part: one or more fully connected layers followed by a final output layer (e.g. softmax/output classification layer). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half if fully connected layers are mentioned but the final output layer is missing, or vice versa."
+      }
+    ]
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 2."
+  ]
+}
