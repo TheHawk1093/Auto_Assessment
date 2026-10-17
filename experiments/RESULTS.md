@@ -44,6 +44,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-18 00:16 | v5-form-gate | saf_s0_v5 | saf/dev/n24/seed0 | pipeline | 0.106 | ▲ -0.006 | ▼ +0.046 | -0.006 | 0.91 | 0.89 | 21% | 0.91 | 55a3b874 |
 | 2026-10-18 00:19 | v5-form-gate | mohler_s0_v5 | mohler/dev/n24/seed0 | pipeline | 0.183 | ▲ -0.042 | ▲ -0.009 | -0.158 | 0.87 | 0.63 | 8% | 0.79 | 55a3b874 |
 | 2026-10-18 00:25 | v5-form-gate | engsaf_s0_v5 | engsaf/test/n60/seed0 | pipeline | 0.163 | ▲ -0.017 | ▼ +0.004 | -0.009 | 0.77 | 0.76 | 8% | 2.13 | 55a3b874 |
+| 2026-10-18 00:28 | v5b-form-gate-lists | saf_s0_v5b | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | ▲ -0.046 | 0.040 | 0.96 | 0.94 | 21% | 0.95 | f53c937e |
 
 ## Variants
 
@@ -66,3 +67,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **feedback-formal**: formal examiner register. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "formal", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-best3**: 3 drafts, checks, pick best. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "standard", "refeedback_from": "dk_s0_v2b"}`
 - **v5-form-gate**: form gate + injection guard. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
+- **v5b-form-gate-lists**: keyword_list only when an explanation was asked. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`

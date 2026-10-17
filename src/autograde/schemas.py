@@ -144,9 +144,9 @@ class Reading(BaseModel):
         default="explanation",
         description=(
             "explanation: connected statements, even if poorly written. short_answer: a word, "
-            "number, formula or phrase that answers a question asking for just that. keyword_list: "
-            "a bare list of terms where an explanation was asked. incoherent: scrambled or "
-            "meaningless text from which no claim can be read."
+            "number, formula, phrase or list of items that answers a question asking for just "
+            "that. keyword_list: a bare list of terms where an explanation was asked. "
+            "incoherent: scrambled or meaningless text from which no claim can be read."
         ),
     )
 
