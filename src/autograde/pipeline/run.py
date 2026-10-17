@@ -15,6 +15,7 @@ from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.verify import apply_form_gate
 from autograde.pipeline.vote import combine, models_disagree
 from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
 
@@ -68,6 +69,9 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
         votes = [g.total for g, _ in runs]
         grading, split = combine([g for g, _ in runs], rubric, item.student_answer, weight)
         flags = sorted({f for _, fl in runs for f in fl}) + [f"vote_split:{p}" for p in split]
+    grading, gate_flag = apply_form_gate(grading, reading, item.max_mark)
+    if gate_flag:
+        flags = [*flags, gate_flag]
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]
     return Marked(reading, grading, flags, votes)

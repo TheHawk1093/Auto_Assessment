@@ -40,6 +40,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-17 23:40 | v2b-short50 | dk_s0_short50 | digiklausur/dev/n24/seed0 | pipeline | 0.179 | ▲ -0.037 | ▼ +0.079 | 0.054 | 0.66 | 0.63 | 4% | 1.16 | 0dc1c2c8 |
 | 2026-10-17 23:41 | feedback-formal | dk_s0_fb_formal | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | ▲ -0.110 | -0.027 | 0.90 | 0.92 | 0% | 0.33 | 0dc1c2c8 |
 | 2026-10-17 23:44 | feedback-best3 | dk_s0_fb_best3 | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 1.28 | 0dc1c2c8 |
+| 2026-10-18 00:14 | v5-form-gate | dk_s0_v5 | digiklausur/dev/n24/seed0 | pipeline | 0.071 | ▲ -0.146 | ▼ +0.002 | -0.029 | 0.90 | 0.92 | 0% | 0.93 | 55a3b874 |
 
 ## Variants
 
@@ -61,3 +62,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **v2b-short50**: model answer cut to first half. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
 - **feedback-formal**: formal examiner register. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "formal", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-best3**: 3 drafts, checks, pick best. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "standard", "refeedback_from": "dk_s0_v2b"}`
+- **v5-form-gate**: form gate + injection guard. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`

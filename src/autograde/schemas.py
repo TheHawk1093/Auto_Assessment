@@ -140,6 +140,15 @@ class Reading(BaseModel):
     problems: list[str] = Field(
         description="Anything unclear, contradictory or wrong by general knowledge. Empty if none."
     )
+    form: Literal["explanation", "short_answer", "keyword_list", "incoherent"] = Field(
+        default="explanation",
+        description=(
+            "explanation: connected statements, even if poorly written. short_answer: a word, "
+            "number, formula or phrase that answers a question asking for just that. keyword_list: "
+            "a bare list of terms where an explanation was asked. incoherent: scrambled or "
+            "meaningless text from which no claim can be read."
+        ),
+    )
 
 
 class Result(BaseModel):

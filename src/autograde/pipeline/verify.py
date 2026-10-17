@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from autograde.schemas import EPS, Grading, PointVerdict, Rubric
+from autograde.schemas import EPS, Grading, PointVerdict, Reading, Rubric
 
 _FRAGMENT_SPLIT = re.compile(r"\s*(?:\.\.\.|…|\s\|\s)\s*")
 _MIN_FRAGMENT = 3
@@ -111,6 +111,32 @@ def apply_mark_rule(grading: Grading, rubric: Rubric, partial_weight: float) -> 
             )
         )
     return Grading(verdicts=out)
+
+
+def apply_form_gate(
+    grading: Grading, reading: Reading | None, max_mark: float
+) -> tuple[Grading, str | None]:
+    """Act on how the answer is written, which the generous marking rules cannot see.
+
+    Scrambled text earns nothing. A bare list of terms, where an explanation was asked for,
+    earns at most half the marks. Returns the grading and a flag when it was changed.
+    """
+    if reading is None:
+        return grading, None
+    if reading.form == "incoherent":
+        zeroed = [
+            v.model_copy(update={"status": "not_met", "marks_awarded": 0.0, "evidence": ""})
+            for v in grading.verdicts
+        ]
+        return Grading(verdicts=zeroed), "incoherent_answer"
+    if reading.form == "keyword_list" and grading.total > max_mark / 2:
+        scale = (max_mark / 2) / grading.total
+        scaled = [
+            v.model_copy(update={"marks_awarded": round(v.marks_awarded * scale, 6)})
+            for v in grading.verdicts
+        ]
+        return Grading(verdicts=scaled), "keyword_list_capped"
+    return grading, None
 
 
 def unverified_points(grading: Grading, answer: str) -> list[str]:

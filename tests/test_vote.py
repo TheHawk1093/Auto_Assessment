@@ -140,3 +140,26 @@ def test_models_disagree_and_review_report():
     assert (
         rep["share_flagged"] == 0.5 and rep["error_when_flagged"] > rep["error_when_models_agree"]
     )
+
+
+def test_form_gate_zeroes_incoherent_and_caps_keyword_lists():
+    from autograde.pipeline.verify import apply_form_gate
+    from autograde.schemas import Reading
+
+    g = Grading(
+        verdicts=[
+            PointVerdict(point_id="P1", status="met", marks_awarded=1.0, evidence="x", reason="r"),
+            PointVerdict(point_id="P2", status="met", marks_awarded=1.0, evidence="y", reason="r"),
+        ]
+    )
+
+    def reading(form: str) -> Reading:
+        return Reading(gist="g", ideas=[], problems=[], form=form)
+
+    zero, flag = apply_form_gate(g, reading("incoherent"), 2.0)
+    assert zero.total == 0.0 and flag == "incoherent_answer"
+    cap, flag = apply_form_gate(g, reading("keyword_list"), 2.0)
+    assert cap.total == 1.0 and flag == "keyword_list_capped"
+    same, flag = apply_form_gate(g, reading("short_answer"), 2.0)
+    assert same.total == 2.0 and flag is None
+    assert apply_form_gate(g, None, 2.0) == (g, None)
