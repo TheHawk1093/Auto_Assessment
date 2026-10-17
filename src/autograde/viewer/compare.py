@@ -1,123 +1,155 @@
-# ruff: noqa: E501
 """One page, one tab per method, the same few answers in every tab.
 
-Each tab embeds that run's own sample report (report_sample.html), so the detail view is the
-same one used everywhere else. A first tab lays the methods side by side for each answer.
+Each tab shows, for the same questions: the model answer, the student answer, the teacher's
+mark, how that method marked it and what feedback it wrote, and (where it was tested) whether
+a student could use the feedback to improve the answer. The page is a single file with the data
+embedded, so it opens offline (maths rendering needs the KaTeX files from the internet).
 """
 
 from __future__ import annotations
 
-import html
 import json
 from collections.abc import Sequence
+from dataclasses import dataclass
+from importlib import resources
 from pathlib import Path
 
+from autograde.pipeline.rubric import cached_record
 from autograde.schemas import Result
+from autograde.viewer.build import _grading_with_checks, sample_by_mark
+
+PLACEHOLDER = "/*__DATA__*/null"
 
 
-def _fmt(x: float | None, nd: int = 3) -> str:
-    return "-" if x is None else f"{x:.{nd}f}"
+@dataclass(frozen=True)
+class Tab:
+    run: str  # folder name under runs/
+    label: str
+    short: str  # one line under the tab name
+    desc: str  # what this method is, in plain words
 
 
-def glance_table(labels: Sequence[str], samples: Sequence[Sequence[Result]]) -> str:
-    """Rows: the sampled answers. Columns: teacher mark, then each method's mark."""
-    base = {r.item.id: r for r in samples[0]}
-    head = "".join(f"<th>{html.escape(x)}</th>" for x in labels)
-    rows = []
-    for id_, r in base.items():
-        q = html.escape(r.item.question[:110])
-        cells = []
-        for sample in samples:
-            hit = next((x for x in sample if x.item.id == id_), None)
-            if hit is None:
-                cells.append("<td>-</td>")
-                continue
-            gap = (hit.predicted_mark - r.item.human_mark) / r.item.max_mark
-            tone = "ok" if abs(gap) <= 0.1 else ("lo" if gap < 0 else "hi")
-            cells.append(f'<td class="{tone}">{hit.predicted_mark:g}</td>')
-        rows.append(
-            f"<tr><td class='q'>{q}</td><td><b>{r.item.human_mark:g}</b> / {r.item.max_mark:g}</td>"
-            + "".join(cells)
-            + "</tr>"
-        )
-    return (
-        "<table><tr><th>Question</th><th>Teacher</th>" + head + "</tr>" + "".join(rows) + "</table>"
-        "<p class='hint'>Green: within 10% of the total marks of the teacher's mark. "
-        "Blue: stricter than the teacher. Orange: more generous.</p>"
-    )
-
-
-def stats_line(run_dir: Path) -> str:
-    out = []
+def _read_json(path: Path) -> dict | list | None:
     try:
-        m = json.loads((run_dir / "metrics.json").read_text(encoding="utf-8"))["overall"]
-        out += [
-            f"error {_fmt(m.get('mean_abs_error'))}",
-            f"bias {_fmt(m.get('bias'), 2)}",
-            f"r {_fmt(m.get('pearson'), 2)}",
-            f"qwk {_fmt(m.get('qwk'), 2)}",
-            f"{m.get('n')} answers scored",
-        ]
-    except (OSError, KeyError, ValueError):
-        pass
-    try:
-        u = json.loads((run_dir / "usage.json").read_text(encoding="utf-8"))
-        out.append(f"cost ${u.get('cost_usd', 0):.2f}")
+        return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        pass
-    return " | ".join(out)
+        return None
 
 
-def write_compare(
-    tabs: Sequence[tuple[str, str, Path]],
-    samples: Sequence[Sequence[Result]],
-    out_path: Path,
-    title: str,
-) -> Path:
-    """tabs: (label, one-line description, run folder). Sample reports must already be built."""
-    labels = [t[0] for t in tabs]
-    buttons = ['<button class="on" data-t="glance">Side by side</button>'] + [
-        f'<button data-t="t{i}">{html.escape(lab)}</button>' for i, (lab, _, _) in enumerate(tabs)
-    ]
-    panes = [f'<section id="glance" class="pane on">{glance_table(labels, samples)}</section>']
-    for i, (lab, desc, run_dir) in enumerate(tabs):
-        src = Path("..") / run_dir.name / "report_sample.html"
-        panes.append(
-            f'<section id="t{i}" class="pane"><div class="meta"><b>{html.escape(lab)}</b>: '
-            f"{html.escape(desc)}<br><span>{html.escape(stats_line(run_dir))} "
-            f"(numbers cover the whole run, not just these answers)</span></div>"
-            f'<iframe data-src="{src.as_posix()}" title="{html.escape(lab)}"></iframe></section>'
+def _read_lines(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    return [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
+
+
+def _stats(run_dir: Path) -> dict:
+    metrics = _read_json(run_dir / "metrics.json") or {}
+    overall = metrics.get("overall", {}) if isinstance(metrics, dict) else {}
+    usage = _read_json(run_dir / "usage.json") or {}
+    return {
+        "error": overall.get("mean_abs_error"),
+        "bias": overall.get("bias"),
+        "pearson": overall.get("pearson"),
+        "qwk": overall.get("qwk"),
+        "n": overall.get("n"),
+        "cost": usage.get("cost_usd") if isinstance(usage, dict) else None,
+    }
+
+
+def _client_name(setup: dict) -> str:
+    llm = setup.get("llm", {})
+    name = f"{llm.get('backend', 'claude_cli')}-{llm.get('model', 'sonnet')}"
+    return name + (f"-{llm['effort']}" if llm.get("effort") else "")
+
+
+def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -> dict:
+    run_dir = runs_dir / tab.run
+    setup = _read_json(run_dir / "run.json") or {}
+    variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
+    client = _client_name(setup)
+    results = {}
+    for line in _read_lines(run_dir / "results.jsonl"):
+        r = Result.model_validate(line)
+        results[r.item.id] = r
+    revision = {x["id"]: x for x in _read_lines(run_dir / "revision_rows_sample.jsonl")}
+    judged = {x["id"]: x for x in _read_lines(run_dir / "feedback_judgements.jsonl")}
+
+    answers: dict[str, dict] = {}
+    for id_ in ids:
+        r = results.get(id_)
+        if r is None:
+            continue
+        record = cached_record(cache_dir, client, r.item.question_key, variant)
+        points = (
+            {p.id: {"description": p.description, "marks": p.marks} for p in record.rubric.points}
+            if record
+            else {}
         )
-    page = _PAGE.replace("{{TITLE}}", html.escape(title))
-    page = page.replace("{{BUTTONS}}", "".join(buttons)).replace("{{PANES}}", "".join(panes))
+        grading = _grading_with_checks(r)
+        verdicts = (
+            [
+                {
+                    "point_id": v["point_id"],
+                    "status": v["status"],
+                    "marks": v["marks_awarded"],
+                    "evidence": v["evidence"],
+                    "evidence_ok": v["evidence_ok"],
+                    "reason": v["reason"],
+                }
+                for v in grading["verdicts"]
+            ]
+            if grading
+            else None
+        )
+        rev = revision.get(id_)
+        judgement = judged.get(id_)
+        answers[id_] = {
+            "predicted": r.predicted_mark,
+            "reading": r.reading.model_dump() if r.reading else None,
+            "verdicts": verdicts,
+            "points": points,
+            "feedback": r.feedback.model_dump() if r.feedback else None,
+            "revision": rev,
+            "judgement": {k: v for k, v in judged[id_].items() if k not in ("id", "note")}
+            if judgement
+            else None,
+        }
+    return {
+        "label": tab.label,
+        "short": tab.short,
+        "desc": tab.desc,
+        "stats": _stats(run_dir),
+        "answers": answers,
+    }
+
+
+def build_data(
+    tabs: Sequence[Tab], runs_dir: Path, cache_dir: Path, n: int, title: str, subtitle: str
+) -> dict:
+    first = [
+        Result.model_validate(x) for x in _read_lines(runs_dir / tabs[0].run / "results.jsonl")
+    ]
+    chosen = sample_by_mark(first, n)  # depends only on the items, so every run shows the same
+    ids = [r.item.id for r in chosen]
+    questions = [
+        {
+            "id": r.item.id,
+            "question": r.item.question,
+            "model_answer": r.item.model_answer,
+            "student_answer": r.item.student_answer,
+            "max_mark": r.item.max_mark,
+            "human_mark": r.item.human_mark,
+            "human_feedback": r.item.human_feedback,
+        }
+        for r in chosen
+    ]
+    methods = [method_data(t, runs_dir, cache_dir, ids) for t in tabs]
+    return {"title": title, "subtitle": subtitle, "questions": questions, "methods": methods}
+
+
+def write_compare(data: dict, out_path: Path) -> Path:
+    template = resources.files(__package__).joinpath("compare.html").read_text(encoding="utf-8")
+    payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(page, encoding="utf-8")
+    out_path.write_text(template.replace(PLACEHOLDER, payload), encoding="utf-8")
     return out_path
-
-
-_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>{{TITLE}}</title>
-<style>
-:root{--bg:#fff;--ink:#1b1b1f;--muted:#666;--line:#ddd;--surface:#f6f6f8;--ok:#e3f4e6;--lo:#e2ecfb;--hi:#fdebd6;--accent:#2457c5}
-@media (prefers-color-scheme:dark){:root{--bg:#16161a;--ink:#ececf0;--muted:#9a9aa5;--line:#34343c;--surface:#202026;--ok:#1e3a26;--lo:#1f2f4d;--hi:#4a3418;--accent:#7aa2ff}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,sans-serif}
-header{padding:14px 16px 0}h1{font-size:18px;margin:0 0 4px}.sub{color:var(--muted);margin:0 0 10px}
-nav{display:flex;flex-wrap:wrap;gap:4px;padding:0 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
-nav button{border:1px solid var(--line);border-bottom:none;background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:6px 6px 0 0;cursor:pointer;font:inherit}
-nav button.on{background:var(--bg);color:var(--accent);font-weight:600;box-shadow:inset 0 2px 0 var(--accent)}
-.pane{display:none;padding:12px 16px}.pane.on{display:block}
-.meta{padding:8px 10px;background:var(--surface);border:1px solid var(--line);margin-bottom:8px}.meta span{color:var(--muted)}
-iframe{width:100%;height:calc(100vh - 190px);min-height:480px;border:1px solid var(--line);background:#fff}
-table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}
-td.q{text-align:left;max-width:380px}td.ok{background:var(--ok)}td.lo{background:var(--lo)}td.hi{background:var(--hi)}
-.hint{color:var(--muted)}
-</style></head><body>
-<header><h1>{{TITLE}}</h1><p class="sub">The same answers in every tab. Open a tab to read the question, answer, marking and feedback for that method.</p></header>
-<nav>{{BUTTONS}}</nav>{{PANES}}
-<script>
-document.querySelectorAll("nav button").forEach(function(b){b.onclick=function(){
-document.querySelectorAll("nav button,.pane").forEach(function(x){x.classList.remove("on")});
-b.classList.add("on");var p=document.getElementById(b.dataset.t);p.classList.add("on");
-var f=p.querySelector("iframe");if(f&&!f.src)f.src=f.dataset.src;}});
-</script></body></html>
-"""

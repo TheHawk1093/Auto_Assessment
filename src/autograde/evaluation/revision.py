@@ -17,7 +17,7 @@ from autograde import prompts
 from autograde.config import PipelineConfig
 from autograde.llm import LLMClient
 from autograde.pipeline.run import mark_item
-from autograde.schemas import Feedback, Result, RubricRecord
+from autograde.schemas import Feedback, Grading, Result, RubricRecord
 
 NO_FEEDBACK = "No feedback was provided."
 
@@ -34,6 +34,9 @@ class RevisionRow(BaseModel):
     without_feedback: float
     leak_feedback: float
     leak_revised: float
+    revised_answer: str = ""
+    control_answer: str = ""
+    revised_verdicts: list[dict] = []
 
 
 def feedback_text(fb: Feedback) -> str:
@@ -71,9 +74,9 @@ def revise(result: Result, feedback: str, student: LLMClient) -> str:
 
 def _mark(
     result: Result, answer: str, record: RubricRecord, grader: LLMClient, cfg: PipelineConfig
-) -> float:
+) -> Grading:
     item = result.item.model_copy(update={"student_answer": answer})
-    return mark_item(item, record, grader, cfg)[1].total
+    return mark_item(item, record, grader, cfg)[1]
 
 
 def revision_test(
@@ -98,7 +101,7 @@ def revision_test(
         and r.item.student_answer.strip()
         and r.predicted_mark < r.item.max_mark
     ]
-    cache: dict[str, float] = {}
+    cache: dict[str, dict] = {}
     if control_path.exists():
         cache = json.loads(control_path.read_text(encoding="utf-8"))
     prefix = f"{grader.name}|{student.name}|"
@@ -110,15 +113,23 @@ def revision_test(
         revised = revise(r, text, student)
         key = prefix + r.item.id
         if key not in cache:
-            cache[key] = _mark(r, revise(r, NO_FEEDBACK, student), record, grader, cfg)
+            plain = revise(r, NO_FEEDBACK, student)
+            cache[key] = {"answer": plain, "mark": _mark(r, plain, record, grader, cfg).total}
+        after = _mark(r, revised, record, grader, cfg)
         return RevisionRow(
             id=r.item.id,
             max_mark=r.item.max_mark,
             before=r.predicted_mark,
-            with_feedback=_mark(r, revised, record, grader, cfg),
-            without_feedback=cache[key],
+            with_feedback=after.total,
+            without_feedback=cache[key]["mark"],
             leak_feedback=leakage(text, r.item.model_answer),
             leak_revised=leakage(revised, r.item.model_answer),
+            revised_answer=revised,
+            control_answer=cache[key]["answer"],
+            revised_verdicts=[
+                {"point_id": v.point_id, "status": v.status, "marks": v.marks_awarded}
+                for v in after.verdicts
+            ],
         )
 
     with ThreadPoolExecutor(workers) as pool:

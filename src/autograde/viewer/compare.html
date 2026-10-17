@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method Comparison</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+:root {
+  --bg: #f7f7f9; --card: #ffffff; --ink: #1c1d21; --muted: #666a73; --line: #e2e3e8;
+  --accent: #2457c5; --accent-soft: #e6edfb;
+  --good: #1d7a3e; --good-soft: #e3f4e8; --warn: #a15c00; --warn-soft: #fdf0dc;
+  --bad: #b3261e; --bad-soft: #fbe6e4; --strict: #2457c5; --gen: #c26a00;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121316; --card: #1b1c20; --ink: #ececf0; --muted: #9a9ca6; --line: #32343b;
+    --accent: #8aa9ff; --accent-soft: #232c45;
+    --good: #6fd08c; --good-soft: #1d3326; --warn: #f0b45a; --warn-soft: #3a2d15;
+    --bad: #ff8f86; --bad-soft: #3b1f1d; --strict: #8aa9ff; --gen: #f0a35a;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); }
+header { padding: 18px 20px 0; max-width: 1280px; margin: 0 auto; }
+h1 { font-size: 20px; margin: 0 0 2px; }
+.sub { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
+.tabs { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.tabs-in { max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; gap: 6px; overflow-x: auto; }
+.tab { border: 1px solid transparent; border-bottom: none; background: none; color: var(--muted); font: 600 14px var(--font); padding: 10px 14px; cursor: pointer; border-radius: 8px 8px 0 0; white-space: nowrap; }
+.tab small { display: block; font-weight: 400; font-size: 12px; }
+.tab:hover { color: var(--ink); }
+.tab.on { background: var(--card); color: var(--accent); border-color: var(--line); box-shadow: inset 0 3px 0 var(--accent); }
+main { max-width: 1280px; margin: 0 auto; padding: 16px 20px 60px; }
+.about { background: var(--accent-soft); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 14px; }
+.about b { color: var(--accent); }
+.layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } .rail { display: flex; overflow-x: auto; gap: 8px; } .rail .q { min-width: 190px; } }
+.rail { display: grid; gap: 8px; position: sticky; top: 64px; }
+.q { text-align: left; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 10px; padding: 10px 12px; cursor: pointer; font: 14px/1.4 var(--font); }
+.q.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.q .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 6px; }
+.q .m { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+.chip { font: 600 12px var(--mono); padding: 2px 7px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); white-space: nowrap; }
+.chip.ok { background: var(--good-soft); color: var(--good); border-color: transparent; }
+.chip.lo { background: var(--accent-soft); color: var(--strict); border-color: transparent; }
+.chip.hi { background: var(--warn-soft); color: var(--gen); border-color: transparent; }
+.chip.met { background: var(--good-soft); color: var(--good); border-color: transparent; }
+.chip.partial { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.chip.not_met { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.stack { display: grid; gap: 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.card > h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.card > h2 .n { background: var(--ink); color: var(--card); border-radius: 5px; padding: 1px 7px; letter-spacing: 0; font-size: 12px; }
+.question { font-size: 16px; font-weight: 600; margin: 0 0 12px; white-space: pre-wrap; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 1000px) { .cols { grid-template-columns: 1fr; } }
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg); white-space: pre-wrap; word-break: break-word; font-size: 14px; max-height: 320px; overflow: auto; }
+.lab { font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 6px; }
+.bigmark { font-size: 34px; font-weight: 700; line-height: 1.1; }
+.bigmark span { font-size: 16px; color: var(--muted); font-weight: 500; }
+mark { background: #ffe58a; color: #1c1d21; border-radius: 3px; padding: 0 2px; }
+.scale { position: relative; height: 64px; margin: 8px 8px 0; }
+.track { position: absolute; left: 0; right: 0; top: 30px; height: 6px; border-radius: 3px; background: var(--line); }
+.tick { position: absolute; top: 40px; transform: translateX(-50%); font: 11px var(--mono); color: var(--muted); }
+.mk { position: absolute; top: 24px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; }
+.mk.other { top: 27px; width: 12px; height: 12px; margin-left: -6px; background: var(--muted); opacity: .55; }
+.mk.me { background: var(--accent); border: 3px solid var(--card); box-shadow: 0 0 0 2px var(--accent); }
+.mk.gt { background: var(--ink); border-radius: 3px; transform: rotate(45deg); width: 16px; height: 16px; margin-left: -8px; top: 25px; }
+.mk-l { position: absolute; top: 2px; transform: translateX(-50%); font: 600 11px var(--mono); white-space: nowrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+.legend i { display: inline-block; vertical-align: -3px; margin-right: 5px; }
+.say { margin: 10px 0 0; font-size: 14px; }
+.pt { display: grid; grid-template-columns: 96px 1fr; gap: 6px 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.pt:first-of-type { border-top: none; }
+.pt .d b { font-family: var(--mono); }
+.pt .get { font: 600 13px var(--mono); margin-top: 6px; }
+.bar { height: 6px; background: var(--line); border-radius: 3px; margin-top: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--good); }
+.quote { margin: 6px 0 0; padding: 6px 10px; border-left: 3px solid var(--line); background: var(--bg); font-size: 14px; white-space: pre-wrap; }
+.quote.ok { border-color: var(--good); }
+.quote.bad { border-color: var(--warn); }
+.why { color: var(--muted); font-size: 14px; margin-top: 4px; }
+.sumline { border-top: 2px solid var(--ink); margin-top: 6px; padding-top: 8px; font-weight: 700; text-align: right; }
+.reading { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin-bottom: 8px; font-size: 14px; }
+.reading ul { margin: 4px 0 0; padding-left: 1.2em; }
+.fb h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 12px 0 6px; }
+.fb h3:first-child { margin-top: 0; }
+.good { border-left: 4px solid var(--good); background: var(--good-soft); padding: 7px 12px; border-radius: 6px; margin-bottom: 6px; }
+.imp { border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; display: grid; gap: 4px; }
+.imp b { font: 600 12px var(--mono); text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.imp .try b { color: var(--accent); }
+.summary { margin-top: 10px; padding: 9px 12px; background: var(--accent-soft); border-radius: 8px; font-weight: 500; }
+.flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media (max-width: 1000px) { .flow { grid-template-columns: 1fr; } }
+.step { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--bg); }
+.step.win { border-color: var(--good); background: var(--good-soft); }
+.step h4 { margin: 0 0 6px; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; }
+.step .txt { white-space: pre-wrap; word-break: break-word; font-size: 14px; max-height: 240px; overflow: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.verdict { margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); font-weight: 500; }
+.note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+.empty { color: var(--muted); padding: 10px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: center; }
+th { color: var(--muted); font: 600 12px var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+td.l, th.l { text-align: left; }
+td.cell { font: 600 14px var(--mono); }
+td.cell.ok { background: var(--good-soft); color: var(--good); }
+td.cell.lo { background: var(--accent-soft); color: var(--strict); }
+td.cell.hi { background: var(--warn-soft); color: var(--gen); }
+.hbar { height: 10px; border-radius: 5px; background: var(--accent); min-width: 2px; }
+.hwrap { background: var(--line); border-radius: 5px; width: 160px; display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">Method comparison</h1>
+  <p class="sub" id="sub"></p>
+</header>
+<div class="tabs"><div class="tabs-in" id="tabs"></div></div>
+<main id="main"></main>
+
+<script>window.DATA = /*__DATA__*/null;</script>
+<script>
+(function () {
+  var D = window.DATA;
+  var tabIdx = 0, qIdx = 0;
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function fmt(x) { return x == null ? "-" : (Math.round(x * 100) / 100).toString(); }
+  function gapClass(pred, q) {
+    var g = (pred - q.human_mark) / q.max_mark;
+    return Math.abs(g) <= 0.1 ? "ok" : (g < 0 ? "lo" : "hi");
+  }
+  function gapWord(pred, q) {
+    var d = Math.round((pred - q.human_mark) * 100) / 100;
+    if (Math.abs(d) < 0.005) return "matches the teacher";
+    return (d < 0 ? "stricter than the teacher by " : "more generous than the teacher by ") + Math.abs(d);
+  }
+  var STATUS = { met: "Full credit", partial: "Partly", not_met: "Missed" };
+
+  /* math: render $..$ and \(..\) with KaTeX when available, otherwise leave the raw text */
+  function math(node) {
+    if (!window.renderMathInElement) return;
+    try {
+      window.renderMathInElement(node, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true }, { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false }, { left: "$", right: "$", display: false }
+        ], throwOnError: false
+      });
+    } catch (e) { /* keep raw text */ }
+  }
+
+  /* student answer with the grader's quotes highlighted (only plain quotes, so formulas stay intact) */
+  function highlighted(text, quotes) {
+    var low = text.toLowerCase(), spans = [];
+    quotes.forEach(function (q) {
+      if (!q || /[$\\]/.test(q)) return;
+      var i = low.indexOf(q.toLowerCase());
+      if (i >= 0) spans.push([i, i + q.length]);
+    });
+    spans.sort(function (a, b) { return a[0] - b[0]; });
+    var out = el("div"), pos = 0;
+    spans.forEach(function (s) {
+      if (s[0] < pos) return;
+      out.appendChild(document.createTextNode(text.slice(pos, s[0])));
+      out.appendChild(el("mark", "", text.slice(s[0], s[1])));
+      pos = s[1];
+    });
+    out.appendChild(document.createTextNode(text.slice(pos)));
+    return out;
+  }
+
+  function card(num, title) {
+    var c = el("section", "card"), h = el("h2");
+    if (num) h.appendChild(el("span", "n", num));
+    h.appendChild(document.createTextNode(title));
+    c.appendChild(h);
+    return c;
+  }
+
+  /* ---- tabs ---- */
+  function drawTabs() {
+    var t = document.getElementById("tabs");
+    t.innerHTML = "";
+    var all = [{ label: "All methods", sub: "overview" }].concat(D.methods.map(function (m) {
+      return { label: m.label, sub: m.short };
+    }));
+    all.forEach(function (x, i) {
+      var b = el("button", "tab" + (i === tabIdx ? " on" : ""), x.label);
+      b.appendChild(el("small", "", x.sub));
+      b.onclick = function () { tabIdx = i; draw(); };
+      t.appendChild(b);
+    });
+  }
+
+  /* ---- overview ---- */
+  function overview(root) {
+    var c = card("", "Marks given to the same " + D.questions.length + " answers");
+    var t = el("table"), hr = el("tr");
+    hr.appendChild(el("th", "l", "Question"));
+    hr.appendChild(el("th", "", "Teacher"));
+    D.methods.forEach(function (m) { hr.appendChild(el("th", "", m.label)); });
+    t.appendChild(hr);
+    D.questions.forEach(function (q, qi) {
+      var r = el("tr");
+      var td = el("td", "l", q.question.slice(0, 80) + (q.question.length > 80 ? "..." : ""));
+      r.appendChild(td);
+      r.appendChild(el("td", "cell", fmt(q.human_mark) + " / " + fmt(q.max_mark)));
+      D.methods.forEach(function (m) {
+        var a = m.answers[q.id];
+        var cell = el("td", "cell " + (a ? gapClass(a.predicted, q) : ""), a ? fmt(a.predicted) : "-");
+        r.appendChild(cell);
+      });
+      r.style.cursor = "pointer";
+      r.onclick = function () { qIdx = qi; tabIdx = 1; draw(); };
+      t.appendChild(r);
+    });
+    c.appendChild(t);
+    c.appendChild(el("p", "note", "Green: within 10% of the total marks of the teacher. Blue: stricter than the teacher. Orange: more generous. Click a row to read that answer."));
+    root.appendChild(c);
+
+    var c2 = card("", "How each method does over its whole run");
+    var t2 = el("table"), h2 = el("tr");
+    ["Method", "Avg gap to teacher", "Bias", "Correlation", "Agreement (QWK)", "Cost", "Answers"].forEach(function (x, i) {
+      h2.appendChild(el("th", i === 0 ? "l" : "", x));
+    });
+    t2.appendChild(h2);
+    var maxErr = Math.max.apply(null, D.methods.map(function (m) { return (m.stats && m.stats.error) || 0; }).concat([0.01]));
+    D.methods.forEach(function (m) {
+      var s = m.stats || {}, r = el("tr");
+      var name = el("td", "l"); name.appendChild(el("b", "", m.label)); name.appendChild(el("div", "note", m.desc));
+      r.appendChild(name);
+      var e = el("td"), w = el("span", "hwrap"), b = el("div", "hbar");
+      b.style.width = (100 * (s.error || 0) / maxErr) + "%"; w.appendChild(b);
+      e.appendChild(w); e.appendChild(el("div", "", s.error == null ? "-" : (s.error * 100).toFixed(1) + "% of total marks"));
+      r.appendChild(e);
+      r.appendChild(el("td", "", s.bias == null ? "-" : (s.bias > 0 ? "+" : "") + s.bias.toFixed(2)));
+      r.appendChild(el("td", "", s.pearson == null ? "-" : s.pearson.toFixed(2)));
+      r.appendChild(el("td", "", s.qwk == null ? "-" : s.qwk.toFixed(2)));
+      r.appendChild(el("td", "", s.cost == null ? "-" : "$" + s.cost.toFixed(2)));
+      r.appendChild(el("td", "", s.n == null ? "-" : String(s.n)));
+      t2.appendChild(r);
+    });
+    c2.appendChild(t2);
+    c2.appendChild(el("p", "note", "These numbers cover every answer in each run, not only the " + D.questions.length + " shown here. Lower gap is better; bias below zero means stricter than the teacher."));
+    root.appendChild(c2);
+  }
+
+  /* ---- one method ---- */
+  function methodView(root) {
+    var m = D.methods[tabIdx - 1], q = D.questions[qIdx], a = m.answers[q.id];
+
+    var about = el("div", "about");
+    about.appendChild(el("b", "", m.label + ": "));
+    about.appendChild(document.createTextNode(m.desc));
+    root.appendChild(about);
+
+    var layout = el("div", "layout"), rail = el("div", "rail"), stack = el("div", "stack");
+    D.questions.forEach(function (qq, i) {
+      var b = el("button", "q" + (i === qIdx ? " on" : ""));
+      b.appendChild(el("div", "t", qq.question));
+      var meta = el("div", "m");
+      meta.appendChild(el("span", "chip", "teacher " + fmt(qq.human_mark) + "/" + fmt(qq.max_mark)));
+      var ans = m.answers[qq.id];
+      if (ans) meta.appendChild(el("span", "chip " + gapClass(ans.predicted, qq), "this method " + fmt(ans.predicted)));
+      b.appendChild(meta);
+      b.onclick = function () { qIdx = i; draw(); };
+      rail.appendChild(b);
+    });
+    layout.appendChild(rail); layout.appendChild(stack); root.appendChild(layout);
+
+    /* 1. the task */
+    var c1 = card("1", "The question, the answers and the teacher's mark");
+    var qp = el("p", "question", q.question); c1.appendChild(qp);
+    var cols = el("div", "cols");
+    var b1 = el("div"); b1.appendChild(el("div", "lab", "Model answer")); b1.appendChild(el("div", "box", q.model_answer)); cols.appendChild(b1);
+    var b2 = el("div"); b2.appendChild(el("div", "lab", "Student answer (yellow = quoted by the grader)"));
+    var sb = el("div", "box");
+    var quotes = a && a.verdicts ? a.verdicts.filter(function (v) { return v.marks > 0 && v.evidence_ok; }).map(function (v) { return v.evidence; }) : [];
+    sb.appendChild(highlighted(q.student_answer || "(empty)", quotes)); b2.appendChild(sb); cols.appendChild(b2);
+    var b3 = el("div"); b3.appendChild(el("div", "lab", "Teacher (ground truth)"));
+    var bm = el("div", "bigmark", fmt(q.human_mark)); bm.appendChild(el("span", "", " / " + fmt(q.max_mark))); b3.appendChild(bm);
+    if (q.human_feedback) b3.appendChild(el("div", "box", q.human_feedback));
+    cols.appendChild(b3);
+    c1.appendChild(cols); stack.appendChild(c1);
+
+    /* 2. the marks on one scale */
+    var c2 = card("2", "Where each method put its mark");
+    var sc = el("div", "scale"); sc.appendChild(el("div", "track"));
+    var step = q.max_mark <= 5 ? 1 : Math.ceil(q.max_mark / 5);
+    for (var v = 0; v <= q.max_mark + 1e-9; v += step) {
+      var tk = el("div", "tick", fmt(v)); tk.style.left = (100 * v / q.max_mark) + "%"; sc.appendChild(tk);
+    }
+    function put(cls, val, label, title) {
+      var d = el("div", "mk " + cls); d.style.left = (100 * Math.min(Math.max(val, 0), q.max_mark) / q.max_mark) + "%"; d.title = title;
+      sc.appendChild(d);
+      if (label) { var l = el("div", "mk-l", label); l.style.left = d.style.left; sc.appendChild(l); }
+    }
+    D.methods.forEach(function (mm, i) {
+      var aa = mm.answers[q.id];
+      if (aa && i !== tabIdx - 1) put("other", aa.predicted, "", mm.label + ": " + fmt(aa.predicted));
+    });
+    put("gt", q.human_mark, "teacher " + fmt(q.human_mark), "Teacher: " + fmt(q.human_mark));
+    if (a) put("me", a.predicted, "", m.label + ": " + fmt(a.predicted));
+    c2.appendChild(sc);
+    var lg = el("div", "legend");
+    lg.innerHTML = '<span><i class="mk gt" style="position:relative;display:inline-block;top:0;margin:0 6px 0 0"></i>teacher</span><span><i class="mk me" style="position:relative;display:inline-block;top:0;margin:0 6px 0 0"></i>' + "this method</span><span><i class=\"mk other\" style=\"position:relative;display:inline-block;top:0;margin:0 6px 0 0\"></i>other methods (hover for names)</span>";
+    c2.appendChild(lg);
+    if (a) c2.appendChild(el("p", "say", m.label + " gave " + fmt(a.predicted) + " out of " + fmt(q.max_mark) + ": " + gapWord(a.predicted, q) + "."));
+    stack.appendChild(c2);
+
+    /* 3. the marking */
+    var c3 = card("3", "How this method marked it");
+    if (!a || !a.verdicts) {
+      c3.appendChild(el("p", "empty", "This method gives one number and shows no working, so there is nothing to inspect here. That is why its mark cannot be explained to a student."));
+    } else {
+      if (a.reading) {
+        var rd = el("div", "reading"); rd.appendChild(el("b", "", "First read of the answer: ")); rd.appendChild(document.createTextNode(a.reading.gist));
+        if (a.reading.ideas.length) { var ul = el("ul"); a.reading.ideas.forEach(function (x) { ul.appendChild(el("li", "", x)); }); rd.appendChild(ul); }
+        a.reading.problems.forEach(function (x) { rd.appendChild(el("div", "why", "Noticed: " + x)); });
+        c3.appendChild(rd);
+      }
+      a.verdicts.forEach(function (vd) {
+        var pt = a.points[vd.point_id] || { description: "", marks: vd.marks }, row = el("div", "pt");
+        var left = el("div"); left.appendChild(el("span", "chip " + vd.status, STATUS[vd.status] || vd.status));
+        var g = el("div", "get", fmt(vd.marks) + " / " + fmt(pt.marks)); left.appendChild(g);
+        var bar = el("div", "bar"), fill = el("i"); fill.style.width = (pt.marks ? 100 * vd.marks / pt.marks : 0) + "%"; bar.appendChild(fill); left.appendChild(bar);
+        var right = el("div", "d"); right.appendChild(el("b", "", vd.point_id + " ")); right.appendChild(document.createTextNode(pt.description));
+        if (vd.evidence) {
+          var qt = el("div", "quote " + (vd.evidence_ok ? "ok" : "bad"), "“" + vd.evidence + "”");
+          qt.appendChild(el("div", "note", vd.evidence_ok ? "quote found in the student's answer" : "quote not found in the answer, credit kept"));
+          right.appendChild(qt);
+        } else if (vd.marks > 0) right.appendChild(el("div", "note", "credit given without a quote"));
+        if (vd.reason) right.appendChild(el("div", "why", vd.reason));
+        row.appendChild(left); row.appendChild(right); c3.appendChild(row);
+      });
+      c3.appendChild(el("div", "sumline", "Total " + fmt(a.predicted) + " / " + fmt(q.max_mark)));
+    }
+    stack.appendChild(c3);
+
+    /* 4. the feedback */
+    var c4 = card("4", "Feedback the student would read");
+    var fb = a && a.feedback;
+    if (!fb) c4.appendChild(el("p", "empty", "This method produces no feedback, only a mark."));
+    else {
+      var f = el("div", "fb");
+      if (fb.strengths.length) { f.appendChild(el("h3", "", "What you did well")); fb.strengths.forEach(function (s) { f.appendChild(el("div", "good", s)); }); }
+      if (fb.improvements.length) {
+        f.appendChild(el("h3", "", "What to improve"));
+        fb.improvements.forEach(function (x) {
+          var d = el("div", "imp");
+          d.appendChild(el("div", "", x.issue));
+          if (x.why) { var w = el("div"); w.appendChild(el("b", "", "Why")); w.appendChild(document.createTextNode(x.why)); d.appendChild(w); }
+          var tr = el("div", "try"); tr.appendChild(el("b", "", "Try")); tr.appendChild(document.createTextNode(x.fix)); d.appendChild(tr);
+          f.appendChild(d);
+        });
+      }
+      f.appendChild(el("div", "summary", fb.summary));
+      c4.appendChild(f);
+      if (a.judgement) {
+        var jt = el("p", "note"), ok = [], no = [];
+        Object.keys(a.judgement).forEach(function (k) { var v = a.judgement[k]; if (v === true) ok.push(k.replace(/_/g, " ")); else if (v === false) no.push(k.replace(/_/g, " ")); });
+        jt.textContent = "Quality check: passes " + (ok.join(", ") || "none") + (no.length ? ". Fails: " + no.join(", ") : "") + ".";
+        c4.appendChild(jt);
+      }
+    }
+    stack.appendChild(c4);
+
+    /* 5. does it help */
+    var c5 = card("5", "Does the feedback help the student?");
+    var rv = a && a.revision;
+    if (!fb) c5.appendChild(el("p", "empty", "No feedback, so there is nothing to test."));
+    else if (!rv) c5.appendChild(el("p", "empty", a.predicted >= q.max_mark ? "This answer already earned full marks, so there is nothing to improve." : "Not tested for this answer."));
+    else {
+      var fl = el("div", "flow");
+      function stepBox(title, mark, text, win, verdicts) {
+        var s = el("div", "step" + (win ? " win" : ""));
+        var h = el("h4"); h.appendChild(el("span", "", title)); h.appendChild(el("span", "chip", fmt(mark) + " / " + fmt(q.max_mark))); s.appendChild(h);
+        s.appendChild(el("div", "txt", text));
+        if (verdicts) { var cs = el("div", "chips"); verdicts.forEach(function (v) { cs.appendChild(el("span", "chip " + v.status, v.point_id + " " + (STATUS[v.status] || v.status))); }); s.appendChild(cs); }
+        return s;
+      }
+      var beforeV = a.verdicts ? a.verdicts.map(function (v) { return { point_id: v.point_id, status: v.status }; }) : null;
+      fl.appendChild(stepBox("Original answer", rv.before, q.student_answer, false, beforeV));
+      fl.appendChild(stepBox("Rewritten using the feedback", rv.with_feedback, rv.revised_answer, rv.with_feedback > rv.before, rv.revised_verdicts));
+      fl.appendChild(stepBox("Rewritten with no feedback", rv.without_feedback, rv.control_answer, false, null));
+      c5.appendChild(fl);
+      var gain = Math.round((rv.with_feedback - rv.before) * 100) / 100, ctl = Math.round((rv.without_feedback - rv.before) * 100) / 100;
+      var vt = gain > 0.005 ? "The feedback helped: the mark went from " + fmt(rv.before) + " to " + fmt(rv.with_feedback) + " (+" + fmt(gain) + "), while rewording alone changed it by " + (ctl >= 0 ? "+" : "") + fmt(ctl) + "."
+        : gain < -0.005 ? "The feedback did not help: the mark fell by " + fmt(-gain) + "."
+        : "The feedback did not change the mark.";
+      c5.appendChild(el("div", "verdict", vt));
+      c5.appendChild(el("p", "note", "A simulated student (a small model) rewrote the answer using only its own answer and this feedback, and the same grader marked the rewrite. Overlap with the model answer's wording: " + Math.round(rv.leak_feedback * 100) + "% in the feedback. This is a proxy for a real student, not a replacement."));
+    }
+    stack.appendChild(c5);
+    [c1, c3, c4, c5].forEach(math);
+  }
+
+  function draw() {
+    drawTabs();
+    var root = document.getElementById("main");
+    root.innerHTML = "";
+    if (tabIdx === 0) overview(root); else methodView(root);
+    window.scrollTo({ top: 0 });
+  }
+
+  document.getElementById("title").textContent = D.title;
+  document.getElementById("sub").textContent = D.subtitle;
+  document.title = D.title;
+  window.__redraw = draw;
+  draw();
+})();
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="if(window.__redraw)window.__redraw()"></script>
+</body>
+</html>

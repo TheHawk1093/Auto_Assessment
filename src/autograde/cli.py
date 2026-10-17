@@ -9,7 +9,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from autograde.config import Settings, load_settings
+from autograde.config import PipelineConfig, Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.datasets.download import download_all
 from autograde.evaluation.experiments import (
@@ -28,7 +28,8 @@ from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import read_results, run_items, to_question
 from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_by_mark, sample_spread, write_report
-from autograde.viewer.compare import write_compare
+from autograde.viewer.compare import Tab, write_compare
+from autograde.viewer.compare import build_data as build_compare_data
 
 log = logging.getLogger("autograde")
 
@@ -80,18 +81,15 @@ def _parser() -> argparse.ArgumentParser:
 
     rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
     rv.add_argument("--name", required=True)
+    rv.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
 
     cp = sub.add_parser("compare", help="one page, one tab per run, the same N answers in each")
     cp.add_argument(
-        "--run", action="append", required=True, metavar="NAME=LABEL|DESCRIPTION",
+        "--run", action="append", required=True, metavar="NAME=LABEL|SHORT|DESCRIPTION",
         help="repeat once per tab; the first run decides which answers are shown",
     )  # fmt: skip
     cp.add_argument("--limit", type=int, default=5)
-    cp.add_argument("--seed", type=int, default=0)
-    cp.add_argument(
-        "--by", choices=["question", "mark"], default="mark",
-        help="mark: spread over the teacher's marks | question: spread over questions",
-    )  # fmt: skip
+    cp.add_argument("--title", default="Method comparison")
     cp.add_argument("--out", required=True, help="folder name under runs/")
 
     logp = sub.add_parser("log", help="add a finished run to experiments/log.jsonl")
@@ -237,13 +235,24 @@ def _cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
     _finish(dst, new, zero, settings, args)
 
 
-def _records(results: list, settings: Settings) -> dict:
+def _run_pipeline(run_dir: Path, settings: Settings) -> PipelineConfig:
+    """The pipeline settings a run was made with (falls back to the current config)."""
+    path = run_dir / "run.json"
+    if path.exists():
+        saved = json.loads(path.read_text(encoding="utf-8")).get("pipeline")
+        if saved:
+            return PipelineConfig.model_validate(saved)
+    return settings.pipeline
+
+
+def _records(results: list, settings: Settings, cfg: PipelineConfig | None = None) -> dict:
     """Cached marking schemes for the questions in `results` (same cache path as the run)."""
+    cfg = cfg or settings.pipeline
     store = RubricStore(
         settings.paths.cache_dir,
         build_client(settings.llm),
-        settings.pipeline.rubric_selftest,
-        settings.pipeline.rubric_variant,
+        cfg.rubric_selftest,
+        cfg.rubric_variant,
     )
     return {r.item.question_key: store.get(to_question(r.item)) for r in results}
 
@@ -284,43 +293,47 @@ def _cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
     results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
     if not results:
         sys.exit("No results with feedback in that run.")
+    if args.sample:
+        results = sample_by_mark(results, args.sample)
+    sfx = "_sample" if args.sample else ""
+    cfg = _run_pipeline(run_dir, settings)
     grader, student = build_client(settings.llm), build_client(settings.student)
     rows = revision_test(
         results,
-        _records(results, settings),
+        _records(results, settings, cfg),
         grader,
         student,
-        settings.pipeline,
-        settings.paths.runs_dir / "revision_control.json",
+        cfg,
+        settings.paths.runs_dir / "revision_control2.json",
         settings.pipeline.max_workers,
     )
     out = {
         **summarise(rows),
         "cost_usd": round(grader.usage.cost_usd + student.usage.cost_usd, 3),
     }
-    (run_dir / "revision_rows.jsonl").write_text(
+    (run_dir / f"revision_rows{sfx}.jsonl").write_text(
         "\n".join(r.model_dump_json() for r in rows), encoding="utf-8"
     )
-    (run_dir / "revision_scores.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    (run_dir / f"revision_scores{sfx}.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps(out, indent=2))
 
 
 def _cmd_compare(args: argparse.Namespace, settings: Settings) -> None:
-    tabs, samples = [], []
+    tabs = []
     for spec in args.run:
-        name, _, rest = spec.partition("=")
-        label, _, desc = rest.partition("|")
-        run_dir = settings.paths.runs_dir / name
-        _write_view(run_dir, settings, args.limit, args.seed, args.by)
-        tabs.append((label or name, desc, run_dir))
-        results = read_results(run_dir / "results.jsonl")
-        samples.append(
-            sample_by_mark(results, args.limit)
-            if args.by == "mark"
-            else sample_spread(results, args.limit, args.seed)
-        )
-    out = settings.paths.runs_dir / args.out / "index.html"
-    print(write_compare(tabs, samples, out, f"Methods compared on {args.limit} questions"))
+        run, _, rest = spec.partition("=")
+        label, _, rest = rest.partition("|")
+        short, _, desc = rest.partition("|")
+        tabs.append(Tab(run, label or run, short, desc))
+    data = build_compare_data(
+        tabs,
+        settings.paths.runs_dir,
+        settings.paths.cache_dir,
+        args.limit,
+        args.title,
+        f"The same {args.limit} answers in every tab, from weak to strong by the teacher's mark.",
+    )
+    print(write_compare(data, settings.paths.runs_dir / args.out / "index.html"))
 
 
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
