@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/3~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup: labels the data as positive/negative classes (e.g. +1/\u22121) and initializes the weights (randomly or to some starting value).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Iterative learning loop: for each training point/epoch, if the point is misclassified (e.g. <w,x> <= 0 for a correctly-signed/positive-oriented x), update the weights by adding eta*x (equivalently w += eta*y*x); repeat over epochs until the weights stop changing (or no misclassifications remain). Equivalent wording and correct equivalent update rules earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

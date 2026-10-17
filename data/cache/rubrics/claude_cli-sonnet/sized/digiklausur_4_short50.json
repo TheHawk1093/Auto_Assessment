@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/4~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that classification maps data/inputs to discrete labels or categories (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that regression maps data/inputs to continuous values or a continuous function (real-valued output), making clear this is the difference from classification's discrete output.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/10~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation is used to reduce/minimise the error (loss) of a multi-layer perceptron / neural network with multiple layers, by working through the network layer by layer (recursively/iteratively).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the error is propagated backwards from the last (output) layer to the first layer, and that the weights are updated as a result. Equivalent wording (e.g. gradient/delta-based weight updates going backwards) earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

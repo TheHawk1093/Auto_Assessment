@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/11~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the learning rate controls the step size/speed of convergence of steepest descent (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the danger: a low learning rate gives overdamped, very slow convergence (a too-large rate is also acceptable as a danger only if it is tied to instability/overshoot/divergence; the model answer's danger is slow convergence).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/5~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Initialization: arranges the weights in the required topology/lattice and initializes them randomly so that all weights are different (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Samples an input vector from the input space and performs similarity matching, matching it to a neuron in the lattice that becomes the winning neuron (e.g. the closest weight vector).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

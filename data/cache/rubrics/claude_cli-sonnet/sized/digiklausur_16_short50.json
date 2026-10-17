@@ -1,0 +1,21 @@
+{
+  "question_key": "digiklausur/16~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the setup/procedure: the new data point is compared against the stored labelled (classified) training data, and the k nearest data points (neighbours, by distance) to it are selected. Pseudo code or clear stepwise description is acceptable; equivalent wording earns the marks.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the class with the maximum vote (majority) among the k nearest neighbours is found and the new data point is assigned to that class.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
