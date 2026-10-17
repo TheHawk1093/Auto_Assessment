@@ -6,7 +6,6 @@ of the gain is just rewording. Leakage shows how much of the model answer the fe
 from __future__ import annotations
 
 import json
-import re
 from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -18,6 +17,7 @@ from autograde.config import PipelineConfig
 from autograde.llm import LLMClient
 from autograde.pipeline.run import mark_item
 from autograde.schemas import Feedback, Grading, Result, RubricRecord
+from autograde.textutil import leakage
 
 NO_FEEDBACK = "No feedback was provided."
 
@@ -46,22 +46,6 @@ def feedback_text(fb: Feedback) -> str:
         parts.append(" ".join(p for p in (x.issue, x.why, x.fix) if p))
     parts.append(fb.summary)
     return "\n".join(parts)
-
-
-def _words(text: str) -> list[str]:
-    return re.findall(r"[a-z0-9]+", text.lower())
-
-
-def leakage(text: str, model_answer: str, n: int = 4) -> float:
-    """Share of the model answer's n-word phrases that also appear in `text`."""
-    ref = _words(model_answer)
-    n = max(1, min(n, len(ref)))
-    grams = {tuple(ref[i : i + n]) for i in range(len(ref) - n + 1)}
-    if not grams:
-        return 0.0
-    have = _words(text)
-    seen = {tuple(have[i : i + n]) for i in range(len(have) - n + 1)}
-    return len(grams & seen) / len(grams)
 
 
 def revise(result: Result, feedback: str, student: LLMClient) -> str:

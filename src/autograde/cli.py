@@ -11,7 +11,8 @@ from pathlib import Path
 
 from autograde.config import PipelineConfig, Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
-from autograde.datasets.download import download_all
+from autograde.datasets.download import download_all, download_engsaf
+from autograde.datasets.perturb import perturb_items
 from autograde.evaluation.experiments import (
     comparisons,
     prompt_fingerprint,
@@ -21,11 +22,18 @@ from autograde.evaluation.experiments import (
 from autograde.evaluation.judge import judge_all, pass_rates
 from autograde.evaluation.metrics import report
 from autograde.evaluation.revision import revision_test, summarise
+from autograde.evaluation.sensitivity import compare_runs
+from autograde.evaluation.stress import Case, build_cases, run_stress
+from autograde.evaluation.stress import summarise as summarise_stress
+from autograde.evaluation.transfer import summarise as summarise_transfer
+from autograde.evaluation.transfer import transfer_test
+from autograde.evaluation.voting import vote_report
 from autograde.llm import build_client
+from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.rescore import rescore
 from autograde.pipeline.rubric import RubricStore, cached_record
-from autograde.pipeline.run import read_results, run_items, to_question
+from autograde.pipeline.run import mark_item, read_results, run_items, to_question
 from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_by_mark, sample_spread, write_report
 from autograde.viewer.compare import Tab, write_compare
@@ -39,7 +47,8 @@ def _parser() -> argparse.ArgumentParser:
     p.add_argument("--config", type=Path, help="YAML settings (default: configs/default.yaml)")
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("download", help="fetch the stage-1 datasets into data/raw")
+    dl = sub.add_parser("download", help="fetch the stage-1 datasets into data/raw")
+    dl.add_argument("--engsaf", action="store_true", help="also fetch EngSAF (benchmark only)")
 
     run = sub.add_parser("run", help="grade a sample of answers")
     run.add_argument("--dataset", required=True, choices=sorted(LOADERS))
@@ -52,6 +61,10 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--variant", help="label for this design in the experiment log")
     run.add_argument("--note", default="", help="one line on what this variant changes")
     run.add_argument("--no-commit", action="store_true", help="skip the git commit and tag")
+    run.add_argument(
+        "--perturb-model", metavar="SPEC",
+        help="alter model answers: mask<percent> blanks words, short<percent> keeps the start",
+    )  # fmt: skip
 
     judge = sub.add_parser("judge", help="score the feedback of a finished run")
     judge.add_argument("--name", required=True)
@@ -74,10 +87,33 @@ def _parser() -> argparse.ArgumentParser:
     )
     rf.add_argument("--name", required=True, help="source run")
     rf.add_argument("--new-name", required=True)
-    rf.add_argument("--feedback", choices=["standard", "hints", "critique"], required=True)
+    rf.add_argument(
+        "--feedback", choices=["standard", "hints", "critique", "formal"], required=True
+    )
+    rf.add_argument("--n", type=int, default=1, help="drafts to write; the best is kept")
     rf.add_argument("--variant", required=True)
     rf.add_argument("--note", default="")
     rf.add_argument("--no-commit", action="store_true")
+
+    sn = sub.add_parser("sensitivity", help="how far did marks move between two runs")
+    sn.add_argument("--a", required=True, help="original run")
+    sn.add_argument("--b", required=True, help="changed run")
+
+    st = sub.add_parser("stress", help="robustness test on answers with a known right outcome")
+    st.add_argument("--dataset", required=True, choices=sorted(LOADERS))
+    st.add_argument("--split", default="dev", choices=["dev", "test"])
+    st.add_argument("--pool", type=int, default=60, help="answers to draw the cases from")
+    st.add_argument("--per-kind", type=int, default=6)
+    st.add_argument("--seed", type=int, default=0)
+    st.add_argument("--mode", default="pipeline", choices=["pipeline", "baseline"])
+    st.add_argument("--name", required=True)
+
+    tr = sub.add_parser("transfer", help="does the feedback help on a different question")
+    tr.add_argument("--name", required=True)
+    tr.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
+
+    vt = sub.add_parser("votes", help="how steady is the grader, and does voting help")
+    vt.add_argument("--name", required=True)
 
     rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
     rv.add_argument("--name", required=True)
@@ -156,10 +192,13 @@ def _cmd_run(args: argparse.Namespace, settings: Settings) -> None:
         None if args.all else args.n,
         args.seed,
     )
+    if args.perturb_model:
+        items = perturb_items(items, args.perturb_model, args.seed)
     run_dir = settings.paths.runs_dir / args.name
     run_dir.mkdir(parents=True, exist_ok=True)
     client = build_client(settings.llm)
     setup = {
+        "perturb_model": args.perturb_model,
         "dataset": args.dataset,
         "split": args.split,
         "n": len(items),
@@ -269,7 +308,7 @@ def _cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
         if r.grading is None:
             return r
         rubric = records[r.item.question_key].rubric
-        fb = write_feedback(r.item, rubric, r.grading, client, args.feedback)
+        fb = write_feedback(r.item, rubric, r.grading, client, args.feedback, args.n)
         return r.model_copy(update={"feedback": fb})
 
     with ThreadPoolExecutor(settings.pipeline.max_workers) as pool:
@@ -336,6 +375,72 @@ def _cmd_compare(args: argparse.Namespace, settings: Settings) -> None:
     print(write_compare(data, settings.paths.runs_dir / args.out / "index.html"))
 
 
+def _cmd_stress(args: argparse.Namespace, settings: Settings) -> None:
+    items = select(
+        load_dataset(args.dataset, settings.paths.data_dir), args.split, args.pool, args.seed
+    )
+    run_dir = settings.paths.runs_dir / args.name
+    run_dir.mkdir(parents=True, exist_ok=True)
+    cases_path = (
+        settings.paths.runs_dir
+        / f"stress_cases_{args.dataset}_{args.split}_{args.seed}_{args.pool}_{args.per_kind}.json"
+    )
+    if cases_path.exists():  # reuse, so every method faces the same cases
+        cases = [Case.model_validate(c) for c in json.loads(cases_path.read_text(encoding="utf-8"))]
+    else:
+        cases = build_cases(items, args.per_kind, args.seed, build_client(settings.student))
+        cases_path.write_text(
+            json.dumps([c.model_dump() for c in cases], indent=1), encoding="utf-8"
+        )
+    grader = build_client(settings.llm)
+    if args.mode == "baseline":
+
+        def mark(item):
+            return grade_baseline(item, grader).predicted_mark
+
+    else:
+        cfg = settings.pipeline
+        store = RubricStore(
+            settings.paths.cache_dir, grader, cfg.rubric_selftest, cfg.rubric_variant
+        )
+        questions = {c.item.question_key: to_question(c.item) for c in cases}
+        with ThreadPoolExecutor(cfg.max_workers) as pool:
+            records = dict(zip(questions, pool.map(store.get, questions.values()), strict=True))
+
+        def mark(item):
+            return mark_item(item, records[item.question_key], grader, cfg).grading.total
+
+    rows = run_stress(cases, mark, settings.pipeline.max_workers)
+    out = {"mode": args.mode, **summarise_stress(rows), "cost_usd": round(grader.usage.cost_usd, 3)}
+    (run_dir / "stress.json").write_text(
+        json.dumps({**out, "rows": rows}, indent=1), encoding="utf-8"
+    )
+    print(json.dumps(out, indent=2))
+
+
+def _cmd_transfer(args: argparse.Namespace, settings: Settings) -> None:
+    run_dir = settings.paths.runs_dir / args.name
+    results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
+    if not results:
+        sys.exit("No results with feedback in that run.")
+    if args.sample:
+        results = sample_by_mark(results, args.sample)
+    grader, student = build_client(settings.llm), build_client(settings.student)
+    rows = transfer_test(
+        results, grader, student, grader, settings.paths.runs_dir, settings.pipeline.max_workers
+    )
+    out = {
+        **summarise_transfer(rows),
+        "cost_usd": round(grader.usage.cost_usd + student.usage.cost_usd, 3),
+    }
+    sfx = "_sample" if args.sample else ""
+    (run_dir / f"transfer_rows{sfx}.jsonl").write_text(
+        "\n".join(r.model_dump_json() for r in rows), encoding="utf-8"
+    )
+    (run_dir / f"transfer_scores{sfx}.json").write_text(json.dumps(out, indent=2), encoding="utf-8")
+    print(json.dumps(out, indent=2))
+
+
 def _cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
     run_dir = settings.paths.runs_dir / args.name
     results = [r for r in read_results(run_dir / "results.jsonl") if r.feedback]
@@ -370,6 +475,8 @@ def main(argv: list[str] | None = None) -> None:
     settings = load_settings(args.config)
     if args.cmd == "download":
         download_all(settings.paths.data_dir)
+        if args.engsaf:
+            download_engsaf(settings.paths.data_dir)
     elif args.cmd == "run":
         _cmd_run(args, settings)
     elif args.cmd == "judge":
@@ -381,6 +488,18 @@ def main(argv: list[str] | None = None) -> None:
         _cmd_compare(args, settings)
     elif args.cmd == "refeedback":
         _cmd_refeedback(args, settings)
+    elif args.cmd == "sensitivity":
+        runs = settings.paths.runs_dir
+        a = read_results(runs / args.a / "results.jsonl")
+        b = read_results(runs / args.b / "results.jsonl")
+        print(json.dumps(compare_runs(a, b), indent=2))
+    elif args.cmd == "stress":
+        _cmd_stress(args, settings)
+    elif args.cmd == "transfer":
+        _cmd_transfer(args, settings)
+    elif args.cmd == "votes":
+        res = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
+        print(json.dumps(vote_report(res), indent=2))
     elif args.cmd == "revision":
         _cmd_revision(args, settings)
     elif args.cmd == "rescore":

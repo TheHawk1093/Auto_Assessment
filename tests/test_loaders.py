@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 from autograde.datasets import load_dataset, select, split_of
-from autograde.datasets.loaders import LOADERS
+from autograde.datasets.loaders import BENCHMARK_ONLY, LOADERS
 
 SAF_XML = """<?xml version='1.0' encoding='utf-8'?>
 <question id="10.1" module="TC">
@@ -78,4 +78,24 @@ def test_real_data_loads_and_samples(name: str):
     assert all(0 <= i.human_mark <= i.max_mark for i in items)
     sample = select(items, "dev", 10, seed=1)
     assert sample == select(items, "dev", 10, seed=1)
-    assert {split_of(i.question_key) for i in sample} == {"dev"}
+    if name not in BENCHMARK_ONLY:  # benchmark-only datasets ignore the split on purpose
+        assert {split_of(i.question_key) for i in sample} == {"dev"}
+
+
+def test_engsaf_loader_and_benchmark_only(tmp_path):
+    import pandas as pd
+
+    from autograde.datasets.loaders import load_engsaf, select
+
+    folder = tmp_path / "engsaf"
+    folder.mkdir()
+    row = {"question": "Q?", "student_answer": "A", "reference_answer": "R", "score": 2}
+    for part in ("train", "validation", "test"):
+        pd.DataFrame([row, {**row, "student_answer": None, "score": 0}]).to_csv(
+            folder / f"{part}.csv", index=False
+        )
+    items = load_engsaf(tmp_path)
+    assert len(items) == 6 and items[0].max_mark == 2.0
+    assert items[1].student_answer == ""
+    # benchmark-only: every question is available whatever the dev/test split says
+    assert len(select(items, "dev", None)) == len(select(items, "test", None)) == 6

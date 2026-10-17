@@ -88,10 +88,41 @@ def load_saf(root: Path) -> list[Item]:
     return items
 
 
+def load_engsaf(root: Path) -> list[Item]:
+    """Engineering exams from many subjects. Marks 0, 1, 2. Benchmark only: never tuned on.
+
+    A community copy of EngSAF. Its `rationale` text is AI-written, so it is not used as
+    teacher feedback. Two reference answers exist for a few questions, so the question id
+    is a hash of the question and its reference answer.
+    """
+    items: list[Item] = []
+    for part in ("train", "validation", "test"):
+        df = pd.read_csv(root / "engsaf" / f"{part}.csv").fillna("")
+        for i, row in enumerate(df.itertuples(index=False)):
+            key = hashlib.sha1(f"{row.question}|{row.reference_answer}".encode()).hexdigest()[:10]
+            items.append(
+                Item(
+                    id=f"engsaf/{part}/{i}",
+                    dataset="engsaf",
+                    question_id=key,
+                    question=_clean(row.question),
+                    model_answer=_clean(row.reference_answer),
+                    student_answer=_clean(row.student_answer),
+                    max_mark=2.0,
+                    human_mark=float(row.score),
+                )
+            )
+    return items
+
+
+# Datasets that are only ever used to measure, never to tune. They ignore the dev/test split.
+BENCHMARK_ONLY = {"engsaf"}
+
 LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "digiklausur": load_digiklausur,
     "mohler": load_mohler,
     "saf": load_saf,
+    "engsaf": load_engsaf,
 }
 
 
@@ -103,7 +134,7 @@ def load_dataset(name: str, data_dir: Path) -> list[Item]:
 
 def select(items: list[Item], split: Split, n: int | None, seed: int = 0) -> list[Item]:
     """Items from one split, optionally a random sample of size n (reproducible)."""
-    pool = [i for i in items if split_of(i.question_key) == split]
+    pool = [i for i in items if i.dataset in BENCHMARK_ONLY or split_of(i.question_key) == split]
     if n is None or n >= len(pool):
         return pool
     return random.Random(seed).sample(pool, n)

@@ -151,4 +151,7 @@ class Result(BaseModel):
     reading: Reading | None = None
     grading: Grading | None = None
     feedback: Feedback | None = None
+    votes: list[float] = Field(
+        default_factory=list, description="Total of each marking when voting (votes > 1)."
+    )
     flags: list[str] = Field(default_factory=list)

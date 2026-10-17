@@ -35,3 +35,17 @@ def download_all(data_dir: Path) -> None:
     mohler.parent.mkdir(parents=True, exist_ok=True)
     log.info("Downloading mohler")
     urllib.request.urlretrieve(MOHLER_URL, mohler)  # noqa: S310 - fixed https URL
+
+
+ENGSAF_BASE = "https://huggingface.co/datasets/IsmaelMousa/engsaf/resolve/main/"  # community copy
+
+
+def download_engsaf(data_dir: Path) -> None:
+    """EngSAF (benchmark only). Fetched on its own: `autograde download --engsaf`."""
+    for name in ("train.csv", "validation.csv", "test.csv", "README.md"):
+        target = data_dir / "engsaf" / name
+        if target.exists():
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        log.info("Downloading engsaf/%s", name)
+        urllib.request.urlretrieve(ENGSAF_BASE + name, target)  # noqa: S310 - fixed https URL

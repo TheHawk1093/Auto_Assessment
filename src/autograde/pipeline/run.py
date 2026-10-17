@@ -6,7 +6,7 @@ import logging
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Literal
+from typing import Literal, NamedTuple
 
 from autograde.config import PipelineConfig, Settings
 from autograde.llm import LLMClient
@@ -15,6 +15,7 @@ from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.vote import combine
 from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
 
 log = logging.getLogger(__name__)
@@ -30,32 +31,54 @@ def to_question(item: Item) -> Question:
     )
 
 
-def mark_item(
-    item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig
-) -> tuple[Reading | None, Grading, list[str]]:
-    """Stages 3 and 4 for one answer: read it, mark it, check the marking."""
+class Marked(NamedTuple):
+    reading: Reading | None
+    grading: Grading
+    flags: list[str]
+    votes: list[float]  # total of each marking when voting, else empty
+
+
+def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Marked:
+    """Stages 3 and 4 for one answer: read it, mark it (several times if voting), check it."""
     rubric = record.rubric
+    weight = cfg.partial_weight if cfg.mark_rule == "status" else None
+    if cfg.votes > 1 and weight is None:
+        raise ValueError("votes > 1 needs mark_rule: status")
     reading = read_answer(item, client) if cfg.read_first else None
-    grading, flags = mark_answer(
-        to_question(item),
-        rubric,
-        item.student_answer,
-        client,
-        retries=cfg.grade_retries,
-        reading=reading,
-        evidence_policy=cfg.evidence_policy,
-        policy=cfg.policy,
-        partial_weight=cfg.partial_weight if cfg.mark_rule == "status" else None,
-    )
+
+    def once(_: int) -> tuple[Grading, list[str]]:
+        return mark_answer(
+            to_question(item),
+            rubric,
+            item.student_answer,
+            client,
+            retries=cfg.grade_retries,
+            reading=reading,
+            evidence_policy=cfg.evidence_policy,
+            policy=cfg.policy,
+            partial_weight=weight,
+        )
+
+    if cfg.votes <= 1:
+        grading, flags = once(0)
+        votes: list[float] = []
+    else:
+        with ThreadPoolExecutor(cfg.votes) as pool:
+            runs = list(pool.map(once, range(cfg.votes)))
+        votes = [g.total for g, _ in runs]
+        grading, split = combine([g for g, _ in runs], rubric, item.student_answer, weight)
+        flags = sorted({f for _, fl in runs for f in fl}) + [f"vote_split:{p}" for p in split]
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]
-    return reading, grading, flags
+    return Marked(reading, grading, flags, votes)
 
 
 def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Result:
     """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback."""
-    reading, grading, flags = mark_item(item, record, client, cfg)
-    feedback = write_feedback(item, record.rubric, grading, client, cfg.feedback_variant)
+    reading, grading, flags, votes = mark_item(item, record, client, cfg)
+    feedback = write_feedback(
+        item, record.rubric, grading, client, cfg.feedback_variant, cfg.feedback_n
+    )
     return Result(
         item=item,
         mode="pipeline",
@@ -63,6 +86,7 @@ def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipelin
         reading=reading,
         grading=grading,
         feedback=feedback,
+        votes=votes,
         flags=flags,
     )
 

@@ -1,0 +1,1 @@
+You write a deliberately wrong answer for a test of an automatic grader. The answer must read like a confident, fluent exam answer to the question, but its key claim must be wrong or contradict the model answer. Do not hint that it is wrong, do not hedge, and do not copy the model answer's wording.
