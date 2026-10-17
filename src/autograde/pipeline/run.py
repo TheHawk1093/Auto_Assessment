@@ -9,13 +9,13 @@ from pathlib import Path
 from typing import Literal, NamedTuple
 
 from autograde.config import PipelineConfig, Settings
-from autograde.llm import LLMClient
+from autograde.llm import LLMClient, build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
-from autograde.pipeline.vote import combine
+from autograde.pipeline.vote import combine, models_disagree
 from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
 
 log = logging.getLogger(__name__)
@@ -73,9 +73,25 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
     return Marked(reading, grading, flags, votes)
 
 
-def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Result:
-    """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback."""
+def grade_item(
+    item: Item,
+    record: RubricRecord,
+    client: LLMClient,
+    cfg: PipelineConfig,
+    second: tuple[LLMClient, dict[str, RubricRecord]] | None = None,
+) -> Result:
+    """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback.
+
+    With `second` (a cheaper model and its schemes) the answer is marked again, and a big gap
+    between the two marks adds the flag `models_disagree`: the grader may be wrong here.
+    """
     reading, grading, flags, votes = mark_item(item, record, client, cfg)
+    second_mark = None
+    if second is not None:
+        other, records = second
+        second_mark = mark_item(item, records[item.question_key], other, cfg).grading.total
+        if models_disagree(grading.total, second_mark, item.max_mark, cfg.disagree_gap):
+            flags = [*flags, "models_disagree"]
     feedback = write_feedback(
         item, record.rubric, grading, client, cfg.feedback_variant, cfg.feedback_n
     )
@@ -87,6 +103,7 @@ def grade_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipelin
         grading=grading,
         feedback=feedback,
         votes=votes,
+        second_mark=second_mark,
         flags=flags,
     )
 
@@ -117,6 +134,7 @@ def run_items(
     log.info("%d items, %d already done, %d to run", len(items), len(done), len(todo))
 
     records: dict[str, RubricRecord] = {}
+    questions = {i.question_key: to_question(i) for i in todo}
     if mode == "pipeline" and todo:
         store = RubricStore(
             settings.paths.cache_dir,
@@ -124,17 +142,35 @@ def run_items(
             run_selftest=settings.pipeline.rubric_selftest,
             variant=settings.pipeline.rubric_variant,
         )
-        questions = {i.question_key: to_question(i) for i in todo}
         with ThreadPoolExecutor(workers) as pool:
             futures = {pool.submit(store.get, q): k for k, q in questions.items()}
             for fut in as_completed(futures):
                 records[futures[fut]] = fut.result()
         log.info("%d marking schemes ready", len(records))
 
+    second = None
+    if mode == "pipeline" and todo and settings.pipeline.second_model:
+        second_client = build_client(
+            settings.llm.model_copy(
+                update={"model": settings.pipeline.second_model, "effort": None}
+            )
+        )
+        second_store = RubricStore(
+            settings.paths.cache_dir,
+            second_client,
+            run_selftest=settings.pipeline.rubric_selftest,
+            variant=settings.pipeline.rubric_variant,
+        )
+        with ThreadPoolExecutor(workers) as pool:
+            second_records = dict(
+                zip(questions, pool.map(second_store.get, questions.values()), strict=True)
+            )
+        second = (second_client, second_records)
+
     def work(item: Item) -> Result:
         if mode == "baseline":
             return grade_baseline(item, client)
-        return grade_item(item, records[item.question_key], client, settings.pipeline)
+        return grade_item(item, records[item.question_key], client, settings.pipeline, second)
 
     results = list(done.values())
     with ThreadPoolExecutor(workers) as pool, out_path.open("a", encoding="utf-8") as sink:

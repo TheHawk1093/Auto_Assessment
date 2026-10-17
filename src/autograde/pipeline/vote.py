@@ -16,6 +16,11 @@ from autograde.schemas import Grading, PointVerdict, Rubric
 _STATUSES = ("not_met", "partial", "met")  # ordered from least to most credit
 
 
+def models_disagree(first: float, second: float, max_mark: float, gap: float) -> bool:
+    """True when two models' marks differ by more than `gap` of the total marks."""
+    return abs(first - second) / max_mark > gap + 1e-9
+
+
 def combine(
     gradings: Sequence[Grading], rubric: Rubric, answer: str, partial_weight: float
 ) -> tuple[Grading, list[str]]:

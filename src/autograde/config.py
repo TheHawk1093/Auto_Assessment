@@ -29,6 +29,8 @@ class PipelineConfig(BaseModel):
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
     feedback_variant: Literal["standard", "hints", "critique", "formal"] = "standard"
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins
+    second_model: str | None = None  # a cheaper model also marks; a big gap flags the answer
+    disagree_gap: float = 0.15  # share of the total marks that counts as a big gap
     feedback_n: int = 1  # write this many feedback drafts and keep the best
     grade_retries: int = 1
     max_workers: int = 4

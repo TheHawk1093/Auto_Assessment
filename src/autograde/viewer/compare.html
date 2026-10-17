@@ -402,6 +402,25 @@ td.cell.hi { background: var(--warn-soft); color: var(--gen); }
       c5.appendChild(el("div", "verdict", vt));
       c5.appendChild(el("p", "note", "A simulated student (a small model) rewrote the answer using only its own answer and this feedback, and the same grader marked the rewrite. Overlap with the model answer's wording: " + Math.round(rv.leak_feedback * 100) + "% in the feedback. This is a proxy for a real student, not a replacement."));
     }
+    var tf = a && a.transfer;
+    if (fb && tf) {
+      var tb = el("div", "fb"); tb.appendChild(el("h3", "", "Does it carry over to a different question?"));
+      tb.appendChild(el("div", "box", "New question on the same idea: " + tf.new_question));
+      var tfl = el("div", "flow"); tfl.style.marginTop = "10px";
+      function tstep(title, mark, text, win) {
+        var s2 = el("div", "step" + (win ? " win" : "")), h4 = el("h4");
+        h4.appendChild(el("span", "", title)); h4.appendChild(el("span", "chip", fmt(mark) + " / " + fmt(tf.max_mark))); s2.appendChild(h4);
+        s2.appendChild(el("div", "txt", text)); return s2;
+      }
+      tfl.appendChild(tstep("Answer using the feedback", tf.with_feedback, tf.answer_with, tf.with_feedback > tf.without_feedback));
+      tfl.appendChild(tstep("Answer with no feedback", tf.without_feedback, tf.answer_without, false));
+      tb.appendChild(tfl);
+      var dlt = Math.round((tf.with_feedback - tf.without_feedback) * 100) / 100;
+      tb.appendChild(el("div", "verdict", dlt > 0.05 * tf.max_mark
+        ? "It carried over: on the new question the student scored " + fmt(tf.with_feedback) + " with the feedback against " + fmt(tf.without_feedback) + " without."
+        : "It did not carry over: the new-question mark was " + fmt(tf.with_feedback) + " with the feedback and " + fmt(tf.without_feedback) + " without. The feedback may only help with this exact question."));
+      c5.appendChild(tb);
+    }
     stack.appendChild(c5);
     [c1, c3, c4, c5].forEach(math);
   }

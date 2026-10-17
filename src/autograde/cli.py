@@ -27,7 +27,7 @@ from autograde.evaluation.stress import Case, build_cases, run_stress
 from autograde.evaluation.stress import summarise as summarise_stress
 from autograde.evaluation.transfer import summarise as summarise_transfer
 from autograde.evaluation.transfer import transfer_test
-from autograde.evaluation.voting import vote_report
+from autograde.evaluation.voting import review_report, vote_report
 from autograde.llm import build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
@@ -499,7 +499,7 @@ def main(argv: list[str] | None = None) -> None:
         _cmd_transfer(args, settings)
     elif args.cmd == "votes":
         res = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
-        print(json.dumps(vote_report(res), indent=2))
+        print(json.dumps({"voting": vote_report(res), "review": review_report(res)}, indent=2))
     elif args.cmd == "revision":
         _cmd_revision(args, settings)
     elif args.cmd == "rescore":

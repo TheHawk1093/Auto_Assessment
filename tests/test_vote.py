@@ -120,3 +120,23 @@ def test_stress_cases_and_expectations():
     assert passed(paste, 2.0) and not passed(paste, 0.5)
     rows = [{"kind": "shuffled", "passed": True}, {"kind": "shuffled", "passed": False}]
     assert summarise(rows)["by_kind"]["shuffled"]["pass_rate"] == 0.5
+
+
+def test_models_disagree_and_review_report():
+    from autograde.evaluation.voting import review_report
+    from autograde.pipeline.vote import models_disagree
+
+    assert models_disagree(2.0, 1.0, 2.0, 0.15)
+    assert not models_disagree(2.0, 1.9, 2.0, 0.15)
+    item = Item(
+        id="1", dataset="d", question_id="q", question="Q?", model_answer="M",
+        student_answer="S", max_mark=2, human_mark=2,
+    )  # fmt: skip
+    ok = Result(item=item, mode="pipeline", predicted_mark=2.0, second_mark=2.0)
+    bad = Result(
+        item=item, mode="pipeline", predicted_mark=1.0, second_mark=2.0, flags=["models_disagree"]
+    )
+    rep = review_report([ok, bad])
+    assert (
+        rep["share_flagged"] == 0.5 and rep["error_when_flagged"] > rep["error_when_models_agree"]
+    )

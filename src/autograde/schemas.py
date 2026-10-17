@@ -151,6 +151,9 @@ class Result(BaseModel):
     reading: Reading | None = None
     grading: Grading | None = None
     feedback: Feedback | None = None
+    second_mark: float | None = Field(
+        default=None, description="Mark from the second model, when one is configured."
+    )
     votes: list[float] = Field(
         default_factory=list, description="Total of each marking when voting (votes > 1)."
     )

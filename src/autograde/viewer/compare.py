@@ -71,7 +71,12 @@ def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -
     for line in _read_lines(run_dir / "results.jsonl"):
         r = Result.model_validate(line)
         results[r.item.id] = r
-    revision = {x["id"]: x for x in _read_lines(run_dir / "revision_rows_sample.jsonl")}
+    revision = {}
+    transfer = {}
+    for name in ("revision_rows.jsonl", "revision_rows_sample.jsonl"):  # sample wins if both
+        revision.update({x["id"]: x for x in _read_lines(run_dir / name)})
+    for name in ("transfer_rows.jsonl", "transfer_rows_sample.jsonl"):
+        transfer.update({x["id"]: x for x in _read_lines(run_dir / name)})
     judged = {x["id"]: x for x in _read_lines(run_dir / "feedback_judgements.jsonl")}
 
     answers: dict[str, dict] = {}
@@ -110,6 +115,7 @@ def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -
             "points": points,
             "feedback": r.feedback.model_dump() if r.feedback else None,
             "revision": rev,
+            "transfer": transfer.get(id_),
             "judgement": {k: v for k, v in judged[id_].items() if k not in ("id", "note")}
             if judgement
             else None,
