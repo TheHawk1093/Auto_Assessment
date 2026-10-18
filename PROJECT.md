@@ -37,7 +37,7 @@ Grade a full answer sheet against model answers and a marking scheme, fully auto
 ## 7. Stages
 | Stage | Domains | Data | Status |
 |---|---|---|---|
-| 1 | CS / networking short answers | DigiKlausur, SAF, Mohler | in progress: data downloaded, pipeline v0 built (see README) |
+| 1 | CS / networking short answers | DigiKlausur, SAF, Mohler (tune on dev); EngSAF (benchmark only, never tuned) | in progress: design v6 hardened with stress tests; held-out test split not yet run |
 | 2 | Maths, physics, chemistry with working | SciBench/UGMathBench questions + generated practice sheets, ProcessBench, PRM800K, RiceChem (if access) | not started |
 | 3 | Handwriting, circuits | EDU-CIRCUIT-HW | later |
 | 4 | Other fields | none identified | optional |
@@ -54,7 +54,12 @@ Dataset detail: [DATASETS.md](DATASETS.md).
 | 4b | No agent framework (LangGraph / Agents SDK): fixed call sequence + code checks, plain Python; revisit only if we need loops, branching on tools, or persistence | decided |
 | 8 | Final project / package name (`autograde` is a working name; PyPI already has an unrelated `autograde`) | open |
 | 4c | Early testing via Claude Code CLI backend; API backend ready but untested (no key yet) | decided |
-| 5 | No fine-tuning, no voting, no examples initially | decided (revisit on data) |
+| 5 | No fine-tuning, no examples initially | decided (revisit on data) |
+| 9 | Verdicts priced in code (partial = 0.9 of a point), scheme sized to the model answer | decided (tuned on dev) |
+| 10 | Same-model voting: no effect (marks identical across 3 votes). Use a cheaper second model as a review flag instead | decided |
+| 11 | Form gate: scrambled text earns 0, bare keyword lists capped at half, student text treated as data | decided (found by stress test) |
+| 12 | EngSAF is benchmark-only: results reported, never tuned on | decided |
+| 13 | Default feedback style (standard, critique, hints, formal, best-of-3) | open: critique scored best on the judge; owner to read and choose |
 | 6 | Model/provider and budget | pending (owner) |
 | 7 | Output format (file per student vs table) | open |
 
@@ -64,3 +69,6 @@ Dataset detail: [DATASETS.md](DATASETS.md).
 - 2026-10-13 — Stage-1 data downloaded (data/raw); autograde package v0: loaders, rubric maker + self-test, grader + checks, feedback writer, baseline, metrics, feedback judge, CLI, 26 tests.
 - 2026-10-15 — Added visual tracker (artifacts/Project_Tracker/tracker.html).
 - 2026-10-15 — Tracker split into tracker.json + template + build.py so updates are a small JSON edit; added readable report.html per run; CLAUDE.md added.
+- 2026-10-16 — Experiment tracking (log, tags per run); design v2b: read-first, code-priced verdicts, sized schemes; beats baseline on all three dev sets.
+- 2026-10-17 — Feedback now explains why; model/effort sweep (sonnet default best value); revision test; hints/critique feedback; side-by-side comparison page.
+- 2026-10-18 — Stress test (answers with a known right outcome) found v2b too easy to fool; form gate and injection guard added (stress 0.67 to 0.86); transfer test; formal and best-of-3 feedback; model-answer masking; EngSAF added as a benchmark-only dataset; second-model review flag. Same-model voting found useless.

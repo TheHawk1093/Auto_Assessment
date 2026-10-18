@@ -73,9 +73,29 @@ confirm on another so a gain is not just fitting the tuning sample.
 | `read_first` | true | A first pass reads the answer alone (no model answer, no scheme), then marking uses that reading |
 | `evidence_policy` | flag | `strict`: credit with an unfound quote is removed. `flag`: kept and reported |
 | `policy` | essence | `essence`: judge the central idea, model answer is one example. `literal`: original wording |
-| `rubric_variant` | generated | Folder name for a different marking-scheme source, so schemes can be compared |
+| `rubric_variant` | sized | Folder name for a different marking-scheme source, so schemes can be compared |
+| `feedback_variant` | standard | `standard`, `hints` (guide, do not give the idea), `critique` (draft then review), `formal` |
+| `feedback_n` | 1 | Write this many feedback drafts; code checks drop bad ones and the model picks the best |
+| `votes` | 1 | Mark this many times and take the majority per point. Same-model votes were identical in tests, so leave at 1 |
+| `second_model` | none | A cheaper model also marks; a gap over `disagree_gap` adds the flag `models_disagree` |
+
+Marking always applies a form check: scrambled text earns 0, a bare list of terms (where an explanation was asked) is capped at half, and instructions inside a student answer are ignored.
 
 `configs/v0_citations.yaml` switches all three off to reproduce the first design.
+
+## Tests beyond the teacher's marks
+
+| Command | What it checks |
+|---|---|
+| `autograde stress --dataset D --mode pipeline\|baseline --name N` | Answers built so the right outcome is known (shuffled words, keyword lists, off-topic, confident wrong, pasted model answer, injected instructions). Needs no human labels |
+| `autograde revision --name R [--sample N]` | A simulated student rewrites the answer using only the feedback; the grader marks the rewrite. Compared with a no-feedback rewrite |
+| `autograde transfer --name R` | The same student answers a different question on the same idea, so memorised answers do not count |
+| `autograde run ... --perturb-model mask30\|short50` then `autograde sensitivity --a A --b B` | How far marks move when the model answer is blanked or shortened |
+| `autograde refeedback --name R --new-name N --feedback hints --variant V` | New feedback on a finished run; marks stay identical |
+| `autograde votes --name R` | Vote spread and, with `second_model`, how well disagreement points at errors |
+| `autograde compare --run NAME=LABEL\|SHORT\|DESCRIPTION ...` | One page, one tab per method, the same answers in each |
+
+`autograde download --engsaf` fetches EngSAF (benchmark only: it ignores the dev/test split and is never tuned on).
 
 ## Framework choice
 

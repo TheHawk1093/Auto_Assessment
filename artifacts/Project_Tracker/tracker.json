@@ -1,9 +1,9 @@
 {
   "project": "Auto Assessment",
-  "updated": "2026-10-16",
+  "updated": "2026-10-18",
   "current_stage": 1,
   "current_step": "6. Improvement loop",
-  "summary": "Design v2 beats the one-prompt baseline on all three datasets. Held-out test split not run yet.",
+  "summary": "Design v6 beats the one-prompt baseline on dev and holds on the harder EngSAF benchmark (0.158 vs 0.179). Stress test found the generous v2b easy to fool; the form gate lifted it from 0.67 to 0.86 (baseline 0.81). Held-out test split not run yet.",
   "stages": [
     {
       "n": 1,
@@ -88,51 +88,46 @@
   ],
   "next": [
     {
+      "t": "Choose the feedback style",
+      "s": "Read the comparison tabs. Critique scored best on the judge; hints leak least of the model answer."
+    },
+    {
+      "t": "Rubric sensitivity",
+      "s": "Owner writes the rubrics. A loader for them is not built yet."
+    },
+    {
       "t": "Run the held-out test split once",
-      "s": "Baseline vs v2b on the test questions of all three datasets. The tuning so far used dev questions only."
+      "s": "Baseline vs final design on the test questions of all three datasets."
     },
     {
-      "t": "Make feedback explain why",
-      "s": "Judge shows only 33% to 55% explain why an idea matters. Change the feedback prompt, then rerun the judge."
+      "t": "Stronger check for wrong claims",
+      "s": "Confident wrong answers still earn part marks 3 times in 6 in the stress test."
     },
     {
-      "t": "Fix remaining strictness on Mohler",
-      "s": "Bias is still -0.13 there. Look at its biggest gaps in the report page."
-    },
-    {
-      "t": "Check robustness to the model answer",
-      "s": "Regrade against a paraphrased and a shortened model answer; report how far marks move."
-    },
-    {
-      "t": "Use a judge from a different provider",
-      "s": "Current judge is the same family as the grader, which tends to rate it kindly."
+      "t": "Harder real data",
+      "s": "RiceChem needs an access request by the owner. ProcessBench for step-by-step maths is the open option."
     }
   ],
   "issues": [
     {
       "level": "warn",
       "t": "Settings were chosen on dev samples",
-      "s": "Partial weight 0.9 was picked by looking at DigiKlausur seed 1, SAF and Mohler. The test split has not been touched, so treat dev numbers as optimistic."
+      "s": "Partial weight 0.9, sized schemes and the form gate were tuned on dev samples. EngSAF was not tuned on."
     },
     {
       "level": "warn",
-      "t": "Cost is about 5 times the baseline",
-      "s": "About $1.0 to $1.3 per 24 answers vs $0.14 to $0.25 at list price (reading, marking and feedback are three calls per answer)."
+      "t": "Voting adds nothing",
+      "s": "Three markings by the same model gave identical marks on every answer. A cheaper second model is used as a review flag."
     },
     {
       "level": "warn",
-      "t": "Mohler still too strict",
-      "s": "Bias -0.13, error 0.155. Teacher marks there average 4.35 out of 5."
+      "t": "EngSAF is broad, not deep",
+      "s": "Short engineering answers marked 0 to 2. It tests domain shift and noisy marks, not multi-step reasoning."
     },
     {
-      "level": "warn",
-      "t": "Judge shares a model family with the grader",
-      "s": "Feedback scores are likely a little high."
-    },
-    {
-      "level": "warn",
-      "t": "API backend untested",
-      "s": "Only the Claude CLI backend has run."
+      "level": "info",
+      "t": "Judge is same family",
+      "s": "The feedback judge is a Claude model, so quality scores are probably a little generous."
     }
   ],
   "decisions": [

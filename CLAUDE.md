@@ -11,7 +11,8 @@ Project plan and decisions: PROJECT.md. Usage: README.md.
 - Python 3.11, type hints, pydantic models in `schemas.py`, no agent framework.
 - Prompts live in `src/autograde/prompts/*.md`; code does arithmetic and checks, the model does judgement.
 - Split dev/test by question. Never tune on test.
-- Runs and data are git-ignored (`runs/`, `data/`).
+- Runs and data are git-ignored (`runs/`, `data/`). EngSAF is benchmark-only: never tune on it.
+- Write multi-line files with the Write tool; bash heredocs holding quotes and backslashes fail in this shell.
 
 ## Do not read (large or generated)
 - `artifacts/Project_Tracker/tracker.html`, `template.html`, `runs/*/report.html`, `runs/*/results.jsonl`, `data/`.
