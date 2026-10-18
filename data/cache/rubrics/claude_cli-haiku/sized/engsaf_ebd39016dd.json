@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ebd39016dd",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the purpose of DecideAction is to decide which direction the bot turns next (e.g. left, right, or U-turn). Equivalent wording such as 'choose the next movement/turn' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this decision is made based on the robot's current state or situation. Equivalent wording such as 'depending on the robot's condition' earns the mark. Naming the specific options (left/right/U-turn) is not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

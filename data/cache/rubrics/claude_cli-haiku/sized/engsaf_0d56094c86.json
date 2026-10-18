@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/0d56094c86",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies N1 as the node that was likely never a leader (in any of terms 1, 2 or 3).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies the answer by showing that N4, N3 and N2 could each have been leader in one term (N4 in term 1, N3 in term 2, N2 in term 3), so N1 is the only node that fits no term. Equivalent reasoning based on log contents, such as which node's log could hold the latest entries of a term, earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

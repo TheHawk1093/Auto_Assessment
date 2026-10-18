@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/7870a031ef",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the expansions for the internal factors: Strength and Weakness (equivalent wording such as 'Strengths' and 'Weaknesses' earns the mark; the model answer's misspelling 'Strengh' should not be penalised).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives the expansions for the external factors: Opportunity and Threat (equivalent wording such as 'Opportunities' and 'Threats' earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/6c639305d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the answer FALSE: the instruction set architecture is an abstraction that the CPU provides to the OS.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that the ISA is an abstraction: it maps instructions and registers to functionality while hiding how the CPU implements that functionality, so the OS uses the ISA without knowing the implementation details. Equivalent wording, or evidence such as the OS needing a different compilation per ISA, earns the mark. A justification that only restates the question's claim, or that says the OS knows the CPU internals, earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

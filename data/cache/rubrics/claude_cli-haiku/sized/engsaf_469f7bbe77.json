@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a first correct use of a laser from the model answer, e.g. cutting or welding, medical surgery, optical fibre communication, or laser printing. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second correct use of a laser that is different from the first, from the same list. Repeating the first use, or giving a non-use, earns nothing. Cutting and welding are listed together in the model answer, so they count as one use between them.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

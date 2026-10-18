@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/5a89251dec",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the routing parameters K and x are assumed constant (they do not change with time). Equivalent wording such as 'K and x are time-invariant' earns the mark. Stating that they depend on the channel shape or reach is consistent with the model answer but is not required.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the relationship between outflow and inflow discharge is linear, with the exponent m = 1. Equivalent wording such as 'storage is a linear function of inflow and outflow' earns the mark.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the weighting factor x = 1 and that the method applies only to channel routing. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

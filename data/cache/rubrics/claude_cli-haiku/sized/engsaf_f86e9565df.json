@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/f86e9565df",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives at least one physical or visual feature of the road itself that can separate road types, such as road width, road colour, road length, or edges detected by edge detection. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives at least one feature of the road's layout or surroundings that helps categorise roads, such as the length of road between junctions or dead ends, or road edges and shadows used to identify bridges and flyovers. Equivalent wording or alternative valid features earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

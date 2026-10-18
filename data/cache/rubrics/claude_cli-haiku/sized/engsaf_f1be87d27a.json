@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/f1be87d27a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid reason for the surface charge of colloidal particles, from: (a) ionisation of surface active groups such as OH or COOH, depending on the pH of the medium; (b) imperfection in the crystal structure, e.g. lower-valency atoms replacing silicon, giving a net negative charge; (c) adsorption of anions onto the particle surface. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States a second, different valid reason from the same list (a), (b) or (c). Restating the same reason in different words does not earn this mark. Any two distinct reasons earn both marks, even if the student gives a third.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/febbc2c2ac",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a first correct parameter affecting MRR in ultrasonic machining from the model answer: frequency of vibration, amplitude of vibration, abrasive slurry concentration, or slurry particle diameter. Equivalent wording (e.g. 'vibration frequency', 'amplitude', 'abrasive concentration', 'grit size') earns the mark. Must be a distinct parameter.",
+        "marks": 0.6666666666666666,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States a second correct, distinct parameter from the same list (frequency of vibration, amplitude of vibration, abrasive slurry concentration, or slurry particle diameter). Equivalent wording earns the mark. Repeating the first parameter earns nothing.",
+        "marks": 0.6666666666666666,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States a third correct, distinct parameter from the same list (frequency of vibration, amplitude of vibration, abrasive slurry concentration, or slurry particle diameter). Equivalent wording earns the mark. Repeating a parameter already credited earns nothing. Any three of the four listed parameters earn full marks; a fourth listed parameter does not add marks beyond the total of 2.",
+        "marks": 0.6666666666666666,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

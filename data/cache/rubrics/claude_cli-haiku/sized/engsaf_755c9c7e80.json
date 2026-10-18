@@ -1,0 +1,15 @@
+{
+  "question_key": "engsaf/755c9c7e80",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines vapor pressure deficit as the difference between the actual amount of moisture in the air and the maximum moisture that saturated air can hold (equivalent wording such as 'the gap between current moisture content and saturation capacity' earns the marks).",
+        "marks": 2.0,
+        "partial_credit": "1 mark for describing it as a difference or deficit between the air's moisture content and a reference value. 1 mark for identifying that reference value as the moisture that saturated air can hold (the saturation capacity). Full marks require both halves."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

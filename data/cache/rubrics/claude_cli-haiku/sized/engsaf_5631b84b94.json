@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/5631b84b94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Hue (H) is used for segmentation, with a narrow range around 0/360 degrees (red, hue 0). Equivalent wording, such as a hue band close to 0 or 360 or red hue values, earns the mark.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Saturation (S) is used, with a high range close to 0.8\u20131 (near-pure colour). Equivalent wording, such as saturation close to 1 or highly saturated, earns the mark.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Intensity (I) is used, with a broad range around 0.5. Equivalent wording, such as intensity near mid-range with wide tolerance, earns the mark.",
+        "marks": 0.75,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

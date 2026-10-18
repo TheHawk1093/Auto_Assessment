@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/d321cc3922",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names consensus as the first principle of ISO standards (equivalent wording such as 'agreement' or 'general agreement' is acceptable).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names industry-wide applicability as the second principle (equivalent wording such as 'applicable across industries' or 'wide applicability' is acceptable).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names voluntary nature as the third principle (equivalent wording such as 'voluntary' or 'not compulsory' is acceptable).",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

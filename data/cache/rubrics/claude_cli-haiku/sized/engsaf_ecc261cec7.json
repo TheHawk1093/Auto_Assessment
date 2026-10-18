@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ecc261cec7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE. Awarded only when the justification in P2 is also given, since the question gives no marks for a bare TRUE/FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies the answer by stating that the parent and child are independent processes, so the parent can perform any operation, including exec, without waiting for the child to terminate. Equivalent wording earns the marks. A justification that only restates the claim, or that relies on a wrong reason, earns nothing.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

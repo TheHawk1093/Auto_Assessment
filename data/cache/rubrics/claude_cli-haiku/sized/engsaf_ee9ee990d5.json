@@ -1,0 +1,27 @@
+{
+  "question_key": "engsaf/ee9ee990d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that regularized set operations keep the boundary of the result well defined, with no dangling edges (or dangling faces). Equivalent wording such as 'the result is a valid solid with a proper boundary' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that, when two objects are intersected, no extra edges are created and no edges are lost, so the edge structure is preserved. Equivalent wording about the intersection not adding or dropping edges earns the mark.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that regularized set operations let the modeling process follow a defined, predefined sequence (or give a consistent, predictable procedure). Equivalent wording about a systematic, ordered process earns the mark.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

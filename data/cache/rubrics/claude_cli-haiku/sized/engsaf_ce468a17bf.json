@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ce468a17bf",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States unbiasedness and consistency as desirable properties of an estimator. Equivalent wording (e.g. 'unbiased', 'consistent', 'the estimator's expected value equals the parameter', 'converges to the true value as sample size grows') earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States efficiency and sufficiency as desirable properties of an estimator. Equivalent wording (e.g. 'efficient', 'minimum variance', 'sufficient', 'captures all information about the parameter in the sample') earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

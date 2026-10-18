@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/ed8c1ccac6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE. Awarded only if the justification in P2 is also given, since the question says no correct justification means no marks.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that the OS still gets scheduling opportunities without the timer interrupt, by pointing to a non-timer event at which the OS can run the scheduler and switch the CPU to another READY process. A system call is the example given in the model answer. Equivalent wording, or another non-timer event such as an I/O event, earns the mark. Saying only that the OS 'can schedule processes' without naming an event that gives it control does not earn the mark.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

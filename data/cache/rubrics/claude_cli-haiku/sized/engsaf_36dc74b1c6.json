@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/36dc74b1c6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the answer TRUE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies TRUE: the parent and child are separate, independent processes, so the parent can make its own exec call whatever the state of the child (equivalent wording such as 'the parent is not blocked by or dependent on the child' earns the mark). Marks are awarded only if the answer is TRUE; a FALSE answer, or a justification that does not rest on the parent and child being separate processes, earns no marks for this point.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

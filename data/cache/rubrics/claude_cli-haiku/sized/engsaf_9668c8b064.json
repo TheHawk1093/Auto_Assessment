@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/9668c8b064",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that each process is an independent entity needing its own separate OS state (its own PCB) to track its execution, memory, open files and stack, so processes of the same program cannot share one PCB. Equivalent wording earns the mark. No justification means no marks for this point.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

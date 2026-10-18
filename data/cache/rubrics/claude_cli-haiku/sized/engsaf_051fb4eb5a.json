@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/051fb4eb5a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines noise as random fluctuations (variation) in the time series data that deviate from its typical or underlying pattern. Equivalent wording such as 'random variation around the usual trend or pattern' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the two types of noise as white noise and red noise. Naming both gives the mark.",
+        "marks": 1.0,
+        "partial_credit": "Half a mark (0.5) for naming only one of white noise or red noise."
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

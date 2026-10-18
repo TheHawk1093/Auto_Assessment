@@ -1,0 +1,21 @@
+{
+  "question_key": "engsaf/28b66fb9e2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE (the OS does not execute the next instruction after the faulting one). Equivalent wording such as 'incorrect' or 'false, it re-executes the faulting instruction' earns this mark.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains that after the handler creates the mapping (allocates the physical page and updates the page table) it returns, and the faulting instruction is re-executed because the PC is not incremented on a page fault. Equivalent wording and any correct alternative explanation earn the mark. Merely saying the mapping update is 'only part' of the handler, without the re-execution point, does not earn this mark.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
