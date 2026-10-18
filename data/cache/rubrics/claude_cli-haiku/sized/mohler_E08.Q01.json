@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure (or collection) that stores elements. Equivalent wording such as 'a container for items' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property: the last item added is the first to be removed, i.e. last-in-first-out (LIFO). Equivalent wording, or the term 'LIFO' with a correct explanation, earns the marks. Saying only 'last-in-first-out' with no explanation is sufficient.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

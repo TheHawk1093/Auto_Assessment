@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E09.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stack operation corresponding to enqueue is push (equivalent wording such as 'the push operation' earns the mark). Answers that name a different stack operation, such as pop, earn no marks.",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

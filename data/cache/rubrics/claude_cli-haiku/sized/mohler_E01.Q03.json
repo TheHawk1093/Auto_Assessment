@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States abstraction as a main advantage of object-oriented programming. Equivalent wording earns the mark, such as hiding internal complexity behind a simpler interface.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States reusability as a main advantage of object-oriented programming. Equivalent wording earns the mark, such as reusing classes or objects across programs or parts of a program.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

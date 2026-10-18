@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array is initialised only once, the first time the function is called (equivalent wording such as 'initialised once on the first call, not on every call' earns the mark; spelling errors are ignored).",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the contrast that a non-static array is initialised every time the function is called (equivalent wording such as 'reinitialised on each call' earns the mark). The student must make clear this applies to the non-static array, not just restate the static behaviour.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 5."
+  ]
+}

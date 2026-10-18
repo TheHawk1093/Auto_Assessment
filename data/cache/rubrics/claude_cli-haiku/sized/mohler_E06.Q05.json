@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size of its operand (the amount of storage the operand occupies). Equivalent wording, such as 'the memory the operand takes up', earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the size is measured in bytes (the unit is bytes, not bits, elements or other units). Equivalent wording, such as 'the number of bytes', earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

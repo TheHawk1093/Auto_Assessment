@@ -1,0 +1,15 @@
+{
+  "question_key": "mohler/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that when passing a multi-dimensional array to a function, all of its dimensions must be specified except the first one. Equivalent wording earns the mark (e.g. 'every dimension except the first/leftmost index', 'only the first dimension may be omitted'). Answers that give all dimensions including the first, or omit only some other dimension, do not earn it.",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

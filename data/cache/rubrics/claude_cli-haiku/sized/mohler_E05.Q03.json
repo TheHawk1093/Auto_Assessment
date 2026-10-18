@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of operations in the best case is N, the length of the array (equivalent forms such as 'n', 'linear' or 'O(n)' earn the mark).",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the best-case scenario as the array already being sorted (equivalent wording such as 'input already in order' earns the mark).",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}

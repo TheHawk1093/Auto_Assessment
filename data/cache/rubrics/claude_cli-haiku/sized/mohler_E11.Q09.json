@@ -1,0 +1,21 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the problem is divided into smaller subproblems and that these subproblems are solved recursively (the same method applied to each smaller piece). Equivalent wording such as 'break into smaller instances, solve each one recursively' earns the marks.",
+        "marks": 2.0,
+        "partial_credit": "1 mark for stating only that the problem is divided into smaller subproblems, with no mention of solving them (recursively or otherwise)."
+      },
+      {
+        "id": "P2",
+        "description": "States that the solutions to the subproblems are combined to form a solution to the original problem. Equivalent wording such as 'merge the sub-results into the overall answer' earns the marks.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ]
+  },
+  "selftest_passed": true,
+  "selftest_notes": []
+}
