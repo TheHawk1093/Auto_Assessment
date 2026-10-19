@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/DLL_2.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names all three classes correctly: unconfirmed connectionless, confirmed connectionless, connection-oriented (all three required, with correct terms).",
+        "marks": 0.25,
+        "partial_credit": "Two of the three named correctly gives half."
+      },
+      {
+        "id": "P2",
+        "description": "Unconfirmed connectionless: no acknowledgement, data loss possible, no flow control, no connect/disconnect (must state no ACK and loss possible, plus at least no connection setup).",
+        "marks": 0.25,
+        "partial_credit": "No ACK and loss of data stated, but no mention of flow control/connection setup, gives half."
+      },
+      {
+        "id": "P3",
+        "description": "Confirmed connectionless: uses ACK, no loss of data but timeout and retransmission can cause duplicates and sequencing errors, no flow control, no connect/disconnect.",
+        "marks": 0.25,
+        "partial_credit": "ACK and no loss stated but duplicates/sequence errors omitted (or the reverse) gives half."
+      },
+      {
+        "id": "P4",
+        "description": "Connection-oriented: no data loss, no duplication, no sequencing errors; three-phase communication (connect, data transfer, disconnect) with flow control.",
+        "marks": 0.25,
+        "partial_credit": "Reliability (no loss/duplicates/sequence errors) stated, but three phases or flow control missing, gives half."
+      }
+    ],
+    "notes": "Harsh: each class's differences must be stated precisely with the correct terms (ACK, flow control, connect/disconnect, duplicates/sequencing errors). Vague statements such as 'one is more reliable' earn nothing. A wrong detail (e.g. saying confirmed connectionless has flow control or connection setup) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

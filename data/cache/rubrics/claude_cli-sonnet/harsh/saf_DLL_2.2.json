@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/DLL_2.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Asynchronous transmission: each character is sent as a self-contained unit framed by a start bit and a stop bit.",
+        "marks": 0.25,
+        "partial_credit": "Only one of start bit / stop bit mentioned, or self-contained character unit without start/stop bits."
+      },
+      {
+        "id": "P2",
+        "description": "Asynchronous transmission is simple/cheap but gives low transmission rates.",
+        "marks": 0.25,
+        "partial_credit": "Only one of simple/cheap or low rate stated."
+      },
+      {
+        "id": "P3",
+        "description": "Synchronous transmission: several characters are pooled into a continuous stream of data (frames), with frames delimited by SYN characters or flags.",
+        "marks": 0.25,
+        "partial_credit": "Continuous stream/frames of many characters stated but delimiting by SYN/flag missing (or the reverse)."
+      },
+      {
+        "id": "P4",
+        "description": "Synchronous transmission has higher complexity but higher transmission rates, and requires synchronization between sender and receiver.",
+        "marks": 0.25,
+        "partial_credit": "Two of the three (higher complexity, higher rate, sender-receiver synchronization) stated."
+      }
+    ],
+    "notes": "Full marks need both modes described with the specific features: start/stop bit per character versus frames of pooled characters delimited by SYN/flag, plus the trade-offs (cost/rate/complexity/synchronization). Generic statements like \"async is slower\" without the stated detail earn nothing for that point. Any wrong detail (e.g. start/stop bits attributed to synchronous mode) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the property: a spanning tree has a single unique path between every pair of nodes (equivalently: it is loop-free yet connects all nodes), so no unnecessary duplicates of packets are sent when broad-/multicasting.",
+        "marks": 0.4,
+        "partial_credit": "Half if only says loop-free or connects all nodes without the unique-path/no-duplicates consequence, or states the property vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Modification: multicast group membership information is added to the link state packets, so each node learns which nodes/ISs belong to which multicast groups (a node initially knows only its own groups).",
+        "marks": 0.3,
+        "partial_credit": "Half if only says link state packets are extended or group info is flooded, without clearly linking it to group membership."
+      },
+      {
+        "id": "P3",
+        "description": "Once topology and group information are distributed to all nodes, each node locally computes the multicast spanning tree from its complete stored state (e.g. with Prim or Kruskal).",
+        "marks": 0.3,
+        "partial_credit": "Half if says nodes compute a tree but not that it is computed locally from the full topology plus group information."
+      }
+    ],
+    "notes": "Full marks need the unique-path/loop-free property with its no-duplicates benefit, plus both parts of the modification: group info added to link state packets, and each node then building the tree locally. Part marks for vague or half-stated ideas, such as only saying \"no loops\" or \"send group info\" without more. No marks for a wrong property (e.g. shortest paths or lowest cost) or for describing unmodified link state routing only. Naming Prim or Kruskal is not required.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

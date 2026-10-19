@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the two phases: slow start and congestion avoidance.",
+        "marks": 0.25,
+        "partial_credit": "Only one phase named correctly."
+      },
+      {
+        "id": "P2",
+        "description": "Slow start: cwnd grows exponentially (increased by 1 per ACK, i.e. doubling each RTT) while cwnd < ss_thresh; ss_thresh is not changed during normal growth.",
+        "marks": 0.375,
+        "partial_credit": "Says cwnd grows fast/increases but not exponential or per-ACK/RTT detail."
+      },
+      {
+        "id": "P3",
+        "description": "Congestion avoidance (cwnd >= ss_thresh): cwnd grows slowly/linearly (e.g. +1 per RTT / after all segments are acknowledged).",
+        "marks": 0.375,
+        "partial_credit": "Says cwnd grows slower but gives no linear rule."
+      }
+    ],
+    "notes": "Full marks need both phases named plus how cwnd changes in each (exponential in slow start, linear in congestion avoidance). Give part marks for vague growth descriptions without exponential/linear or for naming only one phase. Mentioning that on loss ss_thresh = cwnd/2 and cwnd resets to 1 is correct extra detail but not required; a wrong statement loses only that point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

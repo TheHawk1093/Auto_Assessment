@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/DLL_2.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the connection must be full-duplex (or semi-duplex/half-duplex), i.e. two-way communication in which both sender and receiver send data frames.",
+        "marks": 0.5,
+        "partial_credit": "Only says 'two-way communication' or 'data flows both directions' without naming duplex: 0.25"
+      },
+      {
+        "id": "P2",
+        "description": "States that data frames must contain an additional field for the acknowledgement (ACK number), so that the acknowledgement can be carried in an outgoing data frame instead of a separate ACK frame.",
+        "marks": 0.5,
+        "partial_credit": "Says acknowledgements are attached to/sent with data frames but does not state a frame field is needed: 0.25"
+      }
+    ],
+    "notes": "Full marks need both: the duplex (two-way) connection, named precisely, and the extra acknowledgement field in data frames. Part marks only for a clear but imprecise version of one element, e.g. 'two-way communication' without the duplex term. A wrong statement, such as requiring simplex, or a vague answer like 'needs sliding window' earns nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

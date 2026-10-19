@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/PE_12.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the independence assumption does not hold for real internet traffic (answer is \"No\"), noting that traffic is bursty.",
+        "marks": 0.5,
+        "partial_credit": "Half if only says \"no\" without mentioning burstiness or dependence, or mentions bursts but the conclusion is unclear."
+      },
+      {
+        "id": "P2",
+        "description": "Explains why: arrivals depend on previous arrivals (the probability of an arrival is influenced by earlier arrivals), supported by an example such as on-demand video streaming loading segments, giving low utilization right after a segment is loaded.",
+        "marks": 0.5,
+        "partial_credit": "Half if dependence on earlier arrivals is stated vaguely or the example is given without linking it to dependence between intervals."
+      }
+    ],
+    "notes": "Full marks: says independence does not hold, mentions bursty traffic, and explains that arrivals depend on previous arrivals, ideally with an example like video segment loading. Part marks: a bare \\\"no\\\" or a vague reason (e.g. \\\"traffic is bursty\\\" with no link to dependence). No marks for answering \\\"yes\\\" or for reasons unrelated to dependence between arrivals.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

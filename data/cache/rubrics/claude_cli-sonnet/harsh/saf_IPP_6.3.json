@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/IPP_6.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines DHCP as a network management protocol used in IP networks (Dynamic Host Configuration Protocol), stating both that it is a network management/configuration protocol and that it is used in IP networks.",
+        "marks": 0.25,
+        "partial_credit": "Only one of 'network management protocol' or 'IP networks' stated precisely: half."
+      },
+      {
+        "id": "P2",
+        "description": "States that a DHCP server dynamically assigns an IP address to each device (host) on the network, naming the DHCP server as the assigning entity.",
+        "marks": 0.25,
+        "partial_credit": "IP address assignment stated without naming the DHCP server or without 'dynamically': half."
+      },
+      {
+        "id": "P3",
+        "description": "States that DHCP also provides other network configuration parameters, with correct examples such as DNS server, netmask, default router (gateway).",
+        "marks": 0.25,
+        "partial_credit": "Says 'other configuration parameters' with only one correct example, or examples without saying it is additional: half."
+      },
+      {
+        "id": "P4",
+        "description": "Uses: simplifies installation/configuration of end systems AND allows both manual and automatic IP address assignment (both must be stated).",
+        "marks": 0.25,
+        "partial_credit": "Only one of the two uses (simplified configuration, or manual and automatic assignment) stated precisely: half."
+      }
+    ],
+    "notes": "Full marks need every element stated precisely with correct terms: DHCP as an IP network management protocol, a DHCP server dynamically assigning IP addresses, other parameters (DNS server, netmask, default router), and the uses (simpler end-system configuration, manual and automatic assignment). Give part marks only if clearly more than half of a point is stated. Vague statements such as 'it gives IPs' earn nothing for the detailed points, and any wrong detail (for example saying DHCP maps IP to MAC like ARP) cancels that point. Mentioning that DHCP replaced RARP/BOOTP is optional and gains no marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

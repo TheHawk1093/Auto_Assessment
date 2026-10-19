@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/IPP_6.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines extension headers precisely: they extend the fixed (main) IPv6 header with additional, optional network-layer information/options.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Location: if present, they are placed between the fixed/main IPv6 header and the payload (upper-layer/transport-layer header). Both boundaries must be stated.",
+        "marks": 0.25,
+        "partial_credit": "Only one boundary or 'after the main header' stated correctly: no credit unless the payload side is also given."
+      },
+      {
+        "id": "P3",
+        "description": "States one valid main advantage over IPv4: (a) new options can be appended/added without changing the (fixed) header, or (b) packets with extension headers are processed faster/simpler by intermediate devices because most options are ignored by routers (except Hop-by-Hop), whereas IPv4 routers process all options unless ordered otherwise.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "The advantage is stated precisely with its reason and IPv4 contrast: for (a) the fixed header stays unchanged/no redesign; for (b) both that intermediate routers ignore most extension headers (Hop-by-Hop exception) and that IPv4 routers process all options. A vague claim like 'more flexible' or 'more efficient' earns nothing.",
+        "marks": 0.25,
+        "partial_credit": "Half marks if only the reason or only the IPv4 contrast is given precisely."
+      }
+    ],
+    "notes": "Full marks need all four elements stated precisely: what extension headers are, where they sit (between fixed header and payload/upper-layer header), a valid advantage, and its specific reason or IPv4 contrast. Vague answers such as 'more flexible' or 'better' earn nothing for the advantage points. A wrong statement within a point (for example placing them after the payload or before the fixed header) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

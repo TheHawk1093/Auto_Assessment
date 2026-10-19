@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/MM_8.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Purpose: both provide broadcasting that is more efficient than flooding, i.e. they reduce/minimise duplicate packets in the network.",
+        "marks": 0.25,
+        "partial_credit": "Says only that they are used for broadcasting, without the idea of fewer duplicates/better than flooding."
+      },
+      {
+        "id": "P2",
+        "description": "Reverse Path Forwarding: using the unicast routing table, a node X receiving a packet from source S via neighbour N forwards it to all other neighbours (not back to N) only if X would send packets to S via N (i.e. the packet arrived on the best path back to S); otherwise it discards it.",
+        "marks": 0.5,
+        "partial_credit": "Mentions checking the path/routing table toward the source but omits the condition on N or the forwarding to all other neighbours."
+      },
+      {
+        "id": "P3",
+        "description": "Reverse Path Broadcast: works like RPF but forwards only on edges that are part of a spanning tree; nodes learn which trees they belong to by monitoring unicast traffic (X is on the best path between A and B if it sees unicast packets between them).",
+        "marks": 0.25,
+        "partial_credit": "States it is RPF restricted to spanning-tree edges, or the traffic-monitoring idea, but not both."
+      }
+    ],
+    "notes": "Full marks need the purpose (fewer duplicates than flooding), how RPF decides to forward (route back to the source goes via the incoming neighbour), and how RPB differs (only spanning-tree edges, learned from unicast traffic). Give part marks for half-stated or vague mechanisms. A general statement like \"they broadcast packets\" with no mechanism earns about half at most; wrong mechanisms earn nothing for that point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/TC_10.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least one correct difference in header size or length: UDP header is short/fixed (8 bytes) while TCP header is longer/variable (20-60 bytes).",
+        "marks": 0.25,
+        "partial_credit": "Half if only says one is shorter/longer without fixed vs variable or sizes, and this is the only length statement."
+      },
+      {
+        "id": "P2",
+        "description": "States a correct difference in fields: TCP has fields UDP lacks (e.g. sequence number, acknowledgment number, flags/control bits, advertised window, urgent pointer, options+padding, reserved).",
+        "marks": 0.25,
+        "partial_credit": "Half if only vaguely says TCP has more fields without naming any."
+      },
+      {
+        "id": "P3",
+        "description": "States a correct difference in length fields: UDP has a packet length (header + data) field, while TCP has header length/data offset (header only).",
+        "marks": 0.25,
+        "partial_credit": "Half if mentions only one of the two fields or does not say what it covers."
+      },
+      {
+        "id": "P4",
+        "description": "States a correct difference in source port: optional in UDP, but necessary in TCP to establish the connection. A further distinct correct TCP-only field may be accepted to reach four differences.",
+        "marks": 0.25,
+        "partial_credit": "Half if only says source port differs without saying optional vs required."
+      }
+    ],
+    "notes": "Full marks need four distinct, correct differences between UDP and TCP headers, each worth a quarter. Separately listed TCP-only fields (e.g. sequence number and flags) may each count as one difference. Vague or wrong statements earn nothing for that difference, and fewer than four correct differences gives proportionally fewer quarters.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

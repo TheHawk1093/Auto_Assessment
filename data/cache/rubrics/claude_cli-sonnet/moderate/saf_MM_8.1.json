@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First challenge: a valid challenge from the model answer is named (e.g. adaptation to topology changes, security, medium access control/hidden-exposed-near-far terminals, QoS, scalability, heterogeneity, dependability, power consumption) AND described correctly in line with the model answer.",
+        "marks": 0.5,
+        "partial_credit": "Half marks (0.25) if only named with no or vague description, or described correctly but the name/term is missing or the description has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Second, different challenge: a valid challenge from the model answer is named AND described correctly in line with the model answer.",
+        "marks": 0.5,
+        "partial_credit": "Half marks (0.25) if only named with no or vague description, or described correctly but the name/term is missing or the description has a minor error."
+      }
+    ],
+    "notes": "Full marks need two different challenges from the model answer's list, each named and briefly described (e.g. power consumption: battery-powered devices so routing must save energy). A challenge that is only named, or only vaguely described, earns half of that point. Challenges that are wrong or not wireless/mobile-specific earn nothing, and a repeated or merged challenge counts once.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

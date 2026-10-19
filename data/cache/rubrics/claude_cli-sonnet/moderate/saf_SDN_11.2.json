@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/SDN_11.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives two benefits of SDN over traditional networking, each with a brief explanation. Acceptable benefits: simpler switches (they only follow flow tables, no local routing decisions); faster convergence to a global optimum through centralized routing with a global view; better integration of applications and network; more flexibility (routing logic updated on the fly, programmable via API or high-level languages). Each benefit is worth 0.25.",
+        "marks": 0.5,
+        "partial_credit": "0.25 for each correct benefit. Give half of that (0.125) if the benefit is only named or vaguely stated, such as 'more flexible' with no reason."
+      },
+      {
+        "id": "P2",
+        "description": "Gives two drawbacks of SDN, each with a brief explanation. Acceptable drawbacks: the control server is complex and can become a bottleneck; dependence on centralized control, where adding servers for availability causes synchronization and consistency problems (CAP); the cost and effort of adopting SDN and training staff; security concerns such as the loss of hardware security. Each drawback is worth 0.25.",
+        "marks": 0.5,
+        "partial_credit": "0.25 for each correct drawback. Give half of that (0.125) if the drawback is only named or vaguely stated, such as 'security issues' with no reason."
+      }
+    ],
+    "notes": "Full marks need two valid benefits and two valid drawbacks, each with a short reason. Each benefit or drawback is worth 0.25. A bare label with no reason, or a half-correct one, earns half of that. A wrong or off-topic item earns nothing, and it does not affect the other items. Do not credit the same idea twice.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

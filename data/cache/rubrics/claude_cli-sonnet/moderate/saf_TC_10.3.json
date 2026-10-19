@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States what the table holds: a mapping of destination stations/MAC addresses to the outgoing LAN interface/port (which LAN each station can be reached over).",
+        "marks": 0.25,
+        "partial_credit": "Half if only says it holds addresses or ports without the mapping between them."
+      },
+      {
+        "id": "P2",
+        "description": "Describes how the table is modified in backward learning: starts empty; on receiving a frame with source address Q on LAN L, the bridge adds/updates the entry 'Q reachable via L' (timestamped, old entries purged), i.e. learns from observed incoming traffic.",
+        "marks": 0.25,
+        "partial_credit": "Half if it says the table is filled from incoming traffic but omits the use of the source address and arrival LAN."
+      },
+      {
+        "id": "P3",
+        "description": "Describes use in forwarding: the bridge looks up the frame's destination address and forwards it only on the associated link (flooding if unknown).",
+        "marks": 0.25,
+        "partial_credit": "Half if it says the table is looked up for forwarding without destination-to-link detail."
+      },
+      {
+        "id": "P4",
+        "description": "Gives one benefit: selective forwarding instead of flooding, reducing unnecessary traffic/duplication/congestion or improving bandwidth use.",
+        "marks": 0.25,
+        "partial_credit": "Half if benefit is vague (e.g. 'more efficient') without reference to reduced flooding or traffic."
+      }
+    ],
+    "notes": "Each of the four parts asked for (table contents, learning update, use in forwarding, one benefit) is worth a quarter mark. Accept different wording, but the mapping of MAC/station to LAN/port and learning from the source address of incoming frames must be present. Vague or half-stated parts earn half of that quarter; a wrong statement loses only that part.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

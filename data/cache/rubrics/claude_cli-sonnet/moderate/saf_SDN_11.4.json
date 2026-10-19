@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/SDN_11.4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table function: holds a meter entry per flow / collects flow statistics, used by the controller for network management such as QoS (e.g. rate-limiting).",
+        "marks": 0.5,
+        "partial_credit": "Half if only vaguely stated (e.g. 'measures/monitors traffic') without mentioning per-flow meters/statistics or QoS/rate-limiting."
+      },
+      {
+        "id": "P2",
+        "description": "Flow pipeline function: a series of flow tables containing rules (match fields) and actions, used for packet forwarding / deciding what actions are applied to packets (the switch's routing logic).",
+        "marks": 0.5,
+        "partial_credit": "Half if only says flow tables 'store rules' or 'handle packets' without linking to forwarding/actions."
+      }
+    ],
+    "notes": "Full marks need both functions: meter table (per-flow meter entries/statistics for QoS such as rate-limiting) and flow pipeline (flow tables with rules/actions for forwarding). Give half of a part if it is vague or only partly correct. Give no marks for a part that is missing, swapped between the two tables, or wrong.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

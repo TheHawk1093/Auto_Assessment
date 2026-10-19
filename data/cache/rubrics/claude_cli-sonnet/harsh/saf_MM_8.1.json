@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First challenge is correctly named using a valid term from the model answer (e.g. Adaptation/topology changes, Security, Medium Access Control (hidden/exposed/near-far terminal), QoS, Scalability, Heterogeneity, Dependability, Power Consumption).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "First challenge is described precisely and correctly, matching the model answer's specific content (e.g. for Adaptation: nodes move and topology changes dynamically, nodes can join or leave anywhere at any time; for Security: packets can be intercepted or faulty packets injected, needing encryption/authentication; for MAC: interference/collisions, e.g. hidden terminal; for Power: battery-powered devices so energy must be optimised).",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if the description gives clearly more than half of the required detail, e.g. only one of the two aspects."
+      },
+      {
+        "id": "P3",
+        "description": "Second, different challenge is correctly named using a valid term from the model answer.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Second challenge is described precisely and correctly, matching the model answer's specific content for that challenge.",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if the description gives clearly more than half of the required detail."
+      }
+    ],
+    "notes": "Full marks need two distinct challenges from the model answer's list, each named with the correct term and described with the specific details. A vague name without a description, or a generic description such as \"it is harder in wireless\" earns nothing for that point. A wrong detail in a description cancels that description's mark. A challenge that is not in the model answer, or is only a repeat of the first, earns nothing. Do not pay a description unless the matching name is given or clearly identified.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
