@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/SDN_11.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Control plane responsibility stated precisely: it decides the routes/forwarding of packets (manages network graph, defines routes, updates switches' flow tables) OR handles unprocessed packets coming from the data plane; and it is logically centralized (may be physically distributed).",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if a correct responsibility is given but without mention of logical centralization/flow-table control, or vice versa."
+      },
+      {
+        "id": "P2",
+        "description": "Data plane responsibility stated precisely: it is responsible for packet forwarding; switches just execute actions according to their flow tables as decided by the control plane.",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if only 'forwards packets' is stated without that switches follow flow tables set by the control plane."
+      },
+      {
+        "id": "P3",
+        "description": "First controller task named correctly and specifically, from the model list (e.g. configuring forwarding/flow tables, injecting packets, handling packet-in events, collecting traffic statistics, topology discovery, device inventory, northbound/southbound interfaces, implementing the control plane).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Second, different controller task named correctly and specifically, from the model list.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a precise control plane responsibility, a precise data plane responsibility (forwarding per flow tables), and two distinct, correct controller tasks from the model list. Vague statements like 'controls the network' earn nothing for that point. A wrong statement within a point (e.g. data plane makes routing decisions) cancels that point; a wrong extra controller task cancels its point. Repeating the same task twice earns only one point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

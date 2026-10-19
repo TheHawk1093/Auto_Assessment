@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the property: there is a single unique path between every pair of nodes (equivalently: loop-free subnet containing all nodes).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains why this suits broad/multicasting: no loops, so no unnecessary duplicate packets are distributed when forwarding along the tree.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Modification: each intermediate system/node adds its multicast group membership information to its link state packet, which is distributed network-wide (because a node initially only knows its own groups).",
+        "marks": 0.25,
+        "partial_credit": "Half if only says group information is added to LSPs but not that it is flooded/distributed to all nodes or why."
+      },
+      {
+        "id": "P4",
+        "description": "Once the full topology and group information are known locally at every node, each node computes the multicast spanning tree itself using a spanning tree algorithm such as Prim or Kruskal.",
+        "marks": 0.25,
+        "partial_credit": "Half if says each node computes the tree locally from complete information but names no algorithm or gives a wrong one."
+      }
+    ],
+    "notes": "Full marks need all four elements stated precisely: the unique-path/loop-free property, the no-duplicates reason, multicast group info added to link state packets and distributed, and local tree computation (Prim/Kruskal) from complete information. Vague statements such as \"it is efficient\" or \"use link state routing\" earn nothing for the point. A wrong statement within a point (e.g. the tree contains loops, or the tree is computed centrally) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

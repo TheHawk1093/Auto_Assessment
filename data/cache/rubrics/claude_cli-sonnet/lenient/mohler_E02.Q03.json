@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E02.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core difference: a constructor is called automatically when an object is created, whereas a function must be called explicitly. (A mention that constructors have no return type while functions do also counts toward this point.)",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if only one half is given, e.g. only the return-type difference or only that constructors run on object creation, or if the idea is vague or incomplete."
+      }
+    ],
+    "notes": "Full marks for saying a constructor runs automatically when an object is created while a function must be called explicitly. Any wording is fine, and the return-type difference is accepted as a correct extra or as the other half of the fact. Give part marks for a partial or vague statement, and 0 for answers that only describe what a constructor or function is without any difference.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

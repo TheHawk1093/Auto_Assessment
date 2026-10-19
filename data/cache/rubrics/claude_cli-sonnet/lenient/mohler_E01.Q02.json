@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that testing influences the coding stage (phase 5) and the solution refinement stage (phase 7), in any wording (e.g. 'coding/implementation and refining/improving the solution').",
+        "marks": 5.0,
+        "partial_credit": "Award about 2.5 marks if only one of the two stages (coding or solution refinement) is named, or if both are described vaguely (e.g. 'fixing code and improving the program')."
+      }
+    ],
+    "notes": "Full marks for naming both coding (phase 5) and solution refinement (phase 7), in any wording; phase numbers are not required. Give part marks (about half) if only one is named or the answer is vague but on track. Give none for answers naming unrelated stages only (e.g. design, requirements); extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/SDN_11.4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table function: states that it holds per-flow meter entries / collects flow statistics (per-flow meter entries must be mentioned).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Meter table purpose: states that these meters are used by the controller to manage the network, specifically QoS operations such as rate-limiting.",
+        "marks": 0.25,
+        "partial_credit": "Mentions network management/QoS or rate-limiting but not both the controller use and QoS/rate-limiting."
+      },
+      {
+        "id": "P3",
+        "description": "Flow pipeline function: states that it consists of flow tables containing rules/fields (match fields and actions) for packets.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Flow pipeline purpose: states that the rules are used for packet forwarding / actions taken on packets, i.e. it implements the routing/forwarding logic in the switch.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both tables covered, each with what it holds and what it is used for, using correct terms (meter entry per flow, QoS/rate-limiting, flow tables with rules, packet forwarding/actions). Give nothing for vague statements like 'meter table manages traffic' or 'flow table stores data'. Swapping the functions of the two tables, or a wrong detail in a point, earns nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the main advantages of OOP: abstraction and reusability (code reuse). Any wording accepted, e.g. hiding details / modelling with classes, and reusing code via classes/inheritance.",
+        "marks": 5.0,
+        "partial_credit": "Award about half (2.5) if only one of abstraction or reusability is given; a little more (3-4) if one is clear and the other is vaguely related (e.g. encapsulation, modularity, inheritance as a means of reuse)."
+      }
+    ],
+    "notes": "Full marks for naming both abstraction and reusability in any wording, however brief. Part marks if only one is given or related advantages are named (modularity, encapsulation, inheritance) without clearly stating the two. Zero for answers unrelated to OOP benefits. Extra correct advantages do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

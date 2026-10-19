@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the body/block of a do ... while loop executes at least once (because the condition is checked after the body), whereas a while loop may not execute at all if the condition is initially false. Any wording accepted, e.g. 'do while runs once before checking the condition'.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if the student only says the condition is checked at the end (or beginning) of the loop, or only that while may not run, without clearly linking to the do ... while running at least once."
+      }
+    ],
+    "notes": "Full marks for stating, in any wording, that a do ... while body always runs at least once (e.g. condition checked after the body). Part marks for a related but incomplete idea, such as only noting where the condition is checked, or that while may never run. No marks for answers that discuss loops generally without this difference. Extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

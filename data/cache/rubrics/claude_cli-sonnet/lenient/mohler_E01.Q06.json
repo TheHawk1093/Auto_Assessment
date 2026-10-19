@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that variables can be declared anywhere in a program, e.g. inside functions (local variables) and/or outside functions (global variables). Any wording is accepted.",
+        "marks": 5.0,
+        "partial_credit": "Award 2.5 to 3.5 if only one place is given (only inside functions/local, or only outside functions/global) or the answer is vague, e.g. 'in the main function' or 'at the top of the program'."
+      }
+    ],
+    "notes": "Full marks for the core idea: variables can be declared anywhere, such as inside functions (local) or outside them (global). Giving either local or global alone, or a vague but related place, earns part marks. Answers that do not say where variables are declared earn 0. Extra correct detail is fine, and terms like 'local' and 'global' are not required.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

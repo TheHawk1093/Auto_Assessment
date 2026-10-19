@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location in memory (named storage place) that holds/stores a value.",
+        "marks": 5.0,
+        "partial_credit": "Award 2.5 to 3.5 if only half the idea is given, e.g. says it stores or holds a value/data but does not mention memory or a storage location, or mentions a memory location without saying it holds a value."
+      }
+    ],
+    "notes": "Full marks for saying a variable is a place in memory (or a named storage space) that stores a value, in any wording, however brief. Part marks for answers with only half of this, such as 'it holds data' or 'a named thing in memory'. Give no marks for answers that discuss only related ideas (e.g. data types or functions) without the storage idea. Extra correct detail or minor wrong remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

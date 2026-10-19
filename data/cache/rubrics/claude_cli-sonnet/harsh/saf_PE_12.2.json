@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/PE_12.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies that fewer than 10 packets in the queue is the complement of the system being full (exactly N = 10 packets, buffer full), i.e. the answer needs the blocking probability P_B (or directly P(X<10) = sum of state probabilities for 0..9).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the correct M/M/1/N blocking probability formula with utilization \u03c1 = \u03bb/\u03bc = 9/10 = 0.9 and N = 10: P_B = ((1-\u03c1)\u03c1^N)/(1-\u03c1^(N+1)).",
+        "marks": 0.25,
+        "partial_credit": "Formula correct but \u03c1 not identified as 0.9 (or vice versa), give half."
+      },
+      {
+        "id": "P3",
+        "description": "Computes P_B \u2248 0.0508 (or equivalently P(X<10) \u2248 0.949) correctly.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Multiplies the 60 s observation time by P(X<10) = 1 - P_B and gives the final answer \u2248 56.95 s (about 57 s).",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all four steps stated precisely: complement of the full state, correct M/M/1/N formula with \u03c1=0.9 and N=10, P_B\u22480.0508, and 60\u00d7(1\u2212P_B)\u224856.95 s. A wrong detail (e.g. using M/M/1 without finite buffer, wrong N, or wrong \u03c1) cancels that point and usually the later ones. A bare final number or vague statement without the method earns nothing for the steps it skips; summing P(0..9) directly is accepted as an alternative.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

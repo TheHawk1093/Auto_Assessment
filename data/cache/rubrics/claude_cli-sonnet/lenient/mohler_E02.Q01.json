@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E02.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class definition typically includes data members (attributes/variables) and member functions (methods).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2.5 marks if only one of the two (data members or member functions) is given, or if the answer is vague, e.g. 'variables and other things inside the class'."
+      }
+    ],
+    "notes": "Full marks for saying a class contains data members/attributes/variables and member functions/methods, in any wording. Give part marks (about half) if only one of the two is stated or the answer is vague but on track. Give no marks if neither idea appears. Extra correct detail such as access specifiers or constructors is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
