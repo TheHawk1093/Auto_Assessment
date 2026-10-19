@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/IPP_6.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States what extension headers are: optional additional network-layer information/headers that extend the fixed (main) IPv6 header.",
+        "marks": 0.34,
+        "partial_credit": "Vague but on track (e.g. just 'extra headers') earns about half."
+      },
+      {
+        "id": "P2",
+        "description": "States location: between the fixed/main IPv6 header and the payload/upper-layer (transport) header.",
+        "marks": 0.33,
+        "partial_credit": "Says only 'after the main header' or 'before the payload' earns about half."
+      },
+      {
+        "id": "P3",
+        "description": "Gives one valid main advantage: new options can be added without changing the base header, OR packets with options are processed faster/simpler by intermediate routers since most extension headers are ignored (except Hop-by-Hop), unlike IPv4 where options are processed by all routers.",
+        "marks": 0.33,
+        "partial_credit": "Vague advantage such as 'more flexible' or 'more efficient' earns about half."
+      }
+    ],
+    "notes": "Full marks need all three parts: what they are, where they sit, and one valid advantage, in any wording. Give part marks for vague but relevant statements. Wrong extra remarks cost nothing unless they contradict a central idea. Round the total to the nearest quarter.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

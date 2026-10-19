@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/DLL_2.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names all three service classes: unconfirmed connectionless, confirmed connectionless, and connection-oriented.",
+        "marks": 0.25,
+        "partial_credit": "Half if only two classes are named correctly."
+      },
+      {
+        "id": "P2",
+        "description": "Explains unconfirmed connectionless: no acknowledgements, data loss possible, no flow control, no connect/disconnect.",
+        "marks": 0.25,
+        "partial_credit": "Half if only no-ACK/loss is given without other differences, or stated vaguely."
+      },
+      {
+        "id": "P3",
+        "description": "Explains confirmed connectionless: each frame is acknowledged, so loss is handled by timeout and retransmission (duplicates/sequence errors possible), still no flow control and no connection setup.",
+        "marks": 0.25,
+        "partial_credit": "Half if only 'with ACK' is stated without the retransmission or the lack of connection/flow control."
+      },
+      {
+        "id": "P4",
+        "description": "Explains connection-oriented: no loss, duplication or sequencing errors; three phases (connect, data transfer, disconnect) with flow control.",
+        "marks": 0.25,
+        "partial_credit": "Half if only connection setup/teardown or only reliability is given."
+      }
+    ],
+    "notes": "Full marks need the three class names and a correct distinguishing explanation of each (ACK use, reliability, connection phases, flow control). Give part marks for names with vague or incomplete differences, or for explanations missing one key feature. A wrong statement about a class loses that class's mark only; a list of names with no differences gets about 0.25\u20130.5.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

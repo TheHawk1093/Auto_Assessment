@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/LM_2.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines frame bursting: several frames are sent one after another in a single transmission/burst, keeping hold of the channel (no release between frames), which cuts overhead for small frames.",
+        "marks": 0.4,
+        "partial_credit": "Half if only says multiple frames are sent together, without the channel/overhead idea."
+      },
+      {
+        "id": "P2",
+        "description": "Gives an advantage over carrier extension, e.g. more efficient because no padding/garbage fill is needed for each small frame.",
+        "marks": 0.3,
+        "partial_credit": "Half if just says it is better/more efficient without a reason."
+      },
+      {
+        "id": "P3",
+        "description": "Gives a disadvantage compared to carrier extension, e.g. needs frames queued/buffered and waiting, which causes delay.",
+        "marks": 0.3,
+        "partial_credit": "Half if vague, e.g. more complex, without buffering or delay."
+      }
+    ],
+    "notes": "Full marks need a brief definition (multiple frames sent in one go while holding the channel), one advantage and one disadvantage, in any wording. Give part marks for vague or incomplete versions of each part. Extra wrong remarks do not cost marks unless they contradict the main idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

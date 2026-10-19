@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/TC_10.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least two valid differences between UDP and TCP headers (e.g. UDP header is shorter/fixed 8 bytes vs TCP 20-60 bytes variable; UDP source port optional vs needed in TCP; UDP has a length field while TCP has header length/data offset).",
+        "marks": 0.5,
+        "partial_credit": "One valid difference gives a quarter mark."
+      },
+      {
+        "id": "P2",
+        "description": "States at least two further valid differences, e.g. TCP-only fields such as sequence number, acknowledgment number, flags/control bits, advertised window, urgent pointer, options/padding, reserved. Together with P1, at least four distinct differences are given.",
+        "marks": 0.5,
+        "partial_credit": "One further valid difference gives a quarter mark."
+      }
+    ],
+    "notes": "Full marks for four distinct valid differences in any wording; listing several TCP-only fields counts as separate differences. Give part marks (a quarter per difference) for fewer than four valid differences. No marks for statements that are not header differences or are wrong. Extra wrong remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

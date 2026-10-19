@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/SDN_11.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives two benefits of SDN over traditional networking, each with a brief reason. Acceptable benefits include simpler switches that only follow flow tables, faster convergence or better routing from a global view of the network, flexibility such as updating routing logic on the fly, or programmability through APIs and high-level languages. Each benefit is worth 0.25.",
+        "marks": 0.5,
+        "partial_credit": "0.25 for one valid benefit, or two benefits that are only named with no reason."
+      },
+      {
+        "id": "P2",
+        "description": "Gives two drawbacks of SDN, each with a brief reason. Acceptable drawbacks include a complex controller that can become a bottleneck or single point of failure, consistency or synchronization problems when several controllers are used, costs of adopting the technology and training staff, or security concerns such as the loss of hardware security. Each drawback is worth 0.25.",
+        "marks": 0.5,
+        "partial_credit": "0.25 for one valid drawback, or two drawbacks that are only named with no reason."
+      }
+    ],
+    "notes": "Full marks need two valid benefits and two valid drawbacks. Each is worth 0.25, and any wording is accepted if the main idea is clear. Give part marks for vague but relevant points. Give no marks for points that are irrelevant or that contradict SDN's nature, such as saying switches make their own routing decisions as a benefit.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/SDN_11.4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table: states that it holds per-flow meter entries / collects flow statistics, used for monitoring and QoS-type management such as rate-limiting.",
+        "marks": 0.5,
+        "partial_credit": "Half if only vaguely says it handles statistics or rate/QoS without clear link to flows or meters."
+      },
+      {
+        "id": "P2",
+        "description": "Flow pipeline: states that it is a series of flow tables holding rules/entries that decide how packets are forwarded or what actions are applied to them.",
+        "marks": 0.5,
+        "partial_credit": "Half if only says it stores rules or does forwarding in vague terms."
+      }
+    ],
+    "notes": "Award full marks when both the meter table and the flow pipeline are given a correct function, in any wording. Give part marks for vague but on-track statements (e.g. meter table is about statistics or rate limiting; flow tables have rules for packets). Give nothing for a part that is missing or swapped between the two tables.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

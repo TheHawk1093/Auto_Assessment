@@ -1,0 +1,23 @@
+{
+  "question_key": "saf/PE_12.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct order: B (least), then C, then A (most probable), i.e. BCA.",
+        "marks": 0.5,
+        "partial_credit": "Half if the order is almost right or only partly stated (e.g. B least and A most noted but C placement unclear)."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a valid justification in any wording: B is a special case/subset of C and C of A (more specific to less specific), OR correct probability calculations/formulas showing P(B)<P(C)<P(A), e.g. P(B)\u22480.014, P(C)\u22480.28, P(A)\u22480.82 or P(C)=20\u00b7P(B).",
+        "marks": 0.5,
+        "partial_credit": "Half if justification is on the right track but vague or only partly correct (e.g. only one of the two relations, or a formula without clear comparison)."
+      }
+    ],
+    "notes": "Full marks: correct order BCA plus a valid justification (subset/more-specific reasoning or correct probabilities). Part marks for an almost-correct order or a vague/partial justification. No marks for a wrong order with no valid reasoning; extra incorrect remarks that don't contradict the main idea are ignored.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names slow start and describes its change: cwnd grows (increases per ACK, roughly doubling each RTT / exponentially) while cwnd is below ss_thresh, until ss_thresh is reached or a loss occurs.",
+        "marks": 0.4,
+        "partial_credit": "Names slow start but only says cwnd increases, or describes growth without naming the phase."
+      },
+      {
+        "id": "P2",
+        "description": "Names congestion avoidance and describes its change: cwnd grows more slowly/linearly (e.g. +1 per RTT) once cwnd >= ss_thresh, until a loss occurs.",
+        "marks": 0.4,
+        "partial_credit": "Names congestion avoidance but gives only vague growth, or describes slower growth without naming the phase."
+      },
+      {
+        "id": "P3",
+        "description": "On packet loss/congestion, ss_thresh is set to cwnd/2 and cwnd is reset to 1 (ss_thresh stays unchanged otherwise).",
+        "marks": 0.2,
+        "partial_credit": "Gives only one of ss_thresh = cwnd/2 or cwnd reset to 1."
+      }
+    ],
+    "notes": "Full marks need both phases (slow start, congestion avoidance) with how cwnd changes in each, plus the loss reaction (ss_thresh = cwnd/2, cwnd = 1). Informal wording is fine, such as 'doubles' or 'grows fast then slowly'. Give part marks for a correct phase with vague growth or an incomplete loss reaction. Wrong extra remarks cost nothing unless they contradict the main idea, for example swapping which phase is exponential.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
