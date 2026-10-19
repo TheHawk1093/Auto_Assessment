@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Definition: a neural network is a massively parallel distributed processor made up of simple processing units, with a natural propensity for storing experiential knowledge (and making it available for use).",
+        "marks": 1.0,
+        "partial_credit": "Half if the definition is vague or gives only one element (e.g. just 'simple processing units' or 'parallel processor') or omits knowledge storage."
+      },
+      {
+        "id": "P2",
+        "description": "Resemblance to the brain: (a) knowledge is acquired from the environment through a learning process, and (b) interneuron connection strengths, called synaptic weights, store the acquired knowledge.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of the two aspects is stated, or both are stated without the term 'synaptic weights' / connection strengths."
+      }
+    ],
+    "notes": "Full marks need a correct definition (parallel distributed processor of simple units that stores experiential knowledge) and both brain similarities (learning from environment; knowledge stored in synaptic weights/connection strengths). Give half of a point for a vague or incomplete version, such as one similarity only or missing key terms. Give no marks for wrong or off-topic statements, such as describing only biology with no network definition.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

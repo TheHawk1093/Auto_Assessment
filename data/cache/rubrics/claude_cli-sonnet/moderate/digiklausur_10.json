@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation reduces/minimises the error (loss) of a multilayer network (MLP) by propagating the error backwards from the last (output) layer to the first layer, layer by layer, and by updating the weights.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of: error goes backwards layer by layer, or weights are updated to reduce error, or described vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Explains that the weight updates are determined by the local gradient at each layer, computed using partial derivatives of the error and the chain rule.",
+        "marks": 1.0,
+        "partial_credit": "Half if gradients or derivatives are mentioned without the chain rule or local gradient (or the chain rule without gradients/partial derivatives)."
+      }
+    ],
+    "notes": "Full marks: the answer says the error is propagated backwards from output to input layer, updating weights to reduce error, and that the updates come from gradients (partial derivatives) via the chain rule. Give part marks when one key term (e.g. chain rule, gradient) is missing or the wording is vague. Give no marks for wrong or off-topic descriptions, such as describing only the forward pass.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

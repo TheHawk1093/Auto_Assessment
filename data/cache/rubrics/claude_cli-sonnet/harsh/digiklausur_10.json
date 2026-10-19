@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation lowers/minimises the error (loss) of a multilayer perceptron (MLP / neural network) by updating its weights.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the error is propagated backwards, from the last (output) layer to the first layer, level by level / recursively.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the weight updates are determined by the local gradient at each layer/level.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the local gradient is computed using partial derivatives of the error and the chain rule (both terms named).",
+        "marks": 0.5,
+        "partial_credit": "Only one of 'partial derivatives' or 'chain rule' named correctly: no credit; both required."
+      }
+    ],
+    "notes": "Full marks need all four elements stated explicitly with the correct terms: error reduction via weight updates, backward layer-by-layer direction (output to input), local gradient, and partial derivatives plus chain rule. Vague wording such as 'it goes back and fixes things' earns nothing for that point. Any wrong statement inside a point (e.g. propagating forward, first to last layer) cancels that point. Total is 2 marks, 0.5 per point; no half points within a point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

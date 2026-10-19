@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation reduces the error of a (multi-layer) network by propagating the error backwards from the output/last layer to the first layer, layer by layer, and updating the weights accordingly.",
+        "marks": 1.0,
+        "partial_credit": "Half if it only says it reduces error or updates weights, without the backward direction/layer-by-layer idea."
+      },
+      {
+        "id": "P2",
+        "description": "States that the weight updates are based on gradients (local gradient / partial derivatives of the error) computed using the chain rule.",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions gradients or derivatives (or gradient descent) but not the chain rule or per-layer computation."
+      }
+    ],
+    "notes": "Full marks for saying, in any wording, that the error is passed backwards from output to input layer, adjusting weights, using gradients/derivatives via the chain rule. Give part marks for a vague but related answer, e.g. only 'it updates weights to reduce error' or only 'uses derivatives'. Give 0 for wrong or off-topic answers, such as describing only the forward pass. Extra incorrect remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
