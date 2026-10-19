@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the basic structure: a two-layer (bipartite) network with a visible layer and a hidden layer of binary neurons.",
+        "marks": 1.0,
+        "partial_credit": "Half if only mentions visible/hidden or binary neurons vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "States the working principle: neuron states are flipped/set stochastically with a probability determined by the neuron's activation, and/or the learning uses a clamped phase (visible tied to input) and a free-running phase.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it is probabilistic or has two phases, without detail."
+      }
+    ],
+    "notes": "Full marks for conveying the core idea in any wording: a two-layer visible/hidden network of binary units whose states change probabilistically based on activation. Give part marks for a vague or incomplete but related answer (e.g. only the structure or only the probabilistic behaviour). Clamped/free-running phases are a bonus route to P2 but not required; give no marks for unrelated or wrong descriptions.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

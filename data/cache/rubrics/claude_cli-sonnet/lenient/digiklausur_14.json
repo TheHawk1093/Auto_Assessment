@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the main building blocks of a CNN: convolutional layer(s) (kernels/filters sliding over the input image) together with pooling layer(s) (max or average), in any wording.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of convolution or pooling is given, or the description is vague."
+      },
+      {
+        "id": "P2",
+        "description": "States that after the convolution/pooling stages there are fully connected layer(s) leading to an output (softmax) layer, with an activation such as ReLU in the structure.",
+        "marks": 1.0,
+        "partial_credit": "Half if only fully connected/output layer or only activation is mentioned."
+      }
+    ],
+    "notes": "Full marks for listing the main layers in a CNN in any wording: convolution and pooling, then fully connected and output layers, with activation mentioned. Give part marks if the answer names some layers but leaves out a main group. Give no marks if the answer is off-topic or describes a different network. Missing details such as the exact pooling type or softmax cost nothing.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

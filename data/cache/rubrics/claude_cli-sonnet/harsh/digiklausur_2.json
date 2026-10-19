@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the neuron model has a set of synapses (connecting links), each characterized by its own weight (synaptic weight).",
+        "marks": 0.5,
+        "partial_credit": "Half only if synapses/links are named but weights are not stated, or vice versa; actually 0 if either term is missing or wrong."
+      },
+      {
+        "id": "P2",
+        "description": "States an adder (linear combiner) that computes the weighted sum of the inputs (the local field / induced local field).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that a bias is added to the weighted sum of the inputs.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States an activation function (squashing function) that limits the amplitude of the neuron's output.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all four elements stated explicitly with the correct terms: synapses with weights, adder/linear combiner (weighted sum), bias, and activation (squashing) function limiting output amplitude. Vague wording such as \"inputs are multiplied and processed\" earns nothing for that point. A wrong statement within a point (e.g. the activation function described as computing the sum) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

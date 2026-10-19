@@ -1,0 +1,29 @@
+{
+  "question_key": "digiklausur/15",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the three items to be learned: centers, weights, and biases.",
+        "marks": 0.5,
+        "partial_credit": "Two of the three items named correctly."
+      },
+      {
+        "id": "P2",
+        "description": "Difference to other NNs: an RBFN has a single hidden layer and a linear output layer, whereas other NNs can have multiple hidden layers and a linear or non-linear output layer.",
+        "marks": 0.75,
+        "partial_credit": "Only one side stated (e.g. single hidden layer) or the output layer difference is vague."
+      },
+      {
+        "id": "P3",
+        "description": "Gives at least one pro and one con of RBFN. Pros: universal approximator, easy to add more centers. Con: the bias is not unique.",
+        "marks": 0.75,
+        "partial_credit": "Only a pro or only a con given, or points are vague."
+      }
+    ],
+    "notes": "Full marks need the three items (centers, weights, biases), the single-hidden-layer/linear-output difference, and at least one valid pro and con. Give part marks for incomplete or vague statements, such as two items listed, only one side of the difference, or only pros. A wrong statement loses only that point's marks; give no marks for off-topic answers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

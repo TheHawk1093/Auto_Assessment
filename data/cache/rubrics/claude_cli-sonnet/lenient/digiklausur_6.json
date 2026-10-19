@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core idea: SVM is a (linear) classifier that separates classes with a decision boundary (hyperplane) chosen to maximise the margin.",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions a decision boundary/separating classes but not maximum margin (or vice versa)."
+      },
+      {
+        "id": "P2",
+        "description": "Mentions support vectors (the data points closest to the boundary that determine the margin) and/or kernels for non-linearly separable data (optionally quadratic programming).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely refers to points near the boundary or to handling non-linear data, without the terms."
+      }
+    ],
+    "notes": "Full marks: the answer says SVM separates classes with a maximum-margin decision boundary, and mentions support vectors or kernels in any wording. Part marks: a vague answer, e.g. just \"separates classes with a line\" or only naming one idea loosely. No marks for wrong or off-topic answers. Extra remarks do not lose marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

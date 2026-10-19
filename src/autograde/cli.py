@@ -40,6 +40,10 @@ from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_by_mark, sample_spread, write_report
 from autograde.viewer.compare import Tab, write_compare
 from autograde.viewer.compare import build_data as build_compare_data
+from autograde.viewer.rubrics import build_data as rubrics_data
+from autograde.viewer.rubrics import write_page as write_rubrics
+from autograde.viewer.styles import build_data as styles_data
+from autograde.viewer.styles import write_page as write_styles
 
 log = logging.getLogger("autograde")
 
@@ -133,6 +137,9 @@ def _parser() -> argparse.ArgumentParser:
         "--run", action="append", required=True, metavar="LEVEL=RUN",
         help="repeat once per level, for example lenient=dk_lenient",
     )  # fmt: skip
+
+    sub.add_parser("styles-page", help="build runs/feedback_styles/index.html")
+    sub.add_parser("rubrics-page", help="build runs/rubrics/index.html")
 
     cp = sub.add_parser("compare", help="one page, one tab per run, the same N answers in each")
     cp.add_argument(
@@ -522,6 +529,18 @@ def main(argv: list[str] | None = None) -> None:
             level, _, name = spec.partition("=")
             runs[level] = read_results(settings.paths.runs_dir / name / "results.jsonl")
         print(json.dumps(compliance(runs), indent=2))
+    elif args.cmd == "styles-page":
+        data = styles_data(settings.paths.runs_dir)
+        print(write_styles(data, settings.paths.runs_dir / "feedback_styles" / "index.html"))
+    elif args.cmd == "rubrics-page":
+        data = rubrics_data(
+            settings.paths.data_dir,
+            settings.paths.cache_dir,
+            settings.paths.runs_dir,
+            f"{settings.llm.backend}-{settings.llm.model}",
+            ["digiklausur", "saf", "mohler", "engsaf"],
+        )
+        print(write_rubrics(data, settings.paths.runs_dir / "rubrics" / "index.html"))
     elif args.cmd == "compare":
         _cmd_compare(args, settings)
     elif args.cmd == "refeedback":

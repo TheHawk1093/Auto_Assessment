@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/9",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the weight adjustment (change in synaptic weight, \u0394w) is proportional to the product of the error signal and the input signal of that synapse (\u0394w_kj = \u03b7 \u00b7 e_k \u00b7 x_j, with \u03b7 as learning-rate/proportionality constant). Both the error signal and the synapse's input signal must be named as factors in the product.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the product form is clearly given but one factor (error or input) is imprecise or the proportionality is not stated; otherwise 0."
+      },
+      {
+        "id": "P2",
+        "description": "States that the rule is derived from the steepest descent (gradient descent) method, i.e. minimising the error/cost function by moving against its gradient.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both: the weight change proportional to error signal \u00d7 input signal of that synapse (formula in rough LaTeX is acceptable if its meaning is correct), and the statement that it comes from steepest descent. Vague wording such as 'weights are updated based on error' earns nothing for P1. A wrong statement (e.g. proportional to the output only, or derived from another method) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

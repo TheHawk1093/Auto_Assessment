@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/17",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bias-variance dilemma is a problem/principle in supervised learning, arising from the bias of the model and the variance (of the model's output/with respect to the data), i.e. both bias and variance are named as the two error sources.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that high bias (as worded in the model answer) goes with fitting the training data very well but high variance.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that low bias goes with reduced variance but the model does not fit the data well; i.e. reducing one increases the other (a trade-off).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that this dilemma makes generalisation (generalizability) difficult to achieve, using the term generalisation.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all four elements stated explicitly with the terms bias, variance, and generalisation; the trade-off must be stated in both directions. Vague wording such as 'a balance of errors' earns nothing for that point. A wrong statement within a point (e.g. low bias gives high variance with no trade-off, or swapping bias and variance) cancels that point. Note that the model answer's high-bias/low-bias wording is unusual; mark the student's trade-off direction for consistency with the model answer's logic of an inverse relation between bias and variance.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

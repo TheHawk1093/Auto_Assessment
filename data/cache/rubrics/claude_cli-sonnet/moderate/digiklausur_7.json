@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that steepest (gradient) descent is used to update the weights/parameters of the network during learning/training, in order to minimise the cost (error) function.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it is used for learning/optimisation, or only mentions updating weights or minimising cost, without linking both."
+      },
+      {
+        "id": "P2",
+        "description": "States that weights are changed in the direction of steepest descent, i.e. opposite to the gradient vector of the cost function.",
+        "marks": 1.0,
+        "partial_credit": "Half if mentions the gradient or moving downhill but does not clearly say the update is opposite to the gradient."
+      }
+    ],
+    "notes": "Full marks need the role (updating weights to minimise the cost function) and the mechanism (step opposite to the gradient vector). Give half for a vague or incomplete version of either idea. Mentioning local minima or instability is optional and not required for marks. Give no marks for wrong or off-topic answers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

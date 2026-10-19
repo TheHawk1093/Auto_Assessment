@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Classification defined as mapping input data to discrete labels/classes (categories).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Regression defined as mapping input data to a continuous function / continuous real-valued outputs.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Error in classification is the number of misclassifications (count of wrongly labelled samples).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Error in regression is the summed distance (e.g. sum of differences/absolute or squared) between true and predicted values.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each point needs an explicit, correct statement using the terms discrete/labels, continuous/real values, number of misclassifications, and summed distance between true and predicted values. Vague wording (e.g. 'classification sorts things', 'regression predicts numbers' without continuous) earns nothing for that point. A wrong statement, such as swapping the two, cancels that point. The difference must come through in the answer; the error points are required, not optional.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

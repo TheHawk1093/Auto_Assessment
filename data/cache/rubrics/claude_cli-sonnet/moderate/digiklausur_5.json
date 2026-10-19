@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup and input step: arrange weights/neurons in a topology (lattice), initialise weights randomly (different values), and sample an input vector from the input space.",
+        "marks": 0.5,
+        "partial_credit": "Half if only initialisation or only sampling is given, or topology/random initialisation is vague."
+      },
+      {
+        "id": "P2",
+        "description": "Similarity matching: find the winning neuron (best matching unit) in the lattice for the sampled input.",
+        "marks": 0.5,
+        "partial_credit": "Half if matching is mentioned vaguely without naming the winning neuron."
+      },
+      {
+        "id": "P3",
+        "description": "Update the weights of the winning neuron and its neighbours, with the neighbourhood determined by a neighbourhood function.",
+        "marks": 0.5,
+        "partial_credit": "Half if only the winner is updated or the neighbourhood function is not mentioned."
+      },
+      {
+        "id": "P4",
+        "description": "Shrink the neighbourhood radius and decay the learning rate, then loop: repeat sampling until ordering and convergence are complete, then stop.",
+        "marks": 0.5,
+        "partial_credit": "Half if only the decay or only the loop/stopping condition is given."
+      }
+    ],
+    "notes": "Full marks need the steps in a sensible order: initialise and sample, find the winner by similarity matching, update the winner and its neighbours using the neighbourhood function, reduce neighbourhood and learning rate, and repeat until convergence. Give part marks for steps that are vague or only partly stated. Give no marks for steps that are wrong (e.g. backpropagation or error-correction updates) or off-topic; pseudo-code syntax is not important.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

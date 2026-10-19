@@ -1,0 +1,29 @@
+{
+  "question_key": "digiklausur/12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Structure: a bipartite graph / two layers (visible and hidden) of binary neurons, connected recurrently (no connections within a layer).",
+        "marks": 0.75,
+        "partial_credit": "Half if only layers named or only 'bipartite' without visible/hidden."
+      },
+      {
+        "id": "P2",
+        "description": "Core mechanism: neurons' binary states are flipped/set stochastically, with a probability determined by the neuron's activation.",
+        "marks": 0.75,
+        "partial_credit": "Half if stochastic/binary mentioned but link to activation-based probability is missing or vague."
+      },
+      {
+        "id": "P3",
+        "description": "Two phases/states: clamped state (visible neurons connected to/fixed by the input) and free-running state (both layers run freely).",
+        "marks": 0.5,
+        "partial_credit": "Half if only one of the two states is correctly described."
+      }
+    ],
+    "notes": "Full marks need the bipartite visible/hidden structure, stochastic binary neuron updates driven by activation probability, and the clamped vs free-running states. Give part marks for ideas stated vaguely or with only one half present. Give no marks for descriptions of other networks (e.g. feed-forward or Hopfield only) with none of these ideas. Different wording is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

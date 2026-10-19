@@ -1,0 +1,29 @@
+{
+  "question_key": "digiklausur/17",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bias-variance dilemma is a trade-off in supervised learning between model bias and variance (of the model's fit to the data): reducing one tends to increase the other.",
+        "marks": 0.5,
+        "partial_credit": "Half if only mentions bias and variance without the trade-off/opposing relationship."
+      },
+      {
+        "id": "P2",
+        "description": "Explains the two sides: high bias/low variance... specifically, per the model answer, one extreme fits the training data very closely but with high variance, while the other has lower variance but the model does not fit the data well (underfits).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one side is explained correctly or the description is vague."
+      },
+      {
+        "id": "P3",
+        "description": "States the consequence: the trade-off makes good generalization difficult to achieve.",
+        "marks": 0.5,
+        "partial_credit": "Half if generalization is mentioned only vaguely (e.g. 'performs badly on new data') without the link to the dilemma."
+      }
+    ],
+    "notes": "Full marks: the trade-off between bias and variance is stated, both sides are explained (close fit with high variance vs. lower variance with poor fit), and generalization difficulty is mentioned. Part marks for vague or one-sided explanations or a minor error. No marks for answers that do not link bias and variance as a trade-off. Accept the standard textbook wording (low bias/high variance = overfitting) as equivalent if the trade-off is correct.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

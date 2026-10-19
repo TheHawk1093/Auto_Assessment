@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that steepest descent is used to update the weights/parameters of the network during the learning (training) phase.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that its purpose is to navigate the cost function to find the parameters/weights for which the cost is minimum (minimises the cost function).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that weights are updated in the direction of steepest descent, i.e. opposite to the gradient vector (negative gradient) of the cost function.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States a limitation: it can get stuck in local minima and/or may become unstable.",
+        "marks": 0.5,
+        "partial_credit": "Only one of local minima or instability named correctly is sufficient for full marks; vague 'has problems' earns nothing."
+      }
+    ],
+    "notes": "Each point needs an explicit, correct statement; vague wording such as 'it improves the network' earns nothing. Saying the update is along the gradient (not opposite) or in the wrong direction cancels P3. Award 2 marks only if all four elements are stated precisely, using terms like weights, cost function, gradient vector and local minima.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

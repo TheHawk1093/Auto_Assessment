@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/15",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the three items learned in an RBF network: centers, weights, and biases (in any wording, e.g. centre positions, output weights, bias term).",
+        "marks": 1.0,
+        "partial_credit": "Half if two of the three items are given correctly."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a difference from other NNs and/or a pro or con of RBFN, e.g. single hidden layer with linear output (vs. multiple hidden layers/non-linear output), universal approximator, easy to add centers, or bias not unique.",
+        "marks": 1.0,
+        "partial_credit": "Half if only a vague or partial comparison/pro/con is given, or only one of difference or pros/cons is mentioned very briefly."
+      }
+    ],
+    "notes": "Full marks: the three learned items (centers, weights, biases) plus a correct difference or pro/con of RBFN in any wording. Part marks: two of the three items, or a vague comparison or pro/con. No marks for wrong or off-topic content; extra incorrect remarks do not cost marks unless they contradict the main idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

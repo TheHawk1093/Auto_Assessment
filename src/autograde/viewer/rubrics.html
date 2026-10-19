@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rubrics</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+:root {
+  --bg: #f7f7f9; --card: #ffffff; --ink: #1c1d21; --muted: #666a73; --line: #e2e3e8;
+  --accent: #2457c5; --accent-soft: #e6edfb; --good: #1d7a3e; --good-soft: #e3f4e8;
+  --warn: #a15c00; --warn-soft: #fdf0dc; --bad: #b3261e; --bad-soft: #fbe6e4;
+  --len: #1d7a3e; --mod: #2457c5; --har: #b3261e;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --mono: ui-monospace, "SF Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121316; --card: #1b1c20; --ink: #ececf0; --muted: #9a9ca6; --line: #32343b;
+    --accent: #8aa9ff; --accent-soft: #232c45; --good: #6fd08c; --good-soft: #1d3326;
+    --warn: #f0b45a; --warn-soft: #3a2d15; --bad: #ff8f86; --bad-soft: #3b1f1d;
+    --len: #6fd08c; --mod: #8aa9ff; --har: #ff8f86;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font); }
+header, main { max-width: 1400px; margin: 0 auto; padding: 16px 20px; }
+h1 { font-size: 20px; margin: 0 0 4px; } .sub { color: var(--muted); margin: 0; font-size: 14px; }
+.tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); padding: 0 20px; max-width: 1400px; margin: 0 auto; overflow-x: auto; }
+.tab { border: 1px solid transparent; border-bottom: none; background: none; color: var(--muted); font: 600 14px var(--font); padding: 10px 16px; cursor: pointer; border-radius: 8px 8px 0 0; white-space: nowrap; }
+.tab.on { background: var(--card); color: var(--accent); border-color: var(--line); box-shadow: inset 0 3px 0 var(--accent); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; }
+.card > h2 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.policy { white-space: pre-wrap; font-size: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { border-bottom: 1px solid var(--line); padding: 7px 9px; text-align: center; }
+th { color: var(--muted); font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+td.l, th.l { text-align: left; }
+.layout { display: grid; grid-template-columns: 290px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .rail { max-height: 240px; } }
+.rail { display: grid; gap: 6px; position: sticky; top: 8px; max-height: calc(100vh - 20px); overflow: auto; align-content: start; }
+.rail input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); width: 100%; position: sticky; top: 0; }
+.q { text-align: left; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px; padding: 7px 10px; cursor: pointer; font: 13px/1.4 var(--font); }
+.q.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.q .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.q small { color: var(--muted); }
+.q-text { font-weight: 600; margin: 0 0 10px; white-space: pre-wrap; }
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; background: var(--bg); white-space: pre-wrap; word-break: break-word; font-size: 14px; max-height: 200px; overflow: auto; margin-bottom: 12px; }
+.lab { font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 5px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 1100px) { .three { grid-template-columns: 1fr; } }
+.lv { border: 1px solid var(--line); border-top-width: 4px; border-radius: 10px; padding: 10px 12px; background: var(--card); }
+.lv.lenient { border-top-color: var(--len); } .lv.moderate { border-top-color: var(--mod); } .lv.harsh { border-top-color: var(--har); }
+.lv h3 { margin: 0 0 6px; font-size: 15px; text-transform: capitalize; display: flex; justify-content: space-between; }
+.notes { background: var(--accent-soft); border-radius: 8px; padding: 7px 10px; font-size: 14px; margin-bottom: 8px; }
+.pt { border-top: 1px solid var(--line); padding: 7px 0; font-size: 14px; }
+.pt b { font-family: var(--mono); } .pt .m { float: right; font: 600 12px var(--mono); color: var(--muted); }
+.pt .p { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.chip { font: 600 12px var(--mono); padding: 2px 7px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); white-space: nowrap; }
+.chip.lenient { color: var(--len); border-color: var(--len); } .chip.moderate { color: var(--mod); border-color: var(--mod); } .chip.harsh { color: var(--har); border-color: var(--har); }
+.ans { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; background: var(--card); }
+.ans .marks { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; align-items: center; }
+details { margin-top: 6px; } summary { cursor: pointer; color: var(--accent); font-size: 14px; }
+.fb { border-left: 4px solid var(--line); padding-left: 10px; margin: 6px 0; font-size: 14px; }
+.fb.lenient { border-color: var(--len); } .fb.moderate { border-color: var(--mod); } .fb.harsh { border-color: var(--har); }
+.fb .tag { font: 600 11px var(--mono); text-transform: uppercase; }
+.note { color: var(--muted); font-size: 13px; } .none { color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
+<header><h1 id="title">Rubrics</h1>
+<p class="sub">For each dataset: how its teacher marks, then every question's rubric at three strictness levels. Where the same answers were marked under each rubric, the marks and feedback are shown underneath.</p></header>
+<div class="tabs" id="tabs"></div>
+<main id="main"></main>
+
+<script>window.DATA = /*__DATA__*/null;</script>
+<script>
+(function () {
+  var D = window.DATA, setIdx = 0, qIdx = 0, filter = "";
+  var LV = ["lenient", "moderate", "harsh"];
+  function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+  function fmt(x) { return x == null ? "-" : (Math.round(x * 100) / 100).toString(); }
+  function pct(x) { return x == null ? "-" : (Math.round(x * 1000) / 10) + "%"; }
+  function math(node) {
+    if (!window.renderMathInElement) return;
+    try { window.renderMathInElement(node, { delimiters: [{ left: "$$", right: "$$", display: true }, { left: "\\(", right: "\\)", display: false }, { left: "$", right: "$", display: false }], throwOnError: false }); } catch (e) { /* keep raw */ }
+  }
+  function card(title) { var c = el("section", "card"); c.appendChild(el("h2", "", title)); return c; }
+
+  function compliance(set) {
+    var c = set.compliance;
+    if (!c) return null;
+    var card1 = card("Does grading follow the rubric? Same answers, marked under each rubric");
+    var t = el("table"), hr = el("tr");
+    ["Rubric level", "Answers", "Average mark (share of total)", "Teacher's average", "Gap to teacher", "Bias", "Gaps named per answer", "Feedback words"].forEach(function (h, i) { hr.appendChild(el("th", i === 0 ? "l" : "", h)); });
+    t.appendChild(hr);
+    LV.forEach(function (lv) {
+      var s = c.levels[lv]; if (!s) return;
+      var r = el("tr"), n = el("td", "l"); n.appendChild(el("span", "chip " + lv, lv)); r.appendChild(n);
+      [s.n, pct(s.mean_mark_share), pct(s.teacher_mean_share), pct(s.error), (s.bias > 0 ? "+" : "") + pct(s.bias), s.improvements_per_answer, s.feedback_words].forEach(function (x) { r.appendChild(el("td", "", String(x))); });
+      t.appendChild(r);
+    });
+    card1.appendChild(t);
+    if (c.ordering) {
+      var o = c.ordering;
+      card1.appendChild(el("p", "note", "Per answer: marks never rose as the rubric got harsher for " + pct(o.share_never_rising_with_strictness) + " of answers, and fell strictly at every step for " + pct(o.share_strictly_falling) + ". On average lenient minus harsh is " + pct(o.mean_lenient_minus_harsh) + " of the total marks. A grader that follows the rubric shows falling averages from lenient to harsh."));
+    }
+    return card1;
+  }
+
+  function levelBox(lv, rb) {
+    var b = el("div", "lv " + lv), h = el("h3"); h.appendChild(el("span", "", lv));
+    if (!rb) { b.appendChild(h); b.appendChild(el("div", "none", "Not generated yet.")); return b; }
+    var total = rb.points.reduce(function (a, p) { return a + p.marks; }, 0);
+    h.appendChild(el("span", "chip", rb.points.length + " points, " + fmt(total) + " marks")); b.appendChild(h);
+    if (rb.notes) b.appendChild(el("div", "notes", rb.notes));
+    rb.points.forEach(function (p) {
+      var d = el("div", "pt"); d.appendChild(el("span", "m", fmt(p.marks) + " marks"));
+      d.appendChild(el("b", "", p.id + " ")); d.appendChild(document.createTextNode(p.description));
+      if (p.partial) d.appendChild(el("div", "p", "Part marks: " + p.partial));
+      b.appendChild(d);
+    });
+    return b;
+  }
+
+  function gradedBlock(q) {
+    if (!q.graded.length) return null;
+    var c = card("The same " + q.graded.length + " answer" + (q.graded.length > 1 ? "s" : "") + " marked under each rubric");
+    q.graded.forEach(function (g) {
+      var a = el("div", "ans"); a.appendChild(el("div", "box", g.student_answer || "(empty)"));
+      var m = el("div", "marks"); m.appendChild(el("span", "chip", "teacher " + fmt(g.human_mark) + " / " + fmt(q.max_mark)));
+      LV.forEach(function (lv) { m.appendChild(el("span", "chip " + lv, lv + " " + fmt(g.levels[lv].predicted))); });
+      a.appendChild(m);
+      var det = el("details"); det.appendChild(el("summary", "", "Feedback under each rubric"));
+      LV.forEach(function (lv) {
+        var fb = g.levels[lv].feedback, f = el("div", "fb " + lv); f.appendChild(el("div", "tag", lv + " (" + (g.levels[lv].status.map(function (s) { return s[0] + " " + s[1]; }).join(", ") || "no verdicts") + ")"));
+        if (!fb) f.appendChild(el("div", "none", "No feedback."));
+        else {
+          fb.strengths.forEach(function (x) { f.appendChild(el("div", "", "+ " + x)); });
+          fb.improvements.forEach(function (x) { f.appendChild(el("div", "", "- " + x.issue + (x.why ? " Why: " + x.why : "") + " Try: " + x.fix)); });
+          f.appendChild(el("div", "note", fb.summary));
+        }
+        det.appendChild(f);
+      });
+      a.appendChild(det); c.appendChild(a);
+    });
+    return c;
+  }
+
+  function draw() {
+    var tabs = document.getElementById("tabs"); tabs.innerHTML = "";
+    D.sets.forEach(function (s, i) { var b = el("button", "tab" + (i === setIdx ? " on" : ""), s.name + " (" + s.questions.length + " questions)"); b.onclick = function () { setIdx = i; qIdx = 0; filter = ""; draw(); }; tabs.appendChild(b); });
+    var main = document.getElementById("main"); main.innerHTML = "";
+    var set = D.sets[setIdx];
+    var pc = card("How this exam is marked, and what each level means here (written from marked examples)");
+    pc.appendChild(el("div", "policy", set.policy || "(no policy written)"));
+    pc.appendChild(el("p", "note", "Total marks per question: " + fmt(set.max_mark) + ". Edit src/autograde/prompts/policy." + set.name.toLowerCase() + ".system.md to change this and the rubrics will follow when regenerated."));
+    main.appendChild(pc);
+    var cp = compliance(set); if (cp) main.appendChild(cp);
+
+    var layout = el("div", "layout"), rail = el("div", "rail"), body = el("div", "stack");
+    var inp = el("input"); inp.placeholder = "Filter questions..."; inp.value = filter;
+    inp.oninput = function () { filter = inp.value.toLowerCase(); drawRail(); };
+    rail.appendChild(inp);
+    var list = el("div"); list.style.display = "grid"; list.style.gap = "6px"; rail.appendChild(list);
+    function drawRail() {
+      list.innerHTML = "";
+      set.questions.forEach(function (q, i) {
+        if (filter && q.question.toLowerCase().indexOf(filter) < 0) return;
+        var b = el("button", "q" + (i === qIdx ? " on" : "")); b.appendChild(el("div", "t", q.question));
+        b.appendChild(el("small", "", q.n_answers + " answers" + (q.graded.length ? ", " + q.graded.length + " marked under all rubrics" : "")));
+        b.onclick = function () { qIdx = i; drawBody(); drawRail(); }; list.appendChild(b);
+      });
+    }
+    function drawBody() {
+      body.innerHTML = "";
+      var q = set.questions[qIdx];
+      var c = card("Question and model answer");
+      c.appendChild(el("p", "q-text", q.question));
+      c.appendChild(el("div", "lab", "Model answer")); c.appendChild(el("div", "box", q.model_answer));
+      var three = el("div", "three"); LV.forEach(function (lv) { three.appendChild(levelBox(lv, q.levels[lv])); });
+      c.appendChild(three); body.appendChild(c);
+      var g = gradedBlock(q); if (g) body.appendChild(g);
+      math(body);
+    }
+    layout.appendChild(rail); layout.appendChild(body); main.appendChild(layout);
+    drawRail(); drawBody();
+  }
+  document.getElementById("title").textContent = D.title; document.title = D.title;
+  window.__redraw = function () { math(document.getElementById("main")); };
+  draw();
+})();
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="if(window.__redraw)window.__redraw()"></script>
+</body>
+</html>

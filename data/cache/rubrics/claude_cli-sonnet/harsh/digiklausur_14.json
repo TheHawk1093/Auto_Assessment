@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a CNN has a convolutional layer in which kernels (filters) convolve over the input image.",
+        "marks": 0.5,
+        "partial_credit": "Convolutional layer named but kernels/convolving over the input not stated."
+      },
+      {
+        "id": "P2",
+        "description": "States that an activation layer follows, using ReLU activation.",
+        "marks": 0.5,
+        "partial_credit": "Activation layer named without ReLU."
+      },
+      {
+        "id": "P3",
+        "description": "States a pooling layer, with max or average pooling named.",
+        "marks": 0.5,
+        "partial_credit": "Pooling layer named without max/average type."
+      },
+      {
+        "id": "P4",
+        "description": "States one or more fully connected layers followed by a softmax layer (output).",
+        "marks": 0.5,
+        "partial_credit": "Fully connected layers named without softmax, or softmax without fully connected layers."
+      }
+    ],
+    "notes": "Each of the four elements must be explicit and use the correct term: convolutional layer with kernels, ReLU activation, pooling (max/average), fully connected layers then softmax. Vague wording such as \"layers that process the image\" earns nothing for that point; part marks only where the point is more than half stated. A wrong statement (e.g. softmax placed before the convolution, or pooling described as something else) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

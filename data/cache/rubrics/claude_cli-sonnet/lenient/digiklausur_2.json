@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Inputs are connected via synapses/links, each with a weight, and an adder (linear combiner) computes the weighted sum of the inputs plus a bias (local field).",
+        "marks": 1.0,
+        "partial_credit": "Half if only weighted inputs or only the sum is mentioned, without weights/bias clearly described."
+      },
+      {
+        "id": "P2",
+        "description": "An activation (squashing) function is applied to the sum to limit the amplitude of the neuron's output.",
+        "marks": 1.0,
+        "partial_credit": "Half if an activation function is named but its role is not given, or the role is described vaguely."
+      }
+    ],
+    "notes": "Full marks for stating, in any wording, that inputs are weighted, summed with a bias, and passed through an activation function that limits the output. Give part marks for answers that are on the right track but vague or missing one part, such as no bias or no role for the activation. Give no marks for answers unrelated to weighted sum plus activation. Exact technical terms are not required.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

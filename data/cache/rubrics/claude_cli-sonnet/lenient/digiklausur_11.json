@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Role of the learning rate: it controls the step size/speed of convergence (small rate gives slow convergence; larger rate gives faster convergence, possibly oscillating/zigzagging).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it affects learning/convergence without mentioning speed or step size."
+      },
+      {
+        "id": "P2",
+        "description": "Danger: if the learning rate is too high (exceeds a critical value), learning becomes unstable/diverges (oscillation or zigzagging may be mentioned).",
+        "marks": 1.0,
+        "partial_credit": "Half if only mentions zigzagging/oscillation or overshooting without instability or divergence, or only says too-small rate is slow."
+      }
+    ],
+    "notes": "Full marks: says the learning rate sets the step size/speed of convergence, and that too large a rate causes instability/divergence (or overshooting). Part marks: vague answers, e.g. only slow vs fast, or only zigzagging without instability. No marks for unrelated or wrong claims. Technical terms like overdamped/underdamped are not required.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

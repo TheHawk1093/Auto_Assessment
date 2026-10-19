@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM is a linear learning machine (linear classifier) in the simplest case, which classifies data into classes using a decision boundary (hyperplane) with maximum margin.",
+        "marks": 0.75,
+        "partial_credit": "Half if only the decision boundary/hyperplane is named, or only 'maximum margin' is stated without the decision boundary (clearly more than half required)."
+      },
+      {
+        "id": "P2",
+        "description": "States that the data points closest to the decision boundary are called support vectors, and that the margin is determined by these points.",
+        "marks": 0.5,
+        "partial_credit": "Half if 'support vectors' is named but their role in determining the margin or their closeness to the boundary is missing."
+      },
+      {
+        "id": "P3",
+        "description": "States that kernels (kernel trick) are used to handle non-linearly separable data.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the SVM optimisation problem is solved using Quadratic Programming.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the maximum-margin decision boundary, support vectors (close points defining the margin), kernels for non-linear data, and quadratic programming, all with correct technical terms. Vague wording such as 'a line that separates data' without margin or terms earns nothing for that point. Any wrong statement inside a point (e.g. support vectors as the farthest points) cancels that point. Total is capped at 2.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

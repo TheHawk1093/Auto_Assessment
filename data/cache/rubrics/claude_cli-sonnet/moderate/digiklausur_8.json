@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the hypothesis h must handle every possible labeling of the dataset A: for all 2^N possible binary (positive/negative) labelings of the N data points.",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions labelings/assignments of positive and negative but omits 'all' or 2^N, or is vague about covering every labeling."
+      },
+      {
+        "id": "P2",
+        "description": "States that for each such labeling, h separates the positive from the negative points with no error (classifies all points correctly); hence h shatters A.",
+        "marks": 1.0,
+        "partial_credit": "Half if it says h separates/classifies the data but does not say without error, or implies it only for some labelings."
+      }
+    ],
+    "notes": "Full marks need both ideas: every one of the 2^N binary labelings, and h separates positives from negatives with zero error. Give part marks when one idea is vague or incomplete (e.g. 'h can separate the data' with no mention of all labelings). Give no marks for answers that describe something else, such as a single labeling only or VC dimension without the definition. Wording may differ; an equivalent formal statement is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

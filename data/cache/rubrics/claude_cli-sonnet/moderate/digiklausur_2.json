@@ -1,0 +1,29 @@
+{
+  "question_key": "digiklausur/2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Synapses / connecting links, each characterized by a weight (applied to the inputs).",
+        "marks": 0.5,
+        "partial_credit": "Mentions inputs or connections but not weights."
+      },
+      {
+        "id": "P2",
+        "description": "Adder / linear combiner computes the weighted sum of the inputs (local field) plus a bias.",
+        "marks": 1.0,
+        "partial_credit": "Weighted sum given but bias missing, or adder named without saying what it computes."
+      },
+      {
+        "id": "P3",
+        "description": "Activation (squashing) function limits the amplitude of the neuron's output.",
+        "marks": 0.5,
+        "partial_credit": "Names an activation function but does not say it limits/squashes the output."
+      }
+    ],
+    "notes": "Full marks need all three components: weighted synapses, an adder (linear combiner) giving the weighted sum plus bias, and an activation (squashing) function limiting output amplitude. Give part marks when a component is vague or one element (e.g. bias) is missing. Give no marks for a biological description of a neuron or wrong components. Different wording is fine if the technical terms are used.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

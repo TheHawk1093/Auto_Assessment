@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/13",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an ESN is a type of Recurrent Neural Network (RNN) that has at least one cyclic/feedback connection (both the RNN classification and the cyclic/feedback connection must be stated).",
+        "marks": 0.5,
+        "partial_credit": "Only one of the two (RNN, or cyclic/feedback connection) stated precisely earns no marks; both are required."
+      },
+      {
+        "id": "P2",
+        "description": "States that only the weights of the output layer are updated/trained during learning (other weights are not trained).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Difference 1: ESN has feedback (recurrent) connections whereas a FF NN does not (signals flow only forward).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Difference 2: ESN can approximate dynamic systems whereas a FF NN cannot.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each point needs an explicit, correct statement using the terms recurrent/feedback (cyclic) connection, output layer weights, and dynamic systems. Vague wording (e.g. \"ESN has memory\", \"ESN is more complex\") earns nothing, and a wrong statement inside a point (e.g. saying all weights are trained, or that ESN is feed-forward) cancels that point. Total is the sum of points earned, out of 2.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

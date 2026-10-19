@@ -1,0 +1,35 @@
+{
+  "question_key": "digiklausur/12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the RBM is a bipartite (bi-parted) graph with a visible layer and a hidden layer of neurons (no connections within a layer), with recurrent/symmetric connections between the layers.",
+        "marks": 0.5,
+        "partial_credit": "Half only if bipartite/visible-and-hidden layers are named but the recurrent connection between them is missing."
+      },
+      {
+        "id": "P2",
+        "description": "States that the neurons are binary and work by flipping/changing their states (on/off).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the flip of a neuron's state is probabilistic (stochastic), with the probability determined by the neuron's activation.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States the two phases/states: the clamped state, where the visible neurons are connected to (clamped to) the input, and the free-running state, where both visible and hidden layers run freely.",
+        "marks": 0.5,
+        "partial_credit": "Half if only one of the two states is correctly described, or both are named without explanation."
+      }
+    ],
+    "notes": "Each of the four elements must be stated explicitly with the correct terms (bipartite, visible/hidden, binary, probability from activation, clamped, free-running). Vague wording such as \"it learns patterns\" earns nothing for a point. A wrong statement within a point (e.g. deterministic updates, or connections within a layer) cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

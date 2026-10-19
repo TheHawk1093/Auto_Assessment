@@ -1,0 +1,29 @@
+{
+  "question_key": "digiklausur/8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the condition must hold for ALL possible labelings of the data points in A, i.e. all 2^N binary (positive/negative) labelings for N data points.",
+        "marks": 0.75,
+        "partial_credit": "Says 'all labelings' or 'every labeling' but does not give 2^N or binary/positive-negative labels (or vice versa); 0.4"
+      },
+      {
+        "id": "P2",
+        "description": "States that for each such labeling there is a hypothesis h (in H) that separates/splits the positive data from the negative data.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the separation is with no error (zero misclassification, perfectly correct on every point of A).",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all three elements stated explicitly: all 2^N binary labelings, h splits positives from negatives, and with no error. Vague wording such as 'h classifies the data well' or 'h works on the dataset' earns nothing for that point. A wrong statement (e.g. only some labelings, or allowing errors) cancels the relevant point; part marks only where P1 is clearly more than half stated.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

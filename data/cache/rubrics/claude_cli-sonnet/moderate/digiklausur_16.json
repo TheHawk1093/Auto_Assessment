@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the setup and neighbour step: the new data point is placed among the existing labelled (classified/coloured) data, and its k nearest data points (neighbours, by distance) are found/selected.",
+        "marks": 1.0,
+        "partial_credit": "Half if neighbours are mentioned but k or distance/nearest is vague, or the labelled training data is not mentioned."
+      },
+      {
+        "id": "P2",
+        "description": "Describes the decision step: a majority vote among the k neighbours' classes is taken, and the new point is assigned to the class with the maximum votes. Steps are presented as pseudo-code (or clearly ordered steps).",
+        "marks": 1.0,
+        "partial_credit": "Half if the voting/assignment is vague (e.g. 'assign to the most similar class') or no pseudo-code/ordered steps are given."
+      }
+    ],
+    "notes": "Full marks: ordered steps (pseudo-code or clear sequence) that find the k nearest labelled points to the new point and assign the class with the most votes among them. Part marks: one step is vague or missing a key term such as k, nearest or vote. No marks: wrong algorithm (e.g. clustering without labels or no neighbours) or off-topic. The model answer's word 'unsupervised' is a slip, so do not require it or penalise its absence.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

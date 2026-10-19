@@ -1,0 +1,23 @@
+{
+  "question_key": "digiklausur/17",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the tradeoff: high bias (simple/underfitting model) goes with low variance and low bias (flexible model) goes with high variance, so reducing one tends to increase the other. Wording may be informal. The model answer's own wording (high bias gives a perfect training fit and high variance) is also accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half if only bias or only variance is described, or the trade-off is stated vaguely without saying how they relate."
+      },
+      {
+        "id": "P2",
+        "description": "Links the tradeoff to fit and generalization: it is hard to get a model that fits the training data well and also generalizes to new data (over/underfitting).",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions only fit to the data or only generalization, or is vague."
+      }
+    ],
+    "notes": "Full marks for saying in any wording that bias and variance pull against each other and that this makes good generalization hard. Give part marks for an answer that describes only bias or only variance, or one that is vague but on topic. Give no marks for an unrelated or wrong answer.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

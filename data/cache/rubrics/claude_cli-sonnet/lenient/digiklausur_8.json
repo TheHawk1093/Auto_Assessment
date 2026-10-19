@@ -1,0 +1,17 @@
+{
+  "question_key": "digiklausur/8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that h shatters A if, for every possible labeling of the points in A (all 2^N positive/negative assignments), h can classify them correctly, i.e. separate positives from negatives with no error.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only partly stated: e.g. h separates positives from negatives without error but 'all possible labelings' is missing, or all labelings is mentioned but the no-error separation is vague."
+      }
+    ],
+    "notes": "Full marks for saying that, for every possible labeling (2^N) of the dataset, the hypothesis can separate positive from negative points with no error, in any wording. Give 1 mark if only one half is clear (no-error separation, or all labelings) or the wording is vague. Give 0 if the answer is unrelated or contradicts the idea (e.g. only one labeling is classified correctly).",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
