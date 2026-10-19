@@ -163,3 +163,48 @@ def test_form_gate_zeroes_incoherent_and_caps_keyword_lists():
     same, flag = apply_form_gate(g, reading("short_answer"), 2.0)
     assert same.total == 2.0 and flag is None
     assert apply_form_gate(g, None, 2.0) == (g, None)
+
+
+def test_level_changes_policy_weight_and_prompt():
+    from autograde.pipeline.levels import (
+        LEVEL_PARTIAL_WEIGHT,
+        LEVEL_POLICY,
+        level_prompt,
+    )
+    from autograde.pipeline.rubric import rubric_prompt
+
+    assert (
+        LEVEL_PARTIAL_WEIGHT["lenient"]
+        > LEVEL_PARTIAL_WEIGHT["moderate"]
+        > LEVEL_PARTIAL_WEIGHT["harsh"]
+    )
+    assert set(LEVEL_POLICY) == {"lenient", "moderate", "harsh"}
+    text = rubric_prompt("harsh", "saf")
+    assert "HARSH" in text and "Computer-networks" in text  # level text plus the dataset policy
+    assert "Neural-networks" in level_prompt("lenient", "digiklausur")
+    assert "Computer-networks" not in level_prompt("lenient", "unknown")
+
+
+def test_rubric_stance_is_shown_to_the_marker():
+    rub = Rubric(
+        points=[RubricPoint(id="P1", description="a", marks=1.0)],
+        notes="Full marks for the core idea.",
+        level="harsh",
+    )
+    assert rub.render().startswith("Marking stance: harsh. Full marks for the core idea.")
+    assert Rubric(points=[RubricPoint(id="P1", description="a", marks=1.0)]).stance() == ""
+
+
+def test_compliance_orders_levels():
+    from autograde.evaluation.compliance import compliance
+
+    def run(mark: float) -> list[Result]:
+        item = Item(
+            id="1", dataset="d", question_id="q", question="Q?", model_answer="M",
+            student_answer="S", max_mark=2, human_mark=1,
+        )  # fmt: skip
+        return [Result(item=item, mode="pipeline", predicted_mark=mark)]
+
+    out = compliance({"lenient": run(2.0), "moderate": run(1.5), "harsh": run(0.5)})
+    assert out["ordering"]["share_strictly_falling"] == 1.0
+    assert out["ordering"]["mean_lenient_minus_harsh"] == 0.75

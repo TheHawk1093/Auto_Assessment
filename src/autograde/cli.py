@@ -13,6 +13,7 @@ from autograde.config import PipelineConfig, Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.datasets.download import download_all, download_engsaf
 from autograde.datasets.perturb import perturb_items
+from autograde.evaluation.compliance import compliance
 from autograde.evaluation.experiments import (
     comparisons,
     prompt_fingerprint,
@@ -31,6 +32,7 @@ from autograde.evaluation.voting import review_report, vote_report
 from autograde.llm import build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
+from autograde.pipeline.levels import LEVELS
 from autograde.pipeline.rescore import rescore
 from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import mark_item, read_results, run_items, to_question
@@ -120,6 +122,17 @@ def _parser() -> argparse.ArgumentParser:
     rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
     rv.add_argument("--name", required=True)
     rv.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
+
+    rb = sub.add_parser("rubrics", help="write rubrics at each strictness level for a dataset")
+    rb.add_argument("--dataset", required=True, choices=sorted(LOADERS))
+    rb.add_argument("--levels", default=",".join(LEVELS), help="comma separated")
+    rb.add_argument("--limit", type=int, help="only the first N questions (a trial)")
+
+    co = sub.add_parser("compliance", help="do marks and feedback move with rubric strictness")
+    co.add_argument(
+        "--run", action="append", required=True, metavar="LEVEL=RUN",
+        help="repeat once per level, for example lenient=dk_lenient",
+    )  # fmt: skip
 
     cp = sub.add_parser("compare", help="one page, one tab per run, the same N answers in each")
     cp.add_argument(
@@ -359,6 +372,21 @@ def _cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
     print(json.dumps(out, indent=2))
 
 
+def _cmd_rubrics(args: argparse.Namespace, settings: Settings) -> None:
+    items = load_dataset(args.dataset, settings.paths.data_dir)
+    questions = {}
+    for item in items:
+        questions.setdefault(item.question_key, to_question(item))
+    keys = sorted(questions)[: args.limit]
+    client = build_client(settings.llm)
+    for level in args.levels.split(","):
+        store = RubricStore(settings.paths.cache_dir, client, run_selftest=False, variant=level)
+        with ThreadPoolExecutor(settings.pipeline.max_workers) as pool:
+            list(pool.map(store.get, [questions[k] for k in keys]))
+        print(f"{args.dataset} {level}: {len(keys)} rubrics ready")
+    print("cost so far:", round(client.usage.cost_usd, 2))
+
+
 def _cmd_compare(args: argparse.Namespace, settings: Settings) -> None:
     tabs = []
     for spec in args.run:
@@ -486,6 +514,14 @@ def main(argv: list[str] | None = None) -> None:
     elif args.cmd == "report":
         results = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
         print(json.dumps(report(results), indent=2))
+    elif args.cmd == "rubrics":
+        _cmd_rubrics(args, settings)
+    elif args.cmd == "compliance":
+        runs = {}
+        for spec in args.run:
+            level, _, name = spec.partition("=")
+            runs[level] = read_results(settings.paths.runs_dir / name / "results.jsonl")
+        print(json.dumps(compliance(runs), indent=2))
     elif args.cmd == "compare":
         _cmd_compare(args, settings)
     elif args.cmd == "refeedback":
