@@ -88,7 +88,9 @@ def _parser() -> argparse.ArgumentParser:
     rf.add_argument("--name", required=True, help="source run")
     rf.add_argument("--new-name", required=True)
     rf.add_argument(
-        "--feedback", choices=["standard", "hints", "critique", "formal"], required=True
+        "--feedback",
+        choices=["standard", "hints", "critique", "formal", "brief", "detailed", "coach"],
+        required=True,
     )
     rf.add_argument("--n", type=int, default=1, help="drafts to write; the best is kept")
     rf.add_argument("--variant", required=True)

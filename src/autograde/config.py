@@ -27,7 +27,9 @@ class PipelineConfig(BaseModel):
     mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
     partial_weight: float = 0.9  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
-    feedback_variant: Literal["standard", "hints", "critique", "formal"] = "standard"
+    feedback_variant: Literal[
+        "standard", "hints", "critique", "formal", "brief", "detailed", "coach"
+    ] = "standard"
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins
     second_model: str | None = None  # a cheaper model also marks; a big gap flags the answer
     disagree_gap: float = 0.15  # share of the total marks that counts as a big gap

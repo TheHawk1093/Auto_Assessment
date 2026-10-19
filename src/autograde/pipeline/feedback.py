@@ -12,6 +12,7 @@ from autograde.schemas import Feedback, Grading, Item, Rubric
 from autograde.textutil import leakage
 
 MAX_WORDS = 220
+STYLES = ("hints", "formal", "brief", "detailed", "coach")  # one call each, own prompt file
 LEAK_LIMIT = {"hints": 0.1}  # share of the model answer's phrases allowed in the feedback
 DEFAULT_LEAK_LIMIT = 0.35
 
@@ -52,7 +53,7 @@ def problems(fb: Feedback, item: Item, grading: Grading, rubric: Rubric, variant
 def _draft(values: dict, variant: str, client: LLMClient) -> Feedback:
     """standard | hints | formal: one call. critique: a standard draft, then a review pass."""
     user = prompts.render("feedback.user", **values)
-    if variant in ("hints", "formal"):
+    if variant in STYLES:
         return client.ask(prompts.system(f"feedback.{variant}"), user, Feedback)
     draft = client.ask(prompts.system("feedback"), user, Feedback)
     if variant == "standard":
