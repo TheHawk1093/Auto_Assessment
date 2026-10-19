@@ -1,0 +1,1 @@
+The marking result begins with a marking stance. Match its severity in the feedback. Under a harsh stance, name every gap precisely and say exactly what was required. Under a moderate stance, name the gaps that cost marks. Under a lenient stance, stress what the student got right and mention only the gaps that cost marks, gently. Do not argue with the marks.

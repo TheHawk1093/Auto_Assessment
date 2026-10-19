@@ -25,6 +25,10 @@ def build_system(has_reading: bool, policy: str) -> str:
         parts.append(prompts.system("grade.reading"))
     if policy == "essence":
         parts.append(prompts.system("grade.essence"))
+    elif policy == "balanced":
+        parts.append(prompts.system("grade.balanced"))
+    elif policy == "strict":
+        parts.append(prompts.system("grade.strict"))
     return "\n\n".join(parts)
 
 

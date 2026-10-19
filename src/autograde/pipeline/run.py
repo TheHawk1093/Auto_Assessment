@@ -13,6 +13,7 @@ from autograde.llm import LLMClient, build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
+from autograde.pipeline.levels import LEVEL_PARTIAL_WEIGHT, LEVEL_POLICY
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore
 from autograde.pipeline.verify import apply_form_gate
@@ -43,6 +44,10 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
     """Stages 3 and 4 for one answer: read it, mark it (several times if voting), check it."""
     rubric = record.rubric
     weight = cfg.partial_weight if cfg.mark_rule == "status" else None
+    policy = cfg.policy
+    if rubric.level:  # a rubric written at a level makes the grader follow that level
+        policy = LEVEL_POLICY[rubric.level]
+        weight = LEVEL_PARTIAL_WEIGHT[rubric.level]
     if cfg.votes > 1 and weight is None:
         raise ValueError("votes > 1 needs mark_rule: status")
     reading = read_answer(item, client) if cfg.read_first else None
@@ -56,7 +61,7 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
             retries=cfg.grade_retries,
             reading=reading,
             evidence_policy=cfg.evidence_policy,
-            policy=cfg.policy,
+            policy=policy,
             partial_weight=weight,
         )
 

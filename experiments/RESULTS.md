@@ -50,6 +50,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-18 13:41 | v6-review | engsaf_s0_v6 | engsaf/test/n60/seed0 | pipeline | 0.158 | ▲ -0.022 | ▲ -0.005 | 0.029 | 0.78 | 0.77 | 17% | 2.14 | f53c937e |
 | 2026-10-19 16:13 | feedback-brief | dk_s0_fb_brief | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | ▲ -0.019 | -0.027 | 0.90 | 0.92 | 0% | 0.33 | 0ec7c5eb |
 | 2026-10-19 16:14 | feedback-detailed | dk_s0_fb_detailed | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.36 | 0ec7c5eb |
+| 2026-10-19 16:15 | feedback-coach | dk_s0_fb_coach | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.30 | 48bc24b0 |
 
 ## Variants
 
@@ -76,3 +77,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **v6-review**: final design + haiku second opinion flag. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": "haiku", "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
 - **feedback-brief**: same marks as dk_s0_v2b. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "brief", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-detailed**: same marks as dk_s0_v2b. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "detailed", "refeedback_from": "dk_s0_v2b"}`
+- **feedback-coach**: same marks as dk_s0_v2b. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "coach", "refeedback_from": "dk_s0_v2b"}`

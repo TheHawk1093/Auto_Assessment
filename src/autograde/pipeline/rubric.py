@@ -11,6 +11,7 @@ from pathlib import Path
 from autograde import prompts
 from autograde.llm import LLMClient
 from autograde.pipeline.grade import mark_answer
+from autograde.pipeline.levels import LEVELS, dataset_of, level_prompt
 from autograde.schemas import EPS, Question, Rubric, RubricRecord
 
 log = logging.getLogger(__name__)
@@ -20,8 +21,13 @@ NO_CREDIT_SHARE = 0.1  # a "don't know" answer must score at most this share
 NON_ANSWER = "I do not know."
 
 
-def rubric_prompt(variant: str) -> str:
-    """Scheme-writing prompt: rubric.system.md by default, else rubric.<variant>.system.md."""
+def rubric_prompt(variant: str, dataset: str = "") -> str:
+    """Scheme-writing prompt: rubric.system.md by default, rubric.<variant>.system.md otherwise.
+
+    A strictness level (lenient, moderate, harsh) uses the level prompt plus the dataset policy.
+    """
+    if variant in LEVELS:
+        return level_prompt(variant, dataset)
     return prompts.system("rubric" if variant == "generated" else f"rubric.{variant}")
 
 
@@ -38,9 +44,9 @@ def generate_rubric(
             max_mark=f"{question.max_mark:g}",
             extra=extra,
         )
-        rubric = client.ask(rubric_prompt(variant), user, Rubric)
+        rubric = client.ask(rubric_prompt(variant, dataset_of(question.key)), user, Rubric)
         if abs(rubric.total - question.max_mark) < EPS:
-            return rubric
+            return rubric.model_copy(update={"level": variant}) if variant in LEVELS else rubric
         extra = (
             f"{note}\nYour previous scheme added up to {rubric.total:g} marks. "
             f"It must add up to exactly {question.max_mark:g}.\n"

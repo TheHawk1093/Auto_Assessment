@@ -50,12 +50,18 @@ def problems(fb: Feedback, item: Item, grading: Grading, rubric: Rubric, variant
     return out
 
 
-def _draft(values: dict, variant: str, client: LLMClient) -> Feedback:
+def _system(name: str, stance: bool) -> str:
+    """A style's instructions, plus the note on matching the marking stance when there is one."""
+    text = prompts.system(name)
+    return text + "\n\n" + prompts.system("feedback.stance") if stance else text
+
+
+def _draft(values: dict, variant: str, client: LLMClient, stance: bool = False) -> Feedback:
     """standard | hints | formal: one call. critique: a standard draft, then a review pass."""
     user = prompts.render("feedback.user", **values)
     if variant in STYLES:
-        return client.ask(prompts.system(f"feedback.{variant}"), user, Feedback)
-    draft = client.ask(prompts.system("feedback"), user, Feedback)
+        return client.ask(_system(f"feedback.{variant}", stance), user, Feedback)
+    draft = client.ask(_system("feedback", stance), user, Feedback)
     if variant == "standard":
         return draft
     critique_user = prompts.render(
@@ -90,12 +96,13 @@ def write_feedback(
         student_answer=item.student_answer,
         total=f"{grading.total:g}",
         max_mark=f"{item.max_mark:g}",
-        marking=grading.render(rubric),
+        marking="\n".join(filter(None, [rubric.stance(), grading.render(rubric)])),
     )
+    stance = bool(rubric.level)
     if n <= 1:
-        return _draft(values, variant, client)
+        return _draft(values, variant, client, stance)
     with ThreadPoolExecutor(n) as pool:
-        drafts = list(pool.map(lambda _: _draft(values, variant, client), range(n)))
+        drafts = list(pool.map(lambda _: _draft(values, variant, client, stance), range(n)))
     clean = [d for d in drafts if not problems(d, item, grading, rubric, variant)]
     choices = clean or drafts  # if every draft has a problem, still pick the best of them
     if len(choices) == 1:

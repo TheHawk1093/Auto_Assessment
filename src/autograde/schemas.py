@@ -49,6 +49,13 @@ class Rubric(BaseModel):
     """The marking scheme: a short list of points whose marks add up to the question total."""
 
     points: list[RubricPoint] = Field(min_length=1)
+    notes: str = Field(
+        default="",
+        description="Two or three plain sentences: what earns full, part and no marks.",
+    )
+    level: Literal["lenient", "moderate", "harsh"] | None = Field(
+        default=None, description="Set by code: the strictness this rubric was written at."
+    )
 
     @model_validator(mode="after")
     def _unique_ids(self) -> Rubric:
@@ -61,8 +68,14 @@ class Rubric(BaseModel):
     def total(self) -> float:
         return round(sum(p.marks for p in self.points), 6)
 
+    def stance(self) -> str:
+        """The strictness and notes, as a short header for the marker. Empty if there are none."""
+        if not self.level and not self.notes:
+            return ""
+        return f"Marking stance: {self.level or 'standard'}. {self.notes}".strip()
+
     def render(self) -> str:
-        lines = []
+        lines = [self.stance()] if self.stance() else []
         for p in self.points:
             note = f" Partial credit: {p.partial_credit}" if p.partial_credit else ""
             lines.append(f"{p.id} ({p.marks:g} marks): {p.description}{note}")
