@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E06.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the four ways of passing a pointer to a function: non-constant pointer to constant data, non-constant pointer to non-constant data, constant pointer to constant data, constant pointer to non-constant data (any wording, e.g. 'pointer can/can't change, data can/can't change').",
+        "marks": 5.0,
+        "partial_credit": "Award about 1 mark per correct combination named (up to 4), or 2-3 marks if the answer only gives the general idea that the pointer and/or the data it points to can be constant or non-constant."
+      }
+    ],
+    "notes": "Full marks for naming all four combinations of constant/non-constant pointer with constant/non-constant data, in any wording, however brief. Part marks for naming some of the combinations or for saying only that the pointer and/or the data can be made const. No marks for unrelated answers such as pass by value or reference alone with no mention of const; extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

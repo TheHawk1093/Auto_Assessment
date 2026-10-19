@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size (in bytes) of its operand (a type or variable/object), in any wording.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2.5 for a related statement with half the fact, e.g. says it gives the 'size' or memory used without bytes/operand, or says it gives the length of an array/number of elements only."
+      }
+    ],
+    "notes": "Full marks for saying sizeof gives the size of a type or variable, ideally in bytes, in any brief or informal wording. Part marks for vague or incomplete answers, such as 'memory it takes' with no clear size idea, or only half the fact. No marks for unrelated answers, such as saying it returns the value or the type. Extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

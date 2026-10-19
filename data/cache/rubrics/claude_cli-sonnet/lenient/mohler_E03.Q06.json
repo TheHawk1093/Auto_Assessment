@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a cause of infinite recursion: the base case is missing (no stopping condition), and/or the recursive step is defined incorrectly so it does not move toward the base case. Any wording is accepted.",
+        "marks": 5.0,
+        "partial_credit": "Give about 3 marks if only one of the two causes is given; give 1-2 marks for a vague answer about the function never stopping or calling itself without a clear cause."
+      }
+    ],
+    "notes": "Full marks for naming the missing base case or an incorrect recursive step, in any wording. If the student gives only one of the two causes, give most of the marks. Give little or nothing for answers that only say the function keeps calling itself and name no cause. Extra remarks do not cost marks unless they contradict the central idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E04.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array persists for the whole life of the program (keeps its existence/values between function calls, initialized only once on first call), whereas a non-static array does not (it is created anew on each call and destroyed when the function ends).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks for a related but incomplete statement, e.g. only that static arrays are initialized once, or only that non-static arrays are destroyed/recreated on each call, or that static arrays keep their values without saying how long they live."
+      }
+    ],
+    "notes": "Full marks for saying, in any wording, that a static array lasts for the whole program (keeps values between calls, initialized once), unlike a normal array. Give part marks for a vague or half-correct statement, such as only one side of the contrast. Give none for answers about unrelated things, such as array size or syntax only. Extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

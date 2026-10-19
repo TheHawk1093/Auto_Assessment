@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E05.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the base case is when the array (sub-array) has size 1 (a single element); size 0 or 2 also acceptable. Any wording, e.g. 'when only one element is left'.",
+        "marks": 5.0,
+        "partial_credit": "2-3 marks if the answer is related but vague, e.g. says recursion stops when the array can't be divided further or is small/sorted, without naming size 1 (or 2)."
+      }
+    ],
+    "notes": "Full marks for saying the recursion stops when the (sub)array has one element, in any wording; mentioning size 2 or 0 as well is fine. Part marks for vague but on-track answers such as 'when the array can't be split any more' or 'when it's already sorted'. No marks for unrelated answers, such as describing the merge step only or naming a wrong size like half the array.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

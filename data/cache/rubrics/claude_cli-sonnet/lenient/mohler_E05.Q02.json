@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core idea: repeatedly find the minimum (smallest) element among the remaining/unsorted elements and swap/place it into the current position, moving left to right.",
+        "marks": 5.0,
+        "partial_credit": "Award 2\u20133 marks if only part is given, e.g. says it finds the smallest element or sorts by selecting elements one at a time, but omits the swap/placing at the current position (or vice versa)."
+      }
+    ],
+    "notes": "Full marks for stating, in any wording, that selection sort repeatedly finds the minimum of the remaining elements and swaps/places it at the current position. Part marks for an answer with only half of this (e.g. just 'finds the smallest element' or 'swaps elements into place') or a vague but on-track description. No marks for descriptions of other sorts (e.g. adjacent swaps, inserting into a sorted part) or unrelated statements.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

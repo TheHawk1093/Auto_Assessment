@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E02.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a header file holds/stores the class interface (declaration): the class's data members and member function prototypes/declarations, as opposed to the implementation.",
+        "marks": 5.0,
+        "partial_credit": "Award 2 to 4 if the answer is on the right track but incomplete or vague, e.g. says it contains declarations or function prototypes only, or says it holds the class definition/declarations without naming members or prototypes (more marks the closer it is to the class interface)."
+      }
+    ],
+    "notes": "Full marks for saying the header file stores the class interface/declaration (data members and function prototypes), in any wording, even briefly. Part marks for a related but incomplete statement, such as only function declarations, or \"declarations rather than implementation\". Give no marks if the answer only describes unrelated uses, such as \"it runs the program\", with no mention of declarations or the class interface. Extra remarks, like include guards or being included in .cpp files, do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E02.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler provides a default constructor when no constructor is defined in the class (optionally also that defining any constructor means no default one is created).",
+        "marks": 5.0,
+        "partial_credit": "Give about 2 to 3 marks if the answer only says the compiler creates a default constructor, or only says that none is created when a constructor is defined, without clearly giving the condition."
+      }
+    ],
+    "notes": "Full marks for saying the compiler supplies a default constructor when the class has no constructor of its own, in any wording. Part marks for a vague answer that gives only half of this, such as \"the compiler makes one automatically\" or \"not if you write your own constructor\". No marks for unrelated talk about constructors or a wrong condition.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

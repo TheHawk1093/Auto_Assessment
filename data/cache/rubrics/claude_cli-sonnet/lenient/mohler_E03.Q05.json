@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that overloaded functions are differentiated by their function signature (i.e. their parameter lists: number, types or order of parameters), with the compiler choosing the one that best/closest matches the call.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if the answer only vaguely refers to the function call/arguments matching or to differing parameters without mentioning signature, or mentions only the compiler matching the call without saying what is compared."
+      }
+    ],
+    "notes": "Full marks for saying the compiler tells them apart by signature, or by their parameters (number/types/order), in any wording. Part marks for vague answers, such as matching the call to a function without saying what is compared. Give no marks for unrelated ideas, such as differing only by return type or by function name alone.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

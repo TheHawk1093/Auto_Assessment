@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E07.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a linked list is a collection of elements (nodes/items linked together) that can be allocated dynamically (e.g., created at run time / size can grow or shrink, not fixed like an array).",
+        "marks": 5.0,
+        "partial_credit": "Give 2-3 marks if only half is stated: either a collection/sequence of linked elements or nodes with no mention of dynamic allocation, or dynamic allocation with no mention of a collection of elements."
+      }
+    ],
+    "notes": "Full marks for saying a linked list is a collection of elements (nodes) that is dynamically allocated or can grow and shrink at run time, in any wording, however brief. Part marks (2-3) if the answer gives only one half, such as nodes connected by pointers with no mention of dynamic allocation, or just 'dynamic' with no collection. Give 0-1 for answers that are unrelated or only name something else, like an array. Extra correct detail or minor wrong remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

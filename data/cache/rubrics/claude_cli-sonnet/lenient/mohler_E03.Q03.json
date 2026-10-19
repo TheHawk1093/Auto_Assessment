@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler replaces each call to an inline function with a copy of the function's code (expands the function body at the point of call).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2\u20133 marks if the answer is on the right track but vague or incomplete, e.g. says the code is inserted or the call is avoided/faster without clearly saying the function body is copied or substituted at call sites."
+      }
+    ],
+    "notes": "Full marks for saying the function's code is copied or expanded at every place it is called, in any wording (e.g. 'replaces the call with the function body'). Part marks for a vague or partial idea, such as saying it avoids call overhead or is inserted somewhere without saying the body is copied at call sites. No marks for unrelated statements, such as describing ordinary function calls or only giving the syntax. Extra remarks do not lose marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

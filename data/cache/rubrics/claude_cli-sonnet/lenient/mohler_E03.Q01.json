@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function signature includes the function's name and the types of its parameters (parameter list).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2.5 marks if only one of the two parts is given (name only, or parameter types/parameter list only), or if the answer is vague but on track (e.g. 'the function name and its parameters' without types, or 'name, parameters and return type' with the core parts present still earns full)."
+      }
+    ],
+    "notes": "Full marks for saying the signature consists of the function name and its parameters/parameter types, in any wording. Part marks (about half) if only the name or only the parameters are given, or the answer is vague. Extra remarks, such as mentioning the return type, do not cost marks; give none for answers unrelated to name and parameters.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

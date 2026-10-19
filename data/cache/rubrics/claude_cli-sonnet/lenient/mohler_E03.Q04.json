@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that passing by reference avoids copying (large) data/arguments when calling a function, so it is more efficient in time/memory. Any wording accepted, e.g. 'no copy is made', 'saves memory/time', 'works on the original'.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if the answer only says the function can modify the original variable or uses the address/alias, without mentioning avoiding copies or efficiency."
+      }
+    ],
+    "notes": "Full marks for the central idea that no copy of the argument is made (efficiency in memory or time), in any wording, however brief. Part marks for a related but incomplete statement, such as the function being able to change the original variable, without mentioning avoiding copies. No marks for answers unrelated to this, such as describing pass by value only. Extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

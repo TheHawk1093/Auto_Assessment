@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E04.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that strings declared as character arrays have a null character ('\\0') added at the end (a terminator), whereas the string type does not need/show this.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 to 3 marks if the answer is on the right track but vague, e.g. says char arrays have an extra element or a fixed size/end marker without naming the null character."
+      }
+    ],
+    "notes": "Full marks for saying a character array string ends with a null element/character (\\0), in any wording, even briefly. Part marks for vague related statements, such as an extra end marker or char arrays having a fixed size without mentioning null. No marks for answers that say nothing about the terminating null element.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
