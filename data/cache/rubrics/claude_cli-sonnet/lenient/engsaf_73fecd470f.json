@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/73fecd470f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the test compares observed data/frequencies (the sample's observed values) ...",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "... with the assumed/estimated/theoretical (fitted) probability distribution (PDF) or its expected values.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says 'distribution' or 'expected' loosely without clear link to the assumed/theoretical model."
+      }
+    ],
+    "notes": "Full marks for saying the test measures the difference between observed data and the assumed/estimated/theoretical distribution (PDF), in any wording; 'expected' or 'theoretical' counts as a synonym for assumed. Give 1 mark if only one side is correct (e.g. observed only, or just 'a distribution'). Give 0 for unrelated or wrong answers.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

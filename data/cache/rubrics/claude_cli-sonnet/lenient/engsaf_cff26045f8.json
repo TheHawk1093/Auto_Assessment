@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/cff26045f8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First advantage: multiples valuation is quick, simple or convenient to use (easy/fast to apply).",
+        "marks": 1.0,
+        "partial_credit": "Half if only loosely related (e.g. cheap or easy to understand) without clear speed/simplicity idea."
+      },
+      {
+        "id": "P2",
+        "description": "Second advantage: it uses market-based data that reflects the market's expectations of growth and risk (market-reflective, current market pricing).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says 'based on market data' or 'reflects the market' without growth/risk idea."
+      }
+    ],
+    "notes": "Full marks for stating both ideas in any wording: quick/convenient/easy, and based on market data reflecting market expectations. Accept the two advantages in either order. Give part marks for vague but related answers; give 0 for a blank or unrelated answer. Extra wrong remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

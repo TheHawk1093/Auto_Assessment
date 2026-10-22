@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/505351e199",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names about three of the four stages of anaerobic digestion: hydrolysis, acidogenesis, acetogenesis, methanogenesis (synonyms such as acid formation, acetate formation, methane formation accepted).",
+        "marks": 2.0,
+        "partial_credit": "1 mark for two correct stages (or one correct stage plus a vague description of the process, e.g. breakdown of organics to methane)."
+      }
+    ],
+    "notes": "Full marks (2) if at least three of the four stages (hydrolysis, acidogenesis, acetogenesis, methanogenesis) are given, in any wording or with clear descriptions. Give 1 mark for two correct stages or a vague but on-track description. Give 0 for wrong or unrelated answers; extra wrong remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E10.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the correct inorder order: left subtree first, then the root (node), then the right subtree, using these terms (left subtree, root, right subtree) in this order.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5) if the order is clearly given but a required term is imprecise (e.g. 'left, middle, right' or 'left child' instead of subtree), or if only two of the three steps are in the correct order."
+      },
+      {
+        "id": "P2",
+        "description": "States that the traversal is applied recursively to each subtree (each subtree is itself traversed inorder), or equivalently that it is a depth-first traversal.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes inorder from preorder (root first) and postorder (root last), i.e. the root is visited between the left and right subtrees, not before or after both.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the exact order left subtree, root, right subtree with correct terms; vague wording like 'left, middle, right' loses most of P1. Any wrong order (e.g. root first or right before left) earns nothing for P1 and P3. Recursion and the contrast with preorder/postorder must be stated explicitly; merely implied statements earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

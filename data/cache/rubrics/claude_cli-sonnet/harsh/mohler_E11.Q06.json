@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E11.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the alternative to recursion is iteration, using the term 'iteration' (or iterative solution).",
+        "marks": 3.0,
+        "partial_credit": "Half credit only if the answer names loops (for, while) as the alternative but does not use the term 'iteration'."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly identifies the iterative approach as using loops (e.g. for, while, do-while) that repeat a block of code, rather than a function calling itself.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes iteration from recursion: iteration repeats via loops within one function, whereas recursion has a function call itself. No wrong statements about either.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the exact term \"iteration\" (P1), plus a precise mention of loops and a correct contrast with a function calling itself. Vague answers such as \"another method\" or \"use a different function\" earn nothing. Any wrong statement, such as naming another technique like pointers or overloading as the alternative, loses the affected point, and a wrong main answer loses P1.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

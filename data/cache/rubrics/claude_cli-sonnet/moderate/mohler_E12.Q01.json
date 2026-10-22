@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E12.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is an address of a location in memory (a variable that holds a memory address). Any wording is fine, e.g. 'stores the address of another variable'.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if vague or slightly wrong, e.g. says it 'refers to' or 'points to' a variable or memory without clearly saying address."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear that the address is of a memory location (e.g. a variable or place in memory), not just a value or data.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying a pointer is (or holds) the address of a memory location, in any wording, even briefly. Give part marks for vague answers such as 'it points to something' or 'refers to a variable' without saying address. Give no marks for answers that only discuss related things (arrays, syntax, references) without stating the address idea; extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

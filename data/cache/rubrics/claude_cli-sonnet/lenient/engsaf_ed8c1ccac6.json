@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/ed8c1ccac6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE (the OS can still schedule READY processes without the timer interrupt).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies with the idea that other events, such as system calls (or other events like I/O, process exit/blocking), give the OS opportunities to run the scheduler and switch to another process.",
+        "marks": 1.5,
+        "partial_credit": "1 mark if the justification is vague, e.g. says OS has other chances to schedule but names no event, or names an event without linking it to scheduling."
+      }
+    ],
+    "notes": "Full marks: says TRUE and gives the reason that system calls or other events let the OS schedule another process, in any wording. Part marks: TRUE with a vague reason (e.g. \"OS has other ways to switch\") earns about 1 mark. A FALSE answer, or TRUE with no justification, earns 0, since no correct justification means no marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E09.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the queue is implemented with a circular array (circular buffer), where the rear/tail pointer wraps around to the beginning of the array when it reaches the end (front toward the beginning, rear toward the end).",
+        "marks": 4.0,
+        "partial_credit": "Half or more: says front/rear indices in an array but without wrap-around or circular idea, or says circular without explaining wrapping."
+      },
+      {
+        "id": "P2",
+        "description": "Mentions that the front is kept toward the beginning of the array and the rear toward the end, with the rear pointer moving forward as items are added.",
+        "marks": 1.0,
+        "partial_credit": "Half: only one of front or rear placement given."
+      }
+    ],
+    "notes": "Full marks for stating a circular array in which the rear pointer wraps around, in any wording; brief answers like \"circular array with wrap-around\" earn P1 fully. Part marks for a plain array with front and rear indices but no wrap-around, or a vague description of circularity. No marks for unrelated answers (e.g. linked list, stack) or wrong claims about how the array works.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

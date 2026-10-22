@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/8cafcaad3c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States any valid application of broaching, e.g. machining gears, splines, keyways/slots, custom or precision machining in automotive industry, or making slots for support.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if vague but on track (e.g. says it is used for shaping or finishing holes/surfaces in industry without a specific application)."
+      }
+    ],
+    "notes": "Full marks for naming any one reasonable application of broaching (gears, splines, slots/keyways, precision or automotive machining) in any wording. Give 1 mark for a vague answer that is generally about shaping or finishing with no specific use. Give 0 for unrelated or wrong applications. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

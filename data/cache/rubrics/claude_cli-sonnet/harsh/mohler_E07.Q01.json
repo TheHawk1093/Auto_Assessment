@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E07.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a linked list is a collection of elements (nodes) \u2014 i.e. a data structure made up of a collection of elements.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if it says it is a data structure/list of items but does not state it is a collection of elements/nodes."
+      },
+      {
+        "id": "P2",
+        "description": "States that these elements can be allocated dynamically (memory allocated at run time, as needed, not fixed in size in advance).",
+        "marks": 2.0,
+        "partial_credit": "Half marks if it says only that the size can grow/shrink without naming dynamic allocation."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes it from an array: elements are not required to be in contiguous/fixed-size static memory, since they are allocated dynamically.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all three: a collection of elements, dynamic allocation stated with the correct term, and a correct contrast with a fixed-size/static array. Vague answers such as \"a list of data\" or \"elements connected together\" earn nothing on P2 or P3. Any wrong statement within a point (e.g. saying elements are stored contiguously or the size is fixed) means that point earns zero.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

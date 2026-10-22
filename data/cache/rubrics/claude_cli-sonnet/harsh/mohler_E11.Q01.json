@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class definition includes data members (member variables/attributes that hold the object's data), using the term 'data members' or an exact equivalent such as member variables.",
+        "marks": 2.5,
+        "partial_credit": "Half credit if data members are described correctly but the term is imprecise (e.g. just 'variables') and the meaning is clearly right."
+      },
+      {
+        "id": "P2",
+        "description": "States that a class definition includes function members (member functions/methods that operate on the data), using the term 'function members' or an exact equivalent such as member functions or methods.",
+        "marks": 2.5,
+        "partial_credit": "Half credit if function members are described correctly but the term is imprecise (e.g. just 'functions') and the meaning is clearly right."
+      }
+    ],
+    "notes": "Full marks need both elements named precisely: data members and function members (member functions/methods acceptable). Naming only one earns that point's marks only. Vague answers such as 'variables and stuff', or listing wrong extra items such as constructors only, or unrelated things like objects or headers as required elements, lose the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

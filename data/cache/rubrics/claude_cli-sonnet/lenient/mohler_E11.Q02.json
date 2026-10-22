@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the access specifiers are private and public (protected may also be mentioned; extra correct detail is fine).",
+        "marks": 5.0,
+        "partial_credit": "Award about half (2.5) if only one of private or public is given, or if the answer is vague but on the right track (e.g. mentions access levels without naming both)."
+      }
+    ],
+    "notes": "Full marks for naming both private and public in any wording; mentioning protected as well is fine and costs nothing. Give part marks if only one of the two is named or the answer is vague. Give no marks if neither is named or the answer is about something unrelated.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core fact: a static array is initialized only once (not re-initialized each time the function is called), so it persists across calls, whereas a non-static array is created/initialized again on every call.",
+        "marks": 4.0,
+        "partial_credit": "About half: says static arrays persist/keep their values or are created once, without clearly linking to initialization or contrasting with non-static; or stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Ties this to function calls: the initialization happens relative to the function being called (static once across calls; non-static each call).",
+        "marks": 1.0,
+        "partial_credit": "Mentions function calls but without clearly stating the once vs. every-call contrast."
+      }
+    ],
+    "notes": "Full marks for saying a static array is initialized only once (keeps its values between function calls) while a non-static one is re-initialized each call; any wording is fine, even brief. Part marks for vague or half-right statements, e.g. only \"it keeps its value\" or \"it lasts the whole program\" without the initialization idea. No marks for unrelated points such as array size or syntax only.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

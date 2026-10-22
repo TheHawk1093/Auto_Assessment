@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/f0b0a8bb2e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the negative electrode is a hydrogen-absorbing alloy (metal hydride, MH), in any wording, e.g. 'metal hydride alloy' or 'alloy that absorbs hydrogen'.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only vaguely right, e.g. says 'metal alloy' or 'hydride' or 'hydrogen storage material' without making clear it absorbs hydrogen."
+      }
+    ],
+    "notes": "Full marks for hydrogen-absorbing alloy / metal hydride in any wording. Give 1 mark for a vague but related answer such as 'metal alloy' or 'hydrogen storage material'. Give 0 for wrong answers such as nickel hydroxide, cadmium, or lead.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/3705795392",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid advantage of reservoir flood routing: it estimates peak reservoir levels (or outflow/storage) during a flood, which helps design/size overflow channels or spillways so nearby areas are not submerged.",
+        "marks": 1.0,
+        "partial_credit": "Half if only a vague benefit is given (e.g. 'helps predict reservoir behaviour in floods') without peak level or the use for spillway/overflow design."
+      },
+      {
+        "id": "P2",
+        "description": "States one valid advantage of channel flood routing: it gives the flood profile (stage/discharge variation with time or duration) along the channel during a storm, which helps design bridges, control transport, or plan bank-side development.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely stated (e.g. 'helps predict flood in the river') without the flood profile/duration or a use such as bridges, transport or bank development."
+      }
+    ],
+    "notes": "Full marks need one correct advantage for each type, reservoir and channel, with the key idea (peak level for overflow design; flood profile over time for bridges, transport or bank development). Give part marks for a vague or half-stated advantage. Give no marks for a wrong or unrelated advantage, or a definition of routing with no advantage. If the two answers are swapped or mixed up, do not credit the mixed one.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

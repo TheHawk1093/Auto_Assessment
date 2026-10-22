@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E08.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The top of the stack is the head (beginning/front) of the linked list, so push adds and pop removes elements at the head/beginning of the list.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if the student says to use a linked list with push/pop at one end but does not clearly say the head/beginning, or gives only the top-at-head idea without push/pop."
+      },
+      {
+        "id": "P2",
+        "description": "States that both push and pop operate at the same end (add/remove at the beginning), giving constant-time LIFO behaviour via a linked list.",
+        "marks": 1.0,
+        "partial_credit": "Half if only push or only pop is described at the head."
+      }
+    ],
+    "notes": "Full marks for saying the stack's top is the head of the linked list and push/pop insert/remove at the beginning, in any wording. Part marks for a vague or half-correct version, e.g. a linked list with push/pop at one end without naming the head. No marks for answers about arrays, or that put push/pop at the tail or mismatched ends.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

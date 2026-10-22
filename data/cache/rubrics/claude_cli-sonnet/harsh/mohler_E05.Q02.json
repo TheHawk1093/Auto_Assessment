@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that selection sort processes the array one element/position at a time from left to right (current position advances through the array, with the part before it being handled/sorted).",
+        "marks": 1.5,
+        "partial_credit": "Half if it mentions going through elements one at a time but omits left-to-right order (or vice versa)."
+      },
+      {
+        "id": "P2",
+        "description": "States that for the current element it identifies/finds the minimum among the remaining (not yet processed) elements.",
+        "marks": 2.0,
+        "partial_credit": "Half if it says it finds the minimum but does not specify that the search is over the remaining elements."
+      },
+      {
+        "id": "P3",
+        "description": "States that it swaps the found minimum with the current element (a swap, not shifting or inserting).",
+        "marks": 1.5,
+        "partial_credit": "Half if it says the minimum is placed at the current position but does not say it is swapped."
+      }
+    ],
+    "notes": "Full marks need all three elements stated precisely: left-to-right one element at a time, finding the minimum of the remaining elements, and swapping it with the current element. Vague wording such as \"sorts by comparing elements\" earns nothing. Wrong claims (e.g. adjacent swaps as in bubble sort, or inserting into a sorted part as in insertion sort, or picking the maximum) make the affected point earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

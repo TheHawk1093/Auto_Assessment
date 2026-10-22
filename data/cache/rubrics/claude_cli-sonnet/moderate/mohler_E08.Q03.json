@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E08.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the top of the stack is kept at the end (right side) of the array, so push and pop add/remove elements at the end of the array.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if it says push/pop work on the array but is vague or wrong about which end (e.g. only 'use an array with push and pop' or 'use a top index' without saying the end)."
+      },
+      {
+        "id": "P2",
+        "description": "Names the two operations, push (add) and pop (remove), as acting on that end of the array.",
+        "marks": 1.0,
+        "partial_credit": "Only one of push or pop mentioned correctly earns half."
+      }
+    ],
+    "notes": "Full marks for saying the top of the stack is at the end/right of the array and push and pop add and remove there, in any wording. Part marks for a vague or partly right idea, such as using an array with a top index but not saying the end. No marks for describing a different structure (e.g. a queue or linked list) or putting push/pop at the front.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

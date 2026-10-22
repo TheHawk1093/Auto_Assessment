@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E07.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that linked lists are passed to a function by reference (e.g., passing a reference or pointer to the head/list so the function works on the original list), in any wording.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 to 3 marks if the answer is related but vague or incomplete, e.g. mentions passing the head pointer or address without saying by reference, or says it is passed by value/reference in a muddled way."
+      }
+    ],
+    "notes": "Full marks for saying the linked list is passed by reference, however briefly or informally (a mention of a reference or pointer to the head that lets the function change the original list is also fine). Part marks for a related but vague answer, such as passing the head pointer or address without clearly saying by reference. No marks for saying it is passed by value only, or for answers that do not address how it is passed.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

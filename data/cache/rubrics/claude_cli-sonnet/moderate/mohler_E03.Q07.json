@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E03.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that both iteration and recursion involve repetition (repeating a process/set of statements).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that both have a termination test (condition that ends the repetition: loop condition / base case).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that both can occur infinitely (infinite loop / infinite recursion).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award each point when the idea is stated in any wording; the three similarities are repetition, termination test, and possible infinite execution. Part marks for a vague or half-stated version (e.g. mentions a stopping condition for only one of them). No marks for differences between iteration and recursion or for unrelated detail, but extra correct detail does no harm.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

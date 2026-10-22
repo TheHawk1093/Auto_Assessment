@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E01.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the prototype program's role is to simulate (imitate/model) the behaviour of the desired software product, using the term 'simulate' or 'simulation' (or an exact equivalent such as 'imitate the behaviour').",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it says the prototype represents or models the software product but does not clearly say it simulates behaviour."
+      },
+      {
+        "id": "P2",
+        "description": "States that it simulates only portions/parts of the desired software product (a partial, not complete, version), not the whole system.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Correctly identifies what is simulated as the behaviour of the desired (final) software product, not just its appearance, code, or a finished product, and does not confuse the prototype with the final product or with a testing/debugging program.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise idea: a prototype simulates the behaviour of portions of the desired software product, with the word simulate (or exact equivalent) used. Part marks only when clearly more than half of a point is stated precisely. Vague statements (e.g. 'helps solve the problem', 'a test version') earn nothing, and wrong claims (e.g. that it is the final product) lose the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

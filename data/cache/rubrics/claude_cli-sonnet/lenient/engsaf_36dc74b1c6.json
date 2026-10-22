@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/36dc74b1c6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that parent and child are separate/independent processes, so the parent can do whatever it wants, including calling exec (exec in the parent replaces only the parent's image and does not affect the child).",
+        "marks": 1.5,
+        "partial_credit": "Half credit (0.75) if justification is vague, e.g. says parent can call exec after fork but gives no reason about separate processes."
+      }
+    ],
+    "notes": "Full marks: answer says True and explains in any wording that parent and child are separate processes so the parent is free to call exec. Part marks: True with a vague or incomplete reason. Zero: False, or True with no justification or a wrong one (per the question, no correct justification means no marks).",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

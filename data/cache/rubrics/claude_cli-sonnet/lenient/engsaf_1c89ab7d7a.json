@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/1c89ab7d7a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the drought is linked to a reduction/depletion in water availability, specifically a fall in ground water level (as in the model answer).",
+        "marks": 1.0,
+        "partial_credit": "Half or full if it mentions reduced water/lack of water or low rainfall without ground water level."
+      },
+      {
+        "id": "P2",
+        "description": "States the usual cause/setting: low rainfall area combined with excessive use of ground water.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of low rainfall or excessive ground water use is given."
+      }
+    ],
+    "notes": "Full marks for an answer that says the drought involves a big drop in ground water, and that it happens where rainfall is low and ground water is overused, in any wording. Give part marks for a vague or incomplete answer, such as only low rainfall or only less water. Give 0 for unrelated answers. Ignore minor extra remarks unless they contradict the main idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

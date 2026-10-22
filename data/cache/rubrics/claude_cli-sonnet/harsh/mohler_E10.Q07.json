@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E10.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of comparisons needed is equal to (at most) the height of the tree, using the term 'height' (or depth of the deepest path/levels from root to leaf).",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5) if it gives the number of levels/depth along a root-to-node path but does not use 'height' or say it is bounded by the height."
+      },
+      {
+        "id": "P2",
+        "description": "States the equivalent logarithmic form: the number of comparisons is about log (base 2) of the number of elements n, i.e. O(log n), for a balanced tree.",
+        "marks": 2.0,
+        "partial_credit": "Half (1) if it says 'logarithmic' or O(log n) without relating it to the number of elements n or without stating it as the tree's height."
+      }
+    ],
+    "notes": "Full marks need both the precise term 'height' of the tree and the logarithm of the number of elements (log n). Part marks only when clearly more than half of a point is stated precisely. Answers like 'a few comparisons', 'n comparisons', or linear/total number of nodes earn nothing for the points they contradict; a wrong statement on a point voids that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

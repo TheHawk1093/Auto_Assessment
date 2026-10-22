@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/9668c8b064",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (processes of the same program do not share one PCB).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: each process is an independent entity needing its own PCB/OS state (e.g., separate registers, memory, stack, open files), which a shared PCB cannot provide.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the justification is vague, e.g., says each process needs its own PCB without saying why."
+      }
+    ],
+    "notes": "Full marks: FALSE with a reason that each process needs its own separate PCB or state, in any wording. Give part marks for FALSE with a vague reason. Per the question, a correct justification is needed to earn marks, so TRUE or no justification earns 0.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

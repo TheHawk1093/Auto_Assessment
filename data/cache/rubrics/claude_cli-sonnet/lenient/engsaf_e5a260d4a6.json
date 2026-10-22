@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/e5a260d4a6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that strain is a ratio (or relative/proportional measure) comparing change in length (deformation/elongation) to the original length.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only says it is the change in length or deformation, or a ratio/measure of deformation without referring to the original length."
+      }
+    ],
+    "notes": "Full marks (2) for the core idea: change in length divided by original length, in any wording (e.g. 'elongation per unit length'). Give 1 mark if the answer mentions only deformation/change in length, or a ratio without saying what it is compared to. Give 0 for wrong or unrelated answers; extra remarks do not cost marks unless they contradict the idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

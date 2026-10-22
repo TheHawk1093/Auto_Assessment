@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/12ada8ea8d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the full form as Representative Concentration Pathway (the words 'representative', 'concentration' and 'pathway' or clear equivalents, e.g. 'Pathways', 'Representative Concentration Path').",
+        "marks": 2.0,
+        "partial_credit": "1 mark if two of the three words are right or the answer is close (e.g. 'Representative Concentration Process') or clearly about greenhouse gas concentration scenarios but the name is incomplete."
+      }
+    ],
+    "notes": "Full marks for Representative Concentration Pathway, allowing minor spelling errors or the plural 'Pathways'. Give 1 mark if two of the three words are right or the answer is nearly correct. Give 0 for a wrong expansion or an unrelated answer.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

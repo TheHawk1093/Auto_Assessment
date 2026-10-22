@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the alternative is iteration (using loops, e.g. for/while loops, to repeat the steps instead of recursion).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 marks for a related but incomplete idea, e.g. mentions loops or repeating steps without naming iteration, or a vague answer like 'a non-recursive method'."
+      }
+    ],
+    "notes": "Full marks for saying iteration or loops in any wording, however brief. Part marks for a vague related idea such as 'a non-recursive approach' or 'repeating steps' without naming loops or iteration. No marks for unrelated answers (e.g. a stack or a different algorithm with no mention of looping). Extra remarks do not cost marks unless they contradict iteration.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E09.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the queue is implemented using a circular array (circular/ring buffer arrangement of the array).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it describes the array being reused cyclically but does not use the term 'circular'; otherwise none."
+      },
+      {
+        "id": "P2",
+        "description": "States that the rear of the queue is kept toward the end of the array and the front toward the beginning of the array.",
+        "marks": 1.5,
+        "partial_credit": "0.75 if only one of front (beginning) or rear (end) is placed correctly."
+      },
+      {
+        "id": "P3",
+        "description": "States that the rear pointer (index) is allowed to wrap around from the end of the array back to the beginning.",
+        "marks": 1.5,
+        "partial_credit": "0.75 if wrapping is mentioned but not clearly attributed to the rear pointer or the end-to-beginning direction."
+      }
+    ],
+    "notes": "Full marks need all three elements stated precisely: circular array, front at beginning and rear at end, and the rear pointer wrapping around. Vague answers such as 'use an array with front and rear' earn nothing for the circular/wrap points. Wrong statements (e.g. front at end, shifting all elements on dequeue as the method) earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

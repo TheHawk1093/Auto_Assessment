@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/085e24dc29",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First blank: stem flow (water running down the stems/trunks and branches to the ground). Synonym such as 'stemflow' or 'flow along trunk' accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half if only described vaguely (e.g. 'flows down the tree') without the term or a clear equivalent."
+      },
+      {
+        "id": "P2",
+        "description": "Second blank: through fall (water dropping/falling through leaves or gaps in the canopy onto the ground). Synonym such as 'throughfall' or 'drip from leaves' accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half if only described vaguely (e.g. 'falls from leaves') without the term or a clear equivalent."
+      }
+    ],
+    "notes": "Award 1 mark for each of stem flow and through fall, in either order, with clear synonyms accepted. Give part marks only for a vague description of the right path without the term. Wrong items such as evaporation, runoff or infiltration earn nothing for that blank.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

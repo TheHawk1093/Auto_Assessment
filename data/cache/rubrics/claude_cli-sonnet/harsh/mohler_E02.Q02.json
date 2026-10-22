@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E02.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that data members can be accessed from any member function of the class (scope is the whole class definition / all member functions).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only says data members are accessible in the class, without stating member functions (or 'any/all' member functions)."
+      },
+      {
+        "id": "P2",
+        "description": "States that local variables can be accessed only inside the one member function that defines them (scope limited to that function).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only says local variables are accessible only 'inside a function' without tying it to the function that defines them."
+      },
+      {
+        "id": "P3",
+        "description": "Gives a correct contrast between the two: data members are shared across all member functions of the class, whereas locals are confined to a single function, with both scopes stated together as a comparison.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both scopes stated precisely: data members usable in any member function of the class, local variables only within the member function that declares them. Vague wording (e.g. 'data members are global', 'locals are temporary') earns nothing for that point, and a wrong claim about either scope voids that point. Mentioning only one side earns at most that side's marks and no contrast mark.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

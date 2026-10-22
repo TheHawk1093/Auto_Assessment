@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/279135dd2f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a first valid limitation of AJM (abrasive jet machining), matching the model answer: low material removal rate (slow machining), limited/short nozzle life (nozzle wear), or high cost. Clear synonyms accepted (e.g. 'slow process', 'nozzle wears out quickly', 'expensive').",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the idea is vague or slightly wrong (e.g. 'nozzle problem' without wear or life; 'not efficient' without saying slow)."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid limitation of AJM from the model answer (low MRR, limited nozzle life, or high cost), in any clear wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the idea is vague or slightly wrong."
+      }
+    ],
+    "notes": "Full marks (2) for any two different limitations from the model answer: low MRR, limited nozzle life, high cost, with synonyms accepted. Give 1 mark if only one is correct, or if both are given but vaguely. A wrong or unrelated limitation earns nothing for that point and does not affect the other. Two wordings of the same limitation count once.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

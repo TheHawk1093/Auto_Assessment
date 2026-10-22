@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/a6841fd476",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the reactor as the completely mixed flow reactor (CMFR), also accepted as continuous stirred tank reactor (CSTR), mixed flow reactor or complete-mix reactor.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer is on the right track but vague, e.g. 'mixed reactor' or 'stirred tank reactor' without 'flow' or 'completely'."
+      }
+    ],
+    "notes": "Full marks for naming a completely mixed flow reactor in any wording, including CMFR, CSTR, complete-mix or stirred tank reactor. Give 1 mark for a vague answer that points to mixing or stirring but is not clearly the right reactor. Give 0 for plug flow, batch or other unrelated reactors.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

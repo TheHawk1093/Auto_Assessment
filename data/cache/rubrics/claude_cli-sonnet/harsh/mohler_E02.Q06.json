@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E02.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function prototype (declaration) contains the function signature: the function name, the return type, and the parameter types (all three elements named).",
+        "marks": 2.0,
+        "partial_credit": "2 of 3 marks-worth only if clearly more than half: two of the three elements (name, return type, parameter types) stated precisely; award 1 mark."
+      },
+      {
+        "id": "P2",
+        "description": "States that the function definition contains the actual body of the function (the implementation/code executed when called).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Makes the distinction explicitly: the prototype gives only the signature without a body, whereas the definition supplies the body (signature plus implementation); the two are not conflated.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the prototype stated as the signature (name, return type, parameter types) and the definition as containing the actual body, with a clear contrast. Give part marks on P1 only if two of the three signature elements are precise. Vague wording such as \"prototype just declares it\" without signature contents, or any wrong statement about a point, earns nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

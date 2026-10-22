@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E10.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that inorder traversal visits the left subtree first, then the root, then the right subtree (left, root, right), in any wording.",
+        "marks": 5.0,
+        "partial_credit": "Give 2-3 marks if the student gives a related but incomplete order, e.g. mentions left before right or root in the middle without the full sequence, or gives the correct order for only two of the three parts."
+      }
+    ],
+    "notes": "Full marks for stating the order left subtree, root, right subtree in any wording, even briefly (e.g. \"left, root, right\"). Part marks for an answer that has some of the order right but is vague or incomplete. No marks if the order is wrong (e.g. preorder or postorder) or only the general idea of tree traversal is given without the order.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

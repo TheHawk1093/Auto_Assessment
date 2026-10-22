@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E12.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is an address (a memory address) \u2014 i.e. it holds/stores/is the address of something, using the term 'address'.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it says it 'refers to' or 'points to' a variable or value but does not use the term address precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that the address is of a location in memory (a memory location, e.g. of a variable), using the terms 'location' and 'memory'.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if only 'memory' or only 'location' is mentioned without the full phrase."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes the pointer (an address/variable holding an address) from the value stored at that location, i.e. does not describe a pointer as the data/value itself.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise fact: a pointer is an address of a location in memory, with the terms 'address' and 'memory location' used. Vague statements such as 'it points to something' or 'it refers to a variable' earn little or nothing; any wrong statement (e.g. a pointer is a value or a data type holding data) loses the affected point. Extra correct detail is allowed.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

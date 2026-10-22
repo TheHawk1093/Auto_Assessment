@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location in memory (a named memory location/storage location in RAM), using the term 'memory' and 'location' precisely.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it says only 'a place to store data' or 'a named storage' without clearly stating it is a memory location."
+      },
+      {
+        "id": "P2",
+        "description": "States that this memory location stores/holds a value (data) that can be stored in it, i.e. the variable holds a value.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it says it holds data but with a wrong or vague qualifier, e.g. 'stores information' without it being tied to the memory location."
+      }
+    ],
+    "notes": "Full marks need both parts stated precisely: a location in memory, and that it stores a value. Vague answers such as 'something that changes' or 'a name for data' earn nothing for the memory-location point. Wrong statements (e.g. a variable is a function or a constant value itself) lose the point they contradict.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

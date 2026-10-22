@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a do ... while loop's body/block executes at least once (the condition is checked after the body), whereas a while loop may not execute at all if the condition is initially false.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if the student only says the do ... while checks the condition after the body, or states the idea vaguely, without saying it runs at least once."
+      },
+      {
+        "id": "P2",
+        "description": "Contrasts with while: a while loop tests the condition first, so its block may execute zero times.",
+        "marks": 1.0,
+        "partial_credit": "Half if only implied, e.g. 'while checks the condition first' without mentioning the zero-execution consequence."
+      }
+    ],
+    "notes": "Full marks for stating that a do ... while block runs at least once, in any wording (e.g. 'do while always runs once before checking'). Part marks for saying the condition is checked after the body without stating the at-least-once consequence. No marks for answers that only describe loops in general or reverse the difference.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

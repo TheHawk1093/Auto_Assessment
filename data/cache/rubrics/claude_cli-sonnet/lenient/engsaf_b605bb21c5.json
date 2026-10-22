@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b605bb21c5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that usable life is a period of time (the time span for which the reservoir can still be used/serve).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says the reservoir keeps working/lasts, without clearly a time period or the idea of continued use."
+      },
+      {
+        "id": "P2",
+        "description": "Says it extends beyond the useful/economic life, during which the reservoir still serves some (reduced) purposes until it is finally unusable.",
+        "marks": 1.0,
+        "partial_credit": "Half if mentions only continued partial service or only the 'after useful life' idea."
+      }
+    ],
+    "notes": "Full marks if the student says usable life is the time the reservoir can still serve some purposes even after its useful/economic life, in any wording. Give part marks for a vague answer such as 'the time the reservoir can be used' without the idea of going beyond useful life or partial service. Give zero for wrong definitions, e.g. only the design or total storage capacity.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

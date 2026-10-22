@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E12.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that linked lists are dynamic (can grow/shrink at run time), so they can hold a variable number of elements, unlike fixed-size arrays.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if only vaguely stated (e.g. 'flexible' or 'easy to add/remove elements' without size/dynamic idea)."
+      },
+      {
+        "id": "P2",
+        "description": "Uses the term 'dynamic' (or equivalent: size changes at run time / no fixed size) to describe the linked list.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying linked lists are dynamic / can change size, storing a variable number of elements, in any wording, even briefly. Part marks for vague statements such as easy insertion/deletion or flexibility without the size idea. No marks for unrelated points (e.g. only memory addresses, speed of access) or for claiming arrays are better.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

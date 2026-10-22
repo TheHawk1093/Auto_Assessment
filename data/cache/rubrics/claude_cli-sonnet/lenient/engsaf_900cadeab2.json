@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/900cadeab2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the missing term as water application efficiency (efficiency of water application / irrigation application efficiency), i.e. the efficiency relating water stored in the root zone to water delivered to the field.",
+        "marks": 2.0,
+        "partial_credit": "1 mark for a related but incomplete or different irrigation efficiency (e.g. just 'irrigation efficiency', 'water use efficiency', or 'field efficiency')."
+      }
+    ],
+    "notes": "Full marks for naming water application efficiency in any close wording (e.g. 'application efficiency', 'irrigation application efficiency'). Give 1 mark if the answer names a related irrigation efficiency (conveyance, distribution, use, or just 'irrigation efficiency') that is on the right track but not the exact one. Give 0 for unrelated answers.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

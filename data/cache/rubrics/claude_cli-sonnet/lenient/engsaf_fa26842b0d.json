@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/fa26842b0d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the perpetual/terminal/long-term growth rate (growth rate of cash flows beyond the forecast period) as one of the two sensitivities.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names WACC / discount rate / cost of capital as the other sensitivity.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award 1 mark for each of the two factors: growth rate (terminal/perpetual/long-term growth) and discount rate (WACC, cost of capital, required return), in any wording. Order does not matter. Give 0 for a factor not given; vague answers such as 'growth' alone may earn the mark for P1. Extra wrong remarks do not cost marks unless they contradict the answer.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

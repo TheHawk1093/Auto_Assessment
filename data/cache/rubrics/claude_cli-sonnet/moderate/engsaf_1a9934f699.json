@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/1a9934f699",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Hydrolysis named as one of the steps (breakdown of complex organics into simpler soluble compounds).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Acidogenesis named as one of the steps (acid formation / fermentation to volatile fatty acids; 'acid formation' accepted as a synonym).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Methanogenesis named as one of the steps (methane formation / methane production accepted as a synonym).",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "One point per correct step, shared equally; order does not matter and clear synonyms (e.g. acid formation, methane formation) are accepted. Total mark is the sum of the points, rounded to 0, 1 or 2 (about 3 correct = 2, 1\u20132 correct = 1, none = 0). A wrong extra step, such as acetogenesis, does not cancel the correct ones.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure that stores elements in first in, first out (FIFO) order (the first element added is the first removed). Mentioning enqueue/dequeue is optional.",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if the answer only names it as a data structure or describes adding/removing elements (e.g. enqueue/dequeue, add at back, remove from front) without clearly giving the first-in-first-out idea."
+      }
+    ],
+    "notes": "Full marks for saying a queue is a data structure where the first element in is the first out, in any wording (e.g. \"first come first served\", \"FIFO\"). Part marks for a vague or incomplete answer, such as only mentioning enqueue/dequeue or adding at one end and removing at the other, without stating the order. No marks for LIFO/stack descriptions or unrelated content. Missing the operation names costs nothing.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

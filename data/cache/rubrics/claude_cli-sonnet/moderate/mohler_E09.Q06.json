@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E09.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stack operation corresponding to enqueue is push (adding an element to the stack/top).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 marks if the answer only describes adding/inserting an element to the stack without naming push, or names push alongside a wrong or contradictory operation."
+      }
+    ],
+    "notes": "Full marks (5) for stating \"push\" in any wording, even a single word or a short phrase like \"push operation\". Part marks (about 2) for describing insertion onto the stack without naming push, or for naming push but also giving a conflicting answer. No marks for pop, peek/top, or unrelated operations.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

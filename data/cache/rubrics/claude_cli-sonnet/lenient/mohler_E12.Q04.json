@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core idea: repeatedly pick the minimum (smallest) element from the unsorted/remaining part of the array and place it in the next position at the front (first, then second, and so on).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if only half the idea is given, e.g. mentions finding the minimum/smallest element or swapping elements into position, but not the repeated process on the remaining part, or the placement into successive positions."
+      }
+    ],
+    "notes": "Full marks for saying, in any wording, that it repeatedly finds the smallest remaining element and puts it in the next position from the front. Part marks for a vague or incomplete version, such as only finding the minimum or only swapping into place without the repetition. No marks for describing a different sort or unrelated points; extra correct detail is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

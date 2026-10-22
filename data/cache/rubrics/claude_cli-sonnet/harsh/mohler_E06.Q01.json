@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (not merely an address, value or data type) that stores/holds/contains a memory address.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says it stores an address but does not clearly call it a variable (or calls it a variable but is vague about what it holds)."
+      },
+      {
+        "id": "P2",
+        "description": "States that the address held is the memory location of another variable (i.e. the pointer refers to/points to another variable's location in memory).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says it holds a memory address but does not say it is of another variable/object."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes a pointer from an ordinary variable: a pointer holds an address (indirect access to another variable), whereas an ordinary variable holds the data value itself.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a precise statement that a pointer is a variable holding the memory address of another variable, using terms like \"variable\", \"address\" and \"memory\". Part marks only where clearly more than half of a point is precise, as stated in partial_credit. Vague answers such as \"it points to something\", \"it is a reference\" or \"it is a data type\", or any wrong statement (e.g. a pointer stores the value of another variable), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

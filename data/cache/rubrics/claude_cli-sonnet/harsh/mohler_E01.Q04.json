@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that execution of a C++ program begins at the main function, named explicitly as 'main' (main()).",
+        "marks": 4.0,
+        "partial_credit": "2 marks if main is named but the answer is vague about it being where execution starts (e.g. 'main is important' or 'in the program's first function' naming main only implicitly)."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear that main is the entry point, i.e. the point where execution starts, and not merely a function that is present in the program (e.g. not the first function written, a header, or a class/other function).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need 'main' (the main function) named precisely as the place where execution begins. Give part marks only if main is named but the starting role is vague. Award 0 if the answer names a different place (first function, header file, constructor, #include) or does not name main.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

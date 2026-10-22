@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E03.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that global variables have file scope, i.e. they are declared outside all functions and are accessible throughout the file/program from the point of declaration (any wording, e.g. 'available to all functions in the file').",
+        "marks": 5.0,
+        "partial_credit": "Part marks (2-3) for a vague or half-right statement, e.g. 'accessible everywhere' or 'throughout the program' without mentioning file or declared outside functions, or with a minor error."
+      }
+    ],
+    "notes": "Full marks for stating that global variables have file scope (accessible throughout the file, outside any function), in any wording, even briefly. Part marks for vague or partly correct answers such as 'accessible everywhere' or 'whole program' without file scope. No marks for answers saying local, function or block scope, or talking about related things without stating the fact.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

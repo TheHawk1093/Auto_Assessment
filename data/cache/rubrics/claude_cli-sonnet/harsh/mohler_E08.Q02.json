@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E08.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that push is one of the two main stack functions (operation that adds/inserts an element onto the top of the stack).",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that pop is the other main stack function (operation that removes an element from the top of the stack).",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only if both named functions, push and pop, are given using these exact terms. Each function is worth its own half; naming only one earns that half only. Vague descriptions without the terms (e.g. \"add and remove\", \"insert and delete\") earn nothing, and a wrong extra function (e.g. peek, top, enqueue, dequeue) listed as a main function costs the whole answer's affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

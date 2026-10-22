@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E12.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States \"push\" as a main stack operation, correctly described if described at all: adds/inserts an element onto the top of the stack.",
+        "marks": 2.5,
+        "partial_credit": "Names push but gives a wrong or incomplete description; otherwise nothing if push is absent."
+      },
+      {
+        "id": "P2",
+        "description": "States \"pop\" as a main stack operation, correctly described if described at all: removes the top element of the stack (LIFO order).",
+        "marks": 2.5,
+        "partial_credit": "Names pop but gives a wrong or incomplete description; otherwise nothing if pop is absent."
+      }
+    ],
+    "notes": "Full marks need both push and pop named with the correct terms, and no wrong operations given as main ones. Each missing operation loses its point. A wrong extra item (e.g. enqueue, dequeue, insert at the bottom) or a swapped description costs the point it affects. Vague wording such as \"add and remove\" without the terms push and pop earns nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

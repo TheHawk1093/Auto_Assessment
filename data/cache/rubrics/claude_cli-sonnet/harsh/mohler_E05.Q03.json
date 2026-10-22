@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best-case number of operations for insertion sort is N (linear, O(N)), where N is the length of the array.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if says linear/O(N) or N but does not define N as the array length."
+      },
+      {
+        "id": "P2",
+        "description": "States that the best case occurs when the array is already sorted (in the desired order).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if says nearly sorted or ordered without clearly stating already sorted."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly links the two: only one comparison per element and no shifting is needed on a sorted array, hence N operations; distinguishes from worst case (reverse-sorted, N^2).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both facts stated precisely: N (linear) operations, N being the array length, and the case being an already sorted array. Give part marks only where over half of a point is precise. A wrong complexity (e.g. N^2, log N) or a wrong scenario (e.g. reverse sorted, random) gets zero for that point. Vague answers such as \"it is fast\" earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

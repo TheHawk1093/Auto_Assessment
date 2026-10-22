@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/fcc52559d7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names at least three of the four irrigation methods: sprinkler, drip, furrow, flood (any wording, e.g. surface/basin/border flooding for flood).",
+        "marks": 2.0,
+        "partial_credit": "1 mark for naming two correct methods (or one if vague but on track)."
+      }
+    ],
+    "notes": "Full marks for naming about three of the four methods (sprinkler, drip, furrow, flood) in any wording. Give 1 mark for two correct methods. Give 0 if no correct method is named. Extra or wrong items do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure that stores elements (a collection of items).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the LIFO property precisely: the last item added (pushed) is the first item removed (popped), using the term last-in-first-out (LIFO) or equivalent exact wording.",
+        "marks": 2.5,
+        "partial_credit": "Half: describes removal order only roughly (e.g., 'last in comes out first' without naming LIFO or stating removal) but is clearly correct."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes a stack from a queue: a stack removes the most recently added item (LIFO), unlike a queue, which removes the earliest added item (FIFO); no wrong claim about order.",
+        "marks": 1.5,
+        "partial_credit": "Half: implies the contrast correctly (e.g., mentions removal only from the top/most recent end) without explicitly naming the queue/FIFO contrast."
+      }
+    ],
+    "notes": "Full marks need a data structure storing elements plus an exact statement of last-in-first-out removal order, with the LIFO idea clearly distinguished from a queue's FIFO. Vague descriptions (e.g., 'a pile of things', 'stores data') or any wrong order (FIFO) earn nothing for that point. Part marks only where clearly more than half of a point is precisely stated.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

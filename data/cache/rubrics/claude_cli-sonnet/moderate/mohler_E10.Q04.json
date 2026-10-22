@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E10.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary tree is a tree in which each node has at most (a maximum of) two children.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if the idea is vague or slightly wrong, e.g. says 'two children' without 'at most', or 'left and right child' without a clear limit of two."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies it as a tree (hierarchical structure of nodes) and uses the terms 'node' and 'children' (e.g. left/right child) in the definition.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for stating that a binary tree is a tree where each node has at most two children, in any wording, even briefly. Part marks for vague or slightly inaccurate statements (e.g. 'each node has two children', or only mentioning left and right children). No marks for answers that only describe other tree properties (e.g. root, leaves, traversal) without the two-children limit.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

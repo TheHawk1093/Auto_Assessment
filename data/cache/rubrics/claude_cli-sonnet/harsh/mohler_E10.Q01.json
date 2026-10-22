@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E10.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a tree is a collection of nodes (a non-empty set of nodes), using the term 'nodes'.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the collection has one special node called the root.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the remaining nodes (other than the root) are partitioned into one or more disjoint sets, with the term 'disjoint' (non-overlapping) used, and each such set is itself a tree (recursive definition, i.e. subtrees).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if clearly states the rest of the nodes are split into disjoint sets/subtrees but omits that each set is itself a tree (or the reverse)"
+      }
+    ],
+    "notes": "Full marks need the precise recursive definition: a collection of nodes, one special node called the root, and the remaining nodes partitioned into one or more disjoint sets each of which is a tree. Generic statements (e.g. 'hierarchical structure', 'nodes connected by edges', 'parent and children') without these elements earn nothing for the matching point. Part marks only on P3 as stated; a wrong statement about a point (e.g. allowing cycles or multiple roots) loses that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

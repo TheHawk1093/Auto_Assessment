@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/a6b63a67b6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names cetyl alcohol (hexadecanol) as an evaporation inhibitor chemical.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names stearyl alcohol (octadecanol) as an evaporation inhibitor chemical.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for naming both cetyl alcohol (hexadecanol) and stearyl alcohol (octadecanol); either name or formula-style wording is fine, and minor spelling slips are accepted. Give 1 mark if only one is named, or if the student gives a vague answer like \"fatty alcohols\" or \"long-chain alcohols\". Give 0 for unrelated chemicals. Extra wrong items do not cost marks unless they contradict the answer.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

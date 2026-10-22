@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E03.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that both iteration and recursion involve repetition (repeatedly executing a set of instructions/process), using this idea precisely.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that both have termination tests (iteration has a loop-continuation test; recursion has a base case) and that each ends when its test is met.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if says both terminate/end but does not identify a termination test (loop condition / base case) for both."
+      },
+      {
+        "id": "P3",
+        "description": "States that both can occur infinitely (iteration: infinite loop if the continuation test never becomes false; recursion: infinite recursion if the base case is never reached).",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all three similarities stated precisely: repetition, termination tests, and the possibility of infinite execution. Each point is earned only if clearly and correctly stated; vague or merely implied statements earn nothing. Any wrong claim about a point (e.g. saying recursion has no termination test) earns nothing for that point. Differences between the two earn no marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

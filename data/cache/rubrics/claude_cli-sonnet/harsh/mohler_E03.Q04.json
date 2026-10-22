@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that passing by reference avoids making copies (of the arguments) when the function is called, i.e. the function works on the original rather than a copy.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it says no copy is made / works on the original but does not tie it to the function call or arguments precisely."
+      },
+      {
+        "id": "P2",
+        "description": "Specifies that the saving matters for large data structures (e.g. large objects, arrays, structs), where copying would be costly in time/memory.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if it mentions efficiency or memory/time savings but does not name large data structures."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes from pass by value, where a copy of the argument is made on each call; and does not wrongly present the advantage as something else (e.g. only being able to modify the variable, or the reference being a copy).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a precise statement that pass by reference avoids copying, that this matters for large data structures, and a correct contrast with pass by value. Vague claims like \"it is faster\" or \"it is better\" earn nothing alone. Stating that the main advantage is modifying the original, or any wrong statement about a point, loses that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

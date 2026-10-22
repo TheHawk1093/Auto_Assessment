@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a recursive function is a function that calls itself (in any wording, e.g. 'a function that calls itself within its own body').",
+        "marks": 5.0,
+        "partial_credit": "Give about 2-3 marks for a related but incomplete statement, e.g. a function that repeats or calls another function, or mentions a base case/repetition without saying it calls itself."
+      }
+    ],
+    "notes": "Full marks for saying the function calls itself, in any wording, however brief. Part marks for vague or related answers (repetition, loops, calling functions, base case only) that don't clearly say it calls itself. No marks for unrelated answers. Extra correct detail such as base cases is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

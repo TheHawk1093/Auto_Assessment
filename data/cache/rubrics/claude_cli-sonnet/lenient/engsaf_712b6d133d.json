@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/712b6d133d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives at least three valid factors affecting water consumption from the model list: climatic conditions, geography of the region, extent of industrialization, quality of lifestyle, quality of water available, population of the area (any wording).",
+        "marks": 2.0,
+        "partial_credit": "1 mark for two valid factors (or one to two if vague); 0 for none valid."
+      }
+    ],
+    "notes": "Full marks for about three of the four requested factors from the model list, in any wording (e.g. weather, industries, standard of living, population). Give 1 mark if only one or two valid factors are given. Wrong extra factors do not cost marks; 0 if none are valid.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

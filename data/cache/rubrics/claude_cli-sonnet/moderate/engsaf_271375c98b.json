@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/271375c98b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names windrow composting (windrows / turned piles in long rows) as one type.",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names static aerated piles (aerated static pile) as one type.",
+        "marks": 0.67,
+        "partial_credit": "Half if only 'static pile' without aeration is given."
+      },
+      {
+        "id": "P3",
+        "description": "Names in-vessel composting (enclosed reactor/container/vessel system) as one type.",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "One point per listed system, marks shared about equally; clear synonyms (e.g. aerated static pile, enclosed reactor/vessel) are accepted. Total of 2 marks: all three types = 2, two = about 1.33 (round to 1), one = about 0.67 (round to 1 or 0 per teacher practice), none = 0. Vermicomposting does not earn marks; other wrong items earn nothing but do not remove marks for correct ones.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

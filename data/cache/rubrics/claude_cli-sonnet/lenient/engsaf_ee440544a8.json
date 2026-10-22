@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/ee440544a8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the Maxwell\u2013Betti reciprocal theorem (Betti's theorem / Maxwell's reciprocal theorem / reciprocal theorem of work).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only a related idea is given, e.g. 'reciprocal theorem' is not named but 'Maxwell's law' or 'Betti's law' alone, or a vague reference to reciprocity or work/energy."
+      }
+    ],
+    "notes": "Full marks for naming Maxwell\u2013Betti reciprocal theorem in any form, including Betti's theorem or Maxwell's reciprocal theorem alone. Give 1 mark for a vague or related answer such as reciprocity, or reciprocal work/energy idea without the name. Give 0 for unrelated theorems (e.g. Castigliano, superposition only).",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

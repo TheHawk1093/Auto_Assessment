@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E06.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function pointer is an address (of / pointing to) the location in memory where the function's code resides (a pointer that holds the function's memory address).",
+        "marks": 4.0,
+        "partial_credit": "2 marks if vague or half-stated, e.g. 'a pointer that points to a function' without mentioning address or memory location."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies that the address refers to where the function's code is stored in memory (the function's code/location), not a data variable.",
+        "marks": 1.0,
+        "partial_credit": "Half a mark if only loosely stated, e.g. 'points to a function' with no mention of code or memory."
+      }
+    ],
+    "notes": "Full marks for saying a function pointer is the memory address of a function's code, in any wording, e.g. 'a pointer that stores the address of a function'. Part marks for vague answers such as 'it points to a function' with no address or memory idea. No marks for answers about ordinary data pointers or about calling functions in general that never link the pointer to the function's address.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

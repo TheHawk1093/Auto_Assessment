@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E08.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the top of the stack is kept pointing to the head (first node) of the linked list.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if the answer says a linked list is used and the top is at one end, but does not name the head/beginning precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that push adds an element at the beginning (head) of the list and pop removes the element at the beginning (head) of the list. Both operations must be stated.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if only one of push or pop is correctly stated at the beginning/head."
+      },
+      {
+        "id": "P3",
+        "description": "Makes clear that all stack operations therefore occur at the same end (the head), i.e. the top of the stack always corresponds to the head, not the tail/end of the list.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the top pointing to the head of the linked list AND push and pop both acting at the beginning of the list, stated precisely with terms like head/top/push/pop. Vague answers (\"use a list and add and remove elements\") earn nothing. Any statement placing the top or the operations at the tail/end of the list, or an array-based answer, earns no marks for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

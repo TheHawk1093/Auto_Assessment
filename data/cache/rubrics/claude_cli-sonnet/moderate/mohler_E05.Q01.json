@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E05.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Core idea: insertion sort takes elements one at a time and inserts each into its correct position among the already sorted elements (the sorted part on its left).",
+        "marks": 4.0,
+        "partial_credit": "2 marks if only says it inserts elements into the right position, or builds a sorted portion, without the one-at-a-time / already-sorted-part idea, or with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Detail: elements are processed from left to right, with the sorted elements being those to the left of the current element.",
+        "marks": 1.0,
+        "partial_credit": "0.5 if only the sorted-on-the-left or only the left-to-right idea is given vaguely."
+      }
+    ],
+    "notes": "Full marks for stating that each element in turn is inserted into its correct place among the already sorted elements, in any wording; the left-to-right/left-sorted-part detail earns the last mark. Part marks for vague answers such as \"it puts elements in the right place\" or \"it builds a sorted part\". No marks for describing other sorts (e.g. repeatedly selecting the minimum, or swapping adjacent pairs across the whole array) or only giving running time.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

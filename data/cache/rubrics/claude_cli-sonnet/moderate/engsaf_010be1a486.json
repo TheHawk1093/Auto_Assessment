@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/010be1a486",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a higher priority process/task is blocked, delayed or unable to get the CPU (or run).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely stated (e.g. 'priorities get mixed up' or 'a process is delayed') without naming the higher priority process being blocked."
+      },
+      {
+        "id": "P2",
+        "description": "States that this happens because a lower priority process holds a resource (e.g. lock/semaphore/mutex) that the higher priority process needs, so the lower priority one effectively runs ahead.",
+        "marks": 1.0,
+        "partial_credit": "Half if the lower priority process is mentioned as the cause but the held resource is not mentioned, or the resource is mentioned vaguely."
+      }
+    ],
+    "notes": "Full marks (2) need both ideas: a higher priority process cannot run/get CPU, and the cause is a lower priority process holding a needed resource. Give 1 mark if only one idea is clear or both are stated vaguely. Give 0 for wrong or unrelated definitions, such as plain starvation or deadlock with no lower-priority-holds-resource idea. Different wording and synonyms (task, thread, lock) are fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

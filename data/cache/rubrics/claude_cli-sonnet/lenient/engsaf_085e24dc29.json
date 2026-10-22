@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/085e24dc29",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names stem flow (water running down the stems/branches/trunk) as one way intercepted water reaches the ground.",
+        "marks": 1.0,
+        "partial_credit": "Half if the idea is described vaguely (e.g. water running down the tree) without being clear."
+      },
+      {
+        "id": "P2",
+        "description": "Names throughfall (water dripping/falling through leaves or canopy to the ground) as the other way.",
+        "marks": 1.0,
+        "partial_credit": "Half if described vaguely (e.g. drips from leaves) without being clear."
+      }
+    ],
+    "notes": "Full marks for stem flow and throughfall in either order, in any wording that clearly gives the idea (water running down trunk/branches; water dripping or falling from leaves/canopy). Give 1 mark if only one is correct, or both are only vaguely given. Give 0 for unrelated answers such as evaporation or infiltration; extra wrong remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

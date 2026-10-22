@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d5102f3843",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that alkalinity falls because the coagulant reaction consumes/neutralises the alkalinity (OH-/bicarbonate), i.e. OH- is used up or bound in forming bonds/precipitate (e.g. metal hydroxide floc).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says alkalinity is used up/reacts with the coagulant without mentioning OH- or hydroxide."
+      },
+      {
+        "id": "P2",
+        "description": "States that H+ concentration increases, so pH decreases (acidity rises).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says pH drops or water becomes acidic without H+ link."
+      }
+    ],
+    "notes": "Full marks for saying OH- (alkalinity) is consumed by reactions with the coagulant and H+ rises so pH falls, in any wording. Give part marks if only one of the two ideas is given or the idea is vague. Give zero for unrelated answers, such as alkalinity rising or dilution only.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

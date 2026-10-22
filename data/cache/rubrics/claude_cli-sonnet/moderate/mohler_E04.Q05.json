@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that all dimensions except the first must be specified (the first dimension's size may be omitted).",
+        "marks": 4.0,
+        "partial_credit": "2 marks if vaguely stated, e.g. says 'all but one' or 'the later/column dimensions' without clearly saying the first is omitted, or has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear that the first dimension is the one that need not be specified (it may be left empty or omitted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying all dimensions except the first must be given, in any wording (e.g. 'all but the first', 'only the first can be left blank'). Part marks for vague statements such as 'all but one dimension' or 'the column size' without naming the first. No marks for saying all dimensions are needed, or only the first, or for unrelated talk about arrays or pointers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

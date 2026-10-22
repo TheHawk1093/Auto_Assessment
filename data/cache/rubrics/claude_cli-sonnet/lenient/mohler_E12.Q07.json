@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the main stack operations are push (add/insert an item onto the top) and pop (remove an item from the top). Any wording is accepted.",
+        "marks": 5.0,
+        "partial_credit": "Give about 2.5 marks if only one of push or pop is given correctly, or if both are described by function without names but incompletely. Related operations like peek/top alone earn little."
+      }
+    ],
+    "notes": "Full marks for naming both push and pop (or describing them as adding to and removing from the top), in any wording. Part marks for only one of the two, or a vague description covering half. Extra correct operations such as peek, isEmpty or top do not cost marks; answers naming neither operation earn 0.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

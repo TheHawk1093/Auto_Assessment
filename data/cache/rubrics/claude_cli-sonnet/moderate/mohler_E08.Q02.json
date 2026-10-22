@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E08.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States both functions: push (add an item to the top of the stack) and pop (remove an item from the top of the stack). Names push and pop in any wording or case.",
+        "marks": 4.0,
+        "partial_credit": "2 marks if only one of push or pop is correctly named, or both are named alongside a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the correct basic meaning of the operations: push adds an element to the top, pop removes the top element.",
+        "marks": 1.0,
+        "partial_credit": "0.5 if only one operation's meaning is correct."
+      }
+    ],
+    "notes": "Full marks for naming both push and pop, in any wording; a brief answer like \"push and pop\" earns 5 if the meanings are not contradicted, so give the P2 mark unless the student gives a wrong meaning. Part marks if only one of the two is named, or if one is named with a wrong description. Naming other operations such as peek, top, or isEmpty instead of push and pop earns nothing for those items.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

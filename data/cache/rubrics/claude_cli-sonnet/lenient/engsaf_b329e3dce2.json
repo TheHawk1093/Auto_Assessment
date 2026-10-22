@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b329e3dce2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that homogeneous coordinates allow rotation, translation and scaling to be represented in a uniform way, e.g. all as matrix multiplication / a single 3x3 matrix form (translation can then be expressed as a matrix like the others).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it helps represent transformations as matrices without the uniform/translation idea."
+      },
+      {
+        "id": "P2",
+        "description": "States a benefit: easier/more efficient computation or optimization, e.g. transformations can be combined (concatenated) into one matrix and computed faster by the computer.",
+        "marks": 1.0,
+        "partial_credit": "Half if benefit is vaguely stated."
+      }
+    ],
+    "notes": "Full marks for saying homogeneous coordinates give one uniform matrix form for translation, rotation and scaling, plus a simple benefit like easier or faster calculation. Give 1 mark if only one of these ideas is present, in any wording. Give 0 for wrong or unrelated answers.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E10.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a leaf is a node with no children (no child nodes / no descendants below it, e.g. the end node of a tree). Any wording is fine, e.g. 'a node at the bottom of the tree with nothing under it'.",
+        "marks": 4.0,
+        "partial_credit": "Half to three marks for a vague or partly right idea, e.g. 'the last/end node of a tree' without saying it has no children, or 'a node with no next node'."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies a leaf as a node (an element of a tree/hierarchical structure), not some other thing.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying a leaf is a node with no children, in any wording. Part marks for vague or incomplete ideas such as 'the last node' or 'bottom of the tree' without clearly saying no children. No marks for answers about roots, parents or other unrelated terms, or for saying a leaf has children. Extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

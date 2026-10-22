@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E07.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in a doubly-linked list insertion and deletion operations can be performed in constant time, O(1).",
+        "marks": 2.0,
+        "partial_credit": "Half (1 mark) if says insertion/deletion is efficient or fast but does not state constant time/O(1), or gives constant time for only one of insertion or deletion."
+      },
+      {
+        "id": "P2",
+        "description": "States that this constant time holds for operations before a given location (at the node preceding a given position), because each node has a pointer to its previous node so no traversal from the head is needed.",
+        "marks": 1.5,
+        "partial_credit": "Half (0.75) if mentions previous pointers/backward traversal but does not link it to constant-time operations before a given location."
+      },
+      {
+        "id": "P3",
+        "description": "States that constant-time operations also hold at the end of the list (e.g., deleting/inserting at the tail), whereas in a basic singly-linked list these require traversal (linear time) to find the preceding node.",
+        "marks": 1.5,
+        "partial_credit": "Half (0.75) if mentions the end of the list but does not contrast with singly-linked list needing linear traversal, or vice versa."
+      }
+    ],
+    "notes": "Full marks need constant time (O(1)) for insertion and deletion stated explicitly, including before a given location and at the end of the list, with the contrast to a basic list needing traversal. Vague answers such as \"can move both directions\" or \"more flexible\" earn nothing unless tied to constant-time operations. A wrong claim (e.g., faster search or less memory) loses the point it affects.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

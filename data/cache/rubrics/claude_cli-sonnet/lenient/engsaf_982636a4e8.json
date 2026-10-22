@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/982636a4e8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that summing or averaging (or otherwise smoothing/processing) a random series can produce oscillations/cyclic movements.",
+        "marks": 1.0,
+        "partial_credit": "Half or full credit if only mentions that random data gives oscillations/cycles without saying it comes from summation or averaging."
+      },
+      {
+        "id": "P2",
+        "description": "States that these oscillations/cycles are not present in the original data (they are artificial or spurious).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if vaguely says the cycles are false or not real without clearly linking to the original data."
+      }
+    ],
+    "notes": "Full marks for the core idea in any wording: averaging or summing random data creates apparent oscillations that were not in the original series. Give part marks if only one half is stated or the idea is vague (e.g. 'averaging creates false cycles'). Give zero for unrelated or wrong definitions. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

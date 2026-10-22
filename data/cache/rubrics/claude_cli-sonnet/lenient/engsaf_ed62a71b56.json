@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/ed62a71b56",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names a valid drawback of non-conventional machining: low metal removal rate / inefficient or slow material removal.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it is slow or inefficient without link to removal."
+      },
+      {
+        "id": "P2",
+        "description": "Names another drawback from the model answer: requires high-skill labour, or is generally expensive/high cost.",
+        "marks": 1.0,
+        "partial_credit": "Half if the idea is only hinted at (e.g. 'needs skill' or 'costly equipment') in a vague way."
+      }
+    ],
+    "notes": "Full marks for stating about two of the drawbacks (low MRR, high-skill labour, high cost) in any wording; a student giving a single drawback correctly, e.g. only 'low MRR', gets 1 mark, though a very clear single answer may be given generous half-marks on the other point. 0 for unrelated answers. Extra incorrect remarks do not cost marks unless they contradict these drawbacks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

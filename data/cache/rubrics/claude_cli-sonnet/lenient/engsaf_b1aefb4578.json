@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b1aefb4578",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Says that on a flat region there is no change in any direction, and on an edge there is no change along the edge direction (change only across it).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of flat or edge is described, or stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Says that at a corner there is significant change in all directions (so direction-dependent intensity change is what identifies a corner).",
+        "marks": 1.0,
+        "partial_credit": "Half if vaguely says corners depend on change in direction without stating all directions."
+      }
+    ],
+    "notes": "Full marks for stating the central idea in any wording: intensity change when the window shifts depends on direction \u2014 none on flat, none along an edge, large in all directions at a corner. Give part marks for a right-track but incomplete or vague answer, e.g. only mentioning edge or corner behaviour. No marks for unrelated or wrong answers. Mention of affine dependence is not needed.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

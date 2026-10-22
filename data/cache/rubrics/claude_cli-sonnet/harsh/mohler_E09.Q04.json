@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E09.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the rear of the queue points to the tail of the linked list, so enqueue is done at the end (tail) of the list.",
+        "marks": 2.0,
+        "partial_credit": "Half: names enqueue at the end/tail but does not link it to the rear pointer (or vice versa)."
+      },
+      {
+        "id": "P2",
+        "description": "States that the front of the queue points to the head of the linked list, so dequeue is done at the beginning (head) of the list.",
+        "marks": 2.0,
+        "partial_credit": "Half: names dequeue at the beginning/head but does not link it to the front pointer (or vice versa)."
+      },
+      {
+        "id": "P3",
+        "description": "Gets the pairing right and distinct from the reverse: enqueue at tail/rear and dequeue at head/front, using the terms front, rear, head, tail, enqueue and dequeue correctly, with no swapped or contradictory statements.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both ends stated precisely: rear\u2194tail\u2194enqueue at end, and front\u2194head\u2194dequeue at beginning, using correct terms. Part marks only when clearly more than half of P1 or P2 is stated precisely. Vague answers (\"use a linked list\", \"add and remove nodes\") earn nothing, and any reversed pairing (e.g. enqueue at head) loses the affected points and P3.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

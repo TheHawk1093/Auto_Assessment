@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/12ada8ea8d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the words 'Representative' and 'Concentration' correctly (e.g. 'Representative Concentration ...'), allowing minor spelling errors.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of the two words is correct or is badly garbled but recognisable."
+      },
+      {
+        "id": "P2",
+        "description": "Gives 'Pathway' (synonyms such as 'Pathways' accepted) completing the full form 'Representative Concentration Pathway'.",
+        "marks": 1.0,
+        "partial_credit": "Half if a near-synonym such as 'Path' or 'Profile' is given with the first two words correct."
+      }
+    ],
+    "notes": "Full marks (2) for 'Representative Concentration Pathway' in any minor spelling variation or plural form. Give 1 mark if two of the three words are right or the phrase is partly correct (e.g. 'Representative Concentration Pathways' with one word slightly off, or 'Representative Concentration Profile'). Give 0 for unrelated expansions such as 'Rainfall Concentration Point'.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

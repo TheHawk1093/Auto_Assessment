@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives one valid use of lasers (e.g. cutting/welding, medical surgery, optical fibre communication, laser printing).",
+        "marks": 1.0,
+        "partial_credit": "Half if the use is vague or only loosely stated (e.g. just 'in medicine' or 'in industry')."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid use of lasers from the model answer or a clear synonym.",
+        "marks": 1.0,
+        "partial_credit": "Half if the use is vague or only loosely stated."
+      }
+    ],
+    "notes": "Award 1 mark for each distinct, correct use of lasers, so two correct uses earn 2. Accept clear synonyms (e.g. eye surgery for medical surgery, data transmission through fibres for optical fibre communication). Repeats of the same use, or wrong or unrelated uses, earn nothing. Only the first two uses count.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

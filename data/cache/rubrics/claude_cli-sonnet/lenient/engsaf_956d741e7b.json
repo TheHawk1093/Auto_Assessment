@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/956d741e7b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives one valid privileged action a user process might attempt that the OS prevents (e.g., writing CR3 to change the page directory, writing EFLAGS to change status/interrupt flag, writing IDTR to relocate the IDT, or accessing kernel virtual addresses), with a brief explanation of what it would do or why it is blocked.",
+        "marks": 1.0,
+        "partial_credit": "Half if the action is named but with no explanation, or the explanation is vague."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid privileged action from the model answer list, with a brief explanation of what it would do or why it is blocked.",
+        "marks": 1.0,
+        "partial_credit": "Half if the action is named but with no explanation, or the explanation is vague."
+      }
+    ],
+    "notes": "Full marks for two distinct valid privileged actions (CR3, EFLAGS, IDTR, kernel-address access or clearly equivalent register/memory accesses) with some explanation in any wording. Give part marks for an action named without explanation, or a vague but on-track description. Give no marks for actions that user code can do freely or that are unrelated (e.g., updating the PCB, which the question rules out).",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

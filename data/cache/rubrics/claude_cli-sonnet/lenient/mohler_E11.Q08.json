@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q08",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a char [] (C-string) automatically has a null character ('\\0') added at the end of the string, whereas a string variable does not (the null terminator is not stored/added in the same way).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 to 3 marks if the answer mentions a terminating/end-of-string character or a related difference between char arrays and strings (e.g. fixed size, C-style) without clearly saying a null character is added to the char []."
+      }
+    ],
+    "notes": "Full marks for saying a char [] gets a null (\\0) terminator added automatically at the end, in any wording, even briefly. Part marks for a vague or related statement, such as an end-of-string marker without naming null, or char array details like fixed size. No marks if the answer does not touch on the terminator at all. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

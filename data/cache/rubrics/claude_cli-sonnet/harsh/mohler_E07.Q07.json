@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E07.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the disadvantage is extra memory/space: each node of a doubly-linked list must store an additional pointer (the back/previous pointer) in addition to the next pointer.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5): says it uses more memory/space but does not identify the extra pointer per node as the cause."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the extra space specifically as the back (previous) pointer stored in every node, i.e. two pointers per node versus one in a basic (singly) linked list.",
+        "marks": 2.0,
+        "partial_credit": "Half (1): mentions extra pointers but does not say back/previous or does not contrast with the single pointer in a basic list."
+      }
+    ],
+    "notes": "Full marks need both: extra space/memory as the disadvantage, and the cause stated precisely as the additional back (previous) pointer per node versus one pointer in a singly linked list. Vague answers such as \"more complex\" or \"slower\" earn nothing. A wrong claim, such as saying it is slower to traverse as the main disadvantage, loses the point it affects.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

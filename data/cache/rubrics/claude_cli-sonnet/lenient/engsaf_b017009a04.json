@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b017009a04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies/selects a candidate distribution from the data (detecting or analysing the data's distribution) and fits the model (estimates parameters) to the time series.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of identifying the distribution or fitting it is stated."
+      },
+      {
+        "id": "P2",
+        "description": "Checks goodness of fit of the fitted distribution (e.g. chi-square test or similar test) and analyses/interprets the results to accept or reject it.",
+        "marks": 1.0,
+        "partial_credit": "Half if goodness of fit is mentioned without any test or result analysis, or only a test is named."
+      }
+    ],
+    "notes": "Full marks for an answer that says to identify and fit a distribution to the data and then test goodness of fit (chi-square or any similar test) and review the results. Give part marks if only some of these steps appear or they are vague. Give no marks for unrelated answers. The exact term 'chi-square' is not required.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that C++ programs begin execution at the main function (main()).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 to 3 marks if vague or partly wrong, e.g. says 'at the start of the program' or names a related function/entry without clearly saying main."
+      }
+    ],
+    "notes": "Full marks for stating that execution begins at main (main function / main()), in any brief wording. Part marks for a vague or partly correct answer that does not clearly name main. No marks for answers about something unrelated, such as headers, compilation or other functions, without naming main. Extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E12.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the node to be deleted must first be found/located in the tree (search for the node by key).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the node is replaced by the leftmost node (the minimum / in-order successor) of its right subtree, stated precisely as leftmost node of the RIGHT subtree.",
+        "marks": 2.5,
+        "partial_credit": "Names the right subtree successor or the left subtree predecessor correctly but without saying leftmost/rightmost (or minimum/maximum) precisely: 1.25"
+      },
+      {
+        "id": "P3",
+        "description": "States the alternative: replace it with the rightmost node (the maximum / in-order predecessor) of its LEFT subtree, with the correct pairing of leftmost-with-right and rightmost-with-left.",
+        "marks": 1.5,
+        "partial_credit": "Alternative mentioned with the correct subtree but the extreme node (rightmost/maximum) not named: 0.75"
+      }
+    ],
+    "notes": "Full marks need all three: find the node, replace with the leftmost node of the right subtree, and the alternative rightmost node of the left subtree, all with correct terms. Wrong pairing (e.g. leftmost of the left subtree) or only vague wording like \"replace with a child\" or \"rearrange the tree\" earns nothing for that point. Merely describing leaf/one-child cases without the replacement rule earns no marks for P2 or P3.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

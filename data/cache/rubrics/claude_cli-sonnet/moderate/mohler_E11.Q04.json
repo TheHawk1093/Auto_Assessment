@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function signature is the function's name together with its parameter list (the parameters' types), i.e. the part that identifies/declares the function.",
+        "marks": 4.0,
+        "partial_credit": "2 marks if only the name or only the parameters/types is given, or the idea is stated vaguely (e.g. 'the function declaration/header' without naming its parts)."
+      },
+      {
+        "id": "P2",
+        "description": "Says the parameter list includes the parameter types (not just the number or names of parameters).",
+        "marks": 1.0,
+        "partial_credit": "0.5 if parameters are mentioned without their types."
+      }
+    ],
+    "notes": "Full marks for saying a signature is the function name plus its parameters with their types, in any wording; extra correct detail (e.g. return type mentioned) is fine. Part marks if only the name or only the parameters are given, or if the answer is vague. No marks for answers that describe what a function does or how it is called without naming the name and parameters.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

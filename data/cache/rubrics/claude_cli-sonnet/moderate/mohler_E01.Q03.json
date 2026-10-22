@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States abstraction as an advantage of OOP (hiding complex implementation details and exposing only essentials).",
+        "marks": 2.5,
+        "partial_credit": "Half marks if only vaguely related (e.g. encapsulation/data hiding/simplicity) without naming abstraction."
+      },
+      {
+        "id": "P2",
+        "description": "States reusability as an advantage of OOP (code can be reused, e.g. through classes and inheritance).",
+        "marks": 2.5,
+        "partial_credit": "Half marks if the idea is vaguely stated (e.g. 'less code to write' or 'easy maintenance') without reuse."
+      }
+    ],
+    "notes": "Full marks need both advantages: abstraction and reusability, in any wording. Give part marks for a vague or related idea such as encapsulation or easier maintenance. Wrong claims lose only their own point; extra correct advantages are fine but earn nothing extra.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

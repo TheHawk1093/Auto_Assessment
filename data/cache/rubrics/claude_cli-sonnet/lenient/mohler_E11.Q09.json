@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the divide-and-conquer idea: break a problem into smaller subproblems, solve them (recursively/independently), and combine their solutions to solve the original problem. Any wording accepted.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if only part is given, e.g. splitting into smaller subproblems and solving them but no combining step (or only combining/recursion mentioned without the dividing)."
+      }
+    ],
+    "notes": "Full marks for saying the problem is split into smaller subproblems, these are solved, and the results are combined, in any wording, even brief or informal. Part marks if the student gives only the dividing/solving part or only a vague related description (e.g. just 'use recursion'). No marks for unrelated content; extra correct detail such as examples (merge sort) is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

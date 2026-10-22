@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/755c9c7e80",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that vapor pressure deficit is a difference between the moisture the air currently holds and the moisture it could hold when saturated (the gap between actual and saturation vapor/moisture content), in any wording.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only partly right, e.g. says it is about the moisture/humidity in the air or how much more moisture the air can hold, without clearly stating a difference between actual and saturated amounts."
+      }
+    ],
+    "notes": "Full marks (2) for the core idea: the difference between actual moisture in the air and the moisture saturated air can hold, in any wording (e.g. \"how much more water the air can take before it is full\"). Give 1 mark if the answer is vague or only half there, such as mentioning air moisture/humidity or saturation without the difference. Give 0 if wrong or unrelated.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

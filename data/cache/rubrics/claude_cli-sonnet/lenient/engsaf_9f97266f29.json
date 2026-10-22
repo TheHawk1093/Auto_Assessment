@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/9f97266f29",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the reservoir area curve is a plot/graph/relationship of water spread area (surface area of the reservoir) against reservoir elevation (water level/depth).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only one of the two quantities (area or elevation) is correct or the relationship is described vaguely, e.g. 'a curve showing the reservoir's area' or 'area versus capacity'."
+      }
+    ],
+    "notes": "Full marks (2) for saying it is a plot or relationship between water spread/surface area and elevation (or water level/height/depth) of the reservoir, in any wording. Give 1 mark if the answer is on the right track but vague or names only one correct variable, or pairs area with a wrong second variable like capacity. Give 0 for wrong or unrelated answers.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

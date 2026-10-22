@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/1a9934f699",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names most of the three steps of anaerobic digestion: hydrolysis, acidogenesis, methanogenesis (at least two of the three correctly given, any wording or order).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only one step is correctly named."
+      }
+    ],
+    "notes": "Full marks for naming at least two of the three steps (hydrolysis, acidogenesis, methanogenesis), in any order; minor spelling errors are fine. Give 1 mark for one correct step. No marks if none are correct. Extra wrong remarks do not cost marks unless they replace the correct steps.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

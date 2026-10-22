@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/010be1a486",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a higher priority process/task is blocked, delayed or prevented from running (not getting the CPU).",
+        "marks": 1.0,
+        "partial_credit": "Half or full if only vaguely says priorities get mixed up or a high priority process waits, without a cause."
+      },
+      {
+        "id": "P2",
+        "description": "Says the cause is a lower priority process holding a resource (lock/shared resource) that the higher priority process needs, so the lower one effectively runs first.",
+        "marks": 1.0,
+        "partial_credit": "Half if mentions a lower priority process interfering or running ahead without the resource link."
+      }
+    ],
+    "notes": "Full marks for a one-line definition saying a higher priority process is kept waiting/not getting the CPU because a lower priority process holds a needed resource, in any wording. Give 1 mark if only one of the two ideas is present or the answer is vague (e.g., low priority runs before high priority). Give 0 for unrelated or wrong definitions; extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

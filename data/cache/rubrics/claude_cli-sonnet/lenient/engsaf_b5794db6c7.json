@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/b5794db6c7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least one valid limitation of PVD: coating is thin, OR complex shapes are difficult to coat, OR high cost, OR low output/slow deposition rate.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer is vague or only hints at a limitation (e.g. 'it is not good' or 'difficult process') without naming a specific one."
+      }
+    ],
+    "notes": "The question asks for \"any\" limitation, so one correct limitation in any wording earns full marks (2). Accept informal wording such as 'expensive', 'can't coat complicated parts', 'only a thin layer', 'slow production'. Give 1 mark for a vague or half-correct statement, and 0 for wrong or unrelated answers (e.g. listing an advantage).",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

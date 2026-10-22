@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location in memory (named storage location) that can store/hold a value or data.",
+        "marks": 4.0,
+        "partial_credit": "Half or more of the marks if only one half is stated (e.g. 'a container for data' without memory, or 'a memory location' without storing a value), or stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear the stored value can be held/changed, i.e. the location stores a value (data) of some kind, using the idea of 'value' or 'data'.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying a variable is a memory location (or named storage in memory) that holds a value, in any wording, even briefly. Part marks if only memory or only storing a value is mentioned, or the idea is vague. No marks for answers that describe something related (e.g. a data type or a function) without the core fact; extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

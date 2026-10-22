@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/0fa4f95afa",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States time scale (length/duration of the process) as one of the two important scales.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States spatial scale (length/size or area of the process) as the other important scale.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for naming both a time scale and a spatial (length/space) scale in any wording. Give 1 mark if only one of the two is given. Give 0 for unrelated answers such as water availability alone or other scales. Ignore the \"availability of drinking water\" phrase in the model answer; it is not needed.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

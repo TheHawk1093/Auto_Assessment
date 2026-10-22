@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/694e84467b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that short-term atmospheric conditions varying over time are called temporal variations (or weather, which is the example given). Either the term 'temporal variations' or the idea of weather as the short-term varying condition is accepted.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer is vaguely related, such as 'climate variation' or 'changes in atmosphere', without naming temporal variation or weather."
+      }
+    ],
+    "notes": "Full marks for 'temporal variations' or 'weather' (or a clear equivalent such as day-to-day changes in atmospheric conditions). Give 1 mark for a vague or partly related answer, such as 'variation' or 'atmospheric change'. Give 0 for wrong answers such as 'climate' or 'spatial variation'.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

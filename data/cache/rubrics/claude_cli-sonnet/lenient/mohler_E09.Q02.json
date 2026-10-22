@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E09.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the two main queue functions are enqueue (adding/inserting an element at the rear/back) and dequeue (removing an element from the front). Both operations named, in any wording (e.g. 'add' and 'remove', 'push' and 'pop' with correct meaning).",
+        "marks": 5.0,
+        "partial_credit": "Give about 2.5 marks if only one of the two operations is correctly given, or if both are described vaguely with one clearly right."
+      }
+    ],
+    "notes": "Full marks for naming both operations: enqueue (add to the back) and dequeue (remove from the front), in any wording; descriptions like 'add and remove' are fine. Part marks if only one is correct or the answer is vague but on track. No marks for unrelated functions only (e.g. peek, isEmpty alone) or for stack operations with no match to adding/removing. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

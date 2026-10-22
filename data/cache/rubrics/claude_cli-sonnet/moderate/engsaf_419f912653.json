@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/419f912653",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names meteorological factors: wind speed, air and water temperature, vapour pressure (vapour pressure difference), and atmospheric pressure. Any correct ones, with at least 3 of these 4 for full marks.",
+        "marks": 1.0,
+        "partial_credit": "Half mark for 1\u20132 of these factors correctly named."
+      },
+      {
+        "id": "P2",
+        "description": "Names water-body related factors: heat storage by the water body and water quality (e.g. salinity or dissolved solids). Both needed for full marks.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only one of the two is given."
+      }
+    ],
+    "notes": "Full marks need most of the model factors across both groups: meteorological (wind speed, temperature, vapour pressure, atmospheric pressure) and water-body (heat storage, water quality). Give part marks when only one group is covered or only a few factors are named. Clear synonyms are accepted (e.g. humidity for vapour pressure, salinity for water quality). Wrong or unrelated factors earn nothing but do not cancel correct ones.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

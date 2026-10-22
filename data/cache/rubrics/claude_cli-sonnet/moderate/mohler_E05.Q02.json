@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core idea: repeatedly find the minimum element among the remaining (unsorted) elements and swap it into the current position (moving left to right).",
+        "marks": 4.0,
+        "partial_credit": "Half marks if only 'finds the minimum/smallest' or only 'swaps into place' is stated, or the idea is vague or has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "States that it processes one element/position at a time from left to right, with the minimum chosen from the remaining elements after the current one.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of 'left to right' or 'remaining elements' is mentioned."
+      }
+    ],
+    "notes": "Full marks need the idea of repeatedly selecting the minimum of the remaining elements and swapping it with the current element; wording may differ. Give part marks for a half-stated or vague version (e.g. only 'finds the smallest element' with no swap). Give no marks for descriptions of other sorts (e.g. swapping adjacent elements or inserting into a sorted part) or generic 'it sorts the array'.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

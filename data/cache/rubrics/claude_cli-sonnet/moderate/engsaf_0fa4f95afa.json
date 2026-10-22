@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/0fa4f95afa",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the time scale (length of the process / duration over which a hydrologic process occurs) as one of the two important scales.",
+        "marks": 1.0,
+        "partial_credit": "Half if only 'scale' of time is hinted vaguely (e.g. 'duration') without clear naming."
+      },
+      {
+        "id": "P2",
+        "description": "States the spatial scale (length/area over which a hydrologic process occurs) as the other important scale.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely stated (e.g. 'area' or 'size') without naming it a spatial/length scale."
+      }
+    ],
+    "notes": "Full marks (2) for naming both time scale and spatial scale; clear synonyms like 'temporal scale' and 'length/area scale' are accepted. Give 1 mark if only one is correct or both are stated vaguely. Give 0 for unrelated answers; a wrong scale does not cancel the other correct one. The 'availability of drinking water' phrase in the model answer is not required.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

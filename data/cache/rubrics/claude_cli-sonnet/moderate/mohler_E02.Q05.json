@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E02.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class can have an unlimited (any number of) constructors, in any wording (e.g. \"as many as you want\", \"no limit\", \"any number, as long as their parameter lists differ\").",
+        "marks": 4.0,
+        "partial_credit": "Half or more of the marks for a vague or partly wrong statement, e.g. \"many\" or \"more than one\" without saying there is no limit, or an unlimited claim with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the supporting detail that the constructors are overloaded, i.e. they must differ in their parameters (number or types).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for P1 if the student says unlimited, any number or no limit, in any wording; even a very brief answer earns this. Part marks for vague answers such as \"many\" or \"more than one\". No marks for a specific fixed number (e.g. \"one\" or \"two\") or for talking about constructors without giving a count. P2 is only a small extra for mentioning overloading or differing parameters; do not penalise its absence heavily.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

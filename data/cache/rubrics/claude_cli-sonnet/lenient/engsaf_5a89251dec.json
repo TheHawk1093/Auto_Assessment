@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/5a89251dec",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the parameters K and x are assumed constant (not changing with time) for the reach.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of K or x is mentioned as constant, or constancy is stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "States that the storage\u2013discharge relation is linear (storage depends linearly on inflow and outflow, m = 1), and/or that the method applies to channel routing.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says the relation is linear or the method is for channels without clear detail."
+      }
+    ],
+    "notes": "Full marks for stating that K and x are constant over time, and that the relation is linear (m = 1) or the method is for channel reach routing. Give part marks for one correct assumption stated or a vague version of both. Give no marks for unrelated or wrong answers; ignore the model answer's odd 'x = 1' wording and extra incorrect remarks unless they contradict the central ideas.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the alternative to recursion is iteration (loops, e.g. for/while loops, are acceptable as wording for iteration).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2 to 3 marks if the answer is vague or related but not clearly iteration (e.g. only says 'use a different function' or 'use a stack' without naming loops/iteration)."
+      }
+    ],
+    "notes": "Full marks for stating iteration, in any wording, including 'loops', 'for/while loop' or 'iterative approach'. Part marks for a vague or half-right idea, such as repetition without naming loops, or iteration mixed with a minor error. No marks if the answer names something unrelated (e.g. pointers, arrays) or does not state iteration. Extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

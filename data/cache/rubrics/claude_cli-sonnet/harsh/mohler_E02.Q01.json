@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E02.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class definition includes data members, using the term 'data members' or 'attributes' (member variables), i.e. the data/state of the class.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that a class definition includes member functions (methods), i.e. the behaviour/operations of the class, using the term 'member functions' or 'methods'.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Gives both elements together as the contents of the class (data members AND member functions) with no wrong or irrelevant extra item presented as part of the definition, and no confusion between the two.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both data members (attributes) and member functions (methods) named with correct terms. Give nothing for a point if it is vague (e.g. 'variables and code', 'stuff inside the class') or wrong. P3 is lost if the student adds a wrong item or mixes up the two. Naming only one of the two earns at most that one point's marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

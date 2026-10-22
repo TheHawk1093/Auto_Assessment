@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/653c10fc0e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the time-area method is used to produce/derive runoff hydrographs (hydrologic routing) from rainfall input such as the hyetograph (intensity vs time).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it is used for routing or runoff estimation without hydrograph/rainfall link."
+      },
+      {
+        "id": "P2",
+        "description": "States its significance: suited to larger catchments because it treats smaller regions/sub-areas separately (accounts for each area's contribution individually).",
+        "marks": 1.0,
+        "partial_credit": "Half if only mentions larger catchments or dividing into areas, not both."
+      }
+    ],
+    "notes": "Full marks for stating the method gives runoff hydrographs from rainfall, and that it is useful for large catchments by handling sub-areas separately, in any wording. Give part marks for vague or one-sided versions of either idea. Give none for unrelated answers. Wrong extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

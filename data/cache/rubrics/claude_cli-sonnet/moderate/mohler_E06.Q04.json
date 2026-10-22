@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E06.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Set a pointer to the first element of the array (pointer initialized to the array name/address of first element), then access elements by adding the index/offset to the pointer, i.e. *(ptr + i) or *(array + i).",
+        "marks": 4.0,
+        "partial_credit": "2 marks if only one half is stated (pointer to first element, or adding an index/offset) or the idea is vague or has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "States that the index/offset is added to (increments) the pointer to reach the element, with dereferencing to get the value, e.g. *(p + i).",
+        "marks": 1.0,
+        "partial_credit": "0.5 if offset addition is mentioned without dereferencing or clear link to the index."
+      }
+    ],
+    "notes": "Full marks for saying a pointer is set to the array's first element and the index/offset is added to it (e.g. p = arr; *(p+i)), in any wording. Part marks for only one half, or a vague or slightly wrong version. No marks for describing ordinary arr[i] subscripting or unrelated pointer facts without the pointer-plus-offset idea.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

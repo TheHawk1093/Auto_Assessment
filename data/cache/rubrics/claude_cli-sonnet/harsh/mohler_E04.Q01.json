@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E04.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the array length can be specified in the array declaration, i.e. explicitly giving the size in square brackets (e.g. int a[5];).",
+        "marks": 2.5,
+        "partial_credit": "Half marks if only vaguely 'when declaring' without clearly saying the size is given in the declaration brackets."
+      },
+      {
+        "id": "P2",
+        "description": "States that the array length can be specified by using an initializer list, i.e. the size is deduced from the number of values in the braces (e.g. int a[] = {1,2,3};).",
+        "marks": 2.5,
+        "partial_credit": "Half marks if it mentions initializing with values/braces but does not say the length comes from the initializer list."
+      }
+    ],
+    "notes": "Both ways are required: (1) size given in the array declaration and (2) size determined by an initializer list. Each way must be stated precisely; vague answers such as 'when creating it' or 'with values' earn nothing or at most half. Naming a wrong way (e.g. dynamic allocation with new, or sizeof) as one of the two costs that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

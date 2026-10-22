@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/2968f06957",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First blank: univariate (a single-variable / simple regression with one explanatory variable).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second blank: multivariate (multiple regression, with more than one explanatory variable).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Give 1 mark for each blank answered correctly, in any wording; clear synonyms such as \"simple\" for the first and \"multiple\" for the second are accepted. Both answers must be in the right order to earn both marks. If the student has them swapped or gives unrelated terms, give 0 for those blanks. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

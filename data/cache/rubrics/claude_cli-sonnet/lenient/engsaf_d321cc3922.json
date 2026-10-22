@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d321cc3922",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names at least two of the three principles: consensus, industry-wide applicability, voluntary nature (any wording, e.g. 'agreement of all parties', 'used across industries', 'not mandatory/optional').",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only one principle is correct."
+      },
+      {
+        "id": "P2",
+        "description": "Names all three principles (or the third one in addition to P1): consensus, industry-wide applicability, voluntary nature, in any wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if exactly two are correct."
+      }
+    ],
+    "notes": "Full marks (2) for all three principles, or about three quarters credit if two are clearly right with a close idea for the third; synonyms like 'agreement', 'applicable to all industries', 'voluntary/not compulsory' are fine. Give 1 mark for two correct principles, or 0.5 for one. Give 0 if none match.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E01.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that variables can be declared anywhere in a program (not restricted to one fixed location).",
+        "marks": 1.5,
+        "partial_credit": "Half marks if only one location is given as an example without saying declaration is possible anywhere."
+      },
+      {
+        "id": "P2",
+        "description": "States precisely that variables can be declared inside a function, and names these as local variables.",
+        "marks": 1.75,
+        "partial_credit": "Half marks if inside a function is stated but 'local variables' is not named (or vice versa)."
+      },
+      {
+        "id": "P3",
+        "description": "States precisely that variables can be declared outside all functions, and names these as global variables.",
+        "marks": 1.75,
+        "partial_credit": "Half marks if outside functions is stated but 'global variables' is not named (or vice versa)."
+      }
+    ],
+    "notes": "Full marks need all three elements: declaration anywhere, inside functions as local variables, and outside functions as global variables, with the correct terms. Part marks only when clearly more than half of a point is precise. Vague answers (e.g. 'at the top') or any wrong statement about a point earn nothing for that point; a wrong location, such as 'only in main', loses the related point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

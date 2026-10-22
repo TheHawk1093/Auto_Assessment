@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/9ee1ac6983",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a nonlinear classifier can handle data that is not linearly separable (which a linear classifier cannot classify correctly).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only says nonlinear is 'better' or 'more accurate' for some data without mentioning non-separability."
+      },
+      {
+        "id": "P2",
+        "description": "States that a nonlinear classifier can form more complex (curved/non-straight) decision boundaries.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if vaguely says it is more flexible or powerful without mentioning boundaries."
+      }
+    ],
+    "notes": "Full marks if the student says nonlinear classifiers work on data that cannot be separated by a straight line/hyperplane and/or can make more complex boundaries, in any wording. Either idea stated clearly with a reasonable link to the other can earn 2. Vague claims like 'more accurate' earn part marks; wrong or unrelated answers earn 0.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E04.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array persists (has static storage duration) for the entire life/lifetime of the program, rather than only during the function call, using terms such as 'static' and 'life of the program'.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says static arrays persist/retain values between calls but does not state lifetime is the whole program."
+      },
+      {
+        "id": "P2",
+        "description": "States that a static array is initialized only once, the first time the function that declares it is called (not on each call).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says initialized only once but omits that this happens at the first call of the declaring function."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly contrasts with a non-static (automatic/local) array: it is created and initialized on each call of the function and destroyed when the function exits, so it does not live for the whole program.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need precise statements: static array lives for the whole program, is initialized only once on the first call of its function, and the non-static array differs (re-created each call, destroyed on exit). Vague statements like 'static arrays keep their value' earn at most part of P1. Any wrong statement about a point (e.g. static arrays are re-initialized each call, or static means constant size) means that point earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

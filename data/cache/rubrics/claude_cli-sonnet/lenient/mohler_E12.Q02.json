@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the experimental approach is to implement (code/run) the algorithm and measure its actual (physical) running time, e.g. with a clock/timer.",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if only one half is given: either implementing/running the algorithm, or measuring time, without linking the two."
+      }
+    ],
+    "notes": "Full marks for saying, in any wording, that you implement or run the algorithm and measure how long it actually takes. Part marks for a vague or half answer, such as only 'run it' or 'use a timer', or a related idea like testing on different inputs without saying to measure time. No marks for answers about theoretical analysis, counting operations or Big-O only.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

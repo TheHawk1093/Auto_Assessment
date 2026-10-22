@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/86b197d3be",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE (the process may not be scheduled immediately after the interrupt handler finishes).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: another process may be scheduled after the handler because the interrupted process's time slice expired during interrupt handling (or a scheduling/preemption decision, e.g. a higher-priority process, caused a different process to run).",
+        "marks": 1.5,
+        "partial_credit": "1 mark if the answer says a different process may run after the interrupt but gives a vague or incomplete reason."
+      }
+    ],
+    "notes": "Full marks: TRUE with a reason that the scheduler may pick a different process after the handler, e.g. the time slice ended during the interrupt. Part marks: TRUE with a vague reason such as \"the scheduler may choose another process\". No marks if the answer says FALSE or gives no justification.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

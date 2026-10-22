@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E10.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary tree is a tree (hierarchical structure of nodes) in which each node has a maximum of two children.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5): says each node has two children or 'at most two' but does not identify it as a tree/node-based structure, or vice versa, stated precisely."
+      },
+      {
+        "id": "P2",
+        "description": "Uses the precise limit 'at most / maximum of two' children per node (i.e. 0, 1 or 2 children allowed), not 'exactly two'.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Uses the correct terms 'node' and 'children' (or left child and right child) when describing the restriction, applied per node.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a precise statement: a tree where every node has at most (maximum) two children, using the terms node and children. Vague wording such as 'a tree with two branches' or saying 'exactly two' children earns nothing for the relevant points. Descriptions of unrelated structures (e.g. BST ordering, heaps) without the core fact earn 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E09.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Queue is implemented with a linked list where enqueue happens at the end (tail/rear) of the list and dequeue happens at the beginning (head/front) of the list.",
+        "marks": 5.0,
+        "partial_credit": "Give about 2-3 marks if only one end is correctly stated (e.g. enqueue at tail OR dequeue at head), or if the answer just says to use a linked list with front and rear pointers without saying which operation is at which end."
+      }
+    ],
+    "notes": "Full marks for stating that insertion (enqueue) is at the tail/rear and removal (dequeue) is at the head/front of the linked list, in any wording, however brief. Part marks if only one end is right or the answer is vague (e.g. just front and rear pointers on a list). No marks if the answer does not link the queue ends to the list ends, or reverses them (enqueue at head, dequeue at tail). Extra correct detail is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

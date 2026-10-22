@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E11.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function signature includes the name of the function (function name/identifier).",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that it includes the parameter list (the parameters the function takes).",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the parameter list includes the types of the parameters (e.g. int, double), not just names or count.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only if the answer precisely says the signature is the function name plus the parameter list with parameter types. Each element is separate; vague wording such as \"the function's details\" or \"how it is declared\" earns nothing. A wrong statement about an element (e.g. saying the signature includes the function body, or that the return type is required) means that point earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

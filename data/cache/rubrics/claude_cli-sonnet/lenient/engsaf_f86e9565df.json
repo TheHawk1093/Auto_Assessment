@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/f86e9565df",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names at least two sensible road features usable for categorising roads from the image, such as road width, road length (e.g. between junctions/dead ends), road colour, or edges (edge detection).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only one valid feature is given."
+      },
+      {
+        "id": "P2",
+        "description": "Gives further valid features or a use for them: more features from the list (width, length, colour, edges), or edges/shadows to tell bridges and flyovers apart, or length between junctions/dead ends.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if one more feature is given but vaguely."
+      }
+    ],
+    "notes": "Full marks (2) for about three valid features in any wording, such as width, length, colour, edges or shadows. Give 1 mark for one or two valid features, or for vague but relevant ideas. Give 0 for unrelated answers. Wrong extra remarks do not lose marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

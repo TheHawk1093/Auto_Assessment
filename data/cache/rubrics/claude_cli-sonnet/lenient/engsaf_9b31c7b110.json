@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/9b31c7b110",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the data rate (after compression) must not exceed the channel capacity / bandwidth of the communication link.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely refers to channel or bandwidth limits."
+      },
+      {
+        "id": "P2",
+        "description": "States that the channel capacity should be fully utilized and/or the maximum quality of the data should be preserved (e.g. minimal distortion).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of the two is mentioned vaguely."
+      }
+    ],
+    "notes": "Full marks for covering the main ideas in any wording: rate must stay within channel capacity, and the channel should be used fully while keeping quality high. Give 1 mark if only one idea is clearly stated, or if both are stated very vaguely. Give 0 for unrelated answers. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

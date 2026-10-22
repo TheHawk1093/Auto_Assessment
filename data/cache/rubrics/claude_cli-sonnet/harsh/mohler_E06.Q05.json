@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size of its operand (a type or an expression/variable) measured in bytes, using the term 'bytes'.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5) if it says it returns the size/memory taken by the operand but does not name bytes as the unit."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear the result is the size of the operand itself (a data type or a variable/object/expression), i.e. the memory occupied by that operand, not its value or its element count.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes it from related concepts: it returns a size (an unsigned integer value of type size_t), not the value stored in the operand, nor the number of elements or string length.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise fact: sizeof gives the size in bytes of its operand, with 'bytes' and 'operand' (type or variable) clear. Vague answers such as 'the size' or 'memory used' earn no credit for the bytes point beyond the stated partial. Any wrong statement, such as saying it returns the value, the element count, or string length, loses the point it affects.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

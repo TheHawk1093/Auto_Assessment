@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/051fb4eb5a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines noise as random fluctuations/irregular variations in the time series data, about (or superimposed on) its typical/underlying pattern or trend.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vague (e.g. 'unwanted disturbance' or 'variation in data') without stating randomness or relation to the typical pattern."
+      },
+      {
+        "id": "P2",
+        "description": "States the two types of noise: white noise and red noise.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one type is correctly named."
+      }
+    ],
+    "notes": "Full marks need the idea of random fluctuations around the usual pattern, plus both noise types named (white and red). Give part marks for a vague definition or for naming only one type. Give no marks for wrong or unrelated ideas; a wrong type does not affect the definition point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

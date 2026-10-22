@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is an address of a location in memory (a variable that holds a memory address), in any wording.",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks for a related statement containing only half the idea, e.g. says it 'points to' or 'refers to' a variable/value or memory without mentioning address, or mentions address without memory."
+      }
+    ],
+    "notes": "Full marks for saying a pointer is a memory address (or holds/stores one), however briefly or informally worded. Part marks for vague answers on the right track, such as 'it points to a variable' or 'something related to memory'. No marks for unrelated answers; extra remarks do not cost marks unless they contradict the address idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

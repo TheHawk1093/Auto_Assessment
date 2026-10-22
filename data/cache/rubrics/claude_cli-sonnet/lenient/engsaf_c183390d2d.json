@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/c183390d2d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the design flood is the flood (peak flow/discharge magnitude) adopted or selected for the design of structures (e.g., dams, spillways, bridges, culverts).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer only vaguely describes it as a flood of some large magnitude or a flood used for planning, without linking it to designing structures."
+      }
+    ],
+    "notes": "Full marks (2) for the idea that the design flood is the flood chosen/adopted for designing structures, in any wording. Give 1 mark if the answer is vague, e.g. just a large or maximum flood, or a flood used for planning, without clearly linking it to design. Give 0 for wrong or unrelated answers. Extra remarks do not cost marks unless they contradict the core idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

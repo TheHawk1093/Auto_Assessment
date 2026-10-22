@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/ee9ee990d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that regularized set operations keep the solid properly bounded/valid: the result has well-defined boundaries with no dangling edges or faces (no extra edges created, none lost) after an operation such as intersection.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it gives valid/proper solids without mentioning boundaries or dangling/extra/lost edges."
+      },
+      {
+        "id": "P2",
+        "description": "States that regularized operations make the modeling process follow a defined, predefined sequence/procedure (consistent, well-defined way of combining objects).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it makes the process orderly or consistent."
+      }
+    ],
+    "notes": "Full marks for stating the two ideas in any wording: results have clean, well-defined boundaries (no dangling or lost/extra edges), and the operation follows a defined procedure. Give part marks for vague but relevant statements, such as 'it gives valid solids'. Give no marks for unrelated answers. Extra wrong remarks do not cost marks unless they contradict these ideas.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

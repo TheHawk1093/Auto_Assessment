@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives one valid use of lasers (e.g. cutting, welding, medical surgery, optical fibre communication, laser printing).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid use of lasers from the same kind of list (e.g. cutting/welding, surgery, fibre communication, printing).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award 1 mark for each distinct, reasonable use of lasers, in any wording (e.g. \"cutting metal\", \"eye surgery\", \"internet cables\", \"printers\"). Two valid uses earn 2; one earns 1; none or wrong earns 0. Cutting and welding may count as two separate uses, and other genuine laser uses (barcode scanners, CD/DVD reading, range finding) are acceptable.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

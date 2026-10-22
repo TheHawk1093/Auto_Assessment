@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class definition includes data members (variables/attributes) and function members (member functions/methods). Both must be given.",
+        "marks": 5.0,
+        "partial_credit": "Give about 2.5 marks if only one of the two (data members or function members) is stated, or if both are vaguely described with a minor error."
+      }
+    ],
+    "notes": "Full marks for naming both data members (variables/attributes) and function members (member functions/methods), in any wording. Part marks if only one is given or if the answer is vague. No marks if neither is stated, for example if it only talks about objects or access specifiers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

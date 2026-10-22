@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/05bdb71051",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names one valid defluoridation technique (e.g. Nalgonda process / precipitation with alum and lime, adsorption on activated alumina or bone char, or anion exchange resin).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names a second, different valid defluoridation technique from the same set (precipitation with alum and lime/Nalgonda, adsorption on activated alumina/bone char, or metal-powered anion exchange resin).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award 1 mark for each correct, different technique, in any wording; technical names are not required (e.g. \"alum and lime dosing\" or \"adsorption using alumina\" is fine). Nalgonda and alum-lime precipitation count as the same technique, so do not credit both separately. Wrong extra items do not cost marks; 0 if none is correct.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

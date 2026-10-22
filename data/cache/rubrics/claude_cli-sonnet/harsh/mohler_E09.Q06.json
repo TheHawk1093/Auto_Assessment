@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E09.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stack operation corresponding to enqueue is \"push\" (the exact term push; adding an element to the top of the stack).",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full 5 marks only if the student names \"push\" as the stack operation. Any other operation (e.g. pop, peek, dequeue, insert) or a vague description without the term \"push\" earns 0. A wrong extra operation offered alongside push (e.g. \"push or pop\") also earns 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

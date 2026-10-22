@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/430361f77c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a steeper main stream/basin slope makes runoff flow faster and leave the catchment/basin quickly (higher velocity, quicker drainage).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says steep slope gives faster flow without linking to runoff leaving the basin, or vaguely stated."
+      },
+      {
+        "id": "P2",
+        "description": "Links this to time base: time base is the duration for runoff to leave the catchment after the storm, so quicker exit of runoff reduces (shortens) the time base.",
+        "marks": 1.0,
+        "partial_credit": "Half if concludes time base is smaller without explaining/defining time base, or defines time base but does not link it to the steep slope."
+      }
+    ],
+    "notes": "Full marks (2) for saying steeper slope makes runoff leave the basin quickly and therefore the time base (time for runoff to leave after the storm) is shorter. Give 1 mark where only one idea is given or both are vague, e.g. \"steep slope gives faster flow so shorter hydrograph\". Give 0 for wrong or unrelated answers, such as saying steep slope lengthens the time base.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

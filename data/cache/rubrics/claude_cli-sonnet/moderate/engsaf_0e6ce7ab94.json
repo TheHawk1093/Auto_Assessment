@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/0e6ce7ab94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Uses the one-vs-rest approach: the single discriminant function separates the feature vectors of one class from all the remaining classes (one class in one group, the rest in the other group, i.e. a binary decision).",
+        "marks": 1.0,
+        "partial_credit": "Half if it only says the function splits the vectors into two groups or mentions one-vs-rest without saying one class against the rest."
+      },
+      {
+        "id": "P2",
+        "description": "States that the process is repeated/iterated on the remaining vectors until all feature vectors (pixels) are classified into their classes.",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions repeating or several steps but not that it continues until all vectors are classified."
+      }
+    ],
+    "notes": "Full marks: the function assigns one class versus all the rest (one-vs-rest), and this is repeated until all vectors are classified. Give part marks if only one of these is stated, or either is stated vaguely. Give no marks for answers that do not describe separating one class from the others, such as giving a different output for each class with no one-vs-rest idea.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

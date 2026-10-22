@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E10.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of comparisons is related to the height of the tree (equivalently, about log of the number of elements, i.e. logarithmic).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks for a related but incomplete statement, e.g. says it depends on the depth/path length or levels of the tree without saying height or log, or gives log n but only for a balanced tree with vague wording."
+      }
+    ],
+    "notes": "Full marks for saying the comparisons equal the tree's height or about log of the number of elements, in any wording. Part marks for a vague or partly right answer, such as mentioning the path from the root or the depth of the tree without a clear link to height or log. No marks for answers like n comparisons or constant time, or for answers that don't address the count.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

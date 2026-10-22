@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best case for insertion sort is a sorted array (already sorted input).",
+        "marks": 4.0,
+        "partial_credit": "Half marks if vaguely stated, e.g. 'when the data is in order' without saying array/sorted clearly, or with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "States the number of operations is N (linear, about N, the length of the array).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both: best case is a sorted array, and operations are about N (array length, linear/O(N)). Weight is on the sorted-array scenario; give part marks for vague wording. Answers giving N^2 or a reversed array as best case earn nothing for that point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

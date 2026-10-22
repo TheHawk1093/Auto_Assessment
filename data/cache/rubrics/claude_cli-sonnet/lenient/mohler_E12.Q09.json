@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that after finding the node, it is replaced by its in-order successor (leftmost node of the right subtree) or its in-order predecessor (rightmost node of the left subtree).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if the student says to find the node and replace it with a successor/predecessor or a node from a subtree but is vague or gets the side or extreme wrong (e.g. just 'find it and replace it with a child/another node')."
+      }
+    ],
+    "notes": "Full marks for saying the node is found and replaced by the leftmost node of its right subtree or the rightmost node of its left subtree; terms like 'in-order successor/predecessor' or informal wording are fine. Part marks for a vague or partly right replacement idea (e.g. replace with a child or some node from a subtree without the correct choice). No marks for answers that only describe searching or unrelated tree operations. Extra correct detail, such as handling leaf or one-child cases, costs nothing.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

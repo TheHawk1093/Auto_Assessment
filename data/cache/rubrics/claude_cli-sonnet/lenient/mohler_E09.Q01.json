@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E09.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure that stores elements and removes them in first-in-first-out order (the first item added is the first removed; equivalently, items are removed in the order they were added).",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks for a vague or incomplete answer, e.g. says it is a data structure/collection/line for storing elements but gives no or unclear ordering, or gives only the ordering without saying it stores elements."
+      }
+    ],
+    "notes": "Full marks for stating that a queue stores elements and works first-in-first-out (FIFO), in any wording, including informal ones like \"like a line, first one in comes out first\". Part marks for a related but incomplete answer, such as only \"a data structure to store items\" or mention of enqueue/dequeue without the ordering. Give no marks if the answer describes last-in-first-out (a stack) or is unrelated. Ignore the model answer's slip \"last item added will be last removed\", which is consistent with FIFO. Extra correct detail is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

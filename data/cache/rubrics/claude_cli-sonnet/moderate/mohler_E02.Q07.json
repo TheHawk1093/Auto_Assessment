@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E02.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a header file stores/holds the class interface (declaration of the class), i.e. the class definition with its data members and member function prototypes, separate from the implementation.",
+        "marks": 4.0,
+        "partial_credit": "Half or more of the marks for a vague or partial statement, e.g. says it holds declarations/prototypes or the class definition but does not link to the class interface or data members."
+      },
+      {
+        "id": "P2",
+        "description": "Mentions that the interface includes both data members and member function prototypes (declarations, not implementations).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of data members or function prototypes is mentioned."
+      }
+    ],
+    "notes": "Full marks for saying the header file holds the class interface/declaration (data members and member function prototypes), in any wording. Part marks for vague or incomplete answers, such as \"declarations\" or \"prototypes\" without the class link, or only one of data members or prototypes. No marks for answers about unrelated roles, such as only \"including libraries\" or \"storing the program's code\", that never mention declarations or the class interface.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

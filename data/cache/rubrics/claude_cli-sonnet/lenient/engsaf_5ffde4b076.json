@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/5ffde4b076",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives one valid factor influencing chatter (e.g., depth of cut, width of cut, or hardness of workpiece), in any wording.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid factor influencing chatter (e.g., depth of cut, width of cut, or hardness of workpiece), in any wording.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award 1 mark for each distinct valid factor, up to 2 marks. Accept the model answer factors (depth of cut, width of cut, hardness of workpiece) in any wording; other plausible machining factors such as cutting speed or feed may be accepted generously. Give 0 for a factor that is wrong or unrelated; a wrong extra item does not lose marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

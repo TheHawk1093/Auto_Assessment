@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/7870a031ef",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives most of the expansion: at least three of Strengths, Weaknesses, Opportunities, Threats (any wording, minor spelling errors accepted).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only one or two of the four words are correct."
+      }
+    ],
+    "notes": "Full marks (2) if the student gives about three or all four of Strength, Weakness, Opportunity, Threat, even with spelling errors or singular/plural differences. Give 1 mark if only one or two are right. Give 0 if none are right or the answer is unrelated.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E09.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure that stores elements (a collection/container of items).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property precisely: first-in-first-out (FIFO), i.e. the first item added is the first removed, and the last item added is the last removed. The term FIFO or an equivalent exact statement of this order must be given.",
+        "marks": 4.0,
+        "partial_credit": "2 marks if the order is described correctly but only loosely (e.g. 'items are removed in the order added') without FIFO or first/last wording."
+      }
+    ],
+    "notes": "Full marks need both: queue named as a data structure storing elements, and the exact first-in-first-out property. Give part marks only for a correct but loosely worded ordering. Give nothing for P2 if the answer says last-in-first-out, describes a stack, or contradicts FIFO. Vague statements like 'a line of things' earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

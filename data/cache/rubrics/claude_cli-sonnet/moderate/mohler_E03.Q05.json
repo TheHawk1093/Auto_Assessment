@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E03.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Overloaded functions are differentiated by their function signature (i.e., the number and/or types of parameters).",
+        "marks": 4.0,
+        "partial_credit": "Half marks if only vaguely says 'by their parameters' or 'by arguments' without naming signature, or gives only one aspect with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "On a call, the compiler picks the function whose signature is closest to / best matches the call (the given arguments).",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only says it matches the call without the idea of best/closest match."
+      }
+    ],
+    "notes": "Full marks for stating that overloads are told apart by their signature (parameter number/types); wording may differ. The second mark is for the compiler choosing the best-matching signature at the call. Answers that only mention return type, function name, or unrelated ideas get no marks for P1; a wrong statement loses only that point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

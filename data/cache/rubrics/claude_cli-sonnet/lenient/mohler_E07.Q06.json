@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E07.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a doubly-linked list allows insertion and deletion to be done in constant time (O(1)), including at positions before a given node or at the end of the list (because each node links to its previous node, no traversal is needed).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if the answer says insertion/deletion is easier, faster or more efficient, or mentions backward traversal / previous pointers, without clearly stating constant time or the before-a-location/end cases."
+      }
+    ],
+    "notes": "Full marks for saying, in any wording, that insertion and deletion (including before a given node or at the end) take constant time/no traversal in a doubly-linked list. Give part marks for vague but on-track answers such as faster/easier insertion or deletion, or being able to move backward using previous pointers. Give no marks for answers unrelated to operation efficiency or direction of traversal; extra correct remarks are fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

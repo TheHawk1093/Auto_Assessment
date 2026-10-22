@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/0d56094c86",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies N1 as the node that was never a leader in any of the three terms.",
+        "marks": 1.0,
+        "partial_credit": "Half if N1 is named but the answer also wrongly names other nodes as never leaders, or if the answer is unclear."
+      },
+      {
+        "id": "P2",
+        "description": "Justifies by showing the other nodes' logs are consistent with being leaders: N4 (a,b,c) for term 1, N3 (a,b,p,q,r,s) for term 2, N2 (a,b,p,q,x,y,z) for term 3. N1's log lacks r, s (term 2 entries) and z, so it cannot be the leader of any term (a leader's log holds all entries of its own term, and N1 has a partial term 2 and term 3 log).",
+        "marks": 1.0,
+        "partial_credit": "Half if only some of the nodes are matched to terms, or the reasoning for N1 is vague."
+      }
+    ],
+    "notes": "Full marks: N1 named as never a leader, with a justification that N4, N3 and N2 fit as leaders of terms 1, 2 and 3 from their logs. Part marks: the correct node with weak or partial justification, or a justification that is right but the final node is unclear. No marks: any other node named, or no valid reasoning.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

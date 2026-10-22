@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E07.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in a circular linked list the last element (last node) points back to the head (first node) of the list.",
+        "marks": 3.0,
+        "partial_credit": "1.5 if only says the list is circular/loops back without naming the last node pointing to the head/first node"
+      },
+      {
+        "id": "P2",
+        "description": "Contrasts with a basic (singly) linked list: the last node points to NULL (null/nullptr), so the list ends there and does not link back to the head.",
+        "marks": 2.0,
+        "partial_credit": "1 if only says the basic list has an end, without stating that the last node points to NULL"
+      }
+    ],
+    "notes": "Full marks need the precise fact: the last node of a circular list points to the head, and in a basic list the last node points to NULL. Vague statements such as \"it goes in a circle\" or \"it is connected\" earn nothing unless the last node and head are named. A wrong statement (e.g. the head points to the last node, or the basic list's last node points to the head) loses that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

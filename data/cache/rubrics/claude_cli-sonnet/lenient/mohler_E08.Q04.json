@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E08.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Top of the stack is kept at the head (beginning) of the linked list, so push and pop add/remove elements at the beginning of the list.",
+        "marks": 5.0,
+        "partial_credit": "Award about 2-3 marks if the student says a linked list is used with push/pop at one end but does not say it is the head/beginning, or only says the top points to the head without describing push/pop."
+      }
+    ],
+    "notes": "Full marks for saying the top of the stack is the head of the linked list and push/pop work at the beginning, in any wording, however brief. Part marks for a linked-list stack with push/pop at one end but the end is unspecified or vague. No marks for answers that do not use a linked list or only define what a stack is.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

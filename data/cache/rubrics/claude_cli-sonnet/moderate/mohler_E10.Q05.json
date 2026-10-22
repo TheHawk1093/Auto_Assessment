@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary search tree is a binary tree (each node has at most two children) with the ordering property: for any node, the left child/subtree is smaller than the parent and the right child/subtree is larger than the parent.",
+        "marks": 4.0,
+        "partial_credit": "Half or more of marks if only the ordering property is given without saying it is a binary tree, or the ordering is stated vaguely or only one side (left smaller or right larger) is given."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly identifies it as a binary tree (at most two children per node) as the base structure.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying it is a binary tree where, for every node, left is smaller and right is larger than the parent, in any wording. Part marks for a vague or one-sided ordering statement, or ordering without naming it a binary tree. No marks for descriptions of only a generic tree or of search/traversal without the ordering property.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

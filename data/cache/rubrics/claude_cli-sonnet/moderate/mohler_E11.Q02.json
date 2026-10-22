@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the access specifiers are private and public (both named).",
+        "marks": 4.0,
+        "partial_credit": "Half marks (2) if only one of private or public is named correctly, or both are named alongside a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Does not give a wrong specifier as a C++ access specifier for a class definition; if protected is mentioned it is accepted as correct extra detail.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for naming both private and public in any wording, e.g. \"private, public\". Give part marks if only one is named or the answer is vague. Give no marks for answers that discuss classes or access in general without naming the specifiers. Mentioning protected is correct extra detail and is not penalised.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

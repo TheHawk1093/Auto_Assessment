@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E10.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of comparisons is related to the height of the tree (equivalently, about log of the number of elements, e.g. log n for a balanced tree).",
+        "marks": 4.0,
+        "partial_credit": "Half or more if vague, e.g. says it depends on depth/levels or 'log' without saying of what, or gives the right idea with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Gives both equivalent forms or ties them together: height of the tree, and log of the number of elements (log n).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying the comparisons equal the tree's height or about log n (n = number of elements), in any wording. Part marks for vague answers such as 'depends on the depth' or 'log' without context. No marks for answers like n comparisons, constant, or only describing how search works without giving the count.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

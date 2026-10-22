@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E12.Q10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of steps to search a node in a BST is given by the height of the tree (at most the height / proportional to the tree's height, i.e. the length of the longest root-to-leaf path), in any wording.",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks for a related but incomplete statement, e.g. says it depends on the depth/level of the node or on the tree's shape, or gives O(log n) or O(n) without linking it to height."
+      }
+    ],
+    "notes": "Full marks for saying the steps equal (or are bounded by) the height of the tree, however briefly or informally worded. Part marks for related answers such as depth of the node, number of levels, or O(log n)/O(n) without mentioning height. No marks for unrelated answers or a fixed constant number of steps; extra correct detail is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

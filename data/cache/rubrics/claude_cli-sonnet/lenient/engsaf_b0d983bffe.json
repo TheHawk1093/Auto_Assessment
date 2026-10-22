@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b0d983bffe",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid advantage of Industry 4.0 (e.g., higher quality products with minimal human intervention, faster production using smart machines/advanced technology, or efficient processes with lower cost per piece, less wasted raw material).",
+        "marks": 1.0,
+        "partial_credit": "Half if the advantage is vague (e.g., just 'better' or 'automation') but on the right track."
+      },
+      {
+        "id": "P2",
+        "description": "States a second, different valid advantage of Industry 4.0 (any of the ideas above: quality, less human intervention, time saving, cost efficiency, less material waste).",
+        "marks": 1.0,
+        "partial_credit": "Half if vague but on the right track."
+      }
+    ],
+    "notes": "Full marks for two distinct advantages in any wording, such as better quality, less human effort, faster production, lower cost, or less waste. Give part marks for a vague or only partly correct advantage. Give no marks for wrong or unrelated points. Two wordings of the same idea count as one advantage.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

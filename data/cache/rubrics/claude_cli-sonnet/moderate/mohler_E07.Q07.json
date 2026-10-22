@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E07.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a doubly-linked list needs extra memory/space, because each node must store an additional (back/previous) pointer.",
+        "marks": 4.0,
+        "partial_credit": "Half or more if it says it uses more memory but does not link it to the extra pointer, or mentions the extra pointer without saying it costs space."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the extra space as being for the back (previous) pointers stored in each node.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying a doubly-linked list uses extra space/memory for the back (previous) pointer in each node, in any wording. Part marks for a vague statement such as \"uses more memory\" without the pointer reason, or a correct answer mixed with a minor error. No marks for answers about other drawbacks (e.g. slower, more complex) that do not mention extra space.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

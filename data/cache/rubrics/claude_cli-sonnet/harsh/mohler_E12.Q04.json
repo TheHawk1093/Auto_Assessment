@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E12.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that selection sort selects/finds the minimum (smallest) element from the array and places/swaps it into the first position.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says it finds the minimum but does not say it is placed in the first position (or vice versa) precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that the process then repeats on the remaining (unsorted) part of the array: select the minimum of the rest and place it in the second position, and so on for each following position.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if repetition is stated but without clearly restricting it to the rest of the array or without mentioning the next position."
+      },
+      {
+        "id": "P3",
+        "description": "Makes clear the array is divided into a sorted part at the front that grows by one position each step, with the minimum always taken from the remaining unsorted part (not the whole array again), i.e. correctly distinguished from other sorts such as insertion or bubble sort that do not select a minimum.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise idea: repeatedly pick the minimum of the remaining elements and put it in the next position, starting with the first. Part marks only when clearly more than half of a point is stated precisely. Vague statements (\"it sorts by comparing elements\"), wrong descriptions (e.g. swapping adjacent elements, or selecting the maximum to the front), or mixing with bubble/insertion sort earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

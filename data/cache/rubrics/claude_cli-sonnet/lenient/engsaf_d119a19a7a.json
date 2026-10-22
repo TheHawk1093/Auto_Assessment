@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/d119a19a7a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid limitation of wireframe modeling: the representation is ambiguous (one wireframe can be read as different solids), or it is messy/confusing/cluttered (e.g., hidden lines, no surface or volume information).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer is vague or only loosely related to ambiguity/confusion (e.g., 'not realistic' or 'hard to understand') without a clear limitation."
+      }
+    ],
+    "notes": "Full marks for any one clear limitation matching the model answer's idea: ambiguity (one model, several possible solids) or messy/confusing appearance, in any wording. Give 1 mark for a vague or partly relevant drawback. Give 0 for wrong or unrelated answers; extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

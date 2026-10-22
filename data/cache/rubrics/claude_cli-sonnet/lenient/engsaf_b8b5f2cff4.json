@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/b8b5f2cff4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that dispersion is compared relative to advection (the bulk/advective transport or flow of the water/solute), e.g. 'advection', 'advective transport', 'convection' or 'bulk flow transport'.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the answer is vaguely related (e.g. 'flow', 'velocity', 'transport', 'mixing') but does not clearly indicate advection."
+      }
+    ],
+    "notes": "Full marks for advection in any wording (advective transport, convection, bulk flow movement). Give 1 mark for a nearby but vague idea such as flow, velocity or transport. Give 0 for unrelated or wrong answers such as diffusion, concentration or time.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

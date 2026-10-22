@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/aecb888a50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Says empirical equations are derived from experiments, observations or measured data (rather than theory).",
+        "marks": 1.5,
+        "partial_credit": "1 mark if vaguely stated, e.g. 'based on practice/experience' or 'formulas used in practice' without mention of data/experiments"
+      },
+      {
+        "id": "P2",
+        "description": "Mentions they have no rigorous mathematical/theoretical proof or derivation behind them.",
+        "marks": 0.5,
+        "partial_credit": "Award if they are described as not derived theoretically; otherwise all or nothing"
+      }
+    ],
+    "notes": "Full marks (2) for the core idea that the equations come from experiments or observed data; a missing mention of no mathematical proof costs at most 0.5. Give part marks for vague answers such as 'based on experience' or 'approximate formulas used in practice'. Give 0 for wrong or unrelated answers, e.g. defining them as exact theoretical equations.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/507e9742aa",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the purpose of testing significance: to check how well the model fits the observed data (goodness of fit) and/or to give the probability of rejecting the null hypothesis / judge whether results are reliable.",
+        "marks": 1.0,
+        "partial_credit": "Half if the purpose is only vaguely stated (e.g. 'to check the model is accurate' or 'to test hypothesis')."
+      },
+      {
+        "id": "P2",
+        "description": "Names the chi-square (X2) test as the test used.",
+        "marks": 1.0,
+        "partial_credit": "Half if a related goodness-of-fit/statistical test is named (e.g. Kolmogorov-Smirnov, t-test) without chi-square."
+      }
+    ],
+    "notes": "Full marks: the student says why (model fit to observed data / probability of rejecting the null hypothesis, any wording) and names the chi-square test. Part marks for a vague reason or for naming a different but related statistical test. Zero for a point if it is missing or unrelated; extra remarks do not lose marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

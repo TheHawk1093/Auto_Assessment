@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/a23fae8ca6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives one valid advantage of separating declaration from definition, e.g. clearer/easier to read and understand code, easier changing/debugging/overriding of functions, better modularity, or separation of abstraction (interface) from implementation.",
+        "marks": 1.0,
+        "partial_credit": "Half if the advantage is vague but clearly on the right track (e.g. 'makes code better organised')."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a second, different valid advantage from the same set (clarity/readability, easy changing/debugging/overriding, modularity, abstraction separated from implementation).",
+        "marks": 1.0,
+        "partial_credit": "Half if vague but on the right track."
+      }
+    ],
+    "notes": "Full marks for two different valid advantages in any wording, such as readability, easier modification/debugging, modularity, or separating interface from implementation. One valid advantage gets 1 mark. Wrong or extra remarks do not cost marks; repeating the same advantage in different words counts only once.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/dee234728b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the peak discharge (peak outflow) is reduced/attenuated/lowered by the reservoir.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says flood flow is reduced or controlled without mentioning the peak."
+      },
+      {
+        "id": "P2",
+        "description": "States that the peak flow is shifted/delayed in time (occurs later; lag in the peak).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely mentions timing change or delay of flow without clearly relating it to the peak."
+      }
+    ],
+    "notes": "Full marks for stating both ideas in any wording: peak outflow is reduced (attenuation) and the peak is delayed/shifted in time (lag). Give one mark for each idea; part marks for vague but relevant versions. No marks for unrelated answers such as storage or evaporation. Extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States precisely that a static array is initialized only once (the first time the function is called / program-lifetime single initialization), not again on later calls.",
+        "marks": 3.0,
+        "partial_credit": "Half credit (1.5) if it says the static array keeps or retains its values between calls but does not state it is initialized only once."
+      },
+      {
+        "id": "P2",
+        "description": "Correct contrast: a non-static (automatic/local) array is re-created and re-initialized every time the function is called.",
+        "marks": 2.0,
+        "partial_credit": "Half credit (1) if it only says the non-static array is not preserved between calls, without stating re-initialization on each call."
+      }
+    ],
+    "notes": "Full marks need the precise fact that a static array is initialized only once (on the first call) and the contrast that a non-static array is re-initialized on every call. Vague statements such as \"static is permanent\" or \"static is fixed\" without the initialization point earn nothing. Any wrong statement within a point, such as saying static arrays are re-initialized each call, voids that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

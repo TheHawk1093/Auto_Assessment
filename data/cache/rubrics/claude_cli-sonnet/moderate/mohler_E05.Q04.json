@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E05.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the base case is when the array (sub-array) has size 1 (a single element); size 0 or 1, or size 2 (as in the model answer's alternative), is also acceptable.",
+        "marks": 4.0,
+        "partial_credit": "Half or more of the marks for a vague or partly correct statement, e.g. 'when the array is small enough' or 'when it can't be divided further' without saying size 1, or a size given with a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear the condition applies to the size of the array being sorted in the recursive call (the sub-array is trivially sorted / no further splitting), not to the whole original input.",
+        "marks": 1.0,
+        "partial_credit": "Half if the size is implied but the link to the sub-array or to stopping the recursion is unclear."
+      }
+    ],
+    "notes": "Full marks go to an answer that says the recursion stops when the array or sub-array has one element (size 1; 0/1 or 2 also accepted), in any wording. Part marks go to vague answers such as 'when the array can't be split any more' with no size, or to answers with a minor error. Answers that only describe merging or splitting without a stopping condition get 0.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

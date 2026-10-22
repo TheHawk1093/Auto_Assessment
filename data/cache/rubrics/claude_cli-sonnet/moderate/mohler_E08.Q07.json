@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E08.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Pop elements off the original stack and store them on another (auxiliary) stack, checking each popped element until the required element is found.",
+        "marks": 4.0,
+        "partial_credit": "Half or more: says to pop elements and check for the element but does not mention storing them in another stack/temporary storage, or is vague about it."
+      },
+      {
+        "id": "P2",
+        "description": "After the element is found, push the stored elements back onto the original stack (restoring it).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for stating that elements are popped (and kept on a second stack) until the target is found, then pushed back to the original stack. Part marks if popping and searching is described but the temporary stack is missing or vague, or the restoring step is absent. No marks for answers that only describe stack properties (LIFO) or say to search directly without popping.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

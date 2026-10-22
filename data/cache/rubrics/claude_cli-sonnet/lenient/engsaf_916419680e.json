@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/916419680e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that multiple hidden layers are desirable when deeper/more complex learning or feature extraction is needed (complex, hierarchical or non-trivial features must be learned).",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says for complex problems without mentioning features or learning depth."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a suitable example or circumstance, such as non-linearly separable problems like XOR, or multiclass classification, or says more layers help perform further tasks well.",
+        "marks": 1.0,
+        "partial_credit": "Half if a relevant but vague example/circumstance is given (e.g. 'complicated data')."
+      }
+    ],
+    "notes": "Full marks for saying that multiple hidden layers are used when complex problems need deeper feature learning, in any wording, plus any sensible example (XOR, multiclass classification, non-linear problems). Part marks for a vague but relevant answer such as 'for complex data' without detail. No marks for unrelated or wrong answers; extra remarks do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

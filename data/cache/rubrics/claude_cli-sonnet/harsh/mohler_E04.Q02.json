@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E04.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that strings declared as character arrays have a null element/null character ('\\0', the null terminator) added at the end of the array.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5): says character-array strings have an extra terminating/end marker element but does not name it as the null character '\\0'."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly contrasts with the string type: states that strings declared with type string do not have a null element added at the end of the array (the character-array form is the one with the null terminator).",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise fact: a character-array string has a null character ('\\0') appended as its final element, and the string type does not expose this. Vague answers (e.g. \"arrays are fixed size\", \"string is easier to use\") or any wrong claim, such as the string type having the null element, earn nothing for the affected point. Part marks only as stated in partial_credit.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

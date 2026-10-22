@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E06.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function pointer is an address (a pointer holding the memory address) of the function.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says it is a pointer/reference to a function but does not state that it holds an address"
+      },
+      {
+        "id": "P2",
+        "description": "States that the address is the location in memory where the function's code resides (the function's executable code/entry point in memory).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it mentions memory location but not that it is where the function code is stored"
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes it from a pointer to data/variable or a function's return value: it points to function code, not to a data variable, and is not a function returning a pointer.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a precise statement that a function pointer holds the memory address where the function's code is located, using the terms address, memory and function code. Vague answers such as 'it points to a function' or 'it calls a function' earn nothing for P1 or P2 unless the address and memory location are stated. Any wrong claim, such as confusing it with a function that returns a pointer or with a data pointer, loses the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

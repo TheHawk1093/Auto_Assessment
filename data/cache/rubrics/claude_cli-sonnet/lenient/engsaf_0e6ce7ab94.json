@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/0e6ce7ab94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Uses a one-vs-rest style approach: the function separates the feature vectors into one class versus all the remaining (rest) classes, i.e. a binary output (one class vs the rest).",
+        "marks": 1.0,
+        "partial_credit": "Half if it only says the function classifies/separates classes without the one-versus-rest idea."
+      },
+      {
+        "id": "P2",
+        "description": "The process is repeated/iterated on the remaining data until all vectors (pixels) are classified into their classes.",
+        "marks": 1.0,
+        "partial_credit": "Half if repetition is vaguely hinted at without saying it continues until all are classified."
+      }
+    ],
+    "notes": "Full marks need the one-class-versus-rest idea (any wording) and the repetition until everything is classified. Give part marks for a vague but relevant answer, such as a function that splits the data into two groups. Give zero for unrelated answers.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

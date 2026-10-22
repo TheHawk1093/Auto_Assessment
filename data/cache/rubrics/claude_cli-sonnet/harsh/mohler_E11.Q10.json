@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E11.Q10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that merge sort splits/divides the original array into two (halves).",
+        "marks": 1.5,
+        "partial_credit": "Says it divides/splits the array but does not say into two halves (or says into parts) \u2014 award 0.75 only if clearly stated."
+      },
+      {
+        "id": "P2",
+        "description": "States that each of the two halves is sorted (recursively sorted) separately.",
+        "marks": 1.5,
+        "partial_credit": "Says the parts are sorted but not that each half is sorted individually \u2014 0.75."
+      },
+      {
+        "id": "P3",
+        "description": "States that the two sorted halves/arrays are merged (combined) into one sorted array, using the term merge/merging.",
+        "marks": 2.0,
+        "partial_credit": "Says the halves are combined/joined but without stating they are already sorted or without the term merge \u2014 1."
+      }
+    ],
+    "notes": "Award full marks only when all three steps (split into two, sort each half, merge the sorted halves) are stated precisely in the correct order. Vague wording such as \"it sorts the array by dividing\" earns nothing for the point it fails to specify. A wrong description (e.g. choosing a pivot, swapping adjacent elements) costs the affected point; extra correct detail is fine.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

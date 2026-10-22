@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E08.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the top of the stack is kept toward the end of the array (the right side / highest used index), not the front.",
+        "marks": 2.5,
+        "partial_credit": "Half if it says the end/right side of the array is used but does not explicitly identify it as the top of the stack."
+      },
+      {
+        "id": "P2",
+        "description": "States that push adds an element and pop removes an element at that end, i.e. the right side of the array, so both operations act at the same end.",
+        "marks": 1.5,
+        "partial_credit": "Half if only one of push or pop is correctly tied to the right/end side."
+      },
+      {
+        "id": "P3",
+        "description": "Gives the correct distinction: operations happen at the end (right side), not at the beginning (left side) of the array, so no elements need to be shifted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the top of the stack placed at the end (right side) of the array, with push and pop both explicitly adding/removing at that end. Part marks only where clearly more than half of a point is stated precisely. Vague answers (e.g. \"use an array with push and pop\"), or putting the top at the front/left, earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E01.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a prototype program simulates/imitates the behaviour of (parts of) the desired software product.",
+        "marks": 4.0,
+        "partial_credit": "2 marks for a vague or half-correct idea, e.g. a prototype is a trial or sample version of the software, without saying it simulates or models its behaviour."
+      },
+      {
+        "id": "P2",
+        "description": "Says it simulates only portions/parts of the desired product (not the whole finished product).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for saying a prototype simulates or mimics the behaviour of the intended software, in any wording, and noting it covers parts of it. Give part marks for vague answers such as \"a sample or trial version of the software\" or \"used to test ideas\". Give no marks for answers about unrelated roles such as final implementation, documentation or debugging.Extra correct detail is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

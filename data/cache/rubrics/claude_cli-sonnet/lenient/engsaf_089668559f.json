@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/089668559f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names about three of the four philosophies: Conservationism, Preservationism, Deep Ecology, Social Ecology (any wording or close synonym, e.g. 'conservation', 'preservation', 'deep ecological', 'social ecological').",
+        "marks": 2.0,
+        "partial_credit": "1 mark for naming one or two of the four philosophies."
+      }
+    ],
+    "notes": "Full marks (2) if the student names at least three of the four: conservationism, preservationism, deep ecology, social ecology, in any wording. Give 1 mark for one or two correct names. Give 0 if none are correct or the answer is unrelated; extra wrong items do not cost marks.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

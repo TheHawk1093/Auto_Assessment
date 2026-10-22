@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E08.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an infix expression is first converted to postfix form and then the postfix expression is evaluated (conversion to postfix, then evaluation).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if only one half is given, e.g. mentions converting to postfix (or evaluating postfix with a stack) but not both steps, or gives a related but vague approach like using a stack and operator precedence."
+      }
+    ],
+    "notes": "Full marks for saying the infix expression is converted to postfix and then that postfix is evaluated, in any wording. Part marks if only one of the two steps is stated or the answer is vaguely related (stacks, operator precedence). No marks if the answer does not mention postfix or any conversion idea. Extra correct detail is fine.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

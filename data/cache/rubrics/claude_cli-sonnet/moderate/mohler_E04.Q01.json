@@ -1,0 +1,23 @@
+{
+  "question_key": "mohler/E04.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States both ways of specifying array length: (1) explicitly in the array declaration (size given in brackets, e.g. int a[5]) and (2) by using an initializer list (length deduced from the number of initial values, e.g. int a[] = {1,2,3}).",
+        "marks": 4.0,
+        "partial_credit": "Half (2 marks) if only one of the two ways is correctly stated, or both are named vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly identifies that with an initializer list the length is determined by the number of elements listed (size can be omitted from the brackets).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for stating both: size in the declaration and an initializer list, in any wording or with examples. Give part marks if only one way is given or the ideas are vague. Give no marks for unrelated methods such as dynamic allocation or sizeof alone, unless they clearly express one of the two ways.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

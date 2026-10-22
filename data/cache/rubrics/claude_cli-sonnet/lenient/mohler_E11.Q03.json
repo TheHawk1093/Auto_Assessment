@@ -1,0 +1,17 @@
+{
+  "question_key": "mohler/E11.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that objects are initialized using constructors (a constructor is called/runs automatically when the object is created).",
+        "marks": 5.0,
+        "partial_credit": "Award 2-3 marks if the answer is related but vague, e.g. says objects are initialized by a special member function or by setting initial values/assigning data members, without naming constructors."
+      }
+    ],
+    "notes": "Full marks for saying constructors are used to initialize objects, in any wording, however brief. Part marks for a related but vague idea such as a special function or initial values being set at creation without naming constructors. No marks for unrelated answers, e.g. destructors only or general talk about classes without initialization. Extra remarks do not cost marks unless they contradict the central idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/ebd39016dd",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that DecideAction decides the bot's next movement/turn direction (e.g. left, right, or U-turn).",
+        "marks": 1.0,
+        "partial_credit": "Half or full credit if it says it decides the next action/movement but without naming turn directions."
+      },
+      {
+        "id": "P2",
+        "description": "Says the decision is based on the current state/situation of the robot (e.g. its sensor readings or surroundings).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the decision basis is only vaguely implied."
+      }
+    ],
+    "notes": "Full marks for saying the node decides which way the bot goes next (left, right, U-turn) based on the robot's state or situation, in any wording. Give part marks if only the idea of deciding the next action or movement is stated, without directions or basis. Give no marks for unrelated purposes. Extra wrong remarks are ignored unless they contradict the main idea.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

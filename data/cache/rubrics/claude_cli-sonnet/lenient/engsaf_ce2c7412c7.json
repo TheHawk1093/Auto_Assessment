@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/ce2c7412c7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the region of rejection is the range/set of values (of the test statistic, or area of the sampling distribution/critical region) for which the null hypothesis is rejected.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only vaguely right, e.g. mentions a critical region/range of values or the area beyond the critical value but does not link it to rejecting the null hypothesis."
+      }
+    ],
+    "notes": "Full marks (2) for the core idea: the values or area where the null hypothesis gets rejected, in any wording (e.g. \"critical region\", \"if the test value falls here, reject H0\"). Give 1 mark for a half-right answer, such as naming a range or critical region without saying it leads to rejection of the null. Give 0 for wrong or unrelated answers, such as the region where H0 is accepted.",
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

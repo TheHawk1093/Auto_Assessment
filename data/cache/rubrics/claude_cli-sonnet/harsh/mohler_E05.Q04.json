@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E05.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the base case is reached when the (sub)array being sorted has size 1 (one element), i.e. it is already sorted, so the recursion stops and no further splitting occurs. Must refer to the size/length of the array or subarray being 1 (size 0 or 1 / 2 acceptable as the model's alternative).",
+        "marks": 3.0,
+        "partial_credit": "Clearly gives the size condition (size 1) but without saying it is the subarray/stopping point of recursion, or only vaguely says 'small array'. Award 1.5."
+      },
+      {
+        "id": "P2",
+        "description": "Uses precise terminology: identifies the condition as the size (number of elements) of the array or subarray passed to the recursive call, e.g. 'if size == 1 (or low >= high) return', and that recursion stops/returns here rather than dividing or merging.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Gives no incorrect statement about the base case: does not claim the base case is when the array is sorted after merging, when the array is empty only, when the array is split in half, or any size other than 1 (or 2).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise statement that recursion stops when the (sub)array has size 1 (or 2, per model answer), using terms like size/subarray and return. Part marks only if the size-1 condition is clearly given but loosely worded. Vague answers such as 'when it is divided enough' or 'when sorted', or any wrong size or wrong statement, earn nothing for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
