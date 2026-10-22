@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b8b5f2cff4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that dispersion number compares dispersion to advection: the answer must be 'advection' (the advective transport/degree of advection), using this technical term.",
+        "marks": 1.5,
+        "partial_credit": "Award 0.75 only if advection is named but the relation is imprecise (e.g. 'advective flow' with unclear wording); otherwise 0."
+      },
+      {
+        "id": "P2",
+        "description": "Correctly expresses the relationship as dispersion relative to (compared with / divided by) advection, with no wrong term such as diffusion, convection, flow velocity alone, or reaction given as the answer.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only if the blank is filled with 'advection' (or 'degree of advection / advective transport'). Answers such as diffusion, convection, flow, velocity, or mixing earn 0, as do vague or unrelated answers. Naming advection alongside a wrong extra term loses the point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d301b1a134",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the principal mechanism is bio-filtration (biological action/removal by microorganisms), not mere physical straining or sedimentation.",
+        "marks": 1.0,
+        "partial_credit": "Half only if biological action is clearly stated but the term bio-filtration is not used and the description is imprecise (e.g. 'microorganisms remove particles')."
+      },
+      {
+        "id": "P2",
+        "description": "States that microorganisms form a thin biological layer at the sand-water interface, named the schmutzdecke (hypogeal layer), which removes viruses and bacteria/particulates.",
+        "marks": 1.0,
+        "partial_credit": "Half if the thin layer on top of the sand is correctly named (schmutzdecke/hypogeal layer) but its location or its removal of viruses and bacteria is not stated."
+      }
+    ],
+    "notes": "Full marks need the term bio-filtration (biological action) and the schmutzdecke/hypogeal layer at the sand-water interface removing bacteria and viruses. Vague answers such as 'filtration through sand', 'straining', or 'sedimentation' earn nothing for that point. A wrong mechanism stated alongside the correct one (e.g. saying straining is the principal mechanism) costs the point affected.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

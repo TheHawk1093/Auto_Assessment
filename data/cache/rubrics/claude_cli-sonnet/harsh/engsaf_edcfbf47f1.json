@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/edcfbf47f1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names pressure (pressure force / pressure gradient) as a force considered in the Navier-Stokes equation.",
+        "marks": 0.6667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names gravitational force (gravity / body force due to gravity) as a force considered.",
+        "marks": 0.6667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names viscous force (viscous stress / viscosity-related force) as a force considered.",
+        "marks": 0.6666,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) only if all three forces (pressure, gravitational, viscous) are named with correct terms and no wrong extra force is listed. Each wrong extra force (e.g. inertial, turbulent, surface tension) makes the answer lose a point. Vague wording such as 'friction' alone or 'body force' without gravity earns nothing for that point; answers with only one force score at most 0.67.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

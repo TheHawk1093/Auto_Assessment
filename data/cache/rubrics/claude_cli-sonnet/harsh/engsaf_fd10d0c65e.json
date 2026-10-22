@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/fd10d0c65e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a very large number of hidden layers causes overfitting (model fits training data too closely), using the term 'overfitting', and that it fails to generalise to new/unseen data (low training error but high testing error).",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if 'overfitting' is named but the poor generalisation / training-vs-testing error contrast is missing or vague."
+      },
+      {
+        "id": "P2",
+        "description": "States that the model has a high variance problem (the term 'high variance' must be used), together with the slow backpropagation / slow training that results from many layers.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of 'high variance' or 'slow backpropagation' is stated precisely."
+      }
+    ],
+    "notes": "Full marks need the exact terms: overfitting with failure to generalise (low training error, high test error), and high variance with slow backpropagation. Part marks only when one of the two required elements in a point is precise. Vague statements such as 'model gets complex' or 'bad performance', or any wrong claim such as underfitting or high bias, earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d5102f3843",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that during coagulation the OH- (hydroxide ions / alkalinity) are consumed by forming bonds/reacting with the coagulant (metal ions / molecules in the sample), so OH- is used up.",
+        "marks": 1.0,
+        "partial_credit": "Half only if OH- consumption is stated but without saying it bonds/reacts with the coagulant or sample molecules."
+      },
+      {
+        "id": "P2",
+        "description": "States that H+ concentration increases as a result, which lowers the pH.",
+        "marks": 1.0,
+        "partial_credit": "Half if only 'H+ increases' or only 'pH decreases' is given, not the link between the two."
+      }
+    ],
+    "notes": "Full marks need both ideas stated precisely with the correct terms: OH- is consumed by bonding with the coagulant/sample molecules, and H+ rises so pH falls. Part marks only if clearly more than half of a point is stated. Vague answers such as 'chemical reaction' or 'pH change', or wrong statements (e.g. OH- increases), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

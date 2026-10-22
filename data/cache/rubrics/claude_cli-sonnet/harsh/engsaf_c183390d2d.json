@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/c183390d2d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the design flood is a flood (flood magnitude/discharge) that is adopted, i.e. selected/chosen, as the basis for design.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that it is adopted for the design of the (hydraulic/engineering) structures, e.g. dams, spillways, bridges.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only if the answer says the design flood is the flood adopted (selected) for designing structures, with both ideas stated clearly. Each point is all or nothing; vague statements such as 'a big flood' or 'maximum flood' without the design use earn nothing. Wrong definitions (e.g. defining it as the highest flood ever recorded or as flood frequency only) earn nothing for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

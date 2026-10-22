@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/cf6cee6822",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the purpose of the desiccator is to cool the samples, i.e. bring down their temperature (from the oven/furnace temperature) to room temperature.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that cooling is done without condensation and without moisture addition/absorption from the surroundings (the desiccator keeps the sample dry). Both no condensation and no moisture gain from surroundings must be stated.",
+        "marks": 1.0,
+        "partial_credit": "Only one of 'no condensation' or 'no moisture addition from surroundings' stated precisely earns 0; a vague 'keeps it dry' earns nothing."
+      }
+    ],
+    "notes": "Full marks need both: cooling/bringing down the temperature, and doing so with no condensation and no moisture added from the surroundings. Each point is all or nothing; vague statements such as 'to keep it safe' or 'to store samples' earn nothing. Any wrong statement (e.g. desiccator is used to heat or to add moisture) loses that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

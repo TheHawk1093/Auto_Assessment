@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/e5a260d4a6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that strain is a ratio (dimensionless quantity) \u2013 i.e. a ratio of change in dimension to original dimension, not an absolute change in length.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Correctly specifies the ratio as change in length (deformation/elongation) divided by the original length, with both terms named precisely.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only if the student states strain is a ratio of change in length to the original length, with both terms named precisely. Award P1 for the word 'ratio' (or an equivalent dimensionless ratio) and P2 for the correct numerator and denominator. Vague answers (e.g. 'a deformation' or 'change in length' alone), a wrong denominator (e.g. final length or area) or any incorrect statement earn nothing for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

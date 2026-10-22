@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/ce468a17bf",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States 'Unbiased' (unbiasedness) as a desirable property of an estimator.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States 'Consistency' (consistent) as a desirable property.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States 'Efficiency' (efficient) as a desirable property.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States 'Sufficiency' (sufficient) as a desirable property.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "All four properties are required, each named with its correct technical term: unbiasedness, consistency, efficiency, sufficiency. Each property earns its own 0.5 marks; vague descriptions without the term earn nothing. Any wrong extra property (e.g. 'robustness', 'accuracy') cancels the mark for one correct item, and the total is never below 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b5794db6c7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid limitation of the PVD method exactly as in the model answer: the coating produced is thin in nature (thin coating/thin layer only), OR complex shapes are difficult to coat, OR the process has high cost, OR low output (low production rate). The limitation must be stated precisely with the correct technical wording.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States a second, distinct limitation from the model answer (thin coating; difficulty coating complex shapes; high cost; low output), precisely worded. Must be different from the one in P1 and contain no wrong statement.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The question says \"any limitation\", but the model answer lists four: thin coating, difficulty coating complex shapes, high cost, low output. At harsh level, two distinct, precisely stated limitations from this list earn 2 marks. One earns 1 mark. A vague, generic or wrong limitation (e.g. \"it is bad\", or a limitation not in the model answer) earns nothing, and a wrong statement in a point cancels that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

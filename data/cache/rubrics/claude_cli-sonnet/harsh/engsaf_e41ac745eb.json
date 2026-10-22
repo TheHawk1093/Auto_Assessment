@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/e41ac745eb",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that one axis/variable of the hyetograph is rainfall intensity (rainfall depth per unit time, e.g. mm/h). Must be named as intensity (rainfall intensity); not just 'rain' or 'rainfall' alone.",
+        "marks": 1.0,
+        "partial_credit": "Half only if 'rainfall' or 'rainfall depth' is given without 'intensity' and it is clearly the rainfall quantity; otherwise none."
+      },
+      {
+        "id": "P2",
+        "description": "States that the other variable is time (e.g. time or time interval/duration), plotted against rainfall intensity.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) only when both rainfall intensity and time are stated, in either order. Give 1 mark if only one is correct and precise; a vague term like 'rain' or 'rainfall amount' alone does not earn the first point. Any wrong item (e.g. discharge, runoff, area, cumulative rainfall) in either blank means that point earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

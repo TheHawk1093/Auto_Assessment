@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/ce2c7412c7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the region of rejection (critical region) is the range/set of values of the test statistic (sample outcomes) that lead to rejection of the null hypothesis (H0), using the terms 'range/set of values' and 'rejection of the null hypothesis'.",
+        "marks": 1.0,
+        "partial_credit": "Half only if it says 'values that lead to rejection' but omits the term null hypothesis or the term range/set of values/test statistic."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the precise relationship: the values in this region, if the computed test statistic falls in it, cause the null hypothesis to be rejected (the null hypothesis specifically, not the alternative or 'the test' generally).",
+        "marks": 1.0,
+        "partial_credit": "Half if the idea of falling in the region leading to rejection is stated but the hypothesis rejected is not clearly the null."
+      }
+    ],
+    "notes": "Full marks need both the 'range/set of values' idea and rejection of the NULL hypothesis stated precisely. Vague answers (e.g. 'area where we reject', 'the critical area') without naming the null hypothesis earn little or nothing. Wrong statements, such as saying it leads to acceptance of the null or rejection of the alternative, earn 0 for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

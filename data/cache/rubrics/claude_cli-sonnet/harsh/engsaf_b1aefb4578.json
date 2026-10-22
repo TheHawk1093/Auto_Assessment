@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/b1aefb4578",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in a flat region (no edge/corner) there is no change in intensity in any direction when the detector window is shifted.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that on an edge there is no (significant) change in intensity along the edge direction (change only perpendicular to it).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that at a corner there is significant change in intensity in all directions when the window is shifted.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the Harris detector's response depends on direction of shift (intensity change is direction dependent), so edge direction distinguishes flat, edge and corner regions.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each point needs a precise statement about intensity change on shifting the window, tied to the correct region (flat, edge, corner). Vague statements such as 'direction matters' without the region-specific behaviour earn nothing. A wrong region-behaviour pairing (e.g. edge changes in all directions) loses that point. Total of marks is 2; half-marks per point, no partial within a point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/e8d593831e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that hue should be centered around 120 degrees, stated as the hue for green color.",
+        "marks": 1.0,
+        "partial_credit": "Half if green hue is identified as the key channel but the value (about 120\u00b0) is missing or imprecise."
+      },
+      {
+        "id": "P2",
+        "description": "States that intensity should be in a range around 0.5 AND saturation should also be in a range around 0.5 (because of the blackish portion in the stem, the saturation is low).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of intensity (~0.5) or saturation (~0.5) is correctly stated."
+      }
+    ],
+    "notes": "Full marks need precise values: hue about 120\u00b0 for green, and both intensity and saturation around 0.5 with the blackish stem as the reason for the saturation range. Part marks only when exactly one of the two required halves of a point is precisely stated. Vague answers such as \"use the HSI color space\" or \"threshold the green\", wrong values, or contradicting statements earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

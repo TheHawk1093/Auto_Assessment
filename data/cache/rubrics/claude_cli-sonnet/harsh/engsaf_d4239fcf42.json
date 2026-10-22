@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d4239fcf42",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "TRNG: states that it generates random numbers from an unpredictable physical source/process (physical means), giving truly random, unpredictable output that cannot be reproduced.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the physical source is stated precisely but unpredictability/non-reproducibility is missing (or vice versa)."
+      },
+      {
+        "id": "P2",
+        "description": "PRNG: states that it uses a mathematical algorithm/formula (computer-based, deterministic) to generate a sequence of numbers, which can be reproduced (e.g. from the same seed).",
+        "marks": 1.0,
+        "partial_credit": "Half only if the mathematical algorithm/formula is stated precisely but reproducibility/sequence generation is missing (or vice versa)."
+      }
+    ],
+    "notes": "Both generators must be described, each with its correct source (physical process for TRNG, mathematical algorithm/formula for PRNG) and the matching property (unpredictable/non-reproducible vs reproducible). Vague statements such as 'one is random and one is not' earn nothing. Any wrong statement about a generator, such as swapping the two, means that point earns 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

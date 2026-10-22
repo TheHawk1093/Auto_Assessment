@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/f0b0a8bb2e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the negative electrode of a Nickel-Metal Hydride battery is made of hydrogen absorbing alloys (metal hydride, MH), using the term 'hydrogen absorbing alloy' (or equivalent 'metal hydride alloy').",
+        "marks": 1.5,
+        "partial_credit": "Award 0.75 if the answer says only 'metal hydride' or 'alloy' without hydrogen-absorbing, or a hydrogen-absorbing material not named as an alloy."
+      },
+      {
+        "id": "P2",
+        "description": "Answer contains no wrong extra item or contradictory material (e.g. nickel hydroxide, cadmium, lithium, carbon named as the negative electrode).",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks only for 'hydrogen absorbing alloys' (or 'metal hydride alloys') stated precisely with no wrong extra material. Answers giving only 'metal hydride' or 'alloy' get part marks on P1 and keep P2 if nothing wrong is added. Naming a wrong material (nickel hydroxide, cadmium, lithium, etc.) earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

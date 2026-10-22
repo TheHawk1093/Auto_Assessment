@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/fa26842b0d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the perpetual (terminal/long-term) growth rate as one of the two factors, using this technical term.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States WACC (weighted average cost of capital, i.e. the discount rate) as the other factor, using this technical term.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Both blanks need the exact technical terms: perpetual/terminal growth rate and WACC (discount rate). Each is worth 1 mark; vague answers such as \"growth\", \"interest rates\", \"cash flows\" or \"assumptions\" earn nothing for that point. A wrong extra item (e.g. a third factor given as an answer) costs the point it contradicts; order of the two terms does not matter.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
