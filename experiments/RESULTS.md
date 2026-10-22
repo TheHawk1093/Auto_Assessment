@@ -63,6 +63,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-22 16:22 | generated-rubric | rice_s0_sized | ricechem/test/n72/seed0 | pipeline | 0.158 | ▼ +0.004 | ▼ +0.008 | 0.113 | 0.80 | 0.73 | 100% | 3.92 | 110a77f2 |
 | 2026-10-22 16:31 | rubric-lenient | rice_s0_lenient | ricechem/test/n72/seed0 | pipeline | 0.190 | ▼ +0.036 | ▼ +0.032 | 0.181 | 0.79 | 0.62 | 11% | 3.47 | 110a77f2 |
 | 2026-10-22 16:40 | rubric-moderate | rice_s0_moderate | ricechem/test/n72/seed0 | pipeline | 0.149 | ▲ -0.005 | ▲ -0.040 | 0.052 | 0.80 | 0.71 | 12% | 3.50 | 110a77f2 |
+| 2026-10-22 16:53 | rubric-harsh | rice_s0_harsh | ricechem/test/n72/seed0 | pipeline | 0.174 | ▼ +0.020 | ▼ +0.024 | -0.142 | 0.89 | 0.78 | 36% | 4.15 | 110a77f2 |
 
 ## Variants
 
@@ -94,3 +95,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **generated-rubric**: RiceChem benchmark; rubric written by the system from the reference. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
 - **rubric-lenient**: RiceChem benchmark; rubric strictness lenient. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "lenient", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
 - **rubric-moderate**: RiceChem benchmark; rubric strictness moderate. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "moderate", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
+- **rubric-harsh**: RiceChem benchmark; rubric strictness harsh. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "harsh", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
