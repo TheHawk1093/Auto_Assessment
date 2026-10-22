@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/73fecd470f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First blank: observed (data/frequencies) \u2013 the observed sample data or frequencies.",
+        "marks": 1.0,
+        "partial_credit": "Half if vaguely stated (e.g. 'actual data' without observed/sample sense)."
+      },
+      {
+        "id": "P2",
+        "description": "Second and third blanks: assumed/estimated/theoretical (fitted) probability density function (PDF/distribution).",
+        "marks": 1.0,
+        "partial_credit": "Half if only 'assumed/estimated/theoretical' or only 'PDF/distribution' is given, not both."
+      }
+    ],
+    "notes": "Full marks need 'observed' for the first blank and an assumed/estimated (theoretical, fitted) PDF or distribution for the rest. Give half of a point for a partly right or vague phrase, such as 'expected' alone or 'distribution' without saying assumed. Give no marks for unrelated answers, such as mean and variance or rainfall and runoff.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

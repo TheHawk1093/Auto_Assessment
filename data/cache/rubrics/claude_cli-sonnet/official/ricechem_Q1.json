@@ -1,0 +1,53 @@
+{
+  "question_key": "ricechem/Q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "correctly cites decreased electron electron repulsion",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "relates decreased electron electron repulsion to decreased potential energy",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "3rd and 4th electrons ionized feel same core charge",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "3rd and 4th electrons ionized from n=3 shell and have same radius",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "5th electron ionized from n=2 shell and feels higher core charge",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P6",
+        "description": "5th electron ionized from n=2 shell and has smaller radius",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P7",
+        "description": "correctly explains relationship of potential energy to ionization energy",
+        "marks": 2.0,
+        "partial_credit": "1 of 2 marks if the relationship is only partially explained."
+      }
+    ],
+    "notes": "Marked point by point from the published rubric. Deduct 0.5 for a core charge calculation error.",
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

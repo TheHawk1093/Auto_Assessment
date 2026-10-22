@@ -1,0 +1,41 @@
+{
+  "question_key": "ricechem/Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States explicitly that the frequency of light is directly proportional to its energy (E = hf, with photon energy increasing with frequency).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only says higher frequency means higher energy without stating proportionality/E = hf precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that the energy levels of an electron in an atom are quantized (only specific, discrete energy values allowed).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Fully explains that for excitation, the photon energy (frequency) absorbed must exactly equal the difference in energy between the two electron energy levels, so only specific frequencies are absorbed (others cannot be absorbed since no matching level exists).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if it says photon energy must match an energy level difference but does not state exactly equal or does not conclude that only certain frequencies are absorbed."
+      },
+      {
+        "id": "P4",
+        "description": "States that a minimum amount of energy (the ionization energy / threshold energy, corresponding to threshold frequency) is needed to eject an electron from the atom.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "States that when the photon energy exceeds the minimum needed to eject the electron, the additional (excess) energy becomes kinetic energy of the ejected electron, so any frequency above threshold can be absorbed (the free electron's energy is not quantized).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if says excess energy goes to kinetic energy but does not link it to any frequency above threshold being absorbed."
+      }
+    ],
+    "notes": "Harsh: each point needs an explicit, correct statement using the right terms (quantized, energy difference, kinetic energy, threshold). Vague or implied statements earn nothing, and a wrong statement within a point cancels that point. Part marks only where the stated partial credit is clearly met; restating the question earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

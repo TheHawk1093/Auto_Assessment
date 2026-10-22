@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/507e9742aa",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Purpose: the significance test checks how well the predicted/fitted model fits the observed data (goodness of fit).",
+        "marks": 0.5,
+        "partial_credit": "Half if only vaguely says it checks the model or data without mentioning fit."
+      },
+      {
+        "id": "P2",
+        "description": "Importance: it gives the probability of rejecting the null hypothesis (decides whether to accept or reject the hypothesis) using a statistical test.",
+        "marks": 0.5,
+        "partial_credit": "Half if mentions hypothesis testing without the idea of rejecting the null hypothesis or probability."
+      },
+      {
+        "id": "P3",
+        "description": "Names the chi-square (X2) test as the test used for the level of significance.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the why (goodness of fit of model to observed data, and rejecting the null hypothesis by probability) and the chi-square test named. Give part marks for a vaguely stated reason. A wrong test name (e.g. t-test, F-test) earns nothing for P3 but does not affect P1 and P2. Total is 2 marks, rounded to whole marks if the exam requires.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

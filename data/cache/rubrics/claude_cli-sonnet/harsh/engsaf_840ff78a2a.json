@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/840ff78a2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a rating curve is valid only under normal, non-flood flow conditions, i.e. when there is no flood (flood must be mentioned explicitly).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that there must be no overflow (water spilling over the banks/channel) in the region; both overflow and flood together form the complete condition 'no overflow or flood in a region'.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the precise condition: no overflow and no flood in the region. Each of the two terms (flood, overflow) is worth one mark; a student naming only one gets 1 mark. Vague statements such as 'stable conditions' or 'normal flow' without naming flood/overflow, or any wrong condition (e.g. 'only during floods'), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

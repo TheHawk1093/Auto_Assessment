@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/73fecd470f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the test compares the observed (sample/empirical) frequencies or data, using the term \"observed\".",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the other quantity as the assumed/estimated (fitted theoretical) probability density function (PDF), giving both the term \"assumed\" or \"estimated\" and \"PDF\" (distribution).",
+        "marks": 1.0,
+        "partial_credit": "0.5 if only \"assumed/estimated\" or only \"PDF/distribution\" is given, not both terms"
+      }
+    ],
+    "notes": "Full marks only if the student gives \"observed\" and \"assumed/estimated PDF\" with the correct terms. Give 0.5 on P2 only if one of its two terms (assumed/estimated, or PDF) is stated precisely. Vague answers such as \"actual and theoretical values\" without PDF, or wrong items such as \"mean and variance\", earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

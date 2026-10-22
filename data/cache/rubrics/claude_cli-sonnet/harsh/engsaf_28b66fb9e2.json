@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/28b66fb9e2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE (the OS does not execute the next instruction after the faulting instruction).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that after the handler creates the mapping (allocates the physical page and updates the page table), it returns from the handler and re-executes the faulting instruction itself.",
+        "marks": 1.0,
+        "partial_credit": "Half only if it says the faulting instruction is retried/re-executed but omits the handler creating the mapping and returning from the handler."
+      },
+      {
+        "id": "P3",
+        "description": "States that on a page fault the PC is not incremented (PC still points to the faulting instruction), so the next instruction is not executed.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need FALSE, the correct reason that the faulting instruction is re-executed after the handler returns, and that the PC is not incremented. Answers that say only FALSE, or give a vague reason without stating re-execution of the faulting instruction, earn at most 0.5. Answering TRUE, or any wrong statement about the mechanism (e.g. the next instruction runs), earns 0 for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

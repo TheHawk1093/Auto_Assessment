@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/a6b63a67b6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names cetyl alcohol (hexadecanol / hexadecyl alcohol / 1-hexadecanol) as an evaporation inhibitor.",
+        "marks": 1.0,
+        "partial_credit": "Half if only the general class 'fatty/long-chain alcohol' or 'hexadecane' is given, or the name is badly garbled."
+      },
+      {
+        "id": "P2",
+        "description": "Names stearyl alcohol (octadecanol / octadecyl alcohol / 1-octadecanol) as an evaporation inhibitor.",
+        "marks": 1.0,
+        "partial_credit": "Half if only the general class 'fatty/long-chain alcohol' or 'octadecane' is given, or the name is badly garbled."
+      }
+    ],
+    "notes": "Full marks (2) for naming both cetyl alcohol (hexadecanol) and stearyl alcohol (octadecanol); either the common name or the chemical name is accepted. Give 1 mark if only one is named correctly, or if both are only given as a vague class such as 'fatty alcohols' (half each). Give 0 for unrelated chemicals, such as salts, chlorine or oils.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

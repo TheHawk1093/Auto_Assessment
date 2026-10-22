@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/7151a5ec2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the storage volume vs elevation relationship (storage\u2013elevation curve) of the reservoir must be known.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the inflow hydrograph must be known.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the water surface elevation vs outflow relationship (elevation\u2013discharge/outflow curve) must be known.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the initial values of storage (S), inflow (I) and outflow (Q) at t = 0 must be known; all three must be given.",
+        "marks": 0.5,
+        "partial_credit": "Initial conditions given but only two of S, I, Q named earns 0.25."
+      }
+    ],
+    "notes": "Award marks only for each of the four required details stated precisely with the correct relationship (storage vs elevation, inflow hydrograph, elevation vs outflow, initial S, I, Q at t=0). Vague mentions such as \"reservoir data\" or \"flow data\" earn nothing. A wrong extra item (e.g. rainfall intensity, evaporation) cancels the mark for the point it is attached to or any point it contradicts; only the initial-values point can earn half marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/089668559f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States Conservationism (conservation) and Preservationism (preservation) as two of the philosophies, using these technical names.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two is named correctly."
+      },
+      {
+        "id": "P2",
+        "description": "States Deep Ecology and Social Ecology as the other two philosophies, using these technical names.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two is named correctly."
+      }
+    ],
+    "notes": "Full marks need all four named philosophies: Conservationism, Preservationism, Deep Ecology and Social Ecology, with correct technical names. Each point is worth 1 mark; if only one of its two items is given correctly, award half. A wrong extra philosophy (for example Sustainability or Environmentalism) means the point it falls under earns nothing; vague descriptions without the names earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

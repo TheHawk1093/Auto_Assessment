@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/52b9d3f297",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that storage is a function of inflow and outflow discharge only (S depends on I and O only), and is calculated using the continuity equation.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two parts is stated precisely: storage depends on inflow and outflow discharge only, or storage found from the continuity equation."
+      },
+      {
+        "id": "P2",
+        "description": "States that the parameters K and x (n in the model answer) remain constant, until the channel slope/reach is changed, and that K depends on the travel time of the flood wave through the reach.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two parts is stated precisely: K and x/n constant until the channel slope changes, or K depends on the travel of the flood wave through the reach."
+      }
+    ],
+    "notes": "Full marks for a point need every part of it stated precisely with the correct terms (storage as a function of inflow and outflow discharge only, continuity equation, constant K and x/n until slope changes, K linked to travel of the flood wave through the reach). Half a point only when one of its two parts is clearly and precisely stated. Vague statements such as 'it routes floods through a channel', or any wrong statement within a point, earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -12,6 +12,7 @@ from typing import Literal
 
 import pandas as pd
 
+from autograde.datasets.ricechem import load_ricechem
 from autograde.schemas import Item
 
 Split = Literal["dev", "test"]
@@ -116,13 +117,14 @@ def load_engsaf(root: Path) -> list[Item]:
 
 
 # Datasets that are only ever used to measure, never to tune. They ignore the dev/test split.
-BENCHMARK_ONLY = {"engsaf"}
+BENCHMARK_ONLY = {"engsaf", "ricechem"}
 
 LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "digiklausur": load_digiklausur,
     "mohler": load_mohler,
     "saf": load_saf,
     "engsaf": load_engsaf,
+    "ricechem": load_ricechem,
 }
 
 

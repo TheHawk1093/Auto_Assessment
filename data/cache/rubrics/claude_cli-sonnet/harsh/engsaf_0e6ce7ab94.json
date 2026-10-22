@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/0e6ce7ab94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the one-vs-rest (one-versus-all) approach is used for a single discriminant handling multiclass classification.",
+        "marks": 0.75,
+        "partial_credit": "Idea of separating one class from the others described precisely but the term 'one vs rest/all' not named: no credit; name only with no explanation: no credit."
+      },
+      {
+        "id": "P2",
+        "description": "States that the function's response must place the input feature vectors of one class in one category (class) and all remaining feature vectors in the other category (the rest).",
+        "marks": 0.75,
+        "partial_credit": "Half only if the two-way split (one class vs the rest) is stated precisely but the output is not tied to the feature vectors."
+      },
+      {
+        "id": "P3",
+        "description": "States that the process is iterated/repeated (on the remaining data) until all feature vectors (pixels) are classified.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the term one-vs-rest (one-vs-all), the response being one class versus all remaining classes, and the iteration until everything is classified. Vague statements such as 'it separates classes' or 'gives different outputs for each class' earn nothing. A wrong claim on a point, such as a multi-valued output or a pairwise (one-vs-one) scheme, means that point earns 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

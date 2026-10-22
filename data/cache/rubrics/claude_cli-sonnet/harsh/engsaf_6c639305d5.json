@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/6c639305d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the statement is incorrect: the instruction set architecture IS an abstraction provided by the CPU to the OS).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: the ISA is an abstraction in which instructions are mapped to functionality, and the ISA instructions plus registers are what the OS uses for its functionality.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Key point: the implementation details / how the functionality is achieved by the CPU are not known to the OS (hidden behind the ISA).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the OS understands/targets the ISA, so an OS needs to be compiled differently for different ISAs.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need FALSE plus a precise justification covering all four elements: ISA as abstraction mapping instructions to functionality (with registers), implementation hidden from the OS, and OS compiled per ISA. Per the question, no correct justification means no marks, so a bare FALSE or TRUE earns 0. Vague or generic statements (e.g. 'OS uses the CPU') earn nothing; any wrong claim in a point voids that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

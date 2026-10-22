@@ -1,0 +1,35 @@
+{
+  "question_key": "ricechem/Q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that removing each electron decreases electron\u2013electron repulsion (fewer electrons remain), and links this to a decrease in potential energy of the remaining electrons (so the remaining electrons are held more tightly / more energy needed for the next removal).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if decreased electron\u2013electron repulsion is stated but not linked to decreased potential energy."
+      },
+      {
+        "id": "P2",
+        "description": "3rd and 4th electrons are removed from the same n=3 shell, so they feel the same core charge and have the same radius; this is why their ionization energies (3231 and 4356) are similar in magnitude / only modestly different.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only same core charge or only same shell/radius is stated, or the claim is given without the link to similar values."
+      },
+      {
+        "id": "P3",
+        "description": "5th electron is removed from the n=2 shell (inner shell), so it feels a higher core charge and has a smaller radius than the 3rd/4th electrons, so it is much closer to the nucleus and attracted much more strongly (hence the large jump to 16091).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only higher core charge or only smaller radius/inner shell is stated."
+      },
+      {
+        "id": "P4",
+        "description": "Correctly explains the relationship of potential energy to ionization energy: lower (more negative) potential energy, from greater attraction (Coulomb's law: higher core charge, smaller distance), means more energy is needed to remove the electron, so ionization energy is larger.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the link between attraction/potential energy and ionization energy is stated only partly or vaguely."
+      }
+    ],
+    "notes": "Full marks need each specific claim stated with its cause-and-effect link: for example \"same core charge\" (not \"similar attraction\"), and potential energy linked to ionization energy. Part marks go to half-stated ideas, such as only the core charge or only the radius. A bare restatement of the data or a general definition of ionization energy earns nothing, and a wrong statement loses only the marks of its own point.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

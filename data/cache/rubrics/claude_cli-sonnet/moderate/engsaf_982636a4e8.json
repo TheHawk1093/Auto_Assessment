@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/982636a4e8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that summing or averaging (smoothing/combining) a random series/data can produce an effect, i.e. the operation of summation or averaging on random data is the cause.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely mentions processing/manipulating data without naming summation or averaging."
+      },
+      {
+        "id": "P2",
+        "description": "States that this generates oscillations/cyclic movements (apparent periodicity) that were not present in the original data.",
+        "marks": 1.0,
+        "partial_credit": "Half if oscillations/cycles are mentioned but not that they are absent from the original data."
+      }
+    ],
+    "notes": "Full marks (2) for saying that summing or averaging a random series creates oscillations or cycles that are not in the original data; any wording or clear synonyms are fine. Give 1 mark if only one of the two ideas is clearly stated, or both are stated vaguely or with a minor error. Give 0 for wrong or unrelated definitions.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

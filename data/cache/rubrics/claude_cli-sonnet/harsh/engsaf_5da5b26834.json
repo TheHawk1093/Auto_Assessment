@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/5da5b26834",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: the OS can use system calls as events/opportunities (entry into the kernel) to switch between processes / run the scheduler, so it can schedule READY processes without the timer interrupt.",
+        "marks": 1.0,
+        "partial_credit": "Only if clearly more than half: says the OS can switch on events such as system calls or blocking/yielding, but without naming system calls precisely."
+      },
+      {
+        "id": "P3",
+        "description": "States that without the timer interrupt scheduling is not fair (no preemption/fair CPU sharing), but the OS can still schedule different processes.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need FALSE, system calls named as the event that lets the OS switch processes, and the point that execution is unfair without the timer but scheduling still works. A TRUE answer, or no correct justification, gets 0 overall. Vague justifications such as 'OS has other ways' without system calls earn nothing on P2.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

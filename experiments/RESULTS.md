@@ -58,6 +58,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-19 16:23 | feedback-brief | saf_s0_fb_brief | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 0.29 | 48bc24b0 |
 | 2026-10-19 16:24 | feedback-detailed | saf_s0_fb_detailed | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 0.36 | 48bc24b0 |
 | 2026-10-19 16:26 | feedback-coach | saf_s0_fb_coach | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 0.33 | 48bc24b0 |
+| 2026-10-22 16:01 | baseline | rice_s0_baseline | ricechem/test/n72/seed0 | baseline | 0.154 | - | - | -0.065 | 0.81 | 0.77 | 0% | 0.90 | 110a77f2 |
 
 ## Variants
 

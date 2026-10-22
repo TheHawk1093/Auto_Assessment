@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/ecc261cec7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the answer FALSE (the statement is incorrect).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: parent and child are two independent/separate processes, so the parent does not have to wait for the child to terminate before continuing.",
+        "marks": 0.75,
+        "partial_credit": "Half if only says the parent need not wait, without saying the processes are independent."
+      },
+      {
+        "id": "P3",
+        "description": "Justification: the parent can perform any operation, including calling exec, while the child is running (exec in the parent is allowed).",
+        "marks": 0.75,
+        "partial_credit": "Half if says parent can continue running but does not mention exec or any operation."
+      }
+    ],
+    "notes": "Full marks (2) need FALSE plus a correct justification: parent and child are independent processes, and the parent can call exec (or any operation) without waiting for the child. If the justification is missing or wrong, give 0 overall, as the question says no correct justification means no marks. Part marks for a vague or partly stated justification; TRUE earns nothing.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

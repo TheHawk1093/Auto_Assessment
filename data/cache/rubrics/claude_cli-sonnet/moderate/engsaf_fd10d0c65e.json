@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/fd10d0c65e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a very large number of hidden layers causes overfitting / high variance: the model fits training data (low training error) but does not generalise to new unseen data (high test error).",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only 'overfitting' (or high variance) is named without explaining poor generalisation or the training/test error gap."
+      },
+      {
+        "id": "P2",
+        "description": "States that training (backpropagation) becomes slow / computationally costly with many hidden layers.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only vaguely says 'more complex' or 'takes more time' without linking to training/backpropagation."
+      }
+    ],
+    "notes": "Full marks (2) for naming both issues: overfitting/high variance with poor generalisation, and slow backpropagation/training. Give 1 mark if only one issue is correctly given, or both are given only vaguely. Give 0 for unrelated or wrong answers (e.g. underfitting or high bias as the main issue). Accept clear synonyms.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

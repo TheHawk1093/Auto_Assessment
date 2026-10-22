@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/b86ced86e4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Run-of-river plant (accept run-off river / run of river type)",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Storage plant (accept reservoir plant / storage type)",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Cascade plant (series of plants on the same river, one using the outflow of another)",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Pumped storage plant (accept pumped-storage / pump-back plant)",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each of the four types is worth 0.5 marks; clear synonyms are accepted (e.g. reservoir plant for storage plant). Total is rounded to a whole mark by the teacher's 0/1/2 scale: all four or three correct items give 2, two items give 1, one or none gives 0 (round 1.5 up to 2). Wrong extra types, or classifications not based on hydraulic characteristics (e.g. by head or capacity), earn nothing and do not cancel correct items.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

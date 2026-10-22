@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/9d1b8ffb55",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: the interrupted process is NOT always rescheduled immediately after the interrupt handler completes; the control need not return to the paused process.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Justification: another process can be scheduled (dispatched by the scheduler) on the CPU next.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Gives the specific reason: the time slice (quantum) of the first process expires, so the scheduler picks a different process.",
+        "marks": 0.5,
+        "partial_credit": "Only mentions pre-emption/scheduler picking another process without naming time slice expiry: no part marks."
+      }
+    ],
+    "notes": "Full marks need FALSE plus a justification that another process can run next because the interrupted process's time slice expired. A TRUE answer, or no correct justification, gets 0 overall. Vague statements such as \"scheduler decides\" without the time slice reason lose P4; a wrong claim in the justification loses the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

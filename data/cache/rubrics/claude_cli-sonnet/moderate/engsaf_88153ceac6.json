@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/88153ceac6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the situation: the natural ground slope (of the region/terrain) is steeper/greater than the slope (bed slope) provided for the canal.",
+        "marks": 1.5,
+        "partial_credit": "Half: says only that ground is steep or sloping, or mentions slope difference vaguely without comparing ground slope to canal slope."
+      },
+      {
+        "id": "P2",
+        "description": "Links this to the canal: a fall is provided so that the canal can maintain its designed (permissible) bed slope / avoid excess slope causing erosion, by dropping the water level at that point.",
+        "marks": 0.5,
+        "partial_credit": "Half: only mentions dropping/lowering of water level without relating to the canal slope."
+      }
+    ],
+    "notes": "Full marks: student says a fall is needed when the natural ground slope is greater than the canal's designed bed slope (synonyms like 'steeper terrain than canal gradient' accepted). Part marks: vague statements such as 'on sloping/steep ground' or 'to lower the water level' without the comparison. No marks for wrong conditions, e.g. ground slope less than canal slope or unrelated reasons.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

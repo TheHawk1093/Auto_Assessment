@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/f1be87d27a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid reason for charge on colloid surface, e.g. ionisation of surface active sites/groups (OH, COOH) depending on pH; or imperfection in crystal structure (isomorphous substitution, e.g. low-valency atoms replacing silicon giving net negative charge); or adsorption of anions (ions) onto particle surface.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if reason is vague (e.g. 'ionisation' or 'adsorption' with no surface groups/ions mentioned) or has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "Second, different valid reason from the same set (ionisation of active sites like OH/COOH depending on pH; crystal structure imperfection/substitution of lower-valency atoms; adsorption of anions onto surface).",
+        "marks": 1.0,
+        "partial_credit": "Half mark if reason is vague or has a minor error."
+      }
+    ],
+    "notes": "Award full marks for two different valid reasons, in any wording that carries the central idea (ionisation of surface groups, crystal imperfection/ion substitution, ion adsorption). Give part marks for a vague or slightly wrong statement of a reason. Repeating the same reason twice earns only one point; unrelated reasons earn nothing.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

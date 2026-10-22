@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/79eaad9e5a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Intermittent stream: has flowing water only at certain times of the year, when groundwater supplies the streamflow; it may be dry in dry periods (runoff from precipitation is only a supplemental source).",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it flows seasonally/part of the year without mentioning groundwater as the source (or mentions groundwater but not seasonal flow)."
+      },
+      {
+        "id": "P2",
+        "description": "Ephemeral stream: flows only during and for a short time after precipitation events; it is above the water table and groundwater is not a source of its water.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says it flows after rain/precipitation without the short duration or the groundwater/water table contrast."
+      }
+    ],
+    "notes": "Full marks need both streams described with their distinguishing source of water: intermittent flows seasonally from groundwater, ephemeral flows only briefly after precipitation with no groundwater input. Give part marks for a vague or incomplete description of one stream, such as seasonal flow with no groundwater mentioned. Give no marks for a wrong or swapped description. Each stream is marked separately.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

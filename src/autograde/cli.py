@@ -13,7 +13,9 @@ from autograde.config import PipelineConfig, Settings, load_settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.datasets.download import download_all, download_engsaf
 from autograde.datasets.perturb import perturb_items
+from autograde.datasets.ricechem import SPEC, official_record
 from autograde.evaluation.compliance import compliance
+from autograde.evaluation.criteria import criteria_report
 from autograde.evaluation.experiments import (
     comparisons,
     prompt_fingerprint,
@@ -34,7 +36,7 @@ from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.levels import LEVELS
 from autograde.pipeline.rescore import rescore
-from autograde.pipeline.rubric import RubricStore, cached_record
+from autograde.pipeline.rubric import RubricStore, cached_record, rubric_path
 from autograde.pipeline.run import mark_item, read_results, run_items, to_question
 from autograde.vcs import GitError, commit_experiment, history
 from autograde.viewer import sample_by_mark, sample_spread, write_report
@@ -131,6 +133,12 @@ def _parser() -> argparse.ArgumentParser:
     rb.add_argument("--dataset", required=True, choices=sorted(LOADERS))
     rb.add_argument("--levels", default=",".join(LEVELS), help="comma separated")
     rb.add_argument("--limit", type=int, help="only the first N questions (a trial)")
+
+    og = sub.add_parser("official-rubrics", help="install the dataset's own rubrics (RiceChem)")
+    og.add_argument("--dataset", default="ricechem", choices=["ricechem"])
+
+    cr = sub.add_parser("criteria", help="criterion-by-criterion agreement with the teacher")
+    cr.add_argument("--name", required=True)
 
     co = sub.add_parser("compliance", help="do marks and feedback move with rubric strictness")
     co.add_argument(
@@ -523,6 +531,19 @@ def main(argv: list[str] | None = None) -> None:
         print(json.dumps(report(results), indent=2))
     elif args.cmd == "rubrics":
         _cmd_rubrics(args, settings)
+    elif args.cmd == "official-rubrics":
+        client_name = f"{settings.llm.backend}-{settings.llm.model}"
+        for qid in SPEC:
+            record = official_record(qid)
+            path = rubric_path(
+                settings.paths.cache_dir, client_name, record.question_key, "official"
+            )
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(record.model_dump(), indent=2), encoding="utf-8")
+            print("wrote", path)
+    elif args.cmd == "criteria":
+        res = read_results(settings.paths.runs_dir / args.name / "results.jsonl")
+        print(json.dumps(criteria_report(res), indent=2))
     elif args.cmd == "compliance":
         runs = {}
         for spec in args.run:

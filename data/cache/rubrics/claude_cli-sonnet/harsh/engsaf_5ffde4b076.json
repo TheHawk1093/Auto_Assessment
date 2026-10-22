@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/5ffde4b076",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First factor correctly named with the proper technical term, taken from the model answer: depth of cut, hardness of workpiece, or width of cut.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second, different factor correctly named with the proper technical term, taken from the model answer: depth of cut, hardness of workpiece, or width of cut.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need two different factors, each named precisely as depth of cut, hardness of workpiece, or width of cut. Vague or generic answers (e.g. \"cutting conditions\", \"machine problem\") earn nothing for that point. A wrong extra factor costs a point, so with two answers where one is wrong, only 1 mark is possible. Do not give part marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

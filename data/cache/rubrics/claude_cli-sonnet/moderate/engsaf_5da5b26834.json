@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/5da5b26834",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the statement is not true: the OS still has opportunities to schedule without the timer interrupt).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies with the key idea: the OS can switch between/schedule processes at other events such as system calls (e.g., a process blocking, yielding or doing I/O traps into the OS), though sharing may not be fair.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says other events/ways exist without naming system calls (or equivalent trap/yield/I/O/exit events)."
+      }
+    ],
+    "notes": "Full marks need FALSE plus a justification that the OS can schedule at system calls (or equivalent events like yield, I/O, process exit). Mention that fairness is lost is optional. A TRUE answer, or FALSE with no or wrong justification, gets 0 for the justification and the question gets no marks since a correct justification is required; a vague justification gets half of P2.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

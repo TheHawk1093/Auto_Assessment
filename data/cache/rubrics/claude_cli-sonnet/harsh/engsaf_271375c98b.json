@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/271375c98b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States \"Windrow\" (windrow composting) as one of the three systems.",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States \"Static-aerated piles\" (aerated static pile composting) as one of the three systems.",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States \"In-vessel composting\" (enclosed/in-vessel system) as one of the three systems, and gives no wrong extra system (e.g. vermicomposting, which the question excludes).",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) only if all three systems are named with the correct technical terms: windrow, static-aerated piles, in-vessel. Each correct item earns its share; vague descriptions such as \"pile\" or \"open heap\" without the term earn nothing for that item. A wrong extra item (including vermicomposting) means P3 earns nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

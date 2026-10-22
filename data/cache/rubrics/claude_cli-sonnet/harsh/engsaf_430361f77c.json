@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/430361f77c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a steeper basin/stream slope makes the runoff (excess runoff) leave the basin/catchment quickly (faster outflow due to high slope).",
+        "marks": 1.0,
+        "partial_credit": "Half only if steep slope and quick drainage are stated but runoff/catchment leaving is imprecise (e.g. 'water flows fast')."
+      },
+      {
+        "id": "P2",
+        "description": "Defines time base as the time taken for runoff to leave the catchment after the storm, and concludes that because runoff leaves quickly, the time base of the hydrograph is reduced (smaller).",
+        "marks": 1.0,
+        "partial_credit": "Half if only the conclusion 'time base reduces' is given, or only the time base definition, without linking both."
+      }
+    ],
+    "notes": "Full marks need both: steep slope makes runoff leave the catchment quickly, and time base (time for runoff to leave after the storm) therefore reduces. Part marks only when clearly more than half of a point is precise, e.g. the conclusion without the time base meaning. Vague statements like 'steeper is faster' without runoff/time base terms, or any wrong statement (e.g. time base increases), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

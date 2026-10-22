@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/2968f06957",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First blank filled with \"Univariate\" (regression with one explanatory variable; simple regression with one explanatory variable named univariate).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second blank filled with \"Multivariate\" (regression with more than one explanatory variable).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each blank is worth 1 mark and needs the exact technical term: Univariate for the first, Multivariate for the second. Wrong terms, swapped order, or vague wording such as \"simple\" or \"multiple\" earn nothing for that blank. If a wrong extra term is given in a blank, that blank gets 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

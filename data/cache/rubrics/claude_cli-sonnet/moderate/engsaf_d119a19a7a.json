@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d119a19a7a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a valid limitation of wireframe modeling: the representation is ambiguous, i.e. one wireframe model can be interpreted as several different solid objects (or it is messy/confusing to read, with no surface or solid information).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the limitation is vague (e.g. 'not clear' or 'not accurate') without saying what is ambiguous."
+      },
+      {
+        "id": "P2",
+        "description": "Explains or qualifies the limitation using the key idea from the model answer: the same wireframe can represent different solids, or the model becomes messy and confusing because all edges are shown (no hidden lines/surfaces).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the explanation is only partly correct or has a minor error."
+      }
+    ],
+    "notes": "Full marks (2) for one limitation stating that the wireframe is ambiguous, with one model able to represent different solids, or that it is messy and confusing. Give 1 mark for a vague or half-stated limitation such as 'confusing' or 'unclear' with no reason. Give 0 for wrong or unrelated answers, such as advantages of wireframe modeling.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

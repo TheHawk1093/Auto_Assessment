@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/8cafcaad3c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a valid application of broaching from the model answer, e.g. machining gears, splines, or slots/keyways for support, or custom precision machining in the automotive industry.",
+        "marks": 1.5,
+        "partial_credit": "Vague application (e.g. 'machining parts' or 'precision work' with no specific example) earns 0.75."
+      },
+      {
+        "id": "P2",
+        "description": "Application is tied to the broaching process as shaping/cutting a profile or feature (e.g. internal splines, gear teeth, slots/keyways) or names the industry context (automotive, precision machining), giving a clear, specific use.",
+        "marks": 0.5,
+        "partial_credit": "Only the general field is named without the feature, or feature without any context, earns 0.25."
+      }
+    ],
+    "notes": "Full marks for one clear, correct application such as machining splines, gears, slots/keyways, or precision machining in the automotive industry; more than one is not needed. Part marks for a vague answer like 'precision machining' or 'making parts' with no specific feature. No marks for wrong applications (e.g. drilling holes only, welding, casting) or unrelated answers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

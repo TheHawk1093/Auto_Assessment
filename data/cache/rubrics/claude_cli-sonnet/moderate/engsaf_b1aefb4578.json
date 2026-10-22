@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b1aefb4578",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in a flat region there is no change in intensity in any direction, and on an edge there is no change along the edge direction (change only across/perpendicular to it).",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of flat region or edge is correctly described, or both are stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "States that at a corner there is significant change in all directions, so the detector relies on direction-dependent intensity change to identify corners (distinguishing them from edges and flat regions).",
+        "marks": 1.0,
+        "partial_credit": "Half if corner is said to have change but 'all directions' or significance is missing or vague."
+      }
+    ],
+    "notes": "Full marks need both ideas: flat/edge behaviour (no change in all directions / along the edge) and corner behaviour (significant change in all directions). Different wording is fine. Give part marks for vague or half-stated ideas; a mention of affine dependence on direction is not required. Give no marks for wrong or unrelated answers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/956d741e7b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First privileged action correctly named with its technical term AND explained with its effect. Accepted actions from the model answer: writing to CR3 (changes page directory pointer); writing to EFLAGS (changes execution status such as zero bit / interrupt enable-disable); writing to IDTR (changes location of the IDT); accessing a virtual address in the kernel virtual address range.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the action is named precisely (correct register or kernel-VA access) but the explanation of its effect is missing or incomplete."
+      },
+      {
+        "id": "P2",
+        "description": "Second, different privileged action from the same accepted list, correctly named with its technical term AND explained with its effect.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the action is named precisely but the explanation of its effect is missing or incomplete."
+      }
+    ],
+    "notes": "Each of the two required actions must be a distinct item from the model answer (CR3 write, EFLAGS write, IDTR write, kernel-VA access), named with the correct register or term and with its effect explained. Vague answers such as \"access hardware\" or \"change memory\" earn nothing, and a wrong action or an action the user process could legally do (e.g. updating a PCB it cannot see) earns nothing for that point. If a student lists more than two and one is wrong, the wrong extra item costs a point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

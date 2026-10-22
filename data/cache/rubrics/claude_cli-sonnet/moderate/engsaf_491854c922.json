@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/491854c922",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Child is created/ready in kernel mode and has no trap of its own, so it needs a prepared kernel context (saved context/kernel stack) set up by fork so it can be scheduled and run in kernel mode.",
+        "marks": 0.5,
+        "partial_credit": "Mentions the child runs in kernel mode or needs a context, but vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "The child's context is set up so that, when first scheduled, it starts executing at a specific function (e.g., forkret) and the kernel stack is arranged so that function's return address is the trap-return code (e.g., trapret).",
+        "marks": 1.0,
+        "partial_credit": "Only one of the two: starts at a function, or return address on the stack set to trap return."
+      },
+      {
+        "id": "P3",
+        "description": "Result: the child returns from that function into the trap return path, emulating a call to and return from the trap handler, and then unwinds the rest of the kernel stack (trap frame) to return to user space.",
+        "marks": 0.5,
+        "partial_credit": "Says it returns to user mode via trap return but does not explain the emulation or stack unrolling."
+      }
+    ],
+    "notes": "Full marks (2) need the key idea: fork sets up the child's kernel context/stack so that on first scheduling it runs a function (like forkret) that returns to the trap-return code, faking a return from a trap, then unwinds to user mode. Part marks for stating only some of this, or stating it vaguely (e.g., 'it returns like the parent' with no stack/return address setup). Give nothing for answers that say the child actually takes a trap or that give no kernel stack/return mechanism.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

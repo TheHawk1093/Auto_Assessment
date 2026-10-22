@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/95b6f07bb3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Basin order is defined as the highest order of any stream (the highest-order stream) in that basin, i.e. the order of the main/trunk stream at the outlet.",
+        "marks": 1.0,
+        "partial_credit": "Only if clearly stated that basin order relates to the highest stream order but wording is imprecise (e.g. 'order of the largest stream') \u2014 otherwise 0."
+      },
+      {
+        "id": "P2",
+        "description": "Channel order is the order assigned to an individual stream/channel segment, denoting which order of streams has joined (contributed to) that channel, i.e. it is local to the channel and can differ along a stream, unlike the single basin-wide value.",
+        "marks": 1.0,
+        "partial_credit": "Only if the idea of order of a channel based on streams joining it is stated without the contrast being precise."
+      }
+    ],
+    "notes": "Full marks need both definitions stated precisely: basin order = highest stream order in the basin, and channel order = order of a channel determined by which order of streams joined it. Part marks only if one definition is exact and the other is clearly more than half right. Vague, generic, swapped or incorrect statements (e.g. basin order as number of streams or area) earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

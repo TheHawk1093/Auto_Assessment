@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/6c639305d5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the ISA is an abstraction provided by the CPU to the OS).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: the ISA maps instructions (and registers) to functionality, and the OS uses these instructions/registers, while how the CPU implements that functionality is hidden from / not known to the OS.",
+        "marks": 1.5,
+        "partial_credit": "1 mark if only one half is given, e.g. implementation hidden but no mention of the OS using ISA instructions/registers, or vague wording; 0 if the justification is wrong or missing."
+      }
+    ],
+    "notes": "Full marks need FALSE plus a correct justification: the ISA is an abstraction, the OS uses its instructions and registers, and the implementation details are hidden from the OS. Part marks for a correct justification stated vaguely or only half-stated (for example, only that the OS must be compiled for each ISA). If the justification is wrong or missing, give 0 overall, even if the answer says FALSE. Answers saying TRUE get 0.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

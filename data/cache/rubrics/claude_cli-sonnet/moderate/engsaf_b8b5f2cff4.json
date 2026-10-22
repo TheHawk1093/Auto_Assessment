@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/b8b5f2cff4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Fills the blank with advection (the degree/rate of advective transport, i.e. bulk flow transport), e.g. 'the degree of advection'.",
+        "marks": 2.0,
+        "partial_credit": "1 mark for a vague or partly right answer, e.g. 'flow' or 'velocity' or 'transport' without naming advection."
+      }
+    ],
+    "notes": "Full marks (2) for advection, or a clear synonym such as advective transport or bulk flow transport. Give 1 mark for a vague related idea such as flow, velocity or transport without saying advection. Give 0 for wrong or unrelated answers such as diffusion, decay or concentration.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

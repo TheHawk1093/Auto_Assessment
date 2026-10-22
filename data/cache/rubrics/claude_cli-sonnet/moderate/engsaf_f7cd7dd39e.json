@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/f7cd7dd39e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a single-layer perceptron cannot solve (or cannot solve effectively) the XOR problem because XOR is not linearly separable / the perceptron can only learn linear decision boundaries.",
+        "marks": 1.0,
+        "partial_credit": "Half if it says the perceptron fails on XOR but gives no reason (no mention of linear separability/linear features)."
+      },
+      {
+        "id": "P2",
+        "description": "States that a multilayer perceptron can solve XOR because it can learn non-linear features / non-linear decision boundaries (e.g. via hidden layers and non-linear activations).",
+        "marks": 1.0,
+        "partial_credit": "Half if it says the MLP can solve XOR but gives no reason (no mention of non-linearity or hidden layers)."
+      }
+    ],
+    "notes": "Full marks (2) need both: perceptron fails on XOR due to linear-only/linear separability limits, and MLP succeeds due to non-linear features. Give 1 mark total if only one side is correct or both sides are stated without reasons. Give 0 for reversed or unrelated answers. Clear synonyms (e.g. 'straight line boundary', 'hidden layers') are accepted.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

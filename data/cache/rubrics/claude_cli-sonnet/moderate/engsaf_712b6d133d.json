@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/712b6d133d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First correct factor affecting water consumption from the model list (climatic conditions; geography of the region; extent of industrialization; quality/standard of lifestyle; quality of water available; population of the area).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second distinct correct factor from the model list.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Third distinct correct factor from the model list.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Fourth distinct correct factor from the model list.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Award 0.5 for each distinct correct factor from the model answer's six, up to four factors; clear synonyms are accepted (e.g. standard of living for quality of lifestyle, weather/climate for climatic conditions, industries for industrialization). Repeated or overlapping factors count once, and unrelated or wrong factors earn nothing. Total of four correct factors gives 2, and fewer gives 0.5 per correct factor.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/194d7e936c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the coefficient of excess is a difference (the kurtosis coefficient of the distribution itself minus the kurtosis coefficient of the normal distribution), i.e. it is the excess of the distribution's own kurtosis coefficient over that of the normal distribution.",
+        "marks": 1.0,
+        "partial_credit": "Half only if it says it is a difference/comparison of kurtosis coefficients but does not say which two are involved precisely."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies both quantities precisely: the kurtosis coefficient of the distribution itself AND the kurtosis coefficient of the normal distribution as the reference.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the normal distribution is named as the reference but the distribution's own kurtosis coefficient is not clearly stated, or vice versa."
+      }
+    ],
+    "notes": "Full marks need the exact relationship: kurtosis coefficient of the distribution itself minus kurtosis coefficient of the normal distribution. Vague statements such as 'measure of peakedness' or 'how flat the curve is' earn nothing. Wrong reference distribution, wrong relationship (ratio, sum) or leaving out the normal distribution loses the relevant point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

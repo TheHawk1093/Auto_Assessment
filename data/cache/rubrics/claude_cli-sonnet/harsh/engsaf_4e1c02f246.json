@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/4e1c02f246",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States dust particles as ice nuclei, specifically naming clay minerals (clay minerals as the dust type).",
+        "marks": 1.0,
+        "partial_credit": "Half only if 'dust' is named without clay minerals, or clay minerals named without 'dust'."
+      },
+      {
+        "id": "P2",
+        "description": "States organic particles (organic matter) and ordinary ocean salts (sea salt) as ice nuclei.",
+        "marks": 1.0,
+        "partial_credit": "Half if only one of organic matter or ocean/sea salts is stated precisely."
+      }
+    ],
+    "notes": "Full marks need all the listed materials: dust (clay minerals), organic particles and ocean salts. Give part marks only where one item of a point is stated precisely. A wrong extra material (e.g. smoke, pollen from an unrelated list, water vapour) or a vague answer such as 'particles in the air' earns nothing for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

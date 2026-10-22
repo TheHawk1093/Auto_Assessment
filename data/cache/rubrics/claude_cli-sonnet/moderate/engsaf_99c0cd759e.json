@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/99c0cd759e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a valid advantage of TiC/TiN coating, such as excellent wear resistance, thermal stability, or low coefficient of friction.",
+        "marks": 1.0,
+        "partial_credit": "Half if the advantage is vague, e.g. 'makes the tool better' or 'hard' without linking to wear or tool performance."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a consequence or second valid advantage, such as increased tool life, improved thermal transfer, or reduced friction/heat, stated in connection with the coating.",
+        "marks": 1.0,
+        "partial_credit": "Half if stated vaguely or with a minor error."
+      }
+    ],
+    "notes": "Full marks (2) for a valid advantage from the model answer (wear resistance, thermal stability, low friction, better thermal transfer, longer tool life) stated clearly with an explanation or second related benefit. Give 1 mark if only one valid advantage is given with little detail, or the idea is vague. Give 0 for wrong or unrelated answers, such as saying the coating lowers hardness.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

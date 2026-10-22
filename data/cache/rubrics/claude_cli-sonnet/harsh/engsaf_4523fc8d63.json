@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/4523fc8d63",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a very low eigenvalue corresponds to a principal axis (eigenvector/principal component) along which the data has very low variance.",
+        "marks": 1.0,
+        "partial_credit": "Half only if low variance is stated but the link to the eigenvector/axis (principal component direction) is missing or imprecise."
+      },
+      {
+        "id": "P2",
+        "description": "States that such axes are highly correlated with (linearly dependent on / redundant with) other vectors/features, so they carry no useful information and can be discarded in dimensionality reduction.",
+        "marks": 1.0,
+        "partial_credit": "Half only if it says the axes can be discarded in dimensionality reduction but omits the high correlation/redundancy with other vectors."
+      }
+    ],
+    "notes": "Full marks need both ideas stated precisely: low variance along the eigenvector axis, and high correlation/redundancy making the axis discardable in dimensionality reduction. Part marks only where clearly more than half of a point is given, as specified. Vague statements such as \"unimportant\" alone, or any wrong claim (e.g. low eigenvalue means high variance or the most important component), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

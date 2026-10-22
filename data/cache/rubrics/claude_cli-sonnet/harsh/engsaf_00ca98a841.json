@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/00ca98a841",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the appetitive faculty corresponds to Plato's theory of the soul (tripartite soul), explicitly naming Plato.",
+        "marks": 1.0,
+        "partial_credit": "Only 'three parts/divisions of the soul' stated without naming Plato earns 0.5."
+      },
+      {
+        "id": "P2",
+        "description": "States that the appetitive faculty is the part of the soul dealing with desires and passions (appetites), and that it is one of the three divisions of the soul.",
+        "marks": 1.0,
+        "partial_credit": "Gives desires/passions but omits that it is one of the three divisions of the soul: 0.5."
+      }
+    ],
+    "notes": "Full marks need both: naming Plato's theory of the soul (three-part soul) and stating that the appetitive part deals with desires and passions as one of three divisions. Vague answers such as 'the mind' or 'human behaviour' earn nothing. A wrong attribution (e.g. Aristotle, Freud) or describing it as reason or spirit/courage loses that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

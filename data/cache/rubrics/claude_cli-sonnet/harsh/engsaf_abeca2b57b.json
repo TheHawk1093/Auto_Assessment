@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/abeca2b57b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the equalization tank balances (equalizes/evens out) fluctuating flows or concentrations (flow rate and/or strength/load of the wastewater) before treatment.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only says it balances/equalizes without naming fluctuating flow or concentration, or names only one clearly without the balancing role stated precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that it assists self-neutralization (of acidic and alkaline wastes) AND evens out the effect of periodic slug discharges from a batch process.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of the two (self-neutralization, or evening out slug discharge from batch process) is stated precisely."
+      }
+    ],
+    "notes": "Full marks need all three roles from the model answer in correct technical terms: balancing fluctuating flows/concentrations; assisting self-neutralization; evening out periodic slug discharges from batch processes. Part marks only when clearly more than half of a point is stated precisely, as described. Vague statements like 'stores water' or 'improves treatment', or any wrong statement in a point, earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

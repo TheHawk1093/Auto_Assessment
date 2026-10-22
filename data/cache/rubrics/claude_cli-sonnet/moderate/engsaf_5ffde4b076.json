@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/5ffde4b076",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names one valid factor influencing chatter, from the model answer: depth of cut, hardness of the workpiece, or width of cut (clear synonyms accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names a second, different valid factor influencing chatter, from the model answer: depth of cut, hardness of the workpiece, or width of cut (clear synonyms accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for two different correct factors from: depth of cut, hardness of workpiece, width of cut, in any clear wording. Give 1 mark if only one factor is correct, or if one is vague (e.g. \"cutting conditions\" without saying which). Give 0 for wrong or unrelated factors; repeats of the same factor count once.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

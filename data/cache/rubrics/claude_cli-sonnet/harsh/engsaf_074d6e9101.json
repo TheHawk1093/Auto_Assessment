@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/074d6e9101",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Definition: trap efficiency is the ratio of deposited (trapped) sediment in the reservoir to the total sediment inflow, stated with both parts of the ratio (deposited sediment / total sediment inflow).",
+        "marks": 1.0,
+        "partial_credit": "Half only if ratio idea is clear but one part (deposited vs total inflow) is imprecise; period/economic life reference alone is not required."
+      },
+      {
+        "id": "P2",
+        "description": "Factors: states the factors in the model answer using correct terms: diameter/size of silt particles, size, weight and type of debris, wind flow direction, shape of the dam, topography of the dam structure, material of the dam.",
+        "marks": 1.0,
+        "partial_credit": "Half if clearly more than half of the listed factors are stated precisely (at least four of the six) with no wrong extra factor."
+      }
+    ],
+    "notes": "Full marks need the precise ratio of deposited sediment to total sediment inflow, and the factor list matching the model answer's factors. Part marks only when clearly more than half of a point is stated precisely. A wrong extra factor (for example capacity-inflow ratio or detention time, which are not in the model answer), a vague definition, or an inverted ratio earns nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

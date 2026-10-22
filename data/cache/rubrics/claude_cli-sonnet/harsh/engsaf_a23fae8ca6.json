@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/a23fae8ca6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First advantage, stated precisely: separating declaration from definition makes the code clearer and easier for the reader to understand (readability/clarity), OR separates abstraction (interface/declaration) from implementation (definition).",
+        "marks": 1.0,
+        "partial_credit": "Half only if the idea is clearly more than half stated (e.g. says 'clearer' without saying for the reader/understanding); otherwise 0."
+      },
+      {
+        "id": "P2",
+        "description": "Second distinct advantage, stated precisely: allows easy changing, debugging and overriding of functions, OR enhances modularity of the code (whichever differs from the advantage credited in P1).",
+        "marks": 1.0,
+        "partial_credit": "Half only if more than half is stated precisely (e.g. 'easy changing' of functions with no further link, or 'modular' stated vaguely); otherwise 0."
+      }
+    ],
+    "notes": "Two distinct advantages are needed, each from the model answer: clarity/readability, easy changing/debugging/overriding, modularity, or separating abstraction from implementation. Each must be stated precisely with the right term; vague statements such as 'better code' or 'saves time' earn nothing. A wrong statement within an advantage, or two wordings of the same advantage, earns only one point at most; a wrong extra advantage costs the point it is paired with.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

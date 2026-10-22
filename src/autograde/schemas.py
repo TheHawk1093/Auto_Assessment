@@ -21,6 +21,10 @@ class Item(BaseModel):
     max_mark: float = Field(gt=0)
     human_mark: float | None = None
     human_feedback: str | None = None
+    labels: dict[str, str] = Field(
+        default_factory=dict,
+        description="The teacher's verdict per rubric point (met, partial, not_met), if known.",
+    )
 
     @property
     def question_key(self) -> str:

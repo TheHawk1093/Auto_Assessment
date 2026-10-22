@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/e5a260d4a6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that strain is a ratio (a dimensionless quantity) comparing change to original, i.e. strain = change in length / original length.",
+        "marks": 1.0,
+        "partial_credit": "Half if only 'ratio' or 'change in length' is stated without the other part, or the ratio is stated vaguely."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the correct quantities: change in length (deformation/elongation) divided by the original length.",
+        "marks": 1.0,
+        "partial_credit": "Half if the denominator is wrong or missing (e.g. just 'change in length' or 'deformation per length' without saying original)."
+      }
+    ],
+    "notes": "Full marks (2) for saying strain is the ratio of change in length (deformation/extension) to original length; synonyms such as 'elongation per unit length' are fine. Give 1 mark if only part is right, e.g. 'change in length' with no ratio to original length, or 'deformation' described vaguely. Give 0 for wrong ideas such as force per area (that is stress) or unrelated answers.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

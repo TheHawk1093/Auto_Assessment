@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b329e3dce2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that homogeneous coordinates allow translation, rotation and scaling to all be represented in a uniform way as matrices (3x3 matrices for 2D), so translation (normally an addition) can be expressed as matrix multiplication.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says a matrix representation or mentions only some transformations without the idea of uniformity/single form."
+      },
+      {
+        "id": "P2",
+        "description": "States the benefit: transformations can be combined/concatenated into one matrix, making computation easier, simpler or more efficient (optimization) for the computer.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it is easier or better without linking to computation/efficiency or combining."
+      }
+    ],
+    "notes": "Full marks need both the uniform matrix representation of translation, rotation and scaling, and the benefit of easier or more efficient computation. Give part marks for a vague or halfway statement, such as only \"uses matrices\" or only \"easier\". Give no marks for wrong or unrelated ideas, such as saying it is for 3D only.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

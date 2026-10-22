@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/ed8c1ccac6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE (the OS can still schedule READY processes and share the CPU without the timer interrupt).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: names system calls as an event/opportunity at which the OS can schedule another process on the CPU (e.g., when a process blocks or yields via a system call).",
+        "marks": 1.0,
+        "partial_credit": "Half if it only vaguely says 'other events' or 'when a process gives up the CPU' without naming system calls or a specific event."
+      },
+      {
+        "id": "P3",
+        "description": "Adds that various other events (e.g., I/O completion, process exit/blocking, other interrupts) also give the OS chances to perform scheduling.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need TRUE plus a correct justification naming system calls (or an equivalent event such as a process blocking, yielding or exiting) as scheduling opportunities. Give part marks for TRUE with a vague justification. If the answer is FALSE or has no justification, give 0, since the question says no correct justification means no marks.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

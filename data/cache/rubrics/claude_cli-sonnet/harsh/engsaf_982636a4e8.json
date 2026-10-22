@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/982636a4e8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that summation or averaging (moving average) of a random series / random data is the operation involved.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this can generate oscillations (cyclic/periodic movements) that do not exist in the original data set.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both elements stated precisely: summation/averaging of a random series, and the production of oscillations absent in the original data. A vague statement (e.g. only \"creates false patterns\" or \"random data gives cycles\") earns nothing for that point. Wrong statements (e.g. says oscillations are present in the original data, or the effect removes oscillations) earn 0 for the affected point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

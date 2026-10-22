@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/653c10fc0e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the time-area method is used in hydrologic routing to generate/create runoff hydrographs from the storm's intensity vs time curve (the hyetograph). Both the runoff hydrograph output and the hyetograph (rainfall intensity-time) input must be stated.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of: produces runoff hydrographs, or uses the hyetograph/intensity-time curve, is stated precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that it is significant for larger catchments because it accounts for processes in smaller regions (sub-areas) of the catchment individually. Both the larger-catchment context and the individual treatment of smaller regions must be stated.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of: suited to larger catchments, or considers smaller regions individually, is stated precisely."
+      }
+    ],
+    "notes": "Full marks need both ideas stated precisely: use in hydrologic routing to build runoff hydrographs from the hyetograph, and significance for larger catchments because smaller regions are treated individually. Part marks only when one point is clearly half-stated as described. Vague statements such as \"it is used to calculate runoff\" earn nothing, and any wrong statement (e.g. suited only to small catchments) voids that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

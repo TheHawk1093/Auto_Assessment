@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/d301b1a134",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the principal mechanism as biological removal / bio-filtration (biological action by microorganisms), not simple straining or sedimentation.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely biological (e.g. 'biological action' without microorganisms) or mixes in physical straining as the main mechanism."
+      },
+      {
+        "id": "P2",
+        "description": "Explains that a thin biological layer (schmutzdecke / hypogeal layer) of microorganisms forms at the sand-water interface/top of the sand and removes particles/bacteria/viruses.",
+        "marks": 1.0,
+        "partial_credit": "Half if the layer is named or described but its location or role is missing or slightly wrong."
+      }
+    ],
+    "notes": "Full marks: bio-filtration identified as the main mechanism and the schmutzdecke (biological layer on top of the sand) named or described as doing the removal. Part marks: only one of the two ideas, or a vague answer such as 'biological layer' with no detail. No marks for answers naming only physical processes (sedimentation, straining, adsorption) as the principal mechanism.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

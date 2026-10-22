@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/8cafcaad3c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a valid application of broaching using the correct technical term: machining of gears or splines (internal splines/keyways), OR slots for support, OR custom precision machining in the automotive industry. The application must be named specifically (e.g. 'machining of splines' or 'gears'), not generically as 'cutting' or 'shaping'.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the application is clearly identified but loosely worded (e.g. 'making grooves' without naming splines, keyways or slots)."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the application with its context or purpose precisely, as in the model answer: precision/custom machining (e.g. in automotive industries), or a second named application (gears, splines, slots for support). No wrong or irrelevant extra applications (e.g. turning, drilling, threading) are included.",
+        "marks": 1.0,
+        "partial_credit": "Half if the context or second application is only vaguely stated (e.g. 'used in industries', 'precise work') without the specific term."
+      }
+    ],
+    "notes": "Full marks need a specific, correct application of broaching named with the right terms (gears, splines, slots/keyways, or precision automotive machining), plus a precise second element or context. A vague or generic answer (e.g. 'used in manufacturing') earns nothing for that point. Any wrong extra application, such as turning or drilling, removes the mark for the point it affects.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

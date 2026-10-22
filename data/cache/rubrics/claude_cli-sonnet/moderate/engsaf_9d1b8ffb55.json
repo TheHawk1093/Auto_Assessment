@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/9d1b8ffb55",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the process is not always rescheduled immediately after the interrupt handler completes).",
+        "marks": 1.0,
+        "partial_credit": "Do not give part marks; the verdict must be False. If verdict is True or missing, 0 for this point."
+      },
+      {
+        "id": "P2",
+        "description": "Justification: after the interrupt handler finishes, the scheduler may pick a different process to run, e.g. because the interrupted process's time slice/quantum has expired (or another process is chosen by the scheduler).",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the student says another process may be scheduled but gives no reason (no mention of time slice expiry or scheduler decision), or states the idea vaguely."
+      }
+    ],
+    "notes": "Full marks need FALSE plus a correct justification that another process can be scheduled next, e.g. because the time slice has expired. Part marks for False with a vague justification (another process may run, no reason). A True answer, or False with a wrong or missing justification, gets 0 for the justification; the question says no correct justification means no marks, so give 0 overall if the justification is wrong.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

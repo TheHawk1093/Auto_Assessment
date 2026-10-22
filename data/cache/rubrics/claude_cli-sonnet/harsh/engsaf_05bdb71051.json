@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/05bdb71051",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid defluoridation technique named precisely with correct technical name, from the model answer: Nalgonda process / precipitation with alum and lime (coagulation\u2013precipitation), OR adsorption on activated alumina, OR adsorption on bone char, OR metal-powered anion exchange resin.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the technique is clearly identified but a key term is missing (e.g. 'precipitation' with alum but lime not mentioned)."
+      },
+      {
+        "id": "P2",
+        "description": "Second, different valid defluoridation technique named precisely with correct technical name, from the same list in the model answer (Nalgonda/alum-lime precipitation, activated alumina adsorption, bone char adsorption, anion exchange resin).",
+        "marks": 1.0,
+        "partial_credit": "Half only if the technique is clearly identified but a key term is missing."
+      }
+    ],
+    "notes": "Full marks need two different, correct techniques from the model answer, each named with its proper technical term (Nalgonda process or alum\u2013lime precipitation, activated alumina, bone char, anion exchange resin). Vague answers such as 'filtration' or 'chemical treatment' earn nothing for that point. A wrong technique earns nothing for its point; naming the same technique twice (e.g. Nalgonda and alum\u2013lime precipitation) earns only one mark.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

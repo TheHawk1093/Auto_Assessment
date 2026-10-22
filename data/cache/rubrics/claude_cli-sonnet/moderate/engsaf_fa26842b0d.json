@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/fa26842b0d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States perpetual (terminal/long-term) growth rate as one of the two factors.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only a vague 'growth rate' or 'growth' is given without terminal/perpetual sense."
+      },
+      {
+        "id": "P2",
+        "description": "States WACC / discount rate (cost of capital) as the other factor.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only vague 'interest rate' or 'cost of capital' wording that is close but imprecise."
+      }
+    ],
+    "notes": "Award 1 mark for each of the two required items: perpetual/terminal growth rate and WACC/discount rate. Accept clear synonyms (terminal growth, long-term growth; cost of capital, discount rate). Order does not matter; a wrong or unrelated item earns nothing for that blank, and does not affect the other.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

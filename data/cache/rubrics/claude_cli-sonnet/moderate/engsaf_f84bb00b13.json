@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/f84bb00b13",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the expansion 'Enzyme linked immunosorbent assay' with the key terms 'enzyme', 'linked', 'immunosorbent' and 'assay' (clear synonyms such as 'enzyme-linked' or 'immuno-sorbent' accepted).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if three of the four words are correct, or all four are present with a minor error (e.g. a misspelling that still shows the term, or 'immunoabsorbent'); 0 if two or more words are missing or wrong."
+      }
+    ],
+    "notes": "Full marks (2) for 'Enzyme linked immunosorbent assay' in any spelling that clearly keeps all four terms. Give 1 mark if the expansion is nearly right, e.g. one word missing or replaced (such as 'test' for 'assay' or 'immunoabsorbent') . Give 0 if the answer is wrong, unrelated, or only gives a description of the test.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

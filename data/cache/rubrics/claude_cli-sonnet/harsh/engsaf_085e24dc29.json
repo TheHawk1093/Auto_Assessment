@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/085e24dc29",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States 'stem flow' (water flowing down the stems/trunks and branches of the trees to the ground). The term 'stemflow' must be used.",
+        "marks": 1.0,
+        "partial_credit": "Half only if the flow along stems/branches is described precisely but the term 'stem flow' is not named."
+      },
+      {
+        "id": "P2",
+        "description": "States 'through fall' (water dropping/falling from the leaves/canopy onto the ground). The term 'throughfall' must be used.",
+        "marks": 1.0,
+        "partial_credit": "Half only if dripping/falling from leaves to the ground is described precisely but the term 'through fall' is not named."
+      }
+    ],
+    "notes": "Full marks need both exact terms: stem flow and through fall, in either order. Each is worth 1 mark; a vague description without the term earns at most half of that point. A wrong extra term (e.g. interception loss, runoff, infiltration, evaporation) given as an answer cancels the point it replaces or sits beside. Unrelated answers earn 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

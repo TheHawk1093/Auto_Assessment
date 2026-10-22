@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/7870a031ef",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the first two words correctly: S = Strength(s) and W = Weakness(es), each as the exact term.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of Strength or Weakness is given correctly and precisely."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the last two words correctly: O = Opportunity/Opportunities and T = Threat(s), each as the exact term.",
+        "marks": 1.0,
+        "partial_credit": "Half (0.5) if only one of Opportunity or Threat is given correctly and precisely."
+      }
+    ],
+    "notes": "Full marks need all four words, Strength, Weakness, Opportunity and Threat, each matching its letter. Plural or singular forms and minor spelling slips (e.g. \"Strengh\") are fine, but synonyms (e.g. \"risk\" for threat) or a wrong word for any letter mean that point earns nothing, or only half if one of its two words is right. A wrong word placed against a letter, or an unrelated answer, earns 0.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

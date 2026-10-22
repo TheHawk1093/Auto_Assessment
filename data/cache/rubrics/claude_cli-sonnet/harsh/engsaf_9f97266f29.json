@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/9f97266f29",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the reservoir area curve is a plot (graph/curve) of water spread area (water surface area) of the reservoir against reservoir elevation, with both variables named correctly: water spread area and elevation.",
+        "marks": 1.5,
+        "partial_credit": "Half credit (0.75) only if it is clearly a plot/graph of area against elevation but one variable is vague (e.g. just 'area' without 'water spread' or 'surface') ."
+      },
+      {
+        "id": "P2",
+        "description": "Correct relationship stated: area vs elevation (area as function of reservoir elevation/water level), identifying it as a plot/curve and not a table, volume or other quantity.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a plot or curve of water spread area against reservoir elevation, with both terms named. Give part marks only if the idea is clearly a plot of area versus elevation but a term is vague, such as 'area' alone. Any wrong variable, such as volume or capacity or discharge, or an answer with no plot or relationship, earns 0 for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/840ff78a2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a rating curve is valid only when there is no overflow/flooding (water stays within the channel banks, no over-bank flow) in the region/river reach.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the idea is vague or partly right, e.g. mentions only stable/normal flow conditions or flood without saying it must be absent."
+      }
+    ],
+    "notes": "Full marks (2) for saying the rating curve holds only when there is no overflow or flood (no over-bank flow); synonyms like \"flow within banks\" are fine. Give 1 mark for a vague or half-correct idea, such as \"normal/steady conditions\" without naming absence of flood or overflow. Give 0 for wrong or unrelated answers, or answers saying it is valid during floods.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

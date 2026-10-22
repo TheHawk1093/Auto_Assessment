@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/9b31c7b110",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Data rate must not exceed the channel capacity (output/compressed data rate must be within the communication channel's capacity).",
+        "marks": 0.67,
+        "partial_credit": "Half if only vaguely refers to bandwidth/rate limits without relating to channel capacity."
+      },
+      {
+        "id": "P2",
+        "description": "Full capacity of the communication channel should be utilized (no wasted channel capacity).",
+        "marks": 0.67,
+        "partial_credit": "Half if only says channel should be used efficiently, without full utilization idea."
+      },
+      {
+        "id": "P3",
+        "description": "Maximum quality (of the data/reconstructed image) should be preserved.",
+        "marks": 0.66,
+        "partial_credit": "Half if mentions quality or fidelity loss vaguely without maximizing/preserving it."
+      }
+    ],
+    "notes": "Three issues, each worth about one third of the total; clear synonyms are accepted. Total is rounded to 2 for all three, 1 for roughly one or two correct, 0 for none. Unrelated points (e.g. cost, power) earn nothing but do not remove marks for correct points.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

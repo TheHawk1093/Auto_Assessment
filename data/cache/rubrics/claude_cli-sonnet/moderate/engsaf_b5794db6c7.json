@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/b5794db6c7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid limitation of PVD, matching the model answer: the coating is thin in nature (thin deposited layer).",
+        "marks": 1.0,
+        "partial_credit": "Vague statement, e.g. only 'coating problem' or 'not good coating', earns half."
+      },
+      {
+        "id": "P2",
+        "description": "States a second valid limitation from the model answer: complex shapes are difficult to coat, OR high cost, OR low output (low production rate).",
+        "marks": 1.0,
+        "partial_credit": "Vague or partly correct statement, e.g. 'difficult to use' or 'costly equipment' without clear link, earns half."
+      }
+    ],
+    "notes": "Full marks (2) for two distinct limitations from the model answer (thin coating, difficulty coating complex shapes, high cost, low output); synonyms are fine. Give 1 mark if only one correct limitation is given or if the limitations are stated vaguely. Give 0 for wrong or unrelated points, such as advantages of PVD. Do not count repeats of the same limitation twice.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/4b6976c86b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meteorological factors of wind speed AND vapour pressure (vapour pressure difference/humidity) both stated.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Temperature of water AND air (both temperatures) and atmospheric pressure all stated.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Heat storage by the water body stated as a factor.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Water quality (e.g. salinity/dissolved solids) AND surface area of the water body both stated.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Harsh: each point needs every named factor in it, with the correct technical term; vague wording like 'weather' or 'climate' earns nothing. A wrong extra factor (not in the model list) cancels the point it sits closest to. Award a point only when all its factors are stated; otherwise 0 for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

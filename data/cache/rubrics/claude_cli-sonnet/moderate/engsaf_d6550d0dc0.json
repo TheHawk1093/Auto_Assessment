@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/d6550d0dc0",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the user process cannot force a context switch to / schedule a chosen target process next).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: only the scheduler (OS kernel) decides which process runs next; a user process cannot make that decision.",
+        "marks": 1.0,
+        "partial_credit": "Half if stated vaguely, e.g. says the OS controls scheduling without naming the scheduler as the decider."
+      },
+      {
+        "id": "P3",
+        "description": "Even if the user process tries to influence it (e.g. via signals), there is no guarantee the scheduler will run the target next.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need FALSE plus a correct justification that only the scheduler decides the next process, and that attempts such as signals give no guarantee. If the justification is missing or wrong, give 0 overall, as the question states. Part marks for FALSE with a vague or partly correct reason; TRUE earns nothing.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

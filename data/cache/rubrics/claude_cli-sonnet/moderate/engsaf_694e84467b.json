@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/694e84467b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the term 'temporal variations' (variations over time) as the answer to the blank.",
+        "marks": 1.5,
+        "partial_credit": "Half credit (0.75) if the idea of variation with time is given but the term is vague or incomplete (e.g. 'variations' or 'time variations' only)."
+      },
+      {
+        "id": "P2",
+        "description": "Gives the example 'weather' (or states that these short-term atmospheric conditions are weather).",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for 'temporal variations' (clear synonyms like 'variations with time' accepted) plus the example weather. If only the term is given without the example, award 1.5; if only 'weather' is given, award 0.5. Wrong terms such as 'spatial variations' or 'climate' earn 0 for P1.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

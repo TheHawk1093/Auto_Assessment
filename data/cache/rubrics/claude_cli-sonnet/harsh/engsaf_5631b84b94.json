@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/5631b84b94",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Hue (H): states a narrow range around 0/360 degrees (red has hue 0). Must say narrow range and red/0 (360) degrees.",
+        "marks": 0.5,
+        "partial_credit": "Gives hue near 0/360 (red) but does not say the range is narrow."
+      },
+      {
+        "id": "P2",
+        "description": "Saturation (S): states values close to 0.8\u20131 (high), because red is a primary colour and primary colours are pure colours.",
+        "marks": 0.5,
+        "partial_credit": "Says high saturation/close to 1 but gives no reason or no 0.8\u20131 range."
+      },
+      {
+        "id": "P3",
+        "description": "Intensity (I): states a broad range around 0.5.",
+        "marks": 0.5,
+        "partial_credit": "Gives about 0.5 but does not say broad range."
+      },
+      {
+        "id": "P4",
+        "description": "Uses the HSI colour model, naming all three components (Hue, Saturation, Intensity) with ranges, with no wrong extra component or wrong value.",
+        "marks": 0.5,
+        "partial_credit": "Only two components named correctly."
+      }
+    ],
+    "notes": "Harsh: each component needs the correct term and the right range (H narrow near 0/360, S about 0.8\u20131, I broad around 0.5). Vague statements such as 'red colour' alone earn nothing. A wrong value or wrong component (e.g. low saturation, narrow intensity) means that point earns nothing. Total is 2 marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

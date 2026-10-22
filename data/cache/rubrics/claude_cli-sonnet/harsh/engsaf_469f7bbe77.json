@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid use of lasers, stated precisely with the correct technical term, from the model answer: cutting and welding, medical surgery, optical fibre communication, or laser printing.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Second, different valid use of lasers, stated precisely with the correct technical term, from the model answer: cutting and welding, medical surgery, optical fibre communication, or laser printing.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Two different uses are required, each worth 1 mark. Each use must be named precisely and match the model answer (cutting/welding, medical surgery, optical fibre communication, laser printing). Vague answers such as \"in industry\" or \"in technology\" earn nothing. A wrong use in a point gives 0 for that point. Cutting and welding count as one use unless the student gives them as two separate uses.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

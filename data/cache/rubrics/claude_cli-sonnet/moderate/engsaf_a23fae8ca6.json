@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/a23fae8ca6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid advantage of separating declaration from definition, matching the model answer: clearer/easier-to-understand code, OR easier changing/debugging/overriding of functions, OR improved modularity, OR separation of abstraction (interface) from implementation.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the advantage is vague (e.g. 'better code') or has a minor error."
+      },
+      {
+        "id": "P2",
+        "description": "States a second, different valid advantage from the same set (clearer code, easy changing/debugging/overriding, modularity, abstraction separated from implementation).",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the advantage is vague or has a minor error; no mark if it only repeats the first advantage in other words."
+      }
+    ],
+    "notes": "Award 1 mark for each distinct advantage that matches one in the model answer; clear synonyms are accepted (e.g. 'reusable/independent parts' for modularity, 'interface vs implementation' for abstraction vs implementation). Give half a mark for a vague or slightly wrong statement. Repeated or unrelated points earn nothing; a wrong extra item does not cancel a correct one.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

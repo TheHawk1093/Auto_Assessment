@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/755c9c7e80",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that vapor pressure deficit is a difference (deficit) between two moisture quantities in the air: the moisture the air actually contains versus the moisture it could hold.",
+        "marks": 1.0,
+        "partial_credit": "Half if it mentions a difference/deficit but is vague about what is compared (e.g. just 'difference in moisture in air')."
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the second quantity as the amount of moisture saturated air can hold (saturation / maximum capacity at that temperature), i.e. actual moisture content compared with saturation.",
+        "marks": 1.0,
+        "partial_credit": "Half if it refers to the air's capacity or saturation vaguely, or only gives one of the two quantities."
+      }
+    ],
+    "notes": "Full marks (2) for saying VPD is the difference between the moisture actually in the air and the moisture saturated air could hold; synonyms like 'water vapour', 'humidity' and 'capacity' are fine. Give 1 mark for a half-stated idea, such as 'how dry the air is' or 'difference in moisture' without naming saturation. Give 0 for wrong or unrelated answers, such as defining it as total air pressure or rainfall.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

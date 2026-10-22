@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/edcfbf47f1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States pressure (pressure force / pressure gradient) as a force in the Navier-Stokes equation.",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States gravitational force (gravity / body force due to gravity).",
+        "marks": 0.67,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States viscous force (viscosity / viscous stresses / friction due to viscosity).",
+        "marks": 0.66,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "One point per listed force; the three marks are shared about equally, and the total is rounded to the nearest whole mark (0, 1 or 2) as the teacher does. Clear synonyms are accepted (e.g. body force from gravity, friction from viscosity). Wrong or unrelated forces earn nothing, and do not cancel correct ones.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/8af41e4666",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that Bligh's theory does not distinguish between horizontal and vertical creep (seepage path) lengths, i.e. treats them equally / gives them the same weight in the total creep length.",
+        "marks": 1.5,
+        "partial_credit": "Half credit (0.75) if only says it treats the creep path as one total length or ignores the direction/type of path vaguely, without naming horizontal and vertical."
+      },
+      {
+        "id": "P2",
+        "description": "Makes clear both horizontal AND vertical creep lengths are involved (e.g. vertical creep is more effective/should be weighted differently, but Bligh sums them as equal); the key terms 'horizontal' and 'vertical' must appear.",
+        "marks": 0.5,
+        "partial_credit": "No part marks."
+      }
+    ],
+    "notes": "Full marks (2) for saying Bligh makes no distinction between horizontal and vertical creep lengths (treats them equally), using both terms. Give part marks if the idea is vague, e.g. only that it ignores the nature or direction of the creep path, or names only one of horizontal/vertical. Give 0 for unrelated drawbacks (e.g. ignoring uplift pressure or exit gradient) or wrong statements.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

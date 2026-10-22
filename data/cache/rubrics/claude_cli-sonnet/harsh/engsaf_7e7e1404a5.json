@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/7e7e1404a5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the median divides the distribution into two equal halves, with 50 percent of the values on the left (below) and 50 percent on the right (above) of it.",
+        "marks": 1.0,
+        "partial_credit": "Half credit only if the median is described as the middle value but the 50%/50% split is not stated precisely."
+      },
+      {
+        "id": "P2",
+        "description": "States that for a skewed (asymmetrical) distribution the mean is not an accurate/representative measure of central tendency, so the median is the best measure.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only one of the two parts is stated precisely (mean is inaccurate for skewed data, or median is best for skewed data) without the link between them."
+      }
+    ],
+    "notes": "Full marks need both elements stated precisely: the median splits the distribution 50% / 50%, and the mean is not an accurate measure for a skewed (asymmetrical) distribution, hence the median is best. Part marks only if clearly more than half of a point is given, as described in partial_credit. Vague statements such as 'median is not affected much' or 'median is better' with no reasoning, or any wrong statement (e.g. mean is best for skewed data), earn nothing for that point.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

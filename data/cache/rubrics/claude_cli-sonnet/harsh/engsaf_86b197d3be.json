@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/86b197d3be",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States TRUE (the process may not be scheduled immediately after the interrupt handler completes).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification gives the cause precisely: the process's time slice (time quantum) expires/ends while the OS is handling the interrupt.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Justification gives the consequence precisely: after the interrupt handler completes, the scheduler may select a different process to run instead of the interrupted (previous) process.",
+        "marks": 0.75,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need TRUE plus a justification that names both the time slice ending during interrupt handling and a different process being scheduled afterwards. A TRUE with no justification, or a generic one such as 'the scheduler decides' or 'higher priority process may run' without the time slice reason, earns no marks (justification is required). Wrong or contradictory statements in a point cost that point. Total is 2 marks.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

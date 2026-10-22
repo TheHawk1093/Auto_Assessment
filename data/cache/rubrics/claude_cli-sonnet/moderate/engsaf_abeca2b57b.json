@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/abeca2b57b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Balances/evens out fluctuating flows or concentrations (flow and strength/load) of the waste water, giving a more uniform feed to downstream treatment.",
+        "marks": 0.75,
+        "partial_credit": "Half if only flow or only concentration is mentioned vaguely, or says 'storage' without balancing/uniformity."
+      },
+      {
+        "id": "P2",
+        "description": "Assists self-neutralization (mixing acidic and alkaline wastes so pH is neutralized).",
+        "marks": 0.5,
+        "partial_credit": "Half if only says it helps control/adjust pH without the idea of wastes neutralizing each other."
+      },
+      {
+        "id": "P3",
+        "description": "Evens out/dilutes the effect of periodic slug discharges from batch processes.",
+        "marks": 0.75,
+        "partial_credit": "Half if mentions shock/sudden loads or batch discharge without the evening-out idea."
+      }
+    ],
+    "notes": "Marks are shared across the three roles in the model answer, with the 2 marks capped at the total. Give 2 for all three roles, or for the balancing idea plus one other role stated clearly; give part marks for vague or half-stated ideas. Give 0 for unrelated roles such as settling solids or removing BOD.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

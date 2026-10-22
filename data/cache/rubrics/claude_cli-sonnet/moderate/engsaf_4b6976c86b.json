@@ -1,0 +1,29 @@
+{
+  "question_key": "engsaf/4b6976c86b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names meteorological factors: wind speed AND vapour pressure (vapour pressure difference between water surface and air) \u2014 both correctly named.",
+        "marks": 0.67,
+        "partial_credit": "Half marks if only one of wind speed or vapour pressure is given."
+      },
+      {
+        "id": "P2",
+        "description": "Names temperature (of water and air) AND atmospheric pressure as factors.",
+        "marks": 0.67,
+        "partial_credit": "Half marks if only one of temperature or atmospheric pressure is given."
+      },
+      {
+        "id": "P3",
+        "description": "Names water-body factors: any of heat storage in the water body, water quality (salinity/dissolved solids), surface area.",
+        "marks": 0.66,
+        "partial_credit": "Half marks if only one of the three is given; full if two or more are given."
+      }
+    ],
+    "notes": "This is a list question: the mark follows how many of the seven listed factors are correctly named (wind speed, temperature, vapour pressure, atmospheric pressure, heat storage, water quality, surface area). Full 2 marks for roughly all items across the three groups; 1 mark if about half are right; 0 if none or the answer is unrelated. Clear synonyms are accepted (e.g. humidity or vapour pressure deficit for vapour pressure, salinity for water quality, area of water surface); a wrong extra item does not cancel correct ones.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

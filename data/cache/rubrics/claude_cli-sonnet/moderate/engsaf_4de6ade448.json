@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/4de6ade448",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that nonlinearly transforming the features lets the model/classifier learn or represent complex (non-linear) data patterns, e.g. make non-linearly separable classes separable.",
+        "marks": 1.0,
+        "partial_credit": "Half if only vaguely says it improves classification or handles data better, without mentioning complex/non-linear patterns or separability."
+      },
+      {
+        "id": "P2",
+        "description": "States that with nonlinear features even simple/basic (linear) classifiers such as SVM can classify complex data sets efficiently and effectively.",
+        "marks": 1.0,
+        "partial_credit": "Half if it says a classifier works better or more easily after the transform but does not say simple/linear classifiers can handle complex data."
+      }
+    ],
+    "notes": "Full marks (2) for both ideas: nonlinear features capture complex patterns/make classes separable, and simple classifiers like SVM can then classify complex data well. Give part marks for a vague or half-stated version of either idea. Give none for wrong or unrelated statements such as dimensionality reduction or normalization only; each point is marked independently and different wording is fine.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

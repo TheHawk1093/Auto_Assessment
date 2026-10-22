@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/43bce9f945",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an orthotropic material has 9 independent elastic constants (exactly nine).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the material properties at a point differ along three mutually orthogonal axes (three orthogonal directions/planes of material symmetry).",
+        "marks": 1.0,
+        "partial_credit": "Half only if properties are said to differ with direction but the three orthogonal axes are not stated."
+      }
+    ],
+    "notes": "Full marks need both elements stated precisely: exactly 9 elastic constants, and properties at a point differing along 3 orthogonal axes. A wrong number of constants (e.g. 2, 5, 21) gives 0 for P1. Vague answers such as \"properties vary with direction\" without the three orthogonal axes earn at most half of P2; generic or unrelated statements earn nothing.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

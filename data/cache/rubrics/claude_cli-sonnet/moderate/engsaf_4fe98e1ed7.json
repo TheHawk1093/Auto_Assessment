@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/4fe98e1ed7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that cleaning is done by scraping (cutting off/removing) the top layer of the filter medium/sand, including the Schmutzdecke (dirty surface layer), typically the upper 1\u20132 cm.",
+        "marks": 1.0,
+        "partial_credit": "Half if only says removing/cleaning the top layer or surface without scraping, or scraping without mention of the top/surface layer."
+      },
+      {
+        "id": "P2",
+        "description": "States that the scraped medium/sand is then washed (before reuse/replacement).",
+        "marks": 1.0,
+        "partial_credit": "Half if washing is mentioned vaguely (e.g. 'cleaned') without clearly applying to the removed sand."
+      }
+    ],
+    "notes": "Full marks (2) for saying the top layer of the sand (Schmutzdecke, about 1\u20132 cm) is scraped off and then washed. Give 1 mark if only scraping or only washing is given, or both are stated vaguely. Give 0 for wrong methods such as backwashing alone, chemical dosing or rapid-filter cleaning. Depth figure and the word Schmutzdecke are not strictly required.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

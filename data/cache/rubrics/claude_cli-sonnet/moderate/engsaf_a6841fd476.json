@@ -1,0 +1,17 @@
+{
+  "question_key": "engsaf/a6841fd476",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the reactor as a completely mixed flow reactor (CMFR), i.e. a continuous stirred tank reactor (CSTR) / completely mixed reactor, with uniform concentration throughout. Clear synonyms such as CSTR, mixed flow reactor are accepted.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only partly right, e.g. 'mixed reactor' or 'stirred reactor' without 'completely/flow' or 'continuous', or 'batch reactor' is NOT accepted (0)."
+      }
+    ],
+    "notes": "Full marks (2) for completely mixed flow reactor, or the synonym CSTR / continuous stirred tank reactor. Give 1 mark for a vague or incomplete name such as 'mixed reactor' or 'stirred reactor'. Give 0 for plug flow, batch or any other reactor type.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

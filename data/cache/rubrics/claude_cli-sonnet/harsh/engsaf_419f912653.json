@@ -1,0 +1,35 @@
+{
+  "question_key": "engsaf/419f912653",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States wind speed AND temperature (of water and air) as factors affecting evaporation.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States vapour pressure (difference between saturated vapour pressure at water surface and actual vapour pressure of air) as a factor, using the term vapour pressure.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States atmospheric pressure as a factor.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States both heat storage by the water body AND water quality (e.g. salinity/dissolved solids) as factors.",
+        "marks": 0.5,
+        "partial_credit": "Only if one of the two is stated precisely: 0.25"
+      }
+    ],
+    "notes": "Full marks (2) need all six factors named with correct terms: wind speed, temperature of water and air, vapour pressure, atmospheric pressure, heat storage by water body, water quality. Give part marks only where a point is clearly over half stated, as set out in partial_credit. Vague wording (e.g. 'weather', 'climate', 'humidity' alone) earns nothing for that point, and a wrong extra factor (e.g. rainfall, soil type) makes the point it sits with earn zero.",
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

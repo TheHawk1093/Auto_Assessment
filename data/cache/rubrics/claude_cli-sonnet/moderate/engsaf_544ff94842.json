@@ -1,0 +1,23 @@
+{
+  "question_key": "engsaf/544ff94842",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States FALSE (the statement is incorrect).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justification: if the lock is available/free, a spinlock acquires it immediately without spinning (spinning only occurs when the lock is held by another thread).",
+        "marks": 1.0,
+        "partial_credit": "Half credit if justification says spinning is only sometimes needed but does not clearly link it to the lock being free/available."
+      }
+    ],
+    "notes": "Full marks need FALSE plus the justification that a spinlock does not spin when the lock is already available. No marks for the justification if the answer says TRUE; the question says no correct justification means no marks, so a bare FALSE with no or wrong justification earns 0. Give part marks only for a vague justification, e.g. spinning is not always needed.",
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
