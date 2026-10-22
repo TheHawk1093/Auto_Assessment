@@ -60,6 +60,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-19 16:26 | feedback-coach | saf_s0_fb_coach | saf/dev/n24/seed0 | pipeline | 0.060 | ▲ -0.052 | = | 0.040 | 0.96 | 0.94 | 0% | 0.33 | 48bc24b0 |
 | 2026-10-22 16:01 | baseline | rice_s0_baseline | ricechem/test/n72/seed0 | baseline | 0.154 | - | - | -0.065 | 0.81 | 0.77 | 0% | 0.90 | 110a77f2 |
 | 2026-10-22 16:11 | official-rubric | rice_s0_official | ricechem/test/n72/seed0 | pipeline | 0.150 | ▲ -0.004 | - | 0.116 | 0.82 | 0.74 | 18% | 3.78 | 110a77f2 |
+| 2026-10-22 16:22 | generated-rubric | rice_s0_sized | ricechem/test/n72/seed0 | pipeline | 0.158 | ▼ +0.004 | ▼ +0.008 | 0.113 | 0.80 | 0.73 | 100% | 3.92 | 110a77f2 |
 
 ## Variants
 
@@ -88,3 +89,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **feedback-detailed**: same marks as dk_s0_v2b. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "detailed", "refeedback_from": "dk_s0_v2b"}`
 - **feedback-coach**: same marks as dk_s0_v2b. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "coach", "refeedback_from": "dk_s0_v2b"}`
 - **official-rubric**: RiceChem benchmark; the dataset's own rubric. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`
+- **generated-rubric**: RiceChem benchmark; rubric written by the system from the reference. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "grade_retries": 1, "max_workers": 4}`

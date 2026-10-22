@@ -1,0 +1,49 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Mentions comparing/fixing a constant mass of one element (e.g. same mass of element A) when looking at different compounds.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the law is based on mass data: the masses of the other element that combine with the fixed mass are measured/compared.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the same elements can combine to form more than one different compound.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the masses of the other element are in simple whole-number (integer) ratios, e.g. 1:2 or 2:3.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "Explains that whole-number ratios imply matter is discrete/indivisible: elements combine in whole units, never fractions of a unit.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if whole-number ratios are linked to fixed or discrete amounts but the reasoning for indivisibility is not clear."
+      },
+      {
+        "id": "P6",
+        "description": "Concludes that the indivisible unit of mass/matter of an element is the atom, so matter is made of atoms.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if atoms are mentioned but not clearly identified as the indivisible unit of each element's mass."
+      }
+    ],
+    "notes": "Equivalent wording and correct examples (e.g. carbon oxides, CO and CO2) earn marks. Full marks need the chain: fixed mass and data, multiple compounds, whole-number ratios, discreteness, atoms. Do not require exact wording.",
+    "level": null
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 8."
+  ]
+}
