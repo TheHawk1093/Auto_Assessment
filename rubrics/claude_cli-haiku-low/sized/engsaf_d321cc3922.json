@@ -1,0 +1,31 @@
+{
+  "question_key": "engsaf/d321cc3922",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names 'Consensus' as one of the three key principles of ISO standards (equivalent wording such as 'agreement' or 'general agreement among stakeholders' earns the mark).",
+        "marks": 0.6667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names 'Industry-wide applicability' (equivalent wording such as 'applicable across industries' or 'widely applicable' earns the mark) as one of the three key principles.",
+        "marks": 0.6667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names 'Voluntary nature' (equivalent wording such as 'voluntary adoption' or 'not compulsory' earns the mark) as one of the three key principles.",
+        "marks": 0.6666,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Each of the three principles named correctly earns two-thirds of a mark, giving 2 marks in total. The three blanks can be filled in any order, and equivalent wording or synonyms are acceptable. Naming fewer than three correct principles earns proportionally less, and any other principle named in place of these earns nothing for that blank.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

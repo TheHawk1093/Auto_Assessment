@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/9668c8b064",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies the verdict: each process is an independent entity that needs its own separate OS state (its own PCB or process-control record) to track its execution, memory, open files and stack, so one PCB shared by all instances with a reference counter cannot provide this. Equivalent wording and any correct reason that separate instances need separate state earn the marks.",
+        "marks": 1.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The verdict is worth half a mark. The justification is worth the remaining 1.5 marks and is required for any marks, per the question's rule that no correct justification means no marks. Full marks need FALSE plus a reason that each process needs its own separate state. Naming a shared PCB as wrong without explaining independent per-process state is not enough for P2.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

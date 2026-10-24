@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/aecb888a50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that empirical equations are derived from experiments or observed data (equivalent wording such as 'obtained from observations/measurements' earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that empirical equations have no mathematical proof or theoretical derivation behind them (equivalent wording such as 'not proven mathematically' or 'not based on theory' earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for a answer that gives both the experimental/observed-data origin and the lack of mathematical proof or theoretical basis. Award 1 mark for only one of these ideas. Do not require the model answer's wording; a correct explanation in other words earns the mark.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
