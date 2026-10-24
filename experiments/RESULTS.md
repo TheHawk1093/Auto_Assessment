@@ -74,6 +74,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 00:26 | poc-baseline | poc_mohler_baseline | mohler/dev/n8/seed0 | baseline | 0.312 | - | - | -0.312 | 0.82 | 0.36 | 0% | 0.01 | 027fb978 |
 | 2026-10-25 00:28 | poc-pipeline | poc_engsaf_pipeline | engsaf/dev/n8/seed0 | pipeline | 0.269 | - | - | -0.144 | 0.51 | 0.44 | 0% | 0.03 | 027fb978 |
 | 2026-10-25 00:28 | poc-baseline | poc_engsaf_baseline | engsaf/dev/n8/seed0 | baseline | 0.188 | - | - | 0.000 | 0.72 | 0.71 | 0% | 0.01 | 027fb978 |
+| 2026-10-25 00:30 | poc-pipeline | poc_ricechem_pipeline | ricechem/dev/n8/seed0 | pipeline | 0.094 | - | - | 0.031 | 0.91 | 0.92 | 38% | 0.03 | 027fb978 |
 
 ## Variants
 
