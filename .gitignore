@@ -16,3 +16,4 @@ runs/
 .vscode/
 *.log
 runs_*.flag
+.venv-ocr/

@@ -1,0 +1,19 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the core perceptron learning procedure: start with weights (randomly or otherwise initialised), then loop over the labelled training examples and update the weights using the learning rate eta and the input x when the example is misclassified (the model answer's condition <w,x> <= 0), repeating over epochs until the weights stop changing much.",
+        "marks": 2.0,
+        "partial_credit": "1 mark if the student describes the weight update on misclassified points or repetition over epochs but leaves out one of these elements (e.g. the initialisation or the stopping condition)."
+      }
+    ],
+    "notes": "Full marks for a student who describes the perceptron learning loop in any wording: initialise weights, for each example that is misclassified update w by adding eta times x (using the labels), and repeat over epochs until the weights settle. Give 1 mark for a vague or partly complete loop, such as an update rule with no repetition or repetition with no update rule. Give 0 for an empty, off-topic or wrong answer such as a description of a different model; pseudo-code syntax and exact formatting do not matter, and the convergence remark is not required.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

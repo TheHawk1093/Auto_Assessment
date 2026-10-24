@@ -74,6 +74,9 @@ def register(sub) -> None:
     poc.add_argument("-n", type=int, default=8, help="answers per dataset")
     poc.add_argument("--seed", type=int, default=0)
     poc.add_argument("--baseline", action="store_true", help="also run the plain baseline")
+    poc.add_argument(
+        "--rubric-variant", help="rubric for every dataset (default sized; RiceChem official)"
+    )
     poc.add_argument("--no-commit", action="store_true")
     poc.set_defaults(func=cmd_poc)
 
@@ -260,8 +263,11 @@ def cmd_poc(args: argparse.Namespace, settings: Settings) -> None:
             if mode == "baseline" and not args.baseline:
                 continue
             run_settings = settings.model_copy(deep=True)
-            if dataset == "ricechem":
+            if args.rubric_variant:
+                run_settings.pipeline.rubric_variant = args.rubric_variant
+            elif dataset == "ricechem":
                 run_settings.pipeline.rubric_variant = "official"
+            tag = args.rubric_variant or mode
             cmd_run(
                 argparse.Namespace(
                     dataset=dataset,
@@ -270,8 +276,8 @@ def cmd_poc(args: argparse.Namespace, settings: Settings) -> None:
                     all=False,
                     seed=args.seed,
                     mode=mode,
-                    name=f"poc_{dataset}_{mode}",
-                    variant=f"poc-{mode}",
+                    name=f"poc_{dataset}_{tag}",
+                    variant=f"poc-{tag}",
                     note="proof of concept",
                     perturb_model=None,
                     ocr=None,

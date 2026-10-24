@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the convolutional layer: it has kernels/filters that slide (convolve) over the input image.",
+        "marks": 1.0,
+        "partial_credit": "Names convolution or convolutional layers without saying the kernels move over the input, or describes kernels without convolution."
+      },
+      {
+        "id": "P2",
+        "description": "Describes the overall layered structure: a sequence of layers including activation (ReLU) and pooling (max or average), followed by one or more fully connected layers and a softmax output.",
+        "marks": 1.0,
+        "partial_credit": "Lists some of the later layers (pooling, fully connected, softmax) in a rough order but omits activation or the softmax output, or is vague about the order."
+      }
+    ],
+    "notes": "Full marks if the student shows the CNN is a stack of layers starting with convolution over the input with kernels, and including activation, pooling, and fully connected plus softmax layers at the end, in everyday wording. Part marks for an answer that names the right layer types but is vague or incomplete, such as \"conv layers, pooling, then dense layers\" with no mention of softmax or activation. No marks for an answer that does not describe layers, is off-topic, or is empty. The exact ReLU, max/average pooling and softmax terms are not required at lenient level.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
