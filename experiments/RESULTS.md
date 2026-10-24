@@ -89,6 +89,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 01:02 | poc-harsh | poc_digiklausur_harsh | digiklausur/dev/n8/seed0 | pipeline | 0.662 | ▼ +0.412 | ▼ +0.394 | -0.662 | - | 0.00 | 12% | 0.04 | 027fb978 |
 | 2026-10-25 01:04 | poc-harsh | poc_saf_harsh | saf/dev/n8/seed0 | pipeline | 0.163 | ▲ -0.019 | ▼ +0.059 | -0.163 | 0.91 | 0.75 | 50% | 0.03 | 027fb978 |
 | 2026-10-25 01:06 | poc-harsh | poc_mohler_harsh | mohler/dev/n8/seed0 | pipeline | 0.412 | ▼ +0.100 | ▼ +0.157 | -0.412 | 0.85 | 0.36 | 0% | 0.03 | 027fb978 |
+| 2026-10-25 01:07 | poc-harsh | poc_engsaf_harsh | engsaf/dev/n8/seed0 | pipeline | 0.370 | ▼ +0.182 | ▼ +0.080 | -0.245 | 0.42 | 0.30 | 0% | 0.03 | 027fb978 |
 
 ## Variants
 

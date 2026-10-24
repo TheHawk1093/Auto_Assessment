@@ -1,0 +1,31 @@
+{
+  "question_key": "engsaf/9b31c7b110",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the data rate must not exceed the channel capacity (the data rate is limited by, or kept at or below, the channel capacity). Wording must make clear the limit is on the data rate relative to channel capacity.",
+        "marks": 0.6667,
+        "partial_credit": "Half marks if the student names the data rate and channel capacity as the limiting relationship but does not state the direction (does not say it must not exceed)."
+      },
+      {
+        "id": "P2",
+        "description": "States that the full capacity of the communication channel should be utilized (used to its maximum, not under-used). The word 'full' or an equivalent such as 'maximum' or 'entire' applied to channel capacity is needed.",
+        "marks": 0.6667,
+        "partial_credit": "Half marks if the student says the channel should be used efficiently or well without stating full or maximum use of channel capacity."
+      },
+      {
+        "id": "P3",
+        "description": "States that the maximum quality of the data (of the compressed or reconstructed data) should be preserved. The words 'maximum' or 'highest' applied to quality, and quality being preserved, are both needed.",
+        "marks": 0.6666,
+        "partial_credit": "Half marks if the student says quality should be kept or preserved without stating it should be maximum."
+      }
+    ],
+    "notes": "Full marks (2) require all three elements: the data rate must not exceed channel capacity, the full channel capacity must be utilized, and maximum quality must be preserved, each stated precisely. Award half of a point only where the partial_credit wording is clearly met; a vague statement such as 'compression should be efficient' earns nothing. Give 1 mark if two of the three elements are clearly stated precisely, and 0 if only one or none is correct or any statement contradicts the model answer (for example, saying the data rate may exceed channel capacity or that quality may be sacrificed).",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,31 @@
+{
+  "question_key": "engsaf/36dc74b1c6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the verdict TRUE for the statement that the parent can use exec before the child process terminates.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that the parent and child are two entirely different (separate) processes, so the child's state does not limit the parent.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Justifies that the parent can perform any operation it wants, including calling exec, while the child is still running (exec in the parent does not need the child to have terminated).",
+        "marks": 0.75,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) requires the verdict TRUE plus both justification points: the parent and child are separate, different processes, and the parent may perform any operation, including exec, independently of the child. A FALSE verdict earns no marks for P1, and a justification that does not state the separate-process idea or the parent's freedom to call exec earns nothing for that point. No half marks are given, because each justification point needs its full statement, and a vague claim such as \"they run in parallel\" does not count as stating the separate-process idea precisely.",
+    "policy": "strict",
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

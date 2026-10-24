@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names a first correct use of a laser from the model answer, using its technical name: cutting, welding, medical surgery, optical fibre communication, or laser printing.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names a second, different correct use of a laser from the model answer, using its technical name (from the same list), and not repeating the first use.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need two different uses, each named precisely from the model answer list: cutting, welding, medical surgery, optical fibre communication, or laser printing. Vague or general wording such as \"printing\", \"surgery\" used loosely, \"communication\" or \"industry\" earns nothing, and a repeated use counts only once. A wrong use (for example \"laser TV\" or \"measuring temperature\") given as one of the two answers costs that point, so a student who gives one correct use and one wrong use gets 1 mark, and a student with no correct use gets 0.",
+    "policy": "strict",
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

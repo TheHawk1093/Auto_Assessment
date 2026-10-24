@@ -1,0 +1,37 @@
+{
+  "question_key": "engsaf/febbc2c2ac",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States frequency of vibration (of the tool/vibration frequency) as a parameter affecting MRR. Must use the term 'frequency'. 'Speed' or 'rpm' alone does not earn it.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States amplitude of vibration (of the tool) as a parameter affecting MRR. Must use the term 'amplitude'. 'Vibration' alone does not earn it.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States abrasive slurry concentration (concentration of abrasive grains in the slurry) as a parameter affecting MRR. Must say concentration of abrasive in the slurry. 'Slurry' alone or 'abrasive' alone does not earn it.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States slurry particle (abrasive grain) diameter as a parameter affecting MRR. Must give the particle or grain size/diameter of the abrasive. 'Grit size' is accepted only if clearly the abrasive particle size.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for three distinct parameters, each stated with the correct technical term from the list (frequency, amplitude, abrasive slurry concentration, slurry/abrasive particle diameter). Award 1 mark for exactly two correct, precisely stated parameters, and 0 for one or none. A wrong or vague extra item (e.g. 'tool material', 'feed rate', or 'slurry' alone) cancels the mark for the point it replaces, so a student listing three correct items plus one wrong item still gets full marks only if the three correct items are all precise; a wrong item among the three selected costs 0.5. Terms like 'vibration speed' or 'size of grains' without the required wording should be judged strictly against the named terms.",
+    "policy": "strict",
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

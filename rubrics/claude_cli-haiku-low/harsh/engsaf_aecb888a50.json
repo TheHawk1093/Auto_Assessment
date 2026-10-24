@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/aecb888a50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that empirical equations are derived from experiments or observed data (not from theory or first principles).",
+        "marks": 1.0,
+        "partial_credit": "Mentions data or observation only vaguely, without saying the equation is derived from it."
+      },
+      {
+        "id": "P2",
+        "description": "States that empirical equations have no mathematical proof behind them (they are not proven or derived theoretically).",
+        "marks": 1.0,
+        "partial_credit": "Says they are 'not theoretical' or 'not exact' without stating that there is no mathematical proof."
+      }
+    ],
+    "notes": "Full marks (2) require both the experimental or observed-data origin and the statement that there is no mathematical proof behind the equation. Each element is worth 1 mark and is all or nothing at harsh level, except where the partial credit note applies. A student who gives only one of the two ideas gets 1 mark; a student who gives neither, or gives a wrong statement such as \"they are proven by theory\", gets 0.",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
