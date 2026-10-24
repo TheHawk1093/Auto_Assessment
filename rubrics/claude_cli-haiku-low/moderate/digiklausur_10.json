@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation passes the error backwards from the last (output) layer towards the first layer, layer by layer, and updates the weights to lower the error.",
+        "marks": 1.0,
+        "partial_credit": "Half marks for saying it goes backwards through the layers without mentioning the error being propagated or the weight updates, or for a vague 'the network learns' style description."
+      },
+      {
+        "id": "P2",
+        "description": "Names the technical terms: the update at each layer is driven by the local gradient, computed with partial derivatives of the error and the chain rule.",
+        "marks": 1.0,
+        "partial_credit": "Half marks for mentioning gradients or derivatives without partial derivatives or the chain rule."
+      }
+    ],
+    "notes": "Full marks (2) need both the backward, layer-by-layer propagation of error with weight updates (P1) and the technical terms: local gradient, partial derivatives and the chain rule (P2). Half marks apply to a vague or incomplete version of either point, such as backward flow with no weight update, or gradients with no chain rule. An answer that only says 'backpropagation is how a neural network learns' or is off-topic earns zero for that point.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

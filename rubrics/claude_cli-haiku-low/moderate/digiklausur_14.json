@@ -1,0 +1,31 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Convolutional layer: uses kernels (filters) that convolve over the input image.",
+        "marks": 0.5,
+        "partial_credit": "Mentions convolutional layers without kernels, or kernels without convolving over the input."
+      },
+      {
+        "id": "P2",
+        "description": "Activation and pooling layers: names ReLU as the activation layer and max or average pooling as the pooling layer.",
+        "marks": 0.5,
+        "partial_credit": "Names only one of ReLU or pooling, or says 'activation' or 'pooling' without the named type."
+      },
+      {
+        "id": "P3",
+        "description": "Fully connected layer(s) followed by a softmax layer at the output.",
+        "marks": 1.0,
+        "partial_credit": "Mentions fully connected layers without softmax, or softmax without fully connected layers."
+      }
+    ],
+    "notes": "Full marks (2) go to an answer that describes a CNN as a sequence of convolutional layers with kernels convolving over the input, a ReLU activation layer, max or average pooling, and fully connected layers ending in softmax. Give half marks for a point stated vaguely or missing one named element, such as \"some pooling\" or \"fully connected layers\" with no softmax. An answer that only says \"many layers\" or gives a generic neural-network description earns no marks for the missing points.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
