@@ -1,0 +1,31 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a fixed mass of one element combines with different masses of another element to form compounds (mass data from the Law of Multiple Proportions).",
+        "marks": 2.0,
+        "partial_credit": "1 mark if only one of fixed mass or varying masses/compound formation is stated."
+      },
+      {
+        "id": "P2",
+        "description": "States that the masses of the second element are in a simple whole-number (integer) ratio, and that whole-number ratios mean matter combines in indivisible (discrete) units, not in arbitrary amounts.",
+        "marks": 3.0,
+        "partial_credit": "1.5 marks if the whole-number ratio is stated but the link to indivisible units is not made; 1 mark if only 'whole numbers' is stated with no link to indivisibility."
+      },
+      {
+        "id": "P3",
+        "description": "Concludes that the indivisible unit of mass is the atom, so matter must be made of atoms.",
+        "marks": 3.0,
+        "partial_credit": "1.5 marks if 'atom' is named but not stated as the indivisible unit that makes up matter; 1 mark for a bare claim that matter is made of atoms with no link to the ratio data."
+      }
+    ],
+    "notes": "Full marks need the fixed-mass compound data, the whole-number ratio, the inference that whole numbers mean indivisible units, and the conclusion that the indivisible unit is the atom. Part marks go to a half-stated link or a vague claim, as shown in each point. A statement of the law without the inference to indivisible units, or a bare definition of atoms, earns no marks for that point. Wrong statements (for example, that the ratio shows atoms are divisible) lose that point's marks only.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
