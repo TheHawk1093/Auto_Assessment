@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Core fact: a static array is initialized only once (the first time the function is reached/called), not each time the function is called. The student must say 'only once' (or 'once only') and tie it to the function call. 'Initialized' alone or 'static arrays keep their values' without the once-only initialization point earns nothing.",
+        "marks": 3.0,
+        "partial_credit": "1 mark if the student states that static arrays are initialized once but leaves out that this happens at the function call, or ties it to the function call but does not say 'once' (only repeated initialization is implied)."
+      },
+      {
+        "id": "P2",
+        "description": "Correct distinction from the non-static array: a non-static (automatic) array is initialized every time the function is called. The student must state that the non-static array is re-initialized on each call. Saying only 'non-static arrays are not static' or 'non-static arrays are destroyed' earns nothing.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) need the core fact that a static array is initialized only once, at the function call, and the contrast that a non-static array is initialized on every call. Part marks (1) are given only when the student clearly states one half precisely, as set out in P1's partial credit. Any statement that the static array is initialized on every call, or that the non-static array is initialized only once, is wrong and earns no marks for the affected point. Spelling slips such as 'intialized' do not matter, but 'once' and 'every time the function is called' must be clearly present.",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

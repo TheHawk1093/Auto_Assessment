@@ -1,0 +1,31 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure (container/collection of elements) that stores elements in first in, first out (FIFO) order, i.e. the first element added is the first one removed. Must use the terms 'data structure' and 'first in first out' or FIFO; 'first come first served' alone or 'ordered list' without the removal order does not count.",
+        "marks": 2.5,
+        "partial_credit": "Half (1.25) for stating a data structure with an ordering but not the first-in-first-out removal order, or for FIFO without identifying it as a data structure."
+      },
+      {
+        "id": "P2",
+        "description": "Names enqueue as an main operation of a queue, meaning adding an element to the back (rear) of the queue.",
+        "marks": 1.25,
+        "partial_credit": "Half (0.5) for naming enqueue without saying it adds to the rear/back, or describing it correctly without the term 'enqueue'."
+      },
+      {
+        "id": "P3",
+        "description": "Names dequeue as the other main operation of a queue, meaning removing the element at the front of the queue.",
+        "marks": 1.25,
+        "partial_credit": "Half (0.5) for naming dequeue without saying it removes from the front, or describing front removal without the term 'dequeue'."
+      }
+    ],
+    "notes": "Full marks need the core fact: a data structure that is first in first out (FIFO), plus both main operations named, enqueue and dequeue. Harsh marking: the FIFO fact must be stated with the correct terms; a vague description such as 'stores things in order' earns nothing for P1. Enqueue and dequeue earn their marks only when named correctly, and the placement details (rear for enqueue, front for dequeue) are required for the full mark on those points. Extra correct detail is fine, but a wrong statement, such as describing LIFO order, costs the point it contradicts.",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

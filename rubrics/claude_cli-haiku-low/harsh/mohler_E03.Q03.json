@@ -1,0 +1,31 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler replaces each call to the inline function with a copy (expansion) of the function's code, i.e. the function body is copied in place of the call. Must say copy/expand the code, not just 'makes it inline' or 'faster'.",
+        "marks": 3.0,
+        "partial_credit": "Half (1.5) if the student says the code is inserted or substituted at the call site without saying it is a copy of the function code."
+      },
+      {
+        "id": "P2",
+        "description": "States that the copy is made at every place where the function is called (each call site), not only once or in one location.",
+        "marks": 1.5,
+        "partial_credit": "Half (0.75) if the student says 'where it is called' or 'at the call' without making clear that it applies to every call site."
+      },
+      {
+        "id": "P3",
+        "description": "Correctly distinguishes this from a normal function call: no jump/call to a single shared function body and no separate function-call mechanism is used at the call site. An answer that says inline functions are only called once, or that the compiler keeps a single copy, earns nothing here.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the core fact stated precisely: the compiler copies the function's code into every place the function is called, with the word 'copy' or an equivalent such as 'expands/inserts the body' at each call site. Part marks only if the student clearly gives the copy at call sites but is vague about the copy itself or about every call site. Give no marks for answers that only say 'it is inlined', 'it makes the program faster', or describe a single shared function body, or that contradict the copying idea.",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

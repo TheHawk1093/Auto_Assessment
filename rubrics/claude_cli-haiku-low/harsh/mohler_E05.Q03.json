@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the number of operations in the best case is N, where N is the length of the array (the number of elements). Must give N as the count and identify it as the array length. Saying only 'linear' or 'proportional to the input' without N = array length does not earn this point.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the best-case scenario is when the array is already sorted (sorted array as input). Must say the input is sorted; 'when the input is small' or 'when the array is random' or 'when the elements are in order in some other way' earns nothing.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both the count (N, the length of the array) and the scenario (the array is already sorted), each stated precisely. A student who gives the count without tying it to a sorted array, or who names the sorted case without the count of N, earns only the point for the part they state correctly. Vague wording such as 'linear time' or 'when it is easy to sort' earns nothing, and any statement that the best case is a reversed or randomly ordered array is a wrong statement that costs the scenario point.",
+    "policy": "strict",
+    "partial_weight": null,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
