@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/IPP_6.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a distinct IPv6 objective from the model answer, with its central idea. Accepted objectives: support for billions of end-systems (larger address space); reduced routing tables; simplified header for simpler protocol processing; increased security; support for real-time traffic / quality of service via flow label and traffic class; multicasting; support for mobility (roaming); openness to future change via extension headers; coexistence with existing protocols. This point is for the first distinct objective.",
+        "marks": 0.25,
+        "partial_credit": "Half marks for an objective named vaguely, such as 'better performance' or 'more addresses', without the specific feature."
+      },
+      {
+        "id": "P2",
+        "description": "States a second distinct IPv6 objective from the list in P1, with its central idea. It must be a different objective from the one given for P1.",
+        "marks": 0.25,
+        "partial_credit": "Half marks for a vague statement of the objective, or a repeat of the P1 idea worded differently."
+      },
+      {
+        "id": "P3",
+        "description": "States a third distinct IPv6 objective from the list in P1, with its central idea. It must be different from the objectives given for P1 and P2.",
+        "marks": 0.25,
+        "partial_credit": "Half marks for a vague statement of the objective."
+      },
+      {
+        "id": "P4",
+        "description": "States a fourth distinct IPv6 objective from the list in P1, with its central idea. It must be different from the objectives given for P1, P2 and P3.",
+        "marks": 0.25,
+        "partial_credit": "Half marks for a vague statement of the objective."
+      }
+    ],
+    "notes": "Full marks need at least four different IPv6 objectives from the model answer, each named with its central idea (for example, billions of end-systems, simplified header, security, QoS with flow label or traffic class, multicasting, mobility, extensibility, coexistence). Each objective counts once, so repeating one or restating the same idea does not earn a second point. Give half a point's marks for an objective stated vaguely, and no marks for a wrong or missing objective.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

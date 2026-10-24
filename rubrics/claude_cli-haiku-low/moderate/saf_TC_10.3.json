@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bridge table holds a mapping between destination station addresses (MAC addresses) and the outgoing LAN interface/port used to reach them.",
+        "marks": 0.25,
+        "partial_credit": "Half for a mapping of addresses to ports without naming MAC/station addresses, or vice versa."
+      },
+      {
+        "id": "P2",
+        "description": "Explains backward learning: the table starts empty, and when a frame arrives the bridge takes the frame's source address and records it against the port/LAN it arrived on (with a timestamp), so the table learns from observed incoming traffic.",
+        "marks": 0.25,
+        "partial_credit": "Half for saying the bridge learns from source addresses of incoming frames without stating the port is recorded, or for mentioning the table is updated without the source-address/port link."
+      },
+      {
+        "id": "P3",
+        "description": "Explains forwarding use: the bridge looks up the frame's destination address in the table and forwards the frame only on the associated port (selective forwarding), flooding it on all ports only when the destination is not in the table.",
+        "marks": 0.25,
+        "partial_credit": "Half for saying the table is used to forward selectively without describing the destination lookup, or for describing lookup without the port used."
+      },
+      {
+        "id": "P4",
+        "description": "Gives one benefit of using the table: frames are sent only where needed instead of flooded, which reduces unnecessary traffic, duplication, congestion, or wasted bandwidth.",
+        "marks": 0.25,
+        "partial_credit": "Half for a vague benefit such as 'more efficient' without linking it to avoiding flooding or traffic."
+      }
+    ],
+    "notes": "Full marks need all four parts: the table's contents (addresses mapped to ports), how backward learning adds entries from source addresses of incoming frames on each port, how forwarding looks up the destination and sends the frame only on the matching port (flooding if unknown), and one benefit such as reduced flooding, congestion or better bandwidth use. Each part is worth a quarter mark; a part stated only halfway, vaguely, or with a minor error earns half of that quarter. A part that is missing or wrong earns nothing, and an error in one part does not remove the marks for the others.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

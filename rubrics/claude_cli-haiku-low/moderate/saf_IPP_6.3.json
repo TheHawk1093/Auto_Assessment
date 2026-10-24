@@ -1,0 +1,25 @@
+{
+  "question_key": "saf/IPP_6.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines DHCP as a network management protocol for IP networks in which a DHCP server dynamically assigns an IP address and other network configuration parameters to devices. Different wording is fine, but the idea of a server dynamically assigning the address and configuration must be present.",
+        "marks": 0.5,
+        "partial_credit": "Half marks for naming DHCP as a protocol that configures devices or assigns IP addresses without saying a server does it dynamically."
+      },
+      {
+        "id": "P2",
+        "description": "States what DHCP is used for: automatically configuring end systems (simplifying installation and configuration) by assigning IP addresses, either manually or automatically, and optionally supplying further settings such as DNS server, netmask or default router.",
+        "marks": 0.5,
+        "partial_credit": "Half marks for a vague use such as 'to configure devices on the network' with no mention of automatic IP address assignment or the other configuration details."
+      }
+    ],
+    "notes": "Full marks need a correct definition of DHCP as a protocol where a server dynamically assigns an IP address and configuration parameters, and a correct statement of its use: simplifying configuration of end systems through automatic or manual IP address assignment and extra settings such as DNS, netmask or default router. Give half marks for either part stated vaguely or only partly, for example saying DHCP 'assigns addresses' without mentioning a server or dynamic assignment, or giving a use without any specific example. No marks for a part that is missing or wrong, such as describing DHCP as a DNS or routing protocol. Mention of RARP or BOOTP is not required.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

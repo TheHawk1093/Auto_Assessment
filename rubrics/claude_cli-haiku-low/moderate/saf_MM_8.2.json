@@ -1,0 +1,31 @@
+{
+  "question_key": "saf/MM_8.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the purpose: RPF/RPB are more efficient broadcasting than flooding, minimising duplicate packets in the network.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Reverse Path Forwarding: on receiving a broadcast packet from source S via neighbour N, the node checks its unicast routing table and forwards only if N is the route it would use to reach S (the packet arrived on the best path), sending to all neighbours except N.",
+        "marks": 0.5,
+        "partial_credit": "Half for the RPF check against the routing table without the forward-to-all-except-N detail, or the reverse with the check missing."
+      },
+      {
+        "id": "P3",
+        "description": "Reverse Path Broadcast: nodes learn from monitored unicast traffic which paths/spanning trees they lie on, and forward broadcasts only on edges that are part of a spanning tree (excluding the incoming neighbour N).",
+        "marks": 0.25,
+        "partial_credit": "Half for mentioning that nodes learn spanning-tree membership from unicast traffic without the forwarding-on-tree-edges rule."
+      }
+    ],
+    "notes": "Full marks need the purpose (fewer duplicate packets than flooding), the RPF rule (forward only when the packet arrived over the neighbour the node would use to reach the source, to all other neighbours), and the RPB idea (nodes learn spanning-tree membership from unicast traffic and forward only on tree edges, excluding the incoming link). Half-stated parts earn half, such as the RPF check without the forwarding detail, or RPB described without the spanning-tree forwarding rule. A student who only says flooding is reduced, or only defines one of the two, earns no credit for the missing part.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
