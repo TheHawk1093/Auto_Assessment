@@ -86,6 +86,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 00:55 | poc-moderate | poc_mohler_moderate | mohler/dev/n8/seed0 | pipeline | 0.255 | ▲ -0.057 | ▼ +0.043 | -0.230 | 0.73 | 0.40 | 0% | 0.03 | 027fb978 |
 | 2026-10-25 00:57 | poc-moderate | poc_engsaf_moderate | engsaf/dev/n8/seed0 | pipeline | 0.290 | ▼ +0.103 | ▼ +0.103 | -0.165 | 0.59 | 0.54 | 0% | 0.03 | 027fb978 |
 | 2026-10-25 00:59 | poc-moderate | poc_ricechem_moderate | ricechem/dev/n8/seed0 | pipeline | 0.125 | ▲ -0.008 | ▼ +0.016 | 0.000 | 0.76 | 0.48 | 12% | 0.04 | 027fb978 |
+| 2026-10-25 01:02 | poc-harsh | poc_digiklausur_harsh | digiklausur/dev/n8/seed0 | pipeline | 0.662 | ▼ +0.412 | ▼ +0.394 | -0.662 | - | 0.00 | 12% | 0.04 | 027fb978 |
 
 ## Variants
 
@@ -122,3 +123,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **poc-baseline**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **poc-lenient**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "lenient", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **poc-moderate**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "moderate", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
+- **poc-harsh**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "harsh", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`

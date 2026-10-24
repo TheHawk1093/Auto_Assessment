@@ -1,0 +1,43 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Label the training data with positive and negative (+/-) class labels.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Initialise the weights randomly before learning starts.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Apply the (simplified) update rule \u0394w = \u03b7\u00b7x(n) for a data point x(n) when <w,x> \u2264 0, as stated in the model answer. The update must be given with its condition and the learning rate \u03b7.",
+        "marks": 0.4,
+        "partial_credit": "0.2 if the update \u0394w = \u03b7\u00b7x(n) is given but the condition <w,x> \u2264 0 is missing or wrong"
+      },
+      {
+        "id": "P4",
+        "description": "Repeat the update over all data points in epochs until the weights do not change much (stopping condition).",
+        "marks": 0.4,
+        "partial_credit": "0.2 if the repetition over epochs is stated but no stopping condition on the weights is given"
+      },
+      {
+        "id": "P5",
+        "description": "State that the algorithm converges because the data is linearly separable.",
+        "marks": 0.4,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all five elements in a pseudo-code or step list: +/- labels, random weight initialisation, the update \u0394w = \u03b7\u00b7x(n) applied when <w,x> \u2264 0, repetition over epochs until the weights stop changing much, and convergence because the data is linearly separable. Accept the update condition exactly as the model answer gives it (<w,x> \u2264 0); a clearly equivalent misclassification condition with the label included is also acceptable. Part marks only for the two partially stated points listed; a missing or wrong element earns nothing, and vague wording such as \"it learns the weights\" does not count as the update rule or the stopping condition.",
+    "policy": "strict",
+    "partial_weight": 0.5,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

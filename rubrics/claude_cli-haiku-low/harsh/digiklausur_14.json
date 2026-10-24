@@ -1,0 +1,37 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Convolutional layer: states that it has kernels (or filters) that convolve over the input image.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Activation layer: states that it applies a ReLU activation function.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Pooling layer: states that it uses max pooling or average pooling.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Fully connected layer(s) (one or more) followed by a softmax layer.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all four required elements named with their technical terms: a convolutional layer with kernels/filters convolving over the input image, a ReLU activation layer, a max or average pooling layer, and one or more fully connected layers followed by a softmax layer. Each element is marked separately at 0.5, and a vague description such as \"some layers that process the image\" earns nothing for that element. Extra correct layers or details do not cost marks, but a wrong statement about an element (for example, calling pooling a convolution, or placing softmax before the fully connected layers) cancels that element's mark. There are no part marks at this level because each element is either stated precisely or not.",
+    "policy": null,
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

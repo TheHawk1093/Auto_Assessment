@@ -1,0 +1,37 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM is a linear learning machine (in the simplest case) that uses a decision boundary with maximum margin to classify data into classes.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the support vectors are the data points near the decision boundary, and that the margin is determined from these points.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that kernels are used to separate non-linearly separable data.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States that the algorithm is solved using Quadratic Programming.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) require all four elements stated explicitly with the terms \"maximum margin\", \"support vectors\", \"kernel\" and \"Quadratic Programming\", each in the student's own words. Each point is all-or-nothing: a vague mention such as \"it finds a line that separates the classes\" without \"maximum margin\" earns nothing for P1, and \"support vectors\" without saying they lie near the boundary and set the margin earns nothing for P2. A wrong statement inside a point (for example, kernels used to speed up training, or support vectors being the points furthest from the boundary) cancels that point. Do not award marks for elements not in the model answer, and do not require the phrase \"linear learnable machine\" word for word if the student clearly says SVM is linear.",
+    "policy": null,
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
