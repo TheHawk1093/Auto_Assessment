@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/IPP_6.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least four distinct IPv6 objectives, each matching an item in the model answer. Accepted objectives: supporting billions of end-systems (larger address space); reducing routing table size; simplifying protocol processing with a simplified header; increasing security; supporting real-time traffic and quality of service (flow label, traffic class); providing multicasting; supporting mobility; being open to future change (extension headers); and coexisting with existing protocols. Any wording is accepted.",
+        "marks": 1.0,
+        "partial_credit": "0.5 for two or three correct, distinct objectives; 0.25 for one correct objective"
+      }
+    ],
+    "notes": "Full marks for naming at least four distinct objectives from the model answer, in any wording, such as \"bigger address space\" for billions of end-systems or \"QoS\" for real-time traffic. Give half for two or three correct objectives and a quarter for one. Repeats of the same objective count once, and a wrong or irrelevant extra objective does not cost marks unless it contradicts one of the correct ones. No marks if no valid objective is stated.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

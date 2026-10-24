@@ -1,0 +1,25 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the property: a spanning tree has exactly one unique path between every pair of nodes (equivalently, it is loop-free yet connects all nodes), so no duplicate packets are sent when broadcasting or multicasting along it.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains the modification to Link State Routing: multicast group membership is added to the link state packets, so every node learns the full topology and group membership, and then each node computes the multicast spanning tree locally from that complete information (e.g. using Prim's or Kruskal's algorithm).",
+        "marks": 0.5,
+        "partial_credit": "Half for saying group information is added to link state packets or that each node builds the tree, without both steps or the full-topology point."
+      }
+    ],
+    "notes": "Full marks need the key property (a single unique path between nodes, or loop-free and connecting all nodes, so no duplicates) and the LSR modification (put multicast group membership into link state packets, then each node builds the tree from the complete topology, e.g. with Prim or Kruskal). Award part marks for a vague but on-track answer, such as mentioning no loops without the no-duplicates effect, or group info in the link state packets without saying the tree is built locally. Give no marks if the answer names an unrelated property or describes a different routing change.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

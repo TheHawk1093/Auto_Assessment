@@ -1,0 +1,31 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes the table's contents as a mapping from a destination (MAC) address to the outgoing LAN interface/port, and says it is learned by recording the source address of incoming frames against the port they arrived on (optionally timestamped).",
+        "marks": 0.33,
+        "partial_credit": "Half for stating the contents (address to port) without saying how entries are added or updated from received frames."
+      },
+      {
+        "id": "P2",
+        "description": "Describes forwarding: if the frame's destination address is in the table, the bridge sends it only out the matching port; if it is not known, the bridge floods it out all other ports.",
+        "marks": 0.33,
+        "partial_credit": "Half for saying the table is used to choose a port without covering the unknown-destination case, or vice versa."
+      },
+      {
+        "id": "P3",
+        "description": "States one benefit of this use: selective forwarding avoids unnecessary flooding, which reduces duplication, traffic, congestion or wasted bandwidth.",
+        "marks": 0.34,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need all three parts: what the table holds and how it is updated from source addresses on incoming frames, how a known destination is forwarded on one port (with flooding otherwise), and one benefit such as less flooding, congestion or wasted bandwidth. Accept any wording, and do not penalise missing detail such as timestamps or the promiscuous-mode point. Give half marks for a part that is on the right track but vague, and no marks for a part that is missing or contradicts the model answer.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

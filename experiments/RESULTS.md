@@ -77,6 +77,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 00:30 | poc-pipeline | poc_ricechem_pipeline | ricechem/dev/n8/seed0 | pipeline | 0.094 | - | - | 0.031 | 0.91 | 0.92 | 38% | 0.03 | 027fb978 |
 | 2026-10-25 00:30 | poc-baseline | poc_ricechem_baseline | ricechem/dev/n8/seed0 | baseline | 0.133 | - | - | -0.008 | 0.78 | 0.76 | 0% | 0.01 | 027fb978 |
 | 2026-10-25 00:42 | poc-lenient | poc_digiklausur_lenient | digiklausur/dev/n8/seed0 | pipeline | 0.219 | ▲ -0.031 | ▼ +0.097 | -0.219 | - | 0.00 | 0% | 0.03 | 027fb978 |
+| 2026-10-25 00:44 | poc-lenient | poc_saf_lenient | saf/dev/n8/seed0 | pipeline | 0.062 | ▲ -0.119 | ▲ -0.087 | -0.062 | 0.98 | 0.96 | 38% | 0.03 | 027fb978 |
 
 ## Variants
 
