@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies a queue as a data structure (or collection) that stores elements. Equivalent wording such as 'a linear collection of data' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the queue follows the first in, first out (FIFO) principle, meaning the first element added is the first one removed. Equivalent wording such as 'first come, first served' earns the marks.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Names enqueue as the operation that adds an element to the back (rear) of the queue. Any equivalent description of inserting an element into the queue earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Names dequeue as the operation that removes the element at the front of the queue. Any equivalent description of removing an element from the queue earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks require the student to say a queue is a data structure storing elements, that it is FIFO, and to name both enqueue (add) and dequeue (remove). Each of these is awarded separately, so a student missing the FIFO idea loses 2 marks while missing the data structure idea loses only 1. Equivalent wording and accurate alternative descriptions of the operations earn the marks.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

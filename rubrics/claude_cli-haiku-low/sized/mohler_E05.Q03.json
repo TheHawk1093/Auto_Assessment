@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best-case number of operations for insertion sort is N, the length of the array (equivalent forms such as 'n comparisons/operations' or 'linear, O(N)' earn the mark).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the best case is when the array is already sorted (equivalent wording such as 'input already in ascending order' earns the mark).",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for stating both that the best-case operation count is N, the array length, and that the best case is an already-sorted array. Award 2 for the operation count alone and 3 for the sorted-array condition alone; no marks for a worst-case description such as a reverse-sorted array. Do not require the exact phrasing of the model answer.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

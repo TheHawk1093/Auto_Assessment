@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size of its operand (the amount of memory the operand occupies). Equivalent wording such as 'the storage size of the operand' or 'how much memory the operand takes up' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the size is measured in bytes. Equivalent wording such as 'units of char size' or 'number of bytes' earns the mark. Answers that give only a number with no unit, or a unit other than bytes, do not earn this mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks require both that sizeof gives the size of its operand and that the size is in bytes. Award P1 for the core idea of returning the operand's size, and P2 for the byte unit. Do not award P2 for 'bits' or for an unitless number. Do not require the model answer's exact wording.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
