@@ -1,0 +1,37 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Two elements form compounds in which the mass of one element is fixed and the mass of the other element is recorded for each compound, so the mass data shows the combining masses (fixed mass of one element, mass data, and compounds formed).",
+        "marks": 3.0,
+        "partial_credit": "1.5 if clearly more than half is stated precisely, e.g. the fixed mass and the varying mass are both given, but compound formation is not explicit (or the reverse)."
+      },
+      {
+        "id": "P2",
+        "description": "The masses of the second element that combine with the fixed mass of the first are in an integer (whole-number) ratio to each other.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The whole-number ratio means matter combines in indivisible (discrete) units. The student must state this link explicitly, not just say 'whole numbers'.",
+        "marks": 2.0,
+        "partial_credit": "1 if the whole-number ratio is linked to discrete or indivisible units only vaguely (e.g. 'matter is in units')."
+      },
+      {
+        "id": "P4",
+        "description": "The indivisible unit of mass is the atom, so matter is made of atoms. The term 'atom' must be used and the conclusion stated.",
+        "marks": 2.0,
+        "partial_credit": "1 if the student says 'indivisible units' or 'particles' without naming atoms, or names atoms without linking them to the whole-number ratio."
+      }
+    ],
+    "notes": "Full marks need the fixed mass of one element, the varying mass of the other from the mass data in compounds, a whole-number ratio between those masses, an explicit statement that whole numbers mean indivisible (discrete) units, and the conclusion that the indivisible unit is the atom. Partial marks only where more than half of a point is stated precisely, as given in each point's partial credit. Vague wording such as 'matter is in small pieces' or 'elements combine in ratios' with no link to indivisible units or atoms earns nothing for that point, and a wrong statement inside a point, such as saying the ratio shows atoms can be divided, cancels it.",
+    "policy": "strict",
+    "partial_weight": null,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
