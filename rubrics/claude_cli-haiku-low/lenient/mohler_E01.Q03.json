@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the main advantages of object-oriented programming include abstraction and reusability (both named, in any wording, e.g. 'hiding complexity' for abstraction, 'reuse of code' for reusability).",
+        "marks": 5.0,
+        "partial_credit": "Half-marks (about 2-3) for naming only one of abstraction or reusability, or a related idea such as modularity or code reuse without the core fact being clearly stated."
+      }
+    ],
+    "notes": "Full marks for stating the core fact that abstraction and reusability are the main advantages, in any informal wording. Part marks for naming only one of the two, or a closely related idea like code reuse or hiding complexity without clearly tying it to the advantages. No marks for answers about unrelated benefits or only vague claims such as 'it is better'. Extra correct detail does not cost marks.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

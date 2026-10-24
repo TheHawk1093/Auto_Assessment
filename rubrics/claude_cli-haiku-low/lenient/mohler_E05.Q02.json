@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core idea of selection sort: it repeatedly finds the minimum (smallest) of the remaining unsorted elements and swaps it into the current position, working through the array from left to right. Any wording counts, e.g. \"find the smallest and swap it to the front of the unsorted part\".",
+        "marks": 5.0,
+        "partial_credit": "2 to 4 marks for a related statement with half the idea, such as \"it finds the smallest element and swaps it\" without saying it is from the remaining elements or the current position, or \"it selects the minimum and puts it in order\" with no swap or position."
+      }
+    ],
+    "notes": "Full marks go to any answer that says selection sort finds the minimum of the remaining (unsorted) elements and swaps it into the current position, in any wording, even briefly. Give 2 to 4 marks for answers that mention finding the smallest and swapping but leave out where the element goes or which elements are searched. Give 0 to 2 marks for answers that only describe sorting in general or talk about a related idea (such as insertion or bubble sort) without stating the min-find-and-swap idea. Extra correct detail costs nothing.",
+    "policy": "essence",
+    "partial_weight": 0.6,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

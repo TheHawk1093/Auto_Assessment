@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "A static local array is initialised only once (the first time the function is called), whereas a non-static array is initialised every time the function is called. Accept any wording that conveys that static initialisation happens once and persists across calls, while a normal array is set up afresh each call.",
+        "marks": 5.0,
+        "partial_credit": "Half marks (2-3) for a related statement that gets one half: e.g. says static arrays keep their value between calls, or that static arrays are created once, without saying how a normal array differs."
+      }
+    ],
+    "notes": "Full marks for stating that a static array is initialised only once (on the first call) and not on each call, in any wording, including a brief comparison with ordinary arrays being re-initialised each call. Give 2 to 4 if the student captures only half of the fact, such as saying static arrays persist between calls or are created once, without the contrast. Give 0 to 2 for remarks about scope, memory location or speed that do not state the one-time initialisation. Extra correct detail costs nothing.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

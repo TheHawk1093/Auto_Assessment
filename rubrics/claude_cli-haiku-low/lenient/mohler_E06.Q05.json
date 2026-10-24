@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns the size in bytes of its operand (the amount of memory the operand or type occupies), in any wording, e.g. 'the number of bytes the operand takes up' or 'memory size of the thing'.",
+        "marks": 5.0,
+        "partial_credit": "Half-credit (2-3 marks) for a related statement that gives only half the fact, such as 'the size of the variable' or 'how big it is' with no mention of bytes or memory."
+      }
+    ],
+    "notes": "Full marks for saying sizeof gives the size of its operand, in bytes or as the memory it occupies, in any wording, even very brief. Give 2 to 3 marks for a related answer that gets half the idea, such as 'the size' with no unit or no reference to the operand. Give 0 to 1 for answers that only mention something loosely connected, such as the type or the value of the variable, or that describe sizeof without saying what it returns. Extra correct detail does not cost marks.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core fact: the * (dereference) operator gives access to the object its operand points to, as an alias or synonym for that object's name in memory. Any wording counts, e.g. 'it dereferences the pointer', 'gives the value/object at the pointer's address', or 'an alias for the pointed-to object'.",
+        "marks": 5.0,
+        "partial_credit": "2 to 3 marks for a related statement with half the fact, such as 'it accesses the value the pointer points to' without alias or memory, or 'it is the dereference operator' with no\u8bf4\u660e of what is returned."
+      }
+    ],
+    "notes": "Full marks for any brief wording that says the star operator gives access to, or an alias for, the object its pointer operand points to (dereferencing). Part marks for an answer on the right track that names dereferencing or pointed-to values but does not say what is returned. No marks for answers about declaring pointers, the address-of operator, or multiplication, or for a wrong statement that contradicts the central idea. Extra correct detail costs nothing.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

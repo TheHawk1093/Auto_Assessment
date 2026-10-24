@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the core fact: the compiler copies (expands/inserts) the function's code at each place the function is called, instead of making a normal function call. Any wording counts, e.g. 'the code is pasted where it is called' or 'it replaces the call with the body'.",
+        "marks": 5.0,
+        "partial_credit": "Half-credit for a related statement that captures part of the idea, such as 'the function body is inserted to avoid the call overhead' or 'the code is placed inline' without saying it is copied at each call site."
+      }
+    ],
+    "notes": "Full marks if the student says the function's code is copied or inserted at every place the function is called, in any wording, even very briefly. Give half marks for a related answer that gets the idea of code being placed at the call site but is vague, or that mentions inlining without saying where the code goes. Give no marks for answers that only talk about functions in general, speed without the mechanism, or the function being stored once in memory and called as normal.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
