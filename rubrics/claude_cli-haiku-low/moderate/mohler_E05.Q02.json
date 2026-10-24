@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that selection sort finds the minimum (smallest) of the remaining, not-yet-sorted elements.",
+        "marks": 4.0,
+        "partial_credit": "Half marks for saying it selects or finds the smallest element without saying it is among the remaining elements, or for a vague 'finds the next element' idea."
+      },
+      {
+        "id": "P2",
+        "description": "States that the minimum is swapped with the current element, with the current position moving from left to right through the array.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the minimum of the remaining elements to be identified and swapped with the current element, working left to right (P1 4 marks, P2 1 mark). Part marks are for a half-stated idea, such as finding the smallest element with no mention of the remaining elements, or a swap with no mention of the current position. Extra correct detail is fine, but a wrong claim such as sorting by maximum or swapping with a random element loses that point's marks.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

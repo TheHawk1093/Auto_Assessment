@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the star (*) operator returns an alias or synonym for the object its operand points to in memory (the pointed-to object itself, not a copy).",
+        "marks": 4.0,
+        "partial_credit": "Half marks for saying it gives access to the pointed-to object or its value without clearly saying it is an alias/synonym, or saying alias without tying it to the pointed-to object in memory."
+      },
+      {
+        "id": "P2",
+        "description": "Names the star operator as the dereferencing operator (the indirection operator).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the core fact: the star operator gives an alias (synonym) for the object that its operand points to in memory, and the student should also name it as the dereferencing operator. Wording can differ, such as \"the value at the address\" if it is clearly the object itself. Answers that only say it gets a value, or that it multiplies, or that it declares a pointer, earn no marks for P1. Extra correct detail is fine.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

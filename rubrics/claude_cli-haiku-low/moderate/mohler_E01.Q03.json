@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States abstraction as a main advantage of object-oriented programming (the student names abstraction, or clearly describes it as hiding complex detail and exposing only what is needed).",
+        "marks": 3.0,
+        "partial_credit": "half marks for a vague or related idea, such as hiding details or simplifying code, without naming abstraction"
+      },
+      {
+        "id": "P2",
+        "description": "States reusability as a main advantage of object-oriented programming (the student names reusability, or clearly describes reusing existing classes or code).",
+        "marks": 2.0,
+        "partial_credit": "half marks for a vague mention, such as code can be used again, without linking it to classes or objects"
+      }
+    ],
+    "notes": "Full marks need both abstraction and reusability named as advantages of object-oriented programming. Abstraction carries 3 marks and reusability 2 marks, and each is judged separately, so a wrong or missing point does not reduce the other. Extra correct advantages such as encapsulation or inheritance are fine but do not replace either required point; a wrong advantage stated alongside them does not cancel a correct point.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
