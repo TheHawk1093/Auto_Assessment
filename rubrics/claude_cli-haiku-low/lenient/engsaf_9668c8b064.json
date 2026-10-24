@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/9668c8b064",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the statement is FALSE.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies that each process is an independent entity needing its own separate OS state or PCB (tracking its execution, memory, open files or stack), so a single shared PCB with a reference counter cannot work.",
+        "marks": 1.5,
+        "partial_credit": "Half (0.75) if the student says processes are independent or need separate state but does not say a shared PCB is wrong, or gives only a vague reason."
+      }
+    ],
+    "notes": "Full marks need the verdict FALSE and a justification that each process is independent and needs its own separate process state (its own PCB or OS record), so one shared PCB with a reference counter is wrong. Exact technical wording is not needed; any clear statement of separate per-process state counts. Give part marks for a vague but correct direction, and no marks for a TRUE verdict or a justification that accepts the shared PCB idea or is unrelated.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid use of lasers from the model answer: cutting, welding, medical surgery, optical fibre communication, or laser printing (any wording, e.g. 'used to cut metal', 'surgery').",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States a second, different valid use of lasers from the same list (cutting, welding, medical surgery, optical fibre communication, or laser printing). It must not repeat the use given for P1.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for any two different uses from the model answer list: cutting, welding, medical surgery, optical fibre communication, or laser printing, in any wording. Give 1 mark for one correct use, and 0 for none or for two uses that are the same (e.g. 'cutting' and 'cutting metal'). Do not credit uses outside the model answer, and do not take marks off for an extra vague remark unless it contradicts a use.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

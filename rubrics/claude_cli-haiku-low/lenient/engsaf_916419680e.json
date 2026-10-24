@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/916419680e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the central idea: multiple hidden layers are desirable when the problem is complex and the network must learn (extract) features in stages, i.e. deep or hierarchical feature learning, so the features are learned properly to perform the task.",
+        "marks": 1.5,
+        "partial_credit": "Half (0.75) for a vague but on-track idea such as 'for complex problems' or 'to learn better features' without saying the features are learned in layers or extracted from the data."
+      },
+      {
+        "id": "P2",
+        "description": "Gives at least one correct example of a case needing multiple hidden layers, such as multiclass classification or the XOR function.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) go to an answer that states the core idea, that multiple hidden layers are needed when complex features must be learned or extracted in stages (deep learning), and gives at least one example such as multiclass classification or XOR. Give half the P1 marks for a vague answer that is on track, such as 'for complex problems', without the idea of learning features through layers. An example alone with no reason earns only the P2 mark, and an answer with no reasoning and no example earns 0. Wrong extra remarks do not cost marks unless they contradict the central idea.",
+    "policy": "essence",
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
