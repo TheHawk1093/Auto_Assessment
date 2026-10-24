@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Table content: the bridge table holds a mapping from a destination MAC address (station address) to the outgoing LAN interface/port on which that station can be reached.",
+        "marks": 0.2,
+        "partial_credit": "Half (0.1) if only 'addresses and ports' is stated without the MAC-to-interface mapping."
+      },
+      {
+        "id": "P2",
+        "description": "Backward learning modification: when a frame arrives, the bridge reads the SOURCE address Q and the incoming LAN/port L, and adds the entry 'Q can be reached over L' with a timestamp (the table is initially empty and is built by observing traffic; timestamps are used to update or purge old entries).",
+        "marks": 0.3,
+        "partial_credit": "Half (0.15) if the entry is added from the source address and incoming port but the timestamp/update-or-purge aspect is missing or wrong. No marks if the destination address is used instead of the source address."
+      },
+      {
+        "id": "P3",
+        "description": "Forwarding use: when a frame arrives, the bridge looks up the DESTINATION address in the table and, if an entry exists, forwards the frame only on the recorded interface (selective forwarding) instead of flooding it on all links.",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if it says the table is looked up and the frame forwarded to the correct port, but does not contrast this with flooding or does not state that it is the destination address being looked up."
+      },
+      {
+        "id": "P4",
+        "description": "One correct benefit of this use: it avoids unnecessary flooding/duplicate frames, reducing congestion and making better use of bandwidth than flooding.",
+        "marks": 0.25,
+        "partial_credit": "Half (0.125) if the benefit is stated vaguely (e.g. 'faster' or 'more efficient') without linking it to avoiding flooding, traffic or congestion. Any one of the listed benefits is sufficient for full marks; a wrong benefit (e.g. 'stronger security') earns nothing."
+      }
+    ],
+    "notes": "Full marks need all four elements stated precisely: the MAC-to-port mapping; that the entry is added from the source address and incoming port with a timestamp (used to update/purge); forwarding by looking up the destination address and sending only on the recorded port instead of flooding; and one benefit such as less flooding, less duplication, less congestion or better bandwidth use. Half-marks apply only where more than half of a point is precise, as set out in each partial credit. An answer that only says the bridge 'learns addresses' or 'forwards to the right port' without the specific details earns no marks for those points.",
+    "policy": "strict",
+    "partial_weight": null,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

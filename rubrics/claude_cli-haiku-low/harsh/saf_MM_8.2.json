@@ -1,0 +1,43 @@
+{
+  "question_key": "saf/MM_8.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Purpose: both are a more efficient form of broadcasting than flooding, minimising duplicate packets in the network.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "RPF check: the node uses its unicast routing table to test whether the packet from source S arrived over neighbour N, i.e. whether N is the next hop on its best route back to S. Only then is the packet accepted for forwarding.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "RPF forwarding: if the check passes, the packet is forwarded to all adjacent nodes except N. Otherwise it is not forwarded.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "RPB learning: each node monitors unicast traffic to learn which best paths it lies on, i.e. it sees unicast packets travelling between A and B (in either direction) and so knows it is part of that spanning tree.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "RPB forwarding: packets are forwarded only on edges that belong to a spanning tree the node is part of, excluding the incoming link from N.",
+        "marks": 0.2,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the purpose (fewer duplicates than flooding) and both mechanisms stated precisely: RPF uses the routing table to check the arrival neighbour N is on the best route back to S, then forwards to all other neighbours; RPB learns spanning-tree membership from monitored unicast traffic and forwards only on tree edges except the incoming link. Each point is all-or-nothing: a vague statement such as \"it uses routing to avoid loops\" without the check against the route to the source earns nothing for that point. A wrong detail, such as forwarding back over N, forwarding on all links in RPB, or describing learning from broadcast traffic, cancels the point it affects. No partial credit is given.",
+    "policy": "strict",
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

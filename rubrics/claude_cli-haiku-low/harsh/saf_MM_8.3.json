@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the property: a spanning tree has a single unique path between every pair of nodes (equivalently, it is loop-free/acyclic while containing all nodes), so no duplicate packets are forwarded.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains why this property makes spanning trees appealing for broadcast/multicast: packets are not duplicated or looped, so no unnecessary copies are distributed through the network.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Modification step: add multicast group membership information to the link state packets, so each node learns which other nodes belong to each group (initially each node only knows its own groups).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Construction step: once the full topology and group information are flooded to every node, each node has the complete state locally and builds the multicast spanning tree itself using an algorithm such as Prim's or Kruskal's.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need the loop-free/single-unique-path property AND the reason it suits broadcast/multicast (no duplicate packets), plus both modifications: adding group membership to link state packets, and each node building the tree locally from the complete topology using Prim's or Kruskal's. Points are all-or-nothing at harsh level; a vague statement such as \"it is efficient\" earns nothing for P1 or P2. A statement that the tree contains loops or omits nodes is wrong and cancels P1. For P3 and P4, the student must mention that the full topology and group information must be known before the tree is built; omitting this makes P4 earn nothing.",
+    "policy": "strict",
+    "partial_weight": 0.0,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

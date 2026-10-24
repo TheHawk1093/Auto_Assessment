@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/IPP_6.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Definition: DHCP is a network management protocol for IP networks in which a DHCP server dynamically assigns an IP address and other network configuration parameters to each device. The student must state the server assigns the IP address dynamically and that other configuration parameters are also assigned.",
+        "marks": 0.4,
+        "partial_credit": "0.2 if the student names DHCP as a protocol that assigns IP addresses dynamically but omits the other configuration parameters or the server."
+      },
+      {
+        "id": "P2",
+        "description": "Use: simplifies the installation and configuration of end systems (hosts), so they do not need to be configured by hand.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Use: allows both manual and automatic IP address assignment. The student must mention both manual and automatic assignment.",
+        "marks": 0.2,
+        "partial_credit": "0 if only automatic assignment is mentioned."
+      },
+      {
+        "id": "P4",
+        "description": "Use: provides additional configuration information to hosts, such as the DNS server, netmask or subnet mask, and default router/gateway. At least one correct example must be given, and any example stated must be correct.",
+        "marks": 0.2,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need a correct definition (DHCP server dynamically assigning IP address and other configuration parameters in IP networks) plus the three uses: simplifying end-system configuration, manual and automatic IP assignment, and providing extra configuration such as DNS server, netmask or default router. Mention of RARP or BOOTP is not required and earns nothing extra. A wrong example, such as a DNS server described as an IP assigner, cancels that point. Give part marks only as stated in the partial credit column; otherwise a point is all or nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": "harsh"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
