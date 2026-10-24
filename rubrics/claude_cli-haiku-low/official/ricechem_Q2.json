@@ -1,0 +1,43 @@
+{
+  "question_key": "ricechem/Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly states that frequency is proportional to energy of light",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explaining sentence 1: energy levels of an electron in an atom are quantized",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Explaining sentence 1: FULLY explains energy/frequency absorbed must equal the difference in energy levels in an electron",
+        "marks": 2.0,
+        "partial_credit": "1 of 2 marks if only partially explained."
+      },
+      {
+        "id": "P4",
+        "description": "Explaining sentence 2: a minimum amount of energy is needed to eject an electron",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "Explaining sentence 2: any additional energy becomes kinetic energy",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Marked point by point from the published rubric. Deduct 1 for an incorrect statement.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

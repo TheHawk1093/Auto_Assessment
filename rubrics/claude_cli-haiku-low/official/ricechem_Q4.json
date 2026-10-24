@@ -1,0 +1,49 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Fixed mass of one element",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Mass data in LoMP",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Combine to form compounds",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Integer/whole number ratio",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "Whole numbers mean indivisible/discrete",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P6",
+        "description": "Indivisible unit of mass = atom",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Marked point by point from the published rubric. Deduct 1 for an incorrect or misleading statement.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

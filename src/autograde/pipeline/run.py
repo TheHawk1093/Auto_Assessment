@@ -48,9 +48,12 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
     if rubric.level:  # a rubric written at a level makes the grader follow that level
         policy = LEVEL_POLICY[rubric.level]
         weight = LEVEL_PARTIAL_WEIGHT[rubric.level]
+    policy = rubric.policy or policy  # a rubric can also set its own tightness
+    if rubric.partial_weight is not None and weight is not None:
+        weight = rubric.partial_weight
     if cfg.votes > 1 and weight is None:
         raise ValueError("votes > 1 needs mark_rule: status")
-    reading = read_answer(item, client) if cfg.read_first else None
+    reading = read_answer(item, client, cfg.ocr is not None) if cfg.read_first else None
 
     def once(_: int) -> tuple[Grading, list[str]]:
         return mark_answer(
@@ -146,7 +149,7 @@ def run_items(
     questions = {i.question_key: to_question(i) for i in todo}
     if mode == "pipeline" and todo:
         store = RubricStore(
-            settings.paths.cache_dir,
+            settings.paths.rubrics_dir,
             client,
             run_selftest=settings.pipeline.rubric_selftest,
             variant=settings.pipeline.rubric_variant,
@@ -165,7 +168,7 @@ def run_items(
             )
         )
         second_store = RubricStore(
-            settings.paths.cache_dir,
+            settings.paths.rubrics_dir,
             second_client,
             run_selftest=settings.pipeline.rubric_selftest,
             variant=settings.pipeline.rubric_variant,

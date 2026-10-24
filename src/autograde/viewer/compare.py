@@ -62,7 +62,7 @@ def _client_name(setup: dict) -> str:
     return name + (f"-{llm['effort']}" if llm.get("effort") else "")
 
 
-def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -> dict:
+def method_data(tab: Tab, runs_dir: Path, rubrics_dir: Path, ids: Sequence[str]) -> dict:
     run_dir = runs_dir / tab.run
     setup = _read_json(run_dir / "run.json") or {}
     variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
@@ -84,7 +84,7 @@ def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -
         r = results.get(id_)
         if r is None:
             continue
-        record = cached_record(cache_dir, client, r.item.question_key, variant)
+        record = cached_record(rubrics_dir, client, r.item.question_key, variant)
         points = (
             {p.id: {"description": p.description, "marks": p.marks} for p in record.rubric.points}
             if record
@@ -130,7 +130,7 @@ def method_data(tab: Tab, runs_dir: Path, cache_dir: Path, ids: Sequence[str]) -
 
 
 def build_data(
-    tabs: Sequence[Tab], runs_dir: Path, cache_dir: Path, n: int, title: str, subtitle: str
+    tabs: Sequence[Tab], runs_dir: Path, rubrics_dir: Path, n: int, title: str, subtitle: str
 ) -> dict:
     first = [
         Result.model_validate(x) for x in _read_lines(runs_dir / tabs[0].run / "results.jsonl")
@@ -149,7 +149,7 @@ def build_data(
         }
         for r in chosen
     ]
-    methods = [method_data(t, runs_dir, cache_dir, ids) for t in tabs]
+    methods = [method_data(t, runs_dir, rubrics_dir, ids) for t in tabs]
     return {"title": title, "subtitle": subtitle, "questions": questions, "methods": methods}
 
 

@@ -96,6 +96,8 @@ def official_rubric(qid: str) -> Rubric:
             for i, (marks, desc, _, partial_note) in enumerate(points, 1)
         ],
         notes=f"Marked point by point from the published rubric. {deduct}",
+        policy="balanced",  # the teachers want each claim stated, not implied
+        partial_weight=0.5,  # their half marks are half
     )
 
 

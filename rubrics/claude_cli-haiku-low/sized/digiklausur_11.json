@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Role of the learning rate: it controls the speed of convergence of steepest descent. A low learning rate gives slow, overdamped convergence, and a high learning rate gives underdamped convergence with a zigzagging path. Equivalent wording earns the mark, and naming only 'controls speed' without the low/high behaviour is not enough.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Danger: if the learning rate exceeds a critical value, learning becomes unstable (the updates diverge or overshoot without converging). Equivalent wording such as 'diverges' or 'fails to converge' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) require both the role of the learning rate in controlling convergence speed, with its low-rate (overdamped, slow) and high-rate (underdamped, zigzagging) behaviour, and the danger of instability once the learning rate exceeds a critical value. Award 1 mark for a correct role without the danger, or for the danger without the role. No marks for vague statements such as 'it affects learning' or 'it can go wrong'.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

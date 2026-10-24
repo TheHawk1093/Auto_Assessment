@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a convolutional layer is present, with kernels (filters) that convolve over the input image. Equivalent wording such as 'convolution layer with filters sliding over the image' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names at least two of the other layers from the model answer: an activation layer (ReLU), a pooling layer (max or average), or fully connected layer(s) followed by a softmax layer. Equivalent wording earns the mark. Full detail of each layer is not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for naming the convolutional layer with kernels convolving over the input, and for naming at least two further layer types (activation/ReLU, pooling, fully connected, softmax). Award no marks for a point that is missing, vague (e.g. 'many layers' alone), or incorrect. The model answer is a single sentence, so two points at 1 mark each cover it without splitting ideas.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

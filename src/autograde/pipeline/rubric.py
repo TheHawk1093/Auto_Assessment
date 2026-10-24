@@ -88,18 +88,18 @@ class RubricStore:
 
     def __init__(
         self,
-        cache_dir: Path,
+        rubrics_dir: Path,
         client: LLMClient,
         run_selftest: bool = True,
         variant: str = "generated",
     ) -> None:
-        self.cache_dir = cache_dir
+        self.rubrics_dir = rubrics_dir
         self.client = client
         self.run_selftest = run_selftest
         self.variant = variant
 
     def get(self, question: Question) -> RubricRecord:
-        path = rubric_path(self.cache_dir, self.client.name, question.key, self.variant)
+        path = rubric_path(self.rubrics_dir, self.client.name, question.key, self.variant)
         if path.exists():
             return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))
         record = build_record(question, self.client, self.run_selftest, self.variant)
@@ -111,19 +111,16 @@ class RubricStore:
 
 
 def rubric_path(
-    cache_dir: Path, client_name: str, question_key: str, variant: str = "generated"
+    rubrics_dir: Path, client_name: str, question_key: str, variant: str = "generated"
 ) -> Path:
-    base = cache_dir / "rubrics" / _slug(client_name)
-    if variant != "generated":
-        base = base / _slug(variant)
-    return base / f"{_slug(question_key)}.json"
+    return rubrics_dir / _slug(client_name) / _slug(variant) / f"{_slug(question_key)}.json"
 
 
 def cached_record(
-    cache_dir: Path, client_name: str, question_key: str, variant: str = "generated"
+    rubrics_dir: Path, client_name: str, question_key: str, variant: str = "generated"
 ) -> RubricRecord | None:
     """Read a stored scheme without ever calling a model."""
-    path = rubric_path(cache_dir, client_name, question_key, variant)
+    path = rubric_path(rubrics_dir, client_name, question_key, variant)
     if not path.exists():
         return None
     return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))

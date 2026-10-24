@@ -43,7 +43,7 @@ FEEDBACK = {"strengths": ["You said it updates weights."], "improvements": [], "
 def settings(tmp_path: Path) -> Settings:
     return Settings(
         pipeline=PipelineConfig(rubric_selftest=True, max_workers=2),
-        paths=PathsConfig(cache_dir=tmp_path / "cache", runs_dir=tmp_path / "runs"),
+        paths=PathsConfig(rubrics_dir=tmp_path / "cache", runs_dir=tmp_path / "runs"),
     )
 
 
@@ -121,7 +121,7 @@ def test_bad_marking_is_retried_then_accepted(tmp_path: Path):
         pipeline=PipelineConfig(
             rubric_selftest=False, max_workers=1, read_first=False, evidence_policy="strict"
         ),
-        paths=PathsConfig(cache_dir=tmp_path / "c"),
+        paths=PathsConfig(rubrics_dir=tmp_path / "c"),
     )
     out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "r.jsonl")
     assert out[0].predicted_mark == 1.0 and "retried" in out[0].flags
@@ -137,7 +137,7 @@ def run_with_policy(tmp_path: Path, policy: str):
         pipeline=PipelineConfig(
             rubric_selftest=False, max_workers=1, read_first=False, evidence_policy=policy
         ),
-        paths=PathsConfig(cache_dir=tmp_path / "c"),
+        paths=PathsConfig(rubrics_dir=tmp_path / "c"),
     )
     out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "r.jsonl")
     return out[0], c

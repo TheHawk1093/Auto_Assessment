@@ -53,7 +53,7 @@ def _rubric_view(record) -> dict | None:
 
 
 def dataset_data(
-    name: str, data_dir: Path, cache_dir: Path, runs_dir: Path, client_name: str
+    name: str, data_dir: Path, rubrics_dir: Path, runs_dir: Path, client_name: str
 ) -> dict:
     items = load_dataset(name, data_dir)
     first = {}
@@ -87,7 +87,9 @@ def dataset_data(
     questions = []
     for key in sorted(first):
         it = first[key]
-        levels = {lv: _rubric_view(cached_record(cache_dir, client_name, key, lv)) for lv in LEVELS}
+        levels = {
+            lv: _rubric_view(cached_record(rubrics_dir, client_name, key, lv)) for lv in LEVELS
+        }
         questions.append(
             {
                 "key": key,
@@ -110,10 +112,12 @@ def dataset_data(
     }
 
 
-def build_data(data_dir: Path, cache_dir: Path, runs_dir: Path, client_name: str, datasets) -> dict:
+def build_data(
+    data_dir: Path, rubrics_dir: Path, runs_dir: Path, client_name: str, datasets
+) -> dict:
     return {
         "title": "Rubrics at three strictness levels",
-        "sets": [dataset_data(d, data_dir, cache_dir, runs_dir, client_name) for d in datasets],
+        "sets": [dataset_data(d, data_dir, rubrics_dir, runs_dir, client_name) for d in datasets],
     }
 
 

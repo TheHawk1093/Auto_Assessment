@@ -1,0 +1,12 @@
+# Proof of concept: Haiku for every job, lowest effort, no self-test, no extra votes.
+# Use with small samples: autograde --config configs/poc.yaml poc
+llm: {backend: claude_cli, model: haiku, effort: low, timeout_s: 240, retries: 2}
+judge: {backend: claude_cli, model: haiku, effort: low}
+student: {backend: claude_cli, model: haiku, effort: low}
+pipeline:
+  rubric_selftest: false
+  read_first: true
+  rubric_variant: sized
+  votes: 1
+  max_workers: 4
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

@@ -1,0 +1,5 @@
+Note on the source: the student's answer was typed from handwriting by OCR (text recognition), not by the student. It may contain transcription errors that are not the student's mistakes: look-alike characters swapped (l, 1 and I; O and 0; rn and m; cl and d; u and v; e and c), words split or run together, missing or wrong punctuation, and lost symbols (superscripts and subscripts flattened, so x^2 may appear as x2 and H2O may lose its subscript, and signs or Greek letters may be dropped). A span written [?word?] is one the transcriber was unsure about.
+
+- Read through this noise to the most likely intended words when the context makes them clear, and treat such errors as neutral. Do not list them as problems and do not count them against the student.
+- If a span is too garbled to read with confidence, do not guess what it means. List it under problems as unreadable (quote the span) and leave out any idea that depends on it.
+- Never invent content. Do not add an idea, number or step that is not supported by the text, and do not fill gaps with what a correct answer would say.

@@ -7,13 +7,16 @@ from autograde.llm import LLMClient
 from autograde.schemas import Item, Reading
 
 
-def read_answer(item: Item, client: LLMClient) -> Reading | None:
+def read_answer(item: Item, client: LLMClient, ocr: bool = False) -> Reading | None:
     """Summarise what the student says. Sees only the question and the answer, never the model
     answer or the scheme, so the reading cannot be pulled towards the reference wording."""
     if not item.student_answer.strip():
         return None
     user = prompts.render("read.user", question=item.question, student_answer=item.student_answer)
-    return client.ask(prompts.system("read"), user, Reading)
+    system = prompts.system("read")
+    if ocr:
+        system += "\n\n" + prompts.system("read.ocr")
+    return client.ask(system, user, Reading)
 
 
 def reading_block(reading: Reading) -> str:

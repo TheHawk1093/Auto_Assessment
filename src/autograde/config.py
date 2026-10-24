@@ -9,6 +9,7 @@ import yaml
 from pydantic import BaseModel
 
 DEFAULT_CONFIG = Path("configs/default.yaml")
+FEEDBACK_STYLES = ("standard", "hints", "critique", "formal", "brief", "detailed", "coach")
 
 
 class LLMConfig(BaseModel):
@@ -27,20 +28,19 @@ class PipelineConfig(BaseModel):
     mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
     partial_weight: float = 0.9  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
-    feedback_variant: Literal[
-        "standard", "hints", "critique", "formal", "brief", "detailed", "coach"
-    ] = "standard"
+    feedback_variant: Literal[*FEEDBACK_STYLES] = "standard"
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins
     second_model: str | None = None  # a cheaper model also marks; a big gap flags the answer
     disagree_gap: float = 0.15  # share of the total marks that counts as a big gap
     feedback_n: int = 1  # write this many feedback drafts and keep the best
+    ocr: Literal["light", "medium", "heavy"] | None = None  # answers are OCR text of this noise
     grade_retries: int = 1
     max_workers: int = 4
 
 
 class PathsConfig(BaseModel):
     data_dir: Path = Path("data/raw")
-    cache_dir: Path = Path("data/cache")
+    rubrics_dir: Path = Path("rubrics")
     runs_dir: Path = Path("runs")
 
 

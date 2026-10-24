@@ -57,6 +57,12 @@ class Rubric(BaseModel):
         default="",
         description="Two or three plain sentences: what earns full, part and no marks.",
     )
+    policy: Literal["literal", "essence", "balanced", "strict"] | None = Field(
+        default=None, description="How tightly to judge a point. Overrides the level and config."
+    )
+    partial_weight: float | None = Field(
+        default=None, ge=0, le=1, description="Share of a point's marks for a partial verdict."
+    )
     level: Literal["lenient", "moderate", "harsh"] | None = Field(
         default=None, description="Set by code: the strictness this rubric was written at."
     )

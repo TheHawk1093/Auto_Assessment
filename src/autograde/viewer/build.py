@@ -74,7 +74,7 @@ def _grading_with_checks(r: Result) -> dict | None:
 def build_data(
     results: Sequence[Result],
     title: str,
-    cache_dir: Path,
+    rubrics_dir: Path,
     client_name: str,
     judgements: dict[str, dict] | None = None,
     run_info: dict | None = None,
@@ -83,7 +83,7 @@ def build_data(
     judgements = judgements or {}
     items = []
     for r in results:
-        record = cached_record(cache_dir, client_name, r.item.question_key)
+        record = cached_record(rubrics_dir, client_name, r.item.question_key)
         points = (
             {p.id: {"description": p.description, "marks": p.marks} for p in record.rubric.points}
             if record
@@ -116,11 +116,11 @@ def write_report(
     results: Sequence[Result],
     out_path: Path,
     title: str,
-    cache_dir: Path,
+    rubrics_dir: Path,
     client_name: str,
     judgements: dict[str, dict] | None = None,
     run_info: dict | None = None,
 ) -> Path:
-    data = build_data(results, title, cache_dir, client_name, judgements, run_info)
+    data = build_data(results, title, rubrics_dir, client_name, judgements, run_info)
     out_path.write_text(render_html(data), encoding="utf-8")
     return out_path
