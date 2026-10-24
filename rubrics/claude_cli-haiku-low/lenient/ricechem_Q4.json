@@ -1,0 +1,49 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a fixed mass of one element combines with a fixed mass of another element to form a compound (e.g. a set mass of one element always pairs with the same mass of the other).",
+        "marks": 1.0,
+        "partial_credit": "Implied fixed masses without naming the fixed-mass idea, or only one element discussed."
+      },
+      {
+        "id": "P2",
+        "description": "Refers to mass data showing that when the same two elements form different compounds, the masses of one element that combine with a fixed mass of the other are in a ratio.",
+        "marks": 1.0,
+        "partial_credit": "Mentions different compounds or mass ratios vaguely without linking them to the same two elements."
+      },
+      {
+        "id": "P3",
+        "description": "States that the elements combine to form more than one compound (multiple compounds from the same pair of elements).",
+        "marks": 1.0,
+        "partial_credit": "Says 'compounds' without indicating that the same two elements form them."
+      },
+      {
+        "id": "P4",
+        "description": "States that the mass ratios are simple whole-number (integer) ratios.",
+        "marks": 1.0,
+        "partial_credit": "Says 'simple ratio' or 'small numbers' without saying whole numbers."
+      },
+      {
+        "id": "P5",
+        "description": "States that whole-number ratios mean matter is made of indivisible (discrete) units, i.e. the mass cannot be divided into arbitrary amounts.",
+        "marks": 2.0,
+        "partial_credit": "Says whole numbers suggest particles or units, but does not state they are indivisible or discrete (1 mark)."
+      },
+      {
+        "id": "P6",
+        "description": "Concludes that the indivisible unit of mass is the atom, so matter is made of atoms.",
+        "marks": 2.0,
+        "partial_credit": "Mentions 'particles' or 'units' of matter without naming atoms (1 mark)."
+      }
+    ],
+    "notes": "Full marks need the chain: fixed masses of elements combining, several compounds with mass ratios that are whole numbers, whole numbers implying indivisible units, and those units being atoms. Lenient marking accepts any wording and implied links, so give half marks for half-stated claims and be generous with the 2-mark points. A blank, off-topic, or merely restated question earns 0, and a wrong extra remark costs nothing unless it contradicts the central idea.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "lenient"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
