@@ -24,7 +24,7 @@ autograde view --name dk_pipeline      # rebuild runs/dk_pipeline/report.html
 
 Open `runs/<name>/report.html` to read the samples (question, model answer, student answer with quoted evidence highlighted, our marks vs the teacher's, feedback; filter to answers that differ from the teacher). `run` and `judge` rebuild it automatically.
 
-Outputs go to `runs/<name>/`: `report.html`, `results.jsonl` (marks, per-point verdicts, feedback, flags), `metrics.json`, `usage.json`. Interrupted runs resume where they stopped. Marking schemes are cached in `data/cache/rubrics/`.
+Outputs go to `runs/<name>/`: `report.html`, `results.jsonl` (marks, per-point verdicts, feedback, flags), `metrics.json`, `usage.json`. Interrupted runs resume where they stopped. Marking schemes are stored in `rubrics/<model>/<variant>/` (JSON, plus readable `<dataset>.md` from `autograde rubrics-md`).
 
 Models are set in `configs/default.yaml`. `claude_cli` uses your Claude Code login (good for early tests, one process per call). `anthropic` uses the API and needs `ANTHROPIC_API_KEY`.
 
@@ -42,7 +42,10 @@ Item -> RubricStore (write once per question, self-test, cache)
 | `src/autograde/datasets/` | Loaders, dev/test split by question, downloader |
 | `src/autograde/llm/` | One `ask(system, user, PydanticModel)` interface; CLI and API backends |
 | `src/autograde/pipeline/` | rubric, grade, verify, feedback, baseline, run |
-| `src/autograde/prompts/` | Prompt text as markdown |
+| `src/autograde/prompts/` | Every prompt, as markdown (the only place prompts live) |
+| `rubrics/` | Every stored marking scheme, by model and strictness |
+| `src/autograde/cli/` | Commands, one module per group (runs, evals, rubrics, pages) |
+| `src/autograde/ocr/` | OCR track: simulated noise, image transcription (see its README) |
 | `src/autograde/evaluation/` | Mark metrics, feedback judge |
 | `src/autograde/viewer/` | `report.html` template and builder |
 
@@ -58,7 +61,7 @@ on the same sample), then commits the code and tags it.
 - Commit subject carries the scores: `exp(v1): error 0.150 | bias -0.04 | r 0.85 | qwk 0.75 | $0.60 [...]`.
 - Tag `exp-<variant>-<run>` holds the full message: `git show exp-v1-dk_s1_v1`.
 - List everything tried: `autograde history` (same as `git tag -n1 -l "exp-*"`).
-- Fall back: `git checkout exp-<variant>-<run>`. Marking schemes in `data/cache/rubrics` are committed,
+- Fall back: `git checkout exp-<variant>-<run>`. Marking schemes in `rubrics/` are committed,
   so the exact schemes come back with the code.
 - Nothing is pushed. Push when you choose: `git push --follow-tags`.
 - `--no-commit` skips the git step for throwaway runs.

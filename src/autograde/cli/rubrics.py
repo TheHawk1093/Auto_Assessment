@@ -29,7 +29,9 @@ def register(sub) -> None:
     md = sub.add_parser("rubrics-md", help="export stored rubrics as markdown files to read")
     md.add_argument("--dataset", required=True, choices=sorted(LOADERS))
     md.add_argument(
-        "--variants", default=",".join(["generated", "sized", *LEVELS]), help="comma separated"
+        "--variants",
+        default=",".join(["generated", "sized", "official", *LEVELS]),
+        help="comma separated",
     )
     md.set_defaults(func=cmd_markdown)
 
