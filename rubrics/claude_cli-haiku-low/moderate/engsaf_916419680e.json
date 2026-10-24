@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/916419680e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that multiple hidden layers are desirable when deep or hierarchical learning of features is needed: the hidden layers extract and learn features from the data so the network can perform the task well (complex or non-linear patterns).",
+        "marks": 1.0,
+        "partial_credit": "Half a mark for saying more hidden layers help learn features or perform better, without the idea of extracting or learning features from the data, or with only a vague reference to deep learning."
+      },
+      {
+        "id": "P2",
+        "description": "Gives a suitable example of a case needing multiple hidden layers, such as multiclass classification or the XOR function (a problem that is not linearly separable).",
+        "marks": 1.0,
+        "partial_credit": "Half a mark for an example that is named but not justified, or a plausible example that is not one of the standard cases (for example, a complex non-linear classification problem)."
+      }
+    ],
+    "notes": "Full marks need both the idea that extra hidden layers are needed to learn or extract features (deep learning) for complex tasks, and a valid example such as multiclass classification or XOR. Half marks go for a vague feature-learning idea, or an example given without explanation. No marks for answers that say only \"more layers are better\" with no feature-learning idea and no example, or for unrelated answers such as one hidden layer being sufficient.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

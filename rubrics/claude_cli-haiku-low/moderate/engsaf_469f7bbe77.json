@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/469f7bbe77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one correct use of a laser from the model answer: cutting, welding, medical surgery, optical fibre communication, or laser printing (clear synonyms such as 'laser cutting of metal' or 'eye surgery' are accepted).",
+        "marks": 1.0,
+        "partial_credit": "Half a mark for a use stated vaguely, such as 'industry' or 'communication' without the specific application."
+      },
+      {
+        "id": "P2",
+        "description": "States a second, different correct use of a laser from the model answer (cutting, welding, medical surgery, optical fibre communication, or laser printing), not repeating the use given in P1.",
+        "marks": 1.0,
+        "partial_credit": "Half a mark for a second use stated vaguely, or for a use that is correct but repeats P1 in different words."
+      }
+    ],
+    "notes": "Award 1 mark for each of two different correct uses of a laser, taken from the model answer's list (cutting, welding, medical surgery, optical fibre communication, laser printing) or clear synonyms. Any two of these earn full marks, and the student does not need the full list. Give half a mark for a vague use such as 'industry' or 'communication' alone, and give no marks for a wrong or unrelated use, or for two uses that are really the same use repeated.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

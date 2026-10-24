@@ -1,0 +1,25 @@
+{
+  "question_key": "engsaf/36dc74b1c6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the statement is TRUE.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Justifies it by stating that parent and child are separate (different) processes, so the parent can carry out its own operations, including exec, without waiting for the child to terminate.",
+        "marks": 1.0,
+        "partial_credit": "half (0.5) for a justification that says the processes are separate but does not link this to the parent being free to call exec, or states it vaguely"
+      }
+    ],
+    "notes": "Full marks need the answer TRUE together with a justification that parent and child are separate processes, so the parent can perform exec on its own without waiting for the child to end. Per the exam rule, no correct justification means no marks, so a bare TRUE earns 0 overall; a justification that is only half-right earns 0.5 on P2. Answers that say FALSE, or that justify with a wrong idea (for example, that exec must wait for the child to finish), earn 0 on the affected point.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

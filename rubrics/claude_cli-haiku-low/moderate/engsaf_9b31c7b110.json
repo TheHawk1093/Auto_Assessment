@@ -1,0 +1,31 @@
+{
+  "question_key": "engsaf/9b31c7b110",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the data rate must not exceed the channel capacity (the transmitted data rate must be kept within what the communication channel can carry).",
+        "marks": 0.67,
+        "partial_credit": "Half marks for a vague statement that the compressed data must suit the channel, without saying the rate must not exceed capacity."
+      },
+      {
+        "id": "P2",
+        "description": "States that the full capacity of the communication channel should be utilized (the channel should be used to its maximum, not under-used).",
+        "marks": 0.67,
+        "partial_credit": "Half marks for saying the channel should be used efficiently or well, without saying full capacity."
+      },
+      {
+        "id": "P3",
+        "description": "States that maximum quality (of the data or image) should be preserved, meaning the compression should keep as much quality as possible.",
+        "marks": 0.66,
+        "partial_credit": "Half marks for saying quality should be kept or loss minimised, without the idea of maximum quality."
+      }
+    ],
+    "notes": "Award 2 marks for all three critical issues: data rate not exceeding channel capacity, full use of channel capacity, and preservation of maximum quality, each in any wording. Each issue is worth two-thirds of a mark, and an issue stated only vaguely or halfway earns half of its share (one-third). A wrong statement on one issue, such as saying the data rate may exceed capacity, loses only that issue's marks, and any extra correct issue beyond the three should not add marks above the total of 2.",
+    "policy": null,
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

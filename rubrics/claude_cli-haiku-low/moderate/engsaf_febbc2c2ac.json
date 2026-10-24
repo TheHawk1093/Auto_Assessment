@@ -1,0 +1,31 @@
+{
+  "question_key": "engsaf/febbc2c2ac",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names a first distinct parameter affecting MRR from the model answer: frequency of vibration, amplitude of vibration, abrasive slurry concentration, or slurry particle diameter.",
+        "marks": 0.67,
+        "partial_credit": "Half the marks for a vague term such as 'vibration' or 'slurry' without saying frequency, amplitude, concentration or particle size."
+      },
+      {
+        "id": "P2",
+        "description": "Names a second distinct parameter from the same list, different from the first (for example amplitude of vibration, or slurry particle diameter).",
+        "marks": 0.67,
+        "partial_credit": "Half the marks for a vague term without the specific parameter named."
+      },
+      {
+        "id": "P3",
+        "description": "Names a third distinct parameter from the same list, different from the first two.",
+        "marks": 0.66,
+        "partial_credit": "Half the marks for a vague term without the specific parameter named."
+      }
+    ],
+    "notes": "Full marks (2) for naming any three different parameters from the model answer list: frequency of vibration, amplitude of vibration, abrasive slurry concentration, slurry particle diameter. Each correct, distinct parameter earns about two-thirds of a mark, and a vague term (such as 'vibration' or 'slurry') earns half of that point. Repeating the same parameter, or naming something not in the list (such as tool material or machine power), earns nothing for that slot, and a fourth correct item adds no extra marks.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
