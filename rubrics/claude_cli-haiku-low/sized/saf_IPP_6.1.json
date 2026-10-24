@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/IPP_6.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Lists at least four distinct objectives of IPv6, each matching one from the model answer (or equivalent wording): support for billions of end-systems; reduced routing tables; simplified protocol processing via a simplified header; increased security; support for real-time traffic / quality of service (flow label, traffic class); multicasting; mobility (roaming); openness to future change (extension headers); coexistence with existing protocols. Repeated or vague items (e.g. 'better performance') do not count towards the four.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The question asks for at least four objectives, so the full mark goes to a student who names four distinct, valid objectives from the model answer, in equivalent wording. Fewer than four valid distinct objectives earns no mark, as the single point is all-or-nothing. Do not require every objective in the model answer or its exact phrasing.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

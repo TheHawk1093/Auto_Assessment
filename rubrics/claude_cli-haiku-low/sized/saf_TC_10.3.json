@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bridge table maps destination MAC addresses (stations) to the outgoing LAN interface/port used to reach them.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that during backward learning the bridge reads the source MAC address of an incoming frame and adds or updates an entry associating it with the port/LAN it arrived on (\"Q can be reached over L\"). Timestamps and aging are secondary and not required.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that when forwarding, a frame whose destination MAC is in the table is sent only out the port recorded for that address, i.e. selective forwarding rather than flooding. Equivalent wording such as 'forwarded on the mapped link only' earns the mark.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "States one benefit of this selective forwarding, such as less unnecessary flooding or duplicate frames, reduced congestion, or better bandwidth usage. Any one of these earns the mark.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Total is 1 mark, split into four 0.25-mark points, one for each thing the question asks: table contents, backward learning update, forwarding use, and one benefit. Full marks need all four ideas, with equivalent wording accepted. Each point is all-or-nothing, and the timestamp detail in the model answer is not required.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
