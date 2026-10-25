@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines height in terms of a path from the root of the tree down to a leaf, with its length measured as the number of edges (or steps) along that path. Equivalent wording such as 'the path from the root to a leaf' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the height is the longest (maximum length) of all such root-to-leaf paths, not just any one path. Equivalent wording such as 'the maximum over all root-to-leaf paths' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Describes height as the distance from the root to some arbitrary node or to the deepest node without specifying a leaf, or otherwise confuses height with depth of a single node.",
+        "marks": 1.0
+      }
+    ],
+    "notes": "A full-mark answer defines height as the length of the longest path from the root to a leaf, using equivalent wording. Award P1 for the root-to-leaf path idea and P2 for the 'longest' (maximum) requirement. An answer that gives only a single path length without taking the longest earns 2 marks.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E02.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a data member can be accessed from any member function of the class (it belongs to the class and is visible across its member functions). Equivalent wording such as 'available to all methods in the class' earns the mark.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that a local variable can only be accessed inside the member function in which it is declared (it is not accessible from other member functions). Equivalent wording such as 'scope is limited to its own function' earns the mark.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says a local variable is accessible from other member functions or the whole class, which contradicts the difference being described.",
+        "marks": 1.0
+      }
+    ],
+    "notes": "Full marks require the student to state both halves of the difference: data members are accessible from any member function of the class, and local variables are accessible only within the function that defines them. Each half is worth 2.5 marks, and the answer does not need the model answer's exact wording. A answer that gives only one correct side, or describes only one of the two, earns just that point's marks.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

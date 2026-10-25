@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the * operator returns an alias (synonym) for the object that its operand (a pointer) points to in memory. Equivalent wording such as 'the object stored at the address the pointer holds' or 'a name for the pointed-to object' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the * operator is the dereferencing (indirection) operator. Equivalent terms such as 'indirection operator' earn the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says the operator returns the address the pointer holds, or the pointer's own value, rather than the object it points to.",
+        "marks": 2.0
+      },
+      {
+        "id": "D2",
+        "description": "Describes the operator as the address-of operator (&) or as creating a pointer.",
+        "marks": 2.0
+      }
+    ],
+    "notes": "Full marks need both that the operator yields an alias or synonym for the pointed-to object and that it is the dereferencing operator. Wording need not match the model answer, so 'the value at the address' is acceptable for P1. An answer that gives only one of the two ideas earns the matching mark and no more; an answer naming the address or the address-of operator earns no marks for P1.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

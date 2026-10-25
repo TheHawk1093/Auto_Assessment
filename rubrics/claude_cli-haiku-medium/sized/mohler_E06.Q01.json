@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (or equivalent: something that holds/stores a value). Equivalent wording such as 'a data item that holds a value' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the value the pointer holds is the memory address of another variable. Equivalent wording such as 'memory location' or 'location in memory' of another variable earns the marks. Saying it stores a value or data without mentioning an address, or saying it is the variable itself rather than the address it holds, does not earn this point.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Describes a pointer as holding the value of another variable rather than its address (e.g. 'a pointer stores the value of a variable'). Only P2 is lost.",
+        "marks": 2.0
+      }
+    ],
+    "notes": "The model answer is one sentence with two separable ideas: a pointer is a variable, and what it holds is the memory address of another variable. Full marks need both ideas in the student's own words. Give partial credit only through the separate points, not within a point; a student who says the pointer is a variable but gives no address earns P1 only (2/5).",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

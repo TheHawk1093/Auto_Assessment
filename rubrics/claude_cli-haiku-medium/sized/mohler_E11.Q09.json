@@ -1,0 +1,43 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the problem is divided into smaller subproblems (or smaller instances of the same problem). Equivalent wording, such as 'breaks the problem into smaller parts', earns the mark.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the subproblems are solved recursively. Equivalent wording, such as 'each part is solved by applying the same method' or 'solved independently', earns the mark.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that the solutions to the subproblems are combined to form a solution to the original problem. Equivalent wording, such as 'merged' or 'the partial answers are assembled into the overall answer', earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Describes divide-and-conquer as a single-step or unrelated technique, such as simply splitting data with no recursive solving or combining, or confuses it with a greedy or dynamic programming approach.",
+        "marks": 1.0
+      },
+      {
+        "id": "D2",
+        "description": "Says the subproblems are solved in some other way, such as by brute force, without recursion or the same method. Only the recursive-solving point is lost in this case.",
+        "marks": 0.5
+      }
+    ],
+    "notes": "Full marks for a brief answer that covers all three stages: dividing the problem into smaller subproblems, solving them recursively, and combining their solutions. Partial marks are not split into halves; a missing stage loses its own marks. No marks for a vague answer such as 'it breaks problems down' with no mention of recursion or combining.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

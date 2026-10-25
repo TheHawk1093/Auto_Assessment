@@ -1,0 +1,26 @@
+{
+  "question_key": "mohler/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that all the dimensions except the first must be specified when passing a multi-dimensional array to a function (equivalent wording such as 'every dimension apart from the first' earns the mark; the first dimension may be left out).",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says that all dimensions, including the first, must be specified, or that only the first dimension is needed.",
+        "marks": 5.0
+      }
+    ],
+    "notes": "The model answer is a single idea: every dimension except the first must be given. Full marks go to a student who states this rule in any equivalent wording. A student who says all dimensions must be given, or that only the first is needed, gets no marks.\"",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

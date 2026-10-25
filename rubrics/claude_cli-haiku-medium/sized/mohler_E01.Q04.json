@@ -1,0 +1,26 @@
+{
+  "question_key": "mohler/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a C++ program begins executing at the main function (equivalent wording such as 'main()' or 'the main function' earns the mark).",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Names a different function or entry point as the place where execution begins, such as a constructor, a header file or 'the first line of code' without naming main.",
+        "marks": 5.0
+      }
+    ],
+    "notes": "The model answer contains one idea: execution starts at main. A student earns full marks for clearly naming main (or main()), in any equivalent wording. Any answer that names another function or location instead earns no marks.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
