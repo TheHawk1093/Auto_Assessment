@@ -16,7 +16,7 @@ from autograde.evaluation.experiments import (
 )
 from autograde.evaluation.metrics import report
 from autograde.llm import build_client, client_name
-from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.rubric import RubricStore, cached_record
 from autograde.pipeline.run import read_results, to_question
 from autograde.schemas import Result
 from autograde.vcs import GitError, commit_experiment
@@ -75,6 +75,19 @@ def records_for(results: list[Result], settings: Settings, cfg: PipelineConfig |
         cfg.rubric_variant,
     )
     return {r.item.question_key: store.get(to_question(r.item)) for r in results}
+
+
+def stored_rubrics(results: list[Result], settings: Settings, setup: dict) -> dict:
+    """The marking schemes a run used, read from disk without any model call."""
+    model = run_client_name(setup, settings)
+    variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
+    out = {}
+    for r in results:
+        rec = cached_record(settings.paths.rubrics_dir, model, r.item.question_key, variant)
+        if rec is None:
+            sys.exit(f"No stored marking scheme for {r.item.question_key}.")
+        out[r.item.question_key] = rec.rubric
+    return out
 
 
 def write_view(

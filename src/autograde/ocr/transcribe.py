@@ -35,17 +35,19 @@ def parse(raw: str) -> Transcript:
     return Transcript(text, [m.group(1).strip() or "?" for m in UNSURE.finditer(text)])
 
 
-def _cli(path: Path, client: LLMClient) -> tuple[str, Usage]:
-    user = f"Transcribe the handwritten answer in the image file {path.resolve()}."
-    cmd = [
-        client._exe, "-p", "--output-format", "json", "--tools", "Read",
-        "--add-dir", str(path.resolve().parent), "--no-session-persistence",
-        "--model", client.model, "--system-prompt", prompts.system("ocr.transcribe"),
-    ]  # fmt: skip
+def cli_read(paths: list[Path], client: LLMClient, system: str, user: str) -> tuple[str, Usage]:
+    """One CLI call in which the model may open the given image files with the Read tool."""
+    folders = list(dict.fromkeys(str(p.resolve().parent) for p in paths))
+    cmd = [client._exe, "-p", "--output-format", "json", "--tools", "Read"]
+    for folder in folders:
+        cmd += ["--add-dir", folder]
+    cmd += ["--no-session-persistence", "--model", client.model, "--system-prompt", system]
+    if client.effort:
+        cmd += ["--effort", client.effort]
     try:
         proc = subprocess.run(
             cmd, input=user, capture_output=True, text=True, encoding="utf-8",
-            timeout=client.timeout_s, cwd=str(path.resolve().parent), check=False,
+            timeout=client.timeout_s, cwd=folders[0], check=False,
         )  # fmt: skip
         out = json.loads(proc.stdout)
     except (subprocess.TimeoutExpired, json.JSONDecodeError) as exc:
@@ -90,7 +92,12 @@ def transcribe(image_path: str | Path, client: LLMClient) -> Transcript:
     if not path.is_file():
         raise FileNotFoundError(path)
     if hasattr(client, "_exe"):
-        text, usage = _cli(path, client)
+        text, usage = cli_read(
+            [path],
+            client,
+            prompts.system("ocr.transcribe"),
+            f"Transcribe the handwritten answer in the image file {path.resolve()}.",
+        )
     elif hasattr(client, "_anthropic"):
         text, usage = _api(path, client)
     else:

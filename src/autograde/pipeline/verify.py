@@ -113,13 +113,21 @@ def apply_mark_rule(grading: Grading, rubric: Rubric, partial_weight: float) -> 
     return Grading(verdicts=out)
 
 
+EXPLAIN_WORDS = re.compile(
+    r"\b(explain|describe|justify|derive|why|how|reason|discuss|compare|differentiate|elaborate)",
+    re.IGNORECASE,
+)
+
+
 def apply_form_gate(
-    grading: Grading, reading: Reading | None, max_mark: float
+    grading: Grading, reading: Reading | None, max_mark: float, question: str = ""
 ) -> tuple[Grading, str | None]:
     """Act on how the answer is written, which the generous marking rules cannot see.
 
     Scrambled text earns nothing. A bare list of terms, where an explanation was asked for,
-    earns at most half the marks. Returns the grading and a flag when it was changed.
+    earns at most half the marks, but only when the question text really asks for an explanation
+    (the reader model sometimes mistakes a requested list for a bare keyword list).
+    Returns the grading and a flag when it was changed.
     """
     if reading is None:
         return grading, None
@@ -129,7 +137,8 @@ def apply_form_gate(
             for v in grading.verdicts
         ]
         return Grading(verdicts=zeroed), "incoherent_answer"
-    if reading.form == "keyword_list" and grading.total > max_mark / 2:
+    asks_why = not question or EXPLAIN_WORDS.search(question)
+    if reading.form == "keyword_list" and asks_why and grading.total > max_mark / 2:
         scale = (max_mark / 2) / grading.total
         scaled = [
             v.model_copy(update={"marks_awarded": round(v.marks_awarded * scale, 6)})

@@ -9,14 +9,17 @@ from concurrent.futures import ThreadPoolExecutor
 from autograde.cli.common import (
     load_run,
     load_run_with_feedback,
+    read_setup,
     records_for,
     run_dir,
     run_pipeline,
+    stored_rubrics,
     write_json,
     write_lines,
 )
 from autograde.config import Settings
 from autograde.datasets import LOADERS, load_dataset, select
+from autograde.evaluation.calibrate import calibrate
 from autograde.evaluation.compliance import compliance
 from autograde.evaluation.criteria import criteria_report
 from autograde.evaluation.revision import revision_test, summarise
@@ -82,12 +85,22 @@ def register(sub) -> None:
         func=lambda a, s: print(json.dumps(criteria_report(load_run(s, a.name)), indent=2))
     )
 
+    ca = sub.add_parser("calibrate", help="fit partial-credit weight and stretch to teacher marks")
+    ca.add_argument("--name", required=True, help="a finished pipeline run with teacher marks")
+    ca.set_defaults(func=cmd_calibrate)
+
     co = sub.add_parser("compliance", help="do marks and feedback move with rubric strictness")
     co.add_argument(
         "--run", action="append", required=True, metavar="LEVEL=RUN",
         help="repeat once per level, for example lenient=dk_lenient",
     )  # fmt: skip
     co.set_defaults(func=cmd_compliance)
+
+
+def cmd_calibrate(args: argparse.Namespace, settings: Settings) -> None:
+    results = load_run(settings, args.name)
+    rubrics = stored_rubrics(results, settings, read_setup(run_dir(settings, args.name)))
+    print(json.dumps(calibrate(results, rubrics), indent=2))
 
 
 def cmd_compliance(args: argparse.Namespace, settings: Settings) -> None:

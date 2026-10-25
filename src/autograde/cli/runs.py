@@ -13,9 +13,9 @@ from autograde.cli.common import (
     load_run,
     load_run_with_feedback,
     read_setup,
-    run_client_name,
     run_dir,
     save_derived_run,
+    stored_rubrics,
     write_json,
     write_lines,
     write_view,
@@ -31,7 +31,7 @@ from autograde.llm import build_client
 from autograde.ocr.noise import noisy_items
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.rescore import rescore
-from autograde.pipeline.rubric import RubricStore, cached_record
+from autograde.pipeline.rubric import RubricStore
 from autograde.pipeline.run import run_items, to_question
 from autograde.vcs import history
 
@@ -187,15 +187,8 @@ def cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
     setup = read_setup(src)
     if setup["mode"] != "pipeline":
         sys.exit("Only pipeline runs have verdicts to re-price.")
-    model = run_client_name(setup, settings)
-    variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
     results = load_run(settings, args.name)
-    rubrics = {}
-    for r in results:
-        rec = cached_record(settings.paths.rubrics_dir, model, r.item.question_key, variant)
-        if rec is None:
-            sys.exit(f"No stored marking scheme for {r.item.question_key}.")
-        rubrics[r.item.question_key] = rec.rubric
+    rubrics = stored_rubrics(results, settings, setup)
     new = rescore(results, rubrics, args.partial_weight)
     changes = {
         "mark_rule": "status",

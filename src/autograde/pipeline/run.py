@@ -77,7 +77,7 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
         votes = [g.total for g, _ in runs]
         grading, split = combine([g for g, _ in runs], rubric, item.student_answer, weight)
         flags = sorted({f for _, fl in runs for f in fl}) + [f"vote_split:{p}" for p in split]
-    grading, gate_flag = apply_form_gate(grading, reading, item.max_mark)
+    grading, gate_flag = apply_form_gate(grading, reading, item.max_mark, item.question)
     if gate_flag:
         flags = [*flags, gate_flag]
     if record.selftest_passed is False:

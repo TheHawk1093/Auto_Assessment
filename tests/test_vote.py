@@ -208,3 +208,15 @@ def test_compliance_orders_levels():
     out = compliance({"lenient": run(2.0), "moderate": run(1.5), "harsh": run(0.5)})
     assert out["ordering"]["share_strictly_falling"] == 1.0
     assert out["ordering"]["mean_lenient_minus_harsh"] == 0.75
+
+
+def test_form_gate_leaves_a_requested_list_alone():
+    from autograde.pipeline.verify import apply_form_gate
+    from autograde.schemas import Grading, PointVerdict, Reading
+
+    v = PointVerdict(point_id="P1", status="met", marks_awarded=2.0, evidence="a", reason="r")
+    reading = Reading(gist="g", ideas=[], problems=[], form="keyword_list")
+    kept, flag = apply_form_gate(Grading(verdicts=[v]), reading, 2.0, "State four objectives.")
+    assert kept.total == 2.0 and flag is None
+    capped, flag = apply_form_gate(Grading(verdicts=[v]), reading, 2.0, "Explain why it works.")
+    assert capped.total == 1.0 and flag == "keyword_list_capped"
