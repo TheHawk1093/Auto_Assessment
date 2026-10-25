@@ -92,7 +92,84 @@ def easyocr_run(
     return list(out)
 
 
-ENGINES = {"tesseract": tesseract, "rapidocr": rapidocr, "easyocr": easyocr_run}
+def docling_run(img, ocr="easy", vlm=False, **_) -> list[str]:
+    """Docling on one image: its OCR pipeline (EasyOCR, RapidOCR or Tesseract) or its VLM."""
+    from docling.datamodel.base_models import InputFormat
+    from docling.datamodel.pipeline_options import (
+        EasyOcrOptions,
+        PdfPipelineOptions,
+        RapidOcrOptions,
+        TesseractCliOcrOptions,
+    )
+    from docling.document_converter import DocumentConverter, ImageFormatOption
+
+    key = ("docling", ocr, vlm)
+    if key not in _cache:
+        if vlm:
+            from docling.datamodel.pipeline_options import VlmPipelineOptions
+            from docling.pipeline.vlm_pipeline import VlmPipeline
+
+            fmt = ImageFormatOption(pipeline_cls=VlmPipeline, pipeline_options=VlmPipelineOptions())
+        else:
+            opts = {
+                "easy": lambda: EasyOcrOptions(lang=["de", "en"], force_full_page_ocr=True),
+                "rapid": lambda: RapidOcrOptions(force_full_page_ocr=True),
+                "tess": lambda: TesseractCliOcrOptions(
+                    lang=["deu", "eng"], force_full_page_ocr=True, tesseract_cmd=TESSERACT
+                ),
+            }[ocr]()
+            po = PdfPipelineOptions()
+            po.do_ocr = True
+            po.ocr_options = opts
+            fmt = ImageFormatOption(pipeline_options=po)
+        _cache[key] = DocumentConverter(format_options={InputFormat.IMAGE: fmt})
+    path = _png(img)
+    try:
+        text = _cache[key].convert(path).document.export_to_text()
+    finally:
+        os.unlink(path)
+    return [line for line in text.splitlines() if line.strip()]
+
+
+def trocr_run(
+    img, model="microsoft/trocr-base-handwritten", gap=30, min_h=14, beams=2, **_
+) -> list[str]:  # fmt: skip
+    """TrOCR reads one handwritten line at a time, so cut the ink image into word groups first."""
+    import torch
+    from PIL import Image
+    from transformers import TrOCRProcessor, VisionEncoderDecoderModel
+
+    key = ("trocr", model)
+    if key not in _cache:
+        _cache[key] = (
+            TrOCRProcessor.from_pretrained(model),
+            VisionEncoderDecoderModel.from_pretrained(model).eval(),
+        )
+    proc, net = _cache[key]
+    gray = img if img.ndim == 2 else cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ink = (gray < 128).astype(np.uint8) * 255
+    blobs = cv2.dilate(ink, cv2.getStructuringElement(cv2.MORPH_RECT, (gap, 5)))
+    boxes = [cv2.boundingRect(c) for c in cv2.findContours(blobs, cv2.RETR_EXTERNAL, 2)[0]]
+    boxes = [b for b in boxes if b[3] >= min_h and b[2] >= 20]
+    boxes.sort(key=lambda b: (b[1] + b[3] // 2) // 40 * 10000 + b[0])
+    out = []
+    for x, y, w, h in boxes:
+        pad = 6
+        crop = gray[max(y - pad, 0) : y + h + pad, max(x - pad, 0) : x + w + pad]
+        pix = proc(images=Image.fromarray(crop).convert("RGB"), return_tensors="pt").pixel_values
+        with torch.no_grad():
+            ids = net.generate(pix, num_beams=beams, max_new_tokens=48)
+        out.append(proc.batch_decode(ids, skip_special_tokens=True)[0])
+    return out
+
+
+ENGINES = {
+    "tesseract": tesseract,
+    "rapidocr": rapidocr,
+    "easyocr": easyocr_run,
+    "docling": docling_run,
+    "trocr": trocr_run,
+}
 
 
 def register(name: str):
@@ -144,6 +221,8 @@ def objective(s: dict) -> float:
 
 def cmd_run(a) -> None:
     prep_kw, eng_kw = json.loads(a.prep_kw), json.loads(a.eng_kw)
+    if "hue" in prep_kw:
+        prep_kw["hue"] = tuple(prep_kw["hue"])
     t0 = time.time()
     lines = read_all(a.engine, a.prep, prep_kw, eng_kw)
     out = ROOT / a.out
@@ -183,15 +262,21 @@ GRIDS = {
 
 
 def ink_variants() -> list[tuple[str, dict]]:
+    """Second tuning stage: the ink mask itself, with the engine settings held fixed."""
     return [
-        ("ink", {"scale": s, "close": c, "sat_min": sat})
-        for s, c, sat in itertools.product([1.5, 2.0], [0, 3], [35, 55])
+        ("ink", {"scale": s, "close": c, "sat_min": sat, "hue": hue})
+        for s, c, sat, hue in itertools.product(
+            [1.5, 2.0, 3.0], [0, 3, 5], [25, 40, 60], [(90, 140), (100, 130)]
+        )
     ]
 
 
 def cmd_tune(a) -> None:
     """Grid search on the dev pages only. Prints the table sorted best first."""
-    grid = GRIDS[a.engine]
+    grid = dict(GRIDS[a.engine])
+    if a.ink_stage:
+        grid["prep"] = ink_variants()
+        grid["eng"] = {k: [v] for k, v in json.loads(a.eng_kw).items()}
     keys = list(grid["eng"])
     results = []
     dev_pages = [n for n, t in TRUTH.items() if not n.startswith("_") and t["split"] == "dev"]
@@ -218,6 +303,8 @@ def main() -> None:
     r.set_defaults(func=cmd_run)
     t = sub.add_parser("tune")
     t.add_argument("--engine", required=True, choices=sorted(GRIDS))
+    t.add_argument("--ink-stage", action="store_true", help="tune the ink mask, engine fixed")
+    t.add_argument("--eng-kw", default="{}", help="engine settings to hold fixed in the ink stage")
     t.set_defaults(func=cmd_tune)
     a = p.parse_args()
     a.func(a)
