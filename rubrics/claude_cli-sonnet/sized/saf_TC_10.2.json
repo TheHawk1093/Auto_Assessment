@@ -1,0 +1,32 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names slow start and states that cwnd grows quickly/exponentially (e.g. +1 per ACK, doubling per RTT) while cwnd < ss_thresh, until ss_thresh is reached or a loss occurs.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names congestion avoidance (cwnd >= ss_thresh) and states that cwnd grows slowly/linearly (e.g. +1 per RTT / after all segments acked) until a loss occurs.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "States that on packet loss/congestion (in either phase) ss_thresh is set to cwnd/2 and cwnd is reset to 1.",
+        "marks": 0.2,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: both phases named with correct cwnd growth (exponential vs linear) and the loss reaction ss_thresh = cwnd/2, cwnd = 1. Part marks for whichever points are met. No marks for wrong phase names or reversed growth behaviour. Equivalent wording accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

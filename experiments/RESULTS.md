@@ -110,6 +110,8 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 20:55 | loop3 | loop3_saf | saf/dev/n20/seed1 | pipeline | 0.158 | - | ▼ +0.040 | -0.024 | 0.77 | 0.74 | 15% | 0.06 | a4920cf2 |
 | 2026-10-25 20:58 | loop3 | loop3_mohler | mohler/dev/n20/seed1 | pipeline | 0.216 | - | ▲ -0.062 | -0.182 | 0.72 | 0.52 | 15% | 0.05 | a4920cf2 |
 | 2026-10-25 23:01 | cmpS | cmpS_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.131 | - | - | 0.049 | 0.80 | 0.76 | 10% | 1.09 | cf296af4 |
+| 2026-10-25 23:01 | cmpL | cmpL_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.161 | - | ▼ +0.030 | 0.052 | 0.76 | 0.70 | 18% | 0.09 | cf296af4 |
+| 2026-10-25 23:06 | cmpL | cmpL_saf | saf/dev/n40/seed1 | pipeline | 0.144 | - | - | 0.071 | 0.86 | 0.80 | 20% | 0.08 | cf296af4 |
 
 ## Variants
 
@@ -154,3 +156,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **feedback-formal-v2**: new template: asks, quoted strengths, partly/missed/incorrect. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "formal", "refeedback_from": "dk_s0_fb_formal"}`
 - **loop3**: atomic facts: model answer split into weighted facts, judged one by one. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "atomic", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpS**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
+- **cmpL**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`

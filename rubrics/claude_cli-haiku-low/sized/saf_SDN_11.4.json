@@ -1,0 +1,26 @@
+{
+  "question_key": "saf/SDN_11.4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table: states that it holds meter entries (or collects flow statistics) used to manage the network, e.g. for QoS or rate-limiting of flows. Equivalent wording, such as 'measures and rate-limits traffic per flow', earns the mark. A description limited to forwarding or matching packets does not earn it.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Flow table pipeline: states that the flow tables hold rules (match fields) with actions applied to packets, which implements packet forwarding/routing logic in the switch. Equivalent wording earns the mark. Both the matching rules and the forwarding actions are needed for full marks.",
+        "marks": 0.5,
+        "partial_credit": "Award 0.25 if the answer mentions only one of the two halves: either the match rules/fields alone, or the forwarding/actions alone."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks (1) for a one-sentence summary of the meter table's management/QoS or rate-limiting role and a one-sentence summary of the flow tables as rules with actions that implement packet forwarding. Half marks are given for a flow-table description that covers only matching rules or only forwarding actions. No marks for a description that swaps the two roles or gives only vague statements about the switch.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
