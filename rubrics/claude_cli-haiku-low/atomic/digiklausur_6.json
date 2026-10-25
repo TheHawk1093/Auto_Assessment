@@ -1,0 +1,37 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "An SVM classifies data with a decision boundary (hyperplane) that has the maximum margin between the classes.",
+        "marks": 0.666667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The support vectors are the data points closest to the decision boundary, and the margin is determined by these points.",
+        "marks": 0.666667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Kernels allow the SVM to separate data that is not linearly separable.",
+        "marks": 0.333333,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "The SVM training problem is solved using quadratic programming.",
+        "marks": 0.333333,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

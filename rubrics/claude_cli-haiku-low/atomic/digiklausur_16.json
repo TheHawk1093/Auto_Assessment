@@ -1,0 +1,31 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The new data point is compared against the existing data points, which already have known class labels (colors).",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The method finds the k nearest labeled data points to the new point, forming a neighborhood (sphere) around it.",
+        "marks": 0.8,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The new point is assigned to the class that has the maximum vote among those k nearest neighbors.",
+        "marks": 0.8,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -12,7 +12,7 @@ from autograde import prompts
 from autograde.llm import LLMClient
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVELS, dataset_of, level_prompt
-from autograde.schemas import EPS, Question, Rubric, RubricRecord
+from autograde.schemas import EPS, AtomicFacts, Question, Rubric, RubricRecord
 
 log = logging.getLogger(__name__)
 
@@ -44,7 +44,11 @@ def generate_rubric(
             max_mark=f"{question.max_mark:g}",
             extra=extra,
         )
-        rubric = client.ask(rubric_prompt(variant, dataset_of(question.key)), user, Rubric)
+        system = rubric_prompt(variant, dataset_of(question.key))
+        if variant == "atomic":
+            rubric = client.ask(system, user, AtomicFacts).to_rubric(question.max_mark)
+        else:
+            rubric = client.ask(system, user, Rubric)
         if abs(rubric.total - question.max_mark) < EPS:
             return rubric.model_copy(update={"level": variant}) if variant in LEVELS else rubric
         extra = (

@@ -1,0 +1,37 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Classification maps inputs to discrete labels or categories.",
+        "marks": 0.666667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Regression maps inputs to continuous, real-valued outputs.",
+        "marks": 0.666667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The error in classification is the number of misclassifications.",
+        "marks": 0.333333,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "The error in regression is the summed distance between the true and predicted values.",
+        "marks": 0.333333,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

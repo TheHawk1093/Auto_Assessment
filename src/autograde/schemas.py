@@ -92,6 +92,29 @@ class Rubric(BaseModel):
         return "\n".join(lines)
 
 
+class AtomicFact(BaseModel):
+    text: str = Field(description="One claim that can be true or false on its own.")
+    weight: int = Field(ge=1, le=3, description="2 for a core idea, 1 for supporting, 3 rarely.")
+
+
+class AtomicFacts(BaseModel):
+    """The model answer broken into facts; code turns them into a rubric with equal-rate marks."""
+
+    facts: list[AtomicFact] = Field(min_length=1, max_length=8)
+
+    def to_rubric(self, max_mark: float) -> Rubric:
+        """Marks in proportion to the weights, adding up to exactly `max_mark`."""
+        total = sum(f.weight for f in self.facts)
+        marks = [round(max_mark * f.weight / total, 6) for f in self.facts]
+        marks[-1] = round(max_mark - sum(marks[:-1]), 6)
+        return Rubric(
+            points=[
+                RubricPoint(id=f"P{i}", description=f.text, marks=m)
+                for i, (f, m) in enumerate(zip(self.facts, marks, strict=True), 1)
+            ]
+        )
+
+
 class RubricRecord(BaseModel):
     """A cached marking scheme with the outcome of its automatic self-test."""
 
