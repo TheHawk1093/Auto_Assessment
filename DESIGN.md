@@ -117,8 +117,15 @@ Roughly 16,000 input and 2,600 output tokens per answer in total, about one thir
 
 Dev only: DigiKlausur, SAF and Mohler, 20 answers each, seed 1, fixed across rounds. Each round: run, list the largest disagreements with the teacher, name the cause, change the grading prompt, re-run, keep the change only if error drops overall.
 
-| Round | Change | DigiKlausur | SAF | Mohler |
-|---|---|---|---|---|
-| 0 | start | 0.151 (bias +0.016) | 0.146 (+0.036) | 0.247 (-0.243) |
+| Round | Change | DigiKlausur | SAF | Mohler | Decision |
+|---|---|---|---|---|---|
+| 0 | start (sized rubrics, essence policy) | 0.151 (bias +0.016) | 0.146 (+0.036) | 0.247 (-0.243) | baseline |
+| 1 | grader prompt: plain-words ideas count; not met only if the idea is absent | 0.140 (+0.047) | 0.146 (+0.036) | 0.249 (-0.245) | kept (harmless, small gain on one set) |
+| 2 | rubric writer: fewer, broader idea-points ("lean") | 0.266 (-0.222) | 0.119 (+0.083) | 0.278 (-0.248) | rejected: worse on two of three sets |
 
-Later rounds are added below as they are run.
+What the loop showed:
+- DigiKlausur and SAF are not under-marked at 20 answers (bias near zero). The under-marking is mainly Mohler: the teacher gives 0.8 to 1.0 of the marks to 17 of 20 answers, while Haiku gave about half.
+- Prompt wording did not move Mohler. The Haiku-written scheme splits a one-sentence model answer into two or three narrow points, and an answer that gets one right loses the other. Merging points made it worse elsewhere, because fewer points make each judgement bigger.
+- Partial value is not the lever on Mohler: the best fit was 0.8 and the error barely changed (0.26 to 0.27).
+- Per the request to keep tuning short, the loop stopped after round 2. Next lever to try, on this same sample: another model (Sonnet) for the marker, which the earlier sweep suggests is more tolerant than Haiku at low effort.
+- Mohler has repeated rows for the same student answer (the same id twice in a 20-answer sample); not yet looked into.

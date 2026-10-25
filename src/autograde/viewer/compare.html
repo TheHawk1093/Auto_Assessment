@@ -354,7 +354,7 @@ td.cell.hi { background: var(--warn-soft); color: var(--gen); }
     if (!fb) c4.appendChild(el("p", "empty", "This method produces no feedback, only a mark."));
     else {
       var f = el("div", "fb");
-      if (fb.asks) f.appendChild(el("div", "summary", "The question asks: " + fb.asks));
+      if (fb.asks) f.appendChild(el("div", "summary", fb.asks));
       if (fb.strengths.length) { f.appendChild(el("h3", "", "What you did well")); fb.strengths.forEach(function (s) { f.appendChild(el("div", "good", s)); }); }
       if (fb.improvements.length) {
         f.appendChild(el("h3", "", "What to improve"));

@@ -75,9 +75,12 @@ def full_marks_feedback(rubric: Rubric, grading: Grading) -> Feedback:
     by_id = {p.id: p for p in rubric.points}
     strengths = []
     for v in grading.verdicts:
-        what = by_id[v.point_id].description.rstrip(".") if v.point_id in by_id else v.point_id
-        said = f' You wrote "{v.evidence}".' if v.evidence else ""
-        strengths.append(f"Your response covers the following: {what}.{said}")
+        what = by_id[v.point_id].description if v.point_id in by_id else v.point_id
+        said = " ".join(v.evidence.split()[:30]) if v.evidence else ""
+        idea = what.split(". ")[0].rstrip(".")  # the idea only, not the scheme's notes on wording
+        strengths.append(
+            f'You wrote "{said}", which covers: {idea}.' if said else f"Covered: {idea}."
+        )
     return Feedback(
         strengths=strengths,
         improvements=[],

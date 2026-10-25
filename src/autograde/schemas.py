@@ -165,7 +165,7 @@ class Feedback(BaseModel):
     def text(self) -> str:
         """The feedback as plain text, in the order the student reads it."""
         labels = {"partial": "Partly there", "missed": "Missed", "incorrect": "Incorrect"}
-        parts = [f"The question asks: {self.asks}"] if self.asks else []
+        parts = [self.asks] if self.asks else []
         parts += [f"What you did well: {s}" for s in self.strengths]
         for x in self.improvements:
             body = " ".join(p for p in (x.issue, x.why, x.fix) if p)
