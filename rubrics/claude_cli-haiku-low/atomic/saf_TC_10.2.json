@@ -1,0 +1,49 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "TCP congestion control has two phases: slow start and congestion avoidance.",
+        "marks": 0.090909,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "In slow start, cwnd increases by one segment for each acknowledged segment, so it roughly doubles every RTT (exponential growth).",
+        "marks": 0.181818,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Slow start ends and congestion avoidance begins when cwnd reaches ss_thresh.",
+        "marks": 0.181818,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "In congestion avoidance, cwnd grows linearly, by about one segment per RTT.",
+        "marks": 0.181818,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "On a packet loss, ss_thresh is set to half of the current cwnd.",
+        "marks": 0.181818,
+        "partial_credit": ""
+      },
+      {
+        "id": "P6",
+        "description": "On a packet loss, cwnd is reset to 1 and slow start is entered again.",
+        "marks": 0.181819,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

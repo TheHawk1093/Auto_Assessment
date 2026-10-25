@@ -1,0 +1,43 @@
+{
+  "question_key": "saf/MM_8.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Reverse Path Forwarding and Reverse Path Broadcast are broadcast methods that minimize duplicate packets compared with flooding.",
+        "marks": 0.222222,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "In Reverse Path Forwarding, a node forwards a broadcast packet only if it arrived from the neighbour the node's unicast routing table uses to reach the packet's source.",
+        "marks": 0.222222,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "In Reverse Path Forwarding, when the check succeeds the node forwards the packet to all its neighbours except the one it came from, and otherwise it discards the packet.",
+        "marks": 0.222222,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "In Reverse Path Broadcast, each node learns from observed unicast traffic which spanning trees (source-based paths) it is part of, for example when it sees unicast packets passing between two nodes A and B in either direction.",
+        "marks": 0.111111,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "In Reverse Path Broadcast, a node forwards a broadcast packet only on edges that belong to the spanning tree of the source, excluding the edge the packet came in on.",
+        "marks": 0.222223,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

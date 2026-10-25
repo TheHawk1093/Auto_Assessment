@@ -1,0 +1,61 @@
+{
+  "question_key": "saf/IPP_6.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "IPv6 is designed to support billions of end-systems (a much larger address space than IPv4).",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "IPv6 aims to reduce the size of routing tables.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "IPv6 simplifies protocol processing through a simplified header.",
+        "marks": 0.1,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "IPv6 aims to increase security.",
+        "marks": 0.1,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "IPv6 supports real-time data traffic by providing quality of service, using the flow label and traffic class fields.",
+        "marks": 0.1,
+        "partial_credit": ""
+      },
+      {
+        "id": "P6",
+        "description": "IPv6 provides support for multicasting.",
+        "marks": 0.1,
+        "partial_credit": ""
+      },
+      {
+        "id": "P7",
+        "description": "IPv6 supports mobility (roaming) of nodes.",
+        "marks": 0.1,
+        "partial_credit": ""
+      },
+      {
+        "id": "P8",
+        "description": "IPv6 is open to future change, using extension headers to incorporate additional features.",
+        "marks": 0.1,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

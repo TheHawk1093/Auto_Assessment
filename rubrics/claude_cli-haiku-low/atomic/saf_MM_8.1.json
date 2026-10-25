@@ -1,0 +1,49 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Adaptation: the network topology changes dynamically because mobile nodes move, so routing must adapt as nodes join, leave, or move within radio range.",
+        "marks": 0.166667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Security: packets in wireless networks can easily be intercepted or faulty packets injected, so encryption and authentication may be needed.",
+        "marks": 0.166667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Hidden terminal: two nodes outside each other's detection range can transmit to a common receiver, so their transmissions collide at that receiver without either sensing it.",
+        "marks": 0.166667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Exposed terminal: a node senses the medium as busy because a nearby node is sending, even though its own transmission would not collide at the intended receiver, so it wrongly refrains from sending.",
+        "marks": 0.166667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P5",
+        "description": "Near and far terminals: a closer node's strong signal can drown out a weaker signal from a more distant node, since signal strength falls off with distance.",
+        "marks": 0.166667,
+        "partial_credit": ""
+      },
+      {
+        "id": "P6",
+        "description": "Power consumption: most mobile nodes are battery-powered, so energy use becomes an important factor in designing routing.",
+        "marks": 0.166665,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

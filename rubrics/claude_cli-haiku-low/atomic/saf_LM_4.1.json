@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/LM_4.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Increasing the network speed by a factor of 10 reduces the collision domain diameter by a factor of 10 (the diameter is divided by 10).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
