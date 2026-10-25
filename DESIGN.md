@@ -147,3 +147,61 @@ What the loop showed:
 | **formal (new template)** | **0.859** | 0.482 | **0.377** |
 
 The new template matches the best of the old styles (within noise on 17 answers) while being structured and, for full-mark answers, free. Earlier numbers were taken from the saved runs.
+
+## 12. Model comparison on 40 answers per set (marking only)
+
+Same 40 dev answers per set (seed 1), sized rubrics, read-first on, no feedback. Each setup writes its own rubrics except the last row (Sonnet writes them once per question, Haiku marks).
+
+| Setup | DigiKlausur | SAF | Mohler | Mean error | Cost for 120 answers |
+|---|---|---|---|---|---|
+| Haiku, low effort | 0.152 (r 0.78) | 0.135 (r 0.86) | 0.249 (bias -0.21, r 0.71) | 0.179 | $0.22 |
+| Haiku, medium effort | 0.170 (r 0.65) | 0.127 (r 0.89) | 0.281 (bias -0.23, r 0.67) | 0.193 | $0.23 |
+| Sonnet | 0.131 (r 0.80) | 0.128 (r 0.90) | 0.179 (bias -0.13, r 0.81) | 0.146 | $3.00 |
+| Haiku medium + Sonnet-written rubrics | 0.162 (r 0.72) | 0.151 (r 0.84) | 0.215 (bias -0.14, r 0.70) | 0.176 | $0.25 + one-off rubric cost |
+
+What it shows:
+- Medium effort gave Haiku no gain over low (mean 0.193 against 0.179). More thinking does not fix what limits Haiku.
+- Sonnet is clearly better on Mohler (0.179 against 0.249) and about equal on the shorter sets. It costs about 14 times more.
+- Sonnet-written rubrics help Haiku on Mohler (0.281 to 0.215) and not elsewhere. The rubric is paid for once per question, not once per answer, so this is nearly free.
+- The cost for the mixed row leaves out the Sonnet rubric cost, which was already paid in the Sonnet run.
+
+**Issues seen with Haiku (low and medium effort):**
+- It uses "partial" less (16 to 17% of verdicts against 25% for Sonnet) and "not met" more (30% against 26%): it collapses a half-right idea into all or nothing.
+- Its quotes are often not copied exactly: 18 to 23 of 120 answers carry an unverified quote, against 6 for Sonnet.
+- It reads the model answer too literally ("never says X").
+- It once mistook a requested list for a bare keyword list (guarded in code now).
+- Given a schema with an optional field it did not need (deductions), it filled it in on 28 rubric files. The rubric writer now returns a schema without that field.
+- Told about deductions, it applied them to 12 to 17 of 24 RiceChem answers when the teacher deducted in 2 (recall 1.0, precision 0.12 to 0.17). Deductions are therefore off by default (`deductions: false`) until a stronger marker is used. With them on, RiceChem error went 0.151 to 0.164; with a stricter prompt 0.174. RiceChem was used to develop this feature because no other set has deductions, so it is not a clean benchmark.
+
+## 13. Generalising across subjects (maths, physics, language, AI)
+
+Our datasets cover networks, AI, programming and chemistry. We have no maths or language data yet, so nothing below is tested on them.
+
+Principle: keep the grading prompt generic ("does the answer carry the idea of this point") and put subject rules into the rubric, not into the prompt.
+1. **Question profile.** Once per question, a strong model labels it (definition, explanation, calculation, derivation, list, comparison, code, essay) and writes the type's rules into the rubric. Examples: calculations give method marks and a final-answer mark with a stated tolerance and units; language answers weigh content and language quality separately; lists need N distinct items. The grader reads the rubric, so one prompt serves all subjects.
+2. **Prompt modules chosen by question type, not by dataset.** Today policy files are chosen by dataset name. They should become a small set picked by the profile, so a new dataset needs no new prompt file.
+3. **Numbers checked by code.** For calculations, code compares the final number with the reference within the tolerance. The model judges the working.
+4. **Teacher-marked examples** of the same question type, retrieved at run time, when they exist. They are optional.
+5. **How we will know it generalises:** tune on some types and test on a type held out entirely. This needs new data: a maths set and a language set (candidates to find).
+
+## 14. Where other model families and a second model help
+
+Only Claude models are available here, so these are design notes, not results.
+- **A different vendor as the feedback judge.** A judge from the same family as the writer tends to prefer its own style. A different family removes that bias. Cost is small because the judge runs once per feedback.
+- **A different family as the second opinion.** Same-model voting did nothing because the errors repeat. Errors from a different family are less correlated, so a disagreement is a better sign of a hard answer.
+- **Specialised models for OCR.** Handwriting readers (TrOCR, GOT-OCR) are a different family of model, used only to turn images into text.
+- **Code for numbers.** A small calculator or sympy check replaces a model for the arithmetic of final answers.
+
+Two models without much extra cost:
+1. **Strong model writes the rubric once, cheap model marks every answer.** Tested: Haiku with Sonnet rubrics took Mohler from 0.281 to 0.215 at Haiku's marking cost.
+2. **Cascade.** Haiku marks everything; only answers it is unsure about go to Sonnet. Signals Haiku already gives: an unverified quote (15 to 19% of answers), a disagreement with a second cheap model, or a partial verdict on a heavily weighted point. If about a fifth of answers escalate, the cost is about Haiku plus 0.2 times Sonnet, about $0.85 per 120 answers against $3.00 for Sonnet alone. Not yet tested.
+3. **Cheap model for reading and feedback, strong for marks.** Not yet tested; the read step is a third of the calls.
+
+## 15. Status of the needs-improvement list
+
+| Item | State |
+|---|---|
+| Deductions | Built (rubric rules, quote check, code subtracts). Off by default: Haiku over-applies them. Try again with a stronger marker or inside the cascade. |
+| Marks shift with the model answer's wording | Not yet worked on. Plan: run the shortened and masked model answer tests on atomic and sized rubrics with Sonnet-written rubrics. |
+| Cost | Measured per stage (section 8) and per model (section 12). Done: no feedback call for full marks. Next: the cascade. |
+| Feedback length and the styles page | A first draft over 280 words is rewritten once; the styles page shows the new template and kinds. The length guard has not been measured at scale. |
