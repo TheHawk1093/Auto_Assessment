@@ -1,0 +1,32 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The learning rate controls the speed of convergence of steepest descent. Equivalent wording is acceptable, for example that it sets how big each step is and therefore how fast the weights approach the minimum. Mentioning that a low rate gives slow, overdamped convergence and a high rate gives zigzagging, underdamped convergence also earns this mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The danger is instability: when the learning rate is too high, above a critical value, learning becomes unstable (the updates overshoot and can diverge). Equivalent wording such as 'the algorithm may diverge or fail to converge' earns this mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "States that a high learning rate always makes convergence faster, with no mention of zigzagging or instability at high values.",
+        "marks": 0.5
+      }
+    ],
+    "notes": "Full marks (2) for stating that the learning rate sets the speed of convergence and that too large a rate (above a critical value) makes learning unstable. Award 1 mark for only one of these two ideas. Overdamped/underdamped and zigzag detail is supporting material, not required for the marks.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

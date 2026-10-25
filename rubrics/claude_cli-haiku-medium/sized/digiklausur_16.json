@@ -1,0 +1,26 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The new (unlabelled) data point is compared with the existing classified/coloured data, and the k nearest existing data points around it are identified (e.g. by drawing a sphere or region that contains the k nearest points). Equivalent wording, such as 'find the k closest neighbours', earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The new data point is assigned to the class that receives the maximum vote among those k nearest neighbours (majority voting). Equivalent wording, such as 'the most common class among the neighbours', earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks (2) for a response that states both steps: finding the k nearest labelled neighbours of the new point, and assigning the class with the maximum vote among them. Pseudo code is asked for in the question but is not in the model answer, so it is not required for marks. The model answer's phrase 'in an unsupervised manner' is inaccurate because k-NN is a supervised method using labelled data; students should not lose marks for omitting it or for stating it is supervised.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

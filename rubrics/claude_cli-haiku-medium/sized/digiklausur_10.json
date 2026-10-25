@@ -1,0 +1,26 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes backpropagation as propagating the error backwards, layer by layer (recursively) from the last layer towards the first, and updating the weights so the error is reduced. Equivalent wording such as 'from output to input' or 'going back through the layers' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the weight updates are driven by the local gradient at each layer, computed using partial derivatives of the error together with the chain rule. Equivalent technical wording (e.g. 'gradient of the error with respect to each weight, via the chain rule') earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Two equal marks, one for each distinct idea in the model answer: the layer-by-layer backward propagation of error with weight updates, and the local gradients computed via partial derivatives and the chain rule. Full marks need both ideas expressed in technical terms; a student who gives only the backward flow of error, or only the gradient/chain rule mechanism, earns 1 mark. A student who describes the process in vague terms without the gradient or chain rule earns no mark for P2.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

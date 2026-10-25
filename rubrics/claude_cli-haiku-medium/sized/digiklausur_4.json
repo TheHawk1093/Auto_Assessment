@@ -1,0 +1,32 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Classification is described as mapping data to discrete labels or categories (equivalent wording is fine, e.g. predicting a class).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Regression is described as mapping data to continuous values or real numbers, and the answer makes clear this is the difference from classification (equivalent wording is fine, e.g. predicting a quantity).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says regression outputs discrete labels or classes, or says classification outputs continuous values (the two are swapped).",
+        "marks": 1.0
+      }
+    ],
+    "notes": "Full marks (2) for stating that classification predicts discrete labels/categories and regression predicts continuous real-valued outputs. The error-metric detail in the model answer (misclassification count vs summed distance) is not required by the question and is not marked. A correct statement of only one side earns 1 mark; swapping the two sides loses the mark for that side.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
