@@ -1,0 +1,31 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that slow start is the phase where cwnd grows rapidly, roughly doubling each RTT (by one segment per acknowledgement), until cwnd reaches ss_thresh or a loss occurs.",
+        "marks": 0.35,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that congestion avoidance is the phase, entered once cwnd reaches ss_thresh, where cwnd grows slowly and roughly linearly (about one segment per RTT) rather than exponentially.",
+        "marks": 0.35,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The answer conveys that when a packet loss (congestion) occurs, ss_thresh is set to half of cwnd and cwnd is reset to 1.",
+        "marks": 0.3,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full mark (1) requires naming both phases and describing how cwnd grows in each (exponential/doubling in slow start, linear/slower in congestion avoidance) plus the loss response that sets ss_thresh to cwnd/2 and resets cwnd to 1. Equivalent wording and alternative linear-growth strategies earn the marks. Missing or wrong phase behaviour loses that point; examples and side remarks in the model answer are not separately required.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

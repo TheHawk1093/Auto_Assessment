@@ -1,0 +1,25 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer identifies the property that makes spanning trees suitable for broad- and multicasting: there is a single unique path between every pair of nodes (equivalently, a loop-free subnet that includes all nodes), so no unnecessary duplicate packets are forwarded. Equivalent wording earns the mark.",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer explains that multicast group membership is added to the link state packets, so every node learns the full topology and which nodes belong to each group. Each node then builds the multicast spanning tree locally from its complete state information, using an algorithm such as Prim's or Kruskal's. Equivalent wording and alternative correct methods earn the mark.",
+        "marks": 0.6,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks need both the unique-path/no-duplicates property and the modification of link state routing that adds group membership to link state packets so each node computes the tree locally from the full topology. A correct property with no valid explanation of the modification earns only 0.4; a valid modification without the property earns 0.6 at most. Equivalent wording is acceptable.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/PE_12.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that the independence assumption does not hold for real internet traffic, because arrivals are correlated or bursty, so the arrival in one interval depends on earlier traffic or application state. Equivalent wording and any valid reason for the dependence earn the mark. Examples such as video streaming are not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The mark is earned by stating that the assumption fails and giving the reason that arrivals depend on earlier arrivals or traffic, as in bursty traffic. Full marks need both the 'no' and the dependence idea. A bare 'no' with no reason, or a 'yes' answer, earns no mark. The video streaming example is secondary detail and is not required.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

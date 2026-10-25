@@ -1,0 +1,25 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer names a challenge of mobile routing that does not arise in fixed, wired routing (for example, adaptation to changing topology, security/interception, medium access control such as hidden or exposed terminals, QoS, scalability, heterogeneity, dependability, or power consumption) and describes it, explaining why it arises in mobile or wireless networks.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer names a second, distinct challenge from the same kind of list (different from the first) and describes it, explaining why it arises in mobile or wireless networks.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Both challenges carry equal weight because the question asks for two named and described challenges. Full marks require two different valid challenges, each with a name and a description tied to mobile or wireless conditions. A challenge that is only named, only described, or that repeats the first challenge earns no mark for that point. Any challenge from the model answer list is acceptable, and equivalent wording is fine.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
