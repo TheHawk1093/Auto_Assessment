@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/LM_4.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the collision domain diameter decreases by a factor of 10 (reduced to one tenth of its original value). Equivalent wording such as \"becomes 10 times smaller\" or \"is divided by 10\" earns the mark. The example figures (300m to 30m) are illustrative and are not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The answer is a single idea, so there is one all-or-nothing point worth the full mark. Full marks require the student to say the diameter gets smaller and by a factor of 10; saying only that it decreases, with no factor, earns nothing. Stating the increase or decrease in the wrong direction also earns nothing.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

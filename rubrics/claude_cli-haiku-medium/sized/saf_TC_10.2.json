@@ -1,0 +1,38 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the two phases of TCP congestion control: slow start and congestion avoidance. Equivalent names are accepted.",
+        "marks": 0.2,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Slow start: cwnd increases by one segment for each acknowledgement, so it grows exponentially (roughly doubling each RTT), while cwnd is below ss_thresh. Equivalent wording earns the mark.",
+        "marks": 0.3,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Congestion avoidance: once cwnd >= ss_thresh, cwnd grows more slowly, typically linearly (about 1 segment per RTT, or 1 after all outstanding segments are acknowledged). Equivalent wording and other valid incrementation strategies earn the mark.",
+        "marks": 0.3,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "On packet loss in either phase, ss_thresh is set to half of the current cwnd (ss_thresh = cwnd/2) and cwnd is reset to 1. Both the ss_thresh update and the cwnd reset must be stated.",
+        "marks": 0.2,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require naming both phases, describing cwnd growth in slow start (exponential, per acknowledgement) and in congestion avoidance (slower, linear), and stating that on loss ss_thresh becomes cwnd/2 and cwnd resets to 1. Missing either the ss_thresh update or the cwnd reset loses that point's mark, and a wrong growth description loses the corresponding phase mark. Equivalent wording and alternative valid growth strategies earn full credit.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

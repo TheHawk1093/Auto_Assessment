@@ -1,0 +1,44 @@
+{
+  "question_key": "saf/TC_10.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bridge table maps destination MAC addresses (stations) to outgoing LAN interfaces/ports. Equivalent wording such as 'address to port mapping' earns the mark.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Backward learning: the bridge reads the source address of each arriving frame and records/updates an entry saying that address can be reached over the port/LAN it arrived on. Entries are timestamped so old ones can be updated or purged. Learning from observed incoming traffic (promiscuous listening) earns the mark. Simply saying 'the table is updated' without the source address and arrival port does not earn it.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Forwarding: when a frame arrives, the bridge looks up its destination address; if it is in the table, the frame is sent only on the mapped port (selective forwarding) rather than flooded on all ports. Unknown destinations may be flooded. Equivalent wording earns the mark.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Benefit: selective forwarding avoids unnecessary flooding, so it reduces duplicate traffic and congestion and uses bandwidth better. Any one of these benefits, in equivalent wording, earns the mark.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says the table is pre-configured or fully populated before any traffic is seen, contrary to the model answer's statement that it starts empty and is learned.",
+        "marks": 0.25
+      }
+    ],
+    "notes": "A full answer describes the table as MAC-to-interface mappings, explains that backward learning adds or updates the source address with its arrival port (with timestamps), explains that forwarding sends frames only to the mapped port instead of flooding, and gives one benefit such as less flooding, congestion or better bandwidth use. Each of the four ideas is worth a quarter mark, and a missing idea earns no mark for that part. The deduction covers a claim that the table is pre-filled, which contradicts the learning process.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

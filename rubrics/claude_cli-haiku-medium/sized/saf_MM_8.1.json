@@ -1,0 +1,37 @@
+{
+  "question_key": "saf/MM_8.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names one challenge of mobile routing that differs from fixed/wired routing and gives a correct description of it, such as adaptation to dynamic topology changes (nodes joining or leaving at any time), security (easy interception or injection of packets on wireless links), medium access control (hidden/exposed terminals, near-far effect), QoS, scalability, heterogeneity, dependability, or power consumption. Equivalent wording is fine.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Names a second, different challenge from the list above and gives a correct description of it. The second challenge must not be the same as the first. Equivalent wording is fine.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "The two named challenges are the same challenge, or one is only a sub-example (e.g. hidden terminal) presented as a separate challenge without the parent idea being distinct.",
+        "marks": 0.5
+      },
+      {
+        "id": "D2",
+        "description": "A named challenge is given with a description that contradicts the model answer (e.g. saying wireless networks are more secure, or that signal strength increases with distance).",
+        "marks": 0.5
+      }
+    ],
+    "notes": "Full marks require two distinct challenges, each named and correctly described in the student's own words. Each correct named challenge with a valid description earns 0.5, and the total is 1 mark. Any challenge from the model answer's list is acceptable, and the examples under Medium Access Control do not count as separate challenges.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,26 @@
+{
+  "question_key": "saf/IPP_6.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines DHCP as a network management protocol for IP networks in which a DHCP server dynamically assigns an IP address and other network configuration parameters to devices. Equivalent wording is accepted. Mentioning RARP/BOOTP is not required.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States a use of DHCP: automatic configuration of end systems, which simplifies installation and configuration. Any one of the listed uses earns the mark: automatic (or manual) IP address assignment, or supplying extra configuration such as DNS server, netmask or default router. Equivalent wording is accepted.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question asks two things, so the 1 mark splits evenly: 0.5 for a correct definition (a protocol where a server dynamically assigns IP addresses and configuration to devices) and 0.5 for a correct use (automatic configuration, address assignment, or extra configuration parameters). The remark that DHCP replaced RARP and BOOTP is secondary detail and carries no separate point. Answers that give only a vague description, such as \"it gives devices network settings\", should be judged against the definition point.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
