@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (a named storage location), not just a value or an address on its own.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the value the pointer holds is the address in memory of another variable. Equivalent wording such as 'the location/memory address of another variable' or 'refers to another variable by its address' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for an answer that says a pointer is a variable whose contents are the memory address of another variable, in any equivalent wording. Award P1 alone if the student says it is a variable but does not say what it holds, and P2 alone only if the student clearly says it stores an address of another variable without calling it a variable. Give no marks for answers that describe only the value, the syntax, or a loose idea such as 'it points to something'.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

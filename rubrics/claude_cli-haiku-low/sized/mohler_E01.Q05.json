@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location in memory (storage space in the computer). Equivalent wording such as 'a named place in memory' or 'a memory location' earns the mark. Saying it is only a label or name, with no reference to memory or storage, does not earn this mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this location can store a value (data), or that the stored value can change or be changed. Equivalent wording such as 'holds data' or 'contains a value' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for a answer that says a variable is a memory location and that it stores a value, in any equivalent wording. Award 3 for the memory-location idea alone and 2 for the storing-a-value idea alone, with no partial credit within each point. Do not require the phrase 'named' or any extra detail such as data types or addresses.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
