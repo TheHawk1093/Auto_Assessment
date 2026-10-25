@@ -95,6 +95,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 16:30 | poc-pipeline | poc_saf_pipeline | saf/dev/n8/seed0 | pipeline | 0.088 | ▲ -0.094 | ▲ -0.062 | -0.088 | 0.96 | 0.90 | 62% | 0.03 | 4834e514 |
 | 2026-10-25 19:21 | loop0 | loop0_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.151 | - | - | 0.016 | 0.74 | 0.70 | 5% | 0.04 | b9be9f4d |
 | 2026-10-25 19:22 | loop0 | loop0_saf | saf/dev/n20/seed1 | pipeline | 0.146 | - | - | 0.036 | 0.85 | 0.79 | 25% | 0.04 | b9be9f4d |
+| 2026-10-25 19:22 | loop0 | loop0_saf | saf/dev/n20/seed1 | pipeline | 0.146 | - | = | 0.036 | 0.85 | 0.79 | 25% | 0.00 | b9be9f4d |
 
 ## Variants
 
