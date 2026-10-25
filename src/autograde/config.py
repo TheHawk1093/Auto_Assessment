@@ -34,6 +34,7 @@ class PipelineConfig(BaseModel):
     disagree_gap: float = 0.15  # share of the total marks that counts as a big gap
     with_feedback: bool = True  # False: mark only (cheaper while tuning the grader)
     feedback_n: int = 1  # write this many feedback drafts and keep the best
+    deductions: bool = False  # apply the rubric's deductions (needs a strong marker; see DESIGN)
     rubric_model: str | None = None  # a stronger model writes the schemes once per question
     ocr: Literal["light", "medium", "heavy"] | None = None  # answers are OCR text of this noise
     grade_retries: int = 1

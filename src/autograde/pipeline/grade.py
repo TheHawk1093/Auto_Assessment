@@ -45,6 +45,7 @@ def mark_answer(
     evidence_policy: str = "strict",
     policy: str = "literal",
     partial_weight: float | None = None,
+    deductions: bool = False,
 ) -> tuple[Grading, list[str]]:
     """Return the checked marking and any flags. Total marks are summed by code, not the model.
 
@@ -53,6 +54,8 @@ def mark_answer(
     with an unfound quote is kept but flagged, because the reading pass gives an independent
     view of what the student said.
     """
+    if not deductions:
+        rubric = rubric.model_copy(update={"deductions": []})
     if not answer.strip():
         return _blank(rubric), ["empty_answer"]
 

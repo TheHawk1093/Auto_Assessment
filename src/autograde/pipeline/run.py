@@ -66,6 +66,7 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
             evidence_policy=cfg.evidence_policy,
             policy=policy,
             partial_weight=weight,
+            deductions=cfg.deductions,
         )
 
     if cfg.votes <= 1:
