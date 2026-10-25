@@ -118,6 +118,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 23:16 | cmpM | cmpM_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.162 | - | ▼ +0.001 | 0.076 | 0.72 | 0.66 | 10% | 0.09 | cf296af4 |
 | 2026-10-25 23:16 | cmpH | cmpH_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.186 | - | ▼ +0.024 | 0.044 | 0.59 | 0.57 | 25% | 0.10 | cf296af4 |
 | 2026-10-25 23:21 | cmpM | cmpM_saf | saf/dev/n40/seed1 | pipeline | 0.151 | - | ▼ +0.022 | 0.113 | 0.84 | 0.77 | 28% | 0.09 | cf296af4 |
+| 2026-10-25 23:22 | cmpH | cmpH_saf | saf/dev/n40/seed1 | pipeline | 0.141 | - | ▲ -0.010 | 0.088 | 0.82 | 0.74 | 25% | 0.11 | cf296af4 |
 
 ## Variants
 
