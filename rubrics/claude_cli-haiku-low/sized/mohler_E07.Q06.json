@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler/E07.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the main advantage is that insertion and deletion operations can be performed in constant time (O(1)). Equivalent wording such as 'no traversal is needed to insert or delete' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this constant-time performance also covers operations before a given location in the list and at the end of the list. Equivalent wording, such as 'insertion or deletion before a node or at the tail is also O(1)', earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Claims the main advantage is faster searching or traversal, or faster access to elements by position, rather than insertion and deletion. The main advantage is not this, so P1 is not awarded.",
+        "marks": 2.0
+      },
+      {
+        "id": "D2",
+        "description": "States that insertion and deletion are constant time only at one end, or only in some cases, without mentioning the locations covered by P2. P2 is not awarded.",
+        "marks": 1.0
+      }
+    ],
+    "notes": "The model answer makes one main claim, that insertion and deletion take constant time, and extends it to operations before a location and at the end of the list. Full marks need both the constant-time claim and its extension to those positions. A student who gives only the constant-time claim gets 3 of 5. Answers that name a different advantage get no marks for P1.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

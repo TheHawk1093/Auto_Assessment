@@ -1,0 +1,20 @@
+{
+  "question_key": "mohler/E11.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the alternative is iteration (using loops such as for/while to repeat steps). Equivalent wording like 'looping' or 'iterative approach' earns the mark.",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for naming iteration/looping as the alternative. No marks for answers that name something else (e.g. another recursion type, or a data structure) or that give no alternative.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

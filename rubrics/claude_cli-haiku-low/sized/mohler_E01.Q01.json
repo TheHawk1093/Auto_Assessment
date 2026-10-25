@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E01.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a prototype program simulates the behaviour of the software being developed (it imitates how the product behaves). Equivalent wording such as 'mimics or demonstrates how the software will act' earns the mark.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the simulation covers portions (parts or key features) of the desired software product, not necessarily the whole product. Equivalent wording such as 'some parts of the intended system' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "Says the prototype is the complete or final working product rather than a partial simulation. Deduct 1 mark, only if P2 is not otherwise met.",
+        "marks": 1.0
+      }
+    ],
+    "notes": "Full marks for explaining that a prototype simulates how the desired software behaves and that it does so for portions of the product. Award 3 marks for P1 alone if the student names simulation of behaviour without the partial scope. Mentions of extra uses, such as gathering requirements or testing ideas, are not required and earn no extra marks.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

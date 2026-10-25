@@ -1,0 +1,26 @@
+{
+  "question_key": "mohler/E12.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the algorithm is implemented (written as a program and run/executed), e.g. on actual inputs.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that the physical (actual/wall-clock) running time is measured, e.g. with a timer or clock, rather than analysed mathematically.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for saying the algorithm is implemented and its actual running time is measured. Half the marks for only one of the two ideas. Equivalent wording (e.g. code it, run it, time it with a clock) earns the marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

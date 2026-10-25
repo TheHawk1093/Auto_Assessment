@@ -1,0 +1,20 @@
+{
+  "question_key": "mohler/E01.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a prototype program simulates/imitates/mimics the behaviour of (portions of) the desired software product. Equivalent wording such as 'a model or mock-up that shows how part of the final system will behave' earns the mark.",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for saying the prototype simulates or imitates the behaviour of parts of the intended final software. Answers that only say 'a test program' or 'an early version' without the idea of simulating the product's behaviour earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

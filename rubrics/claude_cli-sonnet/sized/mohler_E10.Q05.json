@@ -1,0 +1,26 @@
+{
+  "question_key": "mohler/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary search tree is a binary tree (each node has at most two children, left and right).",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property: for any node, the left child (left subtree) is smaller than the parent, and the parent is smaller than the right child (right subtree). Equivalent wording accepted.",
+        "marks": 3.0,
+        "partial_credit": "1.5 marks if only one side of the ordering is stated correctly (left smaller or right larger), or the ordering is vague, e.g. 'sorted' without left/right."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: identifies a binary tree and gives the left < parent < right ordering at every node. Part marks: only the binary tree structure, or only a partial or vague ordering. No marks: answers that describe other structures or give no ordering or structure.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
