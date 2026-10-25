@@ -9,13 +9,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Answers that the independence assumption holds, or gives no clear yes/no verdict, earn no mark.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "A full mark requires a clear 'No' (the assumption does not hold) together with the reason that real traffic is bursty or arrivals depend on earlier arrivals. The specific video-streaming example is secondary detail and is not required. An answer that says 'no' without any reason about dependence or burstiness earns no mark.",
     "policy": "essence",
     "partial_weight": null,

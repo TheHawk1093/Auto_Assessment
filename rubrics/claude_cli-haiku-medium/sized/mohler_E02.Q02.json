@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says a local variable is accessible from other member functions or the whole class, which contradicts the difference being described.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks require the student to state both halves of the difference: data members are accessible from any member function of the class, and local variables are accessible only within the function that defines them. Each half is worth 2.5 marks, and the answer does not need the model answer's exact wording. A answer that gives only one correct side, or describes only one of the two, earns just that point's marks.",
     "policy": "essence",
     "partial_weight": null,

@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "States that a high learning rate always makes convergence faster, with no mention of zigzagging or instability at high values.",
-        "marks": 0.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (2) for stating that the learning rate sets the speed of convergence and that too large a rate (above a critical value) makes learning unstable. Award 1 mark for only one of these two ideas. Overdamped/underdamped and zigzag detail is supporting material, not required for the marks.",
     "policy": "balanced",
     "partial_weight": null,

@@ -9,13 +9,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "States that sizeof returns the value of the operand, its address, or a count of elements rather than its size in bytes.",
-        "marks": 2.0
-      }
-    ],
+    "deductions": [],
     "notes": "The model answer is a single idea: sizeof returns the byte size of its operand. Full marks require the student to state that the result is a size in bytes of the operand. Any answer that gives a different quantity (value, address, element count) is wrong and loses marks; no partial credit is given for vague answers such as 'it gives the size' without saying what it is measured in or of what.",
     "policy": "essence",
     "partial_weight": 0.0,

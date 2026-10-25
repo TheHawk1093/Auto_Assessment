@@ -15,18 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Claims the main advantage is faster searching or traversal, or faster access to elements by position, rather than insertion and deletion. The main advantage is not this, so P1 is not awarded.",
-        "marks": 2.0
-      },
-      {
-        "id": "D2",
-        "description": "States that insertion and deletion are constant time only at one end, or only in some cases, without mentioning the locations covered by P2. P2 is not awarded.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "The model answer makes one main claim, that insertion and deletion take constant time, and extends it to operations before a location and at the end of the list. Full marks need both the constant-time claim and its extension to those positions. A student who gives only the constant-time claim gets 3 of 5. Answers that name a different advantage get no marks for P1.",
     "policy": "essence",
     "partial_weight": null,

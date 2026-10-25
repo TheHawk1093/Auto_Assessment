@@ -21,18 +21,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describes divide-and-conquer as a single-step or unrelated technique, such as simply splitting data with no recursive solving or combining, or confuses it with a greedy or dynamic programming approach.",
-        "marks": 1.0
-      },
-      {
-        "id": "D2",
-        "description": "Says the subproblems are solved in some other way, such as by brute force, without recursion or the same method. Only the recursive-solving point is lost in this case.",
-        "marks": 0.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks for a brief answer that covers all three stages: dividing the problem into smaller subproblems, solving them recursively, and combining their solutions. Partial marks are not split into halves; a missing stage loses its own marks. No marks for a vague answer such as 'it breaks problems down' with no mention of recursion or combining.",
     "policy": "essence",
     "partial_weight": null,

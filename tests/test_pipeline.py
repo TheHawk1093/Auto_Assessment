@@ -3,7 +3,7 @@ from pathlib import Path
 from autograde.config import PathsConfig, PipelineConfig, Settings
 from autograde.pipeline.rubric import build_record
 from autograde.pipeline.run import read_results, run_items
-from autograde.schemas import Feedback, Grading, Item, Question, Reading, Rubric
+from autograde.schemas import Feedback, Grading, Item, Question, Reading, RubricDraft
 from fakes import FakeClient
 
 MODEL_ANSWER = "Gradient descent updates weights against the gradient."
@@ -50,7 +50,7 @@ def settings(tmp_path: Path) -> Settings:
 def client() -> FakeClient:
     return FakeClient(
         {
-            Rubric: rubric_handler,
+            RubricDraft: rubric_handler,
             Grading: grade_handler,
             Feedback: lambda _u: FEEDBACK,
             Reading: lambda _u: READING,
@@ -66,7 +66,7 @@ def test_end_to_end_marks_come_from_code_and_schemes_are_cached(tmp_path: Path):
     by_id = {r.item.id: r for r in results}
     assert by_id["t/1"].predicted_mark == 1.0 and by_id["t/2"].predicted_mark == 1.0
     assert all(r.feedback and r.grading for r in results)
-    assert c.count(Rubric) == 1  # one scheme for the one question
+    assert c.count(RubricDraft) == 1  # one scheme for the one question
     # self-test: model answer + a "don't know" answer, plus the two students
     assert c.count(Grading) == 4
     assert c.count(Feedback) == 2
@@ -94,7 +94,7 @@ def test_resume_skips_finished_items(tmp_path: Path):
     c2 = client()
     results = run_items([*items, make_item(2, "weights")], "pipeline", c2, settings(tmp_path), out)
     assert len(results) == 2 and len(read_results(out)) == 2
-    assert c2.count(Rubric) == 0  # cached from the first run
+    assert c2.count(RubricDraft) == 0  # cached from the first run
     assert c2.count(Feedback) == 1
 
 
@@ -116,7 +116,7 @@ def test_bad_marking_is_retried_then_accepted(tmp_path: Path):
                 return verdicts(True, False, "invented quote")  # fails the quote check
         return grade_handler(user)
 
-    c = FakeClient({Rubric: rubric_handler, Grading: flaky, Feedback: lambda _u: FEEDBACK})
+    c = FakeClient({RubricDraft: rubric_handler, Grading: flaky, Feedback: lambda _u: FEEDBACK})
     cfg = Settings(
         pipeline=PipelineConfig(
             rubric_selftest=False, max_workers=1, read_first=False, evidence_policy="strict"
@@ -132,7 +132,9 @@ def invented_quote(_user: str) -> dict:
 
 
 def run_with_policy(tmp_path: Path, policy: str):
-    c = FakeClient({Rubric: rubric_handler, Grading: invented_quote, Feedback: lambda _u: FEEDBACK})
+    c = FakeClient(
+        {RubricDraft: rubric_handler, Grading: invented_quote, Feedback: lambda _u: FEEDBACK}
+    )
     cfg = Settings(
         pipeline=PipelineConfig(
             rubric_selftest=False, max_workers=1, read_first=False, evidence_policy=policy
@@ -160,11 +162,11 @@ def test_failed_selftest_is_recorded_not_fatal():
     def stingy(_user: str) -> dict:
         return verdicts(False, False, "")
 
-    c = FakeClient({Rubric: rubric_handler, Grading: stingy})
+    c = FakeClient({RubricDraft: rubric_handler, Grading: stingy})
     q = Question(key="t/q1", text="Q", model_answer=MODEL_ANSWER, max_mark=2.0)
     rec = build_record(q, c, run_selftest=True)
     assert rec.selftest_passed is False and rec.selftest_notes
-    assert c.count(Rubric) == 2  # rewritten once
+    assert c.count(RubricDraft) == 2  # rewritten once
 
 
 def partial_handler(_user: str) -> dict:
@@ -182,7 +184,7 @@ def test_partial_weight_decides_the_marks_not_the_model(tmp_path: Path):
     cfg = settings(tmp_path)
     cfg.pipeline.rubric_selftest = False
     cfg.pipeline.partial_weight = 0.9
-    c = FakeClient({Rubric: rubric_handler, Grading: partial_handler,
+    c = FakeClient({RubricDraft: rubric_handler, Grading: partial_handler,
                     Feedback: lambda _u: FEEDBACK, Reading: lambda _u: READING})  # fmt: skip
     out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "a.jsonl")
     assert out[0].predicted_mark == 0.9
@@ -197,7 +199,7 @@ def test_model_rule_keeps_the_models_own_marks(tmp_path: Path):
     cfg = settings(tmp_path)
     cfg.pipeline.rubric_selftest = False
     cfg.pipeline.mark_rule = "model"
-    c = FakeClient({Rubric: rubric_handler, Grading: partial_handler,
+    c = FakeClient({RubricDraft: rubric_handler, Grading: partial_handler,
                     Feedback: lambda _u: FEEDBACK, Reading: lambda _u: READING})  # fmt: skip
     out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "b.jsonl")
     assert out[0].predicted_mark == 0.2

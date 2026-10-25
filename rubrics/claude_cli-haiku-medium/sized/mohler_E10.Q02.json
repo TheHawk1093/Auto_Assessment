@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describes height as the distance from the root to some arbitrary node or to the deepest node without specifying a leaf, or otherwise confuses height with depth of a single node.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "A full-mark answer defines height as the length of the longest path from the root to a leaf, using equivalent wording. Award P1 for the root-to-leaf path idea and P2 for the 'longest' (maximum) requirement. An answer that gives only a single path length without taking the longest earns 2 marks.",
     "policy": "balanced",
     "partial_weight": null,

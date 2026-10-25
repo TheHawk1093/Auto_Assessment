@@ -27,13 +27,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says the table is pre-configured or fully populated before any traffic is seen, contrary to the model answer's statement that it starts empty and is learned.",
-        "marks": 0.25
-      }
-    ],
+    "deductions": [],
     "notes": "A full answer describes the table as MAC-to-interface mappings, explains that backward learning adds or updates the source address with its arrival port (with timestamps), explains that forwarding sends frames only to the mapped port instead of flooding, and gives one benefit such as less flooding, congestion or better bandwidth use. Each of the four ideas is worth a quarter mark, and a missing idea earns no mark for that part. The deduction covers a claim that the table is pre-filled, which contradicts the learning process.",
     "policy": "balanced",
     "partial_weight": null,

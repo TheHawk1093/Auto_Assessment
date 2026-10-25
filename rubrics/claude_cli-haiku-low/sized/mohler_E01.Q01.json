@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says the prototype is the complete or final working product rather than a partial simulation. Deduct 1 mark, only if P2 is not otherwise met.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks for explaining that a prototype simulates how the desired software behaves and that it does so for portions of the product. Award 3 marks for P1 alone if the student names simulation of behaviour without the partial scope. Mentions of extra uses, such as gathering requirements or testing ideas, are not required and earn no extra marks.",
     "policy": "essence",
     "partial_weight": null,

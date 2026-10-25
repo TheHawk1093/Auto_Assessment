@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "States the ordering in the wrong direction, for example saying the left child is larger than the parent. P2 is not awarded in this case.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "A full answer names the structure as a binary tree and gives the ordering rule with smaller values on the left and larger on the right, for any node. A partial answer gives only one of these ideas, or reverses the direction. An answer that omits both, or describes something else, earns no marks.",
     "policy": null,
     "partial_weight": null,

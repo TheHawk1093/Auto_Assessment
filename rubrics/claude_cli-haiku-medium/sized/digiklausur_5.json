@@ -15,13 +15,7 @@
         "partial_credit": "Award 0.5 if the student updates the winner and neighbours but omits the decay of the neighbourhood/learning rate or the repeat-until-convergence loop."
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Pseudocode updates only the winning neuron and ignores its neighbours, which is the defining feature of SOM learning.",
-        "marks": 0.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks go to pseudocode that initialises the lattice weights, samples an input, finds the best-matching (winning) neuron, updates the winner and its neighbours, shrinks the neighbourhood and learning rate, and repeats until convergence. Half marks go to answers that cover only one half of the procedure (matching without updating, or updating without decay or iteration). No marks go to answers that describe a different algorithm or give no SOM steps.",
     "policy": null,
     "partial_weight": null,

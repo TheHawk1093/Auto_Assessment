@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describing the approach as theoretical analysis, counting basic operations, or deriving a formula (e.g. Big-O) instead of implementing and timing the algorithm. This is the wrong approach and earns no marks for P2.",
-        "marks": 2.0
-      }
-    ],
+    "deductions": [],
     "notes": "The model answer is a single sentence with two distinct ideas: implementing the algorithm and measuring its physical running time. Full marks need both ideas stated, with the timing being of the real, running implementation. A student who only says 'implement it' or only says 'measure the time' without the other earns partial marks for that point, and a theoretical or operation-counting answer earns no marks for the measurement idea.",
     "policy": "balanced",
     "partial_weight": null,

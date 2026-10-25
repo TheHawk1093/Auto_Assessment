@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says regression outputs discrete labels or classes, or says classification outputs continuous values (the two are swapped).",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (2) for stating that classification predicts discrete labels/categories and regression predicts continuous real-valued outputs. The error-metric detail in the model answer (misclassification count vs summed distance) is not required by the question and is not marked. A correct statement of only one side earns 1 mark; swapping the two sides loses the mark for that side.",
     "policy": "essence",
     "partial_weight": null,

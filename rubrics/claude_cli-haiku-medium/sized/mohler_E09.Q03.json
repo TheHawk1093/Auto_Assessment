@@ -15,13 +15,7 @@
         "partial_credit": "Award 1.5 if the student correctly places the front at the beginning and the rear at the end of the array but does not mention the rear wrapping around to the start."
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says the front is at the end and the rear at the beginning of the array, or otherwise reverses the ends, when the model answer places the rear toward the end and the front toward the beginning.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (5) for stating a circular array in which the front sits at the beginning, the rear sits at the end, and the rear wraps around to the start. Partial credit (1.5 or 2) for placing front and rear at opposite ends of the array without the wrap-around, or for mentioning a circular array without the front/rear placement. No marks for a plain linear array description with no wrap-around or for answers that do not address the array structure.",
     "policy": "balanced",
     "partial_weight": null,

@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Update rule is wrong, for example adding x for correctly classified points or using a condition that does not detect misclassification.",
-        "marks": 0.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (2) for a pseudocode learning loop that initialises the weights, updates on misclassified examples with the perceptron rule, and repeats over epochs until the weights stop changing. One mark for each of the two points; the 'converges because data is linearly separable' remark in the model answer is a side comment and is not required. Give no marks for a description that does not give an algorithm or uses no weight update.",
     "policy": "balanced",
     "partial_weight": null,

@@ -15,13 +15,7 @@
         "partial_credit": "Award 1 mark if the student mentions only one of the two cases (before a given location, or at the end of the list)."
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Claims the main advantage is faster searching, traversal or random access. These are not improved by a doubly-linked list, so the statement is wrong.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks require the student to say that insertion and deletion run in constant time and that this holds for operations before a given location and at the end of the list. Half of P2 is awarded for naming only one of those two cases. Marks are withheld for answers that describe a different advantage or only say 'faster' without the constant-time claim.",
     "policy": "balanced",
     "partial_weight": null,

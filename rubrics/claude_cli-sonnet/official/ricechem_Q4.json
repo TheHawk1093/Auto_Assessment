@@ -39,7 +39,14 @@
         "partial_credit": ""
       }
     ],
-    "notes": "Marked point by point from the published rubric. Deduct 1 for an incorrect or misleading statement.",
+    "deductions": [
+      {
+        "id": "D1",
+        "description": "The response includes an incorrect or misleading statement.",
+        "marks": 1.0
+      }
+    ],
+    "notes": "Marked point by point from the published rubric.",
     "policy": "balanced",
     "partial_weight": 0.5,
     "level": null

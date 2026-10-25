@@ -127,6 +127,19 @@ class AtomicFacts(BaseModel):
         )
 
 
+class RubricDraft(BaseModel):
+    """What the scheme writer returns. Deductions are never drafted: only teachers set them."""
+
+    points: list[RubricPoint] = Field(min_length=1)
+    notes: str = Field(
+        default="",
+        description="Two or three plain sentences: what earns full, part and no marks.",
+    )
+
+    def to_rubric(self) -> Rubric:
+        return Rubric(points=self.points, notes=self.notes)
+
+
 class RubricRecord(BaseModel):
     """A cached marking scheme with the outcome of its automatic self-test."""
 

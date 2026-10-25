@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describing the stack as first-in-first-out or as a queue contradicts the LIFO property and loses the ordering mark.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (5) for a answer that says a stack is a data structure holding elements and that the last item added is the first removed (or LIFO). Award 2 for the structure idea alone and 3 for the LIFO idea alone, since the answer has two separate ideas. Equivalent wording and the LIFO abbreviation are acceptable; the exact model wording is not required.",
     "policy": null,
     "partial_weight": null,

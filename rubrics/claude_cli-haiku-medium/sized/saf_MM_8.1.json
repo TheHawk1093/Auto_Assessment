@@ -15,18 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "The two named challenges are the same challenge, or one is only a sub-example (e.g. hidden terminal) presented as a separate challenge without the parent idea being distinct.",
-        "marks": 0.5
-      },
-      {
-        "id": "D2",
-        "description": "A named challenge is given with a description that contradicts the model answer (e.g. saying wireless networks are more secure, or that signal strength increases with distance).",
-        "marks": 0.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks require two distinct challenges, each named and correctly described in the student's own words. Each correct named challenge with a valid description earns 0.5, and the total is 1 mark. Any challenge from the model answer's list is acceptable, and the examples under Medium Access Control do not count as separate challenges.",
     "policy": "balanced",
     "partial_weight": null,

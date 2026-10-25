@@ -120,6 +120,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 23:21 | cmpM | cmpM_saf | saf/dev/n40/seed1 | pipeline | 0.151 | - | ▼ +0.022 | 0.113 | 0.84 | 0.77 | 28% | 0.09 | cf296af4 |
 | 2026-10-25 23:22 | cmpH | cmpH_saf | saf/dev/n40/seed1 | pipeline | 0.141 | - | ▲ -0.010 | 0.088 | 0.82 | 0.74 | 25% | 0.11 | cf296af4 |
 | 2026-10-25 23:27 | cmpM | cmpM_mohler | mohler/dev/n40/seed1 | pipeline | 0.215 | - | ▲ -0.066 | -0.136 | 0.70 | 0.54 | 40% | 0.07 | cf296af4 |
+| 2026-10-25 23:36 | cmpR | cmpR_ricechem | ricechem/dev/n24/seed1 | pipeline | 0.164 | - | - | -0.049 | 0.83 | 0.72 | 75% | 0.08 | cf296af4 |
 
 ## Variants
 
@@ -167,3 +168,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **cmpL**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpM**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": "sonnet", "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpH**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
+- **cmpR**: ricechem official rubric with deductions, haiku medium. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`

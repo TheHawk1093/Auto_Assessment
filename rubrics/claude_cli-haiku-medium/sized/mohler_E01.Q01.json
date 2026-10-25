@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describing the prototype as a full or finished version of the product, or as the final working software, contradicts the idea of simulation.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks for saying a prototype simulates how part of the intended software behaves. Award 3 marks for the core idea of simulating behaviour and 2 marks for recognising that only portions of the product are simulated. A vague answer such as 'it helps solve problems' earns no marks.",
     "policy": "essence",
     "partial_weight": null,

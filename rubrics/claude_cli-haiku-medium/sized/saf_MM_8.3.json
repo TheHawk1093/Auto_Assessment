@@ -21,13 +21,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Stating the property as merely 'fast' or 'efficient' without referring to unique paths or loop-freeness earns no mark for P1.",
-        "marks": 0.4
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks (1) require the unique-path/loop-free property, the addition of group membership to link state packets, and local tree construction from the full topology (Prim or Kruskal). Marks are awarded per point, and a point is missed entirely if its idea is absent. The answer should be read as a whole, so an answer that gives the link state modification without mentioning that every node has the full topology should lose P3.",
     "policy": "balanced",
     "partial_weight": null,

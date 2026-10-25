@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describes a pointer as holding the value of another variable rather than its address (e.g. 'a pointer stores the value of a variable'). Only P2 is lost.",
-        "marks": 2.0
-      }
-    ],
+    "deductions": [],
     "notes": "The model answer is one sentence with two separable ideas: a pointer is a variable, and what it holds is the memory address of another variable. Full marks need both ideas in the student's own words. Give partial credit only through the separate points, not within a point; a student who says the pointer is a variable but gives no address earns P1 only (2/5).",
     "policy": "essence",
     "partial_weight": null,

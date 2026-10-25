@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Describes a plain (non-circular) array with the front fixed at index 0 and elements shifted on dequeue, with no wrap-around. This does not match the model answer and earns neither point.",
-        "marks": 2.5
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks need both the circular array idea and the front/rear placement with the rear wrapping around. Equivalent wording and alternative correct methods, such as modulo indexing or a circular buffer with a count, earn the marks. An answer that describes only a linear array with no wrap-around earns no marks.",
     "policy": "essence",
     "partial_weight": null,

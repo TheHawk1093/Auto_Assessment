@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Says a static array is re-initialized on every function call, which contradicts the model answer.",
-        "marks": 2.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks need the student to say a static array is initialized only once and to tie that to the function call (first call, values kept between calls). Partial marks are not given separately; a student who gives only the single-initialization idea gets P1 (3/5). No marks are given for a vague answer about static arrays being different without saying how initialization differs. The question asks for a difference, so a clear contrast with non-static arrays is acceptable but not required because the model answer only describes the static case.",
     "policy": "essence",
     "partial_weight": null,

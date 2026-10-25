@@ -15,13 +15,7 @@
         "partial_credit": ""
       }
     ],
-    "deductions": [
-      {
-        "id": "D1",
-        "description": "Gives the ordering in the wrong direction, such as left child larger than the parent or right child smaller than the parent.",
-        "marks": 1.0
-      }
-    ],
+    "deductions": [],
     "notes": "Full marks require both that it is a binary tree and that every node satisfies left < parent < right (or an equivalent statement of the ordering). A student who describes only the binary structure, or only a partial or root-only ordering, earns the structural mark or part of the ordering mark, but not full credit. Equivalent wording, such as a subtree-based description of the ordering, is accepted.",
     "policy": "balanced",
     "partial_weight": null,
