@@ -108,6 +108,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 20:50 | feedback-formal-v2 | dk_s0_fb_formal2 | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.29 | a4920cf2 |
 | 2026-10-25 20:52 | loop3 | loop3_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.128 | - | ▲ -0.138 | -0.041 | 0.88 | 0.79 | 0% | 0.05 | a4920cf2 |
 | 2026-10-25 20:55 | loop3 | loop3_saf | saf/dev/n20/seed1 | pipeline | 0.158 | - | ▼ +0.040 | -0.024 | 0.77 | 0.74 | 15% | 0.06 | a4920cf2 |
+| 2026-10-25 20:58 | loop3 | loop3_mohler | mohler/dev/n20/seed1 | pipeline | 0.216 | - | ▲ -0.062 | -0.182 | 0.72 | 0.52 | 15% | 0.05 | a4920cf2 |
 
 ## Variants
 

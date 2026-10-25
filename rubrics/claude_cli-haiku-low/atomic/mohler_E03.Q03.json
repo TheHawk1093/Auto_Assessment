@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The compiler copies the body of the inline function's code into every place where the function is called.",
+        "marks": 3.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The inlined copies are placed at the call sites instead of the call jumping to one shared copy of the function.",
+        "marks": 1.25,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
