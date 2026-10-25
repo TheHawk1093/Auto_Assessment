@@ -121,6 +121,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 23:22 | cmpH | cmpH_saf | saf/dev/n40/seed1 | pipeline | 0.141 | - | ▲ -0.010 | 0.088 | 0.82 | 0.74 | 25% | 0.11 | cf296af4 |
 | 2026-10-25 23:27 | cmpM | cmpM_mohler | mohler/dev/n40/seed1 | pipeline | 0.215 | - | ▲ -0.066 | -0.136 | 0.70 | 0.54 | 40% | 0.07 | cf296af4 |
 | 2026-10-25 23:36 | cmpR | cmpR_ricechem | ricechem/dev/n24/seed1 | pipeline | 0.164 | - | - | -0.049 | 0.83 | 0.72 | 75% | 0.08 | cf296af4 |
+| 2026-10-25 23:38 | cmpL | cmpL_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.152 | - | ▲ -0.034 | 0.062 | 0.78 | 0.72 | 18% | 0.08 | cf296af4 |
 
 ## Variants
 
