@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys the core SOM loop: for each sampled input, find the best-matching (winning) neuron in the lattice by similarity matching, then update the winner's weights and those of its topological neighbours, as set by the neighbourhood function. Equivalent wording or pseudocode earns the marks.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that the procedure is iterative and set up in advance: weights are initialised randomly (and arranged in the lattice topology), inputs are repeatedly sampled, the neighbourhood and learning rate are reduced over time, and the loop stops once ordering and convergence are reached (otherwise it keeps sampling). Equivalent wording or pseudocode earns the marks.",
+        "marks": 0.5,
+        "partial_credit": "Half (0.25) if the answer gives only the iteration or stopping condition, or only the random weight initialisation, without the decay and convergence logic."
+      }
+    ],
+    "notes": "Full marks (2) go to a pseudocode answer that shows the winner search, the update of the winner and its neighbourhood, and the repeated loop with decaying neighbourhood/learning rate until convergence. Give 1.5 for P1 when the winner-and-neighbour update is present, and 0.5 for P2 when the initialisation, iteration and stopping steps are present. Award no marks for a description that never mentions choosing a winning neuron or updating neighbours.",
+    "policy": "balanced",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

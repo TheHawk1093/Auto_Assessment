@@ -1,6 +1,6 @@
 """Grade the same sheets from different OCR sources and compare the marks.
 
-    python tools/ocr_pipeline_eval.py --source claude_sonnet=runs/ocrp_sonnet --source tess=runs/ocrb_tess_ink
+    python tools/ocr_pipeline_eval.py --source sonnet=runs/ocrp_sonnet --source tess=runs/ocrb_tess
 
 Every source goes through the same steps: its text for each sheet is matched to the questions in
 data/OCR_Dataset/key.json by a text-only model, then the existing pipeline marks each answer with
@@ -48,7 +48,12 @@ def sheet_text(folder: Path, sheet: str) -> str:
             parts.append("\n".join(lines[name]))
     else:
         for path in sorted(folder.glob(f"{sheet}_p*.sheet.json")):
-            parts.append("\n".join(i.student_answer for i in Sheet.model_validate_json(path.read_text("utf-8")).items))
+            parts.append(
+                "\n".join(
+                    i.student_answer
+                    for i in Sheet.model_validate_json(path.read_text("utf-8")).items
+                )
+            )
     return "\n".join(parts)
 
 
@@ -92,7 +97,14 @@ def main() -> None:
     assigner = build_client(settings.llm.model_copy(update={"model": a.assign_model}))
 
     sources: dict[str, list[Item]] = {
-        "truth": build_items("truth", {s: {i["id"]: i["student_truth"] for i in KEY[s]["items"]} for s in KEY if not s.startswith("_")})
+        "truth": build_items(
+            "truth",
+            {
+                s: {i["id"]: i["student_truth"] for i in KEY[s]["items"]}
+                for s in KEY
+                if not s.startswith("_")
+            },
+        )
     }
     cache = out / "assigned.json"
     done = json.loads(cache.read_text("utf-8")) if cache.exists() else {}
@@ -100,7 +112,9 @@ def main() -> None:
         name, folder = spec.split("=", 1)
         if name not in done:
             done[name] = {
-                s: assign(assigner, s, sheet_text(ROOT / folder, s)) for s in KEY if not s.startswith("_")
+                s: assign(assigner, s, sheet_text(ROOT / folder, s))
+                for s in KEY
+                if not s.startswith("_")
             }
             out.mkdir(parents=True, exist_ok=True)
             cache.write_text(json.dumps(done, ensure_ascii=False, indent=1), "utf-8")
@@ -119,10 +133,16 @@ def main() -> None:
         errs = []
         for sheet, groups in clean.items():
             for g in groups:
-                ids = [q for q in marks if q.startswith(f"{sheet}-{g}") and re.fullmatch(rf"{sheet}-{g}[a-z]?", q)]
+                ids = [
+                    q
+                    for q in marks
+                    if q.startswith(f"{sheet}-{g}") and re.fullmatch(rf"{sheet}-{g}[a-z]?", q)
+                ]
                 errs.append(abs(sum(marks[q] for q in ids) - KEY[sheet]["teacher_totals"][g]))
         same = sum(d < 1e-6 for d in diffs) / len(diffs)
-        print(f"{name:<22}{sum(diffs) / len(diffs):>20.3f}{same:>11.0%}{sum(errs) / len(errs):>22.3f}")
+        print(
+            f"{name:<22}{sum(diffs) / len(diffs):>20.3f}{same:>11.0%}{sum(errs) / len(errs):>22.3f}"
+        )
     print(f"cost: grading ${client.usage.cost_usd:.3f}, assignment ${assigner.usage.cost_usd:.3f}")
     (out / "summary.json").write_text(json.dumps(results, indent=1), "utf-8")
 

@@ -241,7 +241,11 @@ GRIDS = {
         "eng": {"psm": [4, 6, 11, 12], "lang": ["deu+eng", "eng"]},
     },
     "rapidocr": {
-        "prep": [("raw", {}), ("ink", {"scale": 2.0, "close": 3}), ("ink", {"scale": 1.5, "close": 3})],
+        "prep": [
+            ("raw", {}),
+            ("ink", {"scale": 2.0, "close": 3}),
+            ("ink", {"scale": 1.5, "close": 3}),
+        ],
         "eng": {
             "text_score": [0.3, 0.5],
             "det_box_thresh": [0.3, 0.5],
@@ -250,12 +254,11 @@ GRIDS = {
         },
     },
     "easyocr": {
-        "prep": [("raw", {}), ("ink", {"scale": 1.5, "close": 3}), ("ink", {"scale": 2.0, "close": 3})],
+        "prep": [("raw", {}), ("ink", {"scale": 2.0, "close": 3})],
         "eng": {
             "text_threshold": [0.5, 0.7],
             "low_text": [0.3, 0.4],
-            "decoder": ["greedy", "beamsearch"],
-            "contrast_ths": [0.1, 0.3],
+            "mag_ratio": [1.0, 1.5],
         },
     },
 }
@@ -265,9 +268,7 @@ def ink_variants() -> list[tuple[str, dict]]:
     """Second tuning stage: the ink mask itself, with the engine settings held fixed."""
     return [
         ("ink", {"scale": s, "close": c, "sat_min": sat, "hue": hue})
-        for s, c, sat, hue in itertools.product(
-            [1.5, 2.0, 3.0], [0, 3, 5], [25, 40, 60], [(90, 140), (100, 130)]
-        )
+        for s, c, sat, hue in itertools.product([2.0, 3.0], [0, 3], [25, 45], [(90, 140)])
     ]
 
 

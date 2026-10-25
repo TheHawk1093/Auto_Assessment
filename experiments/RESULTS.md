@@ -101,6 +101,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 19:36 | loop1 | loop1_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.140 | - | ▲ -0.011 | 0.047 | 0.79 | 0.73 | 10% | 0.04 | 4e923b89 |
 | 2026-10-25 19:40 | loop1 | loop1_saf | saf/dev/n20/seed1 | pipeline | 0.146 | - | = | 0.036 | 0.85 | 0.79 | 30% | 0.04 | 4e923b89 |
 | 2026-10-25 19:43 | loop1 | loop1_mohler | mohler/dev/n20/seed1 | pipeline | 0.249 | - | ▼ +0.002 | -0.245 | 0.71 | 0.48 | 10% | 0.03 | 4e923b89 |
+| 2026-10-25 19:49 | loop2 | loop2_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.266 | - | ▼ +0.126 | -0.222 | 0.50 | 0.44 | 10% | 0.05 | c202d427 |
 
 ## Variants
 
@@ -140,3 +141,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **poc-harsh**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "harsh", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **loop0**: grader fix-the-misses round 0. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **loop1**: grader: plain-words ideas count, not_met only if absent. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`
+- **loop2**: rubric writer: fewer broader idea-points (lean). Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "lean", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`

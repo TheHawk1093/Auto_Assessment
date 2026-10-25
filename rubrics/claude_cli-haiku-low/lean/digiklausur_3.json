@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys the perceptron training loop: start with (random or zero) weights, then repeatedly go through the labelled training examples and, for each example the current weights misclassify, update the weights by adding a learning-rate-scaled multiple of the input (e.g. w = w + eta*x for positive examples, or w + eta*y*x in general), repeating over epochs until the weights stop changing (or no misclassifications remain). Equivalent pseudocode, or a correct alternative update rule with the same idea of correcting mistakes, earns the mark.",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that the algorithm converges (reaches a weight vector that classifies all points correctly) because the data is linearly separable. A statement that it stops or converges on separable data earns the mark, with no need for the proof.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (2) for a pseudocode or clear description of the perceptron loop: initialise weights, update on misclassified examples with eta times the input, repeat over epochs until convergence, and the note that separability guarantees convergence. Award 1.5 for the training loop alone and 0.5 for the convergence statement; a student who gives the loop without the convergence remark gets 1.5, and one who only mentions convergence gets 0. Equivalent wording, labels in {-1,+1}, or alternative correct update forms earn the marks.",
+    "policy": null,
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

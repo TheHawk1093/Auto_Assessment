@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys the feature-extraction stage of a CNN: one or more convolutional layers whose kernels convolve over the input image, with activation (e.g. ReLU) and pooling (max or average) layers. Equivalent wording and naming the layers with an accurate role for each earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys the classification stage: one or more fully connected layers that follow the convolutional/pooling layers, ending in a softmax layer. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Total 2 marks, split evenly between the two halves of the CNN structure: the feature-extraction layers (convolution, activation, pooling) and the classification layers (fully connected then softmax). Full marks require the student to name the layers and place them in the right order or role; a list of layers with no indication of their function, or one half missing, earns no mark for that half. The specific ReLU and max/average pooling details are examples, so omitting them does not cost a mark if the convolution and pooling roles are described.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
