@@ -122,6 +122,7 @@ Dev only: DigiKlausur, SAF and Mohler, 20 answers each, seed 1, fixed across rou
 | 0 | start (sized rubrics, essence policy) | 0.151 (bias +0.016) | 0.146 (+0.036) | 0.247 (-0.243) | baseline |
 | 1 | grader prompt: plain-words ideas count; not met only if the idea is absent | 0.140 (+0.047) | 0.146 (+0.036) | 0.249 (-0.245) | kept (harmless, small gain on one set) |
 | 2 | rubric writer: fewer, broader idea-points ("lean") | 0.266 (-0.222) | 0.119 (+0.083) | 0.278 (-0.248) | rejected: worse on two of three sets |
+| 3 | atomic facts: model answer split into weighted single claims (code sets the marks), each judged against the student's separately read ideas | 0.128 (-0.041), r 0.88 | 0.158 (-0.024), r 0.77 | 0.216 (-0.182), r 0.72 | optional variant `atomic`; mean error of the three 0.178 to 0.167 |
 
 What the loop showed:
 - DigiKlausur and SAF are not under-marked at 20 answers (bias near zero). The under-marking is mainly Mohler: the teacher gives 0.8 to 1.0 of the marks to 17 of 20 answers, while Haiku gave about half.
@@ -129,3 +130,20 @@ What the loop showed:
 - Partial value is not the lever on Mohler: the best fit was 0.8 and the error barely changed (0.26 to 0.27).
 - Per the request to keep tuning short, the loop stopped after round 2. Next lever to try, on this same sample: another model (Sonnet) for the marker, which the earlier sweep suggests is more tolerant than Haiku at low effort.
 - Mohler has repeated rows for the same student answer (the same id twice in a 20-answer sample); not yet looked into.
+
+## 11. Atomic facts (round 3) and feedback on a different question
+
+**Atomic facts.** The model answer is broken into single claims, each with a weight of 1 to 3, and code turns the weights into marks that add up exactly (`rubric_variant: atomic`). The student side was already broken into separate ideas by the read-first step. The marker then judges each fact against those ideas. Result on the same 3 dev samples: DigiKlausur and Mohler improved (Mohler bias -0.245 to -0.182, DigiKlausur correlation 0.79 to 0.88), SAF got slightly worse (0.146 to 0.158). Averaged over the three sets error fell from 0.178 to 0.167. With 20 answers per set this is a small, mixed gain, not a settled one. It stays an optional variant until it is checked on more answers.
+
+**Does the feedback help on a different question?** Transfer test on DigiKlausur (17 answers, new related question on the same concept, same cached questions and control as before):
+
+| Feedback | With feedback | Without (control) | Lift |
+|---|---|---|---|
+| hints | 0.832 | 0.482 | 0.350 |
+| formal (old) | 0.846 | 0.482 | 0.363 |
+| standard | 0.859 | 0.482 | 0.377 |
+| critique | 0.875 | 0.482 | 0.393 |
+| best of 3 | 0.868 | 0.482 | 0.385 |
+| **formal (new template)** | **0.859** | 0.482 | **0.377** |
+
+The new template matches the best of the old styles (within noise on 17 answers) while being structured and, for full-mark answers, free. Earlier numbers were taken from the saved runs.
