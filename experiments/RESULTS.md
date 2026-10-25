@@ -106,6 +106,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 19:58 | loop2 | loop2_mohler | mohler/dev/n20/seed1 | pipeline | 0.278 | - | ▼ +0.028 | -0.248 | 0.63 | 0.39 | 5% | 0.05 | c202d427 |
 | 2026-10-25 19:59 | fbcheck | fbcheck_dk | digiklausur/dev/n6/seed3 | pipeline | 0.150 | - | - | 0.150 | 0.83 | 0.73 | 0% | 0.02 | 4e923b89 |
 | 2026-10-25 20:50 | feedback-formal-v2 | dk_s0_fb_formal2 | digiklausur/dev/n24/seed0 | pipeline | 0.069 | ▲ -0.148 | = | -0.027 | 0.90 | 0.92 | 0% | 0.29 | a4920cf2 |
+| 2026-10-25 20:52 | loop3 | loop3_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.128 | - | ▲ -0.138 | -0.041 | 0.88 | 0.79 | 0% | 0.05 | a4920cf2 |
 
 ## Variants
 
@@ -148,3 +149,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **loop2**: rubric writer: fewer broader idea-points (lean). Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "lean", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **fbcheck**: new formal feedback template check. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": true, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **feedback-formal-v2**: new template: asks, quoted strengths, partly/missed/incorrect. Settings: `{"rubric_selftest": true, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "grade_retries": 1, "max_workers": 4, "feedback_variant": "formal", "refeedback_from": "dk_s0_fb_formal"}`
+- **loop3**: atomic facts: model answer split into weighted facts, judged one by one. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "atomic", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`
