@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/LM_4.1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the collision domain diameter decreases by a factor of 10 (i.e. becomes one tenth of its original value) when the speed increases tenfold. Equivalent wording, such as 'reduced to a tenth' or 'divided by 10', earns the mark. A numerical example such as 300m to 30m is not required.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The full mark is awarded for a student who says the diameter falls by a factor of 10, or to one tenth of its original size, with equivalent wording accepted. Any answer saying the diameter increases, stays the same, or falls by a different factor gets no mark. The example figures are secondary detail and are not needed for the mark.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

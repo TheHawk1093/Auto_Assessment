@@ -1,0 +1,164 @@
+{
+ "_note": "Reference key written by Claude by solving the questions (checked against the teacher's totals where the student was right). teacher_totals are the teacher's marks per numbered question; the German p1 sheet part has no totals written. Questions 2 of German p2 and the YES/NO parts are left out of the German set because the answer cannot be read or is ambiguous.",
+ "Probab": {
+  "teacher_totals": {
+   "1": 3,
+   "2": 1,
+   "3": 2,
+   "4": 2,
+   "5": 3,
+   "6": 5
+  },
+  "items": [
+   {
+    "id": "1a",
+    "max_mark": 1,
+    "question": "Let X and Y be two discrete random variables with joint PMF P(X=x,Y=y). Rows are Y, columns are X. Y=-1: X=0 1/9, X=1 2/9, X=2 0. Y=0: X=0 1/9, X=1 0, X=2 1/6. Y=1: X=0 1/6, X=1 1/9, X=2 1/9. (a) (1 mark) p_{X|Y}(1|1) =",
+    "model_answer": "P(X=1,Y=1)/P(Y=1) = (1/9)/(7/18) = 2/7",
+    "student_truth": "1/9"
+   },
+   {
+    "id": "1b",
+    "max_mark": 1,
+    "question": "Same joint PMF as in question 1 (rows Y=-1,0,1; columns X=0,1,2; Y=-1: 1/9, 2/9, 0; Y=0: 1/9, 0, 1/6; Y=1: 1/6, 1/9, 1/9). (b) (1 mark) E[X|Y=1] =",
+    "model_answer": "(0*1/6 + 1*1/9 + 2*1/9)/(7/18) = 6/7",
+    "student_truth": "1/3"
+   },
+   {
+    "id": "1c",
+    "max_mark": 2,
+    "question": "Same joint PMF as in question 1 (rows Y=-1,0,1; columns X=0,1,2; Y=-1: 1/9, 2/9, 0; Y=0: 1/9, 0, 1/6; Y=1: 1/6, 1/9, 1/9). (c) (2 marks) E[X] =",
+    "model_answer": "P(X=0)=7/18, P(X=1)=1/3, P(X=2)=5/18, so E[X] = 6/18 + 10/18 = 8/9",
+    "student_truth": "8/9"
+   },
+   {
+    "id": "2",
+    "max_mark": 1,
+    "question": "(1 mark) Two fair 6-sided dice are rolled. The probability that at least one die shows a number in {1,2,3} is",
+    "model_answer": "1 - (1/2)^2 = 3/4 = 0.75",
+    "student_truth": "0.75"
+   },
+   {
+    "id": "3a",
+    "max_mark": 2,
+    "question": "70% of bicycles are secured with a proper lock. If a bike is properly locked, the chance of theft over a month is 1%; if not locked properly, the chance of theft is 12%. (a) (2 marks) Given that a theft occurred, the probability that the bike was not properly locked is",
+    "model_answer": "P(theft)=0.7*0.01+0.3*0.12=0.043; P(not locked | theft)=0.036/0.043 = 0.837",
+    "student_truth": "0.981"
+   },
+   {
+    "id": "3b",
+    "max_mark": 1,
+    "question": "70% of bicycles are secured with a proper lock. If properly locked, the chance of theft over a month is 1%; if not, 12%. (b) (1 mark) The probability of 'not properly locked' AND 'theft' is",
+    "model_answer": "0.3 * 0.12 = 0.036",
+    "student_truth": "0.36"
+   },
+   {
+    "id": "4",
+    "max_mark": 2,
+    "question": "(2 marks) A batch of n = 15 server requests time out with probability 0.15, independently. The probability that at most 2 time out is",
+    "model_answer": "P(X<=2) for Binomial(15, 0.15) = 0.0874 + 0.2312 + 0.2858 = 0.604",
+    "student_truth": "0.604"
+   },
+   {
+    "id": "5a",
+    "max_mark": 1,
+    "question": "A gamer opens loot boxes until a rare item appears; each box has rare item probability p = 1/7, independently. Let X be the number of boxes until the first rare item. (a) (1 mark) P(X = 5) =",
+    "model_answer": "(6/7)^4 (1/7) = 0.0771",
+    "student_truth": "0.0771"
+   },
+   {
+    "id": "5b",
+    "max_mark": 1,
+    "question": "Geometric X with p = 1/7 (number of boxes until the first rare item). (b) (1 mark) P(X > 3) =",
+    "model_answer": "(6/7)^3 = 0.6297",
+    "student_truth": "0.6297"
+   },
+   {
+    "id": "5c",
+    "max_mark": 1,
+    "question": "Geometric X with p = 1/7 (number of boxes until the first rare item). (c) (1 mark) P(X = 5 | X > 3) =",
+    "model_answer": "By memorylessness this is P(X = 2) = (6/7)(1/7) = 6/49 = 0.1224",
+    "student_truth": "0.1224"
+   },
+   {
+    "id": "6a",
+    "max_mark": 1,
+    "question": "Joint PMF with rows X=0,1,2 and columns Y=0,1,2: X=0: 0.09, 0.06, 0.03. X=1: 0.07, p, 0.08. X=2: 0.05, 0.11, 0.20. (a) (1 mark) The value of p is",
+    "model_answer": "The entries must sum to 1: 0.69 + p = 1, so p = 0.31",
+    "student_truth": "0.31"
+   },
+   {
+    "id": "6b",
+    "max_mark": 1,
+    "question": "Joint PMF with rows X=0,1,2 and columns Y=0,1,2: X=0: 0.09, 0.06, 0.03. X=1: 0.07, p, 0.08. X=2: 0.05, 0.11, 0.20. (b) (1 mark) P(X > 1 and Y <= 2) =",
+    "model_answer": "X=2 row: 0.05 + 0.11 + 0.20 = 0.36",
+    "student_truth": "0.36"
+   },
+   {
+    "id": "6c",
+    "max_mark": 1,
+    "question": "Joint PMF with rows X=0,1,2 and columns Y=0,1,2: X=0: 0.09, 0.06, 0.03. X=1: 0.07, p, 0.08. X=2: 0.05, 0.11, 0.20. (c) (1 mark) p_Y(1) =",
+    "model_answer": "0.06 + 0.31 + 0.11 = 0.48",
+    "student_truth": "0.48"
+   },
+   {
+    "id": "6d",
+    "max_mark": 2,
+    "question": "Joint PMF with rows X=0,1,2 and columns Y=0,1,2: X=0: 0.09, 0.06, 0.03. X=1: 0.07, p, 0.08. X=2: 0.05, 0.11, 0.20. (d) (2 marks) E[X - 2Y] =",
+    "model_answer": "E[X] = 1.18, E[Y] = 1.10, so E[X-2Y] = 1.18 - 2.20 = -1.02",
+    "student_truth": "-1.02"
+   }
+  ]
+ },
+ "German": {
+  "teacher_totals": {
+   "1": 1.5,
+   "3": 2.5,
+   "4": 5
+  },
+  "items": [
+   {
+    "id": "1",
+    "max_mark": 1.5,
+    "question": "Schreiben Sie die Zahlen. (continue the series, in words, in German) 1. Drei - sechs - neun - zwölf - ... - ... 2. Zwei - vier - sechs - acht - ... - ... 3. Fünf - zehn - fünfzehn - zwanzig - ... - ...",
+    "model_answer": "1. fünfzehn - achtzehn 2. zehn - zwölf 3. fünfundzwanzig - dreißig",
+    "student_truth": "fünfzehn - achtzehn\nzehn - zwölf\nfünfundzwanzig - dreißig"
+   },
+   {
+    "id": "3",
+    "max_mark": 2.5,
+    "question": "der/die/das: Schreiben Sie den Artikel und den Plural. Example: Name --- der Name; die Namen. 1. Lehrerin 2. Tasche 3. Monat 4. Tag 5. Jahr",
+    "model_answer": "1. die Lehrerin; die Lehrerinnen 2. die Tasche; die Taschen 3. der Monat; die Monate 4. der Tag; die Tage 5. das Jahr; die Jahre",
+    "student_truth": "die Lehrerin; die Lehrerinnen\ndie Tasche; die Taschen\nder Monat; die Monate\nder Tag; die Tage\ndas Jahr; die Jahre"
+   },
+   {
+    "id": "4",
+    "max_mark": 5,
+    "question": "Hier sind die Antworten. Stellen Sie die Fragen. (ask the right question) Answers: Aus Deutschland. / Ich heiße Andrea Schmidt. / In Berlin. / Ich bin Studentin. / Tee.",
+    "model_answer": "Woher kommen Sie? / Wie heißen Sie? / Wo wohnen Sie? / Was machen Sie? / Was trinken Sie gern? (Was trinkst du gern? is also correct)",
+    "student_truth": "Woher kommen Sie\nWie heißen Sie\nWo wohnen Sie\nWas machen Sie\nWas trinkst du gern"
+   },
+   {
+    "id": "5",
+    "max_mark": 1.5,
+    "question": "Sätze formulieren. Schreiben Sie die Sätze und Fragen richtig. Example: in Salzburg | Boris | wohnen -> Boris wohnt in Salzburg. 1. Sprachen | Sie | Welche | sprechen | ? 2. Kateb | Arabisch | sprechen | und | Französisch 3. deine E-Mail-Adresse | sein | Wie | ?",
+    "model_answer": "1. Welche Sprachen sprechen Sie? 2. Kateb spricht Arabisch und Französisch. 3. Wie ist deine E-Mail-Adresse?",
+    "student_truth": "Welche Sprachen sprechen Sie?\nKateb spricht Arabisch und Französisch\nWie ist deine E-mail-Adresse?"
+   },
+   {
+    "id": "6",
+    "max_mark": 2,
+    "question": "Ergänzen Sie die Sätze. Ergänzen Sie die Verben in der richtigen Form. 1. Ich ... (hören) sehr gern Musik. Aber ich ... (lesen) nicht so gern. 2. Und du? (lesen) ... du gern? Und (tanzen) ... du gern? 3. Andrea ... (spielen) gern Fußball und sie ... (lesen) auch gern. 4. Sophie und Tom ... (joggen) nicht gern. Aber sie ... (schwimmen) gern. 5. Tom ... (gehen) gern ins Kino und er ... (hören) gern Musik.",
+    "model_answer": "1. höre; lese 2. liest; tanzt 3. spielt; liest 4. joggen; schwimmen 5. geht; hört",
+    "student_truth": "höre; lese\nliest; tanzst\nspielt; liest\njoggen; schwimmen\ngeht; hört"
+   },
+   {
+    "id": "F",
+    "max_mark": 1.5,
+    "question": "Formular ausfüllen. Lesen Sie und ergänzen Sie das Formular mit den Daten. Text: Dorothea Fischer ist am 28. Juli 1976 in Österreich geboren. Sie wohnt schon 5 Jahre in Wolfsburg. Sie ist Ingenieurin und arbeitet bei VW. Sie liest gern und hört gern Musik. Fields: Vorname, Familienname, Geburtsdatum, Wohnort, Beruf, Hobbys.",
+    "model_answer": "Vorname: Dorothea; Familienname: Fischer; Geburtsdatum: 28. Juli 1976; Wohnort: Wolfsburg; Beruf: Ingenieurin; Hobbys: lesen, Musik hören",
+    "student_truth": "Dorothea; Fischer; 28. Juli 1976; Wolfsburg; Ingenieurin; lesen, Musik hören"
+   }
+  ]
+ }
+}

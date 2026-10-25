@@ -1,0 +1,19 @@
+{
+  "question_key": "saf/DLL_2.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that piggybacking requires two-way (full-duplex or semi-duplex) communication between sender and receiver, so data frames can travel in both directions. Equivalent wording such as 'bidirectional link' earns the mark. Also accepted: stating that frames must contain an extra acknowledgement field.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full mark for naming the two-way (full or semi-duplex) link requirement, or the extra acknowledgement field in frames. The model answer offers either as acceptable, so a student who gives either one earns the mark. No partial credit, since the question is worth a single mark.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

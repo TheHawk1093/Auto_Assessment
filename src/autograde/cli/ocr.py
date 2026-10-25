@@ -22,6 +22,7 @@ def register(sub) -> None:
     p.add_argument("--out", type=Path, required=True, help="folder to write the results to")
     p.add_argument("--model", help="override the model in the config")
     p.add_argument("--effort", help="override the effort in the config")
+    p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
     p.add_argument("--key", type=Path, help="JSON {sheet: {question_id: model answer}}")
     p.set_defaults(func=cmd_ocr)
 
@@ -33,7 +34,7 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
     client = build_client(cfg)
     keys = json.loads(args.key.read_text(encoding="utf-8")) if args.key else {}
     args.out.mkdir(parents=True, exist_ok=True)
-    sheets = group_pages(args.folder)
+    sheets = group_pages(args.folder, args.per_page)
 
     def read(name: str):
         log.info("reading %s (%d pages)", name, len(sheets[name]))

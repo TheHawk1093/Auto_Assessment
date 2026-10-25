@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from autograde import prompts
 from autograde.llm import LLMClient
-from autograde.schemas import Feedback, Grading, Item, Rubric
+from autograde.schemas import EPS, Feedback, Grading, Item, Rubric
 from autograde.textutil import leakage
 
 MAX_WORDS = 220
@@ -23,7 +23,7 @@ class Pick(BaseModel):
 
 
 def feedback_words(fb: Feedback) -> int:
-    parts = [*fb.strengths, fb.summary]
+    parts = [fb.asks, *fb.strengths, fb.summary]
     for x in fb.improvements:
         parts += [x.issue, x.why, x.fix]
     return sum(len(p.split()) for p in parts)
@@ -70,6 +70,21 @@ def _draft(values: dict, variant: str, client: LLMClient, stance: bool = False) 
     return client.ask(prompts.system("feedback.critique"), critique_user, Feedback)
 
 
+def full_marks_feedback(rubric: Rubric, grading: Grading) -> Feedback:
+    """Feedback for a full-mark answer, built without a model: what was right, in their words."""
+    by_id = {p.id: p for p in rubric.points}
+    strengths = []
+    for v in grading.verdicts:
+        what = by_id[v.point_id].description.rstrip(".") if v.point_id in by_id else v.point_id
+        said = f' You wrote "{v.evidence}".' if v.evidence else ""
+        strengths.append(f"Your response covers the following: {what}.{said}")
+    return Feedback(
+        strengths=strengths,
+        improvements=[],
+        summary="Overall, this response earned full marks and needs no changes.",
+    )
+
+
 def write_feedback(
     item: Item,
     rubric: Rubric,
@@ -90,6 +105,8 @@ def write_feedback(
             improvements=[],
             summary="No answer was given for this question, so no marks could be awarded.",
         )
+    if grading.total >= item.max_mark - EPS:
+        return full_marks_feedback(rubric, grading)
     values = dict(
         question=item.question,
         model_answer=item.model_answer,

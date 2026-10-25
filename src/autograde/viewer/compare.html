@@ -354,12 +354,14 @@ td.cell.hi { background: var(--warn-soft); color: var(--gen); }
     if (!fb) c4.appendChild(el("p", "empty", "This method produces no feedback, only a mark."));
     else {
       var f = el("div", "fb");
+      if (fb.asks) f.appendChild(el("div", "summary", "The question asks: " + fb.asks));
       if (fb.strengths.length) { f.appendChild(el("h3", "", "What you did well")); fb.strengths.forEach(function (s) { f.appendChild(el("div", "good", s)); }); }
       if (fb.improvements.length) {
         f.appendChild(el("h3", "", "What to improve"));
         fb.improvements.forEach(function (x) {
           var d = el("div", "imp");
-          d.appendChild(el("div", "", x.issue));
+          var lbl = ({ partial: "Partly there: ", missed: "Missed: ", incorrect: "Incorrect: " })[x.kind || "missed"];
+          d.appendChild(el("div", "", lbl + x.issue));
           if (x.why) { var w = el("div"); w.appendChild(el("b", "", "Why")); w.appendChild(document.createTextNode(x.why)); d.appendChild(w); }
           var tr = el("div", "try"); tr.appendChild(el("b", "", "Try")); tr.appendChild(document.createTextNode(x.fix)); d.appendChild(tr);
           f.appendChild(d);

@@ -93,6 +93,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 01:09 | poc-harsh | poc_ricechem_harsh | ricechem/dev/n8/seed0 | pipeline | 0.227 | ▼ +0.094 | ▼ +0.102 | -0.148 | 0.56 | 0.35 | 0% | 0.04 | 027fb978 |
 | 2026-10-25 16:28 | poc-pipeline | poc_saf_pipeline | saf/dev/n8/seed0 | pipeline | 0.150 | ▲ -0.031 | ▲ -0.013 | -0.150 | 0.94 | 0.81 | 62% | 0.00 | 4834e514 |
 | 2026-10-25 16:30 | poc-pipeline | poc_saf_pipeline | saf/dev/n8/seed0 | pipeline | 0.088 | ▲ -0.094 | ▲ -0.062 | -0.088 | 0.96 | 0.90 | 62% | 0.03 | 4834e514 |
+| 2026-10-25 19:21 | loop0 | loop0_digiklausur | digiklausur/dev/n20/seed1 | pipeline | 0.151 | - | - | 0.016 | 0.74 | 0.70 | 5% | 0.04 | b9be9f4d |
 
 ## Variants
 
@@ -130,3 +131,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **poc-lenient**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "lenient", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **poc-moderate**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "moderate", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
 - **poc-harsh**: proof of concept. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "harsh", "feedback_variant": "standard", "votes": 1, "second_model": null, "disagree_gap": 0.15, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 4}`
+- **loop0**: grader fix-the-misses round 0. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "ocr": null, "grade_retries": 1, "max_workers": 6}`

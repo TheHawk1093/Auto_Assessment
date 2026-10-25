@@ -1,0 +1,31 @@
+{
+  "question_key": "saf/DLL_2.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Asynchronous transmission sends each character as a self-contained unit framed by a start bit and a stop bit (equivalent wording such as 'each character is sent separately with start/stop bits' earns the mark).",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Synchronous transmission pools several characters into a continuous stream of data organised as frames, with frame boundaries defined by a SYN character or flag (equivalent wording such as 'blocks/frames of characters delimited by SYN or flag' earns the mark).",
+        "marks": 0.4,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The student states the trade-off: asynchronous is simpler and cheaper but gives lower transmission rates, while synchronous is more complex but gives higher transmission rates (either direction of the comparison, stated correctly, earns the mark).",
+        "marks": 0.2,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full mark (1) needs the correct description of both modes (P1 and P2) plus the correct comparison of complexity and transmission rate (P3). Each point is all-or-nothing; a student who gets only one mode correctly earns 0.4 or 0.2 at most, and a vague or incorrect description of a mode earns nothing for that point. Equivalent wording and other correct framing (for example, mentioning that synchronous transmission requires sender and receiver to stay synchronised) should be accepted.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -41,11 +41,7 @@ class RevisionRow(BaseModel):
 
 def feedback_text(fb: Feedback) -> str:
     """The feedback as the student would read it."""
-    parts = [f"What you did well: {s}" for s in fb.strengths]
-    for x in fb.improvements:
-        parts.append(" ".join(p for p in (x.issue, x.why, x.fix) if p))
-    parts.append(fb.summary)
-    return "\n".join(parts)
+    return fb.text()
 
 
 def revise(result: Result, feedback: str, student: LLMClient) -> str:

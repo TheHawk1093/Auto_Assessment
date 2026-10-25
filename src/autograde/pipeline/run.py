@@ -104,9 +104,11 @@ def grade_item(
         second_mark = mark_item(item, records[item.question_key], other, cfg).grading.total
         if models_disagree(grading.total, second_mark, item.max_mark, cfg.disagree_gap):
             flags = [*flags, "models_disagree"]
-    feedback = write_feedback(
-        item, record.rubric, grading, client, cfg.feedback_variant, cfg.feedback_n
-    )
+    feedback = None
+    if cfg.with_feedback:
+        feedback = write_feedback(
+            item, record.rubric, grading, client, cfg.feedback_variant, cfg.feedback_n
+        )
     return Result(
         item=item,
         mode="pipeline",

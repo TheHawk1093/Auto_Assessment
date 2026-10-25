@@ -39,16 +39,22 @@ class Sheet(BaseModel):
     sheet: str = ""
     student: str = ""
     pages: list[str] = Field(default_factory=list)
+    teacher_totals: dict[str, float] = Field(
+        default_factory=dict, description="Teacher's mark per whole question, by printed number."
+    )
     items: list[SheetItem]
 
 
-def group_pages(folder: str | Path) -> dict[str, list[Path]]:
-    """Images in `folder` grouped by sheet, in page order. `German_p2.jpeg` is page 2 of German."""
+def group_pages(folder: str | Path, per_page: bool = False) -> dict[str, list[Path]]:
+    """Images in `folder` grouped by sheet, in page order. `German_p2.jpeg` is page 2 of German.
+
+    With `per_page`, every image is its own sheet named after the file.
+    """
     sheets: dict[str, list[tuple[int, Path]]] = {}
     for path in sorted(Path(folder).iterdir()):
         if path.suffix.lower() not in MEDIA:
             continue
-        m = PAGE.match(path.stem)
+        m = None if per_page else PAGE.match(path.stem)
         name, page = (m["sheet"], int(m["page"])) if m else (path.stem, 1)
         sheets.setdefault(name, []).append((page, path))
     return {name: [p for _, p in sorted(pages)] for name, pages in sheets.items()}
@@ -86,15 +92,16 @@ def extract_sheet(name: str, pages: list[Path], client: LLMClient) -> Sheet:
     raise last or LLMError("Sheet extraction failed")
 
 
-def to_items(
-    sheet: Sheet, dataset: str = "ocr", key: dict[str, str] | None = None
-) -> list[Item]:
-    """Grader items for the sheet's questions. Rough work and questions without marks are skipped."""
-    items = []
+def to_items(sheet: Sheet, dataset: str = "ocr", key: dict[str, str] | None = None) -> list[Item]:
+    """Grader items for the sheet. Rough work and questions without marks are skipped."""
+    items, seen = [], set()
     for it in sheet.items:
         if it.question_id == "rough" or not it.max_mark or it.max_mark <= 0:
             continue
         qid = f"{sheet.sheet}-{it.question_id}"
+        while qid in seen:  # the same number can recur on a sheet that has several parts
+            qid += "'"
+        seen.add(qid)
         mark = it.teacher_mark
         items.append(
             Item(

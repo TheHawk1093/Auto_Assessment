@@ -141,6 +141,13 @@ class Grading(BaseModel):
 
 class Improvement(BaseModel):
     point_id: str
+    kind: Literal["partial", "missed", "incorrect"] = Field(
+        default="missed",
+        description=(
+            "partial: stated, but not to the standard. missed: left out. "
+            "incorrect: stated, but wrong or misapplied."
+        ),
+    )
     issue: str = Field(description="What is missing or wrong, in plain words.")
     why: str = Field(
         default="",
@@ -150,9 +157,21 @@ class Improvement(BaseModel):
 
 
 class Feedback(BaseModel):
+    asks: str = Field(default="", description="What the question asks for, in one sentence.")
     strengths: list[str] = Field(description="What the student did well, tied to their own words.")
     improvements: list[Improvement]
     summary: str = Field(description="One or two sentences the student should remember.")
+
+    def text(self) -> str:
+        """The feedback as plain text, in the order the student reads it."""
+        labels = {"partial": "Partly there", "missed": "Missed", "incorrect": "Incorrect"}
+        parts = [f"The question asks: {self.asks}"] if self.asks else []
+        parts += [f"What you did well: {s}" for s in self.strengths]
+        for x in self.improvements:
+            body = " ".join(p for p in (x.issue, x.why, x.fix) if p)
+            parts.append(f"{labels[x.kind]}: {body}")
+        parts.append(self.summary)
+        return "\n".join(parts)
 
 
 class Reading(BaseModel):

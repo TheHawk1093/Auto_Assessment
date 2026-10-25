@@ -358,6 +358,7 @@ function card(it, idx) {
 
   if (it.feedback) {
     var fb = el("div", "fb"); fb.appendChild(lab((it.reading ? 7 : 6) + " · Feedback shown to the student"));
+    if (it.feedback.asks) { var q = el("p", "sum"); q.appendChild(el("b", "", "The question asks: ")); rich(q, it.feedback.asks, [], true); fb.appendChild(q); }
     if (it.feedback.strengths.length) {
       var s = el("div"); s.appendChild(el("h4", "", "What you did well")); var ul = el("ul");
       it.feedback.strengths.forEach(function (x) { var li = el("li"); rich(li, x, [], true); ul.appendChild(li); });
@@ -367,6 +368,7 @@ function card(it, idx) {
       var w = el("div"); w.appendChild(el("h4", "", "What to improve"));
       it.feedback.improvements.forEach(function (x) {
         var d = el("div", "imp"), a = el("span"), f = el("span", "fix");
+        a.appendChild(el("b", "", ({ partial: "Partly there: ", missed: "Missed: ", incorrect: "Incorrect: " })[x.kind || "missed"]));
         rich(a, x.issue, [], true); f.appendChild(el("b", "", "Try: ")); rich(f, x.fix, [], true);
         d.appendChild(a);
         if (x.why) { var y = el("span", "fix"); y.appendChild(el("b", "", "Why: ")); rich(y, x.why, [], true); d.appendChild(y); }

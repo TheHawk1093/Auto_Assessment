@@ -1,0 +1,25 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Classification maps data to discrete labels (categories), and its error is the number of misclassifications. Equivalent wording, such as 'predicts a class' or 'counts wrong predictions', earns the marks. Half credit for the discrete-label idea alone, or for the misclassification-count error alone.",
+        "marks": 1.0,
+        "partial_credit": "0.5 for stating that classification outputs discrete labels/classes. 0.5 for stating that classification error is the number of misclassifications."
+      },
+      {
+        "id": "P2",
+        "description": "Regression maps data to continuous values (real numbers or a continuous function), and its error is the summed distance between true and predicted values. Equivalent wording, such as 'predicts a numeric quantity' or 'sum of differences from the actual values', earns the marks. Half credit for the continuous-output idea alone, or for the summed-distance error alone.",
+        "marks": 1.0,
+        "partial_credit": "0.5 for stating that regression outputs continuous values/real numbers. 0.5 for stating that regression error is the summed distance between true and predicted values."
+      }
+    ],
+    "notes": "Full marks require both halves for each method: the output type (discrete labels for classification, continuous values for regression) and the error measure (misclassification count versus summed distance between true and predicted values). Give half credit for each correct half alone, and no marks for vague statements like 'they are different types of learning' without the output or error distinction. Accept equivalent wording and do not require the model answer's exact phrasing.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

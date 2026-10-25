@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E02.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Data members (instance variables) belong to the class and can be accessed from any member function of the class. Equivalent wording such as 'available to all member functions in the class' earns the mark.",
+        "marks": 2.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Local variables exist only within the member function that declares them and cannot be accessed outside that function. Equivalent wording such as 'scope is limited to the function where they are declared' earns the mark.",
+        "marks": 2.5,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for a student who states both the scope of data members (accessible from any member function of the class) and the scope of local variables (only within the function that defines them). Each point is all-or-nothing and worth 2.5 marks. Accept equivalent wording, and do not require the model answer's spelling or exact phrasing. A answer that gives only one of the two contrasts earns 2.5 marks at most.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

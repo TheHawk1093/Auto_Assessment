@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure (or abstract data type/collection) that stores elements. Equivalent wording such as 'a structure/container for holding items' earns the mark.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property: the last item added is the first to be removed, i.e. last-in-first-out (LIFO). Equivalent wording such as 'the most recently added element is removed first' earns the mark. Naming LIFO alone is sufficient.",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for a answer that gives both a data structure storing elements and the last-in-first-out removal order, in any equivalent wording. Award P1 alone for a correct data-structure statement with no ordering property, and P2 alone for an ordering description that does not identify a data structure. Nothing else in the model answer carries marks; the LRB/RRB bracket is just formatting.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

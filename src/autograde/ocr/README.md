@@ -33,3 +33,19 @@ Keep dev/test split by question as usual; never tune the noise rates on test.
 3. `pipeline/read.py`: when `ocr` is set, use `prompts.system("read") + "\n\n" + prompts.system("read.ocr")` in `read_answer`.
 4. Optional later: `autograde transcribe <folder>` command writing items from images via `transcribe`, and a field on `Item` for low-confidence spans; feed them to the read prompt as `[?word?]` text.
 5. Add the drift metrics (per-item mark difference vs the clean run) to the report; the clean run name goes in `compare`.
+
+## Real answer sheets (done 2025-10-25)
+`autograde ocr <folder> --out runs/<name> [--model haiku|sonnet|opus] [--key key.json]` reads photographed sheets (`<sheet>_p<page>.jpeg`, all pages of a sheet in one call) into `<sheet>.sheet.json` and `items.jsonl` in the `Item` format (`sheets.py`, prompt `ocr.sheet.system.md`). Questions, marks and the teacher's per-question totals are read from the page too; `model_answer` stays empty unless a key is given.
+
+Test: 9 photos of three marked sheets (German quiz, probability quiz, network-control quiz with long derivations), scored by `python -m autograde.ocr.score data/OCR_Dataset/truth.json runs/ocr_*`. The truth file was read by Claude, not by an independent person.
+
+| reader | German words | Probab words | Network facts | teacher totals | cost (9 pages) |
+|---|---|---|---|---|---|
+| Opus | 100% | 100% | 100% | all right | $0.55 |
+| Sonnet | 100% | 100% | 92% | all right | $0.24 |
+| Haiku | 96% | 100% | 92% | all right | $0.03 |
+| RapidOCR (classical) | 64% | 57% | 0% | n/a | free, 95 s |
+
+Findings: classical OCR cannot read this handwriting or matrices. The three Claude models agree on nearly everything; the cost of Haiku is a few misread words. Sonnet once silently "fixed" a student's wrong matrix entry before the prompt said to stay faithful, so repeat runs should be spot-checked on student mistakes. Without a rule, models split printed marks into invented smaller marks; the prompt now says one item per printed mark allocation.
+
+Gaps: figures and tables inside questions (a joint PMF table) are not in the question text, so a reference answer drafted from the text alone is wrong for those. A student sheet has no model answer, so the key or a figure-aware solving step must come before marking. Whether a YES/NO was circled by the student is not readable.
