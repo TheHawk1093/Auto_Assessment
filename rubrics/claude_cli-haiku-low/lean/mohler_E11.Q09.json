@@ -1,0 +1,31 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that the problem is divided into smaller subproblems (of the same kind as the original problem).",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that these subproblems are solved recursively (solving each by the same method, with the smaller problems eventually solved directly or by the same process).",
+        "marks": 1.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "The answer conveys that the solutions to the subproblems are combined to produce a solution to the original problem.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for a description that covers all three stages: splitting the problem into smaller subproblems, solving them recursively, and combining their solutions into the answer for the original problem. Award P1 and P2 for correct descriptions of splitting and recursive solving even if worded differently; P3 carries the most weight because the combining step is what makes the paradigm produce the overall solution. A answer that describes only splitting, or only recursion, without the combining step earns at most 3 marks.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E03.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that a function signature includes the name of the function.",
+        "marks": 2.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that a function signature includes the types of the function's parameters (equivalent wording, or naming the parameters together with their types, earns the mark).",
+        "marks": 3.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for stating both the function name and the types of the parameters. Award 2 for the name alone and 3 for the parameter types alone, since the parameter types are the more substantive part of the signature. Do not require the word \"signature\" or exact phrasing, and do not award marks for return types or function bodies unless the student also gives the required two items.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

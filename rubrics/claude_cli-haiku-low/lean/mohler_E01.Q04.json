@@ -1,0 +1,19 @@
+{
+  "question_key": "mohler/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that a C++ program starts executing at the main function (equivalent wording, such as 'the main() function' or 'main', earns the mark).",
+        "marks": 5.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "The model answer is a single idea, so the whole 5 marks go to one all-or-nothing point. Full marks for identifying main as the entry point, in any equivalent wording. No marks if the student names another function or gives no answer.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

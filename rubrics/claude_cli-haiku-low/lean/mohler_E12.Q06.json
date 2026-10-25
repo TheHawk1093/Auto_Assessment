@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that a queue is a data structure that stores elements in first in, first out (FIFO) order, so the first element added is the first one removed.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer identifies enqueue and dequeue as the main operations of a queue (adding an element at one end and removing one from the other end are equivalent wording).",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if only one of enqueue (add) or dequeue (remove) is identified."
+      }
+    ],
+    "notes": "The central idea is that a queue is a FIFO data structure, which carries most of the marks. Full marks need the FIFO idea and both main operations, named or described in equivalent words. A student who gives only FIFO gets 3 marks, and one who names only one operation gets 1 mark from P2.",
+    "policy": "balanced",
+    "partial_weight": 0.5,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

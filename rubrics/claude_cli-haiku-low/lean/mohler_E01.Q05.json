@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that a variable is a location in computer memory (a storage location, not just a name or label for a value).",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that this memory location can store a value.",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for explaining that a variable is a location in memory that holds a value, in any equivalent wording. Award P1 only if the student refers to memory or storage, and P2 only if the student says the location holds a value. A answer that only gives a definition without memory, such as \"a name for data\", earns no marks for P1 but may earn P2 if it still says a value is stored.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

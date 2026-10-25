@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that a pointer holds (stores) the memory address of another variable, i.e. the address is the content of the pointer. Equivalent wording such as 'refers to the location of another variable in memory' earns the mark.",
+        "marks": 4.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that the pointer is itself a variable, a named storage location that holds a value, rather than just an address or a reference with no storage of its own.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for a student who says a pointer is a variable whose value is the memory address of another variable, in any equivalent words. Award 4 for the address idea alone, with no credit for vague descriptions like 'it points to something' without saying it is an address in memory. The central idea, the stored address, carries the largest share.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

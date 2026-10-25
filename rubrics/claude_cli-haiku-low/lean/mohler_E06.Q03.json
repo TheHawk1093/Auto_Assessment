@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that the star (*) operator returns an alias (synonym) for the object that its operand points to in memory, so the result refers to that object itself and can be used as a name for it.",
+        "marks": 4.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that this is the dereferencing operator: applied to a pointer, it accesses the object stored at the address the pointer holds. Equivalent wording such as 'indirection' or 'follows the pointer' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks (5) for stating that the star operator gives an alias for the object its pointer operand points to, and identifying it as the dereference operator. Award P1 for the alias idea even if the student does not use the word 'alias' or 'synonym', as long as they say the result refers to the pointed-to object. P2 is earned by naming or describing dereferencing as following the pointer to its object. A student who only says it returns 'the value' or 'the object' without the alias or pointed-to-object idea earns no P1 mark.",
+    "policy": "essence",
+    "partial_weight": 0.0,
+    "level": "moderate"
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

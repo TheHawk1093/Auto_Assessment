@@ -1,0 +1,25 @@
+{
+  "question_key": "mohler/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The answer conveys that the height of a tree is a length measured along a path from the root down to a leaf.",
+        "marks": 3.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "The answer conveys that the height is the longest such path, taken over all root-to-leaf paths in the tree (not just any one path).",
+        "marks": 2.0,
+        "partial_credit": ""
+      }
+    ],
+    "notes": "Full marks for stating that height is the length of a root-to-leaf path and that it is the longest of these paths. Equivalent wording such as 'the maximum depth of any leaf' or 'the greatest distance from the root to a leaf' earns the marks. A student who describes only a single root-to-leaf path, or only the root or leaves without a length, earns P1 at most; no credit for P2 without the idea of maximum.",
+    "policy": "essence",
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
