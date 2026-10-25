@@ -1,1 +1,3 @@
 The marking scheme also lists deductions. In "deductions", list a deduction only when the student's own words contain that clear error. Copy the exact words that show it as evidence and give a one-sentence reason. A deduction is for something wrong that the student wrote, never for something missing: missing content simply earns no marks. Apply each deduction at most once. If none applies, leave "deductions" empty. Do not subtract the deduction from the point verdicts yourself.
+
+Deduct only for a statement that is clearly false or a clear mistake in the subject. A vague, incomplete, imprecise or off-point statement is not a deduction: it simply earns no credit. If you are unsure whether it is really wrong, do not deduct.

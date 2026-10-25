@@ -123,6 +123,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 23:36 | cmpR | cmpR_ricechem | ricechem/dev/n24/seed1 | pipeline | 0.164 | - | - | -0.049 | 0.83 | 0.72 | 75% | 0.08 | cf296af4 |
 | 2026-10-25 23:38 | cmpL | cmpL_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.152 | - | ▲ -0.034 | 0.062 | 0.78 | 0.72 | 18% | 0.08 | cf296af4 |
 | 2026-10-25 23:38 | cmpH | cmpH_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.170 | - | ▼ +0.018 | 0.040 | 0.65 | 0.64 | 20% | 0.08 | cf296af4 |
+| 2026-10-25 23:45 | cmpR2 | cmpR2_ricechem | ricechem/dev/n24/seed1 | pipeline | 0.174 | - | ▼ +0.010 | -0.039 | 0.79 | 0.70 | 54% | 0.07 | 4250116e |
 
 ## Variants
 
@@ -171,3 +172,4 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **cmpM**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": "sonnet", "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpH**: model comparison, 40 answers. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "sized", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpR**: ricechem official rubric with deductions, haiku medium. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
+- **cmpR2**: deductions only when clearly wrong. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
