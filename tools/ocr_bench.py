@@ -224,7 +224,9 @@ def cmd_run(a) -> None:
     if "hue" in prep_kw:
         prep_kw["hue"] = tuple(prep_kw["hue"])
     t0 = time.time()
-    lines = read_all(a.engine, a.prep, prep_kw, eng_kw)
+    lines = read_all(
+        a.engine, a.prep, prep_kw, eng_kw, pages=a.pages.split(",") if a.pages else None
+    )
     out = ROOT / a.out
     out.mkdir(parents=True, exist_ok=True)
     (out / "lines.json").write_text(json.dumps(lines, ensure_ascii=False, indent=1), "utf-8")
@@ -300,6 +302,7 @@ def main() -> None:
     r.add_argument("--prep", default="raw", choices=["raw", "gray", "ink"])
     r.add_argument("--prep-kw", default="{}")
     r.add_argument("--eng-kw", default="{}")
+    r.add_argument("--pages", help="comma-separated image stems to read (default: all)")
     r.add_argument("--out", required=True)
     r.set_defaults(func=cmd_run)
     t = sub.add_parser("tune")

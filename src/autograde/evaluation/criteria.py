@@ -44,10 +44,17 @@ def criteria_report(results: Sequence[Result]) -> dict:
             c[0 if got and want else 1 if got else 2 if want else 3] += 1
     if not total:
         return {"n": 0}
+    ded = [0, 0, 0, 0]
+    for r in results:
+        truth = r.item.labels.get("D1") if r.grading else None
+        if truth is not None:
+            got, want = bool(r.grading.deductions), truth == "met"
+            ded[0 if got and want else 1 if got else 2 if want else 3] += 1
     allc = [sum(c[i] for c in counts.values()) for i in range(4)]
     return {
         "criteria_judged": total,
         "exact_status_agreement": round(exact / total, 3),
         "credit": _scores(*allc),
         "by_point": {p: _scores(*c) for p, c in sorted(counts.items())},
+        "deductions": _scores(*ded),
     }

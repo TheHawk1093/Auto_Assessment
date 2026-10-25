@@ -15,7 +15,7 @@ from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVEL_PARTIAL_WEIGHT, LEVEL_POLICY
 from autograde.pipeline.read import read_answer
-from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.rubric import RubricStore, store_for
 from autograde.pipeline.verify import apply_form_gate
 from autograde.pipeline.vote import combine, models_disagree
 from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
@@ -150,12 +150,7 @@ def run_items(
     records: dict[str, RubricRecord] = {}
     questions = {i.question_key: to_question(i) for i in todo}
     if mode == "pipeline" and todo:
-        store = RubricStore(
-            settings.paths.rubrics_dir,
-            client,
-            run_selftest=settings.pipeline.rubric_selftest,
-            variant=settings.pipeline.rubric_variant,
-        )
+        store = store_for(settings, grader=client)
         with ThreadPoolExecutor(workers) as pool:
             futures = {pool.submit(store.get, q): k for k, q in questions.items()}
             for fut in as_completed(futures):

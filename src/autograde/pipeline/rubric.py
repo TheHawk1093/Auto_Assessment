@@ -9,7 +9,8 @@ import re
 from pathlib import Path
 
 from autograde import prompts
-from autograde.llm import LLMClient
+from autograde.config import PipelineConfig, Settings
+from autograde.llm import LLMClient, build_client
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVELS, dataset_of, level_prompt
 from autograde.schemas import EPS, AtomicFacts, Question, Rubric, RubricRecord
@@ -132,3 +133,16 @@ def cached_record(
 
 def _slug(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "_", text)
+
+
+def store_for(
+    settings: Settings, cfg: PipelineConfig | None = None, grader: LLMClient | None = None
+):
+    """The scheme store a run uses. With `rubric_model`, that model writes the schemes."""
+    cfg = cfg or settings.pipeline
+    author = grader or build_client(settings.llm)
+    if cfg.rubric_model:
+        author = build_client(
+            settings.llm.model_copy(update={"model": cfg.rubric_model, "effort": None})
+        )
+    return RubricStore(settings.paths.rubrics_dir, author, cfg.rubric_selftest, cfg.rubric_variant)

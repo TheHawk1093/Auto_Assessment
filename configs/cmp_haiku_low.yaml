@@ -1,0 +1,12 @@
+# Model comparison: marking only, sized rubrics.
+llm: {backend: claude_cli, model: haiku, effort: low, timeout_s: 300, retries: 2}
+judge: {backend: claude_cli, model: haiku, effort: low}
+student: {backend: claude_cli, model: haiku, effort: low}
+pipeline:
+  rubric_selftest: false
+  read_first: true
+  rubric_variant: sized
+  with_feedback: false
+  max_workers: 6
+  rubric_model: null
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

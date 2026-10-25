@@ -10,6 +10,7 @@ from autograde.pipeline.read import reading_block
 from autograde.pipeline.verify import (
     apply_mark_rule,
     check_grading,
+    finalise_deductions,
     repair,
     unverified_points,
 )
@@ -18,7 +19,7 @@ from autograde.schemas import Grading, PointVerdict, Question, Reading, Rubric
 log = logging.getLogger(__name__)
 
 
-def build_system(has_reading: bool, policy: str) -> str:
+def build_system(has_reading: bool, policy: str, has_deductions: bool = False) -> str:
     """The marking instructions: base rules, plus optional reading and essence guidance."""
     parts = [prompts.system("grade")]
     if has_reading:
@@ -29,6 +30,8 @@ def build_system(has_reading: bool, policy: str) -> str:
         parts.append(prompts.system("grade.balanced"))
     elif policy == "strict":
         parts.append(prompts.system("grade.strict"))
+    if has_deductions:
+        parts.append(prompts.system("grade.deductions"))
     return "\n\n".join(parts)
 
 
@@ -54,7 +57,7 @@ def mark_answer(
         return _blank(rubric), ["empty_answer"]
 
     strict = evidence_policy == "strict"
-    system = build_system(reading is not None, policy)
+    system = build_system(reading is not None, policy, bool(rubric.deductions))
     lead = reading_block(reading) if reading else ""
     retry_note = ""
     grading: Grading | None = None
@@ -71,9 +74,7 @@ def mark_answer(
         problems = check_grading(grading, rubric, answer, require_evidence=strict)
         if not problems:
             flags = ["retried"] if attempt else []
-            return _price(grading, rubric, partial_weight), flags + _unverified_flags(
-                grading, answer, strict
-            )
+            return _finish(grading, rubric, answer, partial_weight, strict, flags)
         log.info("Marking check failed (attempt %d): %s", attempt + 1, problems)
         retry_note = (
             "\nYour previous marking had these problems. Fix them:\n- "
@@ -83,7 +84,21 @@ def mark_answer(
     assert grading is not None
     fixed, flags = repair(grading, rubric, answer, zero_unsupported=strict)
     flags = (["retried"] if retries else []) + flags
-    return _price(fixed, rubric, partial_weight), flags + _unverified_flags(fixed, answer, strict)
+    return _finish(fixed, rubric, answer, partial_weight, strict, flags)
+
+
+def _finish(
+    grading: Grading,
+    rubric: Rubric,
+    answer: str,
+    partial_weight: float | None,
+    strict: bool,
+    flags: list[str],
+) -> tuple[Grading, list[str]]:
+    """Check the deductions, price the verdicts, and report unverified quotes."""
+    grading, deduction_flags = finalise_deductions(grading, rubric, answer)
+    priced = _price(grading, rubric, partial_weight)
+    return priced, [*flags, *deduction_flags, *_unverified_flags(priced, answer, strict)]
 
 
 def _price(grading: Grading, rubric: Rubric, partial_weight: float | None) -> Grading:

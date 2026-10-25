@@ -31,7 +31,7 @@ from autograde.evaluation.transfer import transfer_test
 from autograde.evaluation.voting import review_report, vote_report
 from autograde.llm import build_client
 from autograde.pipeline.baseline import grade_baseline
-from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.rubric import store_for
 from autograde.pipeline.run import mark_item, to_question
 
 
@@ -136,9 +136,7 @@ def cmd_stress(args: argparse.Namespace, settings: Settings) -> None:
 
     else:
         cfg = settings.pipeline
-        store = RubricStore(
-            settings.paths.rubrics_dir, grader, cfg.rubric_selftest, cfg.rubric_variant
-        )
+        store = store_for(settings, grader=grader)
         questions = {c.item.question_key: to_question(c.item) for c in cases}
         with ThreadPoolExecutor(cfg.max_workers) as pool:
             records = dict(zip(questions, pool.map(store.get, questions.values()), strict=True))

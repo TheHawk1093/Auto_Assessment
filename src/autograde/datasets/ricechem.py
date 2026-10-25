@@ -9,8 +9,8 @@ ticked. It has no model answer and no marks per criterion, so both are rebuilt h
   reference, so the comparison between methods is fair.
 - Question 3 is left out: its scoring does not reduce to a clean sum of criteria.
 
-Deductions (a calculation error, an incorrect statement) are kept as a note in the rubric.
-The system adds up positive points only, so it cannot subtract them: a small, known gap.
+Deductions (a calculation error, an incorrect statement) are a rule in the rubric (D1) and a
+label on each answer, so the grader can subtract them and be checked against the teacher.
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from autograde.schemas import Item, Rubric, RubricPoint, RubricRecord
+from autograde.schemas import DeductionRule, Item, Rubric, RubricPoint, RubricRecord
 
 DATASET = "ricechem"
 FOLDER = "RiceChem Dataset"
@@ -68,9 +68,29 @@ _Q4 = [
     (2.0, "Indivisible unit of mass = atom", None, ""),
 ]
 SPEC = {
-    "Q1": (1, _Q1, "Deduct 0.5 for a core charge calculation error."),
-    "Q2": (2, _Q2, "Deduct 1 for an incorrect statement."),
-    "Q4": (4, _Q4, "Deduct 1 for an incorrect or misleading statement."),
+    "Q1": (
+        1,
+        _Q1,
+        (
+            "Core charge calculation error",
+            0.5,
+            "The response contains a core charge calculation error.",
+        ),
+    ),
+    "Q2": (
+        2,
+        _Q2,
+        ("Incorrect statement included", 1.0, "The response includes an incorrect statement."),
+    ),
+    "Q4": (
+        4,
+        _Q4,
+        (
+            "incorrect/misleading statement",
+            1.0,
+            "The response includes an incorrect or misleading statement.",
+        ),
+    ),
 }
 
 
@@ -89,13 +109,14 @@ def find_folder(root: Path) -> Path:
 
 def official_rubric(qid: str) -> Rubric:
     """The dataset's own criteria as a rubric, with marks recovered from the scores."""
-    _, points, deduct = SPEC[qid]
+    _, points, (_, penalty, rule) = SPEC[qid]
     return Rubric(
         points=[
             RubricPoint(id=f"P{i}", description=desc, marks=marks, partial_credit=partial_note)
             for i, (marks, desc, _, partial_note) in enumerate(points, 1)
         ],
-        notes=f"Marked point by point from the published rubric. {deduct}",
+        deductions=[DeductionRule(id="D1", description=rule, marks=penalty)],
+        notes="Marked point by point from the published rubric.",
         policy="balanced",  # the teachers want each claim stated, not implied
         partial_weight=0.5,  # their half marks are half
     )
@@ -115,7 +136,7 @@ def reference_answer(qid: str) -> str:
 def load_ricechem(root: Path) -> list[Item]:
     folder = find_folder(root)
     items: list[Item] = []
-    for qid, (n, points, _) in SPEC.items():
+    for qid, (n, points, (penalty_col, _, _)) in SPEC.items():
         answers = pd.read_csv(folder / f"Student Answers Q{n}.csv")
         graded = pd.read_csv(folder / f"Graded Rubric Q{n}.csv").set_index("SID")
         question = _clean(answers.columns[1].split(": ", 1)[1])
@@ -134,6 +155,7 @@ def load_ricechem(root: Path) -> list[Item]:
                     labels[f"P{i}"] = "partial"
                 else:
                     labels[f"P{i}"] = "not_met"
+            labels["D1"] = "met" if bool(g[penalty_col]) else "not_met"
             items.append(
                 Item(
                     id=f"{DATASET}/{qid}/{sid}",

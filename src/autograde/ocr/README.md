@@ -49,3 +49,47 @@ Test: 9 photos of three marked sheets (German quiz, probability quiz, network-co
 Findings: classical OCR cannot read this handwriting or matrices. The three Claude models agree on nearly everything; the cost of Haiku is a few misread words. Sonnet once silently "fixed" a student's wrong matrix entry before the prompt said to stay faithful, so repeat runs should be spot-checked on student mistakes. Without a rule, models split printed marks into invented smaller marks; the prompt now says one item per printed mark allocation.
 
 Gaps: figures and tables inside questions (a joint PMF table) are not in the question text, so a reference answer drafted from the text alone is wrong for those. A student sheet has no model answer, so the key or a figure-aware solving step must come before marking. Whether a YES/NO was circled by the student is not readable.
+
+## Classical OCR vs Claude, with tuning (2025-10-25)
+Harness: `tools/ocr_bench.py` (engines, grids, scoring), `tools/ocr_prep.py` (blue-ink isolation), `tools/ocr_pipeline_eval.py` (grade the same sheets from each source). Engines need a separate venv (docling, easyocr, rapidocr-onnxruntime, transformers, opencv) and Tesseract 5.4 with `deu`/`eng` data. Truth is `data/OCR_Dataset/truth_pages.json`, read by Claude from the photos. Tuned on dev pages only (German p1, Probab p1, Network p1-2); scored on test pages (German p2, Probab p2, Network p3-4). Tiny set: 8 pages, 3 sheets, one student.
+
+Reading accuracy, mean over pages (recall = the student's words/numbers found exactly, fuzzy = also near matches):
+
+| reader | dev recall / fuzzy | test recall / fuzzy | seconds, 9 pages |
+|---|---|---|---|
+| Claude Opus | 98% / 100% | 100% / 100% | not timed, $0.90 |
+| Claude Sonnet | 99% / 99% | 100% / 100% | not timed, $0.41 |
+| Claude Haiku | 100% / 100% | 95% / 97% | not timed, $0.04 |
+| RapidOCR tuned | 56% / 68% | 53% / 77% | 106 s |
+| RapidOCR default | 54% / 65% | 56% / 72% | 105 s |
+| EasyOCR (de+en) | 60% / 70% | 39% / 63% | 460 s |
+| Tesseract 5.4 (deu+eng) | 42% / 48% | 37% / 58% | 109 s |
+| Docling + RapidOCR | 46% / 56% | 44% / 54% | 418 s |
+| TrOCR handwritten (4 short pages) | 39% / 61% on German p1, 12% / 50% on Probab p2 | | 392 s |
+
+Key matrices and formulas (Network sheet, strict match, test pages): Claude 88-100% of listed facts; every classical engine 0-12%. On the dev pages Opus scored 50% only because it writes subscripts as a_12 where the truth string has a12; the reading itself is right (a scoring artefact, so the strict fact match undercounts it).
+
+Tuning findings:
+- RapidOCR: lower `text_score` and `det_box_thresh` (0.3), `det_unclip_ratio` 2.2, `det_limit_side_len` 1280 gave the best dev score; test fuzzy recall 72% to 77%. Small gain.
+- Tesseract: the default (raw photo, `--psm 6`, `deu+eng`) won; adding German helped, preprocessing did not.
+- Blue-ink isolation raises precision (Tesseract 3% to 18%) because print and teacher ink disappear, but it lowers recall, because thin strokes are lost and engines read line-oriented text. It was a net loss for EasyOCR and Tesseract.
+- Docling is a layout-analysis wrapper around the same OCR engines. With RapidOCR inside it reads less than RapidOCR alone (54% vs 77% fuzzy), since regions the layout model does not call text are skipped.
+- TrOCR (English line recogniser) reads digits well but drops decimal points and fails on German and on anything not a plain line.
+
+Marking effect (20 answers: 14 Probab, 6 German; same key, same Haiku pipeline; "perfect" = the student's answers typed by hand):
+
+| source | mean mark error vs perfect OCR | marks identical |
+|---|---|---|
+| Claude Sonnet | 0.075 | 90% |
+| Claude Opus | 0.100 | 90% |
+| Claude Haiku | 0.133 | 80% |
+| RapidOCR tuned | 0.263 | 60% |
+| RapidOCR default | 0.292 | 55% |
+| Docling + RapidOCR | 0.445 | 50% |
+| EasyOCR | 0.552 | 40% |
+| TrOCR | 0.645 | 55% |
+| Tesseract ink / raw | 0.762 / 0.895 | 25% / 30% |
+
+With perfect OCR the pipeline is 0.51 marks per question away from the teacher (my own key, Haiku). Claude readers add almost nothing to that; the best classical OCR roughly doubles it, and the worst nearly quintuples it.
+
+Not completed: Docling's own VLM (Granite-Docling) was started on the four short-answer pages and stopped after about 25 minutes without output on CPU. Docling with EasyOCR inside was only probed on one page (about 16 minutes under load, handwriting mostly missed) and not scored.

@@ -15,8 +15,8 @@ from autograde.evaluation.experiments import (
     record_run,
 )
 from autograde.evaluation.metrics import report
-from autograde.llm import build_client, client_name
-from autograde.pipeline.rubric import RubricStore, cached_record
+from autograde.llm import client_name
+from autograde.pipeline.rubric import cached_record, store_for
 from autograde.pipeline.run import read_results, to_question
 from autograde.schemas import Result
 from autograde.vcs import GitError, commit_experiment
@@ -56,7 +56,9 @@ def read_setup(run: Path) -> dict:
 
 def run_client_name(setup: dict, settings: Settings) -> str:
     """The model name a run was made with, which also keys its stored marking schemes."""
-    return client_name(LLMConfig.model_validate(setup.get("llm") or settings.llm.model_dump()))
+    llm = LLMConfig.model_validate(setup.get("llm") or settings.llm.model_dump())
+    author = (setup.get("pipeline") or {}).get("rubric_model")
+    return client_name(llm.model_copy(update={"model": author, "effort": None}) if author else llm)
 
 
 def run_pipeline(run: Path, settings: Settings) -> PipelineConfig:
@@ -67,13 +69,7 @@ def run_pipeline(run: Path, settings: Settings) -> PipelineConfig:
 
 def records_for(results: list[Result], settings: Settings, cfg: PipelineConfig | None = None):
     """Stored marking schemes for the questions in `results` (same path as the run used)."""
-    cfg = cfg or settings.pipeline
-    store = RubricStore(
-        settings.paths.rubrics_dir,
-        build_client(settings.llm),
-        cfg.rubric_selftest,
-        cfg.rubric_variant,
-    )
+    store = store_for(settings, cfg)
     return {r.item.question_key: store.get(to_question(r.item)) for r in results}
 
 

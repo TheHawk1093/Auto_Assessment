@@ -11,3 +11,5 @@ Marking result (total {total} out of {max_mark}):
 {marking}
 
 Write the feedback for the student.
+
+{extra}

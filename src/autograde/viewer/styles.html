@@ -161,9 +161,11 @@ button.act { font: 600 13px var(--font); padding: 7px 12px; border: 1px solid va
       f.appendChild(el("div", "fdesc", s.desc));
       if (!fb) f.appendChild(el("div", "none", "Not available for this answer."));
       else {
+        if (fb.asks) f.appendChild(el("div", "fdesc", fb.asks));
         fb.strengths.forEach(function (x) { f.appendChild(el("div", "good", x)); });
         fb.improvements.forEach(function (x) {
-          var d = el("div", "imp"); d.appendChild(el("div", "", x.issue));
+          var lbl = x.kind ? ({ partial: "Partly there: ", missed: "Missed: ", incorrect: "Incorrect: " })[x.kind] : "";
+          var d = el("div", "imp"); d.appendChild(el("div", "", lbl + x.issue));
           if (x.why) { var w = el("div"); w.appendChild(el("b", "", "Why")); w.appendChild(document.createTextNode(x.why)); d.appendChild(w); }
           var tr = el("div", "try"); tr.appendChild(el("b", "", "Try")); tr.appendChild(document.createTextNode(x.fix)); d.appendChild(tr); f.appendChild(d);
         });

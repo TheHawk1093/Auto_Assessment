@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from autograde.schemas import EPS, Grading, PointVerdict, Reading, Rubric
+from autograde.schemas import EPS, Deducted, Grading, PointVerdict, Reading, Rubric
 
 _FRAGMENT_SPLIT = re.compile(r"\s*(?:\.\.\.|…|\s\|\s)\s*")
 _MIN_FRAGMENT = 3
@@ -110,7 +110,7 @@ def apply_mark_rule(grading: Grading, rubric: Rubric, partial_weight: float) -> 
                 }
             )
         )
-    return Grading(verdicts=out)
+    return grading.model_copy(update={"verdicts": out})
 
 
 EXPLAIN_WORDS = re.compile(
@@ -136,7 +136,7 @@ def apply_form_gate(
             v.model_copy(update={"status": "not_met", "marks_awarded": 0.0, "evidence": ""})
             for v in grading.verdicts
         ]
-        return Grading(verdicts=zeroed), "incoherent_answer"
+        return grading.model_copy(update={"verdicts": zeroed}), "incoherent_answer"
     asks_why = not question or EXPLAIN_WORDS.search(question)
     if reading.form == "keyword_list" and asks_why and grading.total > max_mark / 2:
         scale = (max_mark / 2) / grading.total
@@ -144,8 +144,29 @@ def apply_form_gate(
             v.model_copy(update={"marks_awarded": round(v.marks_awarded * scale, 6)})
             for v in grading.verdicts
         ]
-        return Grading(verdicts=scaled), "keyword_list_capped"
+        return grading.model_copy(update={"verdicts": scaled}), "keyword_list_capped"
     return grading, None
+
+
+def finalise_deductions(grading: Grading, rubric: Rubric, answer: str) -> tuple[Grading, list[str]]:
+    """Keep only deductions that exist in the scheme, are quoted from the answer, and appear once.
+
+    Marks come from the rule, not from the model. A deduction without a real quote is dropped,
+    because a mark should never be taken off for something the student did not write.
+    """
+    rules = {d.id: d for d in rubric.deductions}
+    kept: list[Deducted] = []
+    flags: list[str] = []
+    for d in grading.deductions:
+        rule = rules.get(d.rule_id)
+        if rule is None or any(k.rule_id == d.rule_id for k in kept):
+            continue
+        if not evidence_in_answer(d.evidence, answer):
+            flags.append(f"deduction_dropped:{d.rule_id}")
+            continue
+        kept.append(d.model_copy(update={"marks": rule.marks}))
+        flags.append(f"deduction:{d.rule_id}")
+    return grading.model_copy(update={"deductions": kept}), flags
 
 
 def unverified_points(grading: Grading, answer: str) -> list[str]:
@@ -195,4 +216,4 @@ def repair(
         if marks != v.marks_awarded or status != v.status:
             flags.append(f"repaired:{p.id}:marks_or_status")
         fixed.append(v.model_copy(update={"status": status, "marks_awarded": marks}))
-    return Grading(verdicts=fixed), flags
+    return grading.model_copy(update={"verdicts": fixed}), flags

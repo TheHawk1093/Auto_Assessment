@@ -12,6 +12,7 @@ from autograde.schemas import EPS, Feedback, Grading, Item, Rubric
 from autograde.textutil import leakage
 
 MAX_WORDS = 220
+LONG_WORDS = 280  # a first draft longer than this is rewritten once
 STYLES = ("hints", "formal", "brief", "detailed", "coach")  # one call each, own prompt file
 LEAK_LIMIT = {"hints": 0.1}  # share of the model answer's phrases allowed in the feedback
 DEFAULT_LEAK_LIMIT = 0.35
@@ -116,11 +117,20 @@ def write_feedback(
         student_answer=item.student_answer,
         total=f"{grading.total:g}",
         max_mark=f"{item.max_mark:g}",
+        extra="",
         marking="\n".join(filter(None, [rubric.stance(), grading.render(rubric)])),
     )
     stance = bool(rubric.level)
     if n <= 1:
-        return _draft(values, variant, client, stance)
+        draft = _draft(values, variant, client, stance)
+        if feedback_words(draft) > LONG_WORDS:  # one retry: too long to read at a glance
+            note = (
+                f"Your previous draft had {feedback_words(draft)} words. Rewrite it in under "
+                f"{MAX_WORDS}, keeping only the most important points."
+            )
+            shorter = _draft({**values, "extra": note}, variant, client, stance)
+            draft = min(draft, shorter, key=feedback_words)
+        return draft
     with ThreadPoolExecutor(n) as pool:
         drafts = list(pool.map(lambda _: _draft(values, variant, client, stance), range(n)))
     clean = [d for d in drafts if not problems(d, item, grading, rubric, variant)]

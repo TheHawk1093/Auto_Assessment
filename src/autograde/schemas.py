@@ -49,10 +49,21 @@ class RubricPoint(BaseModel):
     )
 
 
+class DeductionRule(BaseModel):
+    id: str = Field(description="Short id such as D1.")
+    description: str = Field(
+        description="A clear error that costs marks, for example a wrong statement."
+    )
+    marks: float = Field(gt=0, description="Marks taken off when the error is present.")
+
+
 class Rubric(BaseModel):
     """The marking scheme: a short list of points whose marks add up to the question total."""
 
     points: list[RubricPoint] = Field(min_length=1)
+    deductions: list[DeductionRule] = Field(
+        default_factory=list, description="Errors that take marks off, if the teacher uses them."
+    )
     notes: str = Field(
         default="",
         description="Two or three plain sentences: what earns full, part and no marks.",
@@ -89,6 +100,7 @@ class Rubric(BaseModel):
         for p in self.points:
             note = f" Partial credit: {p.partial_credit}" if p.partial_credit else ""
             lines.append(f"{p.id} ({p.marks:g} marks): {p.description}{note}")
+        lines += [f"{d.id} (deduct {d.marks:g}): {d.description}" for d in self.deductions]
         return "\n".join(lines)
 
 
@@ -140,12 +152,26 @@ class PointVerdict(BaseModel):
     reason: str = Field(description="One sentence explaining the verdict.")
 
 
+class Deducted(BaseModel):
+    rule_id: str
+    evidence: str = Field(
+        description="Exact words copied from the student answer showing the error."
+    )
+    reason: str = Field(description="One sentence on why this is an error.")
+    marks: float = Field(default=0.0, description="Set by code from the rule.")
+
+
 class Grading(BaseModel):
     verdicts: list[PointVerdict]
+    deductions: list[Deducted] = Field(
+        default_factory=list,
+        description="Only if the scheme lists deductions: each one that applies. Else empty.",
+    )
 
     @property
     def total(self) -> float:
-        return round(sum(v.marks_awarded for v in self.verdicts), 6)
+        earned = sum(v.marks_awarded for v in self.verdicts)
+        return round(max(0.0, earned - sum(d.marks for d in self.deductions)), 6)
 
     def render(self, rubric: Rubric) -> str:
         """Verdicts next to their scheme points, for use in later prompts."""
@@ -158,6 +184,10 @@ class Grading(BaseModel):
             quote = f' Student wrote: "{v.evidence}".' if v.evidence else ""
             lines.append(
                 f"{v.point_id} [{v.status}, {v.marks_awarded:g}/{worth}]: {what}.{quote} {v.reason}"
+            )
+        for d in self.deductions:
+            lines.append(
+                f'{d.rule_id} [deducted {d.marks:g}]: Student wrote: "{d.evidence}". {d.reason}'
             )
         return "\n".join(lines)
 

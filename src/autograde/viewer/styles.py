@@ -24,7 +24,11 @@ STYLES = {
     "coach": ("Coach", "Warm and encouraging, short"),
     "standard": ("Standard", "Plain: what is missing, why it matters, what to try"),
     "hints": ("Hints", "Guides with questions and does not state the missing idea"),
-    "formal": ("Formal", "An examiner's report register"),
+    "formal": ("Formal (first version)", "An examiner's report register"),
+    "formal2": (
+        "Formal (new template)",
+        "Asks, quoted strengths, partly there / missed / incorrect, overall. The default now",
+    ),
     "critique": ("Critique", "Standard feedback that a second pass reviewed and tightened"),
     "best3": ("Best of 3", "Three drafts, code checks, then the best is picked"),
     "detailed": ("Detailed", "Thorough, with a worked correction, 150 to 300 words"),

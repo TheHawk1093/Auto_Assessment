@@ -31,7 +31,7 @@ from autograde.llm import build_client
 from autograde.ocr.noise import noisy_items
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.rescore import rescore
-from autograde.pipeline.rubric import RubricStore
+from autograde.pipeline.rubric import store_for
 from autograde.pipeline.run import run_items, to_question
 from autograde.vcs import history
 
@@ -203,12 +203,7 @@ def cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
     results = load_run(settings, args.name)
     setup = read_setup(run_dir(settings, args.name))
     client = build_client(settings.llm)
-    store = RubricStore(
-        settings.paths.rubrics_dir,
-        client,
-        settings.pipeline.rubric_selftest,
-        settings.pipeline.rubric_variant,
-    )
+    store = store_for(settings, grader=client)
 
     def redo(r):
         if r.grading is None:
@@ -226,12 +221,7 @@ def cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
 def cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
     run = run_dir(settings, args.name)
     results = load_run_with_feedback(settings, args.name)
-    store = RubricStore(
-        settings.paths.rubrics_dir,
-        build_client(settings.llm),
-        settings.pipeline.rubric_selftest,
-        settings.pipeline.rubric_variant,
-    )
+    store = store_for(settings)
     rubrics = {r.item.question_key: store.get(to_question(r.item)).rubric for r in results}
     judgements = judge_all(
         results, rubrics, build_client(settings.judge), settings.pipeline.max_workers
