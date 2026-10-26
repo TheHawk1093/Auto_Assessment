@@ -209,3 +209,8 @@ All four items were worked on with Haiku, using results already logged wherever 
 | Feedback length and the styles page | Measured on 36 formal feedbacks of answers that lost marks: median 180 words, 25% over the 220-word target, none over 280, so the old guard never fired. The guard now fires at 240 words. The styles page shows the current template. |
 
 Still open: the Sonnet comparison of the full cascade, Mohler under-marking (Haiku reads the reference literally), maths and language data.
+
+## 16. DeepSeek V4.1 Flash via OpenRouter, and partial credit fixed at 50%
+
+DeepSeek V4.1 Flash (OpenRouter, Sonnet-written sized rubrics, marking only, 40 answers per set, seed 1) cost about $0.02 per set and took 3 minutes. Error against the teacher: DigiKlausur 0.127 (Haiku medium 0.162, Sonnet 0.131), SAF 0.141 (0.151, 0.128), Mohler 0.196 (0.215, 0.179). So it matches Sonnet on DigiKlausur at about 2% of Sonnet's cost and beats Haiku on all three. Those runs used partial = 0.9. From the saved verdicts (`calibrate`), partial = 0.5 gives SAF 0.119, DigiKlausur 0.159 and Mohler 0.221. The project rule is now partial = 50% unless the rubric or strictness level specifies otherwise, so the default is 0.5 and the numbers above are not comparable to future runs. Free OpenRouter models (Gemma, Nemotron) are refused until the account allows free endpoints that may train on prompts, and are limited to 50 requests a day.
+

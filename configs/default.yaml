@@ -17,7 +17,7 @@ pipeline:
   evidence_policy: flag     # strict: drop credit whose quote is not found | flag: keep and report
   policy: essence           # essence: judge the central idea | literal: original wording
   mark_rule: status         # status: code turns each verdict into marks | model: model's own marks
-  partial_weight: 0.9       # share of a point's marks for a partial verdict
+  partial_weight: 0.5       # share of a point's marks for a partial verdict
   rubric_variant: sized     # sized: points sized to the model answer | generated: original
   grade_retries: 1          # re-mark once if the checks fail
   max_workers: 4            # parallel calls

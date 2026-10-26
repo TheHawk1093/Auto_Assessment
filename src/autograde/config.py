@@ -26,7 +26,7 @@ class PipelineConfig(BaseModel):
     evidence_policy: Literal["strict", "flag"] = "flag"  # strict: drop credit with unfound quotes
     policy: Literal["literal", "essence"] = "essence"  # how generously to judge a point
     mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
-    partial_weight: float = 0.9  # share of a point's marks given for a partial verdict
+    partial_weight: float = 0.5  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
     feedback_variant: Literal[*FEEDBACK_STYLES] = "formal"
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins

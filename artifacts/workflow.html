@@ -54,7 +54,7 @@
 <div class="stage">
   <h3><span>3.</span> Mark each point <span class="by">(model, one call)</span></h3>
   <div><span class="k">Job:</span> for every scheme point, say <span class="tag">met</span>, <span class="tag">partial</span> or <span class="tag">not_met</span> and quote the student's exact words as evidence.</div>
-  <div><span class="k">Why:</span> the model only decides what the student achieved. Code then prices it: met = full marks, partial = 0.9 of the marks (a setting), not_met = 0. One knob controls generosity, and the marks always match the verdicts the feedback is built from.</div>
+  <div><span class="k">Why:</span> the model only decides what the student achieved. Code then prices it: met = full marks, partial = 50% of the point's marks unless the rubric or strictness level says otherwise, not_met = 0. One knob controls generosity, and the marks always match the verdicts the feedback is built from.</div>
 </div>
 <div class="arrow">&#8595;</div>
 
@@ -93,6 +93,23 @@
   <tr><td>Sonnet alone</td><td>100%</td><td>0.146</td><td>about 14</td></tr>
 </table>
 <p class="by">Error = mean absolute difference from the teacher, as a share of the question's total marks. Measured from logged runs on 120 answers (DigiKlausur, SAF, Mohler, 40 each), not new runs.</p>
+
+<h2>Design choices and the evidence for each</h2>
+<table>
+  <tr><th>Choice</th><th>Why</th><th>Evidence</th></tr>
+  <tr><td>Model gives verdicts, code gives marks</td><td>The model's own marks were too harsh and unsteady; verdict plus a fixed price is steadier and matches the feedback.</td><td>Biggest single gain: DigiKlausur 0.098, SAF 0.057, Mohler 0.187 error.</td></tr>
+  <tr><td>Partial credit = 50% of a point</td><td>Fixed rule unless the teacher's rubric (or a strictness level) specifies it. Level weights: lenient 0.9, moderate 0.7, harsh 0.5.</td><td>On the 40-answer DeepSeek runs 0.5 helped SAF (0.141 to 0.119) and hurt DigiKlausur and Mohler. Teachers differ, so a rubric can carry its own value.</td></tr>
+  <tr><td>Sized scheme: one point per idea in the model answer</td><td>Checkable points beat free-form schemes; a stricter variant was worse and removed.</td><td>DigiKlausur 0.069, SAF 0.060, Mohler 0.155.</td></tr>
+  <tr><td>Read the answer before marking</td><td>Stops the marker hunting for expected words. Alone it was not enough; it needed the code-priced verdicts.</td><td>Helped DigiKlausur and SAF, slightly hurt Mohler on its own.</td></tr>
+  <tr><td>Quote evidence for every credited point</td><td>Makes each mark auditable and lets code catch invented quotes.</td><td>Unverified quotes appear on 5 to 15% of Haiku answers.</td></tr>
+  <tr><td>Form gate and injection guard</td><td>A pasted model answer, scrambled text or hidden instructions fooled the first design.</td><td>Stress pass rate 0.667 to 0.861.</td></tr>
+  <tr><td>No voting</td><td>The same model repeats its own mistakes.</td><td>Three markings changed nothing at about 5 times the cost.</td></tr>
+  <tr><td>Cheap model for marking, strong model for the scheme</td><td>The scheme is written once per question; marking is per answer.</td><td>Haiku on Mohler 0.281 to 0.215 with Sonnet schemes.</td></tr>
+  <tr><td>Strictness levels in the rubric</td><td>One rubric text sets how tightly to judge and how much partial is worth.</td><td>RiceChem: lenient bias +0.18, moderate +0.05, harsh -0.14.</td></tr>
+  <tr><td>Formal feedback, built from verdicts; none for full marks</td><td>The teacher preferred its register; cannot contradict the marks; saves a call.</td><td>Transfer test on a different question with the same concept; median 180 words.</td></tr>
+  <tr><td>Tune only on dev sets</td><td>EngSAF and RiceChem are benchmark-only; held-out test untouched.</td><td>Project rule.</td></tr>
+  <tr><td>Cost is dominated by call overhead, not stage</td><td>Each stage costs about the same, so fewer calls beat shorter prompts.</td><td>Haiku low is about as accurate as medium; Sonnet is about 14 times Haiku.</td></tr>
+</table>
 
 <h2>Where each dataset fits</h2>
 <table>
