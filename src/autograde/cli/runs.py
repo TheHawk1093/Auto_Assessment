@@ -22,7 +22,7 @@ from autograde.cli.common import (
 )
 from autograde.config import FEEDBACK_STYLES, Settings
 from autograde.datasets import LOADERS, load_dataset, select
-from autograde.datasets.download import download_all, download_engsaf
+from autograde.datasets.download import download_all, download_engsaf, download_samples
 from autograde.datasets.perturb import perturb_items
 from autograde.evaluation.experiments import record_run
 from autograde.evaluation.judge import judge_all, pass_rates
@@ -48,6 +48,7 @@ def _add_commit_options(p: argparse.ArgumentParser, name_only: bool = False) -> 
 def register(sub) -> None:
     dl = sub.add_parser("download", help="fetch the stage-1 datasets into data/raw")
     dl.add_argument("--engsaf", action="store_true", help="also fetch EngSAF (benchmark only)")
+    dl.add_argument("--samples", action="store_true", help="also fetch small maths/essay samples")
     dl.set_defaults(func=cmd_download)
 
     run = sub.add_parser("run", help="grade a sample of answers")
@@ -128,6 +129,8 @@ def cmd_download(args: argparse.Namespace, settings: Settings) -> None:
     download_all(settings.paths.data_dir)
     if args.engsaf:
         download_engsaf(settings.paths.data_dir)
+    if args.samples:
+        download_samples(settings.paths.data_dir)
 
 
 def cmd_run(args: argparse.Namespace, settings: Settings) -> None:

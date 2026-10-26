@@ -146,3 +146,17 @@ Prep for all: generate rubric (LLM + human review) and synthetic student answers
 - [ ] Verify licences marked **(unverified)**.
 - [ ] Check MIT/Columbia STEM availability.
 - [ ] Contact EDU-CIRCUIT-HW authors for problem statements.
+
+## 5. Downloaded samples for per-category prompts (`autograde download --samples`, about 9 MB, in data/raw)
+
+| Category | Folder | What is there | Marks available |
+|---|---|---|---|
+| Maths, step-wise solutions | processbench | gsm8k (400) and math (1000) model-written solutions split into steps | First wrong step (label -1 = all correct), final-answer correct |
+| Physics, chemistry (numeric) | scibench | fund (71 physics) and atkins (105 physical chemistry) problems, with worked solutions for a few | Final numeric answer and unit |
+| School science short answers | scientsbank | SemEval-2013 test split, 23,656 answers, 5-way labels, reference answers | correct / partially correct / contradictory / irrelevant / non-domain |
+| Maths misconceptions | mathdial | 599 tutoring dialogues with the student's wrong solution and the teacher's note on the confusion | Misconception text, no marks |
+| Essays and language | aes2 | 958 persuasive essays | Holistic score 1 to 6 (CC BY-NC) |
+| Essays with examiner feedback | ielts | 189 IELTS task-2 essays with a chosen and a rejected feedback text | Preference pairs, no score |
+
+Not downloaded because access needs sign-up: ASAP-SAS (Kaggle), EDU-CIRCUIT-HW, Eedi. Loaders are not written yet; these folders are raw files.
+

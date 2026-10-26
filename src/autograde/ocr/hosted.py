@@ -137,7 +137,7 @@ def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
         "model": model,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": content}],
         "temperature": 0,
-        "max_tokens": 8192,
+        "max_tokens": 24000,  # reasoning models spend much of this on thinking before they answer
     }
     out = _call(OPENROUTER_URL, {"Authorization": "Bearer " + _key("OPENROUTER_API_KEY")}, body)
     choices = out.get("choices") or []
