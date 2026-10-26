@@ -98,3 +98,17 @@ Not completed: Docling's own VLM (Granite-Docling) was started on the four short
 Machine: 4-core i5-8250U laptop, 7.9 GB RAM, no GPU.
 - Local open VLM via llama.cpp (Qwen3-VL-2B Q4_K_M + mmproj): works only after removing `ggml-vulkan.dll` (the Vulkan backend hangs at start-up on the integrated GPU). One page took about 4 min for the vision encoder alone and was still generating after about 14 min; the output so far was the printed question text, not the handwriting. Not usable here (a batch would take days).
 - Union of classical engines (their words pooled; the text-assignment step separates answers from print), 8 truth pages, near-match recall: RapidOCR alone 73%; RapidOCR + EasyOCR 89%; all five engines 94%. Marks (same 20 answers as above): RapidOCR tuned 0.263 mean error / 60% identical; union of all five 0.208 / 75% identical; Claude Haiku 0.133 / 80%. Sample is small, so treat the gap between union and Claude as indicative.
+
+## Free hosted models (2025-10-26)
+`autograde ocr <folder> --per-page --provider gemini|openrouter --model <id> --out runs/<name>` (`ocr/hosted.py`). Free only, enforced in code: Gemini models must be on the free-tier allow-list; OpenRouter ids must end in `:free` and be listed at zero price. Keys come from the git-ignored `.env`, travel in headers, and are never logged. Images sent were header-redacted copies (`tools/redact_headers.py`), since free tiers may keep the data. Scoring now tolerates LaTeX (`a_{12}`, `\lambda`), underscores and commas inside matrix rows; all engines were rescored with the same rules.
+
+| reader (free) | dev words (exact / near) | test words | matrix and formula facts | marks: mean error / identical |
+|---|---|---|---|---|
+| Gemini 3.5 Flash-Lite | 100% / 100% | 100% / 100% | 100% | 0.050 / 95% |
+| Gemini 3.1 Flash-Lite | 100% / 100% | 96% / 100% | 100% | 0.095 / 90% |
+| Claude Sonnet (paid, for reference) | 99% / 99% | 100% / 100% | 88-100% | 0.075 / 90% |
+| Claude Haiku (paid, for reference) | 100% / 100% | 95% / 97% | 100% | 0.133 / 80% |
+| Pooled classical engines | 82% / 92% | 82% / 96% | 0-12% | 0.208 / 75% |
+
+Same 20 answers as above, so a gap of 0.05 vs 0.075 is one or two answers: read it as "as good as Claude", not "better". The assignment and grading steps in this comparison still used Claude Haiku.
+Not usable: Gemini 2.5 Flash and Flash-Lite ("no longer available to new users"), Gemini 3.8 Flash (timed out), OpenRouter Gemma 4 and Nemotron VL (blocked by the account's guardrail / data-policy setting, a user choice; dots-3-note returned empty).
