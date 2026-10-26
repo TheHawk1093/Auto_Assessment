@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/DAMAGED_BULB_SWITCH_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in both cases there is a gap (break) in the circuit, so the circuit is incomplete.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that a damaged bulb and an open switch both leave a gap/break in the circuit. Equivalent wording earns the mark. No marks for answers that do not mention the gap or break in the circuit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
