@@ -198,8 +198,8 @@ def run_items(
     def work(item: Item) -> Result:
         if mode == "baseline":
             return grade_baseline(item, client)
-        return grade_item(item, records[item.question_key], client, settings.pipeline, second, stronger
-        )
+        record = records[item.question_key]
+        return grade_item(item, record, client, settings.pipeline, second, stronger)
 
     results = list(done.values())
     with ThreadPoolExecutor(workers) as pool, out_path.open("a", encoding="utf-8") as sink:

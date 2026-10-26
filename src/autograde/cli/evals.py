@@ -95,9 +95,7 @@ def register(sub) -> None:
     cs.add_argument("--strong", required=True, help="finished run of the strong model")
     cs.set_defaults(
         func=lambda a, s: print(
-            json.dumps(
-                cascade_report(load_run(s, a.cheap), load_run(s, a.strong)), indent=1
-            )
+            json.dumps(cascade_report(load_run(s, a.cheap), load_run(s, a.strong)), indent=1)
         )
     )
 

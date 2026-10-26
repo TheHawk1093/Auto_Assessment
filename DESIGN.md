@@ -199,9 +199,13 @@ Two models without much extra cost:
 
 ## 15. Status of the needs-improvement list
 
+All four items were worked on with Haiku, using results already logged wherever possible. One new run per question, no repeats.
+
 | Item | State |
 |---|---|
-| Deductions | Built (rubric rules, quote check, code subtracts). Off by default: Haiku over-applies them. Try again with a stronger marker or inside the cascade. |
-| Marks shift with the model answer's wording | Not yet worked on. Plan: run the shortened and masked model answer tests on atomic and sized rubrics with Sonnet-written rubrics. |
-| Cost | Measured per stage (section 8) and per model (section 12). Done: no feedback call for full marks. Next: the cascade. |
-| Feedback length and the styles page | A first draft over 280 words is rewritten once; the styles page shows the new template and kinds. The length guard has not been measured at scale. |
+| Deductions | Now usable **inside the cascade**: Haiku proposes, and every answer where it applied a deduction is re-marked by Sonnet (`escalate_when: [deduction]`). RiceChem, 24 answers, one run (`casc_rice`): mark error 0.174 to 0.135, QWK 0.70 to 0.85, deduction F1 0.29 to 0.40. Deduction precision is still only 0.25 (recall 1.0), so deductions stay off unless the cascade is on. |
+| Marks shift with the model answer's wording | SAF, 40 answers, Haiku medium with Sonnet-written rubrics (two runs, compared with the logged `cmpM_saf`). Masking 30% of the model answer: error 0.151 to 0.154, mean mark change 0.04, 5% of answers move over 10% of the total: **stable**. Keeping only the first half: error 0.151 to 0.192, mean change 0.14: the reference lost real content, so lower marks are expected. Earlier Haiku-written rubrics moved more (0.100 to 0.179 on DigiKlausur). Sonnet-written rubrics are the fix. |
+| Cost | The cascade is built (`escalate_model`, `escalate_when`: partial, mid, unverified, deduction) and its value was measured **free**, by pairing the logged Haiku and Sonnet runs on the same 120 answers (`autograde cascade --cheap A --strong B`). Mean error over DigiKlausur, SAF and Mohler: Haiku medium alone 0.176, Sonnet alone 0.146, Haiku with `mid` re-marked (16% of answers) 0.156, `partial+mid` (47%) 0.146, which equals Sonnet. At Sonnet about 14 times Haiku, `mid` costs about 3.2 Haiku units and `partial+mid` about 7.6, against 14 for Sonnet alone. Default triggers are partial, mid and deduction. The unverified-quote trigger helps little (0.176 to 0.166). The live cascade is verified once, on RiceChem. |
+| Feedback length and the styles page | Measured on 36 formal feedbacks of answers that lost marks: median 180 words, 25% over the 220-word target, none over 280, so the old guard never fired. The guard now fires at 240 words. The styles page shows the current template. |
+
+Still open: the Sonnet comparison of the full cascade, Mohler under-marking (Haiku reads the reference literally), maths and language data.
