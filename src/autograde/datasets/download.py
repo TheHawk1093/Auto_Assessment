@@ -7,6 +7,7 @@ import io
 import logging
 import subprocess
 import urllib.request
+import zipfile
 from pathlib import Path
 
 log = logging.getLogger(__name__)
@@ -83,6 +84,9 @@ SAMPLES = {
     "aes2": [  # persuasive essays, holistic score 1 to 6 (CC BY-NC); first 2 MB only
         ("train.csv", HF + "tasksource/AES2-essay-scoring/resolve/main/train.csv", 2_000_000)
     ],
+    "asap_sas": [  # ASAP short answers, 10 prompts, score 0 to 3; the prompt holds the rubric
+        ("train.csv", HF + "nlpatunt/D_ASAP-SAS/resolve/main/train.csv", 3_000_000)
+    ],
     "ielts": [  # IELTS essays with examiner feedback; first 1.5 MB only
         (
             "essays.csv",
@@ -116,3 +120,59 @@ def download_samples(data_dir: Path) -> None:
             target.parent.mkdir(parents=True, exist_ok=True)
             log.info("Downloading %s/%s", name, fname)
             _fetch(url, target, limit)
+
+
+CIRCUIT_ZIP = (
+    "https://repository.gatech.edu/bitstreams/09496897-10b3-4675-bcf5-73b5b9802cd2/download"
+)
+CIRCUIT_ROOT = "EDU-CIRCUIT-HW_v1/Screenshot_output_anon/"
+
+
+class _RemoteFile(io.RawIOBase):
+    """A seekable view of a remote file, read with HTTP range requests."""
+
+    def __init__(self, url: str) -> None:
+        self.url, self.pos = url, 0
+        head = urllib.request.Request(url, method="HEAD")
+        self.size = int(urllib.request.urlopen(head).headers["Content-Length"])  # noqa: S310
+
+    def seekable(self) -> bool:
+        return True
+
+    def readable(self) -> bool:
+        return True
+
+    def tell(self) -> int:
+        return self.pos
+
+    def seek(self, offset: int, whence: int = 0) -> int:
+        base = (0, self.pos, self.size)[whence]
+        self.pos = base + offset
+        return self.pos
+
+    def readinto(self, buf) -> int:
+        end = min(self.pos + len(buf), self.size) - 1
+        if end < self.pos:
+            return 0
+        req = urllib.request.Request(self.url, headers={"Range": f"bytes={self.pos}-{end}"})
+        data = urllib.request.urlopen(req).read()  # noqa: S310 - fixed https URL
+        buf[: len(data)] = data
+        self.pos += len(data)
+        return len(data)
+
+
+def download_circuit(data_dir: Path, images: int = 12) -> None:
+    """EDU-CIRCUIT-HW without the 9 GB zip: the rubrics, the TA labels and a few handwritten
+    pages from homework 1, read straight out of the remote archive. `download --circuit`."""
+    target = data_dir / "circuit_hw"
+    if (target / "rubric_outputs").exists():
+        return
+    zf = zipfile.ZipFile(io.BufferedReader(_RemoteFile(CIRCUIT_ZIP), 1 << 20))
+    names = [n for n in zf.namelist() if n.startswith(CIRCUIT_ROOT) and not n.endswith("/")]
+    wanted = [n for n in names if "/rubric_outputs/" in n or "/manually_checked_TA_label/" in n]
+    pages = [n for n in names if "/Homework1/" in n and n.endswith(".png")]
+    for name in wanted + pages[:images]:
+        out = target / name.removeprefix(CIRCUIT_ROOT)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(zf.read(name))
+    log.info("circuit_hw: %d files", len(wanted) + min(images, len(pages)))

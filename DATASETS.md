@@ -158,5 +158,12 @@ Prep for all: generate rubric (LLM + human review) and synthetic student answers
 | Essays and language | aes2 | 958 persuasive essays | Holistic score 1 to 6 (CC BY-NC) |
 | Essays with examiner feedback | ielts | 189 IELTS task-2 essays with a chosen and a rejected feedback text | Preference pairs, no score |
 
-Not downloaded because access needs sign-up: ASAP-SAS (Kaggle), EDU-CIRCUIT-HW, Eedi. Loaders are not written yet; these folders are raw files.
+Two more were wrongly marked "needs sign-up" at first and are now fetched:
+
+| Category | Folder | What is there | Marks available |
+|---|---|---|---|
+| Short answers with rubric text | asap_sas | 763 answers from the 10 ASAP-SAS prompts (public HF mirror `nlpatunt/D_ASAP-SAS`; the prompt column holds the question and its rubric) | Score 0 to 3 (two graders) |
+| Handwritten circuit analysis | circuit_hw (`download --circuit`) | 62 per-question rubrics, TA labels for 232 answers, 12 handwritten pages of one student, read out of the 9 GB archive by range requests | Per-criterion deductions |
+
+Problem statements for EDU-CIRCUIT-HW are withheld by the authors (textbook copyright), so questions are known only by id. The full archive (9 GB, 3,765 page images) was not downloaded. Not downloaded: Eedi (sign-up). Loaders are not written yet; these folders are raw files.
 

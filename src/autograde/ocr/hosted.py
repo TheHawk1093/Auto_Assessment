@@ -40,6 +40,8 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MODELS = "https://openrouter.ai/api/v1/models"
 
 _free_prices: dict[str, bool] | None = None
+OPENROUTER_CAP_USD = 1.0  # free models should cost nothing; stray costs up to this are tolerated
+_spent = {"usd": 0.0}
 
 
 def _key(name: str) -> str:
@@ -140,6 +142,9 @@ def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
         "max_tokens": 24000,  # reasoning models spend much of this on thinking before they answer
     }
     out = _call(OPENROUTER_URL, {"Authorization": "Bearer " + _key("OPENROUTER_API_KEY")}, body)
+    _spent["usd"] += float((out.get("usage") or {}).get("cost") or 0)
+    if _spent["usd"] > OPENROUTER_CAP_USD:
+        raise LLMError(f"OpenRouter spend this run passed ${OPENROUTER_CAP_USD:.2f}; stopping")
     choices = out.get("choices") or []
     if not choices:
         raise LLMError(f"OpenRouter returned no choices: {str(out)[:200]}")
