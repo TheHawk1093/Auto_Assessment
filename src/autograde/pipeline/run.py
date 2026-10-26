@@ -191,7 +191,11 @@ def run_items(
     if mode == "pipeline" and todo and settings.pipeline.escalate_model:
         stronger = build_client(
             settings.llm.model_copy(
-                update={"model": settings.pipeline.escalate_model, "effort": None}
+                update={
+                    "model": settings.pipeline.escalate_model,
+                    "effort": None,
+                    "backend": settings.pipeline.strong_backend or settings.llm.backend,
+                }
             )
         )
 

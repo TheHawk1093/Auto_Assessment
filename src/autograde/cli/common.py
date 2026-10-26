@@ -57,8 +57,12 @@ def read_setup(run: Path) -> dict:
 def run_client_name(setup: dict, settings: Settings) -> str:
     """The model name a run was made with, which also keys its stored marking schemes."""
     llm = LLMConfig.model_validate(setup.get("llm") or settings.llm.model_dump())
-    author = (setup.get("pipeline") or {}).get("rubric_model")
-    return client_name(llm.model_copy(update={"model": author, "effort": None}) if author else llm)
+    pipe = setup.get("pipeline") or {}
+    author = pipe.get("rubric_model")
+    if not author:
+        return client_name(llm)
+    backend = pipe.get("strong_backend") or llm.backend
+    return client_name(llm.model_copy(update={"model": author, "effort": None, "backend": backend}))
 
 
 def run_pipeline(run: Path, settings: Settings) -> PipelineConfig:

@@ -143,6 +143,12 @@ def store_for(
     author = grader or build_client(settings.llm)
     if cfg.rubric_model:
         author = build_client(
-            settings.llm.model_copy(update={"model": cfg.rubric_model, "effort": None})
+            settings.llm.model_copy(
+                update={
+                    "model": cfg.rubric_model,
+                    "effort": None,
+                    "backend": cfg.strong_backend or settings.llm.backend,
+                }
+            )
         )
     return RubricStore(settings.paths.rubrics_dir, author, cfg.rubric_selftest, cfg.rubric_variant)

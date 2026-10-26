@@ -131,6 +131,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 11:32 | pipeline | casc_rice | ricechem/dev/n24/seed1 | pipeline | 0.135 | - | ▲ -0.039 | -0.031 | 0.88 | 0.85 | 50% | 0.55 | 4250116e |
 | 2026-10-26 12:35 | pipeline | sens_saf_mask30 | saf/dev/n40/seed1 | pipeline | 0.154 | - | ▼ +0.028 | 0.103 | 0.82 | 0.78 | 38% | 0.09 | 4250116e |
 | 2026-10-26 12:35 | pipeline | sens_saf_short50 | saf/dev/n40/seed1 | pipeline | 0.192 | - | ▼ +0.038 | 0.028 | 0.72 | 0.71 | 20% | 0.09 | 4250116e |
+| 2026-10-26 13:15 | pipeline | cmpD_saf | saf/dev/n40/seed1 | pipeline | 0.141 | - | ▲ -0.050 | 0.116 | 0.88 | 0.81 | 28% | 0.02 | 4250116e |
 
 ## Variants
 
