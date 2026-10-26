@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/d7de761e1b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows mathematically valid working (for example, 30 \u2212 24 = 6 and 6 + 15 = 21) and gives the correct final answer of 21 roses. Equivalent wording and correct alternative methods are accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require every step to be mathematically valid and the final answer to be 21 roses. A single wrong step or a wrong final answer earns no marks. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

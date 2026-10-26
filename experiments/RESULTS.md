@@ -146,6 +146,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 16:26 | baseline | new_baseline_scientsbank | scientsbank/dev/n30/seed1 | baseline | 0.383 | - | ▲ -0.033 | 0.183 | 0.19 | 0.17 | 0% | 0.00 | 4250116e |
 | 2026-10-26 16:31 | pipeline | new_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.211 | ▼ +0.140 | ▼ +0.018 | 0.181 | 0.56 | 0.32 | 20% | 0.00 | 4250116e |
 | 2026-10-26 16:31 | baseline | new_baseline_aes2 | aes2/dev/n30/seed1 | baseline | 0.078 | - | ▼ +0.006 | 0.050 | 0.75 | 0.48 | 0% | 0.00 | 4250116e |
+| 2026-10-26 16:32 | pipeline | new_pipeline_processbench | processbench/dev/n30/seed1 | pipeline | 0.000 | = | - | 0.000 | 1.00 | 1.00 | 3% | 0.00 | 4250116e |
 
 ## Variants
 

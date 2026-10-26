@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/4f083692c0",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct center of the ellipse, \\((-4,1)\\), with every step mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a correct final answer and a fully valid method. A single wrong step or an incorrect final answer earns no marks. Equivalent wording and correct alternative methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
