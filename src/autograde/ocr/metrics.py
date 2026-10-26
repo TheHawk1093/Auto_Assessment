@@ -65,11 +65,30 @@ def _best_window(needle: str, hay: str) -> float:
     return best
 
 
+def _numbers(text: str) -> str:
+    """The numbers in `text`, space-separated and padded, so a row can be searched for."""
+    return " " + " ".join(re.findall(r"-?\d+(?:\.\d+)?", text.replace("−", "-"))) + " "
+
+
+def _matrix_found(fact: str, output: str) -> bool:
+    """A written matrix [[a b],[c d]] is found when each of its rows appears as a run of numbers,
+    whatever the layout (one line, one row per line, or matrices side by side)."""
+    rows = re.findall(r"\[([^\[\]]+)\]", fact)
+    if len(rows) < 2:
+        return False
+    stream = _numbers(output)
+    return all(_numbers(row) in stream for row in rows)
+
+
 def facts(strings: list[str], output: str, fuzzy: bool = False) -> float:
     """Share of key strings (formulas, matrices, conclusions) found, ignoring spaces and case."""
     hay = squash(output)
     ok = 0
     for s in strings:
         need = squash(s)
-        ok += need in hay or (fuzzy and _best_window(need, hay) >= FUZZY)
+        ok += (
+            need in hay
+            or ("[[" in s and _matrix_found(s, output))
+            or (fuzzy and _best_window(need, hay) >= FUZZY)
+        )
     return ok / len(strings)
