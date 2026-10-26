@@ -16,18 +16,19 @@ from pathlib import Path
 from autograde.llm.base import LLMClient, LLMError, Usage
 
 URL = "https://openrouter.ai/api/v1/chat/completions"
+GOEDEL_URL = "https://api.goedelmachines.com/v1/chat/completions"
 _RETRY_WAIT = (5, 15, 40)  # seconds to wait after a rate-limit answer
 
 
-def api_key() -> str:
-    key = os.environ.get("OPENROUTER_API_KEY")
+def api_key(var: str = "OPENROUTER_API_KEY") -> str:
+    key = os.environ.get(var)
     env = Path(".env")
     if not key and env.exists():
         for line in env.read_text(encoding="utf-8").splitlines():
-            if line.startswith("OPENROUTER_API_KEY="):
+            if line.startswith(f"{var}="):
                 key = line.split("=", 1)[1].strip().strip("\"'")
     if not key:
-        raise LLMError("Set OPENROUTER_API_KEY in the environment or in .env")
+        raise LLMError(f"Set {var} in the environment or in .env")
     return key
 
 
@@ -41,19 +42,23 @@ def first_json_object(text: str) -> dict:
 
 
 class OpenRouterClient(LLMClient):
+    url = URL
+    key_var = "OPENROUTER_API_KEY"
+    prefix = "openrouter"
+
     def __init__(self, model: str, timeout_s: int = 240, retries: int = 2) -> None:
         super().__init__(retries)
         self.model = model
         self.timeout_s = timeout_s
-        self._key = api_key()
+        self._key = api_key(self.key_var)
 
     @property
     def name(self) -> str:
-        return f"openrouter-{self.model.replace('/', '_').replace(':', '_')}"
+        return f"{self.prefix}-{self.model.replace('/', '_').replace(':', '_')}"
 
     def _post(self, body: dict) -> dict:
         req = urllib.request.Request(
-            URL,
+            self.url,
             json.dumps(body).encode(),
             {"Authorization": f"Bearer {self._key}", "Content-Type": "application/json"},
         )
@@ -65,7 +70,7 @@ class OpenRouterClient(LLMClient):
                 if exc.code == 429 and wait is not None:
                     time.sleep(wait)
                     continue
-                raise LLMError(f"OpenRouter HTTP {exc.code}: {exc.read()[:200]!r}") from exc
+                raise LLMError(f"{self.prefix} HTTP {exc.code}: {exc.read()[:200]!r}") from exc
             except (urllib.error.URLError, TimeoutError) as exc:
                 raise LLMError(f"OpenRouter request failed: {exc}") from exc
         raise LLMError("unreachable")
@@ -102,3 +107,11 @@ class OpenRouterClient(LLMClient):
             cost_usd=float(u.get("cost", 0) or 0),
         )
         return data, usage
+
+
+class GoedelClient(OpenRouterClient):
+    """Goedel Machines serves an OpenAI-compatible API; same request and reply shape."""
+
+    url = GOEDEL_URL
+    key_var = "GOEDEL_API_KEY"
+    prefix = "goedel"

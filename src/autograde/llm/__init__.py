@@ -14,6 +14,10 @@ def build_client(cfg: LLMConfig) -> LLMClient:
         from autograde.llm.claude_cli import ClaudeCLIClient
 
         return ClaudeCLIClient(cfg.model, cfg.timeout_s, cfg.retries, cfg.effort)
+    if cfg.backend == "goedel":
+        from autograde.llm.openrouter import GoedelClient
+
+        return GoedelClient(cfg.model, cfg.timeout_s, cfg.retries)
     if cfg.backend == "openrouter":
         from autograde.llm.openrouter import OpenRouterClient
 

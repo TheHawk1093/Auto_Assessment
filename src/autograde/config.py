@@ -13,7 +13,7 @@ FEEDBACK_STYLES = ("standard", "hints", "critique", "formal", "brief", "detailed
 
 
 class LLMConfig(BaseModel):
-    backend: Literal["claude_cli", "anthropic", "openrouter"] = "claude_cli"
+    backend: Literal["claude_cli", "anthropic", "openrouter", "goedel"] = "claude_cli"
     model: str = "sonnet"
     effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
     timeout_s: int = 240
@@ -37,7 +37,7 @@ class PipelineConfig(BaseModel):
     with_feedback: bool = True  # False: mark only (cheaper while tuning the grader)
     feedback_n: int = 1  # write this many feedback drafts and keep the best
     deductions: bool = False  # apply the rubric's deductions (needs a strong marker; see DESIGN)
-    strong_backend: Literal["claude_cli", "anthropic", "openrouter"] | None = (
+    strong_backend: Literal["claude_cli", "anthropic", "openrouter", "goedel"] | None = (
         None  # backend of rubric_model and escalate_model; default: the grader's
     )
     rubric_model: str | None = None  # a stronger model writes the schemes once per question
