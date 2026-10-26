@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/4842c8c36a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer of 4 slices, supported by mathematically valid reasoning (Doxa ate 1, her sister ate 2, her brother ate 3).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a correct final answer with every step mathematically valid. A single wrong step or an incorrect final answer earns no marks; equivalent wording and correct alternative methods are acceptable.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
