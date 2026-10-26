@@ -7,5 +7,5 @@ pipeline:
   read_first: true
   rubric_variant: sized
   with_feedback: false
-  max_workers: 6
+  max_workers: 4
 paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}
