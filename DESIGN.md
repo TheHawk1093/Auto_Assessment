@@ -257,3 +257,21 @@ Costs: Haiku pipeline about $0.05 to $0.10 per 30 answers, Haiku baseline $0.003
 
 Backends: Claude CLI (Haiku, Sonnet), Anthropic API, OpenRouter, Goedel Machines (DeepSeek V4.1 Flash, free). The key rules are in section 16. Datasets: see DATASETS.md; tuning uses the dev splits of DigiKlausur, SAF and Mohler; EngSAF, RiceChem and the new sets are measurement only; the held-out test split is untouched.
 
+## 19. Is feedback needed on the new sets, and does it help?
+
+**Scope.** By the teacher's marks, the share of answers that lost marks (so need feedback): ASAP-SAS 27 of 30, SciEntsBank 24 of 30, AES2 27 of 27 (no essay got 6), ProcessBench 18 of 30. Only 10% to 20% of answers earn full marks on three of the four sets, so feedback is needed almost everywhere. Full-mark answers get the code-built shortcut with no model call.
+
+**Which sets have a real reference.** SciEntsBank 30 of 30; ASAP-SAS 7 of 30 (only prompts 5 and 6 carry rubric text); AES2 and ProcessBench have only a generic guide I wrote. The pipeline's schemes are therefore well anchored only on SciEntsBank, which is also the set with noisy labels. This, not "no model answer" alone, is the likely reason the pipeline does not beat the baseline there.
+
+**Gain from feedback (revision test, Haiku, runs `fbH_*`).** A simulated student rewrites the answer once with the feedback and once without (control); both are re-marked with the same scheme. Marks gained per answer:
+
+| Set | Answers tested | Gain with feedback | Gain without | Lift | Improved / worse | Model answer copied into revision |
+|---|---|---|---|---|---|---|
+| SciEntsBank (1 mark) | 6 | +0.83 | +0.25 | +0.58 | 100% / 0% | 0.19 |
+| ASAP-SAS (up to 3) | 7 | +0.79 | +0.29 | +0.50 | 100% / 0% | 0.00 |
+| AES2 (1 to 6) | 1 | +0.50 | +0.13 | +0.38 | 100% / 0% | 0.00 |
+
+Feedback helps in every case tested, by about 0.4 to 0.6 marks above a rewrite without it. The samples are tiny (the revision test keeps only answers that lost marks and could be rewritten, so AES2 gave one), the student and the grader are both Haiku, and the re-marking uses the same scheme that wrote the feedback, so it can overstate the gain. Treat it as evidence that the feedback is usable, not as a measured effect size.
+
+**Not done.** There is no mark-and-feedback single-call baseline, so we cannot yet say how much of the lift comes from the pipeline's checked verdicts. The next step is that baseline on DigiKlausur, SAF, RiceChem and essays, scored with the revision test and a blind pairwise judge.
+
