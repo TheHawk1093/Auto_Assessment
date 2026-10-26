@@ -11,6 +11,7 @@ from typing import Literal, NamedTuple
 from autograde.config import PipelineConfig, Settings
 from autograde.llm import LLMClient, build_client
 from autograde.pipeline.baseline import grade_baseline
+from autograde.pipeline.cascade import unsure_because
 from autograde.pipeline.feedback import write_feedback
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVEL_PARTIAL_WEIGHT, LEVEL_POLICY
@@ -92,6 +93,7 @@ def grade_item(
     client: LLMClient,
     cfg: PipelineConfig,
     second: tuple[LLMClient, dict[str, RubricRecord]] | None = None,
+    stronger: LLMClient | None = None,
 ) -> Result:
     """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback.
 
@@ -105,6 +107,13 @@ def grade_item(
         second_mark = mark_item(item, records[item.question_key], other, cfg).grading.total
         if models_disagree(grading.total, second_mark, item.max_mark, cfg.disagree_gap):
             flags = [*flags, "models_disagree"]
+    first_mark = None
+    if stronger is not None:  # the cheap marking stands unless it looks unsure
+        why = unsure_because(grading, flags, item.max_mark, cfg.escalate_when)
+        if why:
+            first_mark = grading.total
+            reading, grading, flags, votes = mark_item(item, record, stronger, cfg)
+            flags = [*flags, "escalated:" + "+".join(why)]
     feedback = None
     if cfg.with_feedback:
         feedback = write_feedback(
@@ -119,6 +128,7 @@ def grade_item(
         feedback=feedback,
         votes=votes,
         second_mark=second_mark,
+        first_mark=first_mark,
         flags=flags,
     )
 
@@ -177,10 +187,19 @@ def run_items(
             )
         second = (second_client, second_records)
 
+    stronger = None
+    if mode == "pipeline" and todo and settings.pipeline.escalate_model:
+        stronger = build_client(
+            settings.llm.model_copy(
+                update={"model": settings.pipeline.escalate_model, "effort": None}
+            )
+        )
+
     def work(item: Item) -> Result:
         if mode == "baseline":
             return grade_baseline(item, client)
-        return grade_item(item, records[item.question_key], client, settings.pipeline, second)
+        return grade_item(item, records[item.question_key], client, settings.pipeline, second, stronger
+        )
 
     results = list(done.values())
     with ThreadPoolExecutor(workers) as pool, out_path.open("a", encoding="utf-8") as sink:
@@ -196,4 +215,6 @@ def run_items(
             results.append(res)
             if progress:
                 progress(n, len(todo))
+    if stronger is not None:
+        client.usage.add(stronger.usage)  # the run's cost includes the re-marking
     return results

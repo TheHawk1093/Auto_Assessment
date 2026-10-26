@@ -20,6 +20,7 @@ from autograde.cli.common import (
 from autograde.config import Settings
 from autograde.datasets import LOADERS, load_dataset, select
 from autograde.evaluation.calibrate import calibrate
+from autograde.evaluation.cascade import cascade_report
 from autograde.evaluation.compliance import compliance
 from autograde.evaluation.criteria import criteria_report
 from autograde.evaluation.revision import revision_test, summarise
@@ -88,6 +89,17 @@ def register(sub) -> None:
     ca = sub.add_parser("calibrate", help="fit partial-credit weight and stretch to teacher marks")
     ca.add_argument("--name", required=True, help="a finished pipeline run with teacher marks")
     ca.set_defaults(func=cmd_calibrate)
+
+    cs = sub.add_parser("cascade", help="what-if: re-mark unsure answers with a stronger run")
+    cs.add_argument("--cheap", required=True, help="finished run of the cheap model")
+    cs.add_argument("--strong", required=True, help="finished run of the strong model")
+    cs.set_defaults(
+        func=lambda a, s: print(
+            json.dumps(
+                cascade_report(load_run(s, a.cheap), load_run(s, a.strong)), indent=1
+            )
+        )
+    )
 
     co = sub.add_parser("compliance", help="do marks and feedback move with rubric strictness")
     co.add_argument(

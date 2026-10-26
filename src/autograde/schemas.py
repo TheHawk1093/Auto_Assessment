@@ -271,6 +271,9 @@ class Result(BaseModel):
     second_mark: float | None = Field(
         default=None, description="Mark from the second model, when one is configured."
     )
+    first_mark: float | None = Field(
+        default=None, description="The cheap model's mark, kept when a stronger model re-marked."
+    )
     votes: list[float] = Field(
         default_factory=list, description="Total of each marking when voting (votes > 1)."
     )

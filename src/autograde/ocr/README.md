@@ -93,3 +93,8 @@ Marking effect (20 answers: 14 Probab, 6 German; same key, same Haiku pipeline; 
 With perfect OCR the pipeline is 0.51 marks per question away from the teacher (my own key, Haiku). Claude readers add almost nothing to that; the best classical OCR roughly doubles it, and the worst nearly quintuples it.
 
 Not completed: Docling's own VLM (Granite-Docling) was started on the four short-answer pages and stopped after about 25 minutes without output on CPU. Docling with EasyOCR inside was only probed on one page (about 16 minutes under load, handwriting mostly missed) and not scored.
+
+## No-GPU options (2025-10-26)
+Machine: 4-core i5-8250U laptop, 7.9 GB RAM, no GPU.
+- Local open VLM via llama.cpp (Qwen3-VL-2B Q4_K_M + mmproj): works only after removing `ggml-vulkan.dll` (the Vulkan backend hangs at start-up on the integrated GPU). One page took about 4 min for the vision encoder alone and was still generating after about 14 min; the output so far was the printed question text, not the handwriting. Not usable here (a batch would take days).
+- Union of classical engines (their words pooled; the text-assignment step separates answers from print), 8 truth pages, near-match recall: RapidOCR alone 73%; RapidOCR + EasyOCR 89%; all five engines 94%. Marks (same 20 answers as above): RapidOCR tuned 0.263 mean error / 60% identical; union of all five 0.208 / 75% identical; Claude Haiku 0.133 / 80%. Sample is small, so treat the gap between union and Claude as indicative.

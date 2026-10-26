@@ -32,6 +32,8 @@ class PipelineConfig(BaseModel):
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins
     second_model: str | None = None  # a cheaper model also marks; a big gap flags the answer
     disagree_gap: float = 0.15  # share of the total marks that counts as a big gap
+    escalate_model: str | None = None  # a stronger model re-marks the answers the cheap one doubts
+    escalate_when: list[str] = ["partial", "mid", "deduction"]  # see pipeline/cascade
     with_feedback: bool = True  # False: mark only (cheaper while tuning the grader)
     feedback_n: int = 1  # write this many feedback drafts and keep the best
     deductions: bool = False  # apply the rubric's deductions (needs a strong marker; see DESIGN)
