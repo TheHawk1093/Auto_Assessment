@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/MM_8.3~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the property: there is exactly one (unique) path between every pair of nodes in the tree / no loops, so no unnecessary packet copies/links are used when forwarding. AND explains the modification to Link State Routing: each node adds its multicast group membership information to its link state packets, which are flooded, so every node knows the full topology and group membership and can locally compute the multicast spanning tree (e.g. with Prim or Kruskal). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Award 0.5 if only the property or only the link-state modification is correct."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for both the unique-path/loop-free property and the LSR modification (group info in LSPs, then local tree computation). Half for one of the two. Zero if neither is correct.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

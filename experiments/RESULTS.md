@@ -129,6 +129,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-25 23:54 | cmpL | cmpL_mohler | mohler/dev/n40/seed1 | pipeline | 0.249 | - | ▼ +0.035 | -0.208 | 0.71 | 0.49 | 20% | 0.06 | 4250116e |
 | 2026-10-25 23:54 | cmpH | cmpH_mohler | mohler/dev/n40/seed1 | pipeline | 0.281 | - | ▼ +0.032 | -0.232 | 0.67 | 0.41 | 12% | 0.07 | 4250116e |
 | 2026-10-26 11:32 | pipeline | casc_rice | ricechem/dev/n24/seed1 | pipeline | 0.135 | - | ▲ -0.039 | -0.031 | 0.88 | 0.85 | 50% | 0.55 | 4250116e |
+| 2026-10-26 12:35 | pipeline | sens_saf_mask30 | saf/dev/n40/seed1 | pipeline | 0.154 | - | ▼ +0.028 | 0.103 | 0.82 | 0.78 | 38% | 0.09 | 4250116e |
 
 ## Variants
 

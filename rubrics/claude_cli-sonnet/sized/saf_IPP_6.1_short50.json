@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/IPP_6.1~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States at least 4 valid objectives of IPv6 from: supporting billions of end-systems (large address space); reducing routing tables; simplifying protocol processing (simplified header); increasing security; supporting real-time data traffic / quality of service. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for at least 4 correct IPv6 objectives from the model answer list, in any wording. Fewer than 4 correct objectives earns no mark. Incorrect extra items do not earn marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

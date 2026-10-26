@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/DLL_2.3~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the connection between sender and receiver must be full-duplex or half-duplex (semi-duplex), i.e. data can flow in both directions so acknowledgements can be attached to data frames going the other way. Equivalent wording such as 'two-way / bidirectional communication' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating that bidirectional (full-duplex or half-duplex) communication between sender and receiver is needed. No mark for answers that only describe piggybacking or name unrelated requirements such as window size or buffer space.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

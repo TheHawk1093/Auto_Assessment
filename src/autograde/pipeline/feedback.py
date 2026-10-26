@@ -12,7 +12,7 @@ from autograde.schemas import EPS, Feedback, Grading, Item, Rubric
 from autograde.textutil import leakage
 
 MAX_WORDS = 220
-LONG_WORDS = 280  # a first draft longer than this is rewritten once
+LONG_WORDS = 240  # a first draft longer than this is rewritten once (formal median is ~180)
 STYLES = ("hints", "formal", "brief", "detailed", "coach")  # one call each, own prompt file
 LEAK_LIMIT = {"hints": 0.1}  # share of the model answer's phrases allowed in the feedback
 DEFAULT_LEAK_LIMIT = 0.35

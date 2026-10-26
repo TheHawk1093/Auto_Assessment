@@ -1,0 +1,38 @@
+{
+  "question_key": "saf/SDN_11.4~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Meter table: states that it holds meter entries (per flow) that collect/measure statistics such as rates, which the controller uses to manage the network, e.g. QoS operations like rate-limiting.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Flow pipeline: states that it consists of multiple flow tables containing rules/match fields (flow entries).",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Flow pipeline: states that these rules are used for packet forwarding / the actions to be taken on the packet.",
+        "marks": 0.25,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Flow pipeline: states that it defines/implements the routing (forwarding) logic in the switch.",
+        "marks": 0.25,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both functions: the meter table (per-flow measurement used by the controller for QoS, such as rate-limiting) and the flow pipeline (tables of rules deciding packet forwarding/actions, i.e. the switch's routing logic). Equivalent wording is accepted. Award each quarter mark independently; none for unrelated or incorrect descriptions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

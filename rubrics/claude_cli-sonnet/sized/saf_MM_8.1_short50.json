@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/MM_8.1~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names and describes two valid challenges of mobile routing versus fixed wired networks (e.g. adaptation to dynamic topology/nodes joining and leaving; security such as interception/injection of packets in wireless; medium access control problems such as hidden, exposed, near/far terminals and collisions/interference). Each challenge needs a name plus a correct description. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only one challenge is correctly named and described, or if two are named but only one is adequately described."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: two valid challenges, each named and correctly described. Half: only one fully correct challenge (or two named with only one described). No marks: no valid challenge, or generic statements not specific to mobile/wireless routing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

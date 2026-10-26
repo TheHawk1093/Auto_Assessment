@@ -1,0 +1,26 @@
+{
+  "question_key": "saf/SDN_11.4~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the meter table collects flow statistics / holds a meter entry per flow.",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that this information is used by the controller for network management, e.g. QoS operations such as rate-limiting.",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Only the meter table is given in the model answer. Full marks need both the per-flow statistics/meter entries and their use for QoS/management (e.g. rate-limiting). Equivalent wording is accepted. Stating only one idea earns that point's marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

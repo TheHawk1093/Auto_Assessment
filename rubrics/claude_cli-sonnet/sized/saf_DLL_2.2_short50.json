@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/DLL_2.2~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly contrasts the two modes: asynchronous sends each character as a self-contained unit with start and stop bits (simple/cheap, low transmission rate), whereas synchronous groups many characters into a continuous stream/frames delimited by SYN or flag (more complex, higher transmission rate). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Award half if only one mode is described correctly or the contrast is given without the key distinguishing feature (start/stop bits per character vs. frames of grouped characters)."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for a correct contrast: per-character start/stop bits (low rate) versus framed blocks of characters (higher rate). Half for describing only one mode correctly or a vague contrast. No marks for incorrect or irrelevant answers.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

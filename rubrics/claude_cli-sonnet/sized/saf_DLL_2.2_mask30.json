@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/DLL_2.2~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly distinguishes the two modes: asynchronous sends each character individually, framed by a start bit and a stop bit (simple/cheap, low transmission rate); synchronous groups several characters into a continuous stream/frames delimited by SYN or flag (more complex, higher rate), with synchronization between sender and receiver.",
+        "marks": 1.0,
+        "partial_credit": "Award half if only one mode is described correctly, or both are given but the contrast (character-wise with start/stop bits vs. frame/block-wise with higher rate) is incomplete."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for a correct contrast of both modes: per-character start/stop bits, simple, low rate versus continuous frames delimited by SYN/flag, more complex, higher rate, with sender-receiver synchronization. Half for describing only one mode correctly or a partial contrast. Equivalent wording is accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

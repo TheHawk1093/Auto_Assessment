@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/TC_10.2~short50",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names both phases (slow start and congestion avoidance) and correctly describes how cwnd changes in each: slow start = cwnd increases by 1 per ACK (exponential growth, doubling per RTT) while cwnd < ss_thresh; congestion avoidance (cwnd >= ss_thresh) = cwnd grows more slowly (linearly). Also states that on loss/congestion ss_thresh is set to cwnd/2 and cwnd is reset to 1. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Award no partial marks unless the marking teacher decides otherwise; all parts (both phases, cwnd behaviour, ss_thresh = cwnd/2 and cwnd reset to 1 on loss) are expected for the single mark."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: both phases named, cwnd growth in each described (fast/exponential vs slower/linear), and the loss reaction (ss_thresh = cwnd/2, cwnd = 1). Missing the phase names, growth behaviour or the loss adaptation earns no mark. Equivalent wording is accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "saf/LM_4.1~mask30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the collision domain diameter decreases by a factor of 10 (becomes one tenth, e.g. 300m to 30m). Equivalent wording accepted. Saying only 'decreases' without the factor of 10 does not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating the diameter shrinks by a factor of 10 (one tenth). No mark for 'decreases' with no factor, or for increase/no change.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
