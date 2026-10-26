@@ -47,7 +47,8 @@ def precision(truth: str, output: str) -> float:
 
 def squash(text: str) -> str:
     text = UNSURE.sub(r"\1", text).replace("→", "->").replace("−", "-")
-    return re.sub(r"\s+", "", text).lower()
+    text = re.sub(r"(?<=\d)\s*,\s*(?=-?\d)", " ", text)  # [[1, 2], [3, 4]] equals [[1 2],[3 4]]
+    return re.sub(r"[\s_]+", "", text).lower()  # a_12 and a12 are the same symbol
 
 
 def _best_window(needle: str, hay: str) -> float:

@@ -11,6 +11,7 @@ from pathlib import Path
 from autograde.cli.common import write_json
 from autograde.config import Settings
 from autograde.llm import build_client
+from autograde.ocr.hosted import extract_sheet_hosted
 from autograde.ocr.sheets import extract_sheet, group_pages, to_items, unsure_spans
 
 log = logging.getLogger(__name__)
@@ -22,6 +23,10 @@ def register(sub) -> None:
     p.add_argument("--out", type=Path, required=True, help="folder to write the results to")
     p.add_argument("--model", help="override the model in the config")
     p.add_argument("--effort", help="override the effort in the config")
+    p.add_argument(
+        "--provider", choices=["gemini", "openrouter"],
+        help="read with a free hosted model instead of Claude (needs --model; keys in .env)",
+    )  # fmt: skip
     p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
     p.add_argument("--key", type=Path, help="JSON {sheet: {question_id: model answer}}")
     p.set_defaults(func=cmd_ocr)
@@ -31,16 +36,21 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
     cfg = settings.llm.model_copy(
         update={k: v for k, v in {"model": args.model, "effort": args.effort}.items() if v}
     )
-    client = build_client(cfg)
+    if args.provider and not args.model:
+        raise SystemExit("--provider needs --model")
+    client = None if args.provider else build_client(cfg)
     keys = json.loads(args.key.read_text(encoding="utf-8")) if args.key else {}
     args.out.mkdir(parents=True, exist_ok=True)
     sheets = group_pages(args.folder, args.per_page)
 
     def read(name: str):
         log.info("reading %s (%d pages)", name, len(sheets[name]))
+        if args.provider:
+            return extract_sheet_hosted(name, sheets[name], args.provider, args.model)
         return extract_sheet(name, sheets[name], client)
 
-    with ThreadPoolExecutor(max_workers=len(sheets)) as pool:
+    # free tiers are rate-limited, so hosted models are read one page at a time
+    with ThreadPoolExecutor(max_workers=1 if args.provider else len(sheets)) as pool:
         results = list(pool.map(read, sheets))
     lines = []
     for sheet in results:
@@ -51,5 +61,8 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
         lines += [it.model_dump_json() for it in items]
         print(f"{sheet.sheet}: {len(items)} items, {len(unsure_spans(sheet))} unsure spans")
     (args.out / "items.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    write_json(args.out / "usage.json", client.usage.as_dict())
-    print(f"wrote {args.out / 'items.jsonl'}  cost ${client.usage.cost_usd:.3f}")
+    if client:
+        write_json(args.out / "usage.json", client.usage.as_dict())
+        print(f"wrote {args.out / 'items.jsonl'}  cost ${client.usage.cost_usd:.3f}")
+    else:
+        print(f"wrote {args.out / 'items.jsonl'}  (free hosted model, no cost)")

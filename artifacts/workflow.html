@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto-grader workflow</title>
+<style>
+  :root { --bg:#fafaf8; --fg:#1c1c1a; --mut:#6b6b66; --card:#fff; --line:#dcdcd4; --acc:#2f5d9e; --code:#e8f0fa; --warn:#9a5b00; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161715; --fg:#e8e8e2; --mut:#9a9a92; --card:#1f201e; --line:#3a3b37; --acc:#7fb0f0; --code:#22303f; --warn:#e0a850; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui, sans-serif; }
+  main { max-width:860px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:1.6rem; margin:0 0 4px; }
+  h2 { font-size:1.15rem; margin:32px 0 8px; border-bottom:1px solid var(--line); padding-bottom:4px; }
+  p.lead { color:var(--mut); margin-top:0; }
+  .stage { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--acc); border-radius:6px; padding:10px 14px; margin:10px 0; }
+  .stage h3 { margin:0 0 4px; font-size:1rem; }
+  .stage h3 span { color:var(--acc); }
+  .k { font-weight:600; }
+  .tag { display:inline-block; background:var(--code); border-radius:4px; padding:0 6px; font:0.85rem ui-monospace, monospace; }
+  .by { color:var(--mut); font-size:0.9rem; }
+  .arrow { text-align:center; color:var(--mut); line-height:1; }
+  table { border-collapse:collapse; width:100%; font-size:0.92rem; }
+  th, td { border:1px solid var(--line); padding:5px 8px; text-align:left; vertical-align:top; }
+  th { background:var(--code); }
+  .warn { color:var(--warn); }
+  details { margin:6px 0; }
+  summary { cursor:pointer; font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+<h1>How the auto-grader works</h1>
+<p class="lead">Input: question, model answer, rubric (or none), student answer. Output: marks with evidence, and feedback for the student. The model judges; code does the arithmetic and the checks.</p>
+
+<h2>The pipeline, stage by stage</h2>
+
+<div class="stage">
+  <h3><span>1.</span> Marking scheme <span class="by">(once per question, cached in rubrics/)</span></h3>
+  <div><span class="k">Job:</span> turn the question and model answer into a short list of checkable points with marks that add up to the total. If the teacher supplies a rubric (RiceChem), it is used as is.</div>
+  <div><span class="k">Why:</span> grading a long answer against a long paragraph is vague; grading against 3 to 6 named points is checkable and the same for every student. Written once by a strong model (Sonnet) because a bad scheme hurts every answer, and it costs almost nothing when spread over many answers.</div>
+  <div><span class="k">Variants:</span> <span class="tag">sized</span> (default), <span class="tag">atomic</span> (model answer split into single claims), <span class="tag">lenient / moderate / harsh</span>, <span class="tag">official</span>.</div>
+</div>
+<div class="arrow">&#8595;</div>
+
+<div class="stage">
+  <h3><span>2.</span> Read first <span class="by">(model, one call)</span></h3>
+  <div><span class="k">Job:</span> read the student answer alone: what it says, the separate ideas, anything wrong or unclear, and its form (explanation, short answer, keyword list, incoherent).</div>
+  <div><span class="k">Why:</span> reading before seeing the scheme stops the marker hunting for expected words. The form feeds the gate in stage 4.</div>
+</div>
+<div class="arrow">&#8595;</div>
+
+<div class="stage">
+  <h3><span>3.</span> Mark each point <span class="by">(model, one call)</span></h3>
+  <div><span class="k">Job:</span> for every scheme point, say <span class="tag">met</span>, <span class="tag">partial</span> or <span class="tag">not_met</span> and quote the student's exact words as evidence.</div>
+  <div><span class="k">Why:</span> the model only decides what the student achieved. Code then prices it: met = full marks, partial = 0.9 of the marks (a setting), not_met = 0. One knob controls generosity, and the marks always match the verdicts the feedback is built from.</div>
+</div>
+<div class="arrow">&#8595;</div>
+
+<div class="stage">
+  <h3><span>4.</span> Checks in code <span class="by">(no model)</span></h3>
+  <ul style="margin:4px 0 0; padding-left:20px">
+    <li><span class="k">Quote check:</span> every quote must really appear in the answer, otherwise the point is flagged <span class="tag">unverified_quote</span>.</li>
+    <li><span class="k">Form gate:</span> scrambled text gets 0. A bare keyword list gets at most half marks, but only when the question asks to explain.</li>
+    <li><span class="k">Deductions:</span> if the teacher's scheme lists errors that cost marks, they are quote-checked and subtracted (floor 0). Off by default.</li>
+  </ul>
+  <div><span class="k">Why:</span> these are cheap, certain and impossible for a model to talk its way around. The student text is treated as data, never as instructions.</div>
+</div>
+<div class="arrow">&#8595;</div>
+
+<div class="stage">
+  <h3><span>5.</span> Cascade <span class="by">(optional, off by default)</span></h3>
+  <div><span class="k">Job:</span> a cheap model (Haiku) marks every answer. If the marking looks unsure, a stronger model (Sonnet) marks that answer again and its marking replaces the cheap one. Unsure means: some point is <span class="tag">partial</span>, the total is neither near 0 nor near full, or a deduction was applied.</div>
+  <div><span class="k">Why:</span> the hard calls are partial credit and mid-range answers; clear full-mark and zero-mark answers are easy for any model.</div>
+</div>
+<div class="arrow">&#8595;</div>
+
+<div class="stage">
+  <h3><span>6.</span> Feedback <span class="by">(model, one call; none for full marks)</span></h3>
+  <div><span class="k">Job:</span> formal register: what the question asks, what the student got right (quoted), what was partly there, missed or incorrect and why, then what to improve.</div>
+  <div><span class="k">Why:</span> built from the verdicts so it cannot contradict the marks. A full-mark answer gets feedback built by code with no model call. A draft over 240 words is rewritten once.</div>
+</div>
+
+<h2>The cascade: does it hurt?</h2>
+<p><span class="k">Yes, on some answers; overall it helps.</span> Sonnet is closer to the teacher on average, not on every answer, so re-marking can make a few answers worse. On SAF, re-marking mid-range answers moved Haiku-low from 0.127 to 0.137 error, because Haiku was already as good as Sonnet there. Averaged over three datasets it lowered error.</p>
+<p><span class="k">Cost:</span> it is always more than Haiku alone (every answer is marked by Haiku, and the unsure share is marked again by Sonnet) and less than Sonnet alone. Sonnet costs about 14 times Haiku per answer.</p>
+<table>
+  <tr><th>Setting</th><th>Answers re-marked</th><th>Mean error</th><th>Cost (Haiku = 1)</th></tr>
+  <tr><td>Haiku medium alone</td><td>0%</td><td>0.176</td><td>1</td></tr>
+  <tr><td>Cascade, mid-range only</td><td>16%</td><td>0.156</td><td>about 3.2</td></tr>
+  <tr><td>Cascade, partial or mid-range</td><td>47%</td><td>0.146</td><td>about 7.6</td></tr>
+  <tr><td>Sonnet alone</td><td>100%</td><td>0.146</td><td>about 14</td></tr>
+</table>
+<p class="by">Error = mean absolute difference from the teacher, as a share of the question's total marks. Measured from logged runs on 120 answers (DigiKlausur, SAF, Mohler, 40 each), not new runs.</p>
+
+<h2>Where each dataset fits</h2>
+<table>
+  <tr><th>Dataset</th><th>Use</th></tr>
+  <tr><td>DigiKlausur, SAF, Mohler</td><td>Tuning (dev splits)</td></tr>
+  <tr><td>EngSAF, RiceChem</td><td>Benchmark only; never tuned on. RiceChem has an official rubric and deductions.</td></tr>
+  <tr><td>Held-out test split</td><td>Not touched yet</td></tr>
+</table>
+
+<h2>Models</h2>
+<table>
+  <tr><th>Job</th><th>Model today</th><th>Note</th></tr>
+  <tr><td>Marking scheme</td><td>Sonnet, once per question</td><td>Rubrics written by Sonnet made Haiku's Mohler error drop from 0.281 to 0.215.</td></tr>
+  <tr><td>Read, mark, feedback</td><td>Haiku (Claude CLI)</td><td>Low effort is about as accurate as medium.</td></tr>
+  <tr><td>Other backends</td><td>Anthropic API, OpenRouter</td><td class="warn">OpenRouter free models are limited to 50 requests a day, and most need a privacy setting turned on.</td></tr>
+</table>
+
+<h2>Where the code is</h2>
+<details><summary>Files</summary>
+<ul>
+  <li><span class="tag">src/autograde/pipeline/rubric.py</span> stage 1; <span class="tag">read.py</span> stage 2; <span class="tag">grade.py</span> stage 3; <span class="tag">verify.py</span> stage 4; <span class="tag">cascade.py</span> stage 5; <span class="tag">feedback.py</span> stage 6; <span class="tag">run.py</span> ties them together.</li>
+  <li><span class="tag">src/autograde/prompts/</span> every prompt, one Markdown file each. <span class="tag">rubrics/</span> every saved marking scheme.</li>
+  <li><span class="tag">configs/*.yaml</span> settings. <span class="tag">DESIGN.md</span> the full reasoning and every experiment.</li>
+</ul>
+</details>
+<details><summary>Commands you will use</summary>
+<ul>
+  <li><span class="tag">autograde run --dataset saf --split dev -n 40 --name myrun</span> grade and score against the teacher.</li>
+  <li><span class="tag">autograde history</span> every logged run. <span class="tag">autograde cascade --cheap A --strong B</span> free what-if from two finished runs.</li>
+</ul>
+</details>
+</main>
+</body>
+</html>

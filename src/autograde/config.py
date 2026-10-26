@@ -13,7 +13,7 @@ FEEDBACK_STYLES = ("standard", "hints", "critique", "formal", "brief", "detailed
 
 
 class LLMConfig(BaseModel):
-    backend: Literal["claude_cli", "anthropic"] = "claude_cli"
+    backend: Literal["claude_cli", "anthropic", "openrouter"] = "claude_cli"
     model: str = "sonnet"
     effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
     timeout_s: int = 240
