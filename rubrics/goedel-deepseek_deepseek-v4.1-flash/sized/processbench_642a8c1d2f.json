@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/642a8c1d2f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Provides a mathematically valid solution with no incorrect steps and states the correct final value of \u2220HCA.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full credit requires a fully valid solution and the correct final answer. Any wrong step or wrong final answer earns no marks; equivalent correct methods are acceptable.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

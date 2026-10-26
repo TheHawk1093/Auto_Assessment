@@ -1,0 +1,38 @@
+{
+  "question_key": "asap_sas/set5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "mRNA leaves the nucleus, e.g. through a nuclear pore.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "mRNA travels through the cytoplasm to a ribosome or to the rough endoplasmic reticulum.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "mRNA codons are read and tRNA with the complementary anticodon binds the codon, bringing the corresponding amino acid.",
+        "marks": 0.75,
+        "partial_credit": ""
+      },
+      {
+        "id": "P4",
+        "description": "Amino acids are joined into a protein chain, starting at a START codon and continuing until a STOP codon is read.",
+        "marks": 0.75,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Award 0.75 for each of the four steps correctly described; full marks require all four. Accept equivalent wording and correct alternative descriptions of the same step. A bare list without description does not earn the description mark for that step.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

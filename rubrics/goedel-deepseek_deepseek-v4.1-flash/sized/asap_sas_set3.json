@@ -1,0 +1,26 @@
+{
+  "question_key": "asap_sas/set3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that pandas and koalas are similar because both are specialists with a very narrow diet: pandas eat almost only bamboo and koalas eat almost only eucalyptus leaves, as the article says.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that pandas and koalas differ from pythons because pythons are generalists, able to live in varied environments and/or eat varied prey, whereas pandas and koalas are specialized; the article lists the python as a generalist.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the panda\u2013koala similarity (both narrow-diet specialists) and the contrast with pythons (generalists). One correct comparison earns one mark; no comparison or an unsupported answer earns none. Equivalent wording and correct use of article details are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/VOLTAGE_GAP_EXPLAIN_WHY4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that there is no gap (no break/complete connection) between terminal 4 and the positive terminal, so the voltmeter reads 0.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that there is no gap between terminal 4 and the positive terminal (equivalent wording such as 'they are directly connected' or 'no break in the circuit between them' is accepted). No marks for answers that do not identify the absence of a gap between these two points.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

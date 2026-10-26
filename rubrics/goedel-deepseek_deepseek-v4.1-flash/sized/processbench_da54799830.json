@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/da54799830",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The response gives a mathematically valid derivation and states the correct final value of sin^3 x + cos^3 x; any invalid step or incorrect final value earns 0.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark requires a fully valid solution with the correct final answer. A single wrong step or a wrong final answer earns no marks; there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

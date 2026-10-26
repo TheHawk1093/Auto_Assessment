@@ -10,7 +10,7 @@ from pathlib import Path
 
 from autograde.cli.common import write_json
 from autograde.config import Settings
-from autograde.llm import build_client
+from autograde.llm import LLMError, build_client
 from autograde.ocr.hosted import extract_sheet_hosted
 from autograde.ocr.sheets import extract_sheet, group_pages, to_items, unsure_spans
 
@@ -27,6 +27,7 @@ def register(sub) -> None:
         "--provider", choices=["gemini", "openrouter"],
         help="read with a free hosted model instead of Claude (needs --model; keys in .env)",
     )  # fmt: skip
+    p.add_argument("--plain", action="store_true", help="hosted models: plain transcription only")
     p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
     p.add_argument("--key", type=Path, help="JSON {sheet: {question_id: model answer}}")
     p.set_defaults(func=cmd_ocr)
@@ -45,13 +46,19 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
 
     def read(name: str):
         log.info("reading %s (%d pages)", name, len(sheets[name]))
-        if args.provider:
-            return extract_sheet_hosted(name, sheets[name], args.provider, args.model)
-        return extract_sheet(name, sheets[name], client)
+        try:
+            if args.provider:
+                return extract_sheet_hosted(
+                    name, sheets[name], args.provider, args.model, args.plain
+                )
+            return extract_sheet(name, sheets[name], client)
+        except LLMError as exc:  # keep the pages that worked; free endpoints are flaky
+            log.error("skipped %s: %s", name, str(exc)[:200])
+            return None
 
     # free tiers are rate-limited, so hosted models are read one page at a time
     with ThreadPoolExecutor(max_workers=1 if args.provider else len(sheets)) as pool:
-        results = list(pool.map(read, sheets))
+        results = [r for r in pool.map(read, sheets) if r is not None]
     lines = []
     for sheet in results:
         (args.out / f"{sheet.sheet}.sheet.json").write_text(

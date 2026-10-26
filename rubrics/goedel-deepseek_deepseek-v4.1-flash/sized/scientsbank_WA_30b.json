@@ -1,0 +1,26 @@
+{
+  "question_key": "scientsbank/WA_30b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Selects C (the water level went up when the water froze).",
+        "marks": 0.5,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Explains that water expands when it freezes (equivalent wording accepted).",
+        "marks": 0.5,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the correct choice (C) and an explanation stating that water expands when it freezes. A correct choice with no explanation, or the correct explanation attached to a wrong choice, earns half marks. No marks for choosing A or B without a valid expansion explanation.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/372fd4d6d6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer of $2 per pack of strawberry gum, supported by a fully valid calculation (e.g. grape gum costs $2, green apple gum costs $1, so the two strawberry packs total $4).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the correct final answer with every step mathematically valid. A wrong final answer or any invalid step earns no marks. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

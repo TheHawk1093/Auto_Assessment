@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/OPT1_EXPLAIN_Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that bulb A is still in a closed/complete circuit (path) with the battery, so it remains lit. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for explaining that bulb A still has a closed path to the battery. No marks for answers that do not mention the complete/closed circuit with the battery.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

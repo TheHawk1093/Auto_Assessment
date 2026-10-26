@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/6ad994001d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final probability as a common fraction, with every step mathematically valid and no incorrect step.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both a correct final answer and fully valid reasoning. A wrong final answer or any invalid step earns no marks; there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

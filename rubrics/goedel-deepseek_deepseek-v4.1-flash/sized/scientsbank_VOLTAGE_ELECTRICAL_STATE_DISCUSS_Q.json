@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/VOLTAGE_ELECTRICAL_STATE_DISCUSS_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that measuring the voltage between two terminals indicates whether they are in different electrical states (i.e. voltage is a measure of the difference in electrical state between the terminals). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that voltage measurement shows whether the two terminals have different electrical states. No marks for answers that do not link the voltage reading to a difference in electrical state between the terminals.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

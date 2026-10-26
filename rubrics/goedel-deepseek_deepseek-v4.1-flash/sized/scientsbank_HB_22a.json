@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/HB_22a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the stimulus as perceiving the cup fall \u2014 i.e. seeing and/or hearing the cup fall (equivalent wording accepted).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that the stimulus is seeing or hearing the cup fall. Naming only the cup falling without the sense involved may be accepted as equivalent. No marks for answers describing the response (moving the hand) or the scoring of hits and misses.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

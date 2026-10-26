@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/154f9b7254",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The final area is correct, and every step of the supporting work is mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both a correct final answer and a fully valid solution. A single wrong step or a wrong final answer earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

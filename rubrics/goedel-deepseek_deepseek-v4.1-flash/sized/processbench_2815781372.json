@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/2815781372",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct domain [1/2, 4/3] (equivalently 1/2 \u2264 x \u2264 4/3), with endpoints as common fractions, and every step is mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both a correct final domain and a fully valid solution. A single wrong step or an incorrect final answer earns 0 marks. Equivalent correct notation is accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

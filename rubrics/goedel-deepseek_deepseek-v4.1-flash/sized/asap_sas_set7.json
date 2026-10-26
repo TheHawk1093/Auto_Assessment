@@ -1,0 +1,26 @@
+{
+  "question_key": "asap_sas/set7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies one plausible character trait for Rose that is consistent with her conversation with Anna or Aunt Kolab (e.g. responsible, mature, selfless, caring, patient, tactful, protective, hardworking, burdened, or hopeful).",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Gives one specific detail from the story from Rose's conversation with Anna or Aunt Kolab that supports the trait identified (e.g. Rose gently explains to Anna that Papa has only been gone four months and took the better-paying job; Rose says the family must do their part to help Paul finish college; Rose avoids telling Aunt Kolab the truth so as not to hurt her; Rose nods at Aunt Kolab's offer to sew or sell treats).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a plausible trait plus a relevant supporting detail drawn from Rose's conversation with Anna or Aunt Kolab. One mark is earned for the trait alone and one for the supporting detail alone. No marks are earned if the trait is not supported by the detail or the detail does not come from those conversations; equivalent wording and other valid traits/details are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

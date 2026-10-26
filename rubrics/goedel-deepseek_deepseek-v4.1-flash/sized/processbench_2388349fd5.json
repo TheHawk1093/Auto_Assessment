@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/2388349fd5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Final answer is n = 32 (equivalently, a-b \u2261 -5 \u2261 32 mod 37), with every step mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the correct final answer n = 32 and a fully valid modular-arithmetic justification. A single wrong step or a wrong final answer earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/d5812061bf",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct final answer of 23 cookies, supported by mathematically valid steps (starting total 18; subtracting the 3 eaten, 2 eaten, and 2 given away; adding the 12 baked).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a correct final answer of 23 with every step mathematically valid. A single wrong step or a wrong final answer earns no marks; there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

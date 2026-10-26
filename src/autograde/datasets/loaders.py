@@ -12,6 +12,12 @@ from typing import Literal
 
 import pandas as pd
 
+from autograde.datasets.extra import (
+    load_aes2,
+    load_asap_sas,
+    load_processbench,
+    load_scientsbank,
+)
 from autograde.datasets.ricechem import load_ricechem
 from autograde.schemas import Item
 
@@ -117,7 +123,7 @@ def load_engsaf(root: Path) -> list[Item]:
 
 
 # Datasets that are only ever used to measure, never to tune. They ignore the dev/test split.
-BENCHMARK_ONLY = {"engsaf", "ricechem"}
+BENCHMARK_ONLY = {"engsaf", "ricechem", "asap_sas", "scientsbank", "aes2", "processbench"}
 
 LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "digiklausur": load_digiklausur,
@@ -125,6 +131,10 @@ LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "saf": load_saf,
     "engsaf": load_engsaf,
     "ricechem": load_ricechem,
+    "asap_sas": load_asap_sas,
+    "scientsbank": load_scientsbank,
+    "aes2": load_aes2,
+    "processbench": load_processbench,
 }
 
 

@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/9ecce6d371",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct perimeter, 52 cm, with every supporting step mathematically valid; a single wrong step or an incorrect final answer earns no marks. Equivalent correct methods are accepted.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both a correct final perimeter and fully valid supporting work. Any wrong step or wrong final answer earns zero. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

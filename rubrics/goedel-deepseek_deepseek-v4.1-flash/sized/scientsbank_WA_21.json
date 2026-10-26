@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/WA_21",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the water froze (turned to ice) and that water expands when it freezes, so the ice took up more space / pushed outward on the bottle, cracking it.",
+        "marks": 1.0,
+        "partial_credit": "Half mark (0.5) for stating only that the water froze, or only that water expands when it freezes, without linking the expansion to the bottle cracking."
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the freezing of the water and the expansion of water on freezing as the reason the bottle cracked. A response giving only one of these two ideas earns half a mark. No marks for answers that do not mention freezing or expansion (e.g. 'the cold broke it'). Equivalent wording and correct alternative phrasing are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

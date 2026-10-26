@@ -112,3 +112,9 @@ Machine: 4-core i5-8250U laptop, 7.9 GB RAM, no GPU.
 
 Same 20 answers as above, so a gap of 0.05 vs 0.075 is one or two answers: read it as "as good as Claude", not "better". The assignment and grading steps in this comparison still used Claude Haiku.
 Not usable: Gemini 2.5 Flash and Flash-Lite ("no longer available to new users"), Gemini 3.8 Flash (timed out), OpenRouter Gemma 4 and Nemotron VL (blocked by the account's guardrail / data-policy setting, a user choice; dots-3-note returned empty).
+
+### OpenRouter free models (2025-10-26, after the account's data-policy setting was changed)
+Spend on the key stayed at $0.0000153 (unchanged) across all calls, and `hosted.py` aborts if reported cost passes $1 in a run. Results: Gemma 4 31B (`:free`) returned upstream 429 on every page for 20 minutes, so Gemma 4 26B (same pool) was not run; Nemotron 3.5 Super VL read Probab p2 perfectly with a short prompt (cost 0) but timed out upstream on the long structured prompt and was too slow in `--plain` mode to finish a 9-page run (stopped after about 20 minutes); dots-3-note returned empty replies. Verdict: free OpenRouter vision models are too slow and flaky to depend on here; use the Gemini free tier.
+`--plain` (short transcription prompt, whole page as one item) and skip-failed-pages were added for such endpoints.
+
+Paid prices on OpenRouter (per million tokens in / out): Gemini 3.1 Flash-Lite 0.25 / 1.50; Gemini 3.5 Flash-Lite 0.30 / 2.50; Claude Sonnet 5.5 2.00 / 10.00; Claude Haiku 5.5 0.10 / 0.50 (as listed). Estimated cost per page at about 2.2k input and 0.6k output tokens for Gemini (3.6k input for Claude, whose images use more tokens): 3.1 Flash-Lite about $0.0015, 3.5 Flash-Lite about $0.0022, Sonnet 5.5 about $0.013. Estimates, not measurements.

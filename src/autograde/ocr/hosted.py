@@ -20,7 +20,7 @@ from pathlib import Path
 
 from autograde import prompts
 from autograde.llm.base import LLMError
-from autograde.ocr.sheets import Sheet, parse_sheet
+from autograde.ocr.sheets import Sheet, SheetItem, parse_sheet
 from autograde.ocr.transcribe import MEDIA
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -69,7 +69,13 @@ def _call(url: str, headers: dict, body: dict, tries: int = 4) -> dict:
     """POST with back-off on rate limits. The error text never includes the request headers."""
     for attempt in range(tries):
         try:
-            return _post(url, headers, body)
+            out = _post(url, headers, body)
+            err = out.get("error") if isinstance(out, dict) else None
+            # OpenRouter can answer 200 with an upstream error inside the body
+            if err and err.get("code") in (429, 500, 502, 503, 504) and attempt < tries - 1:
+                time.sleep(min(20 * (attempt + 1), 60))
+                continue
+            return out
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:300]
             if exc.code in (429, 500, 502, 503, 504) and attempt < tries - 1:
@@ -154,8 +160,20 @@ def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
 PROVIDERS = {"gemini": gemini, "openrouter": openrouter}
 
 
-def extract_sheet_hosted(name: str, pages: list[Path], provider: str, model: str) -> Sheet:
-    """Same job and prompt as `extract_sheet`, with a free hosted model. One retry on bad JSON."""
+def extract_sheet_hosted(
+    name: str, pages: list[Path], provider: str, model: str, plain: bool = False
+) -> Sheet:
+    """Same job and prompt as `extract_sheet`, with a free hosted model. One retry on bad JSON.
+
+    With `plain`, a short transcription prompt is used instead and the whole page text comes back
+    as one item: cheaper and quicker for slow reasoning models, but without the question split.
+    """
+    if plain:
+        text = PROVIDERS[provider](
+            pages, model, prompts.system("ocr.transcribe"), "Transcribe the handwriting."
+        )
+        item = SheetItem(question_id="page", student_answer=text.strip())
+        return Sheet(sheet=name, pages=[p.name for p in pages], items=[item])
     files = "\n".join(f"Image {i} is page {i} of the sheet." for i in range(1, len(pages) + 1))
     user = f"The sheet has {len(pages)} page image(s) attached, in order.\n{files}"
     last: LLMError | None = None
