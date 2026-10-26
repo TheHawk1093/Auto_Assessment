@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/DAMAGED_BULB_SWITCH_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the damaged bulb is like an open switch because both create a gap (break) in the circuit, so the circuit is incomplete and current cannot flow. Equivalent wording, such as 'the circuit is broken/open in both cases', earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for identifying that both a damaged bulb and an open switch leave a gap in the circuit. Equivalent wording such as 'broken' or 'open' circuit is acceptable. No partial credit, as the answer is a single idea worth one mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/BURNED_BULB_SERIES_Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the cause/reason is an open path (e.g. a path or route left open/unblocked, allowing something to pass or connect through it). Equivalent wording such as 'a path was left open' or 'the route was not blocked' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for identifying that an open path was the reason, in any equivalent wording. No mark if the answer gives a different cause or only describes the event without identifying the open path as the reason.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

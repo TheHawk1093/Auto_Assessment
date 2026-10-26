@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/EV_21",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the slightly different salt concentration still falls within the range of tolerance in which brine shrimp eggs can hatch (equivalent wording such as 'the eggs can tolerate a small change in salinity' earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for explaining that the slightly different salt solution is still within the eggs' tolerance range so hatching still occurs. No partial credit, since the model answer is a single idea; an answer that only says the salt amount was 'about right' without linking it to tolerance or range should be judged on whether the core idea is present.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

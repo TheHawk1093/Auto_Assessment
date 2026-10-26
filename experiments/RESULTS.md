@@ -148,6 +148,18 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 16:31 | baseline | new_baseline_aes2 | aes2/dev/n30/seed1 | baseline | 0.078 | - | ▼ +0.006 | 0.050 | 0.75 | 0.48 | 0% | 0.00 | 4250116e |
 | 2026-10-26 16:32 | pipeline | new_pipeline_processbench | processbench/dev/n30/seed1 | pipeline | 0.000 | = | - | 0.000 | 1.00 | 1.00 | 3% | 0.00 | 4250116e |
 | 2026-10-26 16:33 | baseline | new_baseline_processbench | processbench/dev/n30/seed1 | baseline | 0.000 | - | = | 0.000 | 1.00 | 1.00 | 0% | 0.00 | 4250116e |
+| 2026-10-26 16:39 | baseline | newH_baseline_scientsbank | scientsbank/dev/n30/seed1 | baseline | 0.500 | - | ▼ +0.117 | -0.250 | -0.52 | -0.33 | 0% | 0.00 | 4250116e |
+| 2026-10-26 16:39 | baseline | newH_baseline_processbench | processbench/dev/n30/seed1 | baseline | 0.000 | - | = | 0.000 | 1.00 | 1.00 | 0% | 0.00 | 4250116e |
+| 2026-10-26 16:41 | baseline | newH_baseline_aes2 | aes2/dev/n30/seed1 | baseline | 0.122 | - | ▼ +0.044 | 0.059 | 0.46 | 0.12 | 0% | 0.02 | 4250116e |
+| 2026-10-26 16:41 | baseline | newH_baseline_asap_sas | asap_sas/dev/n30/seed1 | baseline | 0.191 | - | ▼ +0.030 | 0.025 | 0.58 | 0.60 | 0% | 0.03 | 4250116e |
+| 2026-10-26 18:26 | pipeline | newH_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.160 | ▼ +0.039 | ▲ -0.051 | 0.123 | 0.43 | 0.06 | 7% | 0.08 | 4250116e |
+| 2026-10-26 18:35 | baseline | newH_baseline_scientsbank | scientsbank/dev/n30/seed1 | baseline | 0.350 | - | ▲ -0.150 | 0.217 | 0.30 | 0.27 | 0% | 0.02 | 4250116e |
+| 2026-10-26 18:38 | pipeline | newH_pipeline_asap_sas | asap_sas/dev/n30/seed1 | pipeline | 0.294 | ▼ +0.103 | ▼ +0.118 | -0.100 | 0.32 | 0.31 | 17% | 0.09 | 4250116e |
+| 2026-10-26 18:38 | pipeline | newH_pipeline_scientsbank | scientsbank/dev/n30/seed1 | pipeline | 0.300 | ▲ -0.050 | ▲ -0.083 | 0.067 | 0.34 | 0.34 | 7% | 0.05 | 4250116e |
+| 2026-10-26 18:39 | baseline | newH_baseline_asap_sas | asap_sas/dev/n30/seed1 | baseline | 0.208 | - | ▼ +0.017 | 0.042 | 0.55 | 0.57 | 0% | 0.00 | 4250116e |
+| 2026-10-26 18:40 | baseline | newH_baseline_processbench | processbench/dev/n30/seed1 | baseline | 0.000 | - | = | 0.000 | 1.00 | 1.00 | 0% | 0.03 | 4250116e |
+| 2026-10-26 18:43 | pipeline | newH_pipeline_processbench | processbench/dev/n30/seed1 | pipeline | 0.010 | ▼ +0.010 | ▼ +0.010 | 0.010 | 0.99 | 1.00 | 3% | 0.10 | 4250116e |
+| 2026-10-26 18:43 | baseline | newH_baseline_aes2 | aes2/dev/n30/seed1 | baseline | 0.122 | - | ▼ +0.001 | 0.050 | 0.35 | 0.11 | 0% | 0.01 | 4250116e |
 
 ## Variants
 

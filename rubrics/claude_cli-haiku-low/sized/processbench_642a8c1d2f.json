@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/642a8c1d2f",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the final answer \u2220HCA = 47\u00b0. Equivalent wording, or a correct method that reaches 47\u00b0, earns the mark. Method options include: CH is the altitude from C, so it is perpendicular to AB, and the right triangle formed with A gives \u2220HCA = 90\u00b0 \u2212 \u2220BAC = 90\u00b0 \u2212 43\u00b0 = 47\u00b0; or angle chasing in the orthocenter configuration (for example, \u2220HCA = 90\u00b0 \u2212 \u2220CAB via the right angles at X and Y). Any other value, or a step that is mathematically invalid, earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark is awarded for a correct final answer of 47\u00b0 reached through valid reasoning, such as the right-triangle or angle-chasing argument using the orthocenter. A wrong final answer, or a single invalid step, earns no mark, since the model answer awards the mark only if every step is valid and the answer is correct. This is a one-mark, one-idea question, so there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

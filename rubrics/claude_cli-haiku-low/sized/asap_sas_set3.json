@@ -1,0 +1,26 @@
+{
+  "question_key": "asap_sas/set3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that pandas and koalas are similar because both are specialists that eat a narrow range of food: pandas eat almost nothing but bamboo and koalas eat almost exclusively eucalyptus leaves. Equivalent wording, or the article's 'specialist' label applied to both, earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "States that pythons differ from both because they are generalists, not specialists, as the article describes them (a generalist is a python, raccoon, cockroach or deer). Equivalent wording, such as 'pythons eat a wide variety of prey', earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the shared specialist diet of pandas and koalas (P1) and the contrast that pythons are generalists (P2). Answers that name only one of these, or that describe the pandas and koalas without linking them to specialists, earn no mark for the missing point. Credit accurate paraphrase and relevant article support.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

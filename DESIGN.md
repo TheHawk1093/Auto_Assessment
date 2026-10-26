@@ -214,3 +214,46 @@ Still open: the Sonnet comparison of the full cascade, Mohler under-marking (Hai
 
 DeepSeek V4.1 Flash (OpenRouter, Sonnet-written sized rubrics, marking only, 40 answers per set, seed 1) cost about $0.02 per set and took 3 minutes. Error against the teacher: DigiKlausur 0.127 (Haiku medium 0.162, Sonnet 0.131), SAF 0.141 (0.151, 0.128), Mohler 0.196 (0.215, 0.179). So it matches Sonnet on DigiKlausur at about 2% of Sonnet's cost and beats Haiku on all three. Those runs used partial = 0.9. From the saved verdicts (`calibrate`), partial = 0.5 gives SAF 0.119, DigiKlausur 0.159 and Mohler 0.221. The project rule is now partial = 50% unless the rubric or strictness level specifies otherwise, so the default is 0.5 and the numbers above are not comparable to future runs. Free OpenRouter models (Gemma, Nemotron) are refused until the account allows free endpoints that may train on prompts, and are limited to 50 requests a day.
 
+## 17. New task types: first look (30 answers each, marking only)
+
+Loaders are in `datasets/extra.py`; these sets are for measuring only and ignore the dev/test split. The pipeline is the full read, mark, check path with sized schemes written by the same model that marks. The baseline is one plain call per answer. Error is the mean absolute difference from the teacher as a share of the total marks. Partial credit is 0.5 (the project rule).
+
+| Set (what it tests) | Marks | DeepSeek baseline | DeepSeek pipeline | Haiku baseline | Haiku pipeline |
+|---|---|---|---|---|---|
+| ASAP-SAS (science and reading answers, 0 to 3) | mean of 2 graders | 0.161 | 0.176 | 0.208 | 0.294 |
+| SciEntsBank (school science, 5-way label to 1 / 0.5 / 0) | label | 0.383 | 0.383 | 0.350 | 0.300 |
+| AES2 (persuasive essays, 1 to 6) | holistic | 0.078 | 0.211 | 0.122 | 0.160 |
+| ProcessBench (maths step checking, pass or fail) | first wrong step | 0.000 | 0.000 | 0.000 | 0.010 |
+
+Costs: Haiku pipeline about $0.05 to $0.10 per 30 answers, Haiku baseline $0.003 to $0.03, DeepSeek on Goedel $0. Haiku AES2 pipeline finished 27 of 30 (3 calls failed). Runs: `new_*` (DeepSeek) and `newH_*` (Haiku), configs `cmp_new.yaml` and `cmp_new_haiku.yaml`.
+
+**What we learned**
+1. **The pipeline does not beat the plain baseline on these types.** On the four sets it won once (SciEntsBank with Haiku). On the earlier short-answer sets it won because the schemes and a model answer were there. Here the structure is missing or does not fit, and 30 answers is a coarse sample (one answer is 3% of the answers), so treat the gaps as direction only.
+2. **Essays need a holistic mode.** A list of points with marks over-credits an essay: the pipeline's bias was +0.18 with DeepSeek and +0.12 with Haiku, against +0.05 for the baseline. A 1 to 6 score is a judgement of content, organisation and language together, not a count of ideas. Plan: three scored criteria (content, organisation, language) with anchored levels, averaged by code.
+3. **No reference answer hurts.** ASAP-SAS prompts for the reading sets carry no rubric text and the schemes are inferred from the question, so Haiku under-marks (bias -0.10). Plan: when a question has no reference, a strong model writes the scheme once from the question and the reading passage, and the teacher can correct it.
+4. **SciEntsBank's labels are noisy.** Answers such as "The stimulus is her sight" against "seeing or hearing the cup fall", or "bend our bones" against "move bones", are labelled wrong while the model gives credit. The mapping of "partially correct" to 0.5 is arbitrary too. It is a weak guide for tuning and is best kept as a sanity check.
+5. **Maths verification is easy for these models.** Both models solved the problems themselves and matched the first-wrong-step label on 29 or 30 of 30. The real tests will be harder: student errors that are wrong in subtle ways, partial credit across steps, and numeric answers with units. SciBench has the problems and answers but no student work, so synthetic wrong answers would be needed.
+6. **Goedel allows 4 requests at once.** Eight parallel runs hit HTTP 429. Run one dataset at a time with at most 4 workers.
+7. **Haiku runs need to be started 3 at a time.** Launching eight Claude CLI runs with six workers each stalled the session and left runs unfinished; they resume from saved rows.
+
+**Where improvement is needed, by priority**
+1. A holistic essay mode (finding 2).
+2. A scheme-writing path for questions with no reference answer, using the passage (finding 3).
+3. A numeric and unit check in code, and subject modules for maths and physics (finding 5).
+4. Per-dataset calibration of the partial value and strictness from a few teacher-marked answers (`calibrate`).
+5. Handwritten input through a vision model, then the same pipeline. EDU-CIRCUIT-HW has rubrics and TA labels but no problem text.
+6. Mohler-style under-marking of paraphrases, through the cascade (section 15).
+
+## 18. Current workflow, in one place
+
+1. **Input:** question, model answer (or none), optional teacher rubric, the student's answer.
+2. **Marking scheme (once per question, cached in `rubrics/`):** a strong model turns the question and model answer into weighted points. A teacher rubric is used as is. Variants: sized (default), atomic, lenient, moderate, harsh, official.
+3. **Read:** the answer is summarised on its own: ideas, problems and form (explanation, short answer, keyword list, incoherent).
+4. **Mark:** each point is met, partial or not met, with an exact quote. Code prices it: met is full, partial is 50% of the point's marks unless the rubric or level says otherwise.
+5. **Checks in code:** the quote must be in the answer (otherwise flagged), the form gate (scrambled text 0, a bare keyword list at most half when an explanation was asked), deductions only if enabled.
+6. **Cascade (optional):** a cheap model marks every answer; answers with a partial verdict, a mid-range total or an applied deduction are re-marked by a stronger model.
+7. **Feedback:** formal register, built from the verdicts; no model call for full marks; a draft over 240 words is rewritten once.
+8. **Logging:** every run is recorded in `experiments/` (score, settings, prompt fingerprint) and committed locally with a tag; `autograde history` lists them.
+
+Backends: Claude CLI (Haiku, Sonnet), Anthropic API, OpenRouter, Goedel Machines (DeepSeek V4.1 Flash, free). The key rules are in section 16. Datasets: see DATASETS.md; tuning uses the dev splits of DigiKlausur, SAF and Mohler; EngSAF, RiceChem and the new sets are measurement only; the held-out test split is untouched.
+

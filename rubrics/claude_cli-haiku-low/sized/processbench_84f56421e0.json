@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/84f56421e0",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The final answer is exactly the open interval (2, \u221e): all real numbers greater than 2, with 2 itself excluded. Equivalent notation such as {x : x > 2} is accepted. Every step must be mathematically valid, as the model answer requires.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "This is a single-idea, one-mark question, so one all-or-nothing point is used. Full marks require the correct set (2, \u221e) with valid reasoning throughout. Any wrong step or wrong final set (for example [2, \u221e), or a bounded set) earns no marks. Partial credit is not applicable.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

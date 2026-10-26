@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/BULB_C_VOLTAGE_EXPLAIN_WHY4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that terminal 4 is not separated (isolated/disconnected) from the negative battery terminal, so it reads the same potential as the negative terminal (equivalent wording earns the mark).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating that terminal 4 is not separated from the negative battery terminal, or equivalent wording such as it is still connected to the negative terminal. No marks for vague answers that do not identify the lack of separation as the cause.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/4842c8c36a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that they ate 6 slices in total, with valid working: Doxa 1, sister 2 (1 more than Doxa), brother 3 (1 more than sister), giving 1 + 2 + 3 = 6. The student must reach 6 through valid steps; a wrong final answer or any invalid step earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The model answer as supplied contains only the grading instructions, so this scheme is derived from the question itself: Doxa ate 1, the sister 2, the brother 3, total 6. Full mark requires the correct total of 6 with every step valid. Equivalent working, such as adding the amounts in a different order, earns the mark. Any wrong step or wrong final answer earns nothing, as the model answer's rule states.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

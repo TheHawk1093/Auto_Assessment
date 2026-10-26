@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/VB_5c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the size of the ice cube decreases as time increases (equivalent wording such as 'gets smaller/shrinks over time' earns the mark). The answer must link size and time in this direction.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for a one-sentence answer saying the ice cube gets smaller as time passes, in equivalent wording. No partial credit: an answer that describes the graph's axes without giving the decreasing trend, or that states the opposite trend, earns no mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

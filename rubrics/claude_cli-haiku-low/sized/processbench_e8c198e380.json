@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/e8c198e380",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The student gives 10 cents as the cost of each pump. Equivalent working is accepted, such as 2400 cents \u00f7 240 pumps (120 washings \u00d7 2 pumps), or 20 cents per wash \u00f7 2 pumps. The mark requires every step to be valid and the final answer to be 10 cents, so a wrong step or a wrong final answer earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question has a single numerical answer and the model answer makes the mark all-or-nothing, so there is one point worth 1 mark with no partial credit. Full marks go to a valid method ending in 10 cents per pump, with the unit given in cents or clearly equivalent. Any invalid step or an incorrect final figure earns no mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

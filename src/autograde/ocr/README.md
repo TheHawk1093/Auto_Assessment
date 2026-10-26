@@ -118,3 +118,19 @@ Spend on the key stayed at $0.0000153 (unchanged) across all calls, and `hosted.
 `--plain` (short transcription prompt, whole page as one item) and skip-failed-pages were added for such endpoints.
 
 Paid prices on OpenRouter (per million tokens in / out): Gemini 3.1 Flash-Lite 0.25 / 1.50; Gemini 3.5 Flash-Lite 0.30 / 2.50; Claude Sonnet 5.5 2.00 / 10.00; Claude Haiku 5.5 0.10 / 0.50 (as listed). Estimated cost per page at about 2.2k input and 0.6k output tokens for Gemini (3.6k input for Claude, whose images use more tokens): 3.1 Flash-Lite about $0.0015, 3.5 Flash-Lite about $0.0022, Sonnet 5.5 about $0.013. Estimates, not measurements.
+
+### Update: OpenRouter free models in `--plain` mode (2025-10-26, later)
+Probe (one page, in parallel): Nemotron 3.5 Super VL ok in 8 s, dots-3-note ok in 33 s, Nemotron 3 Nano Omni ok in 33 s, Gemma 4 26B and 31B still 429, Inkling 403, Gemini 3.8 Flash timed out. Full 9-page runs in `--plain` mode finished for Nemotron Super and dots (the earlier failures were the long structured prompt, not the models); Nano stalled for over two hours and was stopped. Cost: nothing charged.
+Matrix scoring now matches each matrix row as a run of numbers, so multi-line and side-by-side layouts count; all engines were rescored with the same rule.
+
+| reader (free) | words found (dev / test) | facts (dev / test) | marks: mean error / identical |
+|---|---|---|---|
+| Gemini 3.5 Flash-Lite | 100% / 100% | 100% / 100% | 0.050 / 95% |
+| Nemotron 3.5 Super VL | 99% / 95% | 50% / 62% | 0.070 / 90% |
+| Claude Sonnet (paid) | 99% / 100% | 100% / 88% | 0.075 / 90% |
+| Gemini 3.1 Flash-Lite | 100% / 96% | 100% / 100% | 0.095 / 90% |
+| dots-3-note | 97% / 96% | 100% / 88% | 0.105 / 85% |
+| Claude Haiku (paid) | 100% / 95% | 100% / 100% | 0.133 / 80% |
+| RapidOCR tuned | 56% / 53% | 0% / 0% | 0.263 / 60% |
+
+Same 20 answers; differences of 0.03 to 0.05 are one or two answers, so these are tied within noise. Nemotron Super missed the page 4 matrices; dots missed one row-operation string. Plain mode gives page text only (no question split), and the assignment and grading steps still used Claude Haiku. Caveat: free endpoints change or disappear; the Gemma models were unavailable all day.

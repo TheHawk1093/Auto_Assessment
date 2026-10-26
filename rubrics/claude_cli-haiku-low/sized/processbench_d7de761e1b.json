@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/d7de761e1b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The final answer is 21 roses. Working such as 30 \u2212 24 + 15 = 21, or any equivalent valid sequence of steps (e.g. 30 \u2212 24 = 6, then 6 + 15 = 21) that reaches 21, earns the mark. Every step shown must be mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The full mark requires a correct final answer of 21 reached through valid steps. The model answer supplied contains only grading instructions and no numerical answer, so this scheme is derived from the question itself: 30 \u2212 24 + 15 = 21. Any wrong step or wrong final answer earns no mark, as the model answer's own rule states.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

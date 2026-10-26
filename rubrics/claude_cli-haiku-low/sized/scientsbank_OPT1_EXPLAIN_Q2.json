@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/OPT1_EXPLAIN_Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that Bulb A is still in a closed path (circuit/loop) with the battery, i.e. it remains connected in a complete loop to the battery so it is not disconnected from the supply.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating that Bulb A remains in a closed circuit path with the battery. Equivalent wording such as \"still part of a complete loop with the cell\" earns the mark. No partial credit, as the answer is a single idea.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

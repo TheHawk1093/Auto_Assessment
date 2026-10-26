@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/5e8fb33c5e",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the final value 850, reached by a mathematically valid argument: the reciprocal of each root's modulus squared, 1/(r\u1d62\u0304r\u1d62) = 1/|r\u1d62|\u00b2, is summed over all 10 roots and halved because the roots come in conjugate pairs with equal modulus. Equivalent valid methods, such as substituting w = 13 - 1/x with w^10 = -1 and summing |13 - w|\u00b2 over the ten roots of w^10 = -1, also earn the mark. The mark is lost if any step is invalid or the final answer is not 850.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question is worth a single mark, so the answer is all-or-nothing: full credit requires the correct final value 850 with every step valid. Any valid method, including the substitution w = 13 - 1/x, earns the mark. An incorrect final value or an invalid step earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

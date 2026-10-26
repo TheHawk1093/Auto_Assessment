@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/95fb79fa68",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The student's working is mathematically valid at every step and the final amount paid is $31. Valid working: $80 \u00f7 $20 = 4 rewards; rewards used = $4 off; coupon = 2 \u00d7 $4 = $8 off; $43 \u2212 $4 \u2212 $8 = $31. Equivalent valid methods earn the mark. Any invalid step, or a final answer other than $31, earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question has a single numeric answer and the model answer makes the mark all-or-nothing, so there is one point worth the full mark. Full marks require a correct final answer of $31 reached through valid steps. Any wrong step or wrong final answer earns no mark, and there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

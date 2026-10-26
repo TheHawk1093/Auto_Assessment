@@ -1,0 +1,20 @@
+{
+  "question_key": "scientsbank/WA_33b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the glasses were cooler than the water vapour (warm, moist air) in the bathroom, so the vapour condensed on the lenses. Equivalent wording such as 'the lenses were colder than the steamy air, causing condensation' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating that the glasses were cooler than the water vapour, causing it to condense on them. No partial credit: the single idea is either stated or not. Answers that only say 'steam' or 'hot air' without the temperature difference causing condensation earn no mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

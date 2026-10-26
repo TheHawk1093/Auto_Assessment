@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/154f9b7254",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the final area of the shaded region as 7\u03c0/6 \u2212 \u221a3/2 (equivalent forms such as (7\u03c0 \u2212 3\u221a3)/6 are acceptable). The working must be valid: large semicircle area 2\u03c0, minus the union of the three radius-1 semicircles, which is 3\u03c0/2 minus the two upper-half lens overlaps of (\u03c0/3 \u2212 \u221a3/4) each, giving 5\u03c0/6 + \u221a3/2. Full mark only if the answer is correct and every step is valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question has a single exact answer, so the mark is all-or-nothing and depends on the final expression being 7\u03c0/6 \u2212 \u221a3/2 with valid working. Equivalent algebraic forms and alternative valid methods earn the mark. Any invalid step, such as ignoring the overlap between the middle semicircle and the outer two, earns no mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

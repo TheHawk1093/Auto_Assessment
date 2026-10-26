@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/f097ff5278",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the maximum area as 9 square inches, reached by a square with sides 3 inches, and every step is mathematically valid (e.g. half-perimeter gives l + w = 6, area A = l(6 - l), maximised at l = w = 3). Equivalent methods earn the mark, such as completing the square, calculus, or an argument that a square maximises area for a given perimeter. A wrong step or a wrong final answer earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The mark is all-or-nothing. Full credit requires the correct maximum of 9 square inches with every step valid, and any correct method is accepted. A wrong step or an incorrect final answer, including a non-maximal area such as 8 or 9.5, earns nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

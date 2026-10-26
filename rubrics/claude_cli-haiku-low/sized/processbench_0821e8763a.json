@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/0821e8763a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the correct number of values, 4, with the solutions x = 0, \u03c0/7, 2\u03c0/5, 3\u03c0/7 (equivalent exact forms or working that reaches these values earn the mark). Working must be mathematically valid throughout, so a wrong step or wrong final count earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark requires the correct count of 4 reached through valid working. Because the total is 1 mark and the model answer makes the mark conditional on every step being valid, there is no partial credit. Equivalent forms of the solutions and alternative valid methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

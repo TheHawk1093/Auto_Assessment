@@ -1,0 +1,32 @@
+{
+  "question_key": "asap_sas/set5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Describes mRNA leaving the nucleus through a nuclear pore and travelling through the cytoplasm to a ribosome (or to the rough endoplasmic reticulum). Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P2",
+        "description": "Describes decoding: mRNA is read in triplet codons, and a tRNA whose anticodon is complementary to the codon (U with A, C with G) binds to it. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      },
+      {
+        "id": "P3",
+        "description": "Describes linking amino acids into a polypeptide: each tRNA's amino acid is bonded to the growing chain, adding amino acids one at a time from a START codon until a STOP codon is read. Equivalent wording earns the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for a student who gives all three ideas, using any equivalent wording, even if they name the stages differently (e.g. transport, translation/decoding, elongation/termination). Award 0 for each idea not present; the question asks for four steps but only 3 marks are available, so award marks for the ideas above rather than counting steps.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

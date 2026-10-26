@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/8522259c7d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the final answer of 200 feet: holding the sapphire the javelin reaches 3 \u00d7 400 = 1200 feet, so Polly can stand 1200 \u2212 1000 = 200 feet beyond the dragon's 1000-foot flame reach. Equivalent working and wording earn the mark, but the final answer must be 200 feet and every step must be valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if the student's working is mathematically valid throughout and the final answer is 200 feet outside the flame reach. Any wrong step or wrong final answer earns no mark, as the model answer requires. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

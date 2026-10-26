@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/6d58063b45",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The final answer is 326.5 (or an equivalent decimal such as 326.50), with every step valid. Equivalent working methods, such as aligning the decimal points and adding column by column, earn the mark. A wrong step or a wrong final answer earns no mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "The question has one correct result, 313.9 + 12.6 = 326.5, and the model answer makes the mark all-or-nothing. Full marks require the correct decimal with valid working. Any arithmetic error or invalid step earns zero, and no partial credit applies.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
