@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/8522259c7d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly computes the gemstone-assisted throw as 3 \u00d7 400 = 1200 feet and subtracts the dragon's 1000-foot reach to conclude Polly can stand 200 feet outside the reach of the flames, with every step mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a fully valid solution and the correct final answer of 200 feet. A single invalid step or an incorrect final answer earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
