@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/1e485a7923",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The solution uses mathematically valid steps throughout and reaches the correct final answer, (x,y)=(-16,-4).",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require every step to be mathematically valid and the final answer to be correct. A single wrong step or a wrong final answer earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

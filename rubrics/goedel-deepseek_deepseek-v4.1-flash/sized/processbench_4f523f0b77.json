@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/4f523f0b77",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct final answer of 3430 people infected after three days, supported by a valid calculation (e.g. multiplying by 7 each day: 10 \u00d7 7 \u00d7 7 \u00d7 7, or 10 \u2192 70 \u2192 490 \u2192 3430). Equivalent wording and correct alternative methods earn the mark.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a mathematically valid method and the correct final answer of 3430. A single wrong step or a wrong final answer earns nothing, since the mark is all-or-nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}

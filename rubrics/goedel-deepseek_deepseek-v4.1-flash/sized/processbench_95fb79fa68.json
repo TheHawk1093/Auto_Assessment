@@ -1,0 +1,20 @@
+{
+  "question_key": "processbench/95fb79fa68",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct final answer of $31, with every step of the working mathematically valid.",
+        "marks": 1.0,
+        "partial_credit": ""
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both a correct final answer and fully valid reasoning. A single invalid step or an incorrect final answer earns no marks; there is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null
+  },
+  "selftest_passed": null,
+  "selftest_notes": []
+}
