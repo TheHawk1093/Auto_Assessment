@@ -161,6 +161,7 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 18:43 | pipeline | newH_pipeline_processbench | processbench/dev/n30/seed1 | pipeline | 0.010 | ▼ +0.010 | ▼ +0.010 | 0.010 | 0.99 | 1.00 | 3% | 0.10 | 4250116e |
 | 2026-10-26 18:43 | baseline | newH_baseline_aes2 | aes2/dev/n30/seed1 | baseline | 0.122 | - | ▼ +0.001 | 0.050 | 0.35 | 0.11 | 0% | 0.01 | 4250116e |
 | 2026-10-26 19:24 | pipeline | fbH_scientsbank | scientsbank/dev/n12/seed1 | pipeline | 0.125 | - | - | -0.042 | 0.85 | 0.84 | 8% | 0.03 | 4250116e |
+| 2026-10-26 19:24 | pipeline | fbH_asap_sas | asap_sas/dev/n12/seed1 | pipeline | 0.229 | - | - | -0.035 | 0.60 | 0.51 | 8% | 0.05 | 4250116e |
 
 ## Variants
 
