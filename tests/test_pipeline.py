@@ -203,3 +203,10 @@ def test_model_rule_keeps_the_models_own_marks(tmp_path: Path):
                     Feedback: lambda _u: FEEDBACK, Reading: lambda _u: READING})  # fmt: skip
     out = run_items([make_item(1, "It updates weights.")], "pipeline", c, cfg, tmp_path / "b.jsonl")
     assert out[0].predicted_mark == 0.2
+
+
+def test_full_marks_feedback_keeps_the_whole_idea_around_e_g():
+    from autograde.pipeline.feedback import first_sentence
+
+    text = "States that BDP is rate times delay, e.g. 10 Mbps x 20 ms. Do not accept RTT."
+    assert first_sentence(text) == "States that BDP is rate times delay, e.g. 10 Mbps x 20 ms"

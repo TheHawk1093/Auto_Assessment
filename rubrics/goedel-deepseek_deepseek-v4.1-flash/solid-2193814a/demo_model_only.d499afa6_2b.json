@@ -1,0 +1,37 @@
+{
+  "question_key": "demo_model_only.d499afa6/2b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Uses the bandwidth-delay product formula: BDP = link capacity \u00d7 one-way propagation delay (equivalently writes 10 Mbps \u00d7 20 ms or 10,000,000 bps \u00d7 0.02 s).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Converts the given values to compatible units correctly: 10 Mbps = 10,000,000 bps (10^7 bps) and 20 ms = 0.02 s.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Computes the final bandwidth-delay product as 200,000 bits (accept 2 \u00d7 10^5 bits) and includes the unit bits.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the correct formula, correct unit conversions, and the final value 200,000 bits with units. A correct final answer alone earns only the final-answer point; an arithmetic slip after correct setup loses only the final-answer point. No part marks are allowed within any point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "BDP = 10 Mbps \u00d7 20 ms = 10,000,000 bps \u00d7 0.02 s = 200,000 bits (2 \u00d7 10^5 bits)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

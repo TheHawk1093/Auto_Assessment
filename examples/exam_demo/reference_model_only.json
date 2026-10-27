@@ -1,0 +1,6 @@
+{
+  "1": "TCP numbers every byte with sequence numbers, the receiver sends cumulative acknowledgements, and the sender retransmits on timeout or after three duplicate ACKs. A checksum detects corruption and the receive window provides flow control.",
+  "2a": "The bandwidth-delay product is link capacity times one-way propagation delay: the amount of data in flight on the link.",
+  "2b": "10,000,000 bps x 0.02 s = 200,000 bits.",
+  "3": "Several table entries can match an address; the longest prefix is the most specific route, so it is chosen, which allows route aggregation with exceptions."
+}

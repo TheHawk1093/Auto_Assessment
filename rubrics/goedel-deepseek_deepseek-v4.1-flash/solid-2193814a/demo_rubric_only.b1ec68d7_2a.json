@@ -1,0 +1,30 @@
+{
+  "question_key": "demo_rubric_only.b1ec68d7/2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines the bandwidth-delay product as the product of the link bandwidth/capacity and the propagation delay, i.e. BDP = bandwidth \u00d7 propagation delay. Accept an equivalent statement using round-trip time only if it is explicitly identified as RTT; do not accept bandwidth \u00d7 transmission time or bandwidth \u00d7 packet size.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Explains that the bandwidth-delay product represents the amount of data, in bits, that can be in transit on the link at one time, i.e. the maximum number of bits needed to 'fill the pipe' or be on the link.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the formula/definition and the meaning of the quantity. One mark is earned for either the correct product definition or the correct interpretation as bits in transit. No marks are given for unrelated definitions or for calculating a value without defining the term.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The bandwidth-delay product is the product of the link's bandwidth (capacity) and its propagation delay: BDP = bandwidth \u00d7 propagation delay. It is the maximum amount of data, in bits, that can be in transit on the link at one time; for this link it would be 10 Mbps \u00d7 20 ms = 200,000 bits = 200 kbit using the one-way delay."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

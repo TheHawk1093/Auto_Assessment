@@ -1,0 +1,30 @@
+{
+  "question_key": "demo_model_only.d499afa6/2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines the bandwidth-delay product as the link capacity (bandwidth) multiplied by the one-way propagation delay.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States that it represents the amount of data that can be in flight on the link at one time.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the definition as capacity times one-way propagation delay and the interpretation as the amount of data in flight on the link. Each idea is worth one mark and is all or nothing. A definition that only gives the formula without the meaning, or only the meaning without the formula, earns one mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

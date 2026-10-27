@@ -1,0 +1,51 @@
+{
+  "question_key": "demo_model_only.d499afa6/1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that TCP assigns a sequence number to every byte (or to each segment's data) so the receiver can order data and detect missing/duplicate bytes. Accept equivalent wording such as byte numbering or sequence numbering.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States that the receiver sends acknowledgements, specifically cumulative acknowledgements, to confirm which bytes have been received. Accept equivalent wording such as ACKs indicating the next expected byte.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "States that the sender retransmits unacknowledged or lost data, naming timeout and/or three duplicate ACKs as the trigger. At least one retransmission trigger must be given; a bare statement that TCP retransmits without any trigger is not sufficient.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Mentions a checksum (or equivalent error-detection field) used to detect corrupted data.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Mentions the receive window (or advertised window) used for flow control.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all five ideas: sequence numbers, cumulative acknowledgements, retransmission with a named trigger, checksum-based corruption detection, and receive-window flow control. Each point is all or nothing; the two supporting details (checksum and receive window) are worth half a mark each. Vague claims that TCP is reliable or uses acknowledgements without the specific mechanisms earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,47 @@
+{
+  "question_key": "demo_combined.003b0410/2b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Converts the given quantities to consistent units: 10 Mbps = 10,000,000 bps and 20 ms = 0.02 s, or uses an equivalent consistent-unit shortcut such as 10 Mbps \u00d7 20 ms = 200 kbits.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if only one of the two quantities is converted correctly.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Converts only one of the two quantities correctly, e.g. 10 Mbps = 10,000,000 bps but leaves 20 ms as 20, or 20 ms = 0.02 s but leaves 10 Mbps as 10."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Multiplies the link capacity by the one-way propagation delay to compute the bandwidth-delay product, e.g. 10,000,000 bps \u00d7 0.02 s or an equivalent consistent-unit product.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Gives the final answer as 200,000 bits (accept 200 kbits or 2 \u00d7 10^5 bits with units).",
+        "marks": 1.0,
+        "partial_credit": "Half mark for the correct numerical value 200,000 without units.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives 200,000 (or 200 kbits) but omits the unit bits or gives an incorrect unit."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require correct unit conversion, multiplication of capacity by delay, and the final answer 200,000 bits. Half marks are available on P1 for only one correct conversion and on P3 for the correct numerical value without units. No marks are given on a point if the required step is absent or wrong.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "10 Mbps = 10,000,000 bps; 20 ms = 0.02 s. Bandwidth-delay product = capacity \u00d7 delay = 10,000,000 \u00d7 0.02 = 200,000 bits."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

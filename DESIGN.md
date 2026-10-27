@@ -275,3 +275,64 @@ Feedback helps in every case tested, by about 0.4 to 0.6 marks above a rewrite w
 
 **Not done.** There is no mark-and-feedback single-call baseline, so we cannot yet say how much of the lift comes from the pipeline's checked verdicts. The next step is that baseline on DigiKlausur, SAF, RiceChem and essays, scored with the revision test and a blind pairwise judge.
 
+## 20. Exam input and the simplified workflow (the direction for the demo)
+
+**What the teacher gives.** A question paper (all questions, marks per question or sub-question). Reference material for the questions: a model answer, a rubric, both in one file, or both in two files; for some questions possibly nothing. Student answers as typed text or as photographed sheets. In the interface: part-mark granularity (rubric / none / half / quarter), strictness and a free-text note. The teacher never labels the question type; the model infers `kind` (short, essay, maths) and `field` (subject area) from the paper.
+
+**Reference cases, reduced to two (plus one for later).**
+1. A rubric is present (with or without a model answer): the rubric is the scheme. A free-text rubric is only restructured into points, adding nothing; a rubric that is already JSON points adding up to the total is used as it is with no model call. The model answer goes to the marker as context.
+2. Only a model answer: a strong model writes the points from it, with part-mark levels in the allowed steps; a self-test checks that the model answer scores full marks and "I do not know" scores almost none.
+3. Neither (open-ended questions): the earlier path stays (the writer works out an answer key, a review pass audits the scheme). Not developed further yet.
+
+**Steps** (`autograde exam`, code in `src/autograde/intake/`):
+1. `paper.py`: the model splits the paper into questions with marks; a sub-question is a question of its own and carries the shared stem. A paper that is JSON is read without a model. Missing marks are refused, never guessed.
+2. `reference.py`: the model copies the matching reference text to each question id (it writes or changes nothing); JSON keyed by id is read directly; questions without a reference are reported.
+3. `answers.py`: a folder with one file per student (markers like `Q1.`, `Answer 2(a):`, `2 b)` are found by code; if too few are found the model splits the text), one JSON file, or the output folder of `autograde ocr` (sheet items are matched to the paper's ids loosely: `2(a)` = `2a`). Missing answers and stray answers are reported.
+4. `exam.py`: one item per student per question. The exam's cache name carries a hash of the paper and references, so an edited question never reuses an old scheme.
+5. The grading workflow below, unchanged, with feedback always on.
+6. Outputs in `runs/<name>/`: `schemes.md` (the teacher reads this first; `--schemes-only` stops here), `marks.csv`, `students/<student>.md` (marks, feedback, flags for the teacher), `intake.json` (what was parsed and the warnings).
+
+**Grading workflow (per answer, unchanged).** Read-first summary of what the student wrote; mark each point met / partial / not met with an exact quote; code prices the verdicts (met = full, not met = 0, partial = the point's own level, else the teacher's granularity, else 50%); code checks (quote present, form gate, deductions only if the teacher gave them); optional cascade; feedback.
+
+**Feedback is mandatory** for every answer that lost marks (a perfect answer gets a message built in code). `with_feedback: false` exists only as a measurement shortcut.
+
+**Prompt routing hooks.** Prompts per answer type and per subject field are not written yet. Adding `grade.kind.<kind>.system.md`, `grade.field.<field>.system.md` or `rubric.field.<field>.system.md` is picked up automatically (`prompts.optional`); nothing else changes.
+
+**Demo run** (`examples/exam_demo/`, DeepSeek on Goedel for everything, 3 students, 4 questions, 12 marks): the paper split into 4 questions with the right marks and inferred type and field; the combined reference file was matched per question (Q3 had a model answer only, 2a and 2b were mixed); half-mark granularity produced one 0.5 level per point; a blank answer was reported and marked 0. Marks: model-answer-only reference alice 11, bob 2, cara 9; combined 12, 3, 8.5; rubric-only for Q1/2b with 2a and 3 derived 12, 2, 9. Model-answer-only gave alice 3/4 on Q1 where the combined reference gave 4/4 (the rubric had said half marks for naming an idea; the derived scheme is stricter): the same answer can move one mark with the reference given, which is expected but worth showing the teacher through `schemes.md`.
+
+**Defects found by the demo and fixed.** (a) DeepSeek returned empty quotes for correct credited points, which the "flag" policy only reported (noise on every answer); credited points with no quote at all now trigger the one retry. (b) The full-marks feedback cut the idea at "e.g."; fixed. (c) A missing `--config` file silently fell back to the defaults (see section 21); it is now an error.
+
+## 21. Solid scheme writer: experiments, an invalid batch, and what is open
+
+**What changed in the writer** (variant `solid`): a strong model writes the scheme (Sonnet in these runs), with part-mark levels (a share and a description each) so partial credit comes from the rubric, band-style criteria for essays, steps plus a worked solution for maths, an answer key when there is no reference, and a review pass when there is no reference. Teacher inputs change the cache folder through a hash. Unit tests only; the teacher inputs have not yet been used in a measured run.
+
+**An invalid batch, recorded for honesty.** Nine of ten first pipeline runs were launched with the config path missing its `.yaml` extension; the loader silently used the defaults, so they ran Sonnet with old rubrics and feedback. They are kept, unused, in `runs/_invalid_default_config/`, were rerun with the right config, and a missing config file is now an error. Two hard-set chains also failed once on a Claude CLI error (probably the usage limit) and were rerun. One DeepSeek hard-maths answer hung for over ten minutes and was stopped, so that run has 29 answers.
+
+**Results** (30 answers per set, seed 1, error as a share of total marks, bias in brackets; "old" is the earlier pipeline where the marking model wrote its own scheme; "solid" is Sonnet-written schemes; Haiku was not run on the two hard sets):
+
+| Set | DeepSeek baseline | DeepSeek old | DeepSeek solid | Haiku baseline | Haiku old | Haiku solid |
+|---|---|---|---|---|---|---|
+| ASAP-SAS | 0.161 | 0.176 | 0.258 (-0.07) | 0.208 | 0.294 | 0.275 |
+| ASAP-SAS without set 4 | 0.163 | 0.172 | 0.216 | 0.193 | 0.265 | 0.239 |
+| SciEntsBank | 0.383 | 0.383 | 0.367 | 0.350 | 0.300 | 0.317 |
+| AES2 essays | 0.078 | 0.211 (+0.18) | 0.132 (+0.11) | 0.122 | 0.160 | 0.119 (+0.01) |
+| IMO-GradingBench (0 to 7) | 0.476 (+0.45) | - | 0.406 (+0.33) | 0.336 (+0.17) | - | - |
+| ProcessBench hard (29) | 0.067 | - | 0.161 (-0.05) | 0.067 | - | - |
+
+**Findings.**
+- Essays: band rubrics cut the over-marking a lot (DeepSeek 0.211 to 0.132, Haiku 0.160 to 0.119, now level with its baseline). DeepSeek's one-call baseline (0.078) is still better.
+- ASAP-SAS: no gain for DeepSeek (worse, 0.176 to 0.258, now under-marks), a small gain for Haiku. Set 4 is a data defect: its prompt holds two different questions and students answered either, so no scheme fits. Where the set carries a real teacher rubric (sets 5 and 6, 7 answers) the pipeline beat the baseline (0.07 and 0.08 against 0.10 and 0.17 on 5 and 2 answers: indicative only).
+- SciEntsBank: about the same as before; its labels are noisy.
+- IMO proofs: every model over-marks heavily (zero-scored proofs get 5 of 7 on average from DeepSeek). The pipeline beats the DeepSeek baseline (0.406 against 0.476, correlation 0.42 against 0.12) but Haiku's one call (0.336) is better than both. Proof grading needs a stricter, step-by-step check than our point scheme gives.
+- ProcessBench hard: accuracy 86% for the pipeline against 93% for both baselines; with 30 answers and 9 correct solutions this is within noise, but there is no sign of a gain.
+- Cost: the Haiku runs cost $0.06 to $0.13 each plus Sonnet scheme writing; the DeepSeek runs are free. The OpenRouter main key is unused ($20 limit, $0.00002 spent).
+
+**Not done.**
+- The older datasets (DigiKlausur, SAF, Mohler, RiceChem, EngSAF) were not rerun with the solid writer, so it is not yet the default; run that regression first.
+- The new rubrics have not been tested together with feedback (revision test).
+- Case 1 (rubric given) was demonstrated only through the demo exam and unit tests, not measured.
+- OCR is not tested end to end through `autograde exam`; the answers loader accepts the OCR sheet files, but photos to marks has not been run. The VLM OpenRouter key is not in `.env` (only Gemini, OpenRouter main and Goedel are).
+- Objective questions (multiple choice, single numbers), multi-part marking beyond independent sub-questions, units and numeric checks, code, and figures are not built.
+- Per-type and per-field prompts are not written (hooks exist).
+
+**Next steps, in order.** (1) Regression of the older datasets with the solid writer and decide the default. (2) Revision test of feedback on the solid schemes and a single-call mark-and-feedback baseline. (3) Strict step-wise mode for proofs (IMO) and calibration of the over-marking. (4) OCR end to end on the Mendeley exam set through `autograde exam`. (5) The objective question type in code. (6) Per-type and per-field prompts, then benchmarking other models (Qwen via OpenRouter at about a cent per run) and the Sonnet comparison once, then the held-out test.

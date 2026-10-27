@@ -1,0 +1,37 @@
+{
+  "question_key": "demo_rubric_only.b1ec68d7/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a destination address can match more than one routing-table entry, e.g. overlapping prefixes or routes with different prefix lengths. Accept equivalent wording such as 'there may be several possible routes' or 'prefixes can overlap'. Does not earn this point if the answer only says the router performs a lookup.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States that the router selects the matching route with the longest prefix / most specific network, i.e. the largest number of prefix bits. Accept 'most specific match' or 'longest mask'. Does not earn this point if it says the router chooses the shortest prefix or the first matching route.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Explains the benefit: using the longest/most specific match gives correct forwarding while allowing less-specific aggregate or default routes to coexist with more-specific routes; this is what makes CIDR/route summarization work. Accept 'a more specific route overrides a default or aggregate route' or equivalent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three ideas: multiple matching routes can exist, the longest/most specific prefix is chosen, and this supports correct forwarding with less-specific aggregate/default routes. Each point is all or nothing, so a missing idea loses its full mark. No marks are given for vague statements such as 'it is faster' or 'it finds the route' without the longest-prefix reason.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "A router may have several routing-table entries whose prefixes match the packet's destination address. It chooses the entry with the longest prefix (the most specific match, i.e. the largest number of prefix bits). This ensures the packet follows the most specific route, allows less-specific aggregate or default routes to coexist with more-specific routes, and is essential for CIDR/route summarization."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

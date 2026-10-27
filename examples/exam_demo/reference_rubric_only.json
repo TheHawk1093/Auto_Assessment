@@ -1,0 +1,4 @@
+{
+  "1": {"rubric": "4 marks, 1 each: sequence numbers and acknowledgements; retransmission on timeout or duplicate ACKs; checksum; flow control with the receive window. No half marks."},
+  "2b": {"rubric": "3 marks: 1 unit conversion (Mbps to bps, ms to s), 1 multiplication, 1 correct final answer 200,000 bits with unit."}
+}

@@ -1,0 +1,64 @@
+{
+  "question_key": "demo_combined.003b0410/1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that TCP uses sequence numbers to number bytes/segments and acknowledgements (including cumulative ACKs) from the receiver to confirm received data, or equivalent wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if the idea is only named or only one of sequence numbers and acknowledgements is explained.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names sequence numbers and/or acknowledgements but does not explain their role in reliable delivery, or explains only one of the two."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that the sender retransmits an unacknowledged segment when its timer expires or after three duplicate ACKs, or equivalent wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if retransmission is only named without the timeout or duplicate-ACK trigger.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names retransmission, timeout, or duplicate ACKs but does not state the retransmission trigger or link it to recovery of lost data."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "States that a checksum is used to detect corrupted segments, or equivalent wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if checksum is only named without saying it detects corruption/errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names checksum but does not say that it detects corrupted or erroneous segments."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "States that flow control using a receive window prevents the sender from overrunning the receiver, or equivalent wording.",
+        "marks": 1.0,
+        "partial_credit": "Half mark if flow control or the receive window is only named without explaining its limiting role.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names flow control or receive window but does not explain that it limits the sender to the receiver's available buffer/window."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four ideas: sequence numbers with acknowledgements, retransmission on timeout or duplicate ACKs, checksum error detection, and receive-window flow control. Award half a mark for a point when the relevant idea is only named or is incompletely explained, as specified in each point. No marks are given for unrelated TCP features or for vague statements that do not identify the reliability mechanism.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

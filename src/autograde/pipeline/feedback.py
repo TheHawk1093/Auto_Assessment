@@ -71,6 +71,12 @@ def _draft(values: dict, variant: str, client: LLMClient, stance: bool = False) 
     return client.ask(prompts.system("feedback.critique"), critique_user, Feedback)
 
 
+def first_sentence(text: str) -> str:
+    """Up to the first full stop that ends a sentence (not the one in 'e.g.' or 'i.e.')."""
+    safe = text.replace("e.g.", "e.g\0").replace("i.e.", "i.e\0")
+    return safe.split(". ")[0].rstrip(".").replace("\0", ".")
+
+
 def full_marks_feedback(rubric: Rubric, grading: Grading) -> Feedback:
     """Feedback for a full-mark answer, built without a model: what was right, in their words."""
     by_id = {p.id: p for p in rubric.points}
@@ -78,7 +84,7 @@ def full_marks_feedback(rubric: Rubric, grading: Grading) -> Feedback:
     for v in grading.verdicts:
         what = by_id[v.point_id].description if v.point_id in by_id else v.point_id
         said = " ".join(v.evidence.split()[:30]) if v.evidence else ""
-        idea = what.split(". ")[0].rstrip(".")  # the idea only, not the scheme's notes on wording
+        idea = first_sentence(what)  # the idea only, not the scheme's notes on wording
         strengths.append(
             f'You wrote "{said}", which covers: {idea}.' if said else f"Covered: {idea}."
         )

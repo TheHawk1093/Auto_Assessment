@@ -83,6 +83,8 @@ def _check_verdict(v: PointVerdict, worth: float, answer: str, require_evidence:
         out.append(f"{v.point_id}: status partial needs marks strictly between 0 and {worth:g}.")
     if require_evidence and m > EPS and not evidence_in_answer(v.evidence, answer):
         out.append(f"{v.point_id}: evidence is empty or not copied exactly from the answer.")
+    elif m > EPS and not v.evidence.strip():  # a quote that is off is tolerated, a missing one not
+        out.append(f"{v.point_id}: marks given but no words quoted from the answer as evidence.")
     return out
 
 

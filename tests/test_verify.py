@@ -125,3 +125,23 @@ def test_mark_rule_prices_verdicts_in_code():
 def test_not_met_is_always_zero():
     g = Grading(verdicts=[verdict("P1", "not_met", 0), verdict("P2", "not_met", 0)])
     assert apply_mark_rule(g, RUBRIC, partial_weight=1.0).total == 0
+
+
+def test_credit_with_no_quote_is_a_problem_even_when_unfound_quotes_are_tolerated():
+    from autograde.schemas import PointVerdict
+
+    quiet = Grading(
+        verdicts=[PointVerdict(point_id="P1", status="met", marks_awarded=1, reason="r")]
+        + [PointVerdict(point_id="P2", status="not_met", marks_awarded=0, reason="r")]
+    )
+    problems = check_grading(quiet, RUBRIC, "some answer", require_evidence=False)
+    assert any("no words quoted" in p for p in problems)
+    off = quiet.model_copy(
+        update={
+            "verdicts": [
+                quiet.verdicts[0].model_copy(update={"evidence": "words not in the answer"}),
+                quiet.verdicts[1],
+            ]
+        }
+    )
+    assert check_grading(off, RUBRIC, "some answer", require_evidence=False) == []

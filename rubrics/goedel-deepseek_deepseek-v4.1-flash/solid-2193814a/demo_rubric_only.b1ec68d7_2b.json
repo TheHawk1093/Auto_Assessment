@@ -1,0 +1,37 @@
+{
+  "question_key": "demo_rubric_only.b1ec68d7/2b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Converts the given values to consistent base units: 10 Mbps = 10^7 bps and 20 ms = 0.02 s (or equivalent conversions).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Multiplies the link capacity in bps by the one-way propagation delay in seconds, e.g. 10^7 \u00d7 0.02 (or equivalent product).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Gives the correct final bandwidth-delay product as 200,000 bits (or 2 \u00d7 10^5 bits), including the unit bits.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both unit conversions, the correct multiplication of capacity by one-way delay, and the final answer 200,000 bits with units. Each point is all or nothing, so a missing conversion, missing multiplication, or missing/incorrect unit loses the corresponding mark. A correct final answer reached by an equivalent method still earns the marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Bandwidth-delay product = capacity \u00d7 one-way propagation delay = 10 Mbps \u00d7 20 ms = 10^7 bps \u00d7 0.02 s = 200,000 bits (2 \u00d7 10^5 bits)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}
