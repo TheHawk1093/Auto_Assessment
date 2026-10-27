@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/3a21c5f693",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step of the solution is mathematically valid (e.g. counts non-negative integer solutions of a + 2b + 5c = 10, splitting by number of $5 bills: 0 bills gives 6 ways, 1 bill gives 3 ways, 2 bills gives 1 way) AND the final answer is 10. Any valid alternative method is acceptable. Any invalid step, or a final answer other than 10, earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if all steps are valid and the final answer is 10. Otherwise 0; there are no part marks. Any correct alternative method (e.g. listing all combinations) earns the mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Count non-negative integer solutions of a + 2b + 5c = 10 (a = $1 coins, b = $2 coins, c = $5 bills).\nc=0: a+2b=10, b=0..5 \u2192 6 ways.\nc=1: a+2b=5, b=0..2 \u2192 3 ways.\nc=2: a+2b=0 \u2192 1 way.\nTotal = 6+3+1 = 10 ways."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

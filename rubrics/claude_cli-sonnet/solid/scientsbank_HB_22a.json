@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/HB_22a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stimulus is the falling cup, detected by seeing it (and/or hearing it) fall. Accept 'the cup falling', 'the cup dropping', or 'seeing/hearing the cup fall'. Do not accept the hand moving, the hit/miss result, or the reaction/response alone.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for identifying the falling cup (seen or heard) as the stimulus. No marks for naming the response (moving the hand), the outcome (hit/miss), or the reaction time.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

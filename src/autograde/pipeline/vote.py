@@ -22,7 +22,11 @@ def models_disagree(first: float, second: float, max_mark: float, gap: float) ->
 
 
 def combine(
-    gradings: Sequence[Grading], rubric: Rubric, answer: str, partial_weight: float
+    gradings: Sequence[Grading],
+    rubric: Rubric,
+    answer: str,
+    partial_weight: float,
+    granularity: str = "rubric",
 ) -> tuple[Grading, list[str]]:
     """The majority verdict for each point, priced by the mark rule, and the split point ids."""
     out: list[PointVerdict] = []
@@ -47,4 +51,4 @@ def combine(
             point_id=point.id, status=status, marks_awarded=0.0, reason="Markers were split."
         )  # fmt: skip
         out.append(chosen.model_copy(update={"status": status}))
-    return apply_mark_rule(Grading(verdicts=out), rubric, partial_weight), split
+    return apply_mark_rule(Grading(verdicts=out), rubric, partial_weight, granularity), split

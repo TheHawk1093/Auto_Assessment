@@ -20,6 +20,54 @@ class LLMConfig(BaseModel):
     retries: int = 2
 
 
+class ReaderConfig(BaseModel):
+    """One model that reads photographed answer sheets (it must accept images)."""
+
+    provider: Literal["gemini", "openrouter", "claude_cli"] = "gemini"
+    model: str = "gemini-3.5-flash-lite"  # gemini and openrouter models must be free ones
+    plain: bool = False  # page text only, no question split; for slow reasoning models
+
+
+class ReaderRoute(BaseModel):
+    """Re-read pages whose text is of one kind with a reader chosen for that kind."""
+
+    when: Literal["german", "math"]
+    reader: ReaderConfig
+
+
+class OcrConfig(BaseModel):
+    """The reading step: the first reader is tried on each page, then the fallbacks in order.
+
+    With routes, the page text from that read is classified (German prose, formulas and matrices)
+    and a matching route re-reads the page with its own reader. If that reader fails, the first
+    read is kept.
+    """
+
+    reader: ReaderConfig = ReaderConfig()
+    fallbacks: list[ReaderConfig] = []
+    routes: list[ReaderRoute] = []
+
+
+class TeacherInputs(BaseModel):
+    """What a teacher can say about how this exam is marked. Everything has a sensible default.
+
+    These are the only human inputs at run time; nothing here is tuned to a dataset.
+    """
+
+    partial_credit: Literal["rubric", "none", "half", "quarter"] = "rubric"
+    # rubric: the rubric's own levels. none: all or nothing. half: 0.5. quarter: 0.25, 0.5, 0.75.
+    strictness: Literal["lenient", "moderate", "strict"] | None = None  # how tightly to judge
+    notes: str = ""  # free text for every question, e.g. "units are required"
+    question_notes: dict[str, str] = {}  # the same, for one question key
+
+    def for_question(self, key: str) -> str:
+        return " ".join(t for t in (self.notes, self.question_notes.get(key, "")) if t).strip()
+
+    @property
+    def is_default(self) -> bool:
+        return self == TeacherInputs()
+
+
 class PipelineConfig(BaseModel):
     rubric_selftest: bool = True
     read_first: bool = True  # a first pass reads the answer before marking
@@ -28,6 +76,8 @@ class PipelineConfig(BaseModel):
     mark_rule: Literal["status", "model"] = "status"  # status: code turns verdicts into marks
     partial_weight: float = 0.5  # share of a point's marks given for a partial verdict
     rubric_variant: str = "generated"  # lets a different scheme source live beside the default
+    rubric_review: Literal["off", "no_reference", "always"] = "no_reference"  # solid variant only
+    teacher: TeacherInputs = TeacherInputs()
     feedback_variant: Literal[*FEEDBACK_STYLES] = "formal"
     votes: int = 1  # mark each answer this many times; the majority verdict per point wins
     second_model: str | None = None  # a cheaper model also marks; a big gap flags the answer
@@ -57,11 +107,14 @@ class Settings(BaseModel):
     judge: LLMConfig = LLMConfig(model="haiku")
     student: LLMConfig = LLMConfig(model="haiku")  # plays the student in the revision test
     pipeline: PipelineConfig = PipelineConfig()
+    ocr: OcrConfig = OcrConfig()
     paths: PathsConfig = PathsConfig()
 
 
 def load_settings(path: Path | None = None) -> Settings:
     """Load settings from `path`, or the default file if it exists, else built-in defaults."""
+    if path is not None and not path.exists():
+        raise FileNotFoundError(f"Config file not found: {path}")  # never fall back silently
     path = path or DEFAULT_CONFIG
     if not path.exists():
         return Settings()

@@ -1,0 +1,32 @@
+{
+  "question_key": "processbench_hard/411d0351ed",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Part (a), m=n=p=2: valid argument (e.g. expression = (x+y+z)^2 and AM-GM with xyz=8 gives x+y+z \u2265 6) leading to minimum 36, attained exactly at x=y=z=2. Both the value and the equality case must be stated; every step must be valid.",
+        "marks": 0.4,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Part (b), general m,n,p with mnp=8: valid derivation (Lagrange multipliers, or weighted AM-GM) with correct final result: minimum = 6\u00b7\u221b2\u00b7(m^{2/3}+n^{2/3}+p^{2/3}), attained at x=\u221b(4p), y=\u221b(4n), z=\u221b(4m) (note x pairs with p, y with n, z with m). Must show the point is a genuine minimum or give a valid bound with equality; this value must reduce to 36 when m=n=p=2. The tempting answer 12+4(m+n+p) (from x=y=z=2) or the bound 36 is wrong for non-equal m,n,p and earns nothing; any invalid step earns nothing.",
+        "marks": 0.6,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need every step valid and both final answers correct, each with its equality case. Part (a) is worth 0.4 and part (b) 0.6. Wrong results such as 12+4(m+n+p), or a bound of 36 for general m,n,p, earn nothing for (b). An invalid step in a part loses that part's mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "(a) With m=n=p=2 the expression is (x+y+z)^2. By AM-GM, x+y+z \u2265 3(xyz)^{1/3} = 6, so the expression is \u2265 36. Equality holds iff x=y=z=2. Minimum 36.\n\n(b) Use Lagrange multipliers with constraint xyz=8. Write A=mxy, B=nxz, C=pyz. Multiplying each gradient equation by x, y, z gives 2x\u00b2+A+B = 2y\u00b2+A+C = 2z\u00b2+B+C. Take x=\u221b(4p), y=\u221b(4n), z=\u221b(4m). Then xyz=\u221b(64mnp)=\u221b512=8, so the constraint holds. Using mnp=8: x\u00b2=2\u00b72^{1/3}p^{2/3}, and A=m(16pn)^{1/3}=4\u00b72^{1/3}m^{2/3}. Similarly B=4\u00b72^{1/3}n^{2/3} and C=4\u00b72^{1/3}p^{2/3}. Each of 2x\u00b2+A+B, 2y\u00b2+A+C, 2z\u00b2+B+C then equals 4\u00b72^{1/3}(m^{2/3}+n^{2/3}+p^{2/3}), so the point is critical. The expression tends to infinity at the boundary, so this point is the minimum. The value is f = 2^{1/3}(2+4)(m^{2/3}+n^{2/3}+p^{2/3}) = 6\u221b2\u00b7(m^{2/3}+n^{2/3}+p^{2/3}).\n\nCheck: for m=n=p=2 this gives 6\u00b72^{1/3}\u00b73\u00b72^{2/3}=36 at x=y=z=2. For (8,1,1) it gives 36\u221b2\u224845.4.\n\nFinal answer: (a) 36 at x=y=z=2. (b) min = 6\u221b2\u00b7(m^{2/3}+n^{2/3}+p^{2/3}), at (x,y,z)=(\u221b(4p), \u221b(4n), \u221b(4m))."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0.4 of 1."
+  ],
+  "review_notes": []
+}

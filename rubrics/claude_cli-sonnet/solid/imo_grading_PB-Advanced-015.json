@@ -1,0 +1,66 @@
+{
+  "question_key": "imo_grading/PB-Advanced-015",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Setup/key lemma: uses the tangency condition (EF tangent to the incircle) to derive a usable consequence. Acceptable: showing that the circumcircles of ABC, AVW (V,W = incircle touch points on AB, AC) and AEF concur at a second point P (or an equivalent proven characterisation of the condition, e.g. a relation among a,b,c such as the one giving EF tangent to incircle). A mere restatement of the hypothesis earns nothing.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States the concurrency of the circles or an equivalent consequence but the proof is incomplete or has a gap."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Proves that Q (second intersection of ray IH_0 with the circumcircle) is the tangency point of the A-mixtilinear incircle (the circle tangent to AB, AC and internally tangent to the circumcircle), or equivalently identifies it with the needed point, using the hypothesis. Note: the circle in the definition of Y is the A-mixtilinear EXCIRCLE-type (externally tangent) circle; do not confuse it with Q's circle.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Claims or partially argues the identification of Q with the mixtilinear touch point without a complete proof."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Proves that K (IO \u2229 BC) is the reflection of D over the midpoint M of BC (so MK = MD), by any valid method (e.g. coordinates, Menelaus/power of a point, known lemma proved).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States the reflection property with an incomplete or unjustified argument."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Uses these facts (X on QD and circumcircle, Y the exmixtilinear touch point, K the reflection of D) to conclude with a valid argument that X, Y, K are collinear (e.g. showing XY passes through K via known lines through Y/Q and D, angle chase, or inversion). Conclusion must follow logically, not be asserted.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct strategy for the final step but with a gap or an unproven claimed lemma."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Award marks for proofs of each lemma, not for assertions. Full marks require all four steps with valid justification; a different valid route (coordinates, inversion, trigonometry) earns equivalent credit. Merely restating the problem or citing the conclusion without proof earns no marks; known standard lemmas may be cited only if clearly stated and correct.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Sketch (full solution outline): Let V,W be the incircle touch points on AB, AC. EF tangent to incircle implies the circles (ABC), (AVW) (circle with diameter AI) and (AEF) (circle with diameter AH) are concurrent at P, giving the key relation (equivalent to AH-related condition, e.g. P on the line through the incircle/I-related points). From this, line IH_0 meets the circumcircle again at Q, the tangency point of the A-mixtilinear incircle with the circumcircle. Known facts: Q lies on line through D' and so on; the reflection of D over midpoint M of BC is K = IO \u2229 BC (so MD = MK). Then QD meets the circumcircle again at X, and with Y the A-ex-mixtilinear touch point (known to lie on line through the reflection of D in M, i.e., the line from Y through the point K), one shows X, Y, K are collinear by angle chasing/inversion about the relevant circle. Therefore X, Y, K are collinear."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 1.5 of 7."
+  ],
+  "review_notes": []
+}

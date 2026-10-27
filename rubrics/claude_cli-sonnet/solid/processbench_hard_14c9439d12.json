@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/14c9439d12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is mathematically valid and the final expression for q in terms of a and b is correct, matching the answer key (q = ab, from Vieta's formulas with a and b as the roots). Any equivalent form earns the mark. A wrong final answer, or any invalid step, earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "All-or-nothing, 1 mark. Full mark needs valid reasoning and the correct final q (q = ab under the assumed reading, or whatever correct relation follows from the problem's own definitions of a and b). Any invalid step or a wrong final answer earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The question text is incomplete: it never defines a, b or q. Assumed reading: x^2 + px + q = 0 has integer roots a and b. Then x^2 + px + q = (x - a)(x - b), so the product of the roots gives q = ab (and p = -(a+b)). Final answer: q = ab."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

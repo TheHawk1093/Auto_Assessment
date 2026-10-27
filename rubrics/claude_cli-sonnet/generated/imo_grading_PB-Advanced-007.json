@@ -1,0 +1,64 @@
+{
+  "question_key": "imo_grading/PB-Advanced-007",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Finds a valid non-constant pair (P, Q) (e.g. with deg Q \u2265 2) that satisfies P(Q(x)-x-1)=Q(P(x)) for all real x, and verifies the identity correctly.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Proposes a candidate pair or base solution but verification is incomplete or contains errors."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Describes a construction that produces new solutions of higher degree from a known solution (e.g. composing or substituting into existing P, Q so that the equation is preserved).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes the idea of increasing the degree but the construction is vague or not shown to preserve the equation."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Fully verifies that the construction yields polynomials satisfying P(Q(x)-x-1)=Q(P(x)) for all real x (the induction/step is proved).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Verification is mostly correct but has gaps or minor errors."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Shows the degrees: iterating the construction gives deg P \u2265 2024 and deg Q \u2265 2, and concludes existence.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Degree growth stated without justification."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a valid base solution, a degree-raising construction, full verification of the equation, and degree conditions. Equivalent constructions and alternative correct solutions earn full marks. Only a non-constant solution found earns about the first point; an unverified construction earns partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

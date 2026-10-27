@@ -1,0 +1,53 @@
+{
+  "question_key": "imo_grading/PB-Advanced-014",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows parity is preserved by both operations, so a and b of different parity can never become equal.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "For odd numbers, observes that both operations (x+2 and 3x) swap residues 1 and 3 mod 4 each step. Hence odd a, b with a\u2262b (mod 4) always differ mod 4 and can never be equal.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the mod 4 invariant is stated but the argument that both operations swap 1 and 3 is incomplete.",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Constructive proof that two distinct odd numbers with a\u2261b (mod 4) can be made equal (a valid general strategy). Equivalent methods accepted.",
+        "marks": 1.5,
+        "partial_credit": "Half marks for a correct idea or only examples without a general argument.",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Constructive proof that any two distinct even numbers can be made equal (a valid general strategy; e.g. 2 and 4 become 6 via \u00d73 and +2). Equivalent methods accepted.",
+        "marks": 1.5,
+        "partial_credit": "Half marks for a correct idea or only special cases without a general argument.",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "States the correct final answer: pairs both even, or both odd with a\u2261b (mod 4). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the necessity arguments (parity, mod 4 for odd), constructions for both sufficient cases, and the correct final answer. Necessity only earns about 3 marks. Claiming a\u2261b mod 4 overall (wrongly excluding even pairs like 2,4) loses the even-case marks and the answer mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Parity is preserved, so a,b must have the same parity. If both odd: x+2 and 3x each swap residues 1 and 3 mod 4, so a\u2261b (mod 4) is needed. Both even, or both odd with a\u2261b (mod 4), can be done by explicit constructions. Answer: a,b both even, or both odd with a\u2261b (mod 4)."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 4 of 7."
+  ],
+  "review_notes": []
+}

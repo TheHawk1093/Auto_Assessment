@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/VOLTAGE_GAP_EXPLAIN_WHY4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that there is no gap (no break/component/resistance) between terminal 4 and the positive terminal, i.e. they are directly connected, so there is no potential difference between them. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying terminal 4 and the positive terminal are directly connected with no gap/component between them (so no potential difference). No mark for unrelated explanations such as a faulty meter or flat battery.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/f5f44a26a9",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is mathematically valid (uses conditional probability: P(75\u219290)=P(75\u219280)\u00b7P(80\u219290), and P(75\u219285)=P(75\u219280)\u00b7P(80\u219285)) with no incorrect step, and the final answer is 5/8 (= 0.625 = 62.5%). Any wrong step or wrong final answer earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if all reasoning is valid and the final answer is 5/8 (0.625, 62.5%). Any invalid step or incorrect final answer earns no marks. No part marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let x = P(75-year-old lives to 80). Living 15 more years means reaching 80 and then living 10 more: 0.2 = x\u00b70.25, so x = 0.8. Living 10 more years from 75 means reaching 85 = reaching 80 and then living 5 more: 0.5 = x\u00b7p, so p = 0.5/0.8 = 0.625. Final answer: 5/8 = 0.625 = 62.5%."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -19,18 +19,30 @@ from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore, store_for
 from autograde.pipeline.verify import apply_form_gate
 from autograde.pipeline.vote import combine, models_disagree
-from autograde.schemas import Grading, Item, Question, Reading, Result, RubricRecord
+from autograde.schemas import (
+    NOT_GIVEN,
+    Grading,
+    Item,
+    Question,
+    Reading,
+    Result,
+    RubricRecord,
+)
 
 log = logging.getLogger(__name__)
 Mode = Literal["pipeline", "baseline"]
+TEACHER_POLICY = {"lenient": "essence", "moderate": "balanced", "strict": "strict"}
 
 
 def to_question(item: Item) -> Question:
     return Question(
         key=item.question_key,
         text=item.question,
-        model_answer=item.model_answer,
+        model_answer=item.model_answer.strip() or NOT_GIVEN,
         max_mark=item.max_mark,
+        kind=item.kind,
+        rubric=item.rubric,
+        field=item.field,
     )
 
 
@@ -49,6 +61,8 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
     if rubric.level:  # a rubric written at a level makes the grader follow that level
         policy = LEVEL_POLICY[rubric.level]
         weight = LEVEL_PARTIAL_WEIGHT[rubric.level]
+    if cfg.teacher.strictness:  # the teacher's wish decides how tightly a point is judged
+        policy = TEACHER_POLICY[cfg.teacher.strictness]
     policy = rubric.policy or policy  # a rubric can also set its own tightness
     if rubric.partial_weight is not None and weight is not None:
         weight = rubric.partial_weight
@@ -68,6 +82,7 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
             policy=policy,
             partial_weight=weight,
             deductions=cfg.deductions,
+            granularity=cfg.teacher.partial_credit,
         )
 
     if cfg.votes <= 1:
@@ -77,7 +92,9 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
         with ThreadPoolExecutor(cfg.votes) as pool:
             runs = list(pool.map(once, range(cfg.votes)))
         votes = [g.total for g, _ in runs]
-        grading, split = combine([g for g, _ in runs], rubric, item.student_answer, weight)
+        grading, split = combine(
+            [g for g, _ in runs], rubric, item.student_answer, weight, cfg.teacher.partial_credit
+        )
         flags = sorted({f for _, fl in runs for f in fl}) + [f"vote_split:{p}" for p in split]
     grading, gate_flag = apply_form_gate(grading, reading, item.max_mark, item.question)
     if gate_flag:
@@ -100,6 +117,7 @@ def grade_item(
     With `second` (a cheaper model and its schemes) the answer is marked again, and a big gap
     between the two marks adds the flag `models_disagree`: the grader may be wrong here.
     """
+    item = item.with_key(record.rubric.answer_key)  # a missing model answer is replaced by the key
     reading, grading, flags, votes = mark_item(item, record, client, cfg)
     second_mark = None
     if second is not None:
@@ -180,6 +198,8 @@ def run_items(
             second_client,
             run_selftest=settings.pipeline.rubric_selftest,
             variant=settings.pipeline.rubric_variant,
+            teacher=settings.pipeline.teacher,
+            review=settings.pipeline.rubric_review,
         )
         with ThreadPoolExecutor(workers) as pool:
             second_records = dict(

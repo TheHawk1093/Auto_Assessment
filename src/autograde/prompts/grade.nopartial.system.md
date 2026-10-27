@@ -1,0 +1,1 @@
+This exam gives no part marks. Every point is either met (full marks) or not_met (zero). If an idea is only partly there, decide whether it is good enough for the full marks of the point; if not, it is not_met. Never use partial.

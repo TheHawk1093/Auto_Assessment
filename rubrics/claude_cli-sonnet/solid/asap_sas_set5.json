@@ -1,0 +1,64 @@
+{
+  "question_key": "asap_sas/set5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Step 1: mRNA leaves the nucleus through a nuclear pore and travels through the cytoplasm to a ribosome (or enters the rough ER / ribosome attached to it). Both the exit and the arrival at the ribosome should be mentioned for full marks.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only one of the two ideas given (exits via nuclear pore OR goes to ribosome)."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Step 2 (initiation): the ribosome reads mRNA bases in triplets called codons, starting at a START codon (AUG) in the P site; the first tRNA binds there.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only codons read in triplets, or only the START codon, not both."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Step 3 (elongation): tRNA carrying the complementary anticodon recognizes and pairs with the mRNA codon (A-U, C-G); the amino acid on the tRNA is bonded (peptide bond) to the adjacent amino acid, and the ribosome moves on so a new tRNA/amino acid is added, building the chain.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions anticodon-codon pairing or amino acids being linked/added, but not both."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Step 4 (termination): amino acids continue to be added until a STOP codon is read (in the A site); the chain is released as a finished protein.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions chain continuing or ending without naming STOP codon, or only STOP codon with no release/ending."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Award marks for four distinct steps in order, each described, not just listed. Equivalent wording is accepted; steps must follow the sequence from mRNA exit to termination. Naming a step without describing it earns at most half of that point's marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

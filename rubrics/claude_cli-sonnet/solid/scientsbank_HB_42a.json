@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/HB_42a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the stimulus for Sam as the mosquito landing on / being on his arm (feeling or seeing it). Equivalent wording such as 'the mosquito on his arm' or 'the sensation of the mosquito biting/landing' is accepted. Do not accept the response (slapping at it), or Jasmine's soda spill/jumping up, as the stimulus.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for naming the mosquito on Sam's arm (felt or seen) as the stimulus. No marks for naming Sam's slapping (the response) or the soda/Jasmine's jump, which is the stimulus for Jasmine.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

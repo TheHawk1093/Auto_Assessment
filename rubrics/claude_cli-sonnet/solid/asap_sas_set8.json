@@ -1,0 +1,35 @@
+{
+  "question_key": "asap_sas/set8",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the effect on Paul: learning that Mr. Leonard also struggled academically (could not read/do the work, flunked out) makes Paul feel understanding of/connected to him and sympathetic, or changes how he sees him (e.g., realizes he is not alone, or sees Mr. Leonard's help as coming from shared experience). Acceptable equivalents: Paul relates to him, feels compassion, gains respect, feels inspired. Must be an effect on Paul, not just a description of Mr. Leonard.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Vaguely says the background changes Paul or makes him feel something (e.g., 'he feels different') without specifying what the effect is."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Supports with a specific, accurate detail from the story: e.g., Paul recognizes the emotions as 'all too familiar' (embarrassment from reading aloud); Mr. Leonard lost his scholarship/flunked out because he couldn't keep up with the work; or Paul's resulting action of deciding to help Mr. Leonard ('It's time to start your training'), showing the background led him to return the favor. Any one relevant, accurate detail linked to the effect earns the mark. A detail merely copied without link to the effect or inaccurate earns nothing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a clear effect on Paul (empathy, connection, motivation to help) plus a accurate supporting story detail. Half marks on P1 for a vague effect; P2 is all or nothing. No marks for only summarizing Mr. Leonard's past without linking it to Paul.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Learning that Mr. Leonard, a champion hurdler, failed in college because he struggled with schoolwork and reading helps Paul realize they share similar struggles. Paul recognizes the embarrassment in Mr. Leonard's words as 'all too familiar,' feels empathy, and sees how Mr. Leonard's help came from understanding. This inspires Paul to repay him by offering to train him ('It's time to start your training'), taking on the helper role."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

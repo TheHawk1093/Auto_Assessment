@@ -1,0 +1,51 @@
+{
+  "question_key": "imo_grading/PB-Advanced-020",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Simplifies the expression: notes that (y-x)\u00b7sum_{i=0}^{n-1} y^i x^{n-1-i} = y^n - x^n, so a_n = gcd(x^n + y, y^n - x^n - (y-x)) = gcd(x^n+y, y^n - y - x^n + x) and reduces appropriately (e.g. using x^n \u2261 -y to get a form involving y^n and xy+1 or similar).",
+        "marks": 1.5,
+        "partial_credit": "Half if the identity is stated but the reduction is not carried through correctly.",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Identifies that the primes dividing xy+1 are the key to the behavior of a_n (considers a prime p | xy+1 and shows how p divides a_n for suitable n / parity or periodicity of n), so a_n is not eventually constant/unbounded unless restricted.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Handles the case where xy+1 has an odd prime factor: shows the limit cannot exist (a_n alternates or takes differing values along different n, or grows), so such pairs are excluded.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Handles the case where xy+1 has no odd prime factor (xy+1 is a power of 2), analyzes it, and determines which pairs give a convergent sequence.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "States the correct final answer set of pairs (x,y) consistent with the reference solution, and verifies these pairs give a limit (e.g. eventually constant a_n).",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The reference answer is not fully given, so the points follow the grading guidelines: considering a prime p | xy+1 is the main partial progress, and omitting the case where xy+1 has no odd prime factor is a major gap. Equivalent methods earn full marks. Minor errors in an otherwise complete solution lose only a small amount.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

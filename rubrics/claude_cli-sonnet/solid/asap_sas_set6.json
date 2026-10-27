@@ -1,0 +1,52 @@
+{
+  "question_key": "asap_sas/set6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First process correctly named AND described (e.g. passive transport/diffusion: movement from high to low concentration without energy; osmosis: diffusion of water across the membrane; facilitated diffusion: membrane proteins/channels control the pathway for particles; active transport/pumps: uses energy and/or moves substances from low to high concentration against the gradient, e.g. sodium-potassium pump with carrier proteins; membrane-assisted transport: endocytosis/exocytosis/phagocytosis/pinocytosis via vesicles; protein channels allowing specific molecules through). Name alone without description earns part marks only.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Process named correctly but description missing, vague or incorrect."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Second, different process correctly named AND described, from the same acceptable list as P1. Must be a distinct process from P1 (e.g. osmosis and passive transport are distinct if each is described separately; do not credit the same idea twice). Name alone earns part marks only.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Process named correctly but description missing, vague or incorrect."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Third, different process correctly named AND described, from the same acceptable list as P1. Must be distinct from P1 and P2. Name alone earns part marks only.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Process named correctly but description missing, vague or incorrect."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Award up to 1 mark for each of three distinct, correctly named and described processes (passive transport/diffusion, osmosis, facilitated diffusion/channel proteins, active transport/pumps, endocytosis/exocytosis or other membrane-assisted transport). Half a mark if only the name is given or the description is weak. Do not credit \"selective permeability\" alone as a process, nor repeats of the same process, and mark only the first three processes if more are listed.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

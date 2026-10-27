@@ -1,0 +1,61 @@
+{
+  "question_key": "imo_grading/PB-Advanced-028",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up a usable framework (e.g. coordinates with BC as x-axis, D = foot of altitude from A at origin, A=(0,a), B=(-b,0), C=(c,0)) and correctly finds H=(0,bc/a) and P=(0,-bc/a) (or equivalently shows P lies on the circumcircle / DH=DP with the needed lengths). A synthetic approach that correctly sets up a key auxiliary object (e.g. antipode of B in (ABC) or antipode of A in (AFP)) with a correct relation also earns this credit.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Setup is stated but H or P is wrong or only partly justified, or an auxiliary point is constructed with no proven property."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Uses that A and P lie on the circle (AFP) and both lie on the line AD perpendicular to BC, to get the circle's equation or a relation, e.g. x\u00b2+y\u00b2+ux+vy+w=0 with v=-(a-bc/a), w=-bc (intersection with the axis x=0 gives y=a and y=-bc/a). Equivalent: the power of D with respect to the circle equals -DA\u00b7DP = -bc.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Uses F on line AB with CF\u27c2AB to get BF\u00b7BA = BD\u00b7BC (from A,F,D,C concyclic, or by direct computation of F) and equates it to the power of B with respect to circle (AFP), i.e. b(b+c). Equivalent direct verification that F lies on the circle also earns this.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct idea of power of the point B (or the cyclic quadrilateral AFDC) but the computation or sign is wrong or incomplete."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Solves for the remaining parameter: u=-2c (i.e. the circle's centre projects to C on BC; equivalently the circle meets BC where x\u00b2-2cx-bc=0).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Concludes: the x-coordinates of X and Y are the roots of x\u00b2-2cx-bc=0 (discriminant positive as X,Y distinct), so their sum is 2c and the midpoint is x=c, i.e. C. Equivalent: the centre's foot on BC is C, so C is the midpoint of chord XY.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete valid proof; any correct alternative (synthetic with antipodes, trigonometric, etc.) earns the corresponding marks. Partial credit is given for the correct setup, the circle through A and P, and the power-of-a-point step for F. Only constructing an auxiliary point such as an antipode with no further correct progress earns about 1 mark; a claim of the result without justification earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Coordinates: D = foot of altitude from A, origin; BC is the x-axis; A=(0,a), B=(-b,0), C=(c,0) with a,b,c>0 (acute triangle). Orthocenter H=(0,bc/a), so P=(0,-bc/a).\nCircle (AFP): x\u00b2+y\u00b2+ux+vy+w=0. Setting x=0 gives y=a and y=-bc/a as roots, so v=-(a-bc/a), w=-bc.\nPower of B: since B,F,A are collinear, power = BF\u00b7BA = BD\u00b7BC (A,F,D,C concyclic by right angles at F and D) = b(b+c). Direct: power of B = b\u00b2-ub-bc. So b\u00b2-ub-bc=b\u00b2+bc, giving u=-2c.\nIntersect with y=0: x\u00b2-2cx-bc=0. Roots X,Y sum to 2c, so the midpoint has x-coordinate c, which is C. Hence C is the midpoint of XY."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/PARALLEL_SWITCH_EXPLAIN_Q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that bulb A is still in a complete/closed circuit (closed path) with the battery and switch Z, so current can flow through it. Equivalent wording accepted (e.g. 'current can still flow through A via Z', 'A is in a separate/parallel loop with the battery that is not broken by Y being open'). Do not award for just 'Z is closed' or 'electricity flows' with no reference to a complete path/circuit containing A.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying bulb A is in a complete closed circuit with the battery and closed switch Z, so current flows. No marks for only stating that Z is closed or that Y being open has no effect, without mention of a complete path or current flowing through A.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

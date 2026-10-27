@@ -1,0 +1,41 @@
+{
+  "question_key": "asap_sas/set1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies one valid piece of information missing from the procedure that is needed to replicate it (e.g. volume of vinegar; type, concentration or acidity of vinegar; size, shape or surface area of samples; specific type of wood or plastic; container type/size or whether covered; temperature or conditions during the 24 hours; amount of rinse water or drying conditions; balance used and its precision; number of trials).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Identifies a second valid missing piece of information, different in idea from the one credited in P1 (any item of the kind listed in P1).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Identifies a third valid missing piece of information, different in idea from those credited in P1 and P2.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Award 1 mark for each distinct, valid missing detail, up to 3, in any order. Do not credit details already given (24 hours, 30 minutes drying, four samples, identical containers, distilled water rinse, mass measurement) or vague statements like 'more detail'. Do not credit the same idea twice (e.g. container size and container type count as one).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Any three distinct missing details, e.g.: volume of vinegar in each container; type/concentration (acidity) of vinegar; size/shape/surface area of samples (or kind of wood/plastic); type and size of container and whether covered; temperature/conditions during the 24 hours; amount of distilled water for rinsing; balance used and its precision; number of trials."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": [
+    "P1, P2 and P3 are ordered, with P1 tied to one example (vinegar volume) and separate example lists for P2 and P3, so a student giving three valid details in a different order or all from one list could be marked down; the points should be interchangeable.",
+    "P3 credits 'how samples are dried', but the stance says the 30-minute drying is already in the procedure; only genuinely missing parts (e.g. drying conditions, rinse volume) should count.",
+    "The 'same idea twice' rule is unclear for near-duplicates such as container type and container size, which should count as one idea."
+  ]
+}

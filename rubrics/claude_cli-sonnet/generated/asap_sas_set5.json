@@ -1,0 +1,44 @@
+{
+  "question_key": "asap_sas/set5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Step 1 \u2013 mRNA exit and travel: mRNA leaves the nucleus through a nuclear pore and travels through the cytoplasm to a ribosome (or enters the rough ER). Must be listed and described.",
+        "marks": 0.75,
+        "partial_credit": "Half marks if only one of the two ideas (exit via nuclear pore; travel to ribosome/rough ER) is given.",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Step 2 \u2013 Initiation: ribosome reads the mRNA bases in triplets (codons); translation begins at a START codon in the P site.",
+        "marks": 0.75,
+        "partial_credit": "Half marks if only codons/reading in triplets or only the START codon is mentioned.",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Step 3 \u2013 Codon\u2013anticodon matching: tRNA carrying an amino acid with a complementary anticodon recognizes and pairs with the mRNA codon (A pairs with U, C with G).",
+        "marks": 0.75,
+        "partial_credit": "Half marks if tRNA brings amino acids but complementary codon\u2013anticodon pairing is not stated.",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Step 4 \u2013 Elongation and termination: amino acids on adjacent tRNAs are bonded together (peptide bonds) and new tRNA/amino acids are added to lengthen the chain, continuing until a STOP codon is read (A site), ending the protein.",
+        "marks": 0.75,
+        "partial_credit": "Half marks if only chain elongation or only the STOP codon is given.",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Four steps worth 0.75 each: mRNA exit/travel, initiation/codon reading, tRNA anticodon pairing, elongation/termination. Equivalent wording is accepted. Steps must be both named/listed and described; a bare list earns about half of each point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

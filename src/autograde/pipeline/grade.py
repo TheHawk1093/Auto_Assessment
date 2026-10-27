@@ -19,7 +19,15 @@ from autograde.schemas import Grading, PointVerdict, Question, Reading, Rubric
 log = logging.getLogger(__name__)
 
 
-def build_system(has_reading: bool, policy: str, has_deductions: bool = False) -> str:
+def build_system(
+    has_reading: bool,
+    policy: str,
+    has_deductions: bool = False,
+    has_levels: bool = False,
+    granularity: str = "rubric",
+    kind: str = "short",
+    field: str = "",
+) -> str:
     """The marking instructions: base rules, plus optional reading and essence guidance."""
     parts = [prompts.system("grade")]
     if has_reading:
@@ -32,6 +40,15 @@ def build_system(has_reading: bool, policy: str, has_deductions: bool = False) -
         parts.append(prompts.system("grade.strict"))
     if has_deductions:
         parts.append(prompts.system("grade.deductions"))
+    if has_levels:
+        parts.append(prompts.system("grade.levels"))
+    if granularity == "none":
+        parts.append(prompts.system("grade.nopartial"))
+    # prompts per answer type and per subject field: add grade.kind.<kind>.system.md or
+    # grade.field.<field>.system.md and they are picked up here
+    for name in (f"grade.kind.{kind}", f"grade.field.{field}" if field else ""):
+        if name and (text := prompts.optional(name)):
+            parts.append(text)
     return "\n\n".join(parts)
 
 
@@ -46,6 +63,7 @@ def mark_answer(
     policy: str = "literal",
     partial_weight: float | None = None,
     deductions: bool = False,
+    granularity: str = "rubric",
 ) -> tuple[Grading, list[str]]:
     """Return the checked marking and any flags. Total marks are summed by code, not the model.
 
@@ -60,7 +78,16 @@ def mark_answer(
         return _blank(rubric), ["empty_answer"]
 
     strict = evidence_policy == "strict"
-    system = build_system(reading is not None, policy, bool(rubric.deductions))
+    has_levels = any(p.levels for p in rubric.points)
+    system = build_system(
+        reading is not None,
+        policy,
+        bool(rubric.deductions),
+        has_levels,
+        granularity,
+        question.kind,
+        question.field,
+    )
     lead = reading_block(reading) if reading else ""
     retry_note = ""
     grading: Grading | None = None
@@ -77,7 +104,7 @@ def mark_answer(
         problems = check_grading(grading, rubric, answer, require_evidence=strict)
         if not problems:
             flags = ["retried"] if attempt else []
-            return _finish(grading, rubric, answer, partial_weight, strict, flags)
+            return _finish(grading, rubric, answer, partial_weight, strict, flags, granularity)
         log.info("Marking check failed (attempt %d): %s", attempt + 1, problems)
         retry_note = (
             "\nYour previous marking had these problems. Fix them:\n- "
@@ -87,7 +114,7 @@ def mark_answer(
     assert grading is not None
     fixed, flags = repair(grading, rubric, answer, zero_unsupported=strict)
     flags = (["retried"] if retries else []) + flags
-    return _finish(fixed, rubric, answer, partial_weight, strict, flags)
+    return _finish(fixed, rubric, answer, partial_weight, strict, flags, granularity)
 
 
 def _finish(
@@ -97,18 +124,21 @@ def _finish(
     partial_weight: float | None,
     strict: bool,
     flags: list[str],
+    granularity: str = "rubric",
 ) -> tuple[Grading, list[str]]:
     """Check the deductions, price the verdicts, and report unverified quotes."""
     grading, deduction_flags = finalise_deductions(grading, rubric, answer)
-    priced = _price(grading, rubric, partial_weight)
+    priced = _price(grading, rubric, partial_weight, granularity)
     return priced, [*flags, *deduction_flags, *_unverified_flags(priced, answer, strict)]
 
 
-def _price(grading: Grading, rubric: Rubric, partial_weight: float | None) -> Grading:
+def _price(
+    grading: Grading, rubric: Rubric, partial_weight: float | None, granularity: str = "rubric"
+) -> Grading:
     """Apply the mark rule when one is configured; otherwise keep the model's own marks."""
     if partial_weight is None:
         return grading
-    return apply_mark_rule(grading, rubric, partial_weight)
+    return apply_mark_rule(grading, rubric, partial_weight, granularity)
 
 
 def _unverified_flags(grading: Grading, answer: str, strict: bool) -> list[str]:

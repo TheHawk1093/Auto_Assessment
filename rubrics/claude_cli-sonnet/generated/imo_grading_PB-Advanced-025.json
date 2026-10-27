@@ -1,0 +1,59 @@
+{
+  "question_key": "imo_grading/PB-Advanced-025",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows that for sufficiently large n, n^k has exactly k digits in base 2n (i.e. (2n)^{k-1} \u2264 n^k < (2n)^k, using n \u2265 2^{k-1}), so the digits are indexed i = 0,\u2026,k-1.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States that n^k has k digits but justification is incomplete or only one of the two inequalities is shown."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Expresses the digits correctly, e.g. the i-th digit a_i = \u230an^k/(2n)^i\u230b mod 2n (or equivalent expansion n^k = \u03a3 a_i (2n)^i with 0 \u2264 a_i < 2n).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Computes or determines the digits explicitly using n odd, e.g. n^k = (2n)^{k-1}\u00b7n/2^{k-1} and expanding in powers of 2n, so that each digit is given by a closed form/polynomial-type expression (depending on parity of n) of size about n/2^{k-1-i}, or equivalently shows each digit grows with n.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Begins the explicit computation with the right idea (using oddness of n) but computation is incorrect or incomplete."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Shows each digit (including the lowest and highest) exceeds d for n larger than a chosen explicit N depending on k and d, and concludes the proof.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Handles most digits but misses a case (e.g. the last digit) or does not clearly choose N."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete proof: k digits, digit formula, explicit digit evaluation using n odd, and the bound exceeding d for large n. Partial credit for showing the digit count and digit expression only. Equivalent wording and correct alternative methods earn the marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

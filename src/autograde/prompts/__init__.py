@@ -20,3 +20,11 @@ def render(name: str, **values: object) -> str:
 
 def system(name: str) -> str:
     return _read(f"{name}.system").strip()
+
+
+def optional(name: str) -> str:
+    """A system prompt part that may not exist yet (per answer type or per field): else empty."""
+    try:
+        return system(name)
+    except FileNotFoundError:
+        return ""

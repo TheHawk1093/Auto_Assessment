@@ -1,0 +1,30 @@
+{
+  "question_key": "asap_sas/set10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Chooses a paint color (any of the four) and gives a description consistent with that choice: states how the color would affect the inside of the doghouse (e.g., light gray/white would keep the inside cooler; black/dark gray would make it warmer). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if a color is chosen but the effect on the inside temperature is missing, vague, or inconsistent with the choice.",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Supports the choice with specific experimental data, e.g., white lid had the lowest average air temperature (42\u00b0C) versus black (53\u00b0C), or light gray 45\u00b0C, dark gray 48\u00b0C; the lighter the lid, the lower the temperature. The data must match the chosen color.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the data are referenced only generally (e.g., 'lighter colors were cooler') without specific values, or if a value is given but not linked to the choice.",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a chosen color, a consistent explanation of its effect on the doghouse interior, and specific data from the table supporting it. Part marks for a choice with an effect but no data, or general data without numbers. Any color can earn marks if reasoned consistently with the data (e.g., white or light gray for a hot climate keeps the dog cooler).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

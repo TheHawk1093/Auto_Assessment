@@ -1,0 +1,112 @@
+{
+  "question_key": "aes2/persuasive",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Position and argument: the essay takes a clear position on a topic and holds it consistently, with a persuasive purpose (claims argue for the position and, ideally, address a counterargument).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.2,
+            "says": "No clear position, or position is unclear/contradictory; essay is mostly description or off-topic."
+          },
+          {
+            "share": 0.5,
+            "says": "A position is present but vague, or not held consistently, or only weakly argued; no counterargument."
+          },
+          {
+            "share": 0.75,
+            "says": "Clear position stated and mostly maintained; arguments relevant, with limited engagement with other views."
+          },
+          {
+            "share": 0.9,
+            "says": "Clear position stated early and held throughout; arguments focused; some acknowledgement or rebuttal of an opposing view."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Development and evidence: reasons are explained and supported with specific evidence (facts, examples, reasoning); depth rather than assertion or lists.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.2,
+            "says": "Very little development; bare assertions only."
+          },
+          {
+            "share": 0.45,
+            "says": "Reasons given but thin or uneven; examples vague or generic, little explanation."
+          },
+          {
+            "share": 0.7,
+            "says": "Reasons mostly explained with some relevant examples or evidence; some points underdeveloped."
+          },
+          {
+            "share": 0.9,
+            "says": "Strong, logical reasoning with specific, relevant, well-explained evidence supporting each main point."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Organisation: clear introduction, logically ordered body paragraphs, and a conclusion; transitions link ideas and the flow is easy to follow.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.2,
+            "says": "No discernible structure; ideas jumbled."
+          },
+          {
+            "share": 0.5,
+            "says": "Some structure but lapses: missing introduction/conclusion or weak paragraphing and transitions."
+          },
+          {
+            "share": 0.75,
+            "says": "Generally clear structure with intro, body, conclusion; transitions mostly effective."
+          },
+          {
+            "share": 0.9,
+            "says": "Well organised throughout, logical progression, effective transitions, purposeful introduction and conclusion."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Language and conventions: precise, appropriately persuasive vocabulary and varied sentences; control of grammar, spelling and punctuation. Errors that obstruct meaning lower the level.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.2,
+            "says": "Frequent errors that obstruct meaning."
+          },
+          {
+            "share": 0.5,
+            "says": "Noticeable errors and basic/repetitive wording, though meaning is mostly clear."
+          },
+          {
+            "share": 0.75,
+            "says": "Some errors that do not hinder meaning; generally clear, appropriate wording."
+          },
+          {
+            "share": 0.9,
+            "says": "Precise, varied language with almost no errors."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Judge holistically using the four criteria; the total maps to the 1\u20136 band (6 = strong on every criterion, 4 = adequate with some lapses, 3 = position present but thin development, 1 = no clear position and errors obstructing meaning). A clear position with thin development should land mid-scale (about 3). Do not reward length alone.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "A top essay states a clear position in the opening and holds it throughout, anticipating and rebutting a counterargument. Each reason is explained and backed by specific, relevant evidence. It is logically organised with introduction, body and conclusion linked by transitions, and written in precise, varied language with almost no errors."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/VOLTAGE_GAP_EXPLAIN_WHY4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that there is no gap/break/resistance (component) between terminal 4 and the positive terminal, i.e. they are directly connected by wire/conductor at the same potential, so no potential difference is measured. Equivalent wording accepted (e.g. 'they are connected directly', 'no component in between'). Do not credit answers that only say 'the circuit is broken' or 'no current' without saying there is no gap/component between them.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying terminal 4 is directly connected to the positive terminal with nothing (no gap or component) between them, so no potential difference. No marks for unrelated reasons such as a broken circuit, faulty meter or dead battery.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

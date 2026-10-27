@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/f5f44a26a9",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer of 0.625 (5/8, 62.5%), obtained through a valid chain of reasoning with no incorrect step. For example: P(85\u219290) = 0.2/0.5 = 0.4 by conditioning on a 75-year-old reaching 85. Then P(80\u219285) = 0.25/0.4 = 0.625 since P(80\u219290) = P(80\u219285)\u00b7P(85\u219290). Equivalent correct methods earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if every step is valid and the final answer is 5/8 (0.625, 62.5%). Any wrong step or wrong final answer earns 0. Equivalent wording and correct alternative methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let q = P(85-year-old lives 5 more years). A 75-year-old who lives 15 more years must first reach 85 (probability 0.5), then live 5 more: 0.5\u00b7q = 0.2, so q = 0.4. An 80-year-old who lives 10 more years must live 5 more years (probability p) and then 5 more (q): p\u00b70.4 = 0.25, so p = 0.625 = 5/8."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

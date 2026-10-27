@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from autograde.config import LLMConfig, PipelineConfig, Settings
+from autograde.config import LLMConfig, PipelineConfig, Settings, TeacherInputs
 from autograde.evaluation.experiments import (
     comparisons,
     prompt_fingerprint,
@@ -16,7 +16,7 @@ from autograde.evaluation.experiments import (
 )
 from autograde.evaluation.metrics import report
 from autograde.llm import client_name
-from autograde.pipeline.rubric import cached_record, store_for
+from autograde.pipeline.rubric import cached_record, store_for, variant_dir
 from autograde.pipeline.run import read_results, to_question
 from autograde.schemas import Result
 from autograde.vcs import GitError, commit_experiment
@@ -80,7 +80,11 @@ def records_for(results: list[Result], settings: Settings, cfg: PipelineConfig |
 def stored_rubrics(results: list[Result], settings: Settings, setup: dict) -> dict:
     """The marking schemes a run used, read from disk without any model call."""
     model = run_client_name(setup, settings)
-    variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
+    pipe = setup.get("pipeline", {})
+    variant = variant_dir(
+        pipe.get("rubric_variant", "generated"),
+        TeacherInputs.model_validate(pipe.get("teacher") or {}),
+    )
     out = {}
     for r in results:
         rec = cached_record(settings.paths.rubrics_dir, model, r.item.question_key, variant)

@@ -1,0 +1,68 @@
+{
+  "question_key": "imo_grading/PB-Advanced-014",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Parity invariant: both x+2 and 3x preserve the parity of a number, so a and b must have the same parity. Pairs of opposite parity can never be equal.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Mod 4 invariant for odd numbers: for odd x, both x+2 and 3x change the residue mod 4 (1\u21943), so if a, b are both odd, they flip together each step and stay congruent/incongruent mod 4 forever. Hence odd pairs with a\u2262b (mod 4) are impossible. Even pairs must NOT be excluded by a mod 4 argument (even numbers can change relative residue mod 4 since 3x keeps 0 and 2 fixed while +2 swaps them).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States the mod 4 condition for odd pairs but justification is incomplete (e.g. checks only one operation or asserts it without argument)."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Sufficiency for odd a\u2261b (mod 4), a\u2260b: gives a valid argument or construction (any correct method, e.g. reducing the difference using mixed operations) showing the numbers can be made equal. Mere assertion or checking a few examples earns no more than the part-mark.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Verifies only specific examples or gives an incomplete construction that does not cover all such pairs."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Sufficiency for both even (distinct): gives a valid argument or construction showing any two distinct even numbers can be made equal (e.g. via halving to ops m\u2192m+1, m\u21923m, or direct explicit sequences; example (2,4): 2\u21923\u00b72=6, 4\u21924+2=6). Mere assertion or a few examples earns no more than the part-mark.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Verifies only specific examples or gives an incomplete construction that does not cover all even pairs."
+          }
+        ]
+      },
+      {
+        "id": "P5",
+        "description": "Final answer: all pairs with both even, or both odd with a\u2261b (mod 4). (Equivalently: a\u2261b mod 2, excluding odd pairs with a\u2261b+2 mod 4.)",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the necessity arguments (parity, mod 4 for odd) and valid sufficiency arguments for both families, plus the correct final answer. Award part marks for invariants proved correctly even if sufficiency is only checked on examples. A wrong final family (e.g. requiring a\u2261b mod 4 for all pairs, or excluding even pairs) loses P4/P5 but keeps credit for correct earlier steps.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Parity is preserved by both operations, so a\u2261b (mod 2) is necessary. For odd x, x+2 and 3x each switch the residue mod 4 between 1 and 3, so two odd numbers switch together each step and a\u2261b (mod 4) is necessary for odd pairs. For even numbers, writing x=2m turns the operations into m\u2192m+1 and m\u21923m. Any two distinct even numbers can then be made equal (e.g. (2,4): 2\u21926 by \u00d73, 4\u21926 by +2). Odd pairs with a\u2261b (mod 4) can also be made equal by a similar construction. Answer: all pairs (a,b) with both even, or both odd with a\u2261b (mod 4)."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 4 of 7."
+  ],
+  "review_notes": []
+}

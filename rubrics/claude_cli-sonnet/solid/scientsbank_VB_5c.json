@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/VB_5c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States in one sentence that the size of the ice cube decreases (gets smaller/shrinks/melts) as time increases (over time). Equivalent wording accepted. Must give the correct direction (decrease); a statement of increase or 'stays the same' earns no marks. Must mention both variables (size and time) or clearly imply the relationship.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the ice cube's size decreases as time goes on (e.g. 'the ice cube melts over time'). No marks for wrong direction or for only naming the variables without the relationship.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

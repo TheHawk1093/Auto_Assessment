@@ -1,0 +1,68 @@
+{
+  "question_key": "imo_grading/PB-Advanced-013",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up a correct strategy: reduces to a statement proved by induction on n (or telescoping) with a stronger/localized form, e.g. sum 1/b_k \u2265 1/2 \u2212 1/2^{n+1} via a localization inequality involving products/ordering of the a_k; the induction direction must be workable.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions induction or telescoping but with no usable stated claim or with a direction that does not work."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States and proves the key lemma/localization inequality (e.g. for x=a_k^{2^k} type terms: 1/(1+x^2)-type bound such as 1/(2^k(1+a^{2^k})) + ... \u2265 appropriate bound, equivalent to 1/(1+x)+1/(1+y) \u2265 1/(1+sqrt(xy)) when xy \u2264 something, or the reference Lemma). The proof must be valid, including the condition on the variables under which it holds.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Correct lemma stated but proof incomplete or conditions not verified."
+          },
+          {
+            "share": 0.2,
+            "says": "Some localization inequality found but not shown to apply or is only partly correct."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Uses the ordering a_1\u2264\u2026\u2264a_n and product 1 to justify applying the lemma (e.g. a_1 \u2264 1 \u2264 a_n, or merging terms into a new sequence that is still ordered with product 1 so the induction hypothesis applies).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Uses the ordering/product condition but with a gap or without checking the new sequence is again ordered with product 1."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Completes the induction: base case (n=2 or n=1 appropriately, with check of the bound 1/2\u22121/2^{n+1}) and inductive step giving the exact bound, with the equality/sum of the lower bounds computed correctly.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Base case or the inductive step is done but not both, or arithmetic of the final bound is flawed."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a valid complete proof: a localization lemma, justified use of ordering and product 1, and a complete induction. Partial credit for attempting induction in a workable direction or finding a valid localization inequality. Minor computational slips cost only a little; a different valid proof earns full marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

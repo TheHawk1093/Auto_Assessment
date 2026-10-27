@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/WA_30b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Chooses C (the water level went up) AND explains that water expands when it freezes (ice takes up more space/volume than liquid water). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Award no marks if only C is chosen without a correct explanation, or if the explanation is given but the wrong option is chosen.",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: selects C and explains that water expands on freezing. No marks for A or B, or for C with no/incorrect explanation.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

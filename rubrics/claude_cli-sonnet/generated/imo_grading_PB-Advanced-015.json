@@ -1,0 +1,59 @@
+{
+  "question_key": "imo_grading/PB-Advanced-015",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Let V, W be the incircle tangency points on AB, AC. Uses the tangency of EF to the incircle to show that the circumcircles of ABC, AVW and AEF concur at a second point P (other than A). Equivalent valid arguments earn the marks.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States or sets up the concurrency of the circles with only partial or incomplete justification."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Uses P (or another valid route) to prove that Q, the second intersection of ray IH_0 with the circumcircle, is the tangency point of the A-mixtilinear incircle with the circumcircle. Hence Q = Y.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Identifies Q with the mixtilinear tangency point but the justification has a significant gap."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Proves that K (the intersection of IO with BC) is the reflection of D across the midpoint M of BC.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States this reflection property without a complete proof."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Concludes that X, Y, K are collinear, using the points above together with the definition of X as the second intersection of QD with the circumcircle. For example, shows that line QD meets the circumcircle again at a point on line YK, with a valid argument.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete proof covering the concurrency, the identification of Q with the mixtilinear tangency point, K as the reflection of D over M, and the final collinearity. Part marks go for the milestones in the grading guidelines, and equivalent methods are accepted. Claims with no proof earn at most half of a point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

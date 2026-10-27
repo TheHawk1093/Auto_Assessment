@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/8a6a7b2535",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a fully valid solution with correct final answer 4. Completes the square to get (x-4)^2+(y+2)^2=25, uses y+2>=3 and x>=1 to enumerate the solutions (8,1), (7,2), (1,2), (4,3), with no invalid step and no missing or extra pairs. Equivalent valid methods are accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "All-or-nothing, 1 mark. Full marks need every step valid and the final answer 4. Any wrong step or wrong final answer earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Complete the square: (x-4)^2+(y+2)^2=25. Since y>=1, y+2>=3. Cases: y+2=3 gives x-4=\u00b14, so x=8 (x=0 is not positive). y+2=4 gives x-4=\u00b13, so x=7 or 1. y+2=5 gives x=4. The pairs are (8,1), (1,2), (7,2), (4,3). The answer is 4."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

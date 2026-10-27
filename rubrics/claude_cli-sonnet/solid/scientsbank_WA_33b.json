@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/WA_33b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the glasses were cooler (lower temperature) than the warm, moist air/water vapor in the bathroom, so water vapor touching the cold lenses condensed into liquid droplets (fog). Accept equivalent wording, e.g. 'warm water vapor condensed on the cooler glasses'. Must refer to the temperature difference/cooling of vapor on the glasses; 'water vapor in the air' or 'steam' alone without the glasses being cooler does not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the glasses were cooler than the water vapor/humid air, causing vapor to condense on them. No mark for mentioning only steam or moisture without the temperature difference, or for wrong causes (e.g. glasses getting wet from splashing, evaporation).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

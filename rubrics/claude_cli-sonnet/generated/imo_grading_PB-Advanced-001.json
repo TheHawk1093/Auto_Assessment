@@ -1,0 +1,59 @@
+{
+  "question_key": "imo_grading/PB-Advanced-001",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Establishes that A_n grows slowly/regularly (e.g. A_{n+1}-A_n \u2208 {0,1}, A_n \u2192 \u221e, and A_n \u2248 \u221an so consecutive values change by at most 1 and take every positive integer value), and states a useful lemma of this type (such as: for every large k there are n with A_n = k, and the interval of n with A_n=k is long/ends where a perfect power occurs).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only observes A_n is slowly increasing / increments by 0 or 1, without a usable lemma or proof."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Sets up a discrete intermediate value argument: considers a quantity like f(n) = (n+2024) mod A_n, or compares n+2024 with multiples k\u00b7A_n, and shows it moves from at-or-below to at-or-above the target as n varies (e.g. the ratio (n+2024)/A_n changes by controlled steps, so it must hit an integer).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Sets up the idea but the step-size control is incomplete or incorrectly justified."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Completes the argument rigorously: shows that for arbitrarily large values (e.g. each large k) there is an n with A_n | n+2024, and that these n are distinct/unbounded, giving infinitely many.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Finds solutions but does not justify rigorously that there are infinitely many, or has a gap in the final step."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Correct, complete write-up: all bounds on A_n (such as counting perfect powers by squares, cubes, etc., or the needed estimate) are justified, with no unproved key claims.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete proof that uses slow growth of A_n and a discrete intermediate-value-style argument to get infinitely many n. Part marks for noting A_n increases slowly with a lemma, or for using the intermediate value idea without finishing. Alternative correct proofs earn full marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

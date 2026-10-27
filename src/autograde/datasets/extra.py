@@ -14,9 +14,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from autograde.schemas import Item
+from autograde.schemas import NO_REFERENCE, Item
 
-NO_REFERENCE = "No reference answer is given. Use the question and standard subject knowledge."
 ESSAY_GUIDE = (
     "Holistic essay score from 1 to 6. 6: a clear, well-developed position with strong "
     "reasoning and evidence, well organised, precise language, almost no errors. 5: a clear "
@@ -100,28 +99,58 @@ def load_aes2(root: Path) -> list[Item]:
             model_answer=ESSAY_GUIDE,
             student_answer=str(row.full_text).strip(),
             max_mark=6.0,
+            kind="essay",
             human_mark=float(row.score),
         )
         for row in df.itertuples(index=False)
     ]
 
 
-def load_processbench(root: Path) -> list[Item]:
+def load_processbench(
+    root: Path, parts: tuple[str, ...] = ("gsm8k", "math"), name: str = "processbench"
+) -> list[Item]:
     """Maths solutions split into steps; full marks only if no step is wrong."""
     items = []
-    for part in ("gsm8k", "math"):
+    for part in parts:
         for row in json.loads((root / "processbench" / f"{part}.json").read_text("utf-8")):
             steps = "\n".join(f"Step {i}: {s}" for i, s in enumerate(row["steps"]))
             items.append(
                 Item(
-                    id=f"processbench/{part}/{row['id']}",
-                    dataset="processbench",
+                    id=f"{name}/{part}/{row['id']}",
+                    dataset=name,
                     question_id=_key(part, row["problem"]),
                     question=_clean(row["problem"]),
                     model_answer=VERIFY_GUIDE,
                     student_answer=steps,
                     max_mark=1.0,
+                    kind="maths",
                     human_mark=1.0 if row["label"] == -1 else 0.0,
                 )
             )
     return items
+
+
+def load_processbench_hard(root: Path) -> list[Item]:
+    """The olympiad-level parts of ProcessBench, where wrong steps are subtle."""
+    return load_processbench(root, ("olympiadbench", "omnimath"), "processbench_hard")
+
+
+def load_imo_grading(root: Path) -> list[Item]:
+    """Olympiad proofs written by models and graded 0 to 7 by humans. The grading guidelines
+    stand in for the teacher's rubric. Among the hardest things to mark."""
+    df = pd.read_parquet(root / "imo_grading" / "train.parquet")
+    return [
+        Item(
+            id=f"imo_grading/{row[0]}",
+            dataset="imo_grading",
+            question_id=str(row[1]),
+            question=_clean(row[2]),
+            model_answer=_clean(f"Grading guidelines: {row[4]}"),
+            student_answer=str(row[3]).strip(),
+            max_mark=7.0,
+            kind="maths",
+            human_mark=float(row[6]),
+            human_feedback=_clean(row[5]),
+        )
+        for row in df.itertuples(index=False)
+    ]

@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/6e6e647326",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is valid and the final count is correct for the given value of T. Key condition: with BC = T and angle B = 30\u00b0, two triangles (two values of AB) exist exactly when T\u00b7sin30\u00b0 < AC < T, i.e. T/2 < AC < T (strict at both ends: AC = T/2 gives one right-angle triangle, AC = T gives one triangle, AC < T/2 gives none). The answer is the number of integers strictly between T/2 and T. For integer T this is ceil(T/2) \u2212 1 (T even: T/2 \u2212 1; T odd: (T\u22121)/2). Equivalent reasoning (law of cosines giving AB\u00b2 \u2212 T\u221a3\u00b7AB + T\u00b2 \u2212 AC\u00b2 = 0 with two distinct positive roots) is acceptable. The final number must match the count for the T supplied; wrong endpoint inclusion (e.g. counting AC = T/2 or AC = T) or a wrong count earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only for a fully valid argument (condition T/2 < AC < T, strict) and the correct integer count for the T in use. Any invalid step, wrong inequality, or wrong final count earns 0. There are no part marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Ambiguous case (SSA): fix BC = T and angle B = 30\u00b0. The distance from C to line AB is T\u00b7sin30\u00b0 = T/2. Two triangles occur iff T/2 < AC < T. Check with the law of cosines: AC\u00b2 = AB\u00b2 + T\u00b2 \u2212 \u221a3\u00b7T\u00b7AB, so AB\u00b2 \u2212 \u221a3\u00b7T\u00b7AB + (T\u00b2 \u2212 AC\u00b2) = 0. Two distinct positive roots need discriminant 3T\u00b2 \u2212 4(T\u00b2 \u2212 AC\u00b2) > 0, i.e. AC > T/2, and a positive product T\u00b2 \u2212 AC\u00b2 > 0, i.e. AC < T. So the answer is the number of integers strictly between T/2 and T, which is ceil(T/2) \u2212 1 for integer T. Examples: T = 12 gives 7..11, so 5; T = 11 gives 6..10, so 5. T is not given (TNYWR), so substitute the actual value."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

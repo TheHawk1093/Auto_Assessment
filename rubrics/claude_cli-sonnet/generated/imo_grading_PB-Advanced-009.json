@@ -1,0 +1,56 @@
+{
+  "question_key": "imo_grading/PB-Advanced-009",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up the inversion at D (radius sqrt(DB\u00b7DC), possibly composed with reflection in D's line) and observes the inverse pairs: (A,H), (B,C), (E,F), (S,M), (Z,G), where Z is the reflection of R over AD (R and Z symmetric about AD). Equivalent correct identification of these correspondences earns the marks.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Identifies only some of the inverse pairs or only the symmetry of R and Z, without justification of the inversion pairs."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Constructs the auxiliary point T (or a similar point on line AT) that is needed to translate the configuration, and uses it correctly toward identifying the images of the circles/points K, L, etc.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Shows that O and P are corresponding points under the inversion about D with radius sqrt(DB\u00b7DC) (O midpoint of DN, P on line DN on circle DKL), using the inverse relations of the earlier points.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Uses the inversion to show that the circle OCP maps to a circle/line through B and the image of P/O, hence that Q (second intersection of circle OCP with BC) is the inverse of a determined point with DB\u00b7DC = DQ\u00b7D(image), identifying Q's position on BC.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Concludes AB = AQ, e.g. by showing Q is the reflection of B over D or a point such that AD is the perpendicular bisector of BQ (or equivalent correct argument).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete valid proof; equivalent methods (not necessarily inversion) are accepted if rigorous. Part marks for the key observations (inverse pairs, construction of T, O and P as inverses). Zero for just restating the problem or numeric checks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

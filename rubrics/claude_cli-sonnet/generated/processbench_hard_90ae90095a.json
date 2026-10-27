@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/90ae90095a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the final answer that there are exactly 4 dissimilar nice triangles, with every step of the reasoning mathematically valid. Any wrong step or a wrong final answer earns nothing. The four triangles are equilateral (60-60-60), isosceles right (45-45-90), 30-60-90 and 30-30-120.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only for the correct final answer, 4, with all steps valid. Any wrong step or a wrong final answer earns 0. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "4 (the equilateral triangle, the 45-45-90 triangle, the 30-60-90 triangle and the 30-30-120 triangle)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

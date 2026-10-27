@@ -1,0 +1,83 @@
+{
+  "question_key": "imo_grading/PB-Advanced-005",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up a usable algebraic or geometric description of the condition \u2220BAC=\u03b1 (\u03b1=\u2220XYZ). For example: Y=0, B=b on the real axis, C=c\u03c9 with \u03c9=e^{i\u03b1}, A=re^{i\u03c6}. A lies beyond BC, and the angle from AB to AC is \u2212\u03b1. The condition becomes the relation cb\u00b7sin2\u03b1 \u2212 c\u00b7r\u00b7sin(2\u03b1\u2212\u03c6) \u2212 b\u00b7r\u00b7sin(\u03b1+\u03c6) + r\u00b2sin\u03b1 = 0. Any equivalent correct relation between b, c (or between B and C) is accepted, for example a trigonometric or projective form. The relation must be correct, including the orientation. A relation that describes only the line BC through A, or one with the wrong orientation, gets no credit.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct setup and correct method, but the relation has a sign or orientation slip, or is never reduced to an explicit relation."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Gives the analogous relation for \u2220BDC=\u03b8 with D=se^{i\u03c8}: cb\u00b7sin(\u03b1\u2212\u03b8) \u2212 c\u00b7s\u00b7sin(\u03b1\u2212\u03c8\u2212\u03b8) \u2212 b\u00b7s\u00b7sin(\u03c8\u2212\u03b8) \u2212 s\u00b2sin\u03b8 = 0. Then states that D works exactly when this relation is proportional to the one for A. Any equivalent method that reduces the problem to matching the two relations is accepted, for example showing the B\u2192C correspondences coincide on enough pairs of points, or a synthetic isogonal-conjugate argument.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States the D-relation, or the matching idea, but with errors or incompletely."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Constructs D explicitly. D lies on the isogonal of YA in angle XYZ, i.e. \u2220XYD=\u2220ZYA (equivalently \u03c8=\u03b1\u2212\u03c6). Also YD=YA/(2cos\u03b1). The construction must be explicit, with the point and the distance determined. Merely asserting that some D exists earns 0.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct isogonal direction but the distance ratio is wrong or missing. Alternatively, the correct D is given without any derivation."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Finds \u03b8=2\u03b1. Allow the equivalent 2\u03b1+\u03c0 in the line relation, as long as the final actual angle is justified as 2\u03b1. Must be 2\u2220XYZ, not 180\u00b0 or \u03b1.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "\u03b8=2\u03b1 stated without being checked against the relation."
+          }
+        ]
+      },
+      {
+        "id": "P5",
+        "description": "Verifies that all four proportionality conditions hold for this D and \u03b8. Equivalently, the coefficients match with \u03ba=\u22121/(2cos\u03b1), and s=r/(2cos\u03b1) satisfies the constant-term equation. Alternatively gives a valid synthetic verification that \u2220BDC=2\u03b1 for every admissible B, C. The verification must cover the whole family of B, C, not one example.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Verification is mostly correct with minor mistakes. Examples: omits one of the equations, or does not address that the relation only fixes the angle modulo \u03c0."
+          }
+        ]
+      },
+      {
+        "id": "P6",
+        "description": "Shows D\u2260A and D inside the angle. D=A would need YD=YA, i.e. 2cos\u03b1=1, i.e. \u03b1=60\u00b0, which is excluded. D is inside since \u2220XYD=\u03b1\u2212\u03c6\u2208(0,\u03b1) and YD>0. Also notes \u03b8=2\u03b1\u2208(0,2\u03c0). Note that if \u03b1 were 60\u00b0 then D=A when \u03c6=30\u00b0, so the hypothesis \u03b1\u226060\u00b0 must be used.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need an explicit D (isogonal direction, YD=YA/(2cos\u03b1)), \u03b8=2\u2220XYZ, and a verification that works for all B, C. Part marks go for a correct setup or relation with slips, or for a correct D or \u03b8 without full verification. A bare claim that D exists, or \u03b8 without a construction, earns almost nothing. A different valid construction or method that produces the same D and \u03b8 earns the same marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let \u03b1=\u2220XYZ. Put Y=0, ray YX along the positive real axis, \u03c9=e^{i\u03b1}, B=b, C=c\u03c9, A=re^{i\u03c6} with 0<\u03c6<\u03b1.\n\nSince A lies beyond BC and \u2220BAC=\u03b1, the ratio (C\u2212A)/(B\u2212A) has argument \u2212\u03b1. So Im[(c\u03c9\u2212A)(b\u2212\u0100)\u03c9]=0, which gives\ncb\u00b7sin2\u03b1 \u2212 c\u00b7r\u00b7sin(2\u03b1\u2212\u03c6) \u2212 b\u00b7r\u00b7sin(\u03b1+\u03c6) + r\u00b2sin\u03b1 = 0.  (1)\n\nFor D=se^{i\u03c8}, the condition that the angle from DB to DC is \u03b8 is Im[(c\u03c9\u2212D)(b\u2212D\u0304)e^{\u2212i\u03b8}]=0, which gives\ncb\u00b7sin(\u03b1\u2212\u03b8) \u2212 c\u00b7s\u00b7sin(\u03b1\u2212\u03c8\u2212\u03b8) \u2212 b\u00b7s\u00b7sin(\u03c8\u2212\u03b8) \u2212 s\u00b2sin\u03b8 = 0.  (2)\n\nIf (2) is proportional to (1) with factor \u03ba, then every admissible pair (b,c) satisfies (2).\n\nTake \u03c8=\u03b1\u2212\u03c6 and \u03b8=2\u03b1. Then \u03ba=sin(\u2212\u03b1)/sin2\u03b1=\u22121/(2cos\u03b1). Also:\n- c-coefficient: s\u00b7sin(\u03c6\u22122\u03b1) = \u03ba\u00b7r\u00b7sin(2\u03b1\u2212\u03c6) holds when s=r/(2cos\u03b1).\n- b-coefficient: s\u00b7sin(\u2212\u03b1\u2212\u03c6) = \u03ba\u00b7r\u00b7sin(\u03b1+\u03c6) holds for the same s.\n- constant term: \u2212s\u00b2sin2\u03b1 = \u03bar\u00b2sin\u03b1 gives s\u00b2=r\u00b2/(4cos\u00b2\u03b1). This is consistent.\n\nSo D is the point with \u2220XYD=\u2220ZYA and YD=YA/(2cos\u03b1), and \u03b8=2\u03b1. Then \u2220BDC=2\u2220XYZ for all B, C with \u2220BAC=\u2220XYZ.\n\nD lies inside the angle because \u2220XYD=\u03b1\u2212\u03c6\u2208(0,\u03b1). D=A would need YD=YA, i.e. cos\u03b1=1/2, i.e. \u03b1=60\u00b0, which is excluded. If \u03b1\u226060\u00b0 but \u03c6=\u03b1/2, then YD\u2260YA, so still D\u2260A."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

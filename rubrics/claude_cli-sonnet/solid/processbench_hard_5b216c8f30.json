@@ -1,0 +1,49 @@
+{
+  "question_key": "processbench_hard/5b216c8f30",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Final answer stated: smallest k = n^2 - n + 1 (equivalently n^2 - n + 1 cars suffice and n^2 - n do not). A wrong value earns nothing here.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Valid construction for k = n^2 - n with no pair linked by both companies, e.g. A: cars i\u2192i+1 inside n blocks of n consecutive checkpoints; B: cars i\u2192i+n. The student must check the monotone start/finish condition and that linked-by-both would force the same block and the same residue mod n, hence the same point. Any other valid construction is also accepted.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Construction is correct and satisfies the car-ordering condition, but the argument that no pair is linked by both is missing or incomplete."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Valid proof that k = n^2 - n + 1 always works: for each company the checkpoints split into at most n-1 classes within which every two points are linked (since each car merges components and the monotone condition makes components chains). Then pigeonhole on pairs of classes gives (n-1)^2 < n^2, so two points lie in the same class for both companies and are linked by both.",
+        "marks": 0.4,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Uses the class or component idea and pigeonhole in the right direction, but does not justify that points in the same component are linked, or that the number of components is at most n-1."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the correct answer n^2 - n + 1, a valid construction showing n^2 - n cars is not enough, and a valid proof that n^2 - n + 1 suffices. Part marks are given within the construction and proof points as described. A wrong final answer earns no marks for P1, and a flawed step earns nothing for the point it belongs to.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Answer: k = n^2 - n + 1.\n\nLower bound (k = n^2 - n is not enough): Company A has a car from i to i+1 for every i not divisible by n (n^2 - n cars). Company B has a car from i to i+n for every i \u2264 n^2 - n (n^2 - n cars). Both families have starts and finishes increasing with the car number. A links two points exactly when they lie in the same block {tn+1,...,tn+n}. B links two points exactly when they are congruent mod n. Two distinct points cannot be in the same block and congruent mod n, so no pair is linked by both. Hence k \u2265 n^2 - n + 1.\n\nUpper bound (k = n^2 - n + 1 works): For one company, view the cars as k edges on the n^2 points. The monotone condition means no two cars share a start or a finish, and the cars with a common endpoint form paths going upward. The cars therefore split the points into components, each a chain in which every two points are linked. Each car joins two components, so there are at least n^2 - k components, and at most n^2 - k = n - 1 if exactly k = n^2 - n + 1 (more cars cannot reduce it below this, and fewer components is fine). Assign each point the pair (A-component, B-component). There are at most (n-1)^2 < n^2 pairs, so by pigeonhole two points have the same pair. They are then linked by both companies.\n\nFinal answer: k = n^2 - n + 1."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0.8 of 1."
+  ],
+  "review_notes": []
+}

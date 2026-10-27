@@ -1,0 +1,39 @@
+{
+  "question_key": "processbench_hard/675fbbb525",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Final answer is n = 3 (stated as the smallest n). Any other final answer (e.g. n=2, n=4, or 'no such n') earns nothing for the whole question.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Shows n=1 and n=2 fail. n=1: a and 1/a both integers forces a=1, one tuple only. n=2: with s=a+b, k=1/a+1/b integers and t=sk, positivity/discriminant rationality gives t(t-4) must be a perfect square, i.e. (t-2)^2 - w^2 = 4, which forces t=4, so a=b=s/2 with sk=4 (finitely many tuples). Any equivalent valid argument that only finitely many pairs work is accepted. Asserting finiteness without a valid argument earns no credit.",
+        "marks": 0.35,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Gives an explicit infinite family (or valid parametrised construction) of positive rational triples (a,b,c) with integer sum and integer sum of reciprocals, and checks both quantities are integers and the triples are infinitely many and distinct. A family that is only asserted, or that is unchecked or incorrect, earns nothing.",
+        "marks": 0.35,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The question is worth 1 mark in total. It is awarded for a valid complete solution with final answer n=3, including the proof that n=1,2 fail and a verified infinite family for n=3. Award the marks of each point separately only if the step is mathematically valid. A wrong final answer means P1 earns nothing, and the other points are judged on validity alone.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Answer: n = 3.\nn=1: a and 1/a integers give a=1 only.\nn=2: let s=a+b and k=1/a+1/b=s/(ab) be integers, and t=sk=(a+b)^2/(ab)\u22654. The roots a,b of x^2 - s x + s/k are rational, so the discriminant s^2-4s/k is a rational square. Multiplying by k^2 gives t(t-4) = a perfect square w^2. Then (t-2)^2-w^2=4, whose only integer solutions have t-2=\u00b12, so t=4 (t=4 means a=b, with s k=4). That gives finitely many pairs, so n=2 fails.\nn=3: infinitely many rational triples exist (a known parametric construction of positive rational triples with integer sum and integer reciprocal sum). So the smallest n is 3."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0.65 of 1."
+  ],
+  "review_notes": []
+}

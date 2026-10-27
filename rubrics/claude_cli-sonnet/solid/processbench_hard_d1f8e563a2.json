@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/d1f8e563a2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a valid derivation and the correct final value 4002. Acceptable: defining a_k = k + a_{k-1}/2 with a_2 = 2, finding a_k = 2k-2 and proving it by induction or by solving the recurrence. Any other valid method is also acceptable. Every step must be mathematically valid. A wrong step, an unjustified pattern guess with no proof, or a wrong final answer earns 0. A bare correct answer of 4002 with no valid working earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The question is worth 1 mark, awarded all or nothing. The student needs valid reasoning and the final answer 4002. Any wrong step or a wrong answer earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let a_2 = 2 and a_k = k + a_{k-1}/2, so the required value is a_2002. Try a_k = 2k - 2. Check: k + (2(k-1) - 2)/2 = k + k - 2 = 2k - 2, and a_2 = 2 matches. By induction a_k = 2k - 2. Then a_2002 = 2\u00b72002 - 2 = 4002. (Check: a_3 = 3 + 1 = 4 = 2\u00b73 - 2.) Final answer: 4002."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

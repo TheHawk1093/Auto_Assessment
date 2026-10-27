@@ -1,0 +1,17 @@
+# Marking a whole exam end to end with DeepSeek V4.1 Flash on Goedel Machines (free):
+# it reads the files, writes the marking schemes, marks, and writes the feedback.
+# Swap rubric_model/strong_backend for a stronger scheme writer, e.g. {rubric_model: sonnet, strong_backend: claude_cli}.
+llm: {backend: goedel, model: "deepseek/deepseek-v4.1-flash", timeout_s: 300, retries: 2}
+judge: {backend: claude_cli, model: haiku, effort: low}
+student: {backend: claude_cli, model: haiku, effort: low}
+pipeline:
+  rubric_variant: solid
+  rubric_model: "deepseek/deepseek-v4.1-flash"
+  strong_backend: goedel
+  rubric_selftest: true
+  rubric_review: no_reference
+  read_first: true
+  with_feedback: true
+  feedback_variant: formal
+  max_workers: 4
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

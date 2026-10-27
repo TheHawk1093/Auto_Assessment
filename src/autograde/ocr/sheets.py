@@ -39,6 +39,9 @@ class Sheet(BaseModel):
     sheet: str = ""
     student: str = ""
     pages: list[str] = Field(default_factory=list)
+    reader: str = Field(
+        default="", description="The model that read these pages, as provider:model."
+    )
     teacher_totals: dict[str, float] = Field(
         default_factory=dict, description="Teacher's mark per whole question, by printed number."
     )

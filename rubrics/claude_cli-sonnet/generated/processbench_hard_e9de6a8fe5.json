@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/e9de6a8fe5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a fully valid solution with the correct final answer y = 12. Valid steps: 1584 = 2^4\u00b73^2\u00b711, so x = 2^2\u00b73\u00b711^2 = 1452, then y = 1584/gcd(1452,1584) = 1584/132 = 12. Equivalent correct methods earn the mark. Any invalid step or a wrong final answer earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if every step is valid and the final answer is y = 12. A wrong step or wrong answer earns 0. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "1584 = 2^4\u00b73^2\u00b711. For 1584x to be a cube, x = 2^2\u00b73\u00b711^2 = 1452. gcd(1452,1584) = 2^2\u00b73\u00b711 = 132. y = 1584/132 = 12."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

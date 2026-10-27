@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/b90b962b56",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is mathematically valid AND the final answer is 17/145 (equivalently 51/435). Any invalid step, or a wrong final answer, earns 0. Key steps: discriminant (u-v)^2-16 must be a perfect square, giving |u-v|=4 or 5 (with integer roots confirmed by parity); 26 pairs with difference 4 and 25 with difference 5, 51 favourable out of C(30,2)=435 (ordered: 102/870).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if all steps are valid and the final answer is 17/145 (51/435 accepted). Any wrong step or wrong final answer earns 0. No part marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Expand: x^2+(u+v)x+uv+4. Discriminant = (u+v)^2-4(uv+4) = (u-v)^2-16 = k^2. So (d-k)(d+k)=16 with d=|u-v|, same parity factors: (2,8) gives d=5,k=3; (4,4) gives d=4,k=0. Roots (-(u+v)\u00b1k)/2 are integers in both cases by parity. Difference 4: 26 pairs; difference 5: 25 pairs. Total 51 of C(30,2)=435. Probability = 51/435 = 17/145."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

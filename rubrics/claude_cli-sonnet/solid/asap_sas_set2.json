@@ -1,0 +1,46 @@
+{
+  "question_key": "asap_sas/set2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Conclusion that identifies the ranking or extremes supported by the data: plastic B stretched the most (about 22-23 mm) and plastic A the least (about 10-12 mm); C and D are in between (D about 20 mm, C about 13-14 mm). Must be consistent with the data. Stating B is the most stretchable and A the least earns full marks. Correct ranking B > D > C > A also earns full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names only the most stretchy or the least stretchy plastic correctly, or gives a vague correct comparison without naming plastics (e.g. 'plastics differ in stretchiness'), or cites values with no conclusion."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "First valid improvement to the experimental design or validity, stated specifically (e.g. more trials and averaging; control sample dimensions such as length, width, thickness; use identical mass on each sample; use more samples per plastic type; more precise measuring; consistent hang time or temperature). Must be something not already done (two trials and a five-minute hang time alone do not count).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Second valid improvement, different in idea from P2, stated specifically (from the list in P2 or another correct design/validity improvement). Do not award if it repeats P2 in different wording. Vague answers like 'be more careful' or 'do it better' earn nothing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a data-supported conclusion (B most stretch, A least) plus two distinct, specific, valid improvements. Part marks only on the conclusion for incomplete statements. No marks for vague improvements or for repeating the same improvement twice.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Conclusion: Plastic B stretched the most (22 and 23 mm, mean 22.5 mm), then D (20 mm), C (13.5 mm), and A the least (mean 11 mm). So B is the most stretchable and A the least. Results were fairly consistent between trials (D identical, small differences for others).\nImprovements (any two): use more trials/repeats and average; use samples of identical size (length, width, thickness) as the starting size; use the same mass/weights on every sample and state it; use a control/ensure the same hanging time and temperature; measure more precisely (ruler with finer scale, or measure while hanging); test more samples of each plastic type; allow the plastic time to recover before measuring or measure at a consistent time; test a wider range of weights."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": [
+    "P1 contradicts itself: the main text says a conclusion with no reference to the data earns 0, but the partial level gives half marks for naming B or A without data.",
+    "P2 and P3 list 'more trials/repeats' and 'larger sample size/more samples' as separate examples, so one idea (more repeats) could be rewarded twice; they should count as one improvement.",
+    "P2 and P3 require the improvement to be 'linked to why it helps', which is not in the question and makes the point hard to check; a clear, specific improvement should be enough, with a reason only needed where the change is otherwise unclear."
+  ]
+}

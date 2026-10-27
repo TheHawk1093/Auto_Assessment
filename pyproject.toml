@@ -16,6 +16,7 @@ dependencies = [
 
 [project.optional-dependencies]
 anthropic = ["anthropic>=0.40"]
+files = ["pypdf>=4"]  # reading PDF question papers and references
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]

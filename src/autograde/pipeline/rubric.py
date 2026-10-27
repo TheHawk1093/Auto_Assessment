@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
 import os
@@ -9,11 +10,21 @@ import re
 from pathlib import Path
 
 from autograde import prompts
-from autograde.config import PipelineConfig, Settings
+from autograde.config import PipelineConfig, Settings, TeacherInputs
 from autograde.llm import LLMClient, build_client
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVELS, dataset_of, level_prompt
-from autograde.schemas import EPS, AtomicFacts, Question, Rubric, RubricDraft, RubricRecord
+from autograde.pipeline.verify import GRANULARITY_SHARES
+from autograde.schemas import (
+    EPS,
+    AtomicFacts,
+    Question,
+    Rubric,
+    RubricDraft,
+    RubricRecord,
+    RubricReview,
+    has_reference,
+)
 
 log = logging.getLogger(__name__)
 
@@ -22,35 +33,117 @@ NO_CREDIT_SHARE = 0.1  # a "don't know" answer must score at most this share
 NON_ANSWER = "I do not know."
 
 
-def rubric_prompt(variant: str, dataset: str = "") -> str:
+PART_MARKS = {
+    "rubric": "Part marks: use whatever steps suit each point.",
+    "none": "Part marks: not allowed. Every point is all or nothing, so give no levels.",
+    "half": "Part marks: half of a point's marks only. Give at most one level, with share 0.5.",
+    "quarter": "Part marks: quarter steps only. Levels may have the shares 0.25, 0.5 and 0.75.",
+}
+STRICTNESS = {
+    "lenient": "Judge generously: credit the central idea in any wording.",
+    "moderate": "Judge fairly: the idea must be there and basically right.",
+    "strict": "Judge tightly: precise terms, complete statements and correct detail are expected.",
+}
+
+
+def rubric_prompt(variant: str, dataset: str = "", kind: str = "short", field: str = "") -> str:
     """Scheme-writing prompt: rubric.system.md by default, rubric.<variant>.system.md otherwise.
 
     A strictness level (lenient, moderate, harsh) uses the level prompt plus the dataset policy.
+    The "solid" variant uses the general writer plus the part for the answer type.
     """
     if variant in LEVELS:
         return level_prompt(variant, dataset)
+    if variant == "solid":
+        names = ["rubric.solid", f"rubric.solid.{kind}"] + (
+            [f"rubric.field.{field}"] if field else []
+        )
+        return "\n\n".join(t for t in (prompts.optional(n) for n in names) if t)
     return prompts.system("rubric" if variant == "generated" else f"rubric.{variant}")
 
 
+def teacher_block(teacher: TeacherInputs, key: str) -> str:
+    """The teacher's instructions as lines for the scheme writer. Empty when there are none."""
+    lines = [PART_MARKS[teacher.partial_credit]] if teacher.partial_credit != "rubric" else []
+    if teacher.strictness:
+        lines.append(STRICTNESS[teacher.strictness])
+    if note := teacher.for_question(key):
+        lines.append(note)
+    return "Teacher's instructions:\n- " + "\n- ".join(lines) + "\n" if lines else ""
+
+
+def variant_dir(variant: str, teacher: TeacherInputs | None = None) -> str:
+    """The cache folder of a scheme source. Teacher inputs that change the scheme change it."""
+    if variant != "solid" or teacher is None or teacher.is_default:
+        return variant
+    digest = hashlib.sha1(teacher.model_dump_json().encode()).hexdigest()[:8]
+    return f"{variant}-{digest}"
+
+
+def conform(rubric: Rubric, granularity: str) -> Rubric:
+    """Make part-mark levels agree with the teacher's granularity, whatever the writer did."""
+    if granularity == "rubric":
+        return rubric
+    allowed = GRANULARITY_SHARES[granularity]
+    points = []
+    for p in rubric.points:
+        levels = {}
+        for lv in p.levels if allowed else []:
+            share = min(allowed, key=lambda a: abs(a - lv.share))
+            levels.setdefault(share, lv.model_copy(update={"share": share}))
+        points.append(
+            p.model_copy(
+                update={
+                    "levels": sorted(levels.values(), key=lambda lv: lv.share),
+                    "partial_credit": p.partial_credit if allowed else "",
+                }
+            )
+        )
+    return rubric.model_copy(update={"points": points})
+
+
+def structured_rubric(question: Question) -> Rubric | None:
+    """The teacher's rubric when it is already points with marks (JSON) that add up to the total."""
+    text = question.rubric.strip()
+    if not text.startswith("{"):
+        return None
+    try:
+        rubric = Rubric.model_validate_json(text)
+    except ValueError:
+        return None
+    return rubric if abs(rubric.total - question.max_mark) < EPS else None
+
+
 def generate_rubric(
-    question: Question, client: LLMClient, note: str = "", variant: str = "generated"
+    question: Question,
+    client: LLMClient,
+    note: str = "",
+    variant: str = "generated",
+    teacher: TeacherInputs | None = None,
 ) -> Rubric:
     """Ask for a scheme whose marks add up to the question total, retrying with the error."""
-    extra = note
+    teacher = teacher or TeacherInputs()
+    given = structured_rubric(question)
+    if variant == "solid" and given is not None:
+        return conform(given, teacher.partial_credit)  # the teacher already wrote the points
+    extra = (teacher_block(teacher, question.key) if variant == "solid" else "") + note
     for _ in range(3):
         user = prompts.render(
-            "rubric.user",
+            "rubric.solid.user" if variant == "solid" else "rubric.user",
             question=question.text,
             model_answer=question.model_answer,
+            rubric=question.rubric.strip() or "Not given.",
             max_mark=f"{question.max_mark:g}",
             extra=extra,
         )
-        system = rubric_prompt(variant, dataset_of(question.key))
+        system = rubric_prompt(variant, dataset_of(question.key), question.kind, question.field)
         if variant == "atomic":
             rubric = client.ask(system, user, AtomicFacts).to_rubric(question.max_mark)
         else:
             rubric = client.ask(system, user, RubricDraft).to_rubric()
         if abs(rubric.total - question.max_mark) < EPS:
+            if variant == "solid":
+                rubric = conform(rubric, teacher.partial_credit)
             return rubric.model_copy(update={"level": variant}) if variant in LEVELS else rubric
         extra = (
             f"{note}\nYour previous scheme added up to {rubric.total:g} marks. "
@@ -59,12 +152,49 @@ def generate_rubric(
     raise ValueError(f"Could not get a scheme totalling {question.max_mark:g} for {question.key}")
 
 
+def review_rubric(
+    question: Question, rubric: Rubric, client: LLMClient, teacher: TeacherInputs
+) -> tuple[Rubric, list[str]]:
+    """A second look at a draft: returns the scheme to use and the issues that were found."""
+    key = f"Answer key the writer worked out:\n{rubric.answer_key}\n" if rubric.answer_key else ""
+    user = prompts.render(
+        "rubric.review.user",
+        question=question.text,
+        model_answer=question.model_answer,
+        max_mark=f"{question.max_mark:g}",
+        extra=teacher_block(teacher, question.key),
+        given=question.rubric.strip() or "Not given.",
+        rubric=rubric.render(),
+        key=key,
+    )
+    review = client.ask(prompts.system("rubric.review"), user, RubricReview)
+    if not review.issues or review.revised is None:
+        return rubric, []
+    revised = review.revised.to_rubric()
+    if abs(revised.total - question.max_mark) > EPS:
+        return rubric, [*review.issues, "revision rejected: marks did not add up"]
+    if not revised.answer_key:
+        revised = revised.model_copy(update={"answer_key": rubric.answer_key})
+    return conform(revised, teacher.partial_credit), review.issues
+
+
+def full_credit_text(question: Question, rubric: Rubric) -> str:
+    """An answer that should earn full marks, if one is available: the model answer, or else the
+    writer's own answer key. Essay guides describe quality and are not answers."""
+    if question.kind == "essay":
+        return ""
+    if question.kind == "maths" or not has_reference(question.model_answer):
+        return rubric.answer_key
+    return question.model_answer
+
+
 def selftest(question: Question, rubric: Rubric, client: LLMClient) -> list[str]:
     """Automatic checks. Returns failure notes, empty if the scheme passes."""
     notes: list[str] = []
-    full, _ = mark_answer(question, rubric, question.model_answer, client, retries=0)
-    if full.total < FULL_CREDIT_SHARE * question.max_mark:
-        notes.append(f"The model answer scored only {full.total:g} of {question.max_mark:g}.")
+    if text := full_credit_text(question, rubric):
+        full, _ = mark_answer(question, rubric, text, client, retries=0)
+        if full.total < FULL_CREDIT_SHARE * question.max_mark:
+            notes.append(f"The model answer scored only {full.total:g} of {question.max_mark:g}.")
     blank, _ = mark_answer(question, rubric, NON_ANSWER, client, retries=0)
     if blank.total > NO_CREDIT_SHARE * question.max_mark:
         notes.append(f'A "don\'t know" answer scored {blank.total:g} of {question.max_mark:g}.')
@@ -72,19 +202,35 @@ def selftest(question: Question, rubric: Rubric, client: LLMClient) -> list[str]
 
 
 def build_record(
-    question: Question, client: LLMClient, run_selftest: bool = True, variant: str = "generated"
+    question: Question,
+    client: LLMClient,
+    run_selftest: bool = True,
+    variant: str = "generated",
+    teacher: TeacherInputs | None = None,
+    review: str = "off",
 ) -> RubricRecord:
-    rubric = generate_rubric(question, client, variant=variant)
+    rubric = generate_rubric(question, client, variant=variant, teacher=teacher)
+    issues: list[str] = []
+    unsourced = not question.has_ref
+    wanted = review == "always" or (review == "no_reference" and unsourced)
+    if variant == "solid" and wanted:
+        rubric, issues = review_rubric(question, rubric, client, teacher or TeacherInputs())
     if not run_selftest:
-        return RubricRecord(question_key=question.key, rubric=rubric)
+        return RubricRecord(question_key=question.key, rubric=rubric, review_notes=issues)
     notes = selftest(question, rubric, client)
     if notes:
         log.info("Scheme for %s failed its self-test, rewriting once: %s", question.key, notes)
         hint = "\nA previous scheme failed these tests, so avoid repeating its problems:\n- "
-        rubric = generate_rubric(question, client, hint + "\n- ".join(notes) + "\n", variant)
+        rubric = generate_rubric(
+            question, client, hint + "\n- ".join(notes) + "\n", variant, teacher=teacher
+        )
         notes = selftest(question, rubric, client)
     return RubricRecord(
-        question_key=question.key, rubric=rubric, selftest_passed=not notes, selftest_notes=notes
+        question_key=question.key,
+        rubric=rubric,
+        selftest_passed=not notes,
+        selftest_notes=notes,
+        review_notes=issues,
     )
 
 
@@ -97,17 +243,24 @@ class RubricStore:
         client: LLMClient,
         run_selftest: bool = True,
         variant: str = "generated",
+        teacher: TeacherInputs | None = None,
+        review: str = "off",
     ) -> None:
         self.rubrics_dir = rubrics_dir
         self.client = client
         self.run_selftest = run_selftest
         self.variant = variant
+        self.teacher = teacher
+        self.review = review
 
     def get(self, question: Question) -> RubricRecord:
-        path = rubric_path(self.rubrics_dir, self.client.name, question.key, self.variant)
+        folder = variant_dir(self.variant, self.teacher)
+        path = rubric_path(self.rubrics_dir, self.client.name, question.key, folder)
         if path.exists():
             return RubricRecord.model_validate_json(path.read_text(encoding="utf-8"))
-        record = build_record(question, self.client, self.run_selftest, self.variant)
+        record = build_record(
+            question, self.client, self.run_selftest, self.variant, self.teacher, self.review
+        )
         path.parent.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(f".{os.getpid()}.tmp")
         tmp.write_text(json.dumps(record.model_dump(), indent=2), encoding="utf-8")
@@ -151,4 +304,11 @@ def store_for(
                 }
             )
         )
-    return RubricStore(settings.paths.rubrics_dir, author, cfg.rubric_selftest, cfg.rubric_variant)
+    return RubricStore(
+        settings.paths.rubrics_dir,
+        author,
+        cfg.rubric_selftest,
+        cfg.rubric_variant,
+        cfg.teacher,
+        cfg.rubric_review,
+    )

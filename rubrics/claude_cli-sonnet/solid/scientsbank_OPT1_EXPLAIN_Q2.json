@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/OPT1_EXPLAIN_Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that bulb A is still part of a complete/closed circuit (closed path/loop) with the battery, so current can still flow through it (equivalent wording, e.g. 'the circuit is still complete for A', 'A is on its own loop with the battery', 'A is in parallel so current still flows'). Do not accept vague answers such as 'because it is parallel' with no mention of a complete path/current still flowing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying bulb A still has a complete (closed) circuit with the battery so current still flows through it. No marks for restating the outcome (e.g. 'A stays lit') or for vague answers without the idea of a complete path.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

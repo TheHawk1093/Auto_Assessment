@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/b3bdd15d99",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct final answer x = 9, reached through valid steps: log2(2x\u22122)=2\u00b2=4, so 2x\u22122=2\u2074=16, so x=9. Equivalent methods earn the mark. A single invalid step or a wrong final answer earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark (1) only for x = 9 with valid working. Any wrong step or wrong final answer earns 0. There is no partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "log2(log2(2x\u22122)) = 2 \u2192 log2(2x\u22122) = 4 \u2192 2x\u22122 = 16 \u2192 x = 9. Check: 2\u00b79\u22122 = 16, log2 16 = 4, log2 4 = 2."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

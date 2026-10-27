@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/14c9439d12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a correct final expression for q in terms of a and b, reached through mathematically valid steps with no incorrect step. Equivalent forms and correct alternative methods are accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if every step is valid and the final expression for q in terms of a and b is correct. Any wrong step or a wrong or missing final answer earns 0. The model answer gives no explicit expression, so the marker must check the result independently.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

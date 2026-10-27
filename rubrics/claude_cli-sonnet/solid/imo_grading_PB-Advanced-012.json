@@ -1,0 +1,75 @@
+{
+  "question_key": "imo_grading/PB-Advanced-012",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Rules out n=2 and n=4 by reducing to Fermat-type equations with no solutions in positive integers: n=2 gives p^2=a^4+b^4, i.e. x^2=y^4+z^4; n=4 gives (p^2)^2=a^4+b^4, the same equation (or a^4+b^4=c^4 for n=4 is also accepted). The student must state that this has no solution (citing the classical Fermat result is acceptable, or giving the descent). Also note n=2,3,4 are the only cases to exclude, because n\u22655 is the claim.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Handles only one of n=2 and n=4 correctly, or handles both but without a clear reduction to the nonexistence of solutions to x^2=y^4+z^4."
+          }
+        ]
+      },
+      {
+        "id": "P1b",
+        "description": "Sets up n=3: shows gcd(a,b)=1 (if a prime p divides a then p divides b, so p^4 divides p^3, contradiction) and that p is odd (p=2 is impossible since a^4+b^4 is 2 mod 16 for odd a,b, or not a power of 8). Hence p\u22611 mod 4, so p is a sum of two squares.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "For n=3, factors a^4+b^4=(a^2+ib^2)(a^2-ib^2) in Z[i], shows the two factors are coprime (a common divisor divides 2a^2 and 2b^2, and p is odd, gcd(a,b)=1), so each is a unit times a cube of a Gaussian integer. Writes p=c^2+d^2 and a^2+ib^2=unit\u00b7(c+di)^3 with the correct norm. Equivalent real-number methods are acceptable.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Uses the Gaussian factorization but does not justify coprimality or the unit/cube step."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Expands (c+di)^3 and handles the units to obtain, up to sign and swapping c,d: a^2=c(c^2-3d^2), b^2=d(3c^2-d^2), with p=c^2+d^2 and gcd(c,d)=1.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Analyses the gcds of the factors (for example gcd(c,c^2-3d^2) divides 3, and gcd(d,3c^2-d^2) divides 3) to deduce that c, d, and the cofactors are squares or 3 times squares (case analysis on divisibility by 3 and signs). This yields an equation of the form x^2+3y^4=z^4 or an equivalent such as u^4-3v^4=w^2 or x^4-3x^2y^2+... =square, in positive integers.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Starts the gcd analysis correctly but the cases (including 3 | c or d) are incomplete, or only the equation is stated without derivation."
+          }
+        ]
+      },
+      {
+        "id": "P5",
+        "description": "Proves the derived equation has no nontrivial solution (for example by infinite descent) and concludes the contradiction for n=3. Merely asserting the nonexistence with no argument earns at most 0.5.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need all of n=2, 3, 4 excluded: n=2,4 via x^2=y^4+z^4 having no solution, n=3 via the Gaussian-integer parametrization and a descent contradiction. Give part marks for correct steps even if a later step fails (e.g. the parametrization a^2=c(c^2-3d^2), b^2=d(3c^2-d^2) without finishing). Any valid different method for n=3 earns the same marks, mapped to the steps; a bare claim of n\u22655 earns nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Need to exclude n=2,3,4.\nn=2: p^2=a^4+b^4 is x^2=y^4+z^4 (x=p), no positive solutions (Fermat). n=4: p^4=a^4+b^4 is x^2=y^4+z^4 with x=p^2, impossible likewise.\nn=3: p^3=a^4+b^4. If p|a then p|b so p^4|p^3, impossible; hence gcd(a,b)=1. p=2 impossible (a,b odd gives sum 2 mod 16, not 8). So p is odd, p\u22611 mod 4, p=c^2+d^2.\nIn Z[i]: p^3=(a^2+ib^2)(a^2-ib^2); the factors are coprime (common divisor divides 2a^2, 2b^2, and 2, and p odd, gcd(a,b)=1). So a^2+ib^2=unit\u00b7(c+di)^3 with c^2+d^2=p. Expanding (c+di)^3=c(c^2-3d^2)+i d(3c^2-d^2); after absorbing units (and swapping c,d / signs): a^2=c(c^2-3d^2), b^2=d(3c^2-d^2), gcd(c,d)=1.\ngcd(d,3c^2-d^2) divides 3, so d and 3c^2-d^2 are squares up to the factor 3 (case analysis mod 3). This produces a relation of the form x^2+3y^4=z^4 (equivalently z^4-3y^4=x^2) in positive integers. This has no nontrivial solution by infinite descent, contradiction.\nTherefore n\u22602,3,4, so n\u22655."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 6 of 7."
+  ],
+  "review_notes": []
+}

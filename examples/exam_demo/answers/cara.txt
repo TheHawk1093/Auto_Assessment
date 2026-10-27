@@ -1,0 +1,4 @@
+1. The sender gives sequence numbers to the data, the receiver acks them cumulatively, and lost segments are retransmitted after a timeout or after three duplicate acks. Checksums catch errors. Flow control uses the advertised window.
+2a. BDP = capacity x propagation delay = the number of bits in flight.
+2b. 10 Mbps x 20 ms = 200,000 bits (10^7 x 0.02).
+3.

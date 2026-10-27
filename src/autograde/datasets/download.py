@@ -62,6 +62,8 @@ SAMPLES = {
     "processbench": [  # maths, step-labelled solutions (Apache-2.0)
         ("gsm8k.json", HF + "Qwen/ProcessBench/resolve/main/gsm8k.json", None),
         ("math.json", HF + "Qwen/ProcessBench/resolve/main/math.json", None),
+        ("olympiadbench.json", HF + "Qwen/ProcessBench/resolve/main/olympiadbench.json", None),
+        ("omnimath.json", HF + "Qwen/ProcessBench/resolve/main/omnimath.json", None),
     ],
     "scibench": [  # college physics, chemistry and maths problems with worked solutions
         (f, HF + f"xw27/scibench/resolve/main/{f}", None)
@@ -86,6 +88,13 @@ SAMPLES = {
     ],
     "asap_sas": [  # ASAP short answers, 10 prompts, score 0 to 3; the prompt holds the rubric
         ("train.csv", HF + "nlpatunt/D_ASAP-SAS/resolve/main/train.csv", 3_000_000)
+    ],
+    "imo_grading": [  # olympiad proofs graded 0 to 7 by humans, with grading guidelines (CC BY)
+        (
+            "train.parquet",
+            HF + "Hwilner/imo-gradingbench/resolve/main/data/train-00000-of-00001.parquet",
+            None,
+        )
     ],
     "ielts": [  # IELTS essays with examiner feedback; first 1.5 MB only
         (

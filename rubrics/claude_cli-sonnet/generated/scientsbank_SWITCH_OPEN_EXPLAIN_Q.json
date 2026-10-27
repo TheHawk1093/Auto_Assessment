@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/SWITCH_OPEN_EXPLAIN_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an open switch creates a gap/break in the circuit (so the circuit is incomplete/not closed). Equivalent wording accepted, e.g. 'the circuit is broken' or 'not a complete loop'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating there is a gap or break (incomplete circuit) caused by the open switch. No mark for answers that give only an effect (e.g. 'bulb is off') without mentioning the gap/break/incomplete circuit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

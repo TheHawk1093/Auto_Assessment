@@ -1,0 +1,61 @@
+{
+  "question_key": "imo_grading/PB-Advanced-023",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the final answer n = 3 (James can always succeed with at most 2 penalties, and cannot guarantee success with at most 1).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Lower bound: proves James cannot guarantee reaching the last row with fewer than 2 penalties, i.e. n \u2265 3. Needs a valid adversary argument: for any James strategy Peter can arrange his cells so that James is penalized at least twice (e.g. the first-penalty cell is learned/forced, and because mines in different rows lie in different columns, the information from the first penalty does not let James avoid a second one). A bare claim without argument earns nothing. Showing only that at least 1 penalty is forced earns the lower level.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Shows only that at least one penalty is unavoidable, or gives an incomplete adversary argument for two penalties."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Upper bound, general setup: gives an explicit strategy using information from the rule (exactly one column has no mine, one mine per middle row, no two in a column) and from the first penalty to locate safe cells/paths, and shows total penalties \u2264 2 in the case where the mine in row 2 is not in an edge column (first or last column).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Strategy is described with the right idea but the bound of 2 penalties is not fully justified."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Upper bound, edge case: handles the case where the row-2 mine lies in the leftmost or rightmost column (or equivalently the stone's route in row 2 is at the edge), and shows that at most 2 penalties still suffice.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Edge case is addressed with a plausible strategy but the justification has gaps."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need answer 3, a justified lower bound, and a strategy covering both interior and edge cases. Partial credit for incomplete but correct-direction arguments as in the levels. A wrong final answer with no valid lower-bound or strategy reasoning earns nothing for P1; credit for P2\u2013P4 only for correct, rigorous parts.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Answer: n = 3. Peter's mines occupy 3000 of the 3001 columns, one per middle row. Lower bound: Peter can force James to be penalized at least twice (James's first probe of row 2 can be made a mine, and after returning he can be forced to hit another mine), so n \u2265 3. Upper bound: James has a strategy that uses what the first penalty reveals (the location of a mine in row 2 and the one-per-column rule) to find a safe route, handling separately the case where the row-2 mine is interior (the stone can go around it using neighbouring columns) and the case where it is at an edge column; in all cases at most 2 penalties occur. So the smallest n with success before n penalties is 3."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 2 of 7."
+  ],
+  "review_notes": []
+}

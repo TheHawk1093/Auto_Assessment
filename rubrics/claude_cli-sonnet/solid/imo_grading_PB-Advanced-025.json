@@ -1,0 +1,61 @@
+{
+  "question_key": "imo_grading/PB-Advanced-025",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows n^k has exactly k digits in base 2n (n^k < (2n)^k, and digits are indexed i=0..k-1; digits at positions \u2265k are 0). Also the digit formula: the i-th digit (coefficient of (2n)^i) equals floor(n^k/(2n)^i) mod 2n = floor(n^{k-i}/2^i) mod 2n.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only one of the two: the digit count k, or the digit formula, correctly stated/justified."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Handles digit i=0: n^k mod 2n = n (since n odd, n^k = n\u00b7n^{k-1} with n^{k-1} odd), so digit is n > d for n>d. Any other correct treatment of this case also earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "For 1\u2264i\u2264k-1, writes n^{k-i-1} = 2^i q + r with 0\u2264r<2^i and r odd (so r\u22651) because n is odd (uses oddness essentially), and gets n^{k-i}/2^i = nq + nr/2^i, hence floor = nq + floor(nr/2^i) with floor(nr/2^i) < n. (Equivalent decomposition accepted.)",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct decomposition but does not establish r\u22651 / uses oddness incorrectly or omits it."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Reduces mod 2n: digit = n\u00b7(q mod 2) + floor(nr/2^i). If q is odd, digit \u2265 n; if q is even, digit = floor(nr/2^i) \u2265 floor(n/2^i) \u2265 floor(n/2^{k-1}). Concludes all digits > d once n is large.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Chooses an explicit N (e.g. N = 2^{k-1}(d+1), or any N with n/2^{k-1} \u2265 d+1 and n>d) and concludes the statement for all odd n>N, covering all digits i=0..k-1.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete valid proof; the key idea is using oddness of n to show n^{k-i-1} mod 2^i is nonzero, giving each digit \u2265 min(n, floor(n/2^{k-1})). Part marks for correct steps (digit count, digit formula, partial case analysis). A proof that only checks small cases or examples earns little; unjustified claims that digits are large earn nothing for that step.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let n be odd, n>N = 2^{k-1}(d+1). Since n^k<(2n)^k, n^k has k digits (positions 0..k-1). Digit i = floor(n^k/(2n)^i) mod 2n = floor(n^{k-i}/2^i) mod 2n.\ni=0: n^k mod 2n = n (n^{k-1} odd, so n^k = n\u00b7odd \u2261 n mod 2n). n>d.\n1\u2264i\u2264k-1: write n^{k-i-1} = 2^i q + r, 0\u2264r<2^i; r is odd since n is odd, so r\u22651. Then n^{k-i}/2^i = nq + nr/2^i, with 0<nr/2^i<n. So floor = nq + floor(nr/2^i), and floor(nr/2^i)<n. Mod 2n the digit is n(q mod 2) + floor(nr/2^i). If q is odd, digit \u2265 n > d. If q is even, digit = floor(nr/2^i) \u2265 floor(n/2^{k-1}) \u2265 d+1 > d since n > 2^{k-1}(d+1). (For i=k-1: n^0=1, q=0, r=1, digit = floor(n/2^{k-1}).) Hence all digits exceed d. Final: N = 2^{k-1}(d+1) works."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

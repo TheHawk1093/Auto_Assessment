@@ -1,0 +1,39 @@
+{
+  "question_key": "processbench_hard/23a2905cb9",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer: the maximum value is n-1 (a single final value, stated clearly).",
+        "marks": 0.4,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Shows the value n-1 is attained, e.g. a_1 = S, a_i=0 otherwise, b_1 = 0, b_2=...=b_n = S/(n-1), with the ratio correctly computed as S^2/(S^2/(n-1)) = n-1. Equivalent valid equality cases earn the mark.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Gives a valid proof of the upper bound ratio <= n-1 for all admissible a_i,b_i (e.g. rewrite as (sum a_i^2 + sum a_i b_i)/(sum b_i^2 + sum a_i b_i) and bound using sum a_i = sum b_i, Cauchy-Schwarz etc.), with no incorrect or unjustified steps. Any correct alternative method is accepted.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the correct maximum n-1, an attaining example, and a fully valid upper-bound proof. Any wrong step or a wrong final answer means the solution earns nothing overall, per the model answer's rule. Equivalent wording and alternative correct methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Write the ratio as (\u03a3a\u00b2 + \u03a3ab)/(\u03a3b\u00b2 + \u03a3ab). The maximum is n-1, attained at a=(S,0,...,0), b=(0,S/(n-1),...,S/(n-1))."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0.6 of 1."
+  ],
+  "review_notes": []
+}

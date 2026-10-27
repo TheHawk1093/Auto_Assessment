@@ -9,10 +9,9 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from autograde.cli.common import write_json
-from autograde.config import Settings
-from autograde.llm import LLMError, build_client
-from autograde.ocr.hosted import extract_sheet_hosted
-from autograde.ocr.sheets import extract_sheet, group_pages, to_items, unsure_spans
+from autograde.config import ReaderConfig, Settings
+from autograde.ocr.readers import build_readers, read_routed
+from autograde.ocr.sheets import group_pages, to_items, unsure_spans
 
 log = logging.getLogger(__name__)
 
@@ -21,11 +20,14 @@ def register(sub) -> None:
     p = sub.add_parser("ocr", help="read photographed answer sheets into items.jsonl")
     p.add_argument("folder", type=Path, help="images named <sheet>_p<page>.jpeg")
     p.add_argument("--out", type=Path, required=True, help="folder to write the results to")
-    p.add_argument("--model", help="override the model in the config")
+    p.add_argument(
+        "--model",
+        help="override the configured reader with this model (Claude unless --provider is set)",
+    )
     p.add_argument("--effort", help="override the effort in the config")
     p.add_argument(
         "--provider", choices=["gemini", "openrouter"],
-        help="read with a free hosted model instead of Claude (needs --model; keys in .env)",
+        help="override the configured reader: a free hosted model (needs --model; keys in .env)",
     )  # fmt: skip
     p.add_argument("--plain", action="store_true", help="hosted models: plain transcription only")
     p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
@@ -34,30 +36,29 @@ def register(sub) -> None:
 
 
 def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
-    cfg = settings.llm.model_copy(
-        update={k: v for k, v in {"model": args.model, "effort": args.effort}.items() if v}
-    )
     if args.provider and not args.model:
         raise SystemExit("--provider needs --model")
-    client = None if args.provider else build_client(cfg)
+    if args.provider or args.model:  # flags override the configured reader and fallbacks
+        spec = ReaderConfig(
+            provider=args.provider or "claude_cli", model=args.model, plain=args.plain
+        )
+        specs, routes = [spec], []
+    else:
+        specs, routes = [settings.ocr.reader, *settings.ocr.fallbacks], settings.ocr.routes
+    readers = build_readers(specs, args.effort)
+    special = build_readers([r.reader for r in routes], args.effort)
+    pairs = list(zip(routes, special, strict=True))
     keys = json.loads(args.key.read_text(encoding="utf-8")) if args.key else {}
     args.out.mkdir(parents=True, exist_ok=True)
     sheets = group_pages(args.folder, args.per_page)
 
     def read(name: str):
         log.info("reading %s (%d pages)", name, len(sheets[name]))
-        try:
-            if args.provider:
-                return extract_sheet_hosted(
-                    name, sheets[name], args.provider, args.model, args.plain
-                )
-            return extract_sheet(name, sheets[name], client)
-        except LLMError as exc:  # keep the pages that worked; free endpoints are flaky
-            log.error("skipped %s: %s", name, str(exc)[:200])
-            return None
+        return read_routed(readers, pairs, name, sheets[name])
 
     # free tiers are rate-limited, so hosted models are read one page at a time
-    with ThreadPoolExecutor(max_workers=1 if args.provider else len(sheets)) as pool:
+    workers = 1 if any(r.hosted for r in readers + special) else len(sheets)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
         results = [r for r in pool.map(read, sheets) if r is not None]
     lines = []
     for sheet in results:
@@ -66,10 +67,12 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
         )
         items = to_items(sheet, key=keys.get(sheet.sheet))
         lines += [it.model_dump_json() for it in items]
-        print(f"{sheet.sheet}: {len(items)} items, {len(unsure_spans(sheet))} unsure spans")
+        print(f"{sheet.sheet}: {len(items)} items, {len(unsure_spans(sheet))} unsure spans, "
+              f"read by {sheet.reader}")  # fmt: skip
     (args.out / "items.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    if client:
-        write_json(args.out / "usage.json", client.usage.as_dict())
-        print(f"wrote {args.out / 'items.jsonl'}  cost ${client.usage.cost_usd:.3f}")
-    else:
-        print(f"wrote {args.out / 'items.jsonl'}  (free hosted model, no cost)")
+    clients = [r.client for r in readers + special if r.client]
+    cost = sum(c.usage.cost_usd for c in clients)
+    if clients:
+        write_json(args.out / "usage.json", [c.usage.as_dict() for c in clients])
+    done = f"{len(results)}/{len(sheets)} sheets"
+    print(f"wrote {args.out / 'items.jsonl'}  ({done}, Claude cost ${cost:.3f})")

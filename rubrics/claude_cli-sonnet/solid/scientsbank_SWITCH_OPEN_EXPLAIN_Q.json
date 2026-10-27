@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/SWITCH_OPEN_EXPLAIN_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an open switch creates a gap/break in the circuit (so the circuit is incomplete/not closed). Equivalent wording such as 'breaks the circuit' or 'the circuit is not complete' is acceptable. Mentioning that current stops flowing is an acceptable addition but on its own, without the idea of a gap/break/incomplete circuit, does not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the open switch leaves a gap or break, so the circuit is incomplete. No mark for only saying 'the circuit does not work' or 'the bulb is off' with no mention of a gap, break or incomplete circuit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,39 @@
+{
+  "question_key": "processbench_hard/fc86ea65db",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the final answer: the only solution is f(x)=1/x for all positive rationals x.",
+        "marks": 0.3,
+        "partial_credit": "No partial credit; a different or additional function gives 0 for this point.",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Verifies that f(x)=1/x satisfies (1): LHS f(y/x^2)=x^2/y and RHS x^3\u00b71/(xy)=x^2/y.",
+        "marks": 0.2,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Proves uniqueness with valid steps, using only the equation and that f maps Q+ to Q+. Any correct method is accepted. Typical route: show f is injective or find f(1)=1, derive a relation such as f(x^2 y)-type or multiplicative identities, and conclude f(x)=1/x for every positive rational x. No unjustified claims such as assuming f is multiplicative or monotone without proof.",
+        "marks": 0.5,
+        "partial_credit": "Award 0.25 only for substantial, correct progress, e.g. proving f(1)=1 or injectivity, or a correct key functional relation, without completing the proof. Any invalid step in the main argument limits this to 0.25.",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the answer f(x)=1/x, a verification, and a valid uniqueness proof. Part marks are given for the answer, the verification, and partial progress in the proof. A wrong final answer gets no marks for P1 and cannot earn full marks. Equivalent wording and other correct methods earn the marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "f(x)=1/x is the only solution. Check: f(f(x)^2 y)=f(y/x^2)=x^2/y, and x^3 f(xy)=x^3/(xy)=x^2/y. Uniqueness follows from the standard argument for this problem (IMO Shortlist 2013-style): use the equation to show f(1)=1, then derive f(x)\u00b7x type relations (e.g. via exponent/prime-valuation argument or f(f(x)^2)=x^3 f(x)) and conclude f(x)=1/x."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0.5 of 1."
+  ],
+  "review_notes": []
+}

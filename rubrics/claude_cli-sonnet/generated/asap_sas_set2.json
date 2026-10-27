@@ -1,0 +1,42 @@
+{
+  "question_key": "asap_sas/set2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Valid conclusion from the data: plastic B stretched the most (about 22\u201323 mm) and plastic A the least (10\u201312 mm); ranking B > D > C > A (most to least stretchable). Must be supported by data. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only the most or least stretchable plastic is identified, or the conclusion is correct but not supported with data.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Identifies only the most or least stretchable plastic, or gives a correct conclusion without data support."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "First valid improvement to design/validity, e.g. more trials (more than two) and averaging; use identical sample size/dimensions/thickness for all plastics; use the same fixed weight stated and controlled; measure more precisely or time accurately.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Second, different valid improvement from the same kind of list (e.g. control temperature, test more samples of each plastic, specify and keep the same mass of weights, use the same length/width of samples). Must be distinct from P2.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a data-supported conclusion (B most stretchy, A least) plus two distinct, valid improvements. Part marks for incomplete conclusions. Repeating the same improvement in different words earns only one mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Conclusion: Plastic B stretched the most (22 and 23 mm) and plastic A the least (10 and 12 mm); order of stretchability B > D > C > A. Improvements: (1) do more trials and average the results; (2) control variables, e.g. use samples of identical size/thickness and state the same weight mass for every plastic (also constant temperature)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

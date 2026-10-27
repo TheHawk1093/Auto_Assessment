@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/9d6ab665b0",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer 510510 (= 2\u00b73\u00b75\u00b77\u00b711\u00b713\u00b717), with every step of the supporting argument mathematically valid. Any wrong step or wrong final answer earns nothing. Equivalent wording and correct alternative methods are accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only for 510510 with a fully valid argument (every prime \u226417 divides all P(n), and none appears to a higher power, e.g. via P(p) or P(1)=17!). Any wrong step or wrong answer earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "P(1)=17!, so the gcd divides 17! and only the primes 2,3,5,7,11,13,17 can occur. For a prime p \u2264 17, if p does not divide n, the numbers kn+1 for k=0,...,p-1 cover all residues mod p, so one is divisible by p (k=0 gives 1, so the residues of kn+1 over k=0..p-1 include 0 mod p). Thus p divides P(n) for all n not divisible by p. If p divides n, then p divides the factor n itself. So every such prime divides every P(n). For the exponent: take n=p (p \u2264 13 is \u22642016; also 17). Then n=p contributes exactly one factor p and every factor kp+1 is coprime to p, so v_p(P(p)) = 1. Hence each prime appears exactly once in the gcd. Answer: 2\u00b73\u00b75\u00b77\u00b711\u00b713\u00b717 = 510510."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

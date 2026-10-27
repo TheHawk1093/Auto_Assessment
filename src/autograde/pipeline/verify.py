@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from autograde.schemas import EPS, Deducted, Grading, PointVerdict, Reading, Rubric
+from autograde.schemas import EPS, Deducted, Grading, PointVerdict, Reading, Rubric, RubricPoint
 
 _FRAGMENT_SPLIT = re.compile(r"\s*(?:\.\.\.|…|\s\|\s)\s*")
 _MIN_FRAGMENT = 3
@@ -86,22 +86,57 @@ def _check_verdict(v: PointVerdict, worth: float, answer: str, require_evidence:
     return out
 
 
-def apply_mark_rule(grading: Grading, rubric: Rubric, partial_weight: float) -> Grading:
+GRANULARITY_SHARES = {"none": (), "half": (0.5,), "quarter": (0.25, 0.5, 0.75)}
+
+
+def allowed_shares(
+    point: RubricPoint | None, partial_weight: float, granularity: str = "rubric"
+) -> tuple[float, ...]:
+    """The shares of a point's marks that a partial verdict may be worth.
+
+    A point's own levels win (the rubric writer already followed the teacher's granularity);
+    otherwise the teacher's granularity; otherwise the one default share.
+    """
+    if point is not None and point.levels:
+        return tuple(sorted(lv.share for lv in point.levels))
+    if granularity in GRANULARITY_SHARES:
+        return GRANULARITY_SHARES[granularity]
+    return (partial_weight,)
+
+
+def snap(fraction: float, shares: tuple[float, ...]) -> float:
+    """The allowed share nearest to what the model proposed (the lower one on a tie)."""
+    if not shares:
+        return 0.0
+    return min(sorted(shares), key=lambda s: abs(s - fraction))
+
+
+def apply_mark_rule(
+    grading: Grading, rubric: Rubric, partial_weight: float, granularity: str = "rubric"
+) -> Grading:
     """Turn each verdict into marks in code.
 
-    met = full marks, partial = partial_weight x full marks, not_met = 0.
+    met = full marks, not_met = 0, partial = one of the point's allowed shares of its marks
+    (the one nearest to the model's own figure; with a single share that share).
 
     The model decides the verdict (what the student achieved). Code decides what a verdict is
     worth, so one setting controls how generous the marking is and marks always agree with
     the verdicts that the feedback is written from. The model's own figure is kept in model_marks.
     """
-    worth = {p.id: p.marks for p in rubric.points}
+    points = {p.id: p for p in rubric.points}
     out: list[PointVerdict] = []
     for v in grading.verdicts:
-        full = worth.get(v.point_id, v.marks_awarded)
-        marks = (
-            full if v.status == "met" else partial_weight * full if v.status == "partial" else 0.0
-        )
+        point = points.get(v.point_id)
+        full = point.marks if point else v.marks_awarded
+        if v.status == "met":
+            marks = full
+        elif v.status == "partial":
+            proposed = v.model_marks if v.model_marks is not None else v.marks_awarded
+            marks = full * snap(
+                proposed / full if full else 0.0, allowed_shares(point, partial_weight, granularity)
+            )
+        else:
+            marks = 0.0
         out.append(
             v.model_copy(
                 update={

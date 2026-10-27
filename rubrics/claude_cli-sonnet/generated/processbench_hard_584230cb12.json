@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/584230cb12",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is mathematically valid (e.g. 10d = 520, d = 52) and the final answer is 2d = 104. Any correct alternative method (e.g. 5d + 4 = 264, or finding 2d directly) earns the mark. Any invalid step or a wrong final answer earns no marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: all steps are valid and the final answer is 2d = 104. No marks if there is any invalid step or the final answer is wrong, for example giving d = 52 instead of 2d. No partial credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "10d + 8 = 528, so 10d = 520, so d = 52, so 2d = 104."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

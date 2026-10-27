@@ -1,0 +1,43 @@
+{
+  "question_key": "asap_sas/set9",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the overall organization: problem and solution, or cause and effect (a problem is introduced, its causes and effects are explained, and attempted or hoped-for solutions are discussed). 'Sections with headings' alone, or 'chronological' alone, does not earn this mark.",
+        "marks": 1.0,
+        "partial_credit": "Half if only part of the problem/solution or cause/effect structure is identified.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Partly identifies the structure, e.g. says the article presents a problem (or causes, or effects) but not the solutions, or names the structure in a vague way such as 'it describes a problem and what is done about it' without a clear label. Mere topic summary or 'organized in sections' earns nothing."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Supports the answer with at least two accurate details from the article that show the structure, e.g. the 'What Is Space Junk?' section explaining how junk forms; the 2009 satellite collision or 2008 tool bag as causes; the damage tiny fragments cause as effects; the catalogues, multiple walls, stronger spacesuits or hoped-for cooperation as solutions. Details must be tied to the structure. Quotes or paraphrases are both acceptable.",
+        "marks": 1.0,
+        "partial_credit": "Half for one accurate detail or two unlinked details.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives only one relevant, accurate detail, or gives two details that are not linked to the structure."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: names problem/solution (or cause/effect) and backs it with two accurate article details linked to that structure. Half on each point for a partial structure or only one detail. No marks for a plain summary with no mention of structure, or for wrong details.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The author organizes the article by problem and solution (cause and effect). The first section, \"What Is Space Junk?\", explains how space junk is created: satellites and spacecraft launched since 1957 become dead, uncontrolled objects in orbit. \"Crash Course\" gives the causes and examples: the 2009 satellite collision and the 2008 lost tool bag. \"Little Bits, But a Big Deal\" explains the effects (tiny fast fragments can damage spacecraft), then covers attempted solutions (catalogues, multiple walls, stronger spacesuits) and the problem that persists, with agencies hoping for cooperation."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": [
+    "P1 contradicts itself: it says 'sections with headings' alone does not earn the mark, yet its half-mark level gives credit for 'it is organized in sections', and the marking stance gives no marks for answers with no mention of structure.",
+    "P1's half-mark example 'it explains the problem of space junk' only names the topic, not the organization, so it rewards a plain summary."
+  ]
+}

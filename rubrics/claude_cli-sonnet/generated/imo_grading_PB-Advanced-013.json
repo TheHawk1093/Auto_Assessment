@@ -1,0 +1,56 @@
+{
+  "question_key": "imo_grading/PB-Advanced-013",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up a valid proof strategy: induction (or equivalent telescoping/summation argument) in an appropriate direction, with correct base case (e.g. n=1 or n=2 case, or the identity 1/b_1 style initial step) and a clear reduction of the n-term claim to a statement about the terms.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions induction or an appropriate approach but base case or reduction is missing/incomplete."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States and proves a key localization lemma, e.g. an inequality bounding 1/(2^k(1+x^{2^k})) (or the sum of two adjacent terms/ merged variables like replacing a_k,a_{k+1} by a product) from below by a simple expression such as 1/2^k - something telescoping, or the equivalent two-variable inequality 1/(1+x^2)+1/(1+y^2)-type bound with correct proof.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.33,
+            "says": "Finds a plausible localization inequality but proof is incomplete or only partly correct."
+          },
+          {
+            "share": 0.67,
+            "says": "Lemma correct, with a minor gap in proof."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Correctly uses the hypotheses (ordering a_1\u2264\u2026\u2264a_n and product 1) to apply the lemma and completes the argument, obtaining the sum \u2265 1/2 \u2212 1/2^{n+1} with the telescoping/induction step verified.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Application is mostly right but has minor mistakes or does not fully verify the final bound."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for a complete, correct proof by any valid method; equivalent wording and alternative correct approaches earn the marks. Part marks for a suitable induction setup and for finding a correct localization inequality. Minor verification errors lose only small marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

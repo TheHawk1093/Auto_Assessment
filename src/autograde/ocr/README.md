@@ -134,3 +134,35 @@ Matrix scoring now matches each matrix row as a run of numbers, so multi-line an
 | RapidOCR tuned | 56% / 53% | 0% / 0% | 0.263 / 60% |
 
 Same 20 answers; differences of 0.03 to 0.05 are one or two answers, so these are tied within noise. Nemotron Super missed the page 4 matrices; dots missed one row-operation string. Plain mode gives page text only (no question split), and the assignment and grading steps still used Claude Haiku. Caveat: free endpoints change or disappear; the Gemma models were unavailable all day.
+
+## Different models for different tasks (2025-10-26)
+Reading is now its own setting. `ocr:` in the config names a reader and an ordered fallback chain (`ocr/readers.py`); marking, rubric writing, judging and the student keep their own settings (`llm`, `pipeline.rubric_model`, `judge`, `student`). Each page is read by the first reader that works and the sheet records which one (`reader: provider:model`). Flags `--provider/--model` override the chain for a single run.
+Example: `configs/ocr_free.yaml` reads with Gemini 3.5 Flash-Lite, then Gemini 3.1 Flash-Lite, then free dots-3-note (plain), then Claude Haiku, and marks with DeepSeek via Goedel. Live check: all 9 photos read by the first reader at no Claude cost.
+Gemma 4 (26B and 31B, free) still returns 429 on every request (probed again 2025-10-26).
+
+## Choosing the reader by what the page says
+
+`ocr.routes` in the config re-reads a page with a specialist when the first read's text looks like
+German prose or like formulas/matrices (`classify` in `readers.py`: German function words and
+umlauts, and the share of digits and operators). If the specialist fails, the first read is kept.
+The classifier labels all 9 real pages sensibly (German pages `german`; matrix, formula and number
+pages `math`; the prose-heavy Network_dynamics_p3 neither).
+
+No route is switched on in `configs/ocr_free.yaml`: per page, Gemini 3.5 Flash-Lite was at or near
+the best on every kind (German, numbers, matrices), and the specialists tried (Nemotron, dots)
+were worse on matrices, not better. Add a route when a model shows a real advantage on one kind.
+
+## Gemma 4 through the Gemini API (free)
+
+Gemma 4 26B and 31B are served by the Gemini API on the free tier, with a quota separate from
+OpenRouter's (where both stay at 429). They are on the allow-list in `hosted.py`. Plain mode only,
+about 90 s a page.
+
+| Model | Result on the 9 pages |
+|---|---|
+| Gemma 4 26B | 6 of 8 scored pages match Gemini 3.5 Flash-Lite (96-100% near-match recall); German_p2 and Network_dynamics_p1 came back blank. |
+| Gemma 4 31B | Mostly HTTP 500/503 ("high demand"); not usable as a reader yet. |
+
+A blank read now counts as a failure in `read_with_fallback`, so the next reader is tried. Gemma 4
+26B sits in the fallback chain of `configs/ocr_free.yaml` after the two Gemini Flash-Lite models:
+a free, hosted, no-Claude choice that is slow and not first-choice quality.

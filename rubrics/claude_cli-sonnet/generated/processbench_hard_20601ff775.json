@@ -1,0 +1,44 @@
+{
+  "question_key": "processbench_hard/20601ff775",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Observes that the circumcircle of P_A P_B P_C is the reflection of the circumcircle of ABC across P, so it has the same radius R and center 2P\u2212O (O = circumcenter of ABC).",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Argues that two distinct equal circles meet in exactly one point only when externally tangent (center distance 2R), giving |PO| = R; notes P = O gives identical circles (not good). So the locus is the circle of radius R centered at O.",
+        "marks": 0.35,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Computes the circumradius R = abc/(4K) = 13\u00b714\u00b715/(4\u00b784) = 65/8 (area K = 84 from Heron).",
+        "marks": 0.2,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Final answer: area = \u03c0R\u00b2 = 4225\u03c0/64.",
+        "marks": 0.2,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only if all steps are valid and the final answer 4225\u03c0/64 is correct; any wrong step or wrong final answer earns 0. Equivalent wording and alternative valid methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Reflected circle has same radius R and center 2P\u2212O. Equal circles touch at exactly one point iff centers are 2R apart, so |PO| = R. Locus is a circle of radius R about O. R = (13\u00b714\u00b715)/(4\u00b784) = 65/8. Area = \u03c0(65/8)\u00b2 = 4225\u03c0/64."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -167,3 +167,12 @@ Two more were wrongly marked "needs sign-up" at first and are now fetched:
 
 Problem statements for EDU-CIRCUIT-HW are withheld by the authors (textbook copyright), so questions are known only by id. The full archive (9 GB, 3,765 page images) was not downloaded. Not downloaded: Eedi (sign-up). Loaders are not written yet; these folders are raw files.
 
+
+### Harder sets added for the solid-rubric tests (`download --samples`)
+
+| Category | Folder | What is there | Marks available |
+|---|---|---|---|
+| Olympiad proofs | imo_grading | IMO-GradingBench (Google DeepMind, CC BY 4.0, HF mirror `Hwilner/imo-gradingbench`): 1,000 model-written proofs to 30 olympiad problems, with grading guidelines and the human grader's note | Score 0 to 7 (300 zeros, 300 sevens, 400 in between) |
+| Maths, subtle errors | processbench_hard | The olympiadbench (1,000) and omnimath (1,000) parts of ProcessBench | Whole-solution correct or not |
+
+Known defect in ASAP-SAS: the prompt of set 4 holds two different questions (pandas and koalas, and the word "invasive"), and students answered one or the other, so no scheme can fit all its answers. Results are also reported without set 4. Loaders: `load_imo_grading`, `load_processbench_hard` in `datasets/extra.py`; both are measurement only.

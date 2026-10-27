@@ -1,0 +1,80 @@
+{
+  "question_key": "imo_grading/PB-Advanced-021",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Reformulates the rule: for m>N, a_m equals the number of occurrences of a_{m-1} among a_1..a_{m-1} (including itself). So after the k-th occurrence of a value comes the number k. Also shows that infinitely many distinct values occur. Reason: if only finitely many values occurred, some value would occur infinitely often, its occurrence index would be unbounded, and that index would be forced to appear as a value. Consequently 1 occurs infinitely often, since each new value is followed by 1.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives the reformulation but does not show that infinitely many distinct values occur, or does not use it."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Proves that the set S of integers occurring infinitely often is finite. Equivalent valid arguments are accepted, for example a counting argument. The number of occurrences of k is about the number of values occurring at least k times (a near self-conjugate shape of the counts). Alternatively the alternation of P3 can be used. A bare assertion without justification earns nothing. Also gives or implies that S={1,..,s} for some s\u22651, or at least that the elements of S are bounded.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Only partial observations are made, such as every value k\u22651 appears or occurrence counts are bounded by the number of distinct values, and no rigorous proof of finiteness is given."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Shows that eventually the sequence alternates between elements of S (small, high-count values) and elements not in S (large values, each occurring finitely often). Reason: a large value c follows a value whose count is c. After c comes its own occurrence index, which is at most |S|, so a small value. After a small value comes its large count. Concludes that one parity class (all boys or all girls) is eventually contained in the finite set S. The other class is eventually outside S.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States the alternation but justifies it only heuristically, or has a gap in showing the small values stay in one parity class."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Derives the recurrence on the small class. Let e_t be the small values and f_i the counts of i\u2208S. Then e_{t+1}=#{i\u2208S : f_i \u2265 f_{e_t}}, with the count taken after incrementing f_{e_t}. The reason is that the large value c=f_{e_t} appears once for each small value that has reached count c, and its occurrence index is the number of such values. So the evolution of e_t is determined by the vector of counts.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Shows that the count differences f_i\u2212f_j (i,j\u2208S) stay bounded after some time. Equivalently, it finds a finite set of states (e_t, relative counts) that the process cannot leave. Each i\u2208S occurs infinitely often and the counts are ordered roughly decreasingly in the label, so no count runs away. Any valid argument for finiteness of the state space is accepted.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Asserts boundedness of differences or a finite state space with only a heuristic or incomplete justification."
+          }
+        ]
+      },
+      {
+        "id": "P6",
+        "description": "Concludes that the transition is deterministic on a finite state space. Hence the small-class sequence is eventually periodic. Since that class is the boys or the girls, (i) or (ii) holds.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a rigorous chain: the reformulation, S finite, eventual alternation, a deterministic recurrence on the small class, bounded state, and periodicity. A different valid proof structure earns the same marks point by point. Part marks go for correct lemmas that are only heuristically justified (for example finiteness of S, which the guidelines count as partial progress). Listing observations without combining them earns little.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Write a_1,a_2,... for the sequence. For m>N, a_m = c(m-1), where c(p)=#{i\u2264p : a_i=a_p}. So a_m is the occurrence index of a_{m-1}.\n\n1. Infinitely many distinct values occur. If only finitely many occurred, some value would occur infinitely often, its occurrence indices would be unbounded, and they would have to appear as values. Each first occurrence is followed by 1, so 1 occurs infinitely often. Let T_v be the total number of occurrences of v. Position p\u2265N is a k-th occurrence of some value exactly once for each value with at least k occurrences. Hence the number of occurrences of k is, up to a bounded error, #{v : T_v\u2265k}. The counts form a near self-conjugate shape. So the set S of values occurring infinitely often is finite (this is the partial-credit lemma), and S={1,\u2026,s}. Values outside S occur finitely often, and for large c a value c occurs exactly s times.\n\n2. Alternation. Take a large value c outside S. It is preceded by a value whose count is c, and followed by its own occurrence index j\u2264s, a small value. A small value i with current count c' is followed by c', a large value. So eventually the positions alternate small, large, small, large. One parity class, either boys or girls, takes values only in S. Call this sequence e_t.\n\n3. Recurrence. Let f_i be the count of i\u2208S. When e_t is chosen, f_{e_t} increases and the next element is the large value c=f_{e_t}. This value c occurs once for each small value that has reached count c. Its occurrence index is therefore e_{t+1}=#{i : f_i \u2265 f_{e_t}}, with the count taken after the increment.\n\n4. Bounded differences. The vector of count differences stays bounded, because every i\u2208S occurs infinitely often and the counts are ordered roughly decreasingly in the label. The state (e_t, f_i \u2212 min f) therefore lies in a finite set. The update rule is deterministic, so the state sequence is eventually periodic. Hence e_t is eventually periodic, which is (i) or (ii). Example: with s=1 the small class is constantly 1."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 5.2 of 7."
+  ],
+  "review_notes": []
+}

@@ -1,0 +1,54 @@
+{
+  "question_key": "imo_grading/PB-Advanced-019",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the correct answer: exactly the positive integers r work.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Verifies that every positive integer r works: A(kr)=0 (2kr is an integer), so B(n,r)=0 and n(n+1)r is a multiple of n.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Shows that a non-integer rational r fails: with r=p/q in lowest terms, q\u22652, finds some n (e.g., a multiple of q or suitable n) where n(n+1)r - B(n,r) is not a multiple of n, using the structure of fractional parts of 2kr.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Sets up the rational case with r=p/q and computes or analyzes B(n,r) partially, but does not reach a valid contradiction."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Shows that an irrational r fails (e.g., the condition forces B(n,r) to be such that n(n+1)r - B(n,r) is an integer for all n, hence r is rational, a contradiction), with a valid argument.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Has the right idea for irrational r (the expression must be an integer, so r is rational), but with gaps."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: answer is all positive integers, with verification that integers work and proofs that non-integer rationals and irrationals fail. Part marks for verification of integers, or for partial progress in the rational/irrational cases. Equivalent methods are accepted. A correct answer with no justification earns only the P1 mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,59 @@
+{
+  "question_key": "imo_grading/PB-Advanced-007",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Finds a valid base pair (P0,Q0) with P0 non-constant (e.g. P0(x)=x+1, Q0(x)=-x\u00b2/2+x/2+f, any f) AND checks it satisfies P0(Q0(x)-x-1)=Q0(P0(x)). Any other correct base pair is accepted, provided it is verified and has deg Q0 \u2265 2 (or can be used in the construction).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives a correct base pair but does not verify it (or verification has a minor slip)."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Gives a construction that raises the degree of P while keeping the equation valid. For example, with R=Q-x-1 and S any polynomial commuting with R (S\u2218R=R\u2218S, e.g. S=R iterated n times), set P1=P0\u2218S and keep Q. Other valid degree-raising constructions are acceptable.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States a degree-raising idea but it is not fully specified or not shown to be usable (e.g. no commuting condition identified)."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Proves that the constructed pair satisfies the equation. For the model construction: P1(R(x))=P0(S(R(x)))=P0(R(S(x)))=Q(P0(S(x)))=Q(P1(x)).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Verification is mostly right but has a gap or unjustified step (e.g. commutation asserted without reason)."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Shows the degree conditions: chooses the parameters so that deg P \u2265 2024 (e.g. R has degree 2, so R iterated 11 times has degree 2048, hence deg P1=2048) and deg Q \u2265 2, and states the conclusion.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a verified base pair, a degree-raising construction, a proof that the construction satisfies the identity, and the degree check. Any valid different construction earns the same marks. A base pair alone earns at most 2 marks. A construction that is described but not fully verified earns only part of P2 and P3.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Base solution: P0(x)=x+1, Q(x)=-x\u00b2/2+x/2. Check: P0(Q-x-1)=Q-x. Q(x+1)=-(x+1)\u00b2/2+(x+1)/2=-x\u00b2/2-x/2=Q(x)-x. \u2713.\nLet R(x)=Q(x)-x-1 (degree 2). Then P0\u2218R=Q\u2218P0.\nLet S=R\u2218R\u2218\u2026\u2218R (11 times). S commutes with R, and deg S=2^11=2048. Set P(x)=P0(S(x))=S(x)+1, deg 2048 \u2265 2024, and keep Q (deg 2).\nVerify: P(Q(x)-x-1)=P0(S(R(x)))=P0(R(S(x)))=Q(P0(S(x)))=Q(P(x)) for all real x. \u2713\nSo P(x)=R^{\u221811}(x)+1 and Q(x)=-x\u00b2/2+x/2 satisfy the condition."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

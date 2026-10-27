@@ -1,0 +1,37 @@
+{
+  "question_key": "asap_sas/set6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First process correctly named AND described (e.g. passive transport/diffusion: higher to lower concentration; osmosis: diffusion of water; facilitated diffusion/protein channels: membrane controls pathway for specific particles; active transport/pumps: uses energy, against gradient, low to high; or membrane-assisted transport: endocytosis/exocytosis/phagocytosis/pinocytosis with vesicles). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if the process is named correctly but the description is missing or incorrect/vague.",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Second, different process correctly named AND described, as per the accepted list in P1.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if the process is named correctly but the description is missing or incorrect/vague.",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Third, different process correctly named AND described, as per the accepted list in P1.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if the process is named correctly but the description is missing or incorrect/vague.",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Each of three distinct valid processes earns 1 mark for a correct name plus description. Name only or weak description earns half. Repeats of the same process (e.g. endocytosis and phagocytosis as separate) should be judged strictly; distinct listed processes count separately.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

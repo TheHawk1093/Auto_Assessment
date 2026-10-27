@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/VOLTAGE_ELECTRICAL_STATE_DISCUSS_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a voltage reading (non-zero voltage) between two terminals indicates they are in different electrical states (e.g. different potentials/charge levels/one higher than the other). Equivalent wording such as 'a voltage shows a potential difference between the terminals' earns the mark. Zero voltage meaning no difference may be mentioned but is not required. Do not credit answers that only define voltage without linking it to a difference between the two terminals.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying that a voltage reading shows the two terminals differ in electrical state/potential. No marks for vague statements about voltage that do not mention a difference between the terminals.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

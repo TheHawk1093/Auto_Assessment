@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/WA_30b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Chooses C (water level went up) AND gives the explanation that water expands when it freezes (ice takes up more space/volume than liquid water; ice is less dense). Both the correct choice and a correct explanation are needed. Choice alone, or explanation of expansion without selecting C, earns no mark unless the answer clearly states the level rose. Wrong reasons (e.g. 'because it is cold' or 'it gets bigger' with no link to freezing) do not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: answer C (level went up) with the reason that water expands/takes up more space when it freezes. No marks: A or B chosen, or C with no valid explanation. Accept equivalent wording such as 'ice has more volume than water' or 'water gets bigger when frozen'.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

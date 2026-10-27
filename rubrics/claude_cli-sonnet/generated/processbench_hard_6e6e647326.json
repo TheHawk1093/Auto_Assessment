@@ -1,0 +1,25 @@
+{
+  "question_key": "processbench_hard/6e6e647326",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives a fully valid solution with a correct final answer. The ambiguous (SSA) case needs BC\u00b7sin30\u00b0 < AC < BC, so T/2 < AC < T with strict inequalities. The answer is the number of integers strictly between T/2 and T, using the value of T given in the question or the previous answer. That count is T/2 \u2212 1 if T is even and (T\u22121)/2 if T is odd. Equivalent methods, such as the law of cosines giving a quadratic in AB with two distinct positive roots, are accepted. Any invalid step, wrong bounds (including the endpoints AC = T/2 or AC = T), or a wrong final count earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "All-or-nothing, 1 mark. Full marks need the correct inequality T/2 < AC < T (strict) and the correct integer count for the given T. Any wrong step or wrong final number earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Two triangles exist exactly when BC\u00b7sin30\u00b0 < AC < BC, i.e. T/2 < AC < T (strict: AC = T/2 gives one right triangle, AC = T gives one isosceles triangle). The answer is the number of integers in the open interval (T/2, T): T/2 \u2212 1 for even T, (T\u22121)/2 for odd T. The numerical value depends on T from the previous answer; a student must state a specific number consistent with that T."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 0 of 1."
+  ],
+  "review_notes": []
+}

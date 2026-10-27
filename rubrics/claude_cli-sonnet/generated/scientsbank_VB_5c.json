@@ -1,0 +1,28 @@
+{
+  "question_key": "scientsbank/VB_5c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that as time increases, the size of the ice cube decreases (it gets smaller / melts over time). Equivalent wording accepted; must link both variables and the correct direction (inverse relationship), in a sentence.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only one variable's change is described (e.g. 'the ice cube melts') without linking to time.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only says the ice cube gets smaller/melts, without referring to time, or mentions both variables without the direction clearly stated."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for a sentence saying the ice cube's size decreases as time increases (equivalent wording accepted). Half for saying it shrinks/melts without linking to time. No marks for wrong direction, e.g. size increases.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

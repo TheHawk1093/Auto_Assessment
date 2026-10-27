@@ -15,7 +15,9 @@ import pandas as pd
 from autograde.datasets.extra import (
     load_aes2,
     load_asap_sas,
+    load_imo_grading,
     load_processbench,
+    load_processbench_hard,
     load_scientsbank,
 )
 from autograde.datasets.ricechem import load_ricechem
@@ -123,7 +125,16 @@ def load_engsaf(root: Path) -> list[Item]:
 
 
 # Datasets that are only ever used to measure, never to tune. They ignore the dev/test split.
-BENCHMARK_ONLY = {"engsaf", "ricechem", "asap_sas", "scientsbank", "aes2", "processbench"}
+BENCHMARK_ONLY = {
+    "engsaf",
+    "ricechem",
+    "asap_sas",
+    "scientsbank",
+    "aes2",
+    "processbench",
+    "imo_grading",
+    "processbench_hard",
+}
 
 LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "digiklausur": load_digiklausur,
@@ -135,6 +146,8 @@ LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "scientsbank": load_scientsbank,
     "aes2": load_aes2,
     "processbench": load_processbench,
+    "imo_grading": load_imo_grading,
+    "processbench_hard": load_processbench_hard,
 }
 
 

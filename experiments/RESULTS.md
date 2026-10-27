@@ -163,6 +163,26 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 19:24 | pipeline | fbH_scientsbank | scientsbank/dev/n12/seed1 | pipeline | 0.125 | - | - | -0.042 | 0.85 | 0.84 | 8% | 0.03 | 4250116e |
 | 2026-10-26 19:24 | pipeline | fbH_asap_sas | asap_sas/dev/n12/seed1 | pipeline | 0.229 | - | - | -0.035 | 0.60 | 0.51 | 8% | 0.05 | 4250116e |
 | 2026-10-26 19:24 | pipeline | fbH_aes2 | aes2/dev/n12/seed1 | pipeline | 0.156 | - | - | 0.142 | 0.70 | 0.06 | 17% | 0.07 | 4250116e |
+| 2026-10-26 21:14 | pipeline | solidH_pipeline_asap_sas | asap_sas/dev/n30/seed1 | pipeline | 0.275 | ▼ +0.067 | ▲ -0.019 | -0.044 | 0.37 | 0.39 | 3% | 0.09 | 98315fd2 |
+| 2026-10-26 21:23 | pipeline | solidG_pipeline_asap_sas | asap_sas/dev/n30/seed1 | pipeline | 0.135 | ▲ -0.074 | ▲ -0.140 | -0.049 | 0.60 | 0.58 | 20% | 2.37 | 98315fd2 |
+| 2026-10-26 21:23 | pipeline | solidH_pipeline_scientsbank | scientsbank/dev/n30/seed1 | pipeline | 0.383 | ▼ +0.033 | ▼ +0.083 | 0.050 | 0.08 | 0.08 | 0% | 1.51 | 98315fd2 |
+| 2026-10-26 21:28 | pipeline | solidG_pipeline_scientsbank | scientsbank/dev/n30/seed1 | pipeline | 0.383 | ▼ +0.033 | = | 0.083 | 0.13 | 0.13 | 7% | 0.87 | 98315fd2 |
+| 2026-10-26 21:32 | pipeline | solidH_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.178 | ▼ +0.056 | ▼ +0.018 | 0.162 | 0.54 | 0.26 | 37% | 2.44 | 98315fd2 |
+| 2026-10-26 21:36 | pipeline | solidG_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.178 | ▼ +0.056 | = | 0.150 | 0.40 | 0.20 | 23% | 2.28 | 98315fd2 |
+| 2026-10-26 21:41 | pipeline | solidH_pipeline_imo_grading | imo_grading/dev/n30/seed1 | pipeline | 0.449 | - | - | 0.354 | 0.14 | 0.08 | 20% | 3.43 | 98315fd2 |
+| 2026-10-26 21:43 | pipeline | solidG_pipeline_imo_grading | imo_grading/dev/n30/seed1 | pipeline | 0.434 | - | ▲ -0.014 | 0.354 | 0.24 | 0.15 | 27% | 2.55 | 98315fd2 |
+| 2026-10-26 21:55 | pipeline | solidH_pipeline_processbench_hard | processbench_hard/dev/n30/seed1 | pipeline | 0.113 | - | - | -0.020 | 0.79 | 0.77 | 17% | 3.31 | 98315fd2 |
+| 2026-10-26 21:55 | pipeline | solidG_pipeline_processbench_hard | processbench_hard/dev/n30/seed1 | pipeline | 0.112 | - | ▲ -0.001 | 0.046 | 0.85 | 0.83 | 23% | 3.06 | 98315fd2 |
+| 2026-10-26 21:58 | baseline | solidH_baseline_imo_grading | imo_grading/dev/n30/seed1 | baseline | 0.336 | - | - | 0.169 | 0.34 | 0.38 | 0% | 0.07 | 98315fd2 |
+| 2026-10-26 22:34 | baseline | solidG_baseline_imo_grading | imo_grading/dev/n30/seed1 | baseline | 0.476 | - | ▼ +0.140 | 0.448 | 0.12 | -0.02 | 0% | 0.00 | 98315fd2 |
+| 2026-10-26 22:36 | baseline | solidH_baseline_processbench_hard | processbench_hard/dev/n30/seed1 | baseline | 0.067 | - | - | -0.067 | 0.84 | 0.83 | 0% | 0.05 | 98315fd2 |
+| 2026-10-26 23:07 | baseline | solidG_baseline_processbench_hard | processbench_hard/dev/n30/seed1 | baseline | 0.067 | - | = | -0.067 | 0.84 | 0.83 | 0% | 0.00 | 98315fd2 |
+| 2026-10-26 23:10 | pipeline | solidG_pipeline_asap_sas | asap_sas/dev/n30/seed1 | pipeline | 0.258 | ▼ +0.050 | ▼ +0.124 | -0.072 | 0.36 | 0.39 | 0% | 0.00 | 98315fd2 |
+| 2026-10-26 23:13 | pipeline | solidG_pipeline_scientsbank | scientsbank/dev/n30/seed1 | pipeline | 0.367 | ▼ +0.017 | ▲ -0.017 | 0.133 | 0.24 | 0.23 | 40% | 0.00 | 98315fd2 |
+| 2026-10-26 23:14 | pipeline | solidH_pipeline_scientsbank | scientsbank/dev/n30/seed1 | pipeline | 0.317 | ▲ -0.033 | ▲ -0.050 | 0.083 | 0.35 | 0.34 | 3% | 0.06 | 98315fd2 |
+| 2026-10-26 23:18 | pipeline | solidG_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.132 | ▼ +0.010 | ▲ -0.046 | 0.107 | 0.72 | 0.42 | 17% | 0.00 | 98315fd2 |
+| 2026-10-26 23:19 | pipeline | solidH_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.119 | ▲ -0.003 | ▲ -0.013 | 0.013 | 0.51 | 0.39 | 47% | 0.13 | 98315fd2 |
+| 2026-10-27 09:17 | pipeline | solidG_pipeline_imo_grading | imo_grading/dev/n30/seed1 | pipeline | 0.119 | ▲ -0.357 | ▲ -0.315 | -0.119 | - | 0.00 | 33% | 0.00 | 98315fd2 |
 
 ## Variants
 

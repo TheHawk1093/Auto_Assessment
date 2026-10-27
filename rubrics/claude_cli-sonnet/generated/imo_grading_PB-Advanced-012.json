@@ -1,0 +1,61 @@
+{
+  "question_key": "imo_grading/PB-Advanced-012",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Reduces the problem: shows that n=2 is impossible, i.e. a^4+b^4=p^2 has no solution (e.g. via x^2=y^4+z^4 having no nontrivial positive integer solutions, with the descent/Fermat argument or a valid reference-level proof), and sets up that the remaining cases n=3 and n=4 must be excluded (n=4 reduces to n=2 or similar after handling divisibility by p).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States that x^2=y^4+z^4 has no nontrivial solution and applies it to n=2 (or n=4) but with incomplete justification of the reduction or of the no-solution claim."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Handles n=3: transforms p^3=a^4+b^4 into a parametrisation such as p=c^2+d^2, a^2=c(c^2-3d^2), b^2=d(3c^2-d^2) (using Gaussian integers / factorisation in Z[i]), with valid justification.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Sets up the Gaussian-integer factorisation of a^4+b^4 = p^3 but does not reach the correct parametrisation, or reaches it without justification."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Transforms the n=3 case into an equation such as x^2+3y^4=z^4 (or an equivalent form) that must have no nontrivial solution.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Proves the derived equation (e.g. x^2+3y^4=z^4, or the equivalent system for a^2, b^2) has no nontrivial positive solutions, via a valid infinite-descent or equivalent argument, thereby ruling out n=3.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Concludes that n=2, 3 (and 4) are impossible, so n>=5, with n=4 and any divisibility cases (p | a, p | b) correctly handled.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a complete proof excluding n=2,3,4 (hence n\u22655). Equivalent methods and wording are accepted. Partial credit for correctly stated key reductions (no solutions to x^2=y^4+z^4, the n=3 parametrisation, the x^2+3y^4=z^4 form) even if the final no-solution proof is missing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

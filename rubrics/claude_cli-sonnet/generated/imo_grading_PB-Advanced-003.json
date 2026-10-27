@@ -1,0 +1,51 @@
+{
+  "question_key": "imo_grading/PB-Advanced-003",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly identifies/sets up the key structure: the lines AT_A, BT_B, CT_C are concurrent at a point P (e.g. via the known property that AT_A is the isogonal/related line through the tangency of the mixtixilinear incircle, or by Ceva/trig/inversion arguments). Must be proved, not just asserted.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.33,
+            "says": "States concurrency of AT_A, BT_B, CT_C (or a key lemma such as T_A, I, and the arc midpoint of BAC being collinear) without a valid proof."
+          },
+          {
+            "share": 0.67,
+            "says": "Proves the lemma or concurrency with only minor gaps."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Uses the concurrency point P to show P has equal power with respect to the three circles (ADT_A), (BET_B), (CFT_C), e.g. by showing PA\u00b7PT_A = PB\u00b7PT_B = PC\u00b7PT_C or via radical axis/inversion computation. The circles meet line AT_A again at T_A, so the power of P is determined by PA\u00b7PT_A.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Shows a second point with equal power (e.g. the incenter I, or the point where the radical axes meet, or the radical center/line argument) so the three circles share a radical axis (are coaxial), and that this gives two common points X and Y (the circles intersect in two points, e.g. since a point such as D, E, or F lies inside/on the circle configuration or a common point on the axis has negative power).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gets coaxiality/common radical axis but does not justify that the circles actually meet in two points."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need a proof of concurrency of AT_A, BT_B, CT_C, then a power-of-a-point/radical axis argument giving a common axis and two common intersection points. Partial credit for proving concurrency alone (about 3/7). Equivalent alternative methods earn full credit; minor computational slips lose little.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

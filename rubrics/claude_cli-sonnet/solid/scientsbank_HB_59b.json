@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/HB_59b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that Max's response was to run after the cat (chasing/pursuing/following the cat). Equivalent wording accepted, e.g. 'he chased the cat'. Do not credit 'pulling Lee to the ground' as the response, as that is a consequence, not Max's response to the cat.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating Max ran after / chased the cat. No marks if the answer gives only the consequence (pulling Lee down) or something unrelated. Mentioning the pulling in addition is fine as long as the chasing is stated.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

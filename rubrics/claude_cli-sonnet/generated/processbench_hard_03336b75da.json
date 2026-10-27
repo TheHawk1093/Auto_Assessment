@@ -1,0 +1,51 @@
+{
+  "question_key": "processbench_hard/03336b75da",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Sets up the casework correctly: for each side, P must satisfy one of three conditions (e.g. for BC: PB=PC, PB=BC, or PC=BC), and notes AB=AC so some loci coincide (circle centred A radius AB is shared by sides AB and CA). The case analysis is organised so that every combination is covered.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Finds the circumcenter O (all three perpendicular-bisector conditions; any two bisectors force P=O) as 1 point, and the points on the axis of symmetry: 2 points with PA=AB (on the axis, one above A and one below, near BC) and 2 points with PB=PC=AB (on the axis, one above and one below BC). This gives 5 points.",
+        "marks": 0.3,
+        "partial_credit": "Half of this mark if most of these points are found but one family (e.g. the axis/PA=AB or PB=PC=AB points) is missed or miscounted.",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Finds the 2 points from PA=AB=AC together with PB=BC or PC=BC, namely the reflections of C over AB and of B over AC. Correctly excludes the degenerate solutions P=B and P=C.",
+        "marks": 0.2,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Shows that all other combinations are impossible, using the triangle inequality or distance estimates such as AB=AC\u22480.5/0.17\u22482.94 times BC, and that the apex-type points of equilateral triangles on AB or AC are not at distance BC from B or C. Also checks that the listed points are distinct and non-degenerate.",
+        "marks": 0.15,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Final answer: 7 points.",
+        "marks": 0.1,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The full mark answer is 7, with valid casework. The model answer gave no working or final value, so this scheme uses the worked-out answer 7. Equivalent methods and wording are accepted. A wrong final count earns at most the casework marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Answer: 7. Take BC=1, so AB=AC=L\u22480.5/cos80\u22482.94. For each side P must satisfy one of three conditions. Two perpendicular-bisector conditions force P to be the circumcenter O (1 point). On the axis of symmetry, PA=AB gives 2 points and PB=PC=AB gives 2 points (4 points). PA=AB with PB=BC or PC=BC gives the reflections of C over AB and of B over AC (2 points), after excluding the degenerate P=B and P=C. All other combinations are impossible. Total 1+4+2=7."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

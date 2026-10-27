@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/WA_33b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the glasses were cooler (colder) than the water vapor/warm moist air in the bathroom, so the vapor condensed on the glasses. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the cooler glasses made the warm water vapor condense (temperature difference). No mark for answers that only say 'steam' or 'moisture' without the cooler-surface idea.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,30 @@
+{
+  "question_key": "processbench_hard/e9de6a8fe5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Factorises 1584 = 2^4 \u00b7 3^2 \u00b7 11 and correctly finds x = 2^2 \u00b7 3 \u00b7 11^2 = 1452 (exponents raised to the next multiples of 3: 6, 3, 3). Any valid method is acceptable. A wrong x loses this mark.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Finds the smallest y with 1584 | 1452y, i.e. y = 1584/gcd(1584,1452) = 1584/132 = 12, and states the final answer y = 12. Every step must be valid. A wrong final answer earns nothing.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark (1) only if every step is valid and the final answer is y = 12. Any error in a step or a wrong final answer earns 0. The P1/P2 split is only a guide for the marker, because the model answer says the mark is all or nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "1584 = 2^4\u00b73^2\u00b711. For a cube, the exponents must be multiples of 3, so the smallest multiplier is x = 2^2\u00b73\u00b711^2 = 1452. Then gcd(1584,1452) = 2^2\u00b73\u00b711 = 132. So y = 1584/132 = 12. Check: 1452\u00b712 = 17424 = 1584\u00b711. Final answer: y = 12."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

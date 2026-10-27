@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/WA_21",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that water expands when it freezes (turns to ice / ice takes up more volume or space than the liquid water), so the ice pushed on / needed more room than the bottle had, cracking it. Must link freezing with expansion; 'the water froze' alone does not earn the mark. Do not accept 'water contracts' or 'ice is heavier'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the water froze and expanded (ice takes more space) so the bottle cracked. No mark for only saying it was cold or the water froze, or for wrong ideas such as water contracting or the bottle shrinking. No part marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

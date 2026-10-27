@@ -9,10 +9,10 @@ import argparse
 import logging
 from pathlib import Path
 
-from autograde.cli import evals, ocr, pages, rubrics, runs
+from autograde.cli import evals, exam, ocr, pages, rubrics, runs
 from autograde.config import load_settings
 
-MODULES = (runs, evals, rubrics, pages, ocr)
+MODULES = (runs, evals, rubrics, pages, ocr, exam)
 
 
 def _parser() -> argparse.ArgumentParser:

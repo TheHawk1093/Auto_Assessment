@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/BULB_C_VOLTAGE_EXPLAIN_WHY4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that terminal 4 is not separated from (i.e. is directly/electrically connected to) the negative battery terminal, with no component or break between them, so the voltmeter reads the full battery voltage of 1.5 V. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying terminal 4 is connected to the negative battery terminal with nothing (no component/resistance) between them. No marks for vague statements like 'there is a circuit' without this idea.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

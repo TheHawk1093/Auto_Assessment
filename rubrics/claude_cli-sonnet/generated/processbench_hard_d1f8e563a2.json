@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/d1f8e563a2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Final answer is 4002, reached by valid reasoning (e.g. defining S_n = n + S_{n-1}/2 with S_2 = 2, finding S_n = 2n \u2212 2, so S_2002 = 4002). Any correct alternative method is accepted. A mathematically invalid step or a wrong final answer earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The question has one mark and it is all-or-nothing. Full mark needs a final answer of 4002 and no invalid steps. A wrong answer, or a step that is mathematically wrong, earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let S_2 = 2 and S_n = n + S_{n-1}/2. Then S_3 = 4, S_4 = 6, S_5 = 8. Induction gives S_n = 2n \u2212 2: if S_{n-1} = 2n \u2212 4, then S_n = n + (n \u2212 2) = 2n \u2212 2. The expression is S_2002 = 4002."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/21180dff92",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives the correct final answer 1487, reached through valid steps: 1547 = 7\u00b713\u00b717, and inclusion\u2013exclusion (or an equivalent valid method) over the integers 1 to 1997. Counts of multiples: 7\u2192285, 13\u2192153, 17\u2192117, 91\u219221, 119\u219216, 221\u21929, 1547\u21921. Multiples total 510, so 1997 \u2212 510 = 1487. Any step that is mathematically invalid, or a wrong final answer, earns no marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only for the correct answer 1487 with every step valid. Any wrong step or wrong final answer earns 0. Equivalent correct methods are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "1547 = 7\u00b713\u00b717. Among 1..1997: multiples of 7: 285; of 13: 153; of 17: 117; of 91: 21; of 119: 16; of 221: 9; of 1547: 1. Numbers sharing a factor with 1547 = 285+153+117\u221221\u221216\u22129+1 = 510. Answer: 1997 \u2212 510 = 1487."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

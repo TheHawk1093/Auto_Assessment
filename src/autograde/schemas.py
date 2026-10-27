@@ -7,6 +7,16 @@ from typing import Literal
 from pydantic import BaseModel, Field, model_validator
 
 EPS = 1e-6
+NO_REFERENCE = "No reference answer is given. Use the question and standard subject knowledge."
+Kind = Literal["short", "essay", "maths"]  # what sort of answer the question expects
+
+
+NOT_GIVEN = "Not given. The marking scheme below is the reference."
+
+
+def has_reference(text: str) -> bool:
+    """True when the text is a real model answer or teacher rubric, not a placeholder."""
+    return bool(text.strip()) and text.strip() not in (NO_REFERENCE, NOT_GIVEN)
 
 
 class Item(BaseModel):
@@ -19,6 +29,9 @@ class Item(BaseModel):
     model_answer: str
     student_answer: str
     max_mark: float = Field(gt=0)
+    kind: Kind = "short"
+    rubric: str = ""  # the teacher's rubric text, when one was given
+    field: str = ""  # subject area (engineering, language, ...), for field-specific prompts
     human_mark: float | None = None
     human_feedback: str | None = None
     labels: dict[str, str] = Field(
@@ -30,6 +43,16 @@ class Item(BaseModel):
     def question_key(self) -> str:
         return f"{self.dataset}/{self.question_id}"
 
+    @property
+    def has_ref(self) -> bool:
+        return has_reference(self.model_answer) or has_reference(self.rubric)
+
+    def with_key(self, answer_key: str) -> Item:
+        """The item with a derived answer key in place of a missing reference."""
+        if self.has_ref or not answer_key:
+            return self
+        return self.model_copy(update={"model_answer": answer_key})
+
 
 class Question(BaseModel):
     """A question with its model answer. Marking schemes are made once per question."""
@@ -38,6 +61,18 @@ class Question(BaseModel):
     text: str
     model_answer: str
     max_mark: float = Field(gt=0)
+    kind: Kind = "short"
+    rubric: str = ""
+    field: str = ""
+
+    @property
+    def has_ref(self) -> bool:
+        return has_reference(self.model_answer) or has_reference(self.rubric)
+
+
+class RubricLevel(BaseModel):
+    share: float = Field(gt=0, lt=1, description="Share of the point's marks, between 0 and 1.")
+    says: str = Field(description="What an answer at this level looks like.")
 
 
 class RubricPoint(BaseModel):
@@ -46,6 +81,11 @@ class RubricPoint(BaseModel):
     marks: float = Field(gt=0, description="Marks for this point when fully met.")
     partial_credit: str = Field(
         default="", description="When half-credit applies, if at all. Empty if all-or-nothing."
+    )
+    levels: list[RubricLevel] = Field(
+        default_factory=list,
+        description="Part-marks steps below full marks, each with its share and description. "
+        "Empty: the default partial share applies.",
     )
 
 
@@ -77,6 +117,10 @@ class Rubric(BaseModel):
     level: Literal["lenient", "moderate", "harsh"] | None = Field(
         default=None, description="Set by code: the strictness this rubric was written at."
     )
+    answer_key: str = Field(
+        default="",
+        description="Set when the question had no model answer: the answer the writer worked out.",
+    )
 
     @model_validator(mode="after")
     def _unique_ids(self) -> Rubric:
@@ -100,6 +144,7 @@ class Rubric(BaseModel):
         for p in self.points:
             note = f" Partial credit: {p.partial_credit}" if p.partial_credit else ""
             lines.append(f"{p.id} ({p.marks:g} marks): {p.description}{note}")
+            lines += [f"    level {lv.share:g} of the marks: {lv.says}" for lv in p.levels]
         lines += [f"{d.id} (deduct {d.marks:g}): {d.description}" for d in self.deductions]
         return "\n".join(lines)
 
@@ -135,9 +180,22 @@ class RubricDraft(BaseModel):
         default="",
         description="Two or three plain sentences: what earns full, part and no marks.",
     )
+    answer_key: str = Field(
+        default="",
+        description="When no model answer was given: the full-mark answer, worked out. Else empty.",
+    )
 
     def to_rubric(self) -> Rubric:
-        return Rubric(points=self.points, notes=self.notes)
+        return Rubric(points=self.points, notes=self.notes, answer_key=self.answer_key)
+
+
+class RubricReview(BaseModel):
+    """A second reading of a draft scheme: what is wrong with it, and a corrected version."""
+
+    issues: list[str] = Field(description="Real problems found. Empty if the scheme is sound.")
+    revised: RubricDraft | None = Field(
+        default=None, description="The corrected scheme when there were issues, else null."
+    )
 
 
 class RubricRecord(BaseModel):
@@ -147,6 +205,9 @@ class RubricRecord(BaseModel):
     rubric: Rubric
     selftest_passed: bool | None = None
     selftest_notes: list[str] = Field(default_factory=list)
+    review_notes: list[str] = Field(
+        default_factory=list, description="Problems the review pass found in the first draft."
+    )
 
 
 Status = Literal["met", "partial", "not_met"]

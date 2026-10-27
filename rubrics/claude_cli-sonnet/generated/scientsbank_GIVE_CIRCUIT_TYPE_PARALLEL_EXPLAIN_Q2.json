@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/GIVE_CIRCUIT_TYPE_PARALLEL_EXPLAIN_Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that A and C are not in the same path (i.e. they do not lie on the same route/line), with equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for stating that A and C are not in the same path (equivalent wording accepted). No mark if the statement is missing or says they are in the same path.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "A and C are not in the same path."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

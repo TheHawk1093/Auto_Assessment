@@ -1,0 +1,5 @@
+Answer type: an essay or long free-form answer scored for quality rather than for a fixed list of facts.
+
+Write the scheme as 3 to 5 criteria (for example position and argument, development and evidence, organisation, language and conventions), each one point with its marks. A point here is a criterion, so describe what is being judged, and describe the levels of quality from weakest to strongest: give each criterion at least three levels (shares of its marks) unless the teacher allows fewer, with descriptions a marker can tell apart from the essay alone, such as "the position is stated in the opening paragraph and held throughout" or "ideas are listed with no explanation". Do not reward length for its own sake. Weigh the criteria so that an essay with a clear position but thin development lands in the middle of the scale, and only an essay strong on every criterion earns the total.
+If the reference text gives band descriptors for the whole essay, spread them over the criteria so that the bands are preserved.
+answer_key: two or three sentences describing what a top essay does on every criterion.

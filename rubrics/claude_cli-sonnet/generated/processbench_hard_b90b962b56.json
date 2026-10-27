@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/b90b962b56",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Complete, mathematically valid solution (discriminant (u-v)^2-16 must be a perfect square, so |u-v|=4 or 5; count 26+25=51 unordered pairs out of C(30,2)=435) with final answer 17/145 (equivalently 51/435). Any wrong step or wrong final answer earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark only for a fully valid solution reaching 17/145. Any invalid step or wrong final answer gets 0. Equivalent methods and wording are accepted.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Roots of x^2+(u+v)x+uv+4 have discriminant (u-v)^2-16. Need it to be a perfect square k^2, so (d-k)(d+k)=16 with d=|u-v|; same-parity factor pairs give d=5 (2\u00b78) or d=4 (4\u00b74). Parity then works out so roots are integers. Unordered pairs with difference 4: 26; difference 5: 25; total 51. Total pairs C(30,2)=435. Probability = 51/435 = 17/145."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "question_key": "processbench_hard/90ae90095a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Every step is mathematically valid and the final answer is 3 (the equilateral 60-60-60, the right isosceles 45-45-90 and the 30-60-90 triangles). Any wrong step, unjustified claim that breaks the argument, or a final answer other than 3 earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Single all-or-nothing mark. Full marks need a valid argument and the final answer 3. Any invalid step or a different final answer earns 0.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Reflecting across sides must generate a tiling, so at each vertex the angle must be \u03c0/n (reflections around a vertex close up only when the angle is \u03c0/n). Angles \u03c0/a, \u03c0/b, \u03c0/c sum to \u03c0, so 1/a+1/b+1/c=1 with positive integers. The solutions are (3,3,3), (2,4,4), (2,3,6). These give the triangles 60-60-60, 45-45-90 and 30-60-90, which are pairwise dissimilar. Final answer: 3."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,40 @@
+{
+  "question_key": "asap_sas/set3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Similarity: pandas and koalas are both specialists / have very narrow diets (panda eats almost only bamboo; koala eats almost only eucalyptus leaves). Accept equivalent wording, e.g. they depend on one food source, or can live only in a specific/niche environment. Must identify the shared trait (specialist or limited diet), not just say both are animals/bears/cute.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says pandas and koalas are alike but gives only the idea of specialist OR only one animal's diet, or says both eat one thing without naming the foods/ specialist idea clearly."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Difference: pythons are generalists (adaptable, can live and eat in many environments/ many kinds of prey, thrive in changed conditions, e.g. spreading in the Everglades, eating alligators and rats, habitat in a third of the US), in contrast to the specialist panda and koala. Accept support from the article such as pythons adapting to new places or being invasive. Must contrast with the specialists; saying only that pythons are dangerous/large/reptiles earns nothing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States pythons are different (e.g. invasive, spreading, can live in many places) but does not say they are generalists/adaptable or does not link to the pandas'/koalas' narrow needs."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: names the shared specialist/narrow-diet trait of pandas and koalas (1) and contrasts it with pythons as adaptable generalists (1), using article details. Half of a point for incomplete or unsupported statements. No marks for off-topic facts such as pythons being big or dangerous.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Pandas and koalas are both specialists: the panda eats almost only bamboo and the koala almost only eucalyptus leaves, so they depend on a narrow food source/stable environment. Pythons are generalists: they can adapt to and survive in many environments and eat many prey (e.g. alligators, Key Largo wood rats), so they thrive and spread in changing conditions such as the Everglades."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

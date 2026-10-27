@@ -1,0 +1,40 @@
+{
+  "question_key": "asap_sas/set4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Explains that pandas and koalas are similar because both are specialists, each eating almost exclusively one food (pandas: bamboo; koalas: eucalyptus leaves), and that pythons differ because they are generalists able to thrive in many environments/conditions (equivalent wording accepted; uses article support).",
+        "marks": 1.0,
+        "partial_credit": "Half marks if the answer only says pandas and koalas are specialists (or only gives their diets) without contrasting with pythons as generalists, or only says pythons are generalists without linking pandas and koalas.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Identifies only one side: pandas and koalas as specialists/limited diet, or pythons as generalists, without the full comparison."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Explains the significance of the word \"invasive\": it labels non-native species (e.g., Burmese python) that spread and harm the ecosystem/biodiversity, which is the central issue of the article and the point of disagreement (MacInnes says \"introduced\" is neutral and \"invasive\" passes judgment; biologists like Skip Snow see them as threats, e.g., pythons endangering species in the Keys). Must include at least one supporting detail from the article.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if the answer defines or explains the word's meaning/connotation but gives no supporting article detail, or gives article details without linking them to the word \"invasive\".",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Explains the meaning of invasive or gives article examples, but not both linked to the article's debate."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Two 1-mark points: one for the specialist (panda/koala) vs generalist (python) comparison, one for the significance of \"invasive\" with text support. Equivalent wording is accepted. Half marks where the idea is stated but lacks the contrast or article evidence.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}
