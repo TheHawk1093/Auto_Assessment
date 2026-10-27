@@ -1,0 +1,44 @@
+{
+  "question_key": "saf/TC_10.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names the two phases: slow start and congestion avoidance (both needed).",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Slow start (cwnd < ss_thresh): cwnd grows exponentially (increase by 1 per ACKed segment, i.e. doubling each RTT) until ss_thresh is reached (then switches to congestion avoidance) or loss occurs.",
+        "marks": 0.3,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Congestion avoidance (cwnd >= ss_thresh): cwnd grows slowly/linearly (e.g. +1 per RTT, after all segments of the window are acknowledged).",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "On packet loss/congestion (in either phase): ss_thresh is set to cwnd/2 and cwnd is reset to 1 (back to slow start). Both parts required; ss_thresh otherwise unchanged during normal growth.",
+        "marks": 0.2,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both phase names, exponential growth in slow start, linear growth in congestion avoidance, and the loss reaction (ss_thresh = cwnd/2, cwnd = 1). Award each point independently; equivalent wording is accepted. Reduce marks for missing or wrong growth types, or missing loss reaction.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,28 @@
+{
+  "question_key": "saf/PE_12.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the independence assumption does NOT hold for real internet traffic (answer 'No'), AND gives a valid reason: traffic is bursty / arrivals depend on previous arrivals (e.g., correlated, protocol- or application-driven behaviour such as video segment loading, TCP feedback, request-response). A bare 'No' or a reason without saying the assumption fails earns no marks; 'Yes' earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says no / not independent but gives no reason or only a vague one (e.g., 'traffic is complex')."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark: answers that independence does not hold and explains with burstiness or dependence on earlier arrivals (any valid example like video streaming, TCP). Half mark: correct 'No' with no or vague justification. Zero: claims independence holds, or no clear conclusion.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

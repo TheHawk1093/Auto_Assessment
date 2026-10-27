@@ -1,0 +1,49 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Classification: maps/assigns input data to discrete (categorical) labels or classes (e.g. spam vs not spam).",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Regression: maps input data to a continuous value / real number (continuous function), e.g. price or temperature prediction.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Difference stated explicitly or clearly implied: output type is discrete categories in classification vs continuous numeric values in regression. Merely repeating the definitions without contrast still earns this only if the contrast is clear.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Error measure difference: classification error is the number (or proportion) of misclassifications (e.g. accuracy, 0-1 loss); regression error is the summed/averaged distance between true and predicted values (e.g. sum of squared or absolute errors, MSE).",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives the error measure for only one of the two tasks correctly."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both definitions, the discrete vs continuous contrast, and the differing error measures. Award part marks for the error point if only one task's error is correct. Examples alone without stating discrete vs continuous earn little.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

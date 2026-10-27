@@ -1,0 +1,52 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (a named storage location / data item that holds a value). Equivalent: 'special variable', 'data type that stores a value'. Answers calling it only a 'function', 'array' or 'value' without saying it is a variable earn no marks here.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes it vaguely as a value, reference or data item that stores something, without clearly calling it a variable."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that what the pointer contains/stores is an address in memory (memory location). Equivalent: 'memory address', 'location in RAM', 'refers to where something is stored'. Saying it stores the data/value itself does not earn the mark.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Says it 'points to' or 'refers to' something or a location, without explicitly saying it holds an address."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "States that the address is that of another variable (or object/data item), i.e. the pointer refers indirectly to another variable's storage. Equivalent: 'points to another variable', 'address of a variable/data'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions pointing to data or something stored in memory but not clearly another variable."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a pointer is a variable that holds the memory address of another variable. Part marks for vague wording such as 'points to a location' or 'refers to data'. No marks for answers saying the pointer stores the data value itself or that it is not a variable.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

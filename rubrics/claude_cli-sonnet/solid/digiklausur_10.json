@@ -1,0 +1,40 @@
+{
+  "question_key": "digiklausur/10",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that backpropagation is an algorithm for training a multi-layer network (MLP/neural network) that reduces the error (loss/cost) by updating the weights (gradient-descent-style), propagating the error backwards from the output (last) layer to the first layer, layer by layer/recursively.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only one of: minimising error by updating weights, or the backward direction from last to first layer."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that the weight updates are determined by the local gradient (delta) at each layer/neuron, computed using partial derivatives of the error with respect to the weights and the chain rule. Naming gradient/partial derivatives and chain rule is needed for full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions gradients/derivatives of the error but not the chain rule (or the chain rule without derivatives/gradient)."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both the idea (error reduced by updating weights, propagated backward from output to input layer) and the technical mechanism (local gradients via partial derivatives and chain rule). Give part marks if only half of a point is present. Vague descriptions without technical terms earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

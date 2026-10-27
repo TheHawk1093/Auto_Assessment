@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E03.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a missing base case (no terminating condition / stopping condition) causes infinite recursion. Equivalent wording accepted, e.g. 'no condition to stop the function calling itself'.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Vaguely mentions needing a stopping condition or that recursion never stops, without clearly saying the base case is absent or omitted."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that an incorrectly defined recursive step causes infinite recursion, i.e. the recursive call does not move toward the base case (e.g. argument not reduced/changed, wrong update, or moves away so the base case is never reached). A vague 'wrong code' or 'error' alone does not earn this.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Says the recursive step/call is wrong or faulty but does not explain that it fails to progress toward the base case."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Two causes, each worth half: a missing base case, and a recursive step that does not progress toward the base case. Full marks for both stated clearly in any wording. Part marks for vague versions; no marks for unrelated causes like stack size or slow performance alone.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 3.5 of 5."
+  ],
+  "review_notes": []
+}

@@ -1,0 +1,61 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array keeps/retains its values (persists, has static storage duration) for the whole program run / between function calls, rather than being re-created each call. Accept 'lifetime is the entire program' or 'value is preserved between calls'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Vague hint at persistence (e.g. 'exists longer', 'stays in memory') without saying values are kept between calls or lifetime is the whole program."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that a static array is initialized only once (at compile time/program start or the first time the function runs), whereas a non-static (automatic/local) array is re-initialized every time the function is called/block entered. Model answer's statement 'initialized only once' earns this.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.67,
+            "says": "Says static array is initialized only once but does not contrast with non-static being re-initialized each call."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "States that a non-static (automatic) local array is created on entry to the function/block (usually on the stack) and destroyed on exit, so its contents are lost/undefined between calls.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says only that non-static array is local or temporary without stating it is destroyed/lost on exit or recreated per call."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Mentions an additional valid difference: static arrays are stored in the static/data segment (not the stack) and, if not explicitly initialized, are zero-initialized by default, whereas non-static local arrays hold garbage/indeterminate values if uninitialized. Either fact earns the mark.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need: static array persists across calls and is initialized once, contrasted with non-static arrays being recreated, reinitialized and lost each call. The model answer alone (initialized once) earns roughly 2 of 5 here, giving credit for the core idea; contrast and persistence are needed for more. Wrong claims (e.g. static arrays can't be modified) earn nothing for that point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "A static array has static storage duration: it is allocated once (in the static/data segment), initialized only once (zero-filled by default if no initializer), and keeps its values for the whole program run, including between function calls. A non-static (automatic) local array is created each time the function/block is entered (on the stack), re-initialized each call, holds garbage if not initialized, and is destroyed when the function exits, so its contents are lost."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 1 of 5."
+  ],
+  "review_notes": []
+}

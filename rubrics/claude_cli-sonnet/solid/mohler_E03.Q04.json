@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that passing by reference avoids copying the argument data (no copy of the argument is made; the function works on the original/the address is passed instead). Equivalent wording such as 'no duplication of data' or 'only a reference/pointer is passed rather than the whole value' earns the marks.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Vaguely says it is more efficient/faster or saves memory, without saying that copying of the argument is avoided."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Links the benefit to large data structures/objects (e.g. big arrays, structs, objects), i.e. the saving in time/memory is most significant for large data. Do not credit the claim that the main advantage is simply that the function can modify the original, as this is not the advantage asked for.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions efficiency or memory/time saving generally, without linking it to large data."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: says copying is avoided, especially for large data structures. Part marks: general efficiency/memory saving without mention of avoiding copies or large data. No marks: answers only about modifying the original variable or unrelated ideas.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

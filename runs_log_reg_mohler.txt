@@ -1,0 +1,106 @@
+2026-10-27 11:24:35,298 INFO 40 items, 0 already done, 40 to run
+2026-10-27 11:25:26,195 INFO Scheme for mohler/E12.Q06 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:25:28,060 INFO Scheme for mohler/E12.Q02 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:25:28,413 INFO Scheme for mohler/E02.Q02 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:26:23,279 INFO Scheme for mohler/E11.Q07 failed its self-test, rewriting once: ['The model answer scored only 1.5 of 5.']
+2026-10-27 11:27:15,731 INFO Scheme for mohler/E06.Q05 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:27:20,060 INFO Scheme for mohler/E03.Q03 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:29:03,059 INFO Scheme for mohler/E04.Q05 failed its self-test, rewriting once: ['The model answer scored only 3 of 5.']
+2026-10-27 11:29:56,350 INFO Scheme for mohler/E01.Q05 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:30:04,200 INFO Scheme for mohler/E01.Q03 failed its self-test, rewriting once: ['The model answer scored only 2 of 5.']
+2026-10-27 11:31:06,504 INFO Scheme for mohler/E09.Q03 failed its self-test, rewriting once: ['The model answer scored only 4.25 of 5.']
+2026-10-27 11:31:48,970 INFO Scheme for mohler/E01.Q01 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:32:55,010 INFO Scheme for mohler/E03.Q06 failed its self-test, rewriting once: ['The model answer scored only 4 of 5.']
+2026-10-27 11:33:31,043 INFO 25 marking schemes ready
+2026-10-27 11:33:36,393 INFO graded 1/40
+2026-10-27 11:33:37,037 INFO graded 2/40
+2026-10-27 11:33:37,839 INFO graded 3/40
+2026-10-27 11:33:40,371 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:33:41,835 INFO graded 4/40
+2026-10-27 11:33:42,025 INFO graded 5/40
+2026-10-27 11:33:47,358 INFO graded 6/40
+2026-10-27 11:33:47,666 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:33:51,599 INFO graded 7/40
+2026-10-27 11:33:51,775 INFO graded 8/40
+2026-10-27 11:33:56,154 INFO graded 9/40
+2026-10-27 11:33:56,824 INFO graded 10/40
+2026-10-27 11:33:57,483 INFO graded 11/40
+2026-10-27 11:34:01,553 INFO graded 12/40
+2026-10-27 11:34:04,443 INFO graded 13/40
+2026-10-27 11:34:05,644 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:34:06,953 INFO graded 14/40
+2026-10-27 11:34:08,918 INFO graded 15/40
+2026-10-27 11:34:09,541 INFO graded 16/40
+2026-10-27 11:34:13,012 INFO graded 17/40
+2026-10-27 11:34:13,345 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.', 'P2: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:34:18,414 INFO graded 18/40
+2026-10-27 11:34:19,088 INFO graded 19/40
+2026-10-27 11:34:20,096 INFO graded 20/40
+2026-10-27 11:34:24,271 INFO graded 21/40
+2026-10-27 11:34:27,267 INFO graded 22/40
+2026-10-27 11:34:27,469 INFO Marking check failed (attempt 1): ['P2: marks given but no words quoted from the answer as evidence.', 'P3: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:34:30,156 INFO graded 23/40
+2026-10-27 11:34:33,050 INFO graded 24/40
+2026-10-27 11:34:35,479 INFO graded 25/40
+2026-10-27 11:34:36,713 INFO graded 26/40
+2026-10-27 11:34:38,973 INFO graded 27/40
+2026-10-27 11:34:39,156 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:34:40,409 INFO graded 28/40
+2026-10-27 11:34:42,654 INFO graded 29/40
+2026-10-27 11:34:44,985 INFO graded 30/40
+2026-10-27 11:34:49,656 INFO graded 31/40
+2026-10-27 11:34:49,841 INFO graded 32/40
+2026-10-27 11:34:58,253 INFO graded 33/40
+2026-10-27 11:34:58,875 INFO Marking check failed (attempt 1): ['P3: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:35:11,719 INFO graded 34/40
+2026-10-27 11:35:15,634 INFO graded 35/40
+2026-10-27 11:35:19,717 INFO graded 36/40
+2026-10-27 11:35:20,978 INFO Marking check failed (attempt 1): ['P2: marks given but no words quoted from the answer as evidence.', 'P3: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:35:23,893 INFO graded 37/40
+2026-10-27 11:35:25,101 INFO graded 38/40
+2026-10-27 11:35:25,555 INFO graded 39/40
+2026-10-27 11:35:30,057 INFO graded 40/40
+{
+  "overall": {
+    "n": 40,
+    "mean_abs_error": 0.23367500000000002,
+    "bias": -0.213675,
+    "same_level": 0.3,
+    "within_one_level": 0.7,
+    "qwk": 0.5418326693227091,
+    "pearson": 0.7989282896054379
+  },
+  "by_band": {
+    "low": {
+      "n": 2,
+      "mean_abs_error": 0.09999999999999999,
+      "bias": -0.09999999999999999,
+      "same_level": 0.5,
+      "within_one_level": 1.0,
+      "qwk": 0.0,
+      "pearson": 0.9999999999999998
+    },
+    "mid": {
+      "n": 6,
+      "mean_abs_error": 0.45,
+      "bias": -0.3833333333333333,
+      "same_level": 0.0,
+      "within_one_level": 0.16666666666666666,
+      "qwk": 0.0,
+      "pearson": 0.5423261445466404
+    },
+    "high": {
+      "n": 32,
+      "mean_abs_error": 0.20146875000000003,
+      "bias": -0.18896875,
+      "same_level": 0.34375,
+      "within_one_level": 0.78125,
+      "qwk": 0.18260869565217386,
+      "pearson": 0.5807629850894339
+    }
+  },
+  "flagged_share": 0.6
+}
+usage: {'calls': 88, 'input_tokens': 115505, 'output_tokens': 56774, 'cost_usd': 0.0}
+report: runs\regG_solid_mohler\report.html
+logged: experiments\RESULTS.md

@@ -1,0 +1,49 @@
+{
+  "question_key": "mohler/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary search tree is a binary tree (each node has at most two children, left and right). Merely saying 'a tree' without the binary/two-children restriction earns no marks.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.67,
+            "says": "Says it is a tree with nodes but does not clearly state the at-most-two-children (binary) property."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property: for any node, values in/at the left child (left subtree) are smaller than the node's value. Equivalent wording such as 'less than or equal' is acceptable.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "States that values in/at the right child (right subtree) are larger than the node's value (greater than or equal acceptable). Must be the correct direction; reversed left/right does not earn the mark.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "States that the ordering property holds for every node in the tree (applied recursively/for all nodes, so left < parent < right at each node). Accept mention that it enables efficient searching/in-order traversal gives sorted order as supporting evidence of this.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a binary tree where, for every node, left child/subtree is smaller and right child/subtree is larger than the node. Part marks for giving only one side of the ordering or a vague 'ordered tree'. No marks for descriptions of unrelated structures or reversed ordering.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

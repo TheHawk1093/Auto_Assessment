@@ -1,0 +1,90 @@
+2026-10-27 11:18:22,149 INFO 40 items, 0 already done, 40 to run
+2026-10-27 11:19:39,799 INFO Scheme for digiklausur/16 failed its self-test, rewriting once: ['The model answer scored only 1.25 of 2.']
+2026-10-27 11:21:21,921 INFO 8 marking schemes ready
+2026-10-27 11:21:26,564 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:21:29,551 INFO graded 1/40
+2026-10-27 11:21:30,474 INFO graded 2/40
+2026-10-27 11:21:30,818 INFO graded 3/40
+2026-10-27 11:21:44,366 INFO graded 4/40
+2026-10-27 11:21:44,649 INFO graded 5/40
+2026-10-27 11:21:51,949 INFO graded 6/40
+2026-10-27 11:21:52,578 INFO graded 7/40
+2026-10-27 11:21:54,094 INFO graded 8/40
+2026-10-27 11:21:59,943 INFO graded 9/40
+2026-10-27 11:22:00,298 INFO graded 10/40
+2026-10-27 11:22:08,814 INFO graded 11/40
+2026-10-27 11:22:12,043 INFO graded 12/40
+2026-10-27 11:22:13,004 INFO graded 13/40
+2026-10-27 11:22:16,720 INFO graded 14/40
+2026-10-27 11:22:20,040 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:22:21,388 INFO graded 15/40
+2026-10-27 11:22:21,720 INFO graded 16/40
+2026-10-27 11:22:33,862 INFO graded 17/40
+2026-10-27 11:22:38,810 INFO graded 18/40
+2026-10-27 11:22:44,908 INFO graded 19/40
+2026-10-27 11:22:51,894 INFO graded 20/40
+2026-10-27 11:22:52,105 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:22:55,370 INFO graded 21/40
+2026-10-27 11:22:56,818 INFO graded 22/40
+2026-10-27 11:22:58,661 INFO graded 23/40
+2026-10-27 11:23:01,993 INFO graded 24/40
+2026-10-27 11:23:08,058 INFO graded 25/40
+2026-10-27 11:23:17,896 INFO graded 26/40
+2026-10-27 11:23:29,381 INFO graded 27/40
+2026-10-27 11:23:33,700 INFO graded 28/40
+2026-10-27 11:23:35,896 INFO graded 29/40
+2026-10-27 11:23:37,374 INFO graded 30/40
+2026-10-27 11:23:37,555 INFO graded 31/40
+2026-10-27 11:23:49,558 INFO graded 32/40
+2026-10-27 11:23:50,470 INFO graded 33/40
+2026-10-27 11:23:56,516 INFO graded 34/40
+2026-10-27 11:24:02,964 INFO graded 35/40
+2026-10-27 11:24:07,310 INFO graded 36/40
+2026-10-27 11:24:08,148 INFO graded 37/40
+2026-10-27 11:24:18,329 INFO graded 38/40
+2026-10-27 11:24:19,146 INFO graded 39/40
+2026-10-27 11:24:25,418 INFO graded 40/40
+{
+  "overall": {
+    "n": 40,
+    "mean_abs_error": 0.18125,
+    "bias": -0.09375,
+    "same_level": 0.425,
+    "within_one_level": 0.875,
+    "qwk": 0.7379310344827585,
+    "pearson": 0.7759976488731631
+  },
+  "by_band": {
+    "low": {
+      "n": 5,
+      "mean_abs_error": 0.025,
+      "bias": 0.025,
+      "same_level": 1.0,
+      "within_one_level": 1.0,
+      "qwk": null,
+      "pearson": null
+    },
+    "mid": {
+      "n": 17,
+      "mean_abs_error": 0.1875,
+      "bias": 0.003676470588235294,
+      "same_level": 0.35294117647058826,
+      "within_one_level": 0.9411764705882353,
+      "qwk": 0.0,
+      "pearson": null
+    },
+    "high": {
+      "n": 18,
+      "mean_abs_error": 0.21875,
+      "bias": -0.21875,
+      "same_level": 0.3333333333333333,
+      "within_one_level": 0.7777777777777778,
+      "qwk": 0.0,
+      "pearson": null
+    }
+  },
+  "flagged_share": 0.325
+}
+usage: {'calls': 83, 'input_tokens': 114821, 'output_tokens': 82176, 'cost_usd': 0.0}
+report: runs\regG_solid_digiklausur\report.html
+logged: experiments\RESULTS.md

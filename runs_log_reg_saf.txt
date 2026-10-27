@@ -1,0 +1,89 @@
+2026-10-27 11:13:30,342 INFO 40 items, 0 already done, 40 to run
+2026-10-27 11:13:51,575 INFO Marking check failed (attempt 1): ['P3: evidence is empty or not copied exactly from the answer.']
+2026-10-27 11:14:01,454 INFO Scheme for saf/TC_10.3 failed its self-test, rewriting once: ['The model answer scored only 0.8 of 1.']
+2026-10-27 11:15:18,028 INFO 12 marking schemes ready
+2026-10-27 11:15:25,187 INFO graded 1/40
+2026-10-27 11:15:25,258 INFO graded 2/40
+2026-10-27 11:15:27,696 INFO graded 3/40
+2026-10-27 11:15:27,985 INFO graded 4/40
+2026-10-27 11:15:30,623 INFO graded 5/40
+2026-10-27 11:15:33,043 INFO graded 6/40
+2026-10-27 11:15:35,046 INFO graded 7/40
+2026-10-27 11:15:37,439 INFO graded 8/40
+2026-10-27 11:15:43,566 INFO graded 9/40
+2026-10-27 11:15:53,705 INFO graded 10/40
+2026-10-27 11:15:55,865 INFO graded 11/40
+2026-10-27 11:16:07,032 INFO graded 12/40
+2026-10-27 11:16:18,967 INFO graded 13/40
+2026-10-27 11:16:19,565 INFO graded 14/40
+2026-10-27 11:16:21,815 INFO graded 15/40
+2026-10-27 11:16:24,114 INFO graded 16/40
+2026-10-27 11:16:24,534 INFO graded 17/40
+2026-10-27 11:16:25,476 INFO Marking check failed (attempt 1): ['P1: marks given but no words quoted from the answer as evidence.']
+2026-10-27 11:16:26,520 INFO graded 18/40
+2026-10-27 11:16:27,171 INFO graded 19/40
+2026-10-27 11:16:32,935 INFO graded 20/40
+2026-10-27 11:16:35,157 INFO graded 21/40
+2026-10-27 11:16:46,784 INFO graded 22/40
+2026-10-27 11:16:49,150 INFO graded 23/40
+2026-10-27 11:16:52,840 INFO graded 24/40
+2026-10-27 11:17:13,203 INFO graded 25/40
+2026-10-27 11:17:16,388 INFO graded 26/40
+2026-10-27 11:17:28,589 INFO graded 27/40
+2026-10-27 11:17:30,808 INFO graded 28/40
+2026-10-27 11:17:32,082 INFO graded 29/40
+2026-10-27 11:17:37,220 INFO graded 30/40
+2026-10-27 11:17:39,184 INFO graded 31/40
+2026-10-27 11:17:45,996 INFO graded 32/40
+2026-10-27 11:17:50,267 INFO graded 33/40
+2026-10-27 11:17:55,065 INFO graded 34/40
+2026-10-27 11:17:59,431 INFO graded 35/40
+2026-10-27 11:17:59,600 INFO graded 36/40
+2026-10-27 11:18:03,100 INFO graded 37/40
+2026-10-27 11:18:04,998 INFO graded 38/40
+2026-10-27 11:18:05,607 INFO graded 39/40
+2026-10-27 11:18:08,366 INFO graded 40/40
+{
+  "overall": {
+    "n": 40,
+    "mean_abs_error": 0.11662500000000002,
+    "bias": 0.077125,
+    "same_level": 0.625,
+    "within_one_level": 0.9,
+    "qwk": 0.864321608040201,
+    "pearson": 0.9011151703951531
+  },
+  "by_band": {
+    "low": {
+      "n": 9,
+      "mean_abs_error": 0.0,
+      "bias": 0.0,
+      "same_level": 1.0,
+      "within_one_level": 1.0,
+      "qwk": 1.0,
+      "pearson": 1.0
+    },
+    "mid": {
+      "n": 6,
+      "mean_abs_error": 0.3833333333333333,
+      "bias": 0.3,
+      "same_level": 0.0,
+      "within_one_level": 0.3333333333333333,
+      "qwk": 0.0,
+      "pearson": 0.5854609968509374
+    },
+    "high": {
+      "n": 25,
+      "mean_abs_error": 0.09459999999999999,
+      "bias": 0.05140000000000001,
+      "same_level": 0.64,
+      "within_one_level": 1.0,
+      "qwk": 0.2902208201892744,
+      "pearson": 0.30188489886278386
+    }
+  },
+  "flagged_share": 0.175
+}
+usage: {'calls': 81, 'input_tokens': 114963, 'output_tokens': 75937, 'cost_usd': 0.0}
+report: runs\regG_solid_saf\report.html
+logged: experiments\RESULTS.md

@@ -1,0 +1,35 @@
+{
+  "question_key": "saf/MM_8.3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the property: a spanning tree has a single unique path between every pair of nodes / is loop-free while connecting all nodes, so no unnecessary duplicate packets are forwarded. Either the unique-path or the loop-free-and-spans-all-nodes wording is acceptable.",
+        "marks": 0.4,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "Explains the modification: each node adds its multicast group membership information to its link state packet, which is flooded to all nodes. Once every node has the full topology plus group information, each node locally computes the multicast spanning tree (e.g. with Prim or Kruskal, or a shortest path tree pruned to group members).",
+        "marks": 0.6,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only adding group information to link state packets, or only computing the tree locally from the full topology, but not both."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the loop-free/unique-path property plus the LSR modification (group info in LSPs, then local tree construction). Give part marks for P2 if only one half is given. A property such as \"fast\" or \"cheap\" without loop-freedom/uniqueness of path earns no marks for P1.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

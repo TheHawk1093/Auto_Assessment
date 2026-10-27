@@ -1,0 +1,63 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Reusability: states that code/classes can be reused (e.g. through inheritance, libraries, or creating many objects from one class), reducing duplication and development effort. Equivalent wording accepted (e.g. 'code reuse', 'inheritance allows reuse').",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Mentions reusability or inheritance only by name, without saying what is reused or why it helps."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Abstraction: states that complexity/implementation details are hidden and only essential features are exposed (via classes, objects, interfaces). Naming 'abstraction' with a basic correct meaning earns full marks.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Names abstraction only, with no or incorrect explanation of what it means."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Encapsulation / data security: data and methods are bundled in objects and access is controlled (private data, data hiding), protecting data from unintended modification.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "Modularity / maintainability: program is divided into self-contained objects/classes, making code easier to understand, modify, debug, test and maintain.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P5",
+        "description": "Any other valid advantage, e.g. polymorphism/flexibility and extensibility, scalability for large programs, or modelling real-world entities naturally. Must be a distinct idea from P1\u2013P4; at most one credited.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The model answer (abstraction and reusability) should earn at least 3 of 5 here, with credit for explaining each. Award marks for each distinct valid advantage, with explanation earning more than a bare name. Do not give credit twice for the same idea, and no marks for disadvantages or non-OOP features (e.g. speed).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Main advantages of OOP: reusability (inheritance, classes reused, less duplication); abstraction (hiding complexity, exposing essentials); encapsulation/data security (data hiding); modularity and easier maintenance/debugging; polymorphism and extensibility/flexibility; models real-world entities and scales to large programs."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 1.8 of 5."
+  ],
+  "review_notes": []
+}

@@ -1,0 +1,61 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure (or abstract data type / linear collection) that stores a collection of elements/items in order.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States the First In First Out (FIFO) principle: the element added first is removed/processed first (equivalent wording such as 'first come, first served' accepted). Do not accept LIFO or 'last in first out'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions FIFO or ordering only vaguely (e.g. 'items are processed in order') without clearly stating first in is first out."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Names the enqueue operation: adding an element at the rear/back/end of the queue (accept 'add', 'insert', 'push' at the back).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names enqueue but does not say where/what it does, or describes adding at the back without naming it."
+          }
+        ]
+      },
+      {
+        "id": "P4",
+        "description": "Names the dequeue operation: removing an element from the front/head of the queue (accept 'remove', 'delete', 'pop' from the front).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names dequeue but does not say where/what it does, or describes removing from the front without naming it."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for: a data structure, FIFO, enqueue (add at rear) and dequeue (remove from front). The model answer earns all 5 marks. Part marks for vague or incomplete versions of FIFO or the operations; no marks for LIFO/stack descriptions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 4 of 5."
+  ],
+  "review_notes": []
+}

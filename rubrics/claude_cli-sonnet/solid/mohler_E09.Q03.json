@@ -1,0 +1,51 @@
+{
+  "question_key": "mohler/E09.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the queue is implemented using a circular (ring/wrap-around) array, i.e. the array is treated as circular so that positions freed at the start can be reused. Equivalent wording such as 'circular buffer' or 'ring buffer' or 'use modulo arithmetic to wrap indices' earns the mark. A plain linear array with no wrap-around does not earn this mark.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes reusing freed space at the front of the array / wrapping around, but does not name it as circular or ring."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Front (head) of the queue is kept toward the beginning of the array: a front/head index marks the element to be dequeued (removed) next, and dequeue advances the front index (not shifting all elements).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Rear (tail) of the queue is kept toward the end of the array: a rear/tail index marks where the next element is enqueued (added), and enqueue adds at the rear and advances the rear index.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "The rear (and/or front) pointer wraps around to the start of the array when it reaches the end, e.g. index = (index + 1) mod array size.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the circular array idea, front near the start, rear near the end, and the wrap-around of the pointer. A linear array answer with front and rear indices but no wrap-around gets at most P2 and P3. Accept equivalent terms (head/tail, ring buffer, modulo).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Use a circular array (ring buffer). Keep a front index (where the next element is dequeued) toward the beginning of the array and a rear index (where the next element is enqueued) toward the end. Enqueue adds at the rear and advances it; dequeue removes at the front and advances it. When either index reaches the end of the array it wraps around to the start, e.g. i = (i+1) mod n, so freed space at the front is reused."
+  },
+  "selftest_passed": false,
+  "selftest_notes": [
+    "The model answer scored only 4 of 5."
+  ],
+  "review_notes": []
+}

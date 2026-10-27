@@ -1,0 +1,40 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM is a (linear) classifier that finds a decision boundary / separating hyperplane between classes by maximizing the margin (maximum-margin classifier).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only a decision boundary/hyperplane separating classes, or only 'large margin', without linking maximum margin to the boundary choice."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that the support vectors are the data points closest to the decision boundary (on the margin) and that they determine/define the margin and hyperplane. Equivalent wording accepted. Using the term 'support vectors' is required for full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes points nearest the boundary determining the margin but does not name them support vectors (or names them without saying what they are/do)."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: maximum-margin decision boundary/hyperplane (1) plus support vectors as the nearest points defining the margin (1). Half of a point if the idea is present but the key term or link is missing. Kernels and quadratic programming are optional extras and earn no additional marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

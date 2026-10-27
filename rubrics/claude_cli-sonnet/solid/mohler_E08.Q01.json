@@ -1,0 +1,35 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure (or abstract data type / collection) that stores/holds a collection of elements or items. Equivalent wording such as 'a structure for storing data' is acceptable. Naming it only as an 'array' or 'list' with no LIFO property does not earn this mark.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States the key property: the last item added is the first to be removed, i.e. last-in-first-out (LIFO). Equivalent wording such as 'the most recently added element is removed first' is acceptable. The wrong answer 'first-in-first-out' (a queue) earns no marks.",
+        "marks": 3.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only that items are added/removed at one end or the top (push/pop) without clearly stating last-in-first-out ordering."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a stack is a data structure storing elements, with last-in-first-out behaviour (last added is first removed). Part marks: LIFO stated without saying it stores data (3.5), or only top/one-end access described (1.5 plus any P1 credit). No marks for describing FIFO or a queue.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

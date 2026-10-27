@@ -1,0 +1,54 @@
+{
+  "question_key": "digiklausur/14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Convolutional layer(s): kernels/filters convolve over the input image to extract features (feature maps). Accept 'feature extraction using filters'.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a convolutional layer but without kernels/filters or feature extraction."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Activation layer, e.g. ReLU (non-linearity), after convolution. Naming ReLU or another named non-linear activation is acceptable.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Pooling layer (max or average pooling) that downsamples/reduces spatial size of feature maps.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P4",
+        "description": "One or more fully connected (dense) layers, followed by an output/softmax (classification) layer.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only fully connected layers or only softmax/output layer, not both."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for naming the main layers in order: convolution (with kernels), activation (ReLU), pooling, fully connected then softmax. Part marks when a layer is named without its key detail, or when only one of FC/softmax is given. No marks for generic statements about neural networks without CNN layers.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

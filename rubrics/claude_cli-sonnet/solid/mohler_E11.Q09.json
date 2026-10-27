@@ -1,0 +1,47 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Divide: breaks the problem into smaller subproblems (of the same type/form as the original). Equivalent wording such as 'split into parts' or 'break into smaller instances' is acceptable.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions splitting/breaking down the problem but does not say the pieces are smaller or similar subproblems."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "Conquer: solves the subproblems, typically recursively (the same method applied to each subproblem, with a base case solved directly). Credit for 'solve each subproblem recursively' or 'solve independently'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says subproblems are solved but does not mention recursion or applying the same method."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "Combine: merges the solutions of the subproblems into a solution to the original problem.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating all three stages: divide into smaller subproblems, solve them recursively, and combine the solutions. Part marks where a stage is mentioned vaguely. Examples such as merge sort are optional and earn no extra marks. Do not give marks for unrelated descriptions such as greedy or dynamic programming.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

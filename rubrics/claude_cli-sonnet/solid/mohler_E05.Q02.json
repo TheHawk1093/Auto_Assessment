@@ -1,0 +1,47 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the array is processed one position/element at a time, moving from left to right (i.e. the sorted portion grows from the left / position by position through the array). Equivalent wording such as 'for each position in turn' or 'repeatedly for i = 0, 1, 2...' is acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P2",
+        "description": "States that for the current position it finds/identifies the minimum (smallest) element among the remaining (unsorted, to the right) elements. Must refer to the minimum/smallest of the remaining elements; finding the minimum of the whole array every time, or comparing only adjacent elements (bubble sort), does not earn this.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says it finds the minimum/smallest element but does not make clear it is from the remaining/unsorted part of the array."
+          }
+        ]
+      },
+      {
+        "id": "P3",
+        "description": "States that the minimum found is swapped (exchanged) with the current element, placing it in its correct position. 'Moves/places it at the current position' is acceptable only if exchange with the current element is implied; insertion/shifting of elements does not earn this.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the minimum is placed/moved to the front or current position but does not mention swapping/exchanging with the current element."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need all three ideas: go through positions left to right, find the minimum of the remaining elements, swap it with the current element. Part marks are given for vague versions of the minimum or swap idea. Descriptions of bubble sort or insertion sort (adjacent swaps, shifting) earn no marks for P2/P3.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

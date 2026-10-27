@@ -1,0 +1,28 @@
+{
+  "question_key": "saf/DLL_2.2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States a correct difference between asynchronous and synchronous transmission. Asynchronous: each character is sent as an individual self-contained unit framed by a start bit and stop bit (simple/cheap, lower transmission rate). Synchronous: many characters are grouped into a continuous stream/frame, delimited by SYN/flag, needing sender-receiver synchronization (more complex, higher rate). Both modes must be contrasted (at least the key distinction: per-character start/stop bits vs. blocks/frames of characters).",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only one mode is correctly described, or the contrast is vague (e.g. only 'synchronous is faster').",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes only one mode correctly (or gives a correct but one-sided description without contrasting with the other)."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for correctly contrasting asynchronous (character-by-character with start/stop bits, slower, simpler) and synchronous (blocks/frames of characters, flag/SYN delimiters, synchronization, faster). Half mark if only one mode is correctly described or the contrast is vague. No mark for wrong or swapped descriptions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

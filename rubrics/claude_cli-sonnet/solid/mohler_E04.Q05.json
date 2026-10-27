@@ -1,0 +1,35 @@
+{
+  "question_key": "mohler/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that all dimensions after the first (the second, third, ... i.e. every dimension except the first) must be specified (their sizes given) in the parameter declaration. Wording such as 'all but the first' or 'all except the first' earns full marks. A wrong answer such as 'all dimensions must be specified', 'only the first', or 'only the last' earns nothing here.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says that the higher/inner dimensions (e.g. columns of a 2-D array) must be specified but is vague about 'all' of them, or gives only a 2-D example without generalising."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States or clearly implies that the first dimension need not be specified (may be left empty or omitted, e.g. int a[][5]). Satisfied by the phrase 'except the first one'. Saying the first dimension must be given fails this point; saying it is optional (may be given or omitted) is acceptable.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "The model answer 'All the dimensions, except the first one' earns full 5 marks: it satisfies both P1 and P2. Part marks only for vague or example-only answers. Answers saying all dimensions are required, or that only the first or last is needed, earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

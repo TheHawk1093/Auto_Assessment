@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best case occurs when the input array is already sorted (in the desired order). Do not accept reverse-sorted/descending (that is the worst case).",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Vaguely says the array is 'nearly sorted' or 'in order' without clearly stating already sorted."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "States that the number of operations is N (linear, O(N)), where N is the length of the array/number of elements. Equivalent: n comparisons, n-1 comparisons, or linear time. Do not accept N^2 / O(n^2).",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Says linear/O(n) or proportional to n without naming N, or gives N-1 without linking to array length."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: already sorted array and N (linear, O(N)) operations. Half-ish credit for vague versions of either. No marks for reverse-sorted or N^2 answers.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

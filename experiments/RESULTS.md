@@ -184,6 +184,9 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-26 23:19 | pipeline | solidH_pipeline_aes2 | aes2/dev/n30/seed1 | pipeline | 0.119 | ▲ -0.003 | ▲ -0.013 | 0.013 | 0.51 | 0.39 | 47% | 0.13 | 98315fd2 |
 | 2026-10-27 09:17 | pipeline | solidG_pipeline_imo_grading | imo_grading/dev/n30/seed1 | pipeline | 0.119 | ▲ -0.357 | ▲ -0.315 | -0.119 | - | 0.00 | 33% | 0.00 | 98315fd2 |
 | 2026-10-27 10:34 | pipeline | solidG_pipeline_imo_grading | imo_grading/dev/n30/seed1 | pipeline | 0.406 | ▲ -0.071 | ▼ +0.286 | 0.334 | 0.42 | 0.14 | 67% | 0.00 | c1ac946f |
+| 2026-10-27 11:18 | pipeline | regG_solid_saf | saf/dev/n40/seed1 | pipeline | 0.117 | - | ▲ -0.015 | 0.077 | 0.90 | 0.86 | 18% | 0.00 | c1ac946f |
+| 2026-10-27 11:24 | pipeline | regG_solid_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.181 | - | ▼ +0.054 | -0.094 | 0.78 | 0.74 | 32% | 0.00 | c1ac946f |
+| 2026-10-27 11:35 | pipeline | regG_solid_mohler | mohler/dev/n40/seed1 | pipeline | 0.234 | - | ▼ +0.038 | -0.214 | 0.80 | 0.54 | 60% | 0.00 | c1ac946f |
 
 ## Variants
 
