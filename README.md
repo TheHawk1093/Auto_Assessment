@@ -22,6 +22,15 @@ autograde report --name dk_baseline
 autograde view --name dk_pipeline      # rebuild runs/dk_pipeline/report.html
 ```
 
+Mark a whole exam from its files (see DESIGN.md section 20):
+
+```bash
+autograde --config configs/exam.yaml exam --paper paper.md --reference reference.md \
+  --answers answers/ --name quiz1 --granularity half --note "units are required"
+```
+
+`--paper` is the question paper (txt, md, docx, text pdf or json). `--reference` takes the model answer and/or rubric as one combined file or several files; it may be left out. `--answers` is a folder with one file per student (or the output folder of `autograde ocr`), or one JSON file. The teacher's only inputs are `--granularity` (rubric, none, half, quarter), `--strictness` and a free-text `--note`. Results go to `runs/<name>/`: `schemes.md` (read this first), `marks.csv`, `students/<student>.md` (marks and feedback). `--schemes-only` stops after the schemes. Feedback is always written.
+
 Open `runs/<name>/report.html` to read the samples (question, model answer, student answer with quoted evidence highlighted, our marks vs the teacher's, feedback; filter to answers that differ from the teacher). `run` and `judge` rebuild it automatically.
 
 Outputs go to `runs/<name>/`: `report.html`, `results.jsonl` (marks, per-point verdicts, feedback, flags), `metrics.json`, `usage.json`. Interrupted runs resume where they stopped. Marking schemes are stored in `rubrics/<model>/<variant>/` (JSON, plus readable `<dataset>.md` from `autograde rubrics-md`).

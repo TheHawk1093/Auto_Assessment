@@ -7,6 +7,10 @@ Project plan and decisions: PROJECT.md. Usage: README.md.
 - Lint: `.venv/Scripts/ruff check src tests` and `ruff format src tests`
 - Run: `.venv/Scripts/autograde run --dataset digiklausur --split dev -n 24 --mode pipeline --name <run>`
 
+## Marking a real exam
+- `autograde --config configs/exam.yaml exam --paper P --reference R --answers A --name N` (see DESIGN.md section 20). Always pass the config path with its `.yaml` extension: a missing config file is an error.
+- Goedel allows 4 concurrent requests in total, so do not run two DeepSeek jobs at once.
+
 ## Conventions
 - Python 3.11, type hints, pydantic models in `schemas.py`, no agent framework.
 - All prompts live in `src/autograde/prompts/*.md` and all marking schemes in `rubrics/`; code does arithmetic and checks, the model does judgement.
