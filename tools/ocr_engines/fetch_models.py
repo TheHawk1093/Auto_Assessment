@@ -1,6 +1,6 @@
 """Download the weights of every engine once, so later runs work offline.
 
-    .venv-ocr/Scripts/python ocr_tools/fetch_models.py
+.venv-ocr/Scripts/python tools/ocr_engines/fetch_models.py
 """
 
 from __future__ import annotations

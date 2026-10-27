@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/EV_8c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that she should transfer/put the unhatched eggs into a salt solution within the range of tolerance (a salinity where eggs did hatch) and see whether they hatch. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for moving the unhatched eggs to a salt concentration within the tolerance range (where hatching occurred). No mark for just repeating the experiment with new eggs or for answers not involving placing the same eggs in suitable conditions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

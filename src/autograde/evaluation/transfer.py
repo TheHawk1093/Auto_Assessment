@@ -15,7 +15,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from autograde import prompts
-from autograde.evaluation.revision import NO_FEEDBACK, feedback_text
+from autograde.evaluation.revision import NO_FEEDBACK, answer_digest, feedback_text
 from autograde.llm import LLMClient
 from autograde.pipeline.baseline import grade_baseline
 from autograde.schemas import Item, Result
@@ -106,18 +106,19 @@ def transfer_test(
         if qkey + item.id not in questions:
             questions[qkey + item.id] = make_transfer(item, writer).model_dump()
         tq = TransferQ.model_validate(questions[qkey + item.id])
-        if ckey + item.id not in control:
+        ck = ckey + item.id + "|" + answer_digest(item.student_answer)
+        if ck not in control:
             plain = attempt(item, NO_FEEDBACK, tq, student)
-            control[ckey + item.id] = {"answer": plain, "mark": _mark(item, tq, plain, grader)}
+            control[ck] = {"answer": plain, "mark": _mark(item, tq, plain, grader)}
         guided = attempt(item, feedback_text(r.feedback), tq, student)
         return TransferRow(
             id=item.id,
             max_mark=item.max_mark,
             new_question=tq.question,
             with_feedback=_mark(item, tq, guided, grader),
-            without_feedback=control[ckey + item.id]["mark"],
+            without_feedback=control[ck]["mark"],
             answer_with=guided,
-            answer_without=control[ckey + item.id]["answer"],
+            answer_without=control[ck]["answer"],
         )
 
     with ThreadPoolExecutor(workers) as pool:

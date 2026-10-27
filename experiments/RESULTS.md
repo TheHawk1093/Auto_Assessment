@@ -187,6 +187,14 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-27 11:18 | pipeline | regG_solid_saf | saf/dev/n40/seed1 | pipeline | 0.117 | - | ▲ -0.015 | 0.077 | 0.90 | 0.86 | 18% | 0.00 | c1ac946f |
 | 2026-10-27 11:24 | pipeline | regG_solid_digiklausur | digiklausur/dev/n40/seed1 | pipeline | 0.181 | - | ▼ +0.054 | -0.094 | 0.78 | 0.74 | 32% | 0.00 | c1ac946f |
 | 2026-10-27 11:35 | pipeline | regG_solid_mohler | mohler/dev/n40/seed1 | pipeline | 0.234 | - | ▼ +0.038 | -0.214 | 0.80 | 0.54 | 60% | 0.00 | c1ac946f |
+| 2026-10-27 13:05 | pipeline | ab_digiklausur | digiklausur/dev/n16/seed0 | pipeline | 0.125 | - | - | -0.125 | 0.95 | 0.90 | 20% | 0.00 | c1757aad |
+| 2026-10-27 13:15 | pipeline | ab_mohler | mohler/dev/n24/seed0 | pipeline | 0.207 | ▲ -0.018 | ▼ +0.033 | -0.146 | 0.68 | 0.48 | 22% | 0.00 | c1757aad |
+| 2026-10-27 13:16 | pipeline | ab_scientsbank | scientsbank/dev/n24/seed0 | pipeline | 0.479 | - | - | 0.229 | 0.04 | 0.04 | 42% | 0.00 | c1757aad |
+| 2026-10-27 13:17 | pipeline | ab_asap_sas | asap_sas/dev/n24/seed0 | pipeline | 0.245 | - | - | -0.040 | 0.43 | 0.43 | 0% | 0.00 | c1757aad |
+| 2026-10-27 13:28 | pipeline | ab_scientsbank | scientsbank/dev/n24/seed0 | pipeline | 0.479 | - | = | 0.229 | 0.04 | 0.04 | 42% | 0.00 | c1757aad |
+| 2026-10-27 13:36 | pipeline | ab_asap_sas | asap_sas/dev/n24/seed0 | pipeline | 0.245 | - | = | -0.040 | 0.43 | 0.43 | 0% | 0.00 | c1757aad |
+| 2026-10-27 13:46 | pipeline | ab_mohler | mohler/dev/n24/seed0 | pipeline | 0.212 | ▲ -0.013 | ▼ +0.006 | -0.154 | 0.71 | 0.52 | 25% | 0.00 | c1757aad |
+| 2026-10-27 14:24 | pipeline | ocrn_clean | digiklausur/dev/n24/seed1 | pipeline | 0.125 | ▲ -0.075 | ▼ +0.027 | -0.083 | 0.84 | 0.79 | 21% | 0.00 | c1757aad |
 
 ## Variants
 

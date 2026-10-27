@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/HB_59a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stimulus for Max was seeing the cat (the cat running past). Equivalent wording accepted, e.g. 'the cat running past him'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for identifying the cat (seen running past) as the stimulus. No mark for naming the response (running after the cat, pulling Lee) or Lee/the lead as the stimulus.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

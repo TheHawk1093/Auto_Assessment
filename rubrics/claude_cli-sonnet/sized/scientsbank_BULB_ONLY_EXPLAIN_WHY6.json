@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/BULB_ONLY_EXPLAIN_WHY6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that terminals 1 and 6 are not connected (no direct connection/electrical path between them, so the reading is not zero). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying terminals 1 and 6 are not connected (equivalent wording accepted). No mark for answers that do not state this.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

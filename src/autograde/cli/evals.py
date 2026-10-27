@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from concurrent.futures import ThreadPoolExecutor
 
 from autograde.cli.common import (
@@ -23,6 +24,7 @@ from autograde.evaluation.calibrate import calibrate
 from autograde.evaluation.cascade import cascade_report
 from autograde.evaluation.compliance import compliance
 from autograde.evaluation.criteria import criteria_report
+from autograde.evaluation.feedback_ab import lost_marks, run_ab, table
 from autograde.evaluation.revision import revision_test, summarise
 from autograde.evaluation.sensitivity import compare_runs
 from autograde.evaluation.stress import Case, build_cases, run_stress
@@ -34,6 +36,7 @@ from autograde.llm import build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.rubric import store_for
 from autograde.pipeline.run import mark_item, to_question
+from autograde.viewer.build import sample_by_mark
 
 
 def register(sub) -> None:
@@ -56,6 +59,13 @@ def register(sub) -> None:
     rv.add_argument("--name", required=True)
     rv.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
     rv.set_defaults(func=cmd_revision)
+
+    ab = sub.add_parser(
+        "feedback-ab", help="feedback from the marking vs feedback from the answers alone"
+    )
+    ab.add_argument("--name", required=True, help="a finished marking run")
+    ab.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
+    ab.set_defaults(func=cmd_feedback_ab)
 
     vt = sub.add_parser("votes", help="how steady is the grader, and does voting help")
     vt.add_argument("--name", required=True)
@@ -199,3 +209,34 @@ def cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
     write_lines(run / f"revision_rows{sfx}.jsonl", [r.model_dump_json() for r in rows])
     write_json(run / f"revision_scores{sfx}.json", out)
     print(json.dumps(out, indent=2))
+
+
+def cmd_feedback_ab(args: argparse.Namespace, settings: Settings) -> None:
+    """`llm` marks and grades every rewrite; `student` is the second model family."""
+    run = run_dir(settings, args.name)
+    results = lost_marks(load_run(settings, args.name))
+    if args.sample:
+        results = sample_by_mark(results, args.sample)
+    if not results:
+        sys.exit("No marked answers that lost marks in that run.")
+    cfg = run_pipeline(run, settings)
+    grader, other = build_client(settings.llm), build_client(settings.student)
+    report = run_ab(
+        results,
+        records_for(results, settings, cfg),
+        grader,
+        other,
+        cfg,
+        run / "feedback_ab",
+        settings.paths.runs_dir,
+        settings.pipeline.max_workers,
+    )
+    report["cost_usd"] = {
+        grader.name: round(grader.usage.cost_usd, 3),
+        other.name: round(other.usage.cost_usd, 3),
+    }
+    write_json(run / "feedback_ab" / "scores.json", report)
+    text = table(report)
+    (run / "feedback_ab" / "table.md").write_text(text + "\n", encoding="utf-8")
+    print(text)
+    print("cost:", report["cost_usd"])

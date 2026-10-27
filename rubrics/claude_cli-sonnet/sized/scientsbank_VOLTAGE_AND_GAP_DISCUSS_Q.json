@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/VOLTAGE_AND_GAP_DISCUSS_Q",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the jump from 0 to 1.5 V means there is a gap (break/open circuit/separation) between the two terminals where the leads were placed, i.e. the voltage is dropped across that gap. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the terminals are separated by a gap (break/open in the circuit). No mark for answers that don't mention a gap or break, e.g. just saying the battery is 1.5 V.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,28 @@
+{
+  "question_key": "scientsbank/HB_54a2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the bone is triangular (in shape) AND has a hole in the middle for the spinal cord to pass through (identifying it as a vertebra / from the backbone). Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only one of the two features (triangular shape; hole for spinal cord) is given.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives only one of the two features (triangular shape or central hole for the spinal cord), or says it is a vertebra/backbone without the supporting feature."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for noting both the triangular shape and the central hole for the spinal cord (so it is from the backbone). Half for just one feature. No marks for answers that don't refer to either feature.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

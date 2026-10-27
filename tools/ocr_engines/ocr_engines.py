@@ -87,7 +87,7 @@ def _trocr():
 
 
 def trocr_text(path: Path) -> str:
-    """TrOCR handwritten (transformer). The best open handwriting reader here, one line at a time."""
+    """TrOCR handwritten (transformer): the best open handwriting reader here, line by line."""
     processor, model = _trocr()
     out = []
     for line in _lines(Image.open(path).convert("RGB")):

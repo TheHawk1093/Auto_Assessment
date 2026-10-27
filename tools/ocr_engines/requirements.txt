@@ -1,6 +1,6 @@
 # Separate environment for the OCR engines (kept apart from the grader: heavy, CPU torch).
 # Setup:  python -m venv .venv-ocr
-#         .venv-ocr/Scripts/pip install --extra-index-url https://download.pytorch.org/whl/cpu -r ocr_tools/requirements.txt
+#         .venv-ocr/Scripts/pip install --extra-index-url https://download.pytorch.org/whl/cpu -r tools/ocr_engines/requirements.txt
 torch
 torchvision
 transformers>=4.50

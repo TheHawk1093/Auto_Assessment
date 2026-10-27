@@ -5,6 +5,7 @@ of the gain is just rewording. Leakage shows how much of the model answer the fe
 
 from __future__ import annotations
 
+import hashlib
 import json
 from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
@@ -20,6 +21,12 @@ from autograde.schemas import Feedback, Grading, Result, RubricRecord
 from autograde.textutil import leakage
 
 NO_FEEDBACK = "No feedback was provided."
+
+
+def answer_digest(answer: str) -> str:
+    """Short hash of the student's answer: the no-feedback control depends on the exact text, and
+    a noisy copy of an answer keeps its item id."""
+    return hashlib.sha1(answer.encode("utf-8")).hexdigest()[:8]
 
 
 class Revised(BaseModel):
@@ -91,7 +98,7 @@ def revision_test(
         record = records[r.item.question_key]
         text = feedback_text(r.feedback)
         revised = revise(r, text, student)
-        key = prefix + r.item.id
+        key = prefix + r.item.id + "|" + answer_digest(r.item.student_answer)
         if key not in cache:
             plain = revise(r, NO_FEEDBACK, student)
             cache[key] = {"answer": plain, "mark": _mark(r, plain, record, grader, cfg).total}

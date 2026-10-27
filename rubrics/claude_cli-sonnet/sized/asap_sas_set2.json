@@ -1,0 +1,42 @@
+{
+  "question_key": "asap_sas/set2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Valid conclusion from the data: plastic B stretched the most (about 22-23 mm) and plastic A the least (about 10-12 mm); order of stretchability B > D > C > A (or equivalent statement that B is most stretchable / A least stretchable), supported by the data.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States only that plastics differ in stretchability, or identifies the most or least stretchable plastic without data support or ranking."
+          }
+        ]
+      },
+      {
+        "id": "P2",
+        "description": "First improvement: a valid way to improve design/validity, e.g. more trials/repeats (and averaging), larger sample size, or more precise measuring tools.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      },
+      {
+        "id": "P3",
+        "description": "Second, different improvement: e.g. control variables such as same starting length/width/thickness of samples, same mass of weights and same hanging time, measure the length before and after on the same sample, or use a more precise ruler/measuring method. Must differ from P2.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: a data-supported conclusion (B most stretchable, A least) plus two distinct valid improvements. Part marks: vague conclusion earns half of P1. Equivalent wording accepted; the two improvements must be different ideas.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

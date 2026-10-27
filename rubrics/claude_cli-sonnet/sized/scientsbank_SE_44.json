@@ -1,0 +1,23 @@
+{
+  "question_key": "scientsbank/SE_44",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a heat sink absorbs/stores heat during the day and releases it at night (when it is cooler), keeping the house warmer for longer. Equivalent wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": []
+      }
+    ],
+    "deductions": [],
+    "notes": "Full mark for saying the heat sink stores heat in the day and releases it later (night) to keep the house warm longer. Saying only that it keeps the house warm, with no mention of storing and releasing, earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

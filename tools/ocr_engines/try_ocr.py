@@ -1,7 +1,7 @@
 """Run the OCR engines on images and save each engine's text for side-by-side reading.
 
-    .venv-ocr/Scripts/python ocr_tools/try_ocr.py data/ocr_images            # all engines
-    .venv-ocr/Scripts/python ocr_tools/try_ocr.py page.png --engines got,trocr
+    .venv-ocr/Scripts/python tools/ocr_engines/try_ocr.py data/ocr_images            # all engines
+    .venv-ocr/Scripts/python tools/ocr_engines/try_ocr.py page.png --engines got,trocr
 
 Output goes to <folder>/_out/<image>.<engine>.txt, and a timing table is printed.
 """

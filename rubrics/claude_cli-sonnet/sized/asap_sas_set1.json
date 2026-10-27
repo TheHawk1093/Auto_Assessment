@@ -1,0 +1,32 @@
+{
+  "question_key": "asap_sas/set1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies at least three distinct pieces of missing information needed to replicate the procedure. Examples: type/concentration of vinegar (e.g., % acetic acid); volume/amount of vinegar in each container; size/shape/surface area of the samples; type/size/material of the containers; temperature/conditions during the 24 hours; type of balance/precision; whether samples are covered; how samples were dried/rinse amount; specific identity of the samples (e.g., type of wood/plastic). Award 1 mark for each distinct valid piece, up to 3. Equivalent wording accepted; repeats of the same idea earn no extra marks.",
+        "marks": 3.0,
+        "partial_credit": "1 mark per distinct valid piece, max 3.",
+        "levels": [
+          {
+            "share": 0.33,
+            "says": "One valid piece of missing information given."
+          },
+          {
+            "share": 0.67,
+            "says": "Two valid distinct pieces of missing information given."
+          }
+        ]
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for three distinct, valid missing details (e.g., vinegar type/concentration, volume of vinegar, sample size/shape, container size, temperature). Each valid piece earns 1 mark. Vague or repeated items, or details already in the procedure (e.g., 24 hours, 30 minutes drying), earn nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}
