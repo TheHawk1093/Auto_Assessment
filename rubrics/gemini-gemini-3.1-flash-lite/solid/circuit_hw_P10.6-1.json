@@ -1,0 +1,73 @@
+{
+  "question_key": "circuit_hw/P10.6-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Correct use of nodal/supernode analysis in the phasor domain.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.88,
+            "says": "Uses nodal analysis but fails to correctly implement the supernode for the dependent source."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equations: Correct formation of KCL equations and dependent-source constraint.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "Correct KCL but contains errors in the dependent-source constraint or sign."
+          },
+          {
+            "share": 0.33,
+            "says": "Incorrect impedance expressions or missing branches in KCL."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Accurate complex algebra and conversion to time-domain.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct equations but contains arithmetic errors leading to incorrect magnitude or phase."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Final Answer: Correct phasor-to-time domain conversion, units, and format.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.0,
+          "unit": "V",
+          "rel_tol": 0.1,
+          "abs_tol": 0.1,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for a complete, error-free derivation of vo(t) using the required nodal analysis. Part marks are deducted for specific procedural errors, arithmetic mistakes, or missing units as defined in the rubric. A solution that fails to provide the final time-domain expression vo(t) cannot receive full marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The student must define the supernode around the dependent source, write the KCL equations in the phasor domain using impedances ZL=j\u03c9L and ZC=1/(j\u03c9C), solve the resulting system for the phasor Vo, and convert the result to the time-domain form vo(t) = Vm cos(\u03c9t + \u03c6) V."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

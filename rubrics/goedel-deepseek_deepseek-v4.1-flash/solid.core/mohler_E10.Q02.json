@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the height is the length of the longest path in the tree \u2014 i.e. the maximum distance/number of levels from the root down to a node. Accept equivalent wording such as 'the longest route from the root', 'the maximum depth', 'the greatest number of edges on a downward path'.",
+        "marks": 3.0,
+        "partial_credit": "Half marks if the answer describes a path from the root to a leaf but does not say it is the longest/deepest such path.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives a path from the root down to a leaf (or the depth of the tree) but does not identify it as the longest/deepest such path."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that this longest path ends at a leaf (a node with no children), i.e. the height is measured from the root to the deepest leaf. Accept 'leaf', 'terminal node', 'node with no children', or 'end of the tree'.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if leaves are mentioned but not tied to the deepest one, or if the endpoint is left vague (e.g. 'to the bottom of the tree').",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions leaves or the bottom of the tree but does not make clear that the path goes to the deepest leaf."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both ideas: the height is the longest path, and that path runs from the root to a leaf. An answer giving only one of the two earns the marks for that point only. Answers such as 'the number of nodes in the tree', 'the depth of a given node', or 'the size of the tree' earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

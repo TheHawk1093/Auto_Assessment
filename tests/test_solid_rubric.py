@@ -142,3 +142,11 @@ def test_a_missing_config_file_is_an_error_not_the_defaults(tmp_path):
 
     with pytest.raises(FileNotFoundError):
         load_settings(tmp_path / "nope.yaml")
+
+
+def test_solid_style_adds_its_prompt_and_keeps_the_solid_behaviour():
+    from autograde.pipeline.rubric import is_solid, rubric_prompt
+
+    assert is_solid("solid") and is_solid("solid.core") and not is_solid("solidly")
+    assert "Style: core first" in rubric_prompt("solid.core")
+    assert "Style: core first" not in rubric_prompt("solid")

@@ -1,0 +1,14 @@
+# Real scans: the OCR text is marked by DeepSeek (Goedel, free) with the current graded pipeline,
+# feedback on. Haiku is the student in the revision and transfer tests. The OCR read prompt is on.
+llm: {backend: goedel, model: "deepseek/deepseek-v4.1-flash", timeout_s: 300, retries: 2}
+judge: {backend: claude_cli, model: haiku, effort: low}
+student: {backend: claude_cli, model: haiku, effort: low}
+pipeline:
+  rubric_selftest: false
+  read_first: true
+  rubric_variant: lenient
+  rubric_model: sonnet
+  strong_backend: claude_cli
+  ocr: medium
+  max_workers: 3
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

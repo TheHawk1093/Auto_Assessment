@@ -1,0 +1,93 @@
+{
+  "question_key": "circuit_hw/P3.2-6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method and approach: Correct application of KCL and consistent sign convention for power.",
+        "marks": 30.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "Minor inconsistency in current direction definition or power mapping."
+          },
+          {
+            "share": 0.33,
+            "says": "Major failure to apply KCL or define current directions, requiring significant interpretation."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equations and sign use: Correct KCL equations and power formulas (p = vi) with correct source values.",
+        "marks": 30.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "One error in KCL signs or source value mapping."
+          },
+          {
+            "share": 0.33,
+            "says": "Multiple errors in equations or incorrect power sign convention applied throughout."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation and arithmetic: Correct numerical solution of currents and power values.",
+        "marks": 20.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Arithmetic slip or minor unit conversion error."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units and labeling: Correct units (W/mW) and clear identification of supplied/absorbed power.",
+        "marks": 8.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Missing units or ambiguous labeling for one source."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: All voltage sources addressed with final numerical values and power status.",
+        "marks": 12.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Missing one source or missing final numerical values."
+          },
+          {
+            "share": 0.16,
+            "says": "Only equations provided without final values."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Students start with 100 marks. Deductions are applied based on the rubric categories: Method (M), Equations (E), Calculation (C), Units (U), and Completeness (NC). Ensure that the final power values are clearly identified as supplied or absorbed.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

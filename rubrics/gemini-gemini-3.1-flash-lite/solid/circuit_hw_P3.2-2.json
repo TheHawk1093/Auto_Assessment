@@ -1,0 +1,93 @@
+{
+  "question_key": "circuit_hw/P3.2-2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method/Approach: Uses a valid circuit analysis approach (KCL/KVL/Node-voltage) consistent with given polarities and directions.",
+        "marks": 30.0,
+        "partial_credit": "Deduct 10 marks for each of M1, M2, or M3 errors.",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "Valid approach used but contains one minor inconsistency in sign convention or reference definition."
+          },
+          {
+            "share": 0.33,
+            "says": "Approach is largely unclear or jumps to results without showing governing relations."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equations/Relations: Sets up correct KCL/KVL and voltage/current relations using given source values and polarities.",
+        "marks": 30.0,
+        "partial_credit": "Deduct 10 marks for each of E1, E2, or E3 errors.",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "Equations are mostly correct but contain one sign error or missing term."
+          },
+          {
+            "share": 0.33,
+            "says": "Multiple errors in signs or source substitutions in the equations."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculations: Correct algebra and arithmetic to solve for i2, i4, v2, v3, and v6.",
+        "marks": 20.0,
+        "partial_credit": "Deduct 6.67 marks for each of C1, C2, or C3 errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Algebraic steps are correct but contain one arithmetic slip."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units: Correct units (A for currents, V for voltages) provided for all final answers.",
+        "marks": 10.0,
+        "partial_credit": "Deduct 5 marks for each of U1 or U2 errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Units are missing or incorrect on some, but not all, final answers."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: All requested quantities (i2, i4, v2, v3, v6) are clearly stated and labeled.",
+        "marks": 10.0,
+        "partial_credit": "Deduct 3.33 marks for each of NC1, NC2, or NC3 errors.",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "All values provided but labeling is ambiguous or formatting is unclear."
+          },
+          {
+            "share": 0.33,
+            "says": "Missing one or two of the requested quantities."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for a complete, logically sound derivation with correct arithmetic and units. Deductions are applied for specific errors in method, equation setup, calculation, unit usage, or completeness as defined in the rubric. Partial credit is awarded for minor slips that do not invalidate the overall methodology.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

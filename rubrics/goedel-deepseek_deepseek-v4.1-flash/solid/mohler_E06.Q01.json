@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (or an identifier/variable-like object that holds a value), not merely an address or a value itself.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the pointer contains, stores or holds a memory address (an address in memory).",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if the answer says the pointer refers/points to a memory location but does not clearly say that it stores/contains an address.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the pointer refers or points to a memory location, but does not clearly state that it stores/contains an address."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the stored address is the address of another variable (the pointer points to or refers to another variable).",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if the answer mentions an address of a variable or data item but does not make clear that it is another variable.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions an address of a variable or data item, but does not make clear that it is another variable."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three elements: a pointer is a variable, it stores a memory address, and that address is the address of another variable. Part marks are available where the answer gives only part of the definition, such as saying it points to memory without saying it stores an address, or giving an address without making clear it belongs to another variable. No marks are earned for a vague statement that a pointer 'points' with no reference to a variable or memory address.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

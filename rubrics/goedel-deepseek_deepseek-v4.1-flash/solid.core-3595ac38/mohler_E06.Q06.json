@@ -1,0 +1,48 @@
+{
+  "question_key": "mohler/E06.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names or describes a nonconstant pointer to constant data: the pointer itself is not const (it can be reassigned) but the data it points to is const (it cannot be modified through the pointer). Accept equivalent wording such as 'pointer to const data' when the pointer is nonconstant, or a correct declaration such as `const int *p`. Do not accept a constant pointer or nonconstant data.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Names or describes a nonconstant pointer to nonconstant data: both the pointer and the pointed-to data are nonconst (both can be modified). Accept equivalent wording such as 'ordinary pointer to non-const data' or a correct declaration such as `int *p`. Do not accept if either the pointer or the data is const.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Names or describes a constant pointer to constant data: both the pointer and the pointed-to data are const (neither can be modified). Accept equivalent wording such as 'const pointer to const data' or a correct declaration such as `const int * const p`. Do not accept if either the pointer or the data is nonconst.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Names or describes a constant pointer to nonconstant data: the pointer itself is const (it cannot be reassigned) but the data it points to is nonconst (it can be modified through the pointer). Accept equivalent wording such as 'const pointer to non-const data' or a correct declaration such as `int * const p`. Do not accept if the data is const or the pointer is nonconst.",
+        "marks": 1.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four combinations of pointer constness and data constness. Each correct combination earns 1.25 marks; equivalent wording or a correct C/C++ declaration is accepted. There is no separate mark for saying 'four ways'; an incomplete or ambiguous combination earns no marks for that point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

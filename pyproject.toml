@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 anthropic = ["anthropic>=0.40"]
 files = ["pypdf>=4"]  # reading PDF question papers and references
+sandbox = ["wasmtime>=25"]  # run student code in WebAssembly (see tools/sandbox/README.md)
 dev = ["pytest>=8", "ruff>=0.5"]
 
 [project.scripts]

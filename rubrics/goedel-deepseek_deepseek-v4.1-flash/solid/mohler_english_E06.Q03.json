@@ -1,0 +1,45 @@
+{
+  "question_key": "mohler_english/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies the star (*) operator as the dereferencing (indirection) operator.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the result is an alias or synonym for the name of the object, rather than a copy of the object/value.",
+        "marks": 2.0,
+        "partial_credit": "Half credit if the answer says it returns/gives the object or value stored at the pointed-to address but does not describe the result as an alias/synonym.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says it returns/gives the object or value stored at the pointed-to address, but does not mention alias/synonym."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Specifies that the object is the one in memory that the operand (the pointer) points to.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three ideas: * is the dereferencing/indirection operator, it gives an alias/synonym for an object, and that object is the one the operand points to in memory. For P2, an answer that only says it returns the value stored at the address earns half credit; an answer that describes it as an alias/synonym earns full credit. Answers that treat * as multiplication or as the address-of operator earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

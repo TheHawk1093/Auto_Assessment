@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array is initialized only once, rather than repeatedly.",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if the answer says a static array has special or one-time initialization but does not clearly state that it is initialized only once.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the one-time initialization of the static array occurs when the function is called (or on the first call to the function).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Contrasts this with a non-static array: it is not initialized only once; it is initialized each time the function is called or each time the declaration is reached.",
+        "marks": 2.0,
+        "partial_credit": "Award 1 mark if the answer says non-static arrays are initialized on each call but does not explicitly contrast this with the static array's one-time initialization.",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require saying that a static array is initialized only once, that this happens when the function is called, and that a non-static array is initialized each time the function is called or the declaration is reached. Award part marks for only one side of the contrast or for saying 'once' without the function-call timing. No marks for vague statements that a static array is permanent or global without addressing initialization.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

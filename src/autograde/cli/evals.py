@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
 from autograde.cli.common import (
     load_run,
@@ -25,7 +26,10 @@ from autograde.evaluation.cascade import cascade_report
 from autograde.evaluation.compliance import compliance
 from autograde.evaluation.criteria import criteria_report
 from autograde.evaluation.feedback_ab import lost_marks, run_ab, table
+from autograde.evaluation.judge_check import agreement, export_sheet, write_sheet
 from autograde.evaluation.revision import revision_test, summarise
+from autograde.evaluation.robustness import NAMES, robustness_test
+from autograde.evaluation.robustness import summarise as robustness_summary
 from autograde.evaluation.sensitivity import compare_runs
 from autograde.evaluation.stress import Case, build_cases, run_stress
 from autograde.evaluation.stress import summarise as summarise_stress
@@ -34,6 +38,7 @@ from autograde.evaluation.transfer import transfer_test
 from autograde.evaluation.voting import review_report, vote_report
 from autograde.llm import build_client
 from autograde.pipeline.baseline import grade_baseline
+from autograde.pipeline.review import review_stats
 from autograde.pipeline.rubric import store_for
 from autograde.pipeline.run import mark_item, to_question
 from autograde.viewer.build import sample_by_mark
@@ -58,6 +63,11 @@ def register(sub) -> None:
     rv = sub.add_parser("revision", help="test whether the feedback helps a student improve")
     rv.add_argument("--name", required=True)
     rv.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
+    rv.add_argument(
+        "--own-knowledge",
+        action="store_true",
+        help="the student may also use what they know, not only the feedback",
+    )
     rv.set_defaults(func=cmd_revision)
 
     ab = sub.add_parser(
@@ -66,6 +76,30 @@ def register(sub) -> None:
     ab.add_argument("--name", required=True, help="a finished marking run")
     ab.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
     ab.set_defaults(func=cmd_feedback_ab)
+
+    rw = sub.add_parser("review", help="which answers are worth a look, and are they worse")
+    rw.add_argument("--name", required=True)
+    rw.set_defaults(func=cmd_review)
+
+    rb = sub.add_parser(
+        "robustness", help="do marks hold when the same answer is written differently"
+    )
+    rb.add_argument("--name", required=True, help="a finished marking run")
+    rb.add_argument("--perturb", nargs="+", default=list(NAMES), choices=NAMES)
+    rb.add_argument("--sample", type=int, help="test only N answers, spread over the marks")
+    rb.add_argument("--seed", type=int, default=0)
+    rb.set_defaults(func=cmd_robustness)
+
+    js = sub.add_parser("judge-sheet", help="a sheet for a person to check the feedback judge")
+    js.add_argument("--runs", nargs="+", required=True, help="runs that were judged")
+    js.add_argument("--per-run", type=int, default=10)
+    js.add_argument("--seed", type=int, default=0)
+    js.add_argument("--out", type=Path, required=True)
+    js.set_defaults(func=cmd_judge_sheet)
+
+    ja = sub.add_parser("judge-agreement", help="judge vs the person's answers on that sheet")
+    ja.add_argument("--sheet", type=Path, required=True)
+    ja.set_defaults(func=cmd_judge_agreement)
 
     vt = sub.add_parser("votes", help="how steady is the grader, and does voting help")
     vt.add_argument("--name", required=True)
@@ -187,6 +221,43 @@ def cmd_transfer(args: argparse.Namespace, settings: Settings) -> None:
     print(json.dumps(out, indent=2))
 
 
+def cmd_robustness(args: argparse.Namespace, settings: Settings) -> None:
+    run = run_dir(settings, args.name)
+    results = [r for r in load_run(settings, args.name) if r.grading]
+    if args.sample:
+        results = sample_by_mark(results, args.sample)
+    cfg = run_pipeline(run, settings)
+    grader, writer = build_client(settings.llm), build_client(settings.llm)
+    shifts = robustness_test(
+        results,
+        records_for(results, settings, cfg),
+        grader,
+        writer,
+        cfg,
+        args.perturb,
+        settings.paths.runs_dir / "robustness_cache.json",
+        args.seed,
+        settings.pipeline.max_workers,
+    )
+    table = robustness_summary(shifts)
+    write_json(run / "robustness.json", table)
+    print(json.dumps(table, indent=1))
+
+
+def cmd_review(args: argparse.Namespace, settings: Settings) -> None:
+    print(json.dumps(review_stats(load_run(settings, args.name)), indent=2))
+
+
+def cmd_judge_sheet(args: argparse.Namespace, settings: Settings) -> None:
+    rows = export_sheet(settings.paths.runs_dir, args.runs, args.per_run, args.seed)
+    write_sheet(rows, args.out)
+    print(f"wrote {len(rows)} rows to {args.out}; fill the human_* columns with y or n")
+
+
+def cmd_judge_agreement(args: argparse.Namespace, settings: Settings) -> None:
+    print(json.dumps(agreement(args.sheet), indent=2))
+
+
 def cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
     run = run_dir(settings, args.name)
     results = load_run_with_feedback(settings, args.name, args.sample)
@@ -200,12 +271,13 @@ def cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
         cfg,
         settings.paths.runs_dir / "revision_control2.json",
         settings.pipeline.max_workers,
+        own_knowledge=args.own_knowledge,
     )
     out = {
         **summarise(rows),
         "cost_usd": round(grader.usage.cost_usd + student.usage.cost_usd, 3),
     }
-    sfx = "_sample" if args.sample else ""
+    sfx = ("_own" if args.own_knowledge else "") + ("_sample" if args.sample else "")
     write_lines(run / f"revision_rows{sfx}.jsonl", [r.model_dump_json() for r in rows])
     write_json(run / f"revision_scores{sfx}.json", out)
     print(json.dumps(out, indent=2))

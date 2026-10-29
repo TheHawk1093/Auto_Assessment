@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler_tamil/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer is a variable (Tamil: '\u0bae\u0bbe\u0bb1\u0bbf'; English: variable). Accept equivalent wording such as 'a special type of variable' or 'a variable used to store addresses'. Do not award if the answer describes a pointer only as an address or a value, without identifying it as a variable.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a pointer holds/stores a memory address (Tamil: '\u0ba8\u0bbf\u0ba9\u0bc8\u0bb5\u0b95 \u0bae\u0bc1\u0b95\u0bb5\u0bb0\u0bbf'; English: memory address). Accept equivalent wording such as 'contains the address', 'points to a memory location', or 'stores the location in memory'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the address stored is the address of another variable (Tamil: '\u0bae\u0bb1\u0bcd\u0bb1\u0bca\u0bb0\u0bc1 \u0bae\u0bbe\u0bb1\u0bbf\u0baf\u0bbf\u0ba9\u0bcd'; English: of another variable). Accept equivalent wording such as 'the address of a different variable' or 'the memory location where another variable is stored'. Do not award if the answer says only 'an address' without indicating that it belongs to another variable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three ideas: a pointer is a variable, it stores a memory address, and that address belongs to another variable. Award part marks for each idea stated correctly, even if the wording differs from the model answer. No marks for an answer that only gives a vague statement such as 'it points' without saying what a pointer is or what it stores.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

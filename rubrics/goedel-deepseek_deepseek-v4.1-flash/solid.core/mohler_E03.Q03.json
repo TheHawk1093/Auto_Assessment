@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler replaces each call to the inline function with a copy of the function's code \u2014 i.e. the function body is copied/inserted/expanded at every place where the function is called, so the code is duplicated at each call site rather than called once. Equivalent wording such as 'the code is pasted in wherever the function is used' or 'each call is substituted by the function's body' earns the marks. Merely saying the function is 'made inline' or 'optimised' without saying the code is copied at the call sites does not earn full marks.",
+        "marks": 5.0,
+        "partial_credit": "Half credit when the copying/insertion of the code is stated but the 'at every call site' part is missing or vague; a smaller share when only the avoidance of a function call is mentioned.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the compiler copies/inserts the function's code (or expands the function body), but does not make clear that this happens at each place the function is called."
+          },
+          {
+            "share": 0.25,
+            "says": "Only says that the function call is avoided/replaced or that the call overhead is removed, without saying that the function's code is copied or inserted."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require saying that the compiler copies the function's code into every place where the function is called (the body is inserted at each call site). Part marks are given when the copying is mentioned but the 'at every call site' idea is missing, or when only the removal of the function call is stated. Saying only that the function is 'inline' or 'optimised', with no mention of copying the code, earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

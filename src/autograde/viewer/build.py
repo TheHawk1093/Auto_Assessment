@@ -11,6 +11,7 @@ from importlib import resources
 from pathlib import Path
 
 from autograde.evaluation.metrics import report
+from autograde.pipeline.review import LABELS, review_reasons
 from autograde.pipeline.rubric import cached_record
 from autograde.pipeline.verify import evidence_in_answer
 from autograde.schemas import Result
@@ -98,13 +99,20 @@ def build_data(
                 "grading": _grading_with_checks(r),
                 "feedback": r.feedback.model_dump() if r.feedback else None,
                 "flags": r.flags,
+                "review": review_reasons(r),
                 "points": points,
                 "scheme_ok": record.selftest_passed if record else None,
                 "scheme_notes": record.selftest_notes if record else [],
                 "judgement": judgements.get(r.item.id),
             }
         )
-    return {"title": title, "metrics": report(results), "items": items, "run": run_info or {}}
+    return {
+        "title": title,
+        "metrics": report(results),
+        "items": items,
+        "run": run_info or {},
+        "review_labels": LABELS,
+    }
 
 
 def render_html(data: dict) -> str:

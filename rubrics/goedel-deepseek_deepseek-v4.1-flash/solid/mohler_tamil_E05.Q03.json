@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler_tamil/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best-case scenario for insertion sort occurs when the array is already sorted (in ascending order). Accept equivalent wording such as 'sorted array' or 'array is in order'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the number of operations in the best case is N, where N is the length/size of the array. Accept 'N operations' or equivalent linear-time statement such as O(N)/linear time, provided N is identified as the array length or the answer clearly means the input size. Do not accept N^2 or quadratic time.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the best-case condition (already sorted array) and the operation count N (array length). If the answer gives only one of these, award only the corresponding point. Answers claiming N^2 operations or a reverse-sorted best case do not earn the relevant point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

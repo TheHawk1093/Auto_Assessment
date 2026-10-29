@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the ordering property: for every node, all/smaller values go in the left subtree (left child smaller than the parent) and larger values go in the right subtree (parent smaller than the right child). Accept equivalent wording, e.g. 'left child < parent < right child', 'everything to the left is smaller and everything to the right is larger', or 'the tree is ordered so that smaller keys are on the left and larger keys on the right'.",
+        "marks": 3.0,
+        "partial_credit": "Half marks if only one side of the ordering is given (e.g. only that the left child is smaller than the parent, or only that the right child is larger), or if the ordering is stated vaguely without saying it holds for every node.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives only one side of the ordering (left smaller than parent, or parent smaller than right), or says the tree is 'ordered/sorted' without stating how values are arranged."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that it is a binary tree, i.e. a tree in which each node has at most two children (left and right). Accept 'binary tree' or an equivalent description of at most two children per node.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the answer says only 'tree' or describes a hierarchical structure of nodes without saying that each node has at most two children.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Calls it a tree (or describes nodes linked in a hierarchy) but does not say that each node has at most two children."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both that the structure is a binary tree (each node has at most two children) and that it satisfies the ordering property left child < parent < right child for every node. Part marks are given when only one side of the ordering is stated, or when the answer says 'tree' without 'binary'. An answer that describes only a general tree, or gives no ordering property at all, earns little or no credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

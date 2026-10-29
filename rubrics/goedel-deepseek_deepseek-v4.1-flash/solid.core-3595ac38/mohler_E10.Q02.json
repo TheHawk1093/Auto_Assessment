@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the height of a tree is the length of the longest path from the root to a leaf (i.e. the maximum number of edges, or nodes, on any root-to-leaf path). Accept any wording that conveys 'longest/largest path or distance from the root down to a leaf/deepest leaf', including 'the number of levels/edges from the root to the deepest leaf' or 'the depth of the deepest leaf'. A vague answer such as 'how tall the tree is' or 'the number of levels' with no reference to a longest path or to root-to-leaf earns partial credit only.",
+        "marks": 5.0,
+        "partial_credit": "Levels for answers that give the idea only partly or vaguely.",
+        "levels": [
+          {
+            "share": 0.7,
+            "says": "Mentions the longest path / maximum depth of the tree but does not make clear that it runs from the root to a leaf (e.g. 'the longest path in the tree', 'the depth of the deepest node' with no mention of the root)."
+          },
+          {
+            "share": 0.4,
+            "says": "Only a vague statement of size or depth, e.g. 'how tall the tree is', 'the number of levels', with no reference to a longest path or to root-to-leaf distance."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for saying the height is the length of the longest path from the root to a leaf, in any wording (edges or nodes counted along that path both count). Part marks for answers that mention the longest path or maximum depth but leave out the root-to-leaf part, or that are only vague about the tree's depth. No marks for unrelated answers such as the number of nodes in the tree or the number of children of the root.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

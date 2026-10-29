@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Says a variable is a location/place in memory (or a storage location). Accept everyday wording such as 'a spot in memory', 'a named place in the computer's memory', or 'somewhere in memory'. Do not accept only 'a container' or 'a name' with no idea of memory/storage location.",
+        "marks": 3.0,
+        "partial_credit": "Award partial credit if the answer says a variable is a storage place/container but does not mention memory.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a variable is a storage place/container, but does not mention memory."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Says the variable can store/hold/contain a value (or data). Accept equivalent wording such as 'keeps a value', 'is used to save a value', or 'holds information'. Do not accept only 'it is a value' or 'it changes'.",
+        "marks": 2.0,
+        "partial_credit": "Award partial credit if the answer says a variable is associated with data/value but does not clearly say it stores or holds it.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions data or a value in connection with the variable, but does not clearly say the variable stores or holds it."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both ideas from the model answer: a variable is a location in memory and it can store a value. Give partial credit where only one idea is present, or where the storage idea is present but memory is not mentioned. An answer that only says 'a container' or 'a name' without memory or storing a value earns little or no credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

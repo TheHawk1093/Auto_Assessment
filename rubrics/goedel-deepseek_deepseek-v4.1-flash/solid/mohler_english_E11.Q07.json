@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler_english/E11.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a static array is initialized only once (a single initialization), e.g. once when the function is first called or once for the lifetime of the program. Accept equivalent wording such as 'initialization happens only one time' or 'it is not reinitialized on later calls.'",
+        "marks": 3.0,
+        "partial_credit": "Award partial credit if the answer says a static array is initialized when the function is called but does not make clear that this happens only once.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the static array is initialized when the function is called, but does not clearly state that it happens only once."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the contrast: a non-static array is initialized each time the function/block is called or entered (each time control reaches its declaration). Accept equivalent wording such as 'it is reinitialized on every call.'",
+        "marks": 2.0,
+        "partial_credit": "Award partial credit if the answer mentions that a non-static array is initialized at its declaration but does not clearly contrast the repeated initialization with the static array.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions initialization of the non-static array at declaration but does not clearly state that it happens on every call/entry."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both halves of the contrast: the static array is initialized only once, while the non-static array is initialized each time the function/block is called or entered. Part marks are earned for giving only one side of the contrast or for stating it vaguely without making the one-time versus repeated initialization clear. No marks are earned for answers that do not address initialization frequency or that say both arrays are initialized in the same way.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

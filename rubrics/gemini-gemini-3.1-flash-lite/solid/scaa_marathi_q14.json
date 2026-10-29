@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q14",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The student explains that the blockage prevents oxygen and/or nutrients from reaching the heart muscle.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded if the student mentions that oxygen or nutrients are blocked from reaching the heart. No marks are awarded if the answer is irrelevant or incorrect regarding the cause of the heart attack.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u0930\u0915\u094d\u0924\u093e\u0924\u0940\u0932 \u0911\u0915\u094d\u0938\u093f\u091c\u0928 \u0906\u0923\u093f \u092a\u094b\u0937\u0923\u0924\u0924\u094d\u0935\u0947 \u0939\u0943\u0926\u092f\u093e\u091a\u094d\u092f\u093e \u0924\u094d\u092f\u093e \u092d\u093e\u0917\u093e\u092a\u0930\u094d\u092f\u0902\u0924 \u092a\u094b\u0939\u091a\u0942 \u0936\u0915\u0924 \u0928\u093e\u0939\u0940"
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

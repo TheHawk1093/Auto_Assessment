@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler_tamil/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Answer identifies the main function as where a C++ program starts running: accepts 'main', 'main()', 'main function', '\u0bae\u0bc1\u0ba4\u0ba9\u0bcd\u0bae\u0bc8\u0b9a\u0bcd \u0b9a\u0bbe\u0bb0\u0bcd\u0baa\u0bc1' or '\u0bae\u0bc6\u0baf\u0bbf\u0ba9\u0bcd \u0b9a\u0bbe\u0bb0\u0bcd\u0baa\u0bc1'. Naming any other function (e.g. printf, cout) or saying only 'at the beginning of the file/program' without naming main does not earn full marks.",
+        "marks": 5.0,
+        "partial_credit": "Part marks for naming 'a function' or 'the first function' without naming main, or for saying only that execution starts at the beginning of the program/file.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says execution starts in 'a function' or 'the first function' but does not name main."
+          },
+          {
+            "share": 0.2,
+            "says": "Says only that execution starts at the beginning of the program or file, with no mention of a function."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for naming the main function (main / main() / main function) as the place where a C++ program begins execution; the Tamil form \u0bae\u0bc1\u0ba4\u0ba9\u0bcd\u0bae\u0bc8\u0b9a\u0bcd \u0b9a\u0bbe\u0bb0\u0bcd\u0baa\u0bc1 is equally acceptable. Part marks for saying 'a function' or 'the first function' without naming main, or for saying only 'at the beginning of the program'. No marks for naming another function or giving an unrelated answer.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

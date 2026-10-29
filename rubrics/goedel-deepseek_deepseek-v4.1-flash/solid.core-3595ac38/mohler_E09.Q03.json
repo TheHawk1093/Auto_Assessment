@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E09.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the queue is stored in a circular array (also called a ring buffer or wrap-around array), so that when the rear pointer reaches the end of the array it wraps around to the start instead of shifting the queue.",
+        "marks": 3.0,
+        "partial_credit": "Half credit for naming a circular array/ring buffer without saying the rear wraps around; no credit for a plain linear array that shifts elements.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a circular array, ring buffer, or wrap-around array but does not say the rear pointer wraps around or otherwise convey reuse of the array slots."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the front of the queue is kept toward the beginning of the array and the rear toward the end, i.e. front and rear indices/pointers mark the occupied range.",
+        "marks": 2.0,
+        "partial_credit": "Half credit for mentioning front and rear pointers or indices without stating their placement.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions front and rear pointers or indices but does not say that the front is toward the beginning and the rear toward the end."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the circular-array idea with the rear pointer wrapping around and the front/rear placement. A partly correct answer that names a circular array but omits wrap-around earns half of P1; naming front/rear pointers without placement earns half of P2. A plain linear array with shifting elements earns no marks for P1.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

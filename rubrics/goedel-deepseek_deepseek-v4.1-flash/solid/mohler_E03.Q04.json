@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Answer states that passing an argument by reference avoids making a copy of the argument \u2014 the function works on the original data (equivalently: no duplicate of the value is created, the argument is not copied into the function).",
+        "marks": 3.0,
+        "partial_credit": "Half marks if the answer only says the function accesses/uses the original variable directly, without stating that no copy is made.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the function works on / has direct access to the original variable, but does not say that no copy is made."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Answer links the benefit to large data structures/objects \u2014 i.e. the saving matters because copying large arguments would be expensive (in memory and/or time).",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the answer mentions saving memory or time/efficiency in general but does not tie it to large data structures or large arguments.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions improved efficiency, less memory use or faster execution in general, without referring to large data/arguments."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both ideas: that pass-by-reference avoids copying the argument, and that this matters most for large data structures (saving memory and/or time). An answer that only says 'it is more efficient' or 'it is faster' earns half of P2 at most, and no P1 marks. Answers describing only the ability to modify the caller's variable do not earn marks, since the question asks for the main advantage given in the model answer.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

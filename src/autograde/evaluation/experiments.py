@@ -12,8 +12,9 @@ from __future__ import annotations
 import hashlib
 import json
 from datetime import datetime
-from importlib import resources
 from pathlib import Path
+
+from autograde import prompts
 
 LOG_PATH = Path("experiments/log.jsonl")
 RESULTS_PATH = Path("experiments/RESULTS.md")
@@ -21,11 +22,9 @@ RESULTS_PATH = Path("experiments/RESULTS.md")
 
 def prompt_fingerprint() -> dict[str, str]:
     """Short hash of every prompt file, plus one hash for the whole set."""
-    folder = resources.files("autograde.prompts")
     parts = {
-        f.name: hashlib.sha1(f.read_bytes()).hexdigest()[:8]
-        for f in sorted(folder.iterdir(), key=lambda f: f.name)
-        if f.name.endswith(".md")
+        name: hashlib.sha1(path.read_bytes()).hexdigest()[:8]
+        for name, path in sorted(prompts.files().items())
     }
     total = hashlib.sha1("".join(f"{k}{v}" for k, v in parts.items()).encode()).hexdigest()[:8]
     return {"all": total, **parts}
@@ -149,6 +148,8 @@ def render_markdown(entries: list[dict]) -> str:
 
 def record_run(run_dir: Path, variant: str, note: str = "") -> Path:
     """Append the run to the log and rebuild RESULTS.md. Returns the table path."""
-    append_entry(make_entry(run_dir, variant, note))
+    entry = make_entry(run_dir, variant, note)
+    if entry["overall"].get("n"):  # a run that marked nothing (quota, outage) is not a result
+        append_entry(entry)
     RESULTS_PATH.write_text(render_markdown(read_log()), encoding="utf-8")
     return RESULTS_PATH

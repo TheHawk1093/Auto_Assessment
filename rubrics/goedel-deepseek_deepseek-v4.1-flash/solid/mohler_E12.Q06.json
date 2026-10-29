@@ -1,0 +1,53 @@
+{
+  "question_key": "mohler/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a queue is a data structure (or an abstract data type / collection type used to organize data).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a queue stores/contains elements (items, data values) in some order.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that a queue follows the first-in-first-out (FIFO) principle: the element added first is the one removed first.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Names the main queue operations as enqueue (insert/add at the rear) and dequeue (remove/delete from the front).",
+        "marks": 1.0,
+        "partial_credit": "Award 0.5 if only one of enqueue or dequeue is named correctly.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names only one of the two main operations, enqueue or dequeue, correctly."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a clear definition of a queue as a data structure storing elements in FIFO order, plus naming both main operations enqueue and dequeue. Part marks are available for naming only one operation. No marks are earned for vague statements that do not identify FIFO ordering or the queue operations.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

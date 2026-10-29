@@ -1,0 +1,94 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the mass of one element is held fixed when comparing how it combines with another element. Equivalent wording such as 'keeping one element's mass constant' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Implies a fixed amount of one element but does not clearly state that its mass is held constant."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Refers to the mass data/measurements used in the Law of Multiple Proportions, i.e. measured masses of elements in compounds, rather than merely naming the law.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions mass data but does not connect it to the Law of Multiple Proportions or to comparing compounds."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the same two elements can combine to form more than one compound.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says elements combine but does not make clear that they form more than one compound."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the masses of one element combining with a fixed mass of the other are in a whole-number/integer ratio (a ratio of small whole numbers).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a ratio of masses but not that it is a whole-number/integer ratio."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Explains that a whole-number ratio implies matter is discrete/indivisible rather than continuous; whole-number combining can only occur if matter is made of separate particles.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says whole-number ratios suggest particles or discrete matter but does not state that the particles are indivisible or explain why whole numbers imply discreteness."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Concludes that the indivisible/discrete unit of mass is the atom; atoms are the indivisible units that combine in whole-number ratios.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names the atom as the particle/unit but does not tie it to being the indivisible unit of mass."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all six ideas: fixed mass of one element, mass data from the Law of Multiple Proportions, formation of more than one compound, a whole-number mass ratio, the inference that whole numbers imply discrete/indivisible matter, and the identification of the atom as the indivisible unit of mass. Part marks are given where an idea is present but vague or only partly stated. Naming the Law of Multiple Proportions without the mass-ratio and atom reasoning earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

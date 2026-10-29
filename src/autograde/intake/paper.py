@@ -27,8 +27,13 @@ class _Draft(BaseModel):
     questions: list[_Question] = Field(default_factory=list)
 
 
-def load_paper(path: Path, client: LLMClient | None = None) -> Paper:
-    """A structured .json paper is read as it is; any other file is split by the model."""
+def load_paper(
+    path: Path, client: LLMClient | None = None, single_question_mark: float | None = None
+) -> Paper:
+    """A structured .json paper is read as it is; any other file is split by the model.
+
+    A file holding one question may leave its marks unprinted; `single_question_mark` then gives
+    them. With several questions, missing marks are still refused, never guessed."""
     if path.suffix.lower() == ".json":
         data = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(data, dict) and "questions" in data:
@@ -36,6 +41,8 @@ def load_paper(path: Path, client: LLMClient | None = None) -> Paper:
     if client is None:
         raise ValueError(f"{path.name} is not a structured paper; a model is needed to read it.")
     draft = client.ask(prompts.system("intake.paper"), read_document(path), _Draft)
+    if single_question_mark and len(draft.questions) == 1 and not draft.questions[0].max_mark:
+        draft.questions[0].max_mark = single_question_mark
     return _checked(draft)
 
 

@@ -12,12 +12,16 @@ from autograde.config import PipelineConfig, Settings
 from autograde.llm import LLMClient, build_client
 from autograde.pipeline.baseline import grade_baseline
 from autograde.pipeline.cascade import unsure_because
+from autograde.pipeline.checks import run_checks
+from autograde.pipeline.codetests import generate_tests
 from autograde.pipeline.feedback import write_feedback
+from autograde.pipeline.figure import Describer, make_describer
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVEL_PARTIAL_WEIGHT, LEVEL_POLICY
+from autograde.pipeline.objective import mark_mcq
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore, store_for
-from autograde.pipeline.verify import apply_form_gate
+from autograde.pipeline.verify import apply_form_gate, snap_grading
 from autograde.pipeline.vote import combine, models_disagree
 from autograde.schemas import (
     NOT_GIVEN,
@@ -32,6 +36,7 @@ from autograde.schemas import (
 log = logging.getLogger(__name__)
 Mode = Literal["pipeline", "baseline"]
 TEACHER_POLICY = {"lenient": "essence", "moderate": "balanced", "strict": "strict"}
+TEACHER_WEIGHT = {"lenient": 0.9, "moderate": 0.7, "strict": 0.5}  # share for a partial verdict
 
 
 def to_question(item: Item) -> Question:
@@ -51,11 +56,25 @@ class Marked(NamedTuple):
     grading: Grading
     flags: list[str]
     votes: list[float]  # total of each marking when voting, else empty
+    evidence: str = ""  # what code checks found (numbers, units, syntax, a drawing)
 
 
-def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: PipelineConfig) -> Marked:
-    """Stages 3 and 4 for one answer: read it, mark it (several times if voting), check it."""
+def mark_item(
+    item: Item,
+    record: RubricRecord,
+    client: LLMClient,
+    cfg: PipelineConfig,
+    describe: Describer | None = None,
+) -> Marked:
+    """Stages 3 and 4 for one answer: read it, mark it (several times if voting), check it.
+
+    Code checks for the kind of question (numbers and units, code, a drawing) run first and give
+    the marker facts; some of them also decide the marks of the points they cover.
+    """
     rubric = record.rubric
+    if item.kind == "mcq":  # a choice is checked by code; no model marks it
+        grading, flags = mark_mcq(item, rubric)
+        return Marked(None, grading, flags, [])
     weight = cfg.partial_weight if cfg.mark_rule == "status" else None
     policy = cfg.policy
     if rubric.level:  # a rubric written at a level makes the grader follow that level
@@ -63,12 +82,17 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
         weight = LEVEL_PARTIAL_WEIGHT[rubric.level]
     if cfg.teacher.strictness:  # the teacher's wish decides how tightly a point is judged
         policy = TEACHER_POLICY[cfg.teacher.strictness]
+        if weight is not None and not rubric.level:
+            weight = TEACHER_WEIGHT[cfg.teacher.strictness]
+    step = cfg.teacher.mark_step
     policy = rubric.policy or policy  # a rubric can also set its own tightness
     if rubric.partial_weight is not None and weight is not None:
         weight = rubric.partial_weight
     if cfg.votes > 1 and weight is None:
         raise ValueError("votes > 1 needs mark_rule: status")
     reading = read_answer(item, client, cfg.ocr is not None) if cfg.read_first else None
+    notes = cfg.teacher.for_question(item.question_key)
+    checks = run_checks(item, rubric, cfg, describe)
 
     def once(_: int) -> tuple[Grading, list[str]]:
         return mark_answer(
@@ -83,6 +107,10 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
             partial_weight=weight,
             deductions=cfg.deductions,
             granularity=cfg.teacher.partial_credit,
+            mark_step=step,
+            notes=notes,
+            evidence=checks.evidence,
+            earlier=item.earlier if cfg.teacher.follow_through else "",
         )
 
     if cfg.votes <= 1:
@@ -93,15 +121,25 @@ def mark_item(item: Item, record: RubricRecord, client: LLMClient, cfg: Pipeline
             runs = list(pool.map(once, range(cfg.votes)))
         votes = [g.total for g, _ in runs]
         grading, split = combine(
-            [g for g, _ in runs], rubric, item.student_answer, weight, cfg.teacher.partial_credit
+            [g for g, _ in runs],
+            rubric,
+            item.student_answer,
+            weight,
+            cfg.teacher.partial_credit,
+            step,
         )
         flags = sorted({f for _, fl in runs for f in fl}) + [f"vote_split:{p}" for p in split]
+    grading, decided = checks.decide(grading, rubric)  # points settled by code replace the model
+    flags = [*flags, *decided]
     grading, gate_flag = apply_form_gate(grading, reading, item.max_mark, item.question)
     if gate_flag:
         flags = [*flags, gate_flag]
+    if step:
+        grading = snap_grading(grading, rubric, step)
+    flags = [*flags, *checks.flags]
     if record.selftest_passed is False:
         flags = [*flags, "scheme_failed_selftest"]
-    return Marked(reading, grading, flags, votes)
+    return Marked(reading, grading, flags, votes, checks.evidence)
 
 
 def grade_item(
@@ -111,6 +149,7 @@ def grade_item(
     cfg: PipelineConfig,
     second: tuple[LLMClient, dict[str, RubricRecord]] | None = None,
     stronger: LLMClient | None = None,
+    describe: Describer | None = None,
 ) -> Result:
     """Stages 3 to 5 for one answer: read it, mark it, check the marking, write feedback.
 
@@ -118,11 +157,13 @@ def grade_item(
     between the two marks adds the flag `models_disagree`: the grader may be wrong here.
     """
     item = item.with_key(record.rubric.answer_key)  # a missing model answer is replaced by the key
-    reading, grading, flags, votes = mark_item(item, record, client, cfg)
+    reading, grading, flags, votes, evidence = mark_item(item, record, client, cfg, describe)
     second_mark = None
     if second is not None:
         other, records = second
-        second_mark = mark_item(item, records[item.question_key], other, cfg).grading.total
+        second_mark = mark_item(
+            item, records[item.question_key], other, cfg, describe
+        ).grading.total
         if models_disagree(grading.total, second_mark, item.max_mark, cfg.disagree_gap):
             flags = [*flags, "models_disagree"]
     first_mark = None
@@ -130,12 +171,22 @@ def grade_item(
         why = unsure_because(grading, flags, item.max_mark, cfg.escalate_when)
         if why:
             first_mark = grading.total
-            reading, grading, flags, votes = mark_item(item, record, stronger, cfg)
+            reading, grading, flags, votes, evidence = mark_item(
+                item, record, stronger, cfg, describe
+            )
             flags = [*flags, "escalated:" + "+".join(why)]
     feedback = None
     if cfg.with_feedback:
         feedback = write_feedback(
-            item, record.rubric, grading, client, cfg.feedback_variant, cfg.feedback_n
+            item,
+            record.rubric,
+            grading,
+            client,
+            cfg.feedback_variant,
+            cfg.feedback_n,
+            notes=cfg.teacher.for_question(item.question_key),
+            language=cfg.feedback_language,
+            evidence=evidence,
         )
     return Result(
         item=item,
@@ -219,11 +270,27 @@ def run_items(
             )
         )
 
+    describe = make_describer(settings) if any(i.figures for i in todo) else None
+    pcfg = settings.pipeline
+    if mode == "pipeline" and pcfg.code_exec:  # tests for code questions that came without any
+        made: dict[str, str] = {}
+        for i, item in enumerate(todo):
+            if item.kind == "code" and not item.tests.strip():
+                if item.question_key not in made:
+                    made[item.question_key] = generate_tests(
+                        item, client, pcfg.code_sandbox,
+                        settings.paths.rubrics_dir / "code_tests", pcfg.code_tests_n,
+                    )  # fmt: skip
+                if made[item.question_key]:
+                    todo[i] = item.model_copy(
+                        update={"tests": made[item.question_key], "tests_generated": True}
+                    )
+
     def work(item: Item) -> Result:
         if mode == "baseline":
             return grade_baseline(item, client)
         record = records[item.question_key]
-        return grade_item(item, record, client, settings.pipeline, second, stronger)
+        return grade_item(item, record, client, settings.pipeline, second, stronger, describe)
 
     results = list(done.values())
     with ThreadPoolExecutor(workers) as pool, out_path.open("a", encoding="utf-8") as sink:

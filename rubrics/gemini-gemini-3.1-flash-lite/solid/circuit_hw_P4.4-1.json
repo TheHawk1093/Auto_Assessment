@@ -1,0 +1,56 @@
+{
+  "question_key": "circuit_hw/P4.4-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Correct choice and setup of analysis approach (KCL/KVL and dependent source identification).",
+        "marks": 20.0,
+        "partial_credit": "Deduct 1 mark per error (M1, M2), up to 5 marks total.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equation: Correct governing equations (Ohm's law, KCL/KVL signs, dependent source relation).",
+        "marks": 30.0,
+        "partial_credit": "Deduct 1 mark per error (E1, E2, E3), up to 5 marks total.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Correct algebraic manipulation and numerical evaluation leading to the final gain A.",
+        "marks": 30.0,
+        "partial_credit": "Deduct 1-2 marks per error (C1, C2, C3), up to 10 marks total.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Unit: Correct and consistent use of units (gain A is dimensionless).",
+        "marks": 10.0,
+        "partial_credit": "Deduct 0.5 marks per error (U1, U2), up to 2 marks total.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: Final numerical value for A is stated and linked to the circuit analysis.",
+        "marks": 10.0,
+        "partial_credit": "Deduct 1 mark per error (NC1, NC2), up to 10 marks total.",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Students start with 100 marks and lose points based on specific errors identified in the rubric. Full marks are awarded for a complete, logically sound derivation of the gain A with correct units. Partial credit is applied by subtracting the specified deductions for method, equation, calculation, unit, or completeness errors.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

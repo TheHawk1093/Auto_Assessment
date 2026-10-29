@@ -1,0 +1,62 @@
+{
+  "question_key": "digiklausur/6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that an SVM finds/uses a decision boundary (hyperplane) that separates or classifies the data into classes with maximum margin. Accept equivalent wording such as 'maximum margin classifier' or 'largest gap between the classes'.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the answer mentions a decision boundary/classification but omits the maximum-margin idea.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a decision boundary or separating/classifying the data, but does not state that the margin is maximized."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that support vectors are the data points near/on the decision boundary or margin and that the margin is determined by these points. Accept equivalent wording such as 'the closest points determine the margin'.",
+        "marks": 0.5,
+        "partial_credit": "Partial credit for naming support vectors without their role, or for saying they are near the boundary without saying they determine the margin.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions support vectors but does not say they are the near-boundary points or that they determine the margin."
+          },
+          {
+            "share": 0.75,
+            "says": "Says support vectors are near/on the boundary or margin, but does not say the margin is determined by them."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that kernels (the kernel trick) are used to separate or handle non-linearly separable data.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the SVM problem/algorithm is solved using quadratic programming.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the maximum-margin decision boundary and the role of support vectors, plus the kernel idea and quadratic programming for the remaining small marks. Part marks are given for a correct but incomplete statement of the margin or support-vector idea. Vague statements such as 'a classifier' without margin, support vectors, kernels or quadratic programming earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

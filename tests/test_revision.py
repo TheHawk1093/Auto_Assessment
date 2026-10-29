@@ -94,3 +94,36 @@ def test_feedback_variants_call_counts():
 
 def test_revised_schema():
     assert Revised(answer="x").answer == "x"
+
+
+def test_leakage_works_for_indic_scripts():
+    model = "प्रकाश वस्तूवरून परावर्तित होऊन डोळ्यांपर्यंत पोहोचतो तेव्हा वस्तू दिसते।"
+    copied = "लक्षात ठेवा: प्रकाश वस्तूवरून परावर्तित होऊन डोळ्यांपर्यंत पोहोचतो."
+    assert leakage(copied, model) > 0.3
+    assert leakage("तुम्ही परावर्तनाबद्दल लिहिले नाही", model) == 0.0
+    ta = "ஒளி பொருளில் பட்டு கண்ணை அடைகிறது"
+    assert leakage(ta, ta) == 1.0
+
+
+def test_uptake_counts_named_points_that_improved_and_harm_the_others():
+    from autograde.evaluation.revision import RevisionRow, summarise
+
+    row = RevisionRow(
+        id="a",
+        max_mark=4,
+        before=1,
+        with_feedback=3,
+        without_feedback=1,
+        leak_feedback=0,
+        leak_revised=0,
+        flagged=["P2", "P3"],
+        before_marks={"P1": 1, "P2": 0, "P3": 0, "P4": 1},
+        revised_verdicts=[
+            {"point_id": "P1", "status": "met", "marks": 1},
+            {"point_id": "P2", "status": "met", "marks": 1},
+            {"point_id": "P3", "status": "not_met", "marks": 0},
+            {"point_id": "P4", "status": "not_met", "marks": 0},
+        ],
+    )
+    out = summarise([row])
+    assert out["uptake"] == 0.5 and out["harm"] == 0.5

@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q24",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies 'reflection of light' (\u092a\u094d\u0930\u0915\u093e\u0936\u093e\u091a\u0947 \u092a\u0930\u093e\u0935\u0930\u094d\u0924\u0928) as the property of light that enables vision.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for mentioning 'reflection of light' (\u092a\u094d\u0930\u0915\u093e\u0936\u093e\u091a\u0947 \u092a\u0930\u093e\u0935\u0930\u094d\u0924\u0928). No marks are awarded for incorrect properties or irrelevant answers.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u092a\u094d\u0930\u0915\u093e\u0936\u093e\u091a\u0947 \u092a\u0930\u093e\u0935\u0930\u094d\u0924\u0928"
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -51,7 +51,7 @@ Findings: classical OCR cannot read this handwriting or matrices. The three Clau
 Gaps: figures and tables inside questions (a joint PMF table) are not in the question text, so a reference answer drafted from the text alone is wrong for those. A student sheet has no model answer, so the key or a figure-aware solving step must come before marking. Whether a YES/NO was circled by the student is not readable.
 
 ## Classical OCR vs Claude, with tuning (2025-10-25)
-Harness: `tools/ocr_bench.py` (engines, grids, scoring), `tools/ocr_prep.py` (blue-ink isolation), `tools/ocr_pipeline_eval.py` (grade the same sheets from each source). Engines need a separate venv (docling, easyocr, rapidocr-onnxruntime, transformers, opencv) and Tesseract 5.4 with `deu`/`eng` data. Truth is `data/OCR_Dataset/truth_pages.json`, read by Claude from the photos. Tuned on dev pages only (German p1, Probab p1, Network p1-2); scored on test pages (German p2, Probab p2, Network p3-4). Tiny set: 8 pages, 3 sheets, one student.
+Harness: `tools/ocr/ocr_bench.py` (engines, grids, scoring), `tools/ocr/ocr_prep.py` (blue-ink isolation), `tools/ocr/ocr_pipeline_eval.py` (grade the same sheets from each source). Engines need a separate venv (docling, easyocr, rapidocr-onnxruntime, transformers, opencv) and Tesseract 5.4 with `deu`/`eng` data. Truth is `data/OCR_Dataset/truth_pages.json`, read by Claude from the photos. Tuned on dev pages only (German p1, Probab p1, Network p1-2); scored on test pages (German p2, Probab p2, Network p3-4). Tiny set: 8 pages, 3 sheets, one student.
 
 Reading accuracy, mean over pages (recall = the student's words/numbers found exactly, fuzzy = also near matches):
 
@@ -100,7 +100,7 @@ Machine: 4-core i5-8250U laptop, 7.9 GB RAM, no GPU.
 - Union of classical engines (their words pooled; the text-assignment step separates answers from print), 8 truth pages, near-match recall: RapidOCR alone 73%; RapidOCR + EasyOCR 89%; all five engines 94%. Marks (same 20 answers as above): RapidOCR tuned 0.263 mean error / 60% identical; union of all five 0.208 / 75% identical; Claude Haiku 0.133 / 80%. Sample is small, so treat the gap between union and Claude as indicative.
 
 ## Free hosted models (2025-10-26)
-`autograde ocr <folder> --per-page --provider gemini|openrouter --model <id> --out runs/<name>` (`ocr/hosted.py`). Free only, enforced in code: Gemini models must be on the free-tier allow-list; OpenRouter ids must end in `:free` and be listed at zero price. Keys come from the git-ignored `.env`, travel in headers, and are never logged. Images sent were header-redacted copies (`tools/redact_headers.py`), since free tiers may keep the data. Scoring now tolerates LaTeX (`a_{12}`, `\lambda`), underscores and commas inside matrix rows; all engines were rescored with the same rules.
+`autograde ocr <folder> --per-page --provider gemini|openrouter --model <id> --out runs/<name>` (`ocr/hosted.py`). Free only, enforced in code: Gemini models must be on the free-tier allow-list; OpenRouter ids must end in `:free` and be listed at zero price. Keys come from the git-ignored `.env`, travel in headers, and are never logged. Images sent were header-redacted copies (`tools/ocr/redact_headers.py`), since free tiers may keep the data. Scoring now tolerates LaTeX (`a_{12}`, `\lambda`), underscores and commas inside matrix rows; all engines were rescored with the same rules.
 
 | reader (free) | dev words (exact / near) | test words | matrix and formula facts | marks: mean error / identical |
 |---|---|---|---|---|
@@ -137,7 +137,7 @@ Same 20 answers; differences of 0.03 to 0.05 are one or two answers, so these ar
 
 ## Different models for different tasks (2025-10-26)
 Reading is now its own setting. `ocr:` in the config names a reader and an ordered fallback chain (`ocr/readers.py`); marking, rubric writing, judging and the student keep their own settings (`llm`, `pipeline.rubric_model`, `judge`, `student`). Each page is read by the first reader that works and the sheet records which one (`reader: provider:model`). Flags `--provider/--model` override the chain for a single run.
-Example: `configs/ocr_free.yaml` reads with Gemini 3.5 Flash-Lite, then Gemini 3.1 Flash-Lite, then free dots-3-note (plain), then Claude Haiku, and marks with DeepSeek via Goedel. Live check: all 9 photos read by the first reader at no Claude cost.
+Example: `configs/experiments/ocr/ocr_free.yaml` reads with Gemini 3.5 Flash-Lite, then Gemini 3.1 Flash-Lite, then free dots-3-note (plain), then Claude Haiku, and marks with DeepSeek via Goedel. Live check: all 9 photos read by the first reader at no Claude cost.
 Gemma 4 (26B and 31B, free) still returns 429 on every request (probed again 2025-10-26).
 
 ## Choosing the reader by what the page says
@@ -148,7 +148,7 @@ umlauts, and the share of digits and operators). If the specialist fails, the fi
 The classifier labels all 9 real pages sensibly (German pages `german`; matrix, formula and number
 pages `math`; the prose-heavy Network_dynamics_p3 neither).
 
-No route is switched on in `configs/ocr_free.yaml`: per page, Gemini 3.5 Flash-Lite was at or near
+No route is switched on in `configs/experiments/ocr/ocr_free.yaml`: per page, Gemini 3.5 Flash-Lite was at or near
 the best on every kind (German, numbers, matrices), and the specialists tried (Nemotron, dots)
 were worse on matrices, not better. Add a route when a model shows a real advantage on one kind.
 
@@ -164,5 +164,5 @@ about 90 s a page.
 | Gemma 4 31B | Mostly HTTP 500/503 ("high demand"); not usable as a reader yet. |
 
 A blank read now counts as a failure in `read_with_fallback`, so the next reader is tried. Gemma 4
-26B sits in the fallback chain of `configs/ocr_free.yaml` after the two Gemini Flash-Lite models:
+26B sits in the fallback chain of `configs/experiments/ocr/ocr_free.yaml` after the two Gemini Flash-Lite models:
 a free, hosted, no-Claude choice that is slow and not first-choice quality.

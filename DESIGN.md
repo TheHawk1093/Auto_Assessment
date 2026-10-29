@@ -336,3 +336,158 @@ Feedback helps in every case tested, by about 0.4 to 0.6 marks above a rewrite w
 - Per-type and per-field prompts are not written (hooks exist).
 
 **Next steps, in order.** (1) Regression of the older datasets with the solid writer and decide the default. (2) Revision test of feedback on the solid schemes and a single-call mark-and-feedback baseline. (3) Strict step-wise mode for proofs (IMO) and calibration of the over-marking. (4) OCR end to end on the Mendeley exam set through `autograde exam`. (5) The objective question type in code. (6) Per-type and per-field prompts, then benchmarking other models (Qwen via OpenRouter at about a cent per run) and the Sonnet comparison once, then the held-out test.
+
+## 22. Harshness, feedback wording and Indic languages: what was tested, and what was not changed
+
+**Where the marker's negative bias comes from.** On Mohler (30 answers, DeepSeek, about -0.20 of the total), answers that the teachers gave full marks still scored 0.98 of the total, so the marker is not harsh on good answers. The loss is on partly right answers, which the teachers (their average) rewarded generously: a binary tree with the ordering reversed got 4 of 5. The schemes also split a one-sentence model answer into extra points (for example a point for "control passes to the first statement of main" when the model answer says only "at the main function").
+
+**Three attempts, tuned on Mohler seed 1 and checked on Mohler seed 7 plus DigiKlausur and RiceChem (seed 7).** Error as a share of the total, bias in brackets, 30 answers each:
+
+| Set | solid (control) | solid.core | solid.core + strictness lenient |
+|---|---|---|---|
+| Mohler seed 1 (tuned) | 0.225 (-0.205) | 0.220 (-0.200) | 0.193 (-0.180) |
+| Mohler seed 7 | 0.203 (-0.197) | 0.192 (-0.185) | 0.166 (-0.134) |
+| DigiKlausur seed 7 | 0.248 (-0.073) | 0.269 (-0.119) | 0.280 (-0.063) |
+| RiceChem seed 7 | 0.121 (+0.046) | 0.100 (+0.008) | 0.091 (+0.067) |
+
+- `solid.core` (`prompts/rubric/rubric.style.core.system.md`: points only from facts the reference states, never more points than facts, the central fact at least half the marks) moves the error by -0.005, -0.011, +0.021 and -0.021. That is inside the noise of 30 answers, so it is **not** made the default. It stays as an opt-in writer style (`rubric_variant: solid.core`).
+- `strictness: lenient` helps the one lenient teacher (Mohler, both samples) and does not help the others. It is a teacher setting, not a default.
+- The partial-credit weight does not matter here (0.3 to 1.0 moves the error by 0.005): only 9 of 55 verdicts are partial.
+- `autograde calibrate` fitted on seed 1 and applied to seed 7: the mark stretch picks 1.5 on Mohler (error 0.192 to 0.152, same level 0.53 to 0.67) and 1.0, no change, on DigiKlausur and RiceChem. So it adapts to the teacher and leaves a teacher who needs nothing alone. It is not wired into the pipeline: a stretch changes the total without changing the per-point verdicts, so the marks and the feedback would disagree.
+
+Net: no global prompt change was adopted for the bias. It is a property of the teacher, and the evidence says to set it per teacher from a marked sample.
+
+**Feedback wording (`concrete` against `formal`).** The judge notes on English feedback said the `fix` was often study advice ("revisit ...") and the `why` sometimes only restated the gap. `prompts/feedback/feedback.concrete.system.md` asks for a specific change to this answer and a real reason. It was written looking only at English (`tr2_english`) and then run unchanged on Hindi, Marathi, Tamil, Bengali and the real Marathi set (ScAA), with marks and schemes unchanged (`refeedback`). Haiku judge pass rates and revision results, formal to concrete:
+
+| Set | actionable | explains why | correct | revision gain | leakage |
+|---|---|---|---|---|---|
+| English | 0.68 to 1.00 | 1.00 to 1.00 | 0.93 to 0.90 | 0.55 to 0.55 | 0.05 to 0.08 |
+| Hindi | 0.83 to 1.00 | 0.70 to 0.95 | 0.90 to 0.93 | 0.62 to 0.63 | 0.06 to 0.07 |
+| Marathi | 0.91 to 1.00 | 0.96 to 0.96 | 0.97 to 0.93 | 0.58 to 0.58 | 0.15 to 0.16 |
+| Tamil | 0.71 to 1.00 | 1.00 to 0.91 | 0.97 to 0.93 | 0.58 to 0.58 | 0.11 to 0.11 |
+| Bengali | 0.67 to 1.00 | 0.89 to 0.78 | 1.00 to 0.87 | 0.69 to 0.69 | 0.03 to 0.06 |
+| Marathi ScAA | 0.94 to 1.00 | 0.70 to 0.94 | 0.92 to 0.92 | 0.97 to 0.97 | 0.35 to 0.42 |
+
+Reading: the judge finds the fixes more actionable everywhere (that is the criterion the prompt targets, so part of this is the judge following the wording). "Explains why" improves in Hindi and ScAA and falls in Tamil and Bengali, "correct" falls by 0.03 on average, and leakage rises a little. The revision test cannot tell the two apart: the simulated student reaches nearly full marks with either, so the gain equals the marks lost (a ceiling). Because the judge is not validated on Indic text, `concrete` is **not** the default. `judge-sheet` wrote 60 feedbacks (30 answers, both variants, shuffled) for a person who reads the languages; `judge-agreement` then gives agreement and kappa per question (`artifacts/judge_check/`). Decide the default after that.
+
+**Language handling is separate from English.** Everything specific to a language is under `prompts/language/` (`language.feedback` with a `{language}` slot, one register note per language, the translation prompts) and in `localize.py` (fixed labels for Hindi, Marathi, Tamil and Bengali; the Tamil and Bengali wording is not checked by a native speaker). English prompts never contain language text: `feedback._system` adds the language note only when `feedback_language` is set (tested). Marking, schemes and every other prompt are language-neutral.
+
+**Translated Mohler, 30 identical answers per language** (English is the control; DeepSeek marks, Haiku judges and plays the student):
+
+| | English | Hindi | Marathi | Tamil | Bengali |
+|---|---|---|---|---|---|
+| Error / bias | 0.26 / -0.24 | 0.23 / -0.21 | 0.28 / -0.26 | 0.26 / -0.24 | 0.28 / -0.25 |
+| QWK | 0.50 | 0.49 | 0.46 | 0.50 | 0.48 |
+| Revision gain with / without feedback | 0.55 / 0.16 | 0.62 / 0.18 | 0.58 / 0.10 | 0.58 / 0.06 | 0.69 / 0.14 |
+| Lift | 0.39 | 0.44 | 0.48 | 0.52 | 0.55 |
+
+Marking quality does not depend on the language, and feedback helps in each (no rewrite got worse). Real Marathi (ScAA, 24 answers): DeepSeek 95.8% same level, QWK 0.975; revision 0.97 with feedback against 0.09 without, with 35% leakage (word overlap with the feedback), so that gain is an upper bound.
+
+**Code sandbox.** The wasm interpreter has not been run by the agent (the permission classifier blocked it three times). `tests/test_sandbox_real.py` (opt-in, `AUTOGRADE_REAL_SANDBOX=1`) checks it for pass/fail counting, syntax errors, no network, no writes outside, an endless loop, a memory hog and a forged result. `tools/sandbox/README.md` records where the binary came from and its checksum.
+
+**EDU-CIRCUIT-HW.** Run on Gemini; result and the reason it is the wrong framing in section 23.
+
+## 23. EDU-CIRCUIT-HW result, a literature survey, and ideas ranked by what our own data says
+
+**EDU-CIRCUIT-HW (30 transcribed dev pages, Gemini Flash Lite writes the scheme and marks).** Error 0.303, bias -0.30, QWK 0.00, correlation 0.12, 70% of answers flagged for an unverified quote. The framing explains it: the TAs start from full marks and take off 0 to 11 (mean human mark 0.98, spread 0.02), so a constant 98 has error 0.016. The pipeline's point scheme starts from zero and the transcripts are short (median 268 characters), so almost nothing can be credited or quoted. This is a wrong design for the data, not a measure of the marker. The task is **detecting the TA's listed errors**, so it needs a scheme with one full-credit point plus the TA's deductions, marked as "start at full, subtract only an error that is visible in the transcript", and it should be scored on whether the deducted criteria match the TA's (precision and recall), not on the total. Marking with Goedel/DeepSeek still hangs on the long scheme prompts. Not yet built.
+
+**Literature read (abstracts and search summaries, not full papers).**
+- Rubric-conditioned grading, SciEntsBank, Qwen 2.5-72B ([arXiv 2601.08843](https://arxiv.org/abs/2601.08843)): agreement with experts is strong for binary rubrics and drops as the rubric gets finer; a consensus-based deferral ("trust curve") raises accuracy on what is kept; the model resists prompt injection and is sensitive to synonym swaps.
+- CHiL(L)Grader ([arXiv 2603.11957](https://arxiv.org/abs/2603.11957)): temperature-scaled confidence, selective prediction; it auto-scores 35 to 65% of answers at QWK 0.80 or more and sends the rest to a person.
+- LLM graders against TAs on UML diagrams ([arXiv 2603.16357](https://arxiv.org/abs/2603.16357)): per-criterion accuracy up to 88.6%, close to a TA. A claim in a search summary that most models were harsher than the TAs was not in the abstract and is unverified.
+- Feedback quality: judges lean positive and prefer their own outputs; actionability and completeness stay the weak points of LLM feedback; revision outcomes are used beside ratings (FeedEval, [arXiv 2511.07628](https://arxiv.org/abs/2511.07628), and reviews found by search).
+- Handwriting: vision models "fix" a student's errors when transcribing, which hides what the marker needs (a 2026 EMNLP paper proposing the PINK metric; [ACL 2025 long.720](https://aclanthology.org/2025.acl-long.720) on handwritten maths). Reference answers and rubrics improve alignment.
+- Indic: ScAA ([ICON 2020](https://preview.aclanthology.org/setup/2020.icon-main.58)) is the only short-answer grading set found for Hindi and Marathi; nothing for Tamil or Bengali. MILU and IndicQuest test knowledge, not grading. Our translated sets are therefore a stopgap, not a benchmark.
+
+**Ideas, in the order I would do them.**
+1. **Send doubtful answers to a person (selective marking).** Free test on runs we already have: the spread of the marks from three scheme variants on the same 30 answers, as the doubt signal. Keeping the 60% with least disagreement lowers the error from 0.181 to 0.132 on Mohler and from 0.103 to 0.076 on RiceChem; on DigiKlausur it barely moves (0.263 to 0.256). In-sample, 30 answers, no threshold fitted, so it is only a sign. Build it as a flag the `exam` command already half has (`votes`, `second_model`, `escalate_*`) plus a report of the share kept and the error on it.
+2. **Per-teacher calibration from a marked sample.** Section 22 showed the fit transfers on Mohler. Next: fit on about 20 marked answers a per-point "credit for a missing supporting detail" instead of a total stretch, so verdicts and totals stay consistent.
+3. **Deduction-first scheme for "start at full" marking** (circuit and similar): see above. Score the detected errors.
+4. **A revision test that does not saturate.** The simulated student reaches near-full marks with any feedback, so it cannot rank feedback styles. Options: a weaker student model, one improvement addressed per rewrite, or an uptake check (did the rewrite fix each flagged issue). Add a second judge from another family and report kappa against the person-filled sheet before adopting `concrete`.
+5. **Faithful transcription.** For handwriting and the circuit pages, instruct "copy, do not correct" and measure how often the transcript hides an error (PINK-style: penalise a transcript that earns more marks than the page).
+6. **Robustness tests we can already build:** synonym swap (the 2601.08843 weakness) and a round trip through another language (translated sets exist), and non-native phrasing, checking that marks do not move.
+7. **Keep rubrics coarse.** Agreement falls with granularity; our over-split schemes agree with that. A cap on points per question tied to the number of facts in the reference is the generic form of `solid.core`, which was neutral on its own.
+
+## 24. Learnings, decisions and changes so far (written 2026-10-29, before the next round)
+
+**Decisions taken by the project owner.**
+- The pipeline must mark and write feedback on its own. A person is never required.
+- No calibration of the marker. The pipeline follows the model answer and the rubric strictly; a teacher's leniency is an input (`strictness`, rubric, notes), not something fitted.
+- Flags exist only where a person's look is useful (real ambiguity, disagreement, doubtful evidence), shown in the report as optional "worth a look". Flag rate and necessity are measured.
+- Faithful transcription of handwriting is to be fixed. EDU-CIRCUIT-HW is parked.
+- Feedback is analysed for content and for the system prompt, not only style, with weak student models.
+- Robustness is tested against many perturbations, not synonym swaps alone.
+
+**What was built** (details in sections 20 to 23 and in CLAUDE.md).
+- Intake: figures in answers and references; kinds mcq, numeric, code, diagram, maths with their own code checks; multi-part follow-through; teacher controls (strictness, partial credit, mark step, notes).
+- Code questions: sandbox in WebAssembly (default), docker or process; generated tests that a reference solution must pass; code using numpy is flagged `code_needs:` and judged by reading. The WebAssembly interpreter has never been run by the agent (blocked three times); `tests/test_sandbox_real.py` is the opt-in check.
+- Languages: Marathi (real data), Hindi, Marathi, Tamil, Bengali (translated Mohler). Feedback comes out in the student's language; labels in `localize.py`; all language-specific prompts in `prompts/language/`.
+- Evaluation: revision test, judge, `judge-sheet` and `judge-agreement` for a person to check the judge, translated datasets, experiment log.
+- Layout: prompts in stage folders found by name, one-off configs in `configs/experiments/`, shell chains in `scripts/`, OCR tools in `tools/ocr/`, `wasmtime` declared as the `sandbox` extra, the experiment log fingerprints every prompt and skips runs that marked nothing.
+
+**What the measurements say.**
+- Marking is language-neutral on translated Mohler (error 0.23 to 0.28, QWK 0.46 to 0.50 in all five languages). Real Marathi: 95.8% same level, QWK 0.975 (24 answers).
+- The negative bias on Mohler comes from partly right answers the teachers rewarded generously, not from good answers (those score 0.98). Scheme style `solid.core` was neutral (inside noise); `strictness: lenient` helps only a lenient teacher. No default changed.
+- Feedback helps in every language (revision gain 0.55 to 0.69 with feedback against 0.06 to 0.18 without), but the revision test saturates with a Haiku student, so it cannot rank feedback styles. `concrete` feedback raised the judge's "actionable" rate to 1.00 everywhere, lowered "correct" by about 0.03, and is not the default until a person has checked the judge.
+- Disagreement between scheme variants separates better-marked from worse-marked answers on Mohler and RiceChem (error 0.181 to 0.132 and 0.103 to 0.076 on the 60% kept) and hardly at all on DigiKlausur. 30 answers, in-sample.
+- EDU-CIRCUIT-HW: the point scheme from zero is the wrong framing (human mean 0.98, constant 98 has error 0.016, ours 0.30). Parked.
+
+**Process lessons.**
+- Tune on one sample, confirm on another sample and on other datasets, and adopt only what survives; most "improvements" at 30 answers are noise.
+- A judge that is also told what to optimise (the prompt names the judge's criterion) overstates the gain; check against a person.
+- Heredocs with quotes and backslashes break in this shell; write files with the Write tool.
+- Goedel hangs on very long prompts; Gemini's free daily quota runs out; DeepSeek jobs run one at a time.
+
+## 25. Faithful transcription, evidence checks, review flags, feedback content and robustness (2026-10-29)
+
+**Faithful transcription (`ocr/faithful.py`, run with `python -m autograde.ocr.faithful`).** Question: does a reader copy a student's mistake or quietly repair it? 43 handwriting-style pages (typed in script fonts, so reading is easy and any repair is the reader's own doing) hold planted mistakes: wrong facts, wrong numbers and units, misspellings, and 12 multi-line working with a slip that contradicts the line above, in English, Hindi, Marathi, Tamil and Bengali. Result: **readers almost never repaired a mistake.** With the current prompt, Gemini Flash Lite and Haiku kept 95.3% of the mistakes, repaired none, and lost 4.7% to glyph misreads ("H3O" read as "H30"); With a bare "transcribe the handwriting" prompt Sonnet kept 12 of 12 multi-line slips, Gemini repaired none and Haiku repaired 1 of 43. Even a deliberate "transcribe into clean, correct text" prompt produced 0 repairs on Gemini and Haiku. So this test cannot tell prompts apart and does not reproduce the earlier slip (a Sonnet repair of a wrong matrix entry on a real photographed page, before the "copy exactly" rule existed). What remains is risk on ambiguous real handwriting, where a reader may use context to settle an unclear glyph. Safeguards that exist or were added: the transcription prompts say to copy mistakes and mark doubtful characters `[?x?]`; a result whose answer contains `[?` is now listed for review (`ocr_unsure`); the reader never sees the model answer. Not built: a second reader whose disagreement is flagged (needs real handwriting with known mistakes to test).
+
+**Evidence checks made more robust (`pipeline/verify.py`).** Over 3,904 stored markings, credit whose quote was not found in the answer fell into two kinds: 48% near copies (a typo corrected, a symbol dropped) and 47% no quote at all; 3% reworded, 2% a quote from the model answer.
+- Near copies: error 0.119 against 0.161 for fully verified answers, so they are harmless. A quote of 24 or more characters now counts as found when at least 85% of it matches in runs of 4 or more characters, close together (`_near_copy`).
+- No quote: error 0.255, but removing that credit makes it 0.630 (Mohler 0.21 to 0.86): the credit is mostly right and the marker forgot to quote. On an answer of 25 words or fewer the answer itself is now the evidence (`repair`); on a longer one the credit is kept and listed for review. Locating a supporting sentence by word overlap did not predict doubtful credit (error 0.262 against 0.232) and was dropped.
+- Effect: answers with unverified credit fall from 5.8% to 3.2%.
+
+**Review flags (`pipeline/review.py`, `autograde review --name R`, "Worth a look" in `report.html`).** Optional and never required. A result is listed when: the marker was asked again or repaired (`marking_unstable`), the scheme failed its self-test, credit has no verifiable quote, a second marker disagreed or a stronger one re-marked, a form rule or deduction applied, the handwriting reader was unsure, a drawing could not be checked, or a partly right answer lands mid-range (0.3 to 0.7 of the total with partial credit worth at least 20% of the total). Empty and nonsense answers are never listed (marked right every time). Measured over 3,872 answers in finished runs with teacher marks:
+
+| | listed | error listed / rest | badly marked (error >= 0.25) listed / rest | share of all badly marked caught |
+|---|---|---|---|---|
+| all | 19.8% | 0.236 / 0.150 | 43.9% / 27.3% | 28.5% |
+| DigiKlausur | 18.6% | 0.224 / 0.111 | 41.3% / 20.4% | 31.6% |
+| Mohler | 20.0% | 0.286 / 0.214 | 54.5% / 38.7% | 26.1% |
+| SAF | 7.2% | 0.141 / 0.106 | 35.7% / 22.1% | 11.2% |
+| RiceChem | 42.9% | 0.181 / 0.128 | 32.1% / 18.1% | 57.1% |
+| ASAP-SAS | 8.3% | 0.229 / 0.252 | 41.7% / 51.5% | 6.8% |
+
+Reading: a person who reviews the listed fifth of answers sees answers that are marked about 1.6 times as badly, and half of the listed ones are fine (so the flag is a hint, not a verdict). It does not work on ASAP-SAS (inverted, small n), lists too many on RiceChem (partial credit is normal there), and the biggest single reason is the mid-range partial (351 of 3,872). The partial-credit threshold was chosen from four variants on the same data it is scored on, so the numbers are in-sample.
+
+**Feedback content and system prompt.** What the feedback says, measured on English (`tr2_english`) and then on Hindi, Marathi, Tamil, Bengali and real Marathi:
+- It is long: median 210 words for answers that lost marks, with one or two missed points; only 44% of the issues quote the student's words.
+- Most judge complaints about correctness are the feedback calling a true student statement wrong, because the marker's verdict said so (the static array case): feedback inherits the marker's errors.
+- `concrete` v2 (`prompts/feedback/feedback.concrete.system.md`): concrete fix, a real reason, length matched to the marks lost, and "incorrect" only when the question or model answer contradicts the statement. Judge pass rates, formal to concrete v2: actionable 0.68, 0.83, 0.91, 0.71, 0.67, 0.94 to 1.00 in all six sets; correct 0.93 to 0.93 (English), 0.90 to 0.93 (Hindi), 0.97 to 1.00 (Marathi), 0.97 to 1.00 (Tamil), 1.00 to 0.90 (Bengali), 0.92 to 0.88 (real Marathi); explains why 1.00 to 1.00, 0.70 to 0.83, 0.96 to 1.00, 1.00 to 0.90, 0.89 to 0.81, 0.70 to 0.84. The length rule barely worked (median 210 to 194 words English, 191 to 192 Hindi, 131 to 151 Marathi).
+- Revision test with the weakest student (Gemini Flash Lite), formal against concrete v2: gain 0.55 against 0.55 (English), 0.62 against 0.63 (Hindi), 0.58 against 0.58 (Marathi); per-point uptake 100% and harm 0% for both. **The test saturates even with the weakest student**, because the student prompt lets it use only the answer and the feedback, so any feedback that names the missing idea is copied into the answer. It measures what the feedback hands over, not how well it guides. Tamil, Bengali and real-Marathi weak-student runs hit Gemini's daily quota and are not done.
+- Added: per-point `uptake` and `harm` in the revision summary, and `--own-knowledge` (the student may also use what it knows, prompt `eval/revise.own`), which is the protocol that could separate feedback that guides from feedback that gives the answer. Not yet run.
+- Decision: `formal` stays the default; `concrete` v2 is opt-in. It makes the judge's "actionable" 1.00 but "correct" and "explains why" move both ways by language, and the judge is not yet checked by a person (the 60-row sheet is waiting). Concrete v1 (section 22) differed only in the length and "incorrect" rules.
+
+**Robustness (`autograde robustness --name R`, `evaluation/robustness.py`).** Each finished answer is rewritten without changing what it says, marked again with the same scheme, and the shift in marks (share of the total) is compared with a control: re-marking the unchanged answer. 15 variants: spelling slips, lower case and no punctuation, UPPER CASE, shuffled sentences, text-speak, filler, an irrelevant sentence, the question repeated (code, no model call); paraphrase, synonyms, non-native phrasing, informal, wordy (DeepSeek rewrites, cached); and half the answer (must lower the mark). Mean absolute shift (share of the total; share of answers that moved by 0.1 or more in brackets), 30 answers each:
+
+| Variant | Mohler | DigiKlausur |
+|---|---|---|
+| control (same answer re-marked) | 0.022 (10%) | 0.046 (17%) |
+| spelling | 0.025 (13%) | 0.031 (17%) |
+| case and punctuation | 0.022 (10%) | 0.040 (17%) |
+| UPPER CASE | 0.032 (17%) | 0.044 (20%) |
+| shuffled sentences | 0.000 (n=4) | 0.026 (9%, n=22) |
+| text-speak | 0.025 (13%) | 0.035 (20%) |
+| filler | 0.029 (17%) | 0.029 (17%) |
+| irrelevant sentence | 0.013 (10%) | 0.046 (23%) |
+| question repeated | 0.017 (10%) | 0.037 (17%) |
+| paraphrase | 0.055 (13%), mean shift -0.038 | 0.054 (20%), -0.013 |
+| synonyms | 0.069 (20%), -0.032 | 0.029 (13%), -0.017 |
+| non-native | 0.022 (10%) | 0.037 (10%) |
+| informal | 0.029 (13%) | 0.058 (23%) |
+| wordy | 0.015 (7%) | 0.046 (20%) |
+| half the answer (should drop) | 0.284, 53% went down (n=19) | 0.392, 96% went down (n=26) |
+
+Reading: the marker's own re-marking noise (0.02 to 0.05) is as large as most effects, so spelling slips, shouting, filler, text-speak, an irrelevant sentence, the repeated question and non-native phrasing do not move marks beyond noise. Paraphrase and synonym swaps pull Mohler marks down (-0.03 to -0.04, above noise at n=30 but not on DigiKlausur): the marker leans on the model answer's wording a little. Cutting the answer in half lowers the mark in 53% (Mohler) and 96% (DigiKlausur) of answers, so the test can see a real change. RiceChem and Hindi runs stopped on DeepSeek's daily token limit and are pending. The noise is the larger finding for review flags: a single marking is not repeatable within about 0.03 of the total.
+
+**Still open.** DeepSeek and Gemini daily limits ended the runs at 20:51 IST; DeepSeek resets at 05:30 IST. Pending: robustness on RiceChem and Hindi, weak-student feedback runs for Tamil, Bengali and real Marathi, the `--own-knowledge` protocol, the person's check of the judge sheet, a real handwriting set with known mistakes for the transcription check, the sandbox run.

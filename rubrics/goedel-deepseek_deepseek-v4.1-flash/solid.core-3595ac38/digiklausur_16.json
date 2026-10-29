@@ -1,0 +1,42 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Selects/finds the k nearest existing data points that already have a class/colour (e.g. by constructing a sphere around the new point containing k neighbours). Equivalent wording such as 'look at the k closest labelled examples' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if nearest neighbours are mentioned but k or the use of already-classified old data is missing/unclear.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions nearest neighbours or old/classified data, but does not make clear that the k nearest already-classified points are selected."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Takes a majority vote / maximum count among the classes (colours) of those k neighbours and assigns the new data point to the class with the most votes. Equivalent wording such as 'choose the most common label among the neighbours' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if voting/majority class is mentioned but the new point is not clearly assigned to the winning class.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions voting or the majority class among neighbours, but does not clearly state that the new point is assigned to that winning class."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both central steps: find the k nearest already-classified neighbours and assign the new point to the class with the most votes among them. A clear pseudocode listing or a prose description of the same steps earns the marks; pseudocode syntax is not marked. The reference's phrase 'unsupervised manner' is not required, and marks depend on the neighbour-selection and majority-vote procedure.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

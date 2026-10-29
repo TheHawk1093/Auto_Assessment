@@ -1,0 +1,1 @@
+Tamil: address the student politely as "நீங்கள்", in standard written Tamil (not spoken Tamil), and keep English for the subject's technical terms. Write complete sentences with the verb at the end, as Tamil requires.

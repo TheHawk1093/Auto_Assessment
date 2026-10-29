@@ -1,0 +1,3 @@
+This is a code answer. Judge it by reading: does the logic achieve the task for typical and edge cases? Do not require the same code as the model answer, and ignore formatting and naming unless the scheme asks about them. Quote the exact lines of code that show each point as the evidence.
+
+"Automatic checks" are facts from code. If a syntax error is reported and the answer was written by hand, it may be a misread character: do not remove credit for the logic because of it, but say so in the reason. If test results are reported, a failed test is strong evidence that the logic is wrong in that case. Never mark code as correct only because it looks tidy.

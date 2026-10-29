@@ -1,0 +1,55 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the problem is divided/broken down into smaller (sub)problems \u2014 ideally subproblems of the same kind as the original. Accept everyday wording such as 'split the problem into smaller pieces', 'break it into sub-problems', 'decompose the task'.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the answer only says the problem is broken into parts, without indicating that the parts are smaller/simpler subproblems of the same type.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions splitting/breaking the problem into parts, but does not say the parts are smaller or simpler subproblems of the same kind."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the subproblems are solved recursively (by applying the same divide-and-conquer procedure to them, until they are small/simple enough to solve directly). Accept 'solve each subproblem the same way', 'solve them recursively', 'repeat the process on the smaller problems'.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if the answer says the subproblems are solved but does not indicate recursion/repetition of the same method.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the subproblems are solved, but gives no indication that the same procedure is applied recursively or that they are solved by repeating the method."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the solutions to the subproblems are combined/merged to form the solution to the original problem. Accept 'put the answers together', 'merge the partial results', 'combine the sub-solutions'.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if combining is mentioned only vaguely (e.g. 'then get the answer') without saying the sub-solutions are merged into the overall solution.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a final step after solving the subproblems but does not clearly say the sub-solutions are combined into the solution of the original problem."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three steps: divide into smaller subproblems, solve them recursively, and combine their solutions into the answer to the original problem. Any wording that conveys these three ideas earns full marks; a step stated only vaguely or with a missing element earns half of that step's marks. An answer that gives only one or two of the steps earns only the marks for those steps.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

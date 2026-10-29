@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Mentions abstraction as an advantage of object-oriented programming: hiding or ignoring unnecessary implementation detail and focusing on the essential features of an object. Accept equivalent wording such as 'abstraction', 'hides complexity', 'models real-world essentials', or 'lets you focus on what an object does rather than how'.",
+        "marks": 2.5,
+        "partial_credit": "Award part marks if the answer gives only a vague benefit such as 'makes programs simpler/easier to understand' without linking it to hiding detail or focusing on essentials.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives a vague programming benefit such as simplicity or understandability, but does not clearly state abstraction, hiding detail, or focusing on essential features."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Mentions reusability as an advantage of object-oriented programming: code, classes, or objects can be reused in other programs or parts of a program. Accept equivalent wording such as 'reusability', 'reuse of code', 'classes can be reused', or 'avoids rewriting the same code'.",
+        "marks": 2.5,
+        "partial_credit": "Award part marks if the answer gives only a vague benefit such as 'saves time' or 'saves effort' without clearly linking it to reusing code, classes, or objects.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives a vague benefit such as saving time or effort, but does not clearly state that code, classes, or objects can be reused."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both advantages named in the model answer: abstraction and reusability, in any wording. Part marks are available where the answer gives only a vague benefit without clearly identifying abstraction or reusability. No marks are given for unrelated advantages not stated in the model answer.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

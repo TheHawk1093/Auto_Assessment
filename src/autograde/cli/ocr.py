@@ -11,7 +11,7 @@ from pathlib import Path
 from autograde.cli.common import write_json
 from autograde.config import ReaderConfig, Settings
 from autograde.ocr.readers import build_readers, read_routed
-from autograde.ocr.sheets import group_pages, to_items, unsure_spans
+from autograde.ocr.sheets import Sheet, group_pages, to_items, unsure_spans
 
 log = logging.getLogger(__name__)
 
@@ -26,8 +26,8 @@ def register(sub) -> None:
     )
     p.add_argument("--effort", help="override the effort in the config")
     p.add_argument(
-        "--provider", choices=["gemini", "openrouter"],
-        help="override the configured reader: a free hosted model (needs --model; keys in .env)",
+        "--provider", choices=["gemini", "openrouter", "bodhan"],
+        help="override the configured reader: a hosted model (needs --model; keys in .env)",
     )  # fmt: skip
     p.add_argument("--plain", action="store_true", help="hosted models: plain transcription only")
     p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
@@ -53,11 +53,21 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
     sheets = group_pages(args.folder, args.per_page)
 
     def read(name: str):
+        saved = args.out / f"{name}.sheet.json"
+        if saved.exists():  # resume: this sheet was read by an earlier run
+            return Sheet.model_validate_json(saved.read_text(encoding="utf-8"))
         log.info("reading %s (%d pages)", name, len(sheets[name]))
-        return read_routed(readers, pairs, name, sheets[name])
+        try:
+            sheet = read_routed(readers, pairs, name, sheets[name])
+        except Exception:  # noqa: BLE001 - one bad page must not lose the others
+            log.exception("reading %s failed", name)
+            return None
+        if sheet is not None:  # saved at once, so a crash later loses nothing
+            saved.write_text(sheet.model_dump_json(indent=2), encoding="utf-8")
+        return sheet
 
     # free tiers are rate-limited, so hosted models are read one page at a time
-    workers = 1 if any(r.hosted for r in readers + special) else len(sheets)
+    workers = 1 if any(r.hosted for r in readers + special) else min(len(sheets), 4)
     with ThreadPoolExecutor(max_workers=workers) as pool:
         results = [r for r in pool.map(read, sheets) if r is not None]
     lines = []

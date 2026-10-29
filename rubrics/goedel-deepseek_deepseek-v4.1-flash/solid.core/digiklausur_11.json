@@ -1,0 +1,42 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the learning rate controls the speed of convergence (or how fast/slow learning converges). Accept equivalent wording such as 'it determines how quickly gradient descent reaches the minimum'. A full answer may also note that a low rate gives slow/overdamped convergence and a high rate gives fast/underdamped or zigzagging convergence.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the answer says the learning rate affects training/step size but does not link it to the speed of convergence.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the learning rate affects learning/training or the size of steps, but does not say it controls the speed of convergence."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the danger that if the learning rate is too high (exceeds a critical value), learning becomes unstable / diverges / fails to converge. Accept equivalent wording such as 'the algorithm may blow up' or 'it may not converge'.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the answer says a high learning rate causes zigzagging or overshooting but does not mention instability, divergence or failure to converge.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a high learning rate causes zigzagging or overshooting, but does not say learning becomes unstable, diverges or fails to converge."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the role of the learning rate in controlling convergence speed and the danger of instability/divergence when the rate is too high. Part marks are given for a vague statement that the learning rate affects training, or for mentioning zigzagging/overshooting without instability. No marks are given for unrelated statements about steepest descent.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

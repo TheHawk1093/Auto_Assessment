@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_english/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Answer states that a C++ program begins executing at main \u2014 accepts \"main\", \"main()\", \"int main()\", \"the main function\", or equivalent wording. Naming any other function (e.g. a user-defined function, WinMain on its own, or \"the first function in the file\") does not earn this point.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Answer makes clear that control passes to the first statement inside the body of main (execution starts at the beginning of main), rather than at the first line of the source file, at the first function declared, or at the #include/preprocessor lines.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says execution starts \"in\" or \"inside\" main but does not distinguish this from the start of the source file or from other functions."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Answer identifies main as the program's entry point that is invoked/called by the C++ runtime (startup code) when the program is launched, i.e. the function the system calls to start the program.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Uses the term \"entry point\" for main without saying that the runtime/startup code calls it."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need main named as the place execution begins, the point that control enters the body of main (not the top of the source file), and the idea that main is the entry point called by the runtime when the program starts. A bare \"main\" or \"main()\" earns only P1. Answers naming a different function, or saying execution starts at the first line of the file, earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

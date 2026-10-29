@@ -1,0 +1,46 @@
+{
+  "question_key": "mohler_marathi/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "by reference \u092a\u093e\u0938 \u0915\u0947\u0932\u0947\u0932\u094d\u092f\u093e function arguments \u091a\u094d\u092f\u093e copies \u0924\u092f\u093e\u0930 \u0939\u094b\u0924 \u0928\u093e\u0939\u0940\u0924 / copy \u0915\u0930\u0923\u0947 \u091f\u093e\u0933\u0932\u0947 \u091c\u093e\u0924\u0947 \u0939\u0947 \u0938\u094d\u092a\u0937\u094d\u091f\u092a\u0923\u0947 \u0938\u093e\u0902\u0917\u0924\u094b. Equivalent wording like 'arguments are passed by reference/address, so the original object is used instead of a duplicate' is acceptable.",
+        "marks": 3.0,
+        "partial_credit": "Copy avoidance \u0938\u094d\u092a\u0937\u094d\u091f \u0928\u0938\u0932\u094d\u092f\u093e\u0938 \u0915\u093f\u0902\u0935\u093e \u092b\u0915\u094d\u0924 reference/address \u092a\u093e\u0938\u093f\u0902\u0917 \u0938\u093e\u0902\u0917\u093f\u0924\u0932\u094d\u092f\u093e\u0938 \u0915\u092e\u0940 marks.",
+        "levels": [
+          {
+            "share": 0.67,
+            "says": "reference/address \u0928\u0947 argument \u092a\u093e\u0938 \u0939\u094b\u0924\u094b \u0905\u0938\u0947 \u0938\u093e\u0902\u0917\u0924\u094b, \u092a\u0923 copies \u091f\u093e\u0933\u0932\u094d\u092f\u093e \u091c\u093e\u0924\u093e\u0924 \u0939\u0947 \u0938\u094d\u092a\u0937\u094d\u091f\u092a\u0923\u0947 \u091c\u094b\u0921\u0924 \u0928\u093e\u0939\u0940."
+          },
+          {
+            "share": 0.33,
+            "says": "\u092b\u0915\u094d\u0924 'by reference \u092b\u093e\u092f\u0926\u0947\u0936\u0940\u0930/\u0935\u0947\u0917\u0935\u093e\u0928 \u0906\u0939\u0947' \u0905\u0938\u0947 \u0938\u093e\u0902\u0917\u0924\u094b; copy \u091f\u093e\u0933\u0923\u094d\u092f\u093e\u091a\u093e \u0915\u093f\u0902\u0935\u093e reference/address \u091a\u093e \u0909\u0932\u094d\u0932\u0947\u0916 \u0928\u093e\u0939\u0940."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "\u0939\u093e \u092b\u093e\u092f\u0926\u093e \u0935\u093f\u0936\u0947\u0937\u0924\u0903 \u092e\u094b\u0920\u094d\u092f\u093e data structures (\u0909\u0926\u093e. arrays, objects, structs) \u0938\u093e\u0920\u0940 \u092e\u0939\u0924\u094d\u0924\u094d\u0935\u093e\u091a\u093e \u0906\u0939\u0947 \u0905\u0938\u0947 \u0928\u092e\u0942\u0926 \u0915\u0930\u0924\u094b, \u0915\u093e\u0930\u0923 \u0924\u094d\u092f\u093e\u0902\u091a\u094d\u092f\u093e copies \u091f\u093e\u0933\u0932\u094d\u092f\u093e \u091c\u093e\u0924\u093e\u0924.",
+        "marks": 2.0,
+        "partial_credit": "Data structures \u091a\u093e \u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0909\u0932\u094d\u0932\u0947\u0916 \u0905\u0938\u0947\u0932 \u092a\u0923 '\u092e\u094b\u0920\u094d\u092f\u093e' \u0905\u0938\u093e \u0938\u094d\u092a\u0937\u094d\u091f \u0909\u0932\u094d\u0932\u0947\u0916 \u0928\u0938\u0947\u0932 \u0924\u0930 \u0905\u0930\u094d\u0927\u0947 marks.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "data structures \u091a\u093e \u0909\u0932\u094d\u0932\u0947\u0916 \u0915\u0930\u0924\u094b \u092a\u0923 \u0924\u0947 \u092e\u094b\u0920\u0947 \u0906\u0939\u0947\u0924 \u0905\u0938\u0947 \u0938\u094d\u092a\u0937\u094d\u091f \u0915\u0930\u0924 \u0928\u093e\u0939\u0940, \u0915\u093f\u0902\u0935\u093e \u092e\u094b\u0920\u094d\u092f\u093e data structures \u091a\u093e \u0909\u0932\u094d\u0932\u0947\u0916 copy \u091f\u093e\u0933\u0923\u094d\u092f\u093e\u0936\u0940 \u091c\u094b\u0921\u0924 \u0928\u093e\u0939\u0940."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: answer explicitly says pass-by-reference avoids making copies of function arguments and links this benefit to large data structures. Part marks: mentioning reference/address passing or data structures alone earns partial credit, but not full marks. No marks: unrelated answer or only a vague statement that by-reference is useful without any copy-avoidance or large-data idea.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

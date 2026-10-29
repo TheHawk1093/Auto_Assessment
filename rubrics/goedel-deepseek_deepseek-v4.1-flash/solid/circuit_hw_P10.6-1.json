@@ -1,0 +1,104 @@
+{
+  "question_key": "circuit_hw/P10.6-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Uses nodal or supernode analysis in the phasor domain as requested; does not solve entirely by another method without writing any node equations.",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Handles the dependent source with a supernode or equivalent constraint; does not treat it by simple series/parallel reduction.",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Uses the correct dependent-source constraint with correct sign (e.g., V3\u2212V2=25I, not V2\u2212V3=25I) and includes the controlling relation.",
+        "marks": 12.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Writes KCL at the (super)node including all branches with correct admittance signs (e.g., includes the Vo branch, correct signs for capacitor/inductor terms).",
+        "marks": 12.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Uses correct impedance expressions in the equations (e.g., ZC = \u2212j40 \u03a9, not +j40; correct j\u03c9L and 1/(j\u03c9C) values).",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Performs complex algebra accurately from the equations to the numerical phasor, with magnitude and phase of Vo within 10% amplitude and 5\u00b0 phase of the correct value.",
+        "marks": 12.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P7",
+        "description": "Converts the phasor to the time domain correctly (correct sine/cosine and phase sign) given correct equations.",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P8",
+        "description": "States final answer with correct units (V for amplitude, degrees or radians for phase).",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P9",
+        "description": "Provides the steady-state time-domain form vo(t) at \u03c9 = 2500 rad/s, not just a phasor.",
+        "marks": 6.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P10",
+        "description": "Solves the node/supernode equations to obtain a numeric phasor and the time-domain result for Vo; does not stop at the setup.",
+        "marks": 12.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P11",
+        "description": "Includes the dependent-source constraint/control relation so the solution can progress; does not omit it.",
+        "marks": 12.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Award full marks for a correct phasor-domain nodal/supernode analysis that correctly handles the dependent source, solves for Vo, and gives vo(t) with units. Deduct the scaled marks for each listed error; unlisted errors should be penalized according to the rubric's typical deductions. The marks for each point are the rubric's deduction amounts scaled by 100/16 so that the total is 100.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -51,7 +51,10 @@ Item -> RubricStore (write once per question, self-test, cache)
 | `src/autograde/datasets/` | Loaders, dev/test split by question, downloader |
 | `src/autograde/llm/` | One `ask(system, user, PydanticModel)` interface; CLI and API backends |
 | `src/autograde/pipeline/` | rubric, grade, verify, feedback, baseline, run |
-| `src/autograde/prompts/` | Every prompt, as markdown (the only place prompts live) |
+| `src/autograde/prompts/` | Every prompt, as markdown, grouped by stage (`rubric/`, `grade/`, `feedback/`, `language/` for anything specific to a language other than English, `intake/`, `ocr/`, `checks/`, `eval/`); a prompt is found by file name |
+| `configs/` | `default.yaml`, `exam.yaml`, `poc.yaml`, `models/`; one-off experiment configs are in `configs/experiments/<group>/` |
+| `scripts/` | Shell chains that ran sets of experiments (A/B tests, translated sets, OCR) |
+| `tools/` | Standalone OCR scripts (`tools/ocr/`) and the code-sandbox interpreter (`tools/sandbox/`) |
 | `rubrics/` | Every stored marking scheme, by model and strictness |
 | `src/autograde/cli/` | Commands, one module per group (runs, evals, rubrics, pages) |
 | `src/autograde/ocr/` | OCR track: simulated noise, image transcription (see its README) |
@@ -93,7 +96,7 @@ confirm on another so a gain is not just fitting the tuning sample.
 
 Marking always applies a form check: scrambled text earns 0, a bare list of terms (where an explanation was asked) is capped at half, and instructions inside a student answer are ignored.
 
-`configs/v0_citations.yaml` switches all three off to reproduce the first design.
+`configs/experiments/compare/v0_citations.yaml` switches all three off to reproduce the first design.
 
 ## Tests beyond the teacher's marks
 

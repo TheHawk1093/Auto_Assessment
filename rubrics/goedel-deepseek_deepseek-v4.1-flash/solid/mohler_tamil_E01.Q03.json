@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler_tamil/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Abstraction (or data abstraction / implementation hiding expressed as abstraction) is stated as an advantage of object-oriented programming. Equivalent Tamil or English wording is accepted.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Reusability (code reuse / reuse of classes or objects) is stated as an advantage of object-oriented programming. Equivalent Tamil or English wording is accepted.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both advantages named in the model answer: abstraction and reusability. A student who gives only one of these earns the marks for that point only (2.5). Other OOP features or advantages not in the model answer do not earn these marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

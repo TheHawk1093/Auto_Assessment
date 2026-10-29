@@ -1,0 +1,33 @@
+{
+  "question_key": "kinds_demo.c1a4c85b/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "The function correctly defines the signature and uses the modulo operator to return a boolean value.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct logic but minor syntax error or returns integer (0/1) instead of boolean."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for a function that correctly returns True for even numbers and False for odd numbers. 1.0 mark is awarded for correct logic that contains minor syntax errors or returns integers instead of booleans. No marks are awarded if the logic fails to distinguish between even and odd numbers.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "def is_even(n):\n    return n % 2 == 0"
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": [
+    "The point P1 and P2 overlap because the modulo logic (n % 2 == 0) inherently handles both even and odd cases, making P2 redundant.",
+    "The partial credit levels in P1 do not result in multiples of 0.5 marks as requested by the teacher (1.5 * 0.33 = 0.495, 1.5 * 0.66 = 0.99).",
+    "The logic for P1 and P2 is split arbitrarily, making it difficult to grade a function that is either correct or incorrect."
+  ]
+}

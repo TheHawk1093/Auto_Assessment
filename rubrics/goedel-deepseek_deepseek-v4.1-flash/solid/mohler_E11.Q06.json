@@ -1,0 +1,24 @@
+{
+  "question_key": "mohler/E11.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the alternative to recursion is iteration \u2014 i.e. solving the problem iteratively, using repetition/loops (for example a for loop or while loop). Accept equivalent wording such as 'iterative approach', 'using loops', or 'repetition instead of recursive calls'. Do not accept unrelated answers such as 'using a stack' alone, 'debugging', or 'using functions' without indicating iteration.",
+        "marks": 5.0,
+        "partial_credit": "All-or-nothing: the full 5 marks require the idea of iteration/loops; no marks for other methods.",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are earned by stating that the problem can be solved through iteration, an iterative approach, or using loops/repetition instead of recursion. No marks are given for answers that do not identify iteration or loops as the alternative. This is an all-or-nothing short-answer point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

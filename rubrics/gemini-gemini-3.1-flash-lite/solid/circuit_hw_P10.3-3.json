@@ -1,0 +1,93 @@
+{
+  "question_key": "circuit_hw/P10.3-3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method (M): Chooses a valid approach for complex arithmetic (rectangular addition for denominator, correct polar rules for multiplication/division).",
+        "marks": 4.0,
+        "partial_credit": "Deduction of 2 marks for M1 or M2 errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One of the two method criteria (M1 or M2) is violated."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equation/Setup (E): Correct setup of relations (denominator sum, polar multiplication/division rules).",
+        "marks": 4.0,
+        "partial_credit": "Deduction of 2 marks for E1 or E2 errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One of the two setup criteria (E1 or E2) is violated."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation (C): Correct arithmetic, magnitude/angle operations, and conversions.",
+        "marks": 6.0,
+        "partial_credit": "Deduction of 3 marks for each error (C1, C2, C3, or C4).",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One calculation error (C1-C4) is present."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units/Format (U): Final polar form expressed correctly with units.",
+        "marks": 2.0,
+        "partial_credit": "Deduction of 1 mark for U1 or U2 errors.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One unit/format error (U1 or U2) is present."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Not Complete (NC): Work contains all essential elements and final polar form.",
+        "marks": 9.0,
+        "partial_credit": "Deduction of 3 marks for each error (NC1, NC2, or NC3).",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "One completion error (NC1, NC2, or NC3) is present."
+          },
+          {
+            "share": 0.33,
+            "says": "Two completion errors are present."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Base marks for starting the problem correctly.",
+        "marks": 75.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "The student starts with 100 marks. Deductions are applied for each specific error identified in the rubric categories (M, E, C, U, NC). If a student makes no errors, they retain the full 100 marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

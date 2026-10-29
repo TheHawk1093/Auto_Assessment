@@ -10,14 +10,15 @@ from __future__ import annotations
 
 import logging
 import re
+from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
 from autograde.config import LLMConfig, ReaderConfig, ReaderRoute
-from autograde.llm import LLMClient, LLMError, build_client
+from autograde.llm import LLMClient, build_client
 from autograde.ocr.hosted import extract_sheet_hosted
-from autograde.ocr.sheets import Sheet, extract_sheet
+from autograde.ocr.sheets import Sheet, extract_sheet, unsure_spans
 
 log = logging.getLogger(__name__)
 
@@ -48,19 +49,56 @@ def build_readers(specs: list[ReaderConfig], effort: str | None = None) -> list[
     return readers
 
 
+UNSURE_LIMIT = 0.25  # more than this share of words marked unsure: try another reader
+REPEAT_LIMIT = 0.4  # one word making up more than this share of a long page: a looping reader
+
+
+def read_problems(sheet: Sheet) -> list[str]:
+    """Why a read should not be trusted: `empty`, `uncertain` (many unsure words) or `repeating`
+    (the reader got stuck in a loop). An empty list means the read can be used."""
+    words = " ".join(it.student_answer for it in sheet.items).split()
+    if not words:
+        return ["empty"]
+    problems = []
+    if len(words) >= 4 and len(unsure_spans(sheet)) / len(words) > UNSURE_LIMIT:
+        problems.append("uncertain")
+    if (
+        len(words) >= 20
+        and Counter(w.lower() for w in words).most_common(1)[0][1] / len(words) > REPEAT_LIMIT
+    ):
+        problems.append("repeating")
+    return problems
+
+
 def read_with_fallback(readers: list[Reader], name: str, pages: list[Path]) -> Sheet | None:
-    """The first reader that returns some text, or None if every one fails or reads nothing."""
+    """Cascade through the readers until one gives a clean read.
+
+    A reader is passed over when it fails for any reason, reads nothing, is unsure of too many
+    words, or loops. If no reader is clean, the least doubtful read is kept and marked
+    `(degraded)`; None only when every reader failed or read nothing.
+    """
+    best: tuple[tuple[int, float], Sheet] | None = None
     for reader in readers:
         try:
             sheet = reader.read(name, pages)
-        except LLMError as exc:
-            log.warning("%s failed on %s: %s", reader.label, name, str(exc)[:160])
+        except Exception as exc:  # noqa: BLE001 - whatever went wrong, the next reader gets a go
+            log.warning("%s failed on %s: %r", reader.label, name, exc)
             continue
-        if not any(it.student_answer.strip() for it in sheet.items):
-            log.warning("%s read nothing on %s", reader.label, name)  # blank is a failed read
-            continue
+        problems = read_problems(sheet)
         sheet.reader = reader.label
-        return sheet
+        if not problems:
+            return sheet
+        log.warning("%s gave a doubtful read of %s: %s", reader.label, name, ", ".join(problems))
+        if problems == ["empty"]:  # a blank page is a failed read
+            continue
+        words = sum(len(it.student_answer.split()) for it in sheet.items)
+        doubt = (len(problems), len(unsure_spans(sheet)) / max(words, 1))
+        if best is None or doubt < best[0]:
+            best = (doubt, sheet)
+    if best is not None:
+        log.warning("no clean read of %s; keeping %s", name, best[1].reader)
+        best[1].reader += " (degraded)"
+        return best[1]
     log.error("every reader failed on %s", name)
     return None
 
@@ -72,9 +110,22 @@ GERMAN_WORDS = frozenset(
 )
 
 
+INDIC_SHARE = 0.3  # share of letters in an Indic script that makes a page 'indic'
+INDIC_BLOCKS = (  # Devanagari to Malayalam, Sinhala excluded; also Ol Chiki and Meetei Mayek
+    (0x0900, 0x0DFF),
+    (0x1C50, 0x1C7F),
+    (0xABC0, 0xABFF),
+)
+
+
+def is_indic(ch: str) -> bool:
+    return any(lo <= ord(ch) <= hi for lo, hi in INDIC_BLOCKS)
+
+
 def classify(sheet: Sheet) -> set[str]:
-    """Kinds of text on a page: 'german' (prose with common German words) and 'math'
-    (mostly digits, brackets and operators, as in matrices and formulas)."""
+    """Kinds of text on a page: 'german' (prose with common German words), 'math' (mostly
+    digits, brackets and operators, as in matrices and formulas) and 'indic' (mostly letters of
+    an Indian script, found by Unicode block, so Latin-script pages never match)."""
     text = " ".join(it.student_answer for it in sheet.items)
     words = re.findall(r"[a-zäöüß]+", text.lower())
     kinds = set()
@@ -87,6 +138,9 @@ def classify(sheet: Sheet) -> set[str]:
     body = re.sub(r"\s", "", text)
     if len(body) >= 20 and len(re.findall(r"[\d\[\](){}=+\-*/^_λ→|\\]", body)) / len(body) >= 0.25:
         kinds.add("math")
+    letters = [c for c in body if c.isalpha()]
+    if len(letters) >= 5 and sum(is_indic(c) for c in letters) / len(letters) >= INDIC_SHARE:
+        kinds.add("indic")  # the only kind that is ever sent to the Indic specialist (Bodhan)
     return kinds
 
 

@@ -1,0 +1,48 @@
+{
+  "question_key": "mohler_english/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the height is a path length (the length of a path), not merely the number of nodes in the tree. Equivalent wording such as 'distance' or 'number of steps along a path' is acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the path considered starts at the root of the tree.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the path considered ends at a leaf (a node with no children).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the height is the longest (maximum) such root-to-leaf path. An answer that says shortest path, or any path without taking the maximum, earns no marks for this point.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four elements: height is a path length, the path starts at the root, the path ends at a leaf, and it is the longest such path. Award each point independently; equivalent wording is acceptable. No marks for P4 if the answer does not identify the longest/maximum root-to-leaf path.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

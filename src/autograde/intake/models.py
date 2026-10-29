@@ -16,7 +16,9 @@ class QuestionSpec(BaseModel):
     kind: Kind = Field(
         default="short",
         description="short: a word to a paragraph. essay: long free writing. "
-        "maths: a worked solution or calculation.",
+        "maths: a worked solution or proof. numeric: a calculation whose final answer is a "
+        "number with a unit. mcq: choose an option from those printed. code: write a program or "
+        "code. diagram: draw a figure, graph or circuit.",
     )
     field: str = Field(default="", description="Subject area in one or two words.")
 
@@ -47,3 +49,4 @@ class Reference(BaseModel):
 
     model_answer: str = ""
     rubric: str = ""
+    tests: str = ""  # code questions: one assert per line

@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies a stack as a data structure (not merely a list, array, or general storage location).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a stack stores elements/items.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States the last-in-first-out (LIFO) property: the last item added is the first to be removed, or equivalently uses the term LIFO / last-in-first-out.",
+        "marks": 3.0,
+        "partial_credit": "All-or-nothing: the LIFO property must be stated clearly.",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the answer to identify a stack as a data structure, say that it stores elements/items, and clearly state the last-in-first-out property. Award part marks for the definitional components present, but P3 is all-or-nothing and needs a clear LIFO statement. Vague answers such as 'items are added and removed' without the order do not earn P3.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

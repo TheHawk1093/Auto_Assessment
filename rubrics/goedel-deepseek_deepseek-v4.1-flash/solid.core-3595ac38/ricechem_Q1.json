@@ -1,0 +1,92 @@
+{
+  "question_key": "ricechem/Q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that removing an electron decreases electron\u2013electron repulsion among the remaining electrons (the remaining electrons repel each other less). Accept equivalent wording such as 'less repulsion between electrons' or 'electron\u2013electron repulsion is reduced'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Links the decrease in electron\u2013electron repulsion to a decrease (lowering/more negative value) in the potential energy of the remaining electrons. Accept 'the ion is at lower potential energy' or 'the electrons are more tightly bound because repulsion is reduced'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions that electron\u2013electron repulsion affects potential energy but does not state that the potential energy decreases/lowers."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the third and fourth electrons removed experience the same core charge (same effective nuclear charge). Accept a core-charge calculation showing the same value for both.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the third and fourth electrons are removed from the same shell (n=3) and therefore have the same radius/distance from the nucleus. Accept 'same shell' as implying same radius, or 'same radius' as the key point, provided it is applied to both electrons.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "States that the fifth electron is removed from a lower shell (n=2) and therefore feels a higher core charge than the third/fourth electrons. Accept 'n=2' plus 'higher effective nuclear charge/core charge' in any wording.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States only that the fifth electron is in n=2, or only that it feels a higher core charge, without the other linked part."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "States that the fifth electron is removed from n=2 and therefore has a smaller radius/is closer to the nucleus than the third/fourth electrons. Accept 'smaller distance' or 'closer to nucleus'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States only that the fifth electron is in n=2, or only that it is closer/smaller radius, without the other linked part."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P7",
+        "description": "Explains the relationship between potential energy and ionization energy: ionization energy is the energy needed to overcome the Coulomb attraction/potential energy holding the electron; a lower (more negative) potential energy or stronger attraction means a higher ionization energy. Accept a Coulomb's-law statement that larger core charge and smaller radius increase the energy needed to remove the electron.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States that stronger attraction/higher core charge/smaller radius means more energy is needed to remove an electron, but does not explicitly connect potential energy to ionization energy."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all seven ideas in the model answer: decreasing electron\u2013electron repulsion and its link to lower potential energy; same core charge and same n=3 radius for the 3rd/4th electrons; higher core charge and smaller n=2 radius for the 5th electron; and the potential-energy/ionization-energy relationship. Award part marks where a listed idea is present but vague or only one of its two linked parts is stated. No marks for merely restating that ionization energy increases without a Coulomb/core-charge explanation.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler_english/E04.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the general rule that all dimensions of the multi-dimensional array must be specified in the function parameter. Accept equivalent wording such as 'every dimension' or 'all sizes' must be given.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the exception that the first dimension does not need to be specified and may be omitted. Accept equivalent wording such as 'except the first one', 'the first dimension can be left blank', or 'only the first dimension may be omitted'. Do not accept the opposite claim that only the first dimension must be specified.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the general rule that all dimensions must be specified and the exception that the first dimension may be omitted. An answer giving only 'all dimensions' earns P1 but not P2; an answer giving only 'except the first' earns P2 but not P1. An answer that reverses the rule, such as saying only the first dimension must be specified, earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

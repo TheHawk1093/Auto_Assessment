@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler_marathi/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns a size / amount of memory (not a value, address, or type).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the size returned is the size of its operand (the variable, data type, or expression passed to sizeof).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the size is measured in bytes. Accept 'byte count' or equivalent; do not accept bits or words unless bytes are also stated.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require saying that sizeof returns the size of its operand in bytes. Award P1 for the idea of returning a size/memory amount, P2 for tying it to the operand, and P3 for the unit being bytes. No marks for answers that say it returns a value, address, or data type, or that give the unit as bits/words only.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,60 @@
+{
+  "question_key": "circuit_hw/P2.4-7",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correctly identifies the heater as a constant resistance device and uses the relation P = V^2/R to determine resistance R.",
+        "marks": 30.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correctly calculates the resistance R using the given values (1000 W at 250 V).",
+        "marks": 20.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 62.5,
+          "unit": "\u03a9",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P3",
+        "description": "Correctly applies the calculated resistance to find the power at 220 V using P = V^2/R.",
+        "marks": 30.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 774.4,
+          "unit": "W",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P4",
+        "description": "Provides both the resistance and the power at 220 V with correct units.",
+        "marks": 20.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for correctly calculating R = 62.5 \u03a9 and P = 774.4 W using the constant resistance model. Deductions apply for assuming constant current or power, incorrect use of Ohm's law, arithmetic errors, or missing units. Failure to provide both numerical results results in a significant penalty.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "1. R = V^2 / P = 250^2 / 1000 = 62.5 \u03a9. 2. P_new = V_new^2 / R = 220^2 / 62.5 = 774.4 W."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

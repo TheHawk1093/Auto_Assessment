@@ -44,6 +44,7 @@ def load_references(
                 refs[qid] = Reference(
                     model_answer=ref.model_answer or old.model_answer,
                     rubric=ref.rubric or old.rubric,
+                    tests=ref.tests or old.tests,
                 )
         else:
             texts.append(f"=== File: {path.name} ===\n{read_document(path)}")
@@ -87,5 +88,6 @@ def _direct(path: Path) -> dict[str, Reference] | None:
         out[str(qid)] = Reference(
             model_answer=str(value.get("model_answer", "")),
             rubric=rubric if isinstance(rubric, str) else json.dumps(rubric),
+            tests=str(value.get("tests", "")),
         )
     return out

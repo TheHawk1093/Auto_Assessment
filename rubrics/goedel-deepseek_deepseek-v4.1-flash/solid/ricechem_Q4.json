@@ -1,0 +1,74 @@
+{
+  "question_key": "ricechem/Q4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Refers to a fixed/same mass of one element being compared (e.g. a constant mass of element A combines with different masses of element B). Accept equivalent wording such as 'same amount of one element'.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Mentions that the Law of Multiple Proportions is based on measured mass data/mass ratios of elements in compounds, rather than only a qualitative statement that elements combine.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the elements combine to form compounds, ideally different/more than one compound. Accept 'combine to form compounds' or equivalent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the masses of one element combining with a fixed mass of another are in a simple whole-number/integer ratio. Accept 'ratio of small whole numbers' or equivalent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Explains that a whole-number ratio implies matter combines in discrete/indivisible units or packets, not as a continuous substance.",
+        "marks": 2.0,
+        "partial_credit": "Use the levels: full marks only for an explicit link between whole-number ratios and indivisible/discrete units.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the whole-number ratio suggests particles/units, but does not explicitly state that these are indivisible or discrete."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Concludes that the indivisible unit of mass is the atom, or that matter is made of atoms because the mass ratios are built from indivisible units.",
+        "marks": 2.0,
+        "partial_credit": "Use the levels: full marks only when atoms are explicitly identified as the indivisible unit of mass.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions atoms as the explanation but does not clearly connect them to the indivisible unit of mass or to the whole-number mass ratios."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all six ideas: fixed mass of one element, mass data, compound formation, whole-number mass ratio, the inference to indivisible/discrete units, and identification of the atom as the indivisible unit of mass. The two 2-mark points use the listed levels: 1 mark for a partial inference, 2 marks only for the explicit link. Vague statements that 'atoms exist' without connecting them to the law and mass ratios do not earn the atom point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

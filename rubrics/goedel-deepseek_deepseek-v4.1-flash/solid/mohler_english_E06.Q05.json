@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler_english/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns a size (an amount of memory/storage), rather than a value stored in the operand.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the size is measured in bytes (e.g. 'number of bytes', 'byte count'). Do not accept bits or an unspecified unit.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the returned size is the size of the operand \u2014 i.e. the expression, variable, object or type to which sizeof is applied. Accept equivalent wording such as 'the thing passed to sizeof'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three ideas: it returns a size, the unit is bytes, and the size is that of the operand. A response that says only 'returns memory/size' without bytes or operand earns P1 only. Missing 'bytes' loses P2; missing the operand loses P3.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

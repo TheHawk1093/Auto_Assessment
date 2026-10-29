@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Mention of the ball and socket joint (\u092c\u0949\u0932 \u0906\u0923\u093f \u0938\u0949\u0915\u0947\u091f \u0938\u093e\u0902\u0927\u093e) between the femur (\u092b\u0940\u092e\u0930/\u092e\u093e\u0902\u0921\u0940\u091a\u0947 \u0939\u093e\u0921) and the pelvis/hip bone (\u0936\u094d\u0930\u094b\u0923\u0940/\u0915\u0902\u092c\u0930).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for identifying the ball and socket joint as the cause of the circular movement. No marks are awarded if the joint type is incorrect or if the bones involved are not mentioned.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u092b\u0940\u092e\u0930 (\u092e\u093e\u0902\u0921\u0940\u091a\u0947 \u0939\u093e\u0921) \u0906\u0923\u093f \u0936\u094d\u0930\u094b\u0923\u0940 (\u0915\u0902\u092c\u0930) \u092f\u093e\u0902\u091a\u094d\u092f\u093e\u0924\u0940\u0932 '\u092c\u0949\u0932 \u0906\u0923\u093f \u0938\u0949\u0915\u0947\u091f' \u0938\u093e\u0902\u0927\u094d\u092f\u093e\u092e\u0941\u0933\u0947 \u0906\u092a\u0923 \u0906\u092a\u0932\u093e \u092a\u093e\u092f \u0917\u094b\u0932\u093e\u0915\u093e\u0930 \u0939\u0932\u0935\u0942 \u0936\u0915\u0924\u094b."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_english/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the original problem is divided/broken into smaller subproblems. Equivalent wording such as 'split the problem into smaller parts' is acceptable.",
+        "marks": 2.0,
+        "partial_credit": "Half credit if the answer mentions dividing/splitting the problem but does not make clear that the parts are smaller subproblems.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions dividing or splitting the problem, but does not state that the parts are smaller subproblems."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the subproblems are solved recursively, i.e. by applying the same procedure to them. Equivalent wording such as 'solve each part recursively' is acceptable.",
+        "marks": 2.0,
+        "partial_credit": "Half credit if the answer mentions solving the subproblems but does not say they are solved recursively or by reapplying the same procedure.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions solving the subproblems, but does not state that they are solved recursively or by reapplying the same procedure."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the solutions to the subproblems are combined/merged to form the solution to the original problem.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three components: dividing the problem into smaller subproblems, solving those subproblems recursively, and combining their solutions into the solution for the original problem. Part marks are available on P1 and P2 for incomplete statements of those components. No marks are earned for merely naming divide-and-conquer or giving an unrelated description.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

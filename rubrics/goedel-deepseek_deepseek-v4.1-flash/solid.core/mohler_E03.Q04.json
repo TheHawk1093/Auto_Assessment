@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E03.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that passing arguments by reference avoids copying (making a copy of) the data/arguments when a function is called. Accept equivalent wording such as 'no duplicate of the data is created', 'the function works on the original data instead of a copy', or 'saves the cost of copying arguments'. The answer must convey the idea of avoiding a copy; merely saying it is 'faster', 'more efficient' or 'saves memory' without linking this to not copying the data does not earn full marks. Saying only that it lets the function modify the caller's variable does not earn the marks, because that is not the advantage given.",
+        "marks": 5.0,
+        "partial_credit": "Half marks for the idea of avoiding copies without mentioning large data structures or function calls; a quarter for a vague efficiency/memory claim with no mention of copying.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says that passing by reference avoids copying the data/arguments, but does not mention large data structures or the function-call context."
+          },
+          {
+            "share": 0.25,
+            "says": "Says only that it is faster, more efficient or saves memory, with no mention of avoiding copies."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that passing by reference avoids copying large data structures when calling a function, in any equivalent wording. Part marks for a partly formed version of that idea, such as avoiding copies without mentioning large data, or a bare efficiency claim. No marks for answers that only say the function can modify the caller's variable, since that is not the advantage asked for.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

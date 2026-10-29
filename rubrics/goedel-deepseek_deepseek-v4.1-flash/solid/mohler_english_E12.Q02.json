@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler_english/E12.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the algorithm must be implemented, e.g. written as a program/code in a programming language.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the implemented algorithm is executed/run (on input) so that its behaviour can be observed.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the actual/physical running time is measured, e.g. using a timer, clock, stopwatch or timing function, rather than only counting operations or deriving theoretical complexity.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both implementing the algorithm and measuring its actual/physical running time; running the implementation is implied by measuring physical time. Award part marks for an answer that gives only one of the two main components (implementation or measurement). No marks for an answer that only discusses theoretical analysis or operation counts without an experimental measurement.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

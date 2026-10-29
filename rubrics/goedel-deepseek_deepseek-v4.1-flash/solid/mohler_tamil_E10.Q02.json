@@ -1,0 +1,53 @@
+{
+  "question_key": "mohler_tamil/E10.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the height of a tree is a length (or the number of edges/nodes) of a path \u2014 i.e. height is defined in terms of a path, not just a count of nodes or levels. Equivalent Tamil/English wording accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the path begins at the root of the tree.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the path ends at a leaf (a node with no children). Saying 'any leaf' or 'a leaf node' is acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the height is the longest (maximum) such path \u2014 i.e. the longest path from the root to a leaf, taken over all root-to-leaf paths.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the answer says the path is long/deep but does not make clear it is the maximum over all root-to-leaf paths.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the path should be long or the deepest path, but does not state it is the longest/maximum among all root-to-leaf paths."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four ideas: height is a path length, the path starts at the root, it ends at a leaf, and it is the longest such path. The 'longest' idea carries the most weight (2 marks); an answer that only says 'a long path' earns half of that point. An answer that gives only a vague statement such as 'the depth of the tree' with no root, leaf or longest-path detail earns little or no credit.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

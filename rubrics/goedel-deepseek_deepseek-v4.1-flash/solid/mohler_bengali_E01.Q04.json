@@ -1,0 +1,24 @@
+{
+  "question_key": "mohler_bengali/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that execution of a C++ program starts at the main function (main() / main / \u09ae\u09c7\u0987\u09a8 \u09ab\u09be\u0982\u09b6\u09a8). Accept equivalent wording such as 'entry point is main' or 'program begins from main()'. Do not accept answers naming any other function, the first line of code, the compiler, or the header.",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are earned only when the answer identifies the main function as the place where C++ program execution begins. No marks are given for other functions, vague answers, or answers that name a different starting location. The model answer contains a single fact, so the 5 marks are awarded as one all-or-nothing point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

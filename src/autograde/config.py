@@ -6,14 +6,23 @@ from pathlib import Path
 from typing import Literal
 
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 DEFAULT_CONFIG = Path("configs/default.yaml")
-FEEDBACK_STYLES = ("standard", "hints", "critique", "formal", "brief", "detailed", "coach")
+FEEDBACK_STYLES = (
+    "standard",
+    "hints",
+    "critique",
+    "formal",
+    "concrete",
+    "brief",
+    "detailed",
+    "coach",
+)
 
 
 class LLMConfig(BaseModel):
-    backend: Literal["claude_cli", "anthropic", "openrouter", "goedel"] = "claude_cli"
+    backend: Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini"] = "claude_cli"
     model: str = "sonnet"
     effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
     timeout_s: int = 240
@@ -23,7 +32,7 @@ class LLMConfig(BaseModel):
 class ReaderConfig(BaseModel):
     """One model that reads photographed answer sheets (it must accept images)."""
 
-    provider: Literal["gemini", "openrouter", "claude_cli"] = "gemini"
+    provider: Literal["gemini", "openrouter", "bodhan", "claude_cli"] = "gemini"
     model: str = "gemini-3.5-flash-lite"  # gemini and openrouter models must be free ones
     plain: bool = False  # page text only, no question split; for slow reasoning models
 
@@ -31,7 +40,7 @@ class ReaderConfig(BaseModel):
 class ReaderRoute(BaseModel):
     """Re-read pages whose text is of one kind with a reader chosen for that kind."""
 
-    when: Literal["german", "math"]
+    when: Literal["german", "math", "indic"]
     reader: ReaderConfig
 
 
@@ -56,7 +65,12 @@ class TeacherInputs(BaseModel):
 
     partial_credit: Literal["rubric", "none", "half", "quarter"] = "rubric"
     # rubric: the rubric's own levels. none: all or nothing. half: 0.5. quarter: 0.25, 0.5, 0.75.
+    mark_step: float | None = Field(default=None, gt=0)
+    # Marks come in multiples of this many marks: 0.5 allows 1.5 out of 2, 0.2 allows 1.8.
+    # It decides the partial marks of a point, so it wins over `partial_credit` when both are set.
     strictness: Literal["lenient", "moderate", "strict"] | None = None  # how tightly to judge
+    follow_through: bool = True  # multi-part: credit a later part that is right on the student's
+    # own (wrong) earlier result
     notes: str = ""  # free text for every question, e.g. "units are required"
     question_notes: dict[str, str] = {}  # the same, for one question key
 
@@ -85,9 +99,15 @@ class PipelineConfig(BaseModel):
     escalate_model: str | None = None  # a stronger model re-marks the answers the cheap one doubts
     escalate_when: list[str] = ["partial", "mid", "deduction"]  # see pipeline/cascade
     with_feedback: bool = True  # False: mark only (cheaper while tuning the grader)
+    feedback_language: str = ""  # write feedback in this language ("Hindi", "Tamil", ...); empty:
+    # the language the student answered in
+    code_exec: bool = False  # run the teacher's tests on student code (needs a container; see
+    # pipeline/codecheck.py). Off: code is read, not run.
+    code_sandbox: Literal["wasm", "docker", "process"] = "wasm"  # where code_exec runs it
+    code_tests_n: int = 6  # tests the model writes for a code question that came without any
     feedback_n: int = 1  # write this many feedback drafts and keep the best
     deductions: bool = False  # apply the rubric's deductions (needs a strong marker; see DESIGN)
-    strong_backend: Literal["claude_cli", "anthropic", "openrouter", "goedel"] | None = (
+    strong_backend: Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini"] | None = (
         None  # backend of rubric_model and escalate_model; default: the grader's
     )
     rubric_model: str | None = None  # a stronger model writes the schemes once per question

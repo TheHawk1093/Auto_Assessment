@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Identifies that Hermann Snellen invented the Snellen chart (\u0938\u094d\u0928\u0947\u0932\u0947\u0928 \u091a\u093e\u0930\u094d\u091f).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for identifying the Snellen chart. No marks are awarded for incorrect answers or if the answer is missing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u0938\u094d\u0928\u0947\u0932\u0947\u0928 \u091a\u093e\u0930\u094d\u091f"
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

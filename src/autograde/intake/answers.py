@@ -10,6 +10,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from autograde import prompts
+from autograde.intake.figures import anchor_figures
 from autograde.intake.files import read_document
 from autograde.intake.models import Paper
 from autograde.llm import LLMClient
@@ -38,6 +39,7 @@ def load_answers(
         data = json.loads(path.read_text(encoding="utf-8"))
         data = data.get("students", data)
         for student, per_q in data.items():
+            per_q = {q: anchor_figures(str(t), path.parent) for q, t in per_q.items()}
             answers[str(student)] = _match(per_q, paper, f"{student}", warnings)
         return answers, warnings
     for file in sorted(path.iterdir()):

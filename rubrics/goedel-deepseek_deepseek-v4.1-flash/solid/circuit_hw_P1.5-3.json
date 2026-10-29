@@ -1,0 +1,113 @@
+{
+  "question_key": "circuit_hw/P1.5-3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Chooses a correct approach: computes constant power from P = VI using 6 V and 10 mA, then finds time via t = E/P. Treats the four AA cells as a single 6 V source (uses the given total energy).",
+        "marks": 23.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9565,
+            "says": "Makes one method error: e.g., uses 1.5 V instead of 6 V, multiplies the given total energy by 4, or uses an incorrect strategy (divides energy by current or voltage directly, or relies on mAh capacity not provided)."
+          },
+          {
+            "share": 0.913,
+            "says": "Makes two method errors from the list above."
+          },
+          {
+            "share": 0.8696,
+            "says": "Makes three or more method errors from the list above (deduction capped at 3 marks)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States and applies correct relationships: P = VI; E = \u222bP dt \u2261 Pt for constant P; t = E/P. Symbolic setup can be integral or algebraic.",
+        "marks": 15.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9333,
+            "says": "Makes one equation error: e.g., key relation missing or misstated when deriving time (does not connect E, P, and t correctly), or integral/formula written but applied improperly (drops dt/limits or substitutes wrongly before concluding t = E/P)."
+          },
+          {
+            "share": 0.8667,
+            "says": "Makes two or more equation errors from the list above (deduction capped at 2 marks)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Numerical computations and conversions are correct (mA\u2192A, Ws/W). Minor slips merit small deductions; correct results with clear arithmetic receive full credit.",
+        "marks": 23.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9565,
+            "says": "Makes one calculation error: e.g., unit conversion slip in intermediate step that is self-corrected (mA to A), or propagation of a numeric error leading to noticeably off time (>10% from correct)."
+          },
+          {
+            "share": 0.913,
+            "says": "Makes two calculation errors from the list above."
+          },
+          {
+            "share": 0.8696,
+            "says": "Makes three or more calculation errors from the list above (deduction capped at 3 marks)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Includes correct units throughout, especially on the final time. Seconds or hours are acceptable if consistent.",
+        "marks": 15.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9333,
+            "says": "Makes one unit error: e.g., final answer missing units (abbreviations such as 's', 'S', 'Sec' are not accepted as units), or inconsistent or mismatched units without clear conversion (e.g., mixing Ws and Wh)."
+          },
+          {
+            "share": 0.8667,
+            "says": "Makes two or more unit errors from the list above (deduction capped at 2 marks)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "States the requested operating time clearly. Showing only intermediate values (e.g., power) without a final time is incomplete.",
+        "marks": 24.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9583,
+            "says": "Makes one completeness error: e.g., no final numeric time is stated, or final value given with no context such that it is unclear it is a time."
+          },
+          {
+            "share": 0.9167,
+            "says": "Makes two completeness errors from the list above."
+          },
+          {
+            "share": 0.875,
+            "says": "Makes three or more completeness errors from the list above (deduction capped at 3 marks)."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a correct method (6 V source, P=VI, t=E/P), correct equations, correct arithmetic and unit conversions, correct units on the final time, and a clearly stated final time. Deduct marks only for the specific errors listed in the levels, with the stated caps. A blank or incomplete answer loses marks for missing elements.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The four AA cells in series give 6 V. The device draws 10 mA = 0.010 A. Power P = VI = (6 V)(0.010 A) = 0.060 W. For constant power, energy E = Pt, so t = E/P = E / 0.060 W. If E is in joules, t is in seconds. If E is given in Wh, convert to J first (1 Wh = 3600 J). Final answer: t = E / 0.060 s (with E in J)."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

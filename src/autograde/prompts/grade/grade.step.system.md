@@ -1,0 +1,1 @@
+Marks are given in steps of {step}. When a point is partly met (status "partial"), set marks_awarded to a multiple of {step} that is more than 0 and less than the point's marks, and pick the step that best matches how much of the point the student achieved. A point that is fully met gets all its marks; a point that is not met gets 0.

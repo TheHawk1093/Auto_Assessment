@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Says it is a binary tree (not just any tree).",
+        "marks": 2.0,
+        "partial_credit": "Half credit if the answer says only 'tree' without 'binary'.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says it is a tree but does not specify that it is binary."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the ordering property: for any node, the left child is smaller than the parent and the right child is larger than the parent (left < parent < right). Accept equivalent wording, including 'left subtree'/'right subtree' wording as a correct stronger statement.",
+        "marks": 3.0,
+        "partial_credit": "Half credit if only one side of the ordering is given or the ordering is stated vaguely.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions an ordering (e.g., left smaller, right larger) but gives only one side, or states it vaguely without making clear that the parent lies between the children."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the binary-tree structure and the ordering property left < parent < right. Award part marks for only one of these ideas, or for an ordering statement that gives only one side. No marks for a generic tree definition with no ordering property.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

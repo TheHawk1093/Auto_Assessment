@@ -1,0 +1,63 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that classification maps/assigns data (inputs) to discrete labels, classes or categories (not continuous values). Accept equivalent wording such as 'predicts a category' or 'outputs a class label'.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that regression maps/assigns data to a continuous function or real/numeric values (not discrete labels). Accept equivalent wording such as 'predicts a continuous quantity' or 'outputs a real number'.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says regression predicts numeric/real values but does not make clear that the output is continuous, or gives only an example without stating the continuous/real-valued nature."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that classification error is the number/count of misclassifications (misclassified points). Accept equivalent wording such as 'how many predictions are wrong'.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says classification error relates to incorrect predictions but does not state that it is the number/count of misclassifications."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that regression error is the summed distance between the true and predicted values (e.g. sum of absolute differences or squared distances). Accept equivalent wording such as 'total difference between actual and predicted values'.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says regression error compares true and predicted values but does not state that the distances/differences are summed."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both definitions (discrete labels/classes for classification vs continuous/real values for regression) and both error measures (count of misclassifications vs summed distance between true and predicted values). Correct paraphrases or examples earn the marks; the exact wording is not required. No marks for only naming the tasks without saying what they map to, or for confusing discrete labels with continuous values.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

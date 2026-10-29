@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E03.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a function signature includes the name of the function. Accept equivalent wording such as 'the function's name' or 'the identifier of the function'.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a function signature includes the types of the parameters. Accept equivalent wording such as 'parameter data types' or 'the types of the arguments it takes'.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the function name and the parameter types. Award 2.5 marks for each of these two elements stated correctly. A return type alone does not earn marks, since the model answer lists only the function name and parameter types.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

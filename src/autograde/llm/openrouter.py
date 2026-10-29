@@ -5,6 +5,7 @@ from the first JSON object in it, since not every free model supports forced str
 
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import re
@@ -71,8 +72,13 @@ class OpenRouterClient(LLMClient):
                     time.sleep(wait)
                     continue
                 raise LLMError(f"{self.prefix} HTTP {exc.code}: {exc.read()[:200]!r}") from exc
-            except (urllib.error.URLError, TimeoutError) as exc:
-                raise LLMError(f"OpenRouter request failed: {exc}") from exc
+            except (
+                urllib.error.URLError,
+                TimeoutError,
+                ConnectionError,
+                http.client.HTTPException,  # a reply cut off part-way (IncompleteRead)
+            ) as exc:
+                raise LLMError(f"{self.prefix} request failed: {exc}") from exc
         raise LLMError("unreachable")
 
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:

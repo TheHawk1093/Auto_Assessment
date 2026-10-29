@@ -1,0 +1,55 @@
+{
+  "question_key": "mohler/E03.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that both iteration and recursion involve repetition (for example, both repeat a set of steps or perform a process repeatedly). Equivalent wording such as 'both loop' or 'both repeat instructions' earns the mark.",
+        "marks": 2.5,
+        "partial_credit": "Half marks if repetition is mentioned but it is not made clear that it applies to both iteration and recursion.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions repetition/looping but does not clearly say that both iteration and recursion involve it."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that both iteration and recursion have a termination test or stopping condition (for example, a loop condition or a base case that ends the process). Equivalent wording such as 'both need a way to stop' earns the mark.",
+        "marks": 1.5,
+        "partial_credit": "Half marks if a stopping condition is mentioned but it is not clearly attributed to both iteration and recursion.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a termination/stopping condition but does not clearly say that both iteration and recursion have one."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that both iteration and recursion can occur infinitely (for example, an infinite loop or infinite recursion / non-terminating process). Equivalent wording such as 'both can run forever' earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "Half marks if only one of infinite iteration or infinite recursion is mentioned, or if the idea is vague.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions infinite looping or infinite recursion but does not clearly state that both can occur infinitely."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three similarities: both involve repetition, both have termination tests, and both can occur infinitely. Part marks are available where a similarity is mentioned but not clearly applied to both iteration and recursion. No marks are given for unrelated differences or for answers that do not state a similarity.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

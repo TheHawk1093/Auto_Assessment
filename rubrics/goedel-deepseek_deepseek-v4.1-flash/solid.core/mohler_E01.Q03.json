@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Names abstraction as an advantage of object-oriented programming (accept 'abstraction', or a clear paraphrase such as hiding implementation detail / exposing only essential features to the user).",
+        "marks": 3.0,
+        "partial_credit": "Half marks if the answer describes hiding complexity or focusing on essential features without naming abstraction or making clear it is an advantage of OOP.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes the idea of hiding detail or exposing only essentials, but does not name abstraction or does not present it as an advantage of OOP."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Names reusability as an advantage of object-oriented programming (accept 'reusability', 'code reuse', or a clear paraphrase such as reusing existing classes/objects in new programs).",
+        "marks": 2.0,
+        "partial_credit": "Half marks if the answer only hints at reuse (e.g. 'you can use code again') without linking it to classes/objects or stating it as an advantage.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions using code again in a vague way, without naming reusability or tying it to classes/objects."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both advantages from the model answer: abstraction and reusability, each stated or clearly paraphrased. A partly correct answer that describes one idea vaguely (e.g. hiding complexity, or using code again) earns half of that point's marks. No marks are given for advantages not in the model answer, such as encapsulation, inheritance or polymorphism.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -45,8 +45,32 @@ def register(sub) -> None:
         "--granularity", choices=["rubric", "none", "half", "quarter"], default="rubric",
         help="part marks: as the rubric says, none, halves, or quarters of a point",
     )  # fmt: skip
+    p.add_argument(
+        "--mark-step", type=float,
+        help="marks come in multiples of this: 0.5 allows 1.5 out of 2, 0.2 allows 1.8",
+    )  # fmt: skip
     p.add_argument("--strictness", choices=["lenient", "moderate", "strict"])
     p.add_argument("--note", default="", help="free text for the marker, e.g. 'units are required'")
+    p.add_argument(
+        "--question-note", action="append", default=[], metavar="ID=TEXT",
+        help="a note for one question only (repeat for more), e.g. 2b='accept either method'",
+    )  # fmt: skip
+    p.add_argument(
+        "--max-mark", type=float,
+        help="marks for a single question whose paper does not print them",
+    )  # fmt: skip
+    p.add_argument(
+        "--no-follow-through", action="store_true",
+        help="do not credit a later part that is right on the student's own earlier result",
+    )  # fmt: skip
+    p.add_argument(
+        "--code-exec", action="store_true",
+        help="run tests on student code in the sandbox (the model writes tests if none are given)",
+    )  # fmt: skip
+    p.add_argument(
+        "--code-sandbox", choices=["wasm", "docker", "process"], default="wasm",
+        help="where code runs: wasm (default, stdlib only), docker, or process (trusted code only)",
+    )  # fmt: skip
     p.add_argument("--schemes-only", action="store_true", help="write the marking schemes and stop")
     p.set_defaults(func=cmd_exam)
 
@@ -56,7 +80,7 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
     out = run_dir(settings, args.name)
     out.mkdir(parents=True, exist_ok=True)
 
-    paper = load_paper(args.paper, client)
+    paper = load_paper(args.paper, client, args.max_mark)
     refs, warnings = load_references(args.reference, paper, client)
     answers, more = load_answers(args.answers, paper, client)
     warnings += more
@@ -76,9 +100,17 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
 
     settings.pipeline.rubric_variant = "solid"
     settings.pipeline.with_feedback = True  # feedback is part of the product
+    notes = dict(n.split("=", 1) for n in args.question_note if "=" in n)
     settings.pipeline.teacher = TeacherInputs(
-        partial_credit=args.granularity, strictness=args.strictness, notes=args.note
+        partial_credit=args.granularity,
+        mark_step=args.mark_step,
+        strictness=args.strictness,
+        follow_through=not args.no_follow_through,
+        notes=args.note,
+        question_notes={f"{key}/{qid.strip()}": text for qid, text in notes.items()},
     )
+    settings.pipeline.code_exec = args.code_exec
+    settings.pipeline.code_sandbox = args.code_sandbox
     items = build_items(key, paper, refs, answers)
     store = store_for(settings, grader=client)
     records: dict = {}

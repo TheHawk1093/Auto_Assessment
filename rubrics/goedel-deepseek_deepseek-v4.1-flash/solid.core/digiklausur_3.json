@@ -1,0 +1,55 @@
+{
+  "question_key": "digiklausur/3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the perceptron update rule: when the current output is not positive / the point is misclassified, i.e. <w,x> <= 0 (or w\u00b7x <= 0), update the weight vector by w <- w + eta*x(n), equivalently \u0394w = eta*x(n), where eta is the learning rate. Accept sign-equivalent labelled forms such as w <- w + eta*y*x only if the condition is adjusted consistently.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the update form is given but the misclassification condition is missing or wrong.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives an update of the form w <- w + eta*x (or \u0394w = eta*x) but omits or gets wrong the condition <w,x> <= 0 / misclassification."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Labels the training data with positive and negative labels and initializes the weights randomly (or with arbitrary initial values).",
+        "marks": 0.5,
+        "partial_credit": "Half credit if only one of labelling the data or initializing the weights is present.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions either labelling the data with +/- labels or random/arbitrary weight initialization, but not both."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Repeats the update over all training examples/epochs until the weights stop changing much / converge; may note that convergence is guaranteed because the data are linearly separable. Accept equivalent stopping rules such as repeating until no misclassifications occur.",
+        "marks": 0.5,
+        "partial_credit": "Half credit if iteration is mentioned without a stopping/convergence condition, or convergence is mentioned without an iterative loop.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions repeating over epochs/examples but gives no stopping or convergence condition, or states convergence/linear separability without describing the iterative loop."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the perceptron update rule with its misclassification condition and an iterative learning procedure that includes initialization and repetition until convergence. Part marks are given for an update rule without the correct condition, or for missing one of the preprocessing/loop elements. No marks are earned for an answer that lacks a perceptron-style weight update or any iterative learning procedure.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

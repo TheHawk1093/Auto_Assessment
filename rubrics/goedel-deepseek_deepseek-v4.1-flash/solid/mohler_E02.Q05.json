@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E02.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class can have an unlimited / any number of constructors, i.e. there is no fixed maximum. Accept equivalent wording such as 'as many as you want', 'no limit', or 'any number'. Do not accept 'one', 'only the default constructor', or a specific finite number.",
+        "marks": 5.0,
+        "partial_credit": "Award part marks for answers that say more than one/multiple constructors are possible but do not state that the number is unlimited or that there is no maximum.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a class can have more than one / multiple constructors, but does not say the number is unlimited or that there is no maximum."
+          },
+          {
+            "share": 0.2,
+            "says": "Implies several constructors are possible but is vague (e.g. 'many') without clearly saying more than one or unlimited."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require saying the number of constructors is unlimited / any number / no fixed maximum. Part marks are for saying only that more than one constructor is possible without the unlimited/no-maximum idea. Answers giving a finite number, including one, earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E03.Q07",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that both iteration and recursion involve repetition (repeating a set of statements/instructions or a process multiple times). Accept equivalent wording such as 'both loop' or 'both repeat steps'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that both iteration and recursion have a termination condition/test that stops the repetition. Accept equivalent wording such as 'both need a stopping condition' or 'both end when a condition is met'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that both iteration and recursion can be infinite/non-terminating if the termination condition is absent or never met (e.g. infinite loop, infinite recursion). Accept equivalent wording.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three similarities: repetition, a termination test, and the possibility of being infinite. Award the marks for each correct similarity stated, even if worded differently. Do not award marks for differences between iteration and recursion.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

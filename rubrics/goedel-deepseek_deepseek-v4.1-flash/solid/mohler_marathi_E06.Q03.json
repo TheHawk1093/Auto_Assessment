@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_marathi/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the star (STAR) operator is the dereferencing/indirection operator (dereferencing operator).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Explains that the operand is a pointer/address and that the operator accesses or refers to the object stored at the memory address held by that pointer. Equivalent wording is acceptable.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says only that the operand is a pointer/address, without stating that the operator accesses the object at that address."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the result is an alias/synonym for the pointed-to object (i.e. it denotes/returns the object at the pointed-to address), not the pointer/address itself. Accept equivalent wording such as 'returns the object pointed to'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says it gives the value stored at the address but does not say it is an alias/synonym for the pointed-to object or that it denotes the object itself."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require identifying * as the dereferencing operator, saying the operand is a pointer/address, and saying the result is the object/alias at that address. Part marks are given when one element is missing or only partially explained, such as mentioning only the pointer operand or only the value at the address. No marks for saying * returns the address/pointer itself or for describing multiplication.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,32 @@
+{
+  "question_key": "digiklausur/16",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a new/unclassified point is compared with the stored classified (old) data and its k nearest neighbours are found, e.g. by constructing a sphere/region containing the k closest points; pseudocode or equivalent step-by-step neighbour-search steps are acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the class/colour with the most votes among the k nearest neighbours is chosen and the new point is assigned to that class; pseudocode or equivalent steps showing the vote count and assignment are acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Award full marks for the two core steps: finding the k nearest labelled neighbours and assigning the new point by majority vote. Pseudocode or an equivalent step-by-step algorithm is acceptable; vague statements such as 'it learns from data' without the neighbour and vote steps earn no marks. The word 'unsupervised' is not required and should not be penalised if absent.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

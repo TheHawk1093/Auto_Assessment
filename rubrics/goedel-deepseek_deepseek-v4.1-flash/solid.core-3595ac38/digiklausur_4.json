@@ -1,0 +1,42 @@
+{
+  "question_key": "digiklausur/4",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that classification maps/assigns data to discrete labels, categories or classes, while regression maps data to continuous values, real numbers or a continuous function; the difference is discrete-label output versus continuous/real-valued output. Equivalent wording counts.",
+        "marks": 1.5,
+        "partial_credit": "Award part marks when only one of classification or regression is correctly described, or when the answer says one predicts labels and the other predicts values without making the discrete/continuous distinction.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correctly describes only one of classification or regression, or gives a vague label-versus-value contrast without the discrete/continuous distinction."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that classification error is the number/count of misclassifications, while regression error is the summed/total distance or difference between true and predicted values. Equivalent wording counts.",
+        "marks": 0.5,
+        "partial_credit": "Award part marks when only one of the two error descriptions is correct.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives only one of the two error definitions correctly, e.g. classification error as misclassifications but no regression error, or vice versa."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the discrete-label versus continuous-value contrast and the error contrast. Part marks are available for only one side of either contrast. No marks for answers that do not distinguish classification from regression or give unrelated definitions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

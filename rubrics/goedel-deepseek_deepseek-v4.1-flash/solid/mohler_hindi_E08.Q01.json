@@ -1,0 +1,48 @@
+{
+  "question_key": "mohler_hindi/E08.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a stack is a data structure (data structure / \u0921\u0947\u091f\u093e \u0938\u094d\u091f\u094d\u0930\u0915\u094d\u091a\u0930).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a stack stores elements/items (elements \u0915\u094b store \u0915\u0930\u0924\u093e \u0939\u0948).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States the LIFO principle, i.e. Last-In-First-Out (\u092f\u093e last-in-first-out).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Explains that the item added last is removed first (\u0938\u092c\u0938\u0947 \u0905\u0902\u0924 \u092e\u0947\u0902 \u091c\u094b\u0921\u093c\u093e \u0917\u092f\u093e item \u0938\u092c\u0938\u0947 \u092a\u0939\u0932\u0947 \u0939\u091f\u093e\u092f\u093e \u091c\u093e\u090f\u0917\u093e).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four points: stack as a data structure, storing elements, the LIFO principle, and the explanation that the last-added item is removed first. Award each point only when the student's answer contains that specific idea; equivalent wording in Hindi or English is acceptable. No marks for unrelated or empty answers, and a bare example without a definition earns only the points it explicitly supports.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

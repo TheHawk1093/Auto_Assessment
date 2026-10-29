@@ -1,0 +1,24 @@
+{
+  "question_key": "mohler_hindi/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that execution of a C++ program begins at/from the main function (main()). Accept equivalent wording such as 'the entry point is main' or 'the program starts from main'. Do not accept any other function or statement as the starting point.",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are earned only by identifying the main function (main()) as the place where a C++ program starts executing. No marks are given for naming another function or giving a non-entry-point location. This point is all-or-nothing because the answer is a single fact.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

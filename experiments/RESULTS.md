@@ -195,6 +195,53 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 | 2026-10-27 13:36 | pipeline | ab_asap_sas | asap_sas/dev/n24/seed0 | pipeline | 0.245 | - | = | -0.040 | 0.43 | 0.43 | 0% | 0.00 | c1757aad |
 | 2026-10-27 13:46 | pipeline | ab_mohler | mohler/dev/n24/seed0 | pipeline | 0.212 | ▲ -0.013 | ▼ +0.006 | -0.154 | 0.71 | 0.52 | 25% | 0.00 | c1757aad |
 | 2026-10-27 14:24 | pipeline | ocrn_clean | digiklausur/dev/n24/seed1 | pipeline | 0.125 | ▲ -0.075 | ▼ +0.027 | -0.083 | 0.84 | 0.79 | 21% | 0.00 | c1757aad |
+| 2026-10-27 14:45 | pipeline | ocrn_light | digiklausur/dev/n24/seed1 | pipeline | 0.152 | ▲ -0.048 | ▼ +0.027 | -0.087 | 0.78 | 0.72 | 9% | 0.00 | c1757aad |
+| 2026-10-27 14:53 | pipeline | ocrn_medium | digiklausur/dev/n24/seed1 | pipeline | 0.167 | ▲ -0.033 | ▼ +0.014 | -0.083 | 0.79 | 0.69 | 0% | 0.00 | c1757aad |
+| 2026-10-27 14:59 | pipeline | ocrn_heavy | digiklausur/dev/n24/seed1 | pipeline | 0.167 | ▲ -0.033 | = | -0.083 | 0.73 | 0.67 | 25% | 0.00 | c1757aad |
+| 2026-10-27 20:47 | pipeline | ocrn_light | digiklausur/dev/n24/seed1 | pipeline | 0.156 | ▲ -0.044 | ▲ -0.010 | -0.094 | 0.78 | 0.72 | 8% | 0.00 | c1757aad |
+| 2026-10-27 20:49 | pipeline | ocrn_medium | digiklausur/dev/n24/seed1 | pipeline | 0.135 | ▲ -0.065 | ▲ -0.021 | -0.073 | 0.82 | 0.77 | 25% | 0.00 | c1757aad |
+| 2026-10-28 16:08 | baseline | scaa_mr_baseline | scaa_marathi/dev/n24/seed0 | baseline | 0.083 | - | - | 0.083 | 0.87 | 0.85 | 0% | 0.00 | f2c13e76 |
+| 2026-10-28 16:12 | pipeline | scaa_mr_pipeline | scaa_marathi/dev/n24/seed0 | pipeline | 0.062 | ▲ -0.021 | - | 0.062 | 0.89 | 0.88 | 0% | 0.00 | f2c13e76 |
+| 2026-10-28 16:17 | pipeline | circuit_dev | circuit_hw/dev/n30/seed0 | pipeline | 0.296 | - | - | -0.294 | 0.98 | 0.00 | 25% | 0.00 | f2c13e76 |
+| 2026-10-28 16:18 | pipeline | circuit_dev | circuit_hw/dev/n30/seed0 | pipeline | 0.296 | - | = | -0.294 | 0.98 | 0.00 | 25% | 0.00 | f2c13e76 |
+| 2026-10-28 16:38 | pipeline | scaa_mr_ds | scaa_marathi/dev/n24/seed0 | pipeline | 0.021 | ▲ -0.062 | ▲ -0.042 | 0.021 | 0.98 | 0.97 | 4% | 0.00 | f2c13e76 |
+| 2026-10-28 16:56 | pipeline | tr_english | mohler_english/dev/n17/seed0 | pipeline | 0.221 | - | - | -0.185 | 0.14 | 0.08 | 0% | 0.00 | 21e829f1 |
+| 2026-10-28 17:01 | pipeline | tr_hindi | mohler_hindi/dev/n16/seed0 | pipeline | 0.269 | - | - | -0.244 | 0.74 | 0.51 | 0% | 0.00 | 21e829f1 |
+| 2026-10-28 17:07 | pipeline | tr_marathi | mohler_marathi/dev/n18/seed0 | pipeline | 0.308 | - | - | -0.297 | 0.83 | 0.41 | 6% | 0.00 | 21e829f1 |
+| 2026-10-28 17:12 | pipeline | tr_tamil | mohler_tamil/dev/n13/seed0 | pipeline | 0.188 | - | - | -0.188 | 0.79 | 0.64 | 15% | 0.00 | 21e829f1 |
+| 2026-10-28 17:17 | pipeline | tr_bengali | mohler_bengali/dev/n18/seed0 | pipeline | 0.222 | - | - | -0.189 | 0.56 | 0.21 | 6% | 0.00 | 21e829f1 |
+| 2026-10-28 17:22 | pipeline | tr2_english | mohler_english/dev/n30/seed0 | pipeline | 0.258 | - | - | -0.238 | 0.75 | 0.50 | 13% | 0.00 | 21e829f1 |
+| 2026-10-28 17:30 | pipeline | tr2_hindi | mohler_hindi/dev/n30/seed0 | pipeline | 0.233 | - | - | -0.213 | 0.73 | 0.49 | 3% | 0.00 | 21e829f1 |
+| 2026-10-28 17:37 | pipeline | tr2_marathi | mohler_marathi/dev/n30/seed0 | pipeline | 0.280 | - | - | -0.260 | 0.72 | 0.46 | 3% | 0.00 | 21e829f1 |
+| 2026-10-28 17:45 | pipeline | tr2_tamil | mohler_tamil/dev/n30/seed0 | pipeline | 0.257 | - | - | -0.243 | 0.76 | 0.50 | 10% | 0.00 | 21e829f1 |
+| 2026-10-28 17:52 | pipeline | tr2_bengali | mohler_bengali/dev/n30/seed0 | pipeline | 0.275 | - | - | -0.248 | 0.71 | 0.48 | 0% | 0.00 | 21e829f1 |
+| 2026-10-28 22:15 | pipeline | ab_mohler_s1_fine | mohler/dev/n30/seed1 | pipeline | 0.225 | - | - | -0.205 | 0.79 | 0.57 | 10% | 0.00 | 979fff8f |
+| 2026-10-28 22:17 | pipeline | ab_mohler_s1_core | mohler/dev/n30/seed1 | pipeline | 0.220 | - | ▲ -0.005 | -0.200 | 0.83 | 0.59 | 30% | 0.00 | 979fff8f |
+| 2026-10-28 22:19 | pipeline | ab_mohler_s7_fine | mohler/dev/n30/seed7 | pipeline | 0.203 | - | - | -0.197 | 0.88 | 0.56 | 13% | 0.00 | 979fff8f |
+| 2026-10-28 22:20 | pipeline | ab_mohler_s7_core | mohler/dev/n30/seed7 | pipeline | 0.192 | - | ▲ -0.012 | -0.185 | 0.86 | 0.62 | 17% | 0.00 | 979fff8f |
+| 2026-10-28 22:24 | pipeline | ab_digiklausur_s7_fine | digiklausur/dev/n30/seed7 | pipeline | 0.248 | - | - | -0.073 | 0.50 | 0.45 | 7% | 0.00 | 979fff8f |
+| 2026-10-28 22:27 | pipeline | ab_digiklausur_s7_core | digiklausur/dev/n30/seed7 | pipeline | 0.269 | - | ▼ +0.021 | -0.119 | 0.48 | 0.44 | 7% | 0.00 | 979fff8f |
+| 2026-10-28 22:33 | pipeline | ab_ricechem_s7_fine | ricechem/dev/n30/seed7 | pipeline | 0.121 | - | - | 0.046 | 0.87 | 0.80 | 20% | 0.00 | 979fff8f |
+| 2026-10-28 22:39 | pipeline | ab_ricechem_s7_core | ricechem/dev/n30/seed7 | pipeline | 0.100 | - | ▲ -0.021 | 0.008 | 0.88 | 0.86 | 13% | 0.00 | 979fff8f |
+| 2026-10-28 22:41 | pipeline | ab_digiklausur_s1_core | digiklausur/dev/n30/seed1 | pipeline | 0.175 | - | - | -0.079 | 0.68 | 0.70 | 3% | 0.00 | 979fff8f |
+| 2026-10-28 22:45 | pipeline | ab_ricechem_s1_core | ricechem/dev/n30/seed1 | pipeline | 0.110 | - | - | 0.035 | 0.92 | 0.90 | 3% | 0.00 | 979fff8f |
+| 2026-10-28 22:48 | pipeline | ab_mohler_s1_len | mohler/dev/n30/seed1 | pipeline | 0.193 | - | ▲ -0.027 | -0.180 | 0.84 | 0.62 | 20% | 0.00 | 979fff8f |
+| 2026-10-28 22:50 | pipeline | ab_mohler_s7_len | mohler/dev/n30/seed7 | pipeline | 0.166 | - | ▲ -0.025 | -0.134 | 0.81 | 0.63 | 27% | 0.00 | 979fff8f |
+| 2026-10-28 22:56 | pipeline | ab_ricechem_s7_len | ricechem/dev/n30/seed7 | pipeline | 0.091 | - | ▲ -0.009 | 0.067 | 0.88 | 0.85 | 20% | 0.00 | 979fff8f |
+| 2026-10-28 22:58 | pipeline | ab_digiklausur_s7_len | digiklausur/dev/n30/seed7 | pipeline | 0.280 | - | ▼ +0.011 | -0.063 | 0.43 | 0.37 | 10% | 0.00 | 979fff8f |
+| 2026-10-28 23:00 | concrete | fb2_english | mohler_english/dev/n30/seed0 | pipeline | 0.258 | - | = | -0.238 | 0.75 | 0.50 | 13% | 0.00 | 2b2b0d63 |
+| 2026-10-28 23:05 | concrete | fb2_hindi | mohler_hindi/dev/n30/seed0 | pipeline | 0.233 | - | = | -0.213 | 0.73 | 0.49 | 3% | 0.00 | 2b2b0d63 |
+| 2026-10-28 23:09 | concrete | fb2_marathi | mohler_marathi/dev/n30/seed0 | pipeline | 0.280 | - | = | -0.260 | 0.72 | 0.46 | 3% | 0.00 | 2b2b0d63 |
+| 2026-10-28 23:14 | concrete | fb2_tamil | mohler_tamil/dev/n30/seed0 | pipeline | 0.257 | - | = | -0.243 | 0.76 | 0.50 | 10% | 0.00 | 2b2b0d63 |
+| 2026-10-28 23:18 | concrete | fb2_bengali | mohler_bengali/dev/n30/seed0 | pipeline | 0.275 | - | = | -0.248 | 0.71 | 0.48 | 0% | 0.00 | 2b2b0d63 |
+| 2026-10-28 23:22 | concrete | fb2_scaa_mr | scaa_marathi/dev/n24/seed0 | pipeline | 0.021 | ▲ -0.062 | = | 0.021 | 0.98 | 0.97 | 4% | 0.00 | 2b2b0d63 |
+| 2026-10-29 14:55 | pipeline | circuit_dev_gm | circuit_hw/dev/n30/seed0 | pipeline | 0.303 | - | ▼ +0.007 | -0.300 | 0.12 | 0.00 | 70% | 0.00 | b7ed0e77 |
+| 2026-10-29 17:05 | concrete2 | fb3_english | mohler_english/dev/n30/seed0 | pipeline | 0.258 | - | = | -0.238 | 0.75 | 0.50 | 13% | 0.00 | 4139a59d |
+| 2026-10-29 17:14 | concrete2 | fb3_hindi | mohler_hindi/dev/n30/seed0 | pipeline | 0.233 | - | = | -0.213 | 0.73 | 0.49 | 3% | 0.00 | f208a67d |
+| 2026-10-29 17:21 | concrete2 | fb3_marathi | mohler_marathi/dev/n30/seed0 | pipeline | 0.280 | - | = | -0.260 | 0.72 | 0.46 | 3% | 0.00 | cf9efde4 |
+| 2026-10-29 17:36 | concrete2 | fb3_tamil | mohler_tamil/dev/n30/seed0 | pipeline | 0.257 | - | = | -0.243 | 0.76 | 0.50 | 10% | 0.00 | cf9efde4 |
+| 2026-10-29 17:46 | concrete2 | fb3_bengali | mohler_bengali/dev/n30/seed0 | pipeline | 0.275 | - | = | -0.248 | 0.71 | 0.48 | 0% | 0.00 | cf9efde4 |
+| 2026-10-29 17:49 | concrete2 | fb3_scaa_mr | scaa_marathi/dev/n24/seed0 | pipeline | 0.021 | ▲ -0.062 | = | 0.021 | 0.98 | 0.97 | 4% | 0.00 | cf9efde4 |
 
 ## Variants
 
@@ -245,3 +292,5 @@ Error = average gap as a share of total marks (lower is better). Bias below 0 me
 - **cmpR**: ricechem official rubric with deductions, haiku medium. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **cmpR2**: deductions only when clearly wrong. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "with_feedback": false, "feedback_n": 1, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
 - **pipeline**: no note. Settings: `{"rubric_selftest": false, "read_first": true, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.9, "rubric_variant": "official", "feedback_variant": "formal", "votes": 1, "second_model": null, "disagree_gap": 0.15, "escalate_model": "sonnet", "escalate_when": ["deduction"], "with_feedback": false, "feedback_n": 1, "deductions": true, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 6}`
+- **concrete**: no note. Settings: `{"rubric_selftest": false, "read_first": false, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.5, "rubric_variant": "solid", "rubric_review": "no_reference", "teacher": {"partial_credit": "rubric", "mark_step": null, "strictness": null, "follow_through": true, "notes": "", "question_notes": {}}, "feedback_variant": "concrete", "votes": 1, "second_model": null, "disagree_gap": 0.15, "escalate_model": null, "escalate_when": ["partial", "mid", "deduction"], "with_feedback": true, "feedback_language": "", "code_exec": false, "code_sandbox": "wasm", "code_tests_n": 6, "feedback_n": 1, "deductions": false, "strong_backend": null, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 3, "refeedback_from": "tr2_english"}`
+- **concrete2**: no note. Settings: `{"rubric_selftest": false, "read_first": false, "evidence_policy": "flag", "policy": "essence", "mark_rule": "status", "partial_weight": 0.5, "rubric_variant": "solid", "rubric_review": "no_reference", "teacher": {"partial_credit": "rubric", "mark_step": null, "strictness": null, "follow_through": true, "notes": "", "question_notes": {}}, "feedback_variant": "concrete", "votes": 1, "second_model": null, "disagree_gap": 0.15, "escalate_model": null, "escalate_when": ["partial", "mid", "deduction"], "with_feedback": true, "feedback_language": "", "code_exec": false, "code_sandbox": "wasm", "code_tests_n": 6, "feedback_n": 1, "deductions": false, "strong_backend": null, "rubric_model": null, "ocr": null, "grade_retries": 1, "max_workers": 3, "refeedback_from": "tr2_english"}`

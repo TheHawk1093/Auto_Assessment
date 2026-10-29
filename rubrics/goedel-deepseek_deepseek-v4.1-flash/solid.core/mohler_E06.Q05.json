@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler/E06.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that sizeof returns a size measured in bytes (e.g. 'the size in bytes', 'how many bytes the thing takes up'). Answers that give a size without saying bytes, or that name a different unit (bits, characters), do not earn this point.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the size reported is that of the operand (the expression, type or object passed to sizeof), e.g. 'of its operand', 'of the thing you give it', 'of the type or variable inside the parentheses'. A bare 'the size in bytes' with no reference to what is being measured does not earn this point.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both ideas: the result is a size in bytes, and it is the size of the operand (the expression, type or object given to sizeof). An answer giving only 'the size in bytes' earns P1 but not P2; an answer saying only 'the size of its operand' without bytes earns P2 but not P1. Answers naming a wrong unit (bits, elements) or describing something else entirely (e.g. the number of elements in an array, a memory address) earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

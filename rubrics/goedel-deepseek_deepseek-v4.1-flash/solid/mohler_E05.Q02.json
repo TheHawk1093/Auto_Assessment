@@ -1,0 +1,63 @@
+{
+  "question_key": "mohler/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the algorithm works through the array one element/position at a time, from left to right (or from the current position onward).",
+        "marks": 1.0,
+        "partial_credit": "Use the level for a partly stated traversal idea.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions processing elements one at a time or moving through the array, but does not make clear the left-to-right/current-position order."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that at the current position it finds/selects the minimum (smallest) element among the remaining elements (the unsorted part).",
+        "marks": 2.0,
+        "partial_credit": "Use the level when the minimum is mentioned but the remaining/unsorted part is not made clear.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Identifies the minimum/smallest element but does not make clear that it is chosen from the remaining/unsorted elements."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that it swaps the selected minimum with the current element (the element at the current position).",
+        "marks": 1.5,
+        "partial_credit": "Use the level when a swap is mentioned but the minimum/current-element pairing is not clear.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions a swap but does not clearly state that the minimum is swapped with the current element."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "The answer is expressed as a single sentence, not a list or multiple sentences.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a single sentence that states all three content ideas: moving through the array one element at a time from left to right, finding the minimum of the remaining elements, and swapping that minimum with the current element. Award part marks for each content idea present, using the levels where an idea is only partly stated. No marks for an answer that describes a different sorting algorithm or omits both the minimum-selection and swap ideas.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

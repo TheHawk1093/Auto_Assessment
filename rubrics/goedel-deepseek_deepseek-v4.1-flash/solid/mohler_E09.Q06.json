@@ -1,0 +1,24 @@
+{
+  "question_key": "mohler/E09.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the stack operation corresponding to enqueue is push (equivalently, pushing an element onto the top of the stack). Do not accept pop, peek/top, or other stack operations.",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the answer to name push as the stack operation corresponding to enqueue. No part marks are available because the answer is a single identifying term. Answers naming any other stack operation earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

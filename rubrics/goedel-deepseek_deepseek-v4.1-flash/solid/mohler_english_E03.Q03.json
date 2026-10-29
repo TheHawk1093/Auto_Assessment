@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler_english/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler makes a copy of the inline function's code / inserts or expands the function body, rather than treating it as an ordinary separate function call.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that this copy is made at every/each place where the function is called (at each call site), not just once.",
+        "marks": 2.0,
+        "partial_credit": "Award partial credit if the answer mentions insertion at a call site but does not make clear that it happens at every call site.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions that the function code is placed at a call site, but does not say it happens at every/each call site."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the idea that the compiler copies/inserts the inline function's code and the idea that this happens at every call site. Award P1 for the copying/expansion idea and P2 for the every-call-site idea. An answer that only says inline functions are faster or handled at compile time, without describing code copying, earns no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

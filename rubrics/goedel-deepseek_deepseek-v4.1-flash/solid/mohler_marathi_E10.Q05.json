@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_marathi/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary search tree is a binary tree, i.e. a tree in which each node has at most two children (left child and right child). Equivalent Marathi/English wording is accepted. A plain 'tree' with no binary structure earns nothing here.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the left-side ordering property: for a node, the left child (or all values in the left subtree) is smaller/less than the parent node. Accept equivalent wording such as 'left child < parent'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the left child is smaller than the parent but does not make clear that this holds for every node / for the whole left subtree."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States the right-side ordering property: for a node, the right child (or all values in the right subtree) is greater/larger than the parent node. Accept equivalent wording such as 'parent < right child'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the right child is greater than the parent but does not make clear that this holds for every node / for the whole right subtree."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need all three ideas: the structure is a binary tree, values on the left are smaller than the node, and values on the right are greater than the node. Give half of P2 or P3 when only the child comparison is stated without the 'for every node / whole subtree' condition. A general definition of a tree or binary tree with no ordering property earns only P1 at most.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

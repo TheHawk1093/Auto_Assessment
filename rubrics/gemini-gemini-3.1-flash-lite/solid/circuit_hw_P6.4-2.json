@@ -1,0 +1,89 @@
+{
+  "question_key": "circuit_hw/P6.4-2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct application of ideal op-amp method (virtual short/ground and zero input currents).",
+        "marks": 20.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.8,
+            "says": "Minor error in method application (e.g., one constraint missed)."
+          },
+          {
+            "share": 0.5,
+            "says": "Significant method error (e.g., fails to set inverting node to 0V)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct setup of governing equations (KCL at node a, KCL at output node, and Ohm's law).",
+        "marks": 20.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.75,
+            "says": "Equations are mostly correct but contain minor sign or polarity errors."
+          },
+          {
+            "share": 0.5,
+            "says": "Equations are incomplete or missing key relationships between nodes."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Correct calculation of Va, vo, and io.",
+        "marks": 40.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.75,
+            "says": "Correct method but contains arithmetic errors in solving the system."
+          },
+          {
+            "share": 0.5,
+            "says": "Correct Va but incorrect vo or io due to sign or calculation errors."
+          }
+        ],
+        "numeric": {
+          "value": 0.001333,
+          "unit": "A",
+          "rel_tol": 0.02,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P4",
+        "description": "Correct units and consistent labeling throughout the solution.",
+        "marks": 10.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: both vo and io are clearly reported with signs and directions.",
+        "marks": 10.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for a complete, logically sound derivation leading to Va = 4V, vo = -4V, and io = 1.33mA. Part marks are awarded for correct methodology even if arithmetic errors occur. No marks are awarded if the solution is entirely missing or lacks any supporting equations.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Using KCL at the inverting node (node a) with virtual ground: (Va - 0)/R1 + (Va - vo)/R2 = 0. Given the circuit parameters, Va = 4V. Since the inverting node is at 0V, the feedback path results in vo = -4V. Applying KCL at the output node, io = (vo - Va)/R_feedback + vo/R_load. Solving yields io = 1/750 A \u2248 1.33 mA into the op-amp output."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

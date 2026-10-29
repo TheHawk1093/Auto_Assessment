@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q19",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that heat (\u0909\u0937\u094d\u0923\u0924\u093e) flows/transfers from the hot tea (hot object) to the cooler surroundings/air (cold object), which is why the tea cools. Equivalent wording, e.g. '\u0909\u0937\u094d\u0923\u0924\u093e \u0917\u0930\u092e \u0935\u0938\u094d\u0924\u0942\u0915\u0921\u0942\u0928 \u0925\u0902\u0921 \u0935\u0938\u094d\u0924\u0942\u0915\u0921\u0947 \u091c\u093e\u0924\u0947' or '\u091a\u0939\u093e\u091a\u0940 \u0909\u0937\u094d\u0923\u0924\u093e \u0939\u0935\u0947\u0924 \u091c\u093e\u0924\u0947', earns the mark. An answer that only says 'the tea gets cold' or 'the cup cools' without mentioning heat going from hot to cold earns no mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that heat moves from the hot tea to the cooler surroundings (hot object to cold object). No marks for a bare statement that the tea cools, or for answers naming only conduction/convection without saying heat goes from hot to cold.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

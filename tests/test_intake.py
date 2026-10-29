@@ -153,3 +153,23 @@ def test_marks_table_has_one_row_per_student():
         "student,1,2a,2b,total",
         "Ann,1.5,0.5,0.5,2.5",
     ]
+
+
+def test_later_parts_carry_the_earlier_answers_of_the_same_question():
+    from autograde.intake.exam import build_items
+    from autograde.intake.models import Paper, QuestionSpec
+
+    paper = Paper(
+        questions=[
+            QuestionSpec(id="1", text="Q1", max_mark=1),
+            QuestionSpec(id="2a", text="Q2a", max_mark=2),
+            QuestionSpec(id="2b", text="Q2b", max_mark=2),
+            QuestionSpec(id="2c", text="Q2c", max_mark=2),
+            QuestionSpec(id="3", text="Q3", max_mark=1),
+        ]
+    )
+    answers = {"amy": {"1": "one", "2a": "m = 3 kg", "2b": "F = 30 N", "2c": "x", "3": "three"}}
+    items = {i.question_id: i for i in build_items("k", paper, {}, answers)}
+    assert items["1"].earlier == "" and items["2a"].earlier == "" and items["3"].earlier == ""
+    assert items["2b"].earlier == "Part 2a: m = 3 kg"
+    assert items["2c"].earlier == "Part 2a: m = 3 kg\nPart 2b: F = 30 N"

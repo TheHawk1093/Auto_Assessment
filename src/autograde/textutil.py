@@ -3,10 +3,19 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 
 
 def words(text: str) -> list[str]:
-    return re.findall(r"[a-z0-9]+", text.lower())
+    """Lower-cased words in any script. A word is a run of letters, combining marks and digits, so
+    Devanagari, Tamil, Bengali and the like keep their vowel signs; punctuation (including the
+    danda) separates words, as does space."""
+    out = []
+    for token in re.split(r"[\s/-]+", unicodedata.normalize("NFKC", text).lower()):
+        word = "".join(c for c in token if unicodedata.category(c)[0] in "LMN")
+        if word:
+            out.append(word)
+    return out
 
 
 def leakage(text: str, model_answer: str, n: int = 4) -> float:

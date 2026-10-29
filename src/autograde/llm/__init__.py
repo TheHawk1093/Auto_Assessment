@@ -18,6 +18,10 @@ def build_client(cfg: LLMConfig) -> LLMClient:
         from autograde.llm.openrouter import GoedelClient
 
         return GoedelClient(cfg.model, cfg.timeout_s, cfg.retries)
+    if cfg.backend == "gemini":
+        from autograde.llm.gemini import GeminiClient
+
+        return GeminiClient(cfg.model, cfg.timeout_s, cfg.retries)
     if cfg.backend == "openrouter":
         from autograde.llm.openrouter import OpenRouterClient
 

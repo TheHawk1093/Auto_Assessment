@@ -14,6 +14,7 @@ from autograde.config import PipelineConfig, Settings, TeacherInputs
 from autograde.llm import LLMClient, build_client
 from autograde.pipeline.grade import mark_answer
 from autograde.pipeline.levels import LEVELS, dataset_of, level_prompt
+from autograde.pipeline.objective import mcq_record
 from autograde.pipeline.verify import GRANULARITY_SHARES
 from autograde.schemas import (
     EPS,
@@ -46,6 +47,11 @@ STRICTNESS = {
 }
 
 
+def is_solid(variant: str) -> bool:
+    """The solid writer, with an optional style: "solid" or "solid.<style>" (rubric.style.*)."""
+    return variant == "solid" or variant.startswith("solid.")
+
+
 def rubric_prompt(variant: str, dataset: str = "", kind: str = "short", field: str = "") -> str:
     """Scheme-writing prompt: rubric.system.md by default, rubric.<variant>.system.md otherwise.
 
@@ -54,10 +60,12 @@ def rubric_prompt(variant: str, dataset: str = "", kind: str = "short", field: s
     """
     if variant in LEVELS:
         return level_prompt(variant, dataset)
-    if variant == "solid":
+    if is_solid(variant):
+        style = variant.partition(".")[2]
         names = ["rubric.solid", f"rubric.solid.{kind}"] + (
             [f"rubric.field.{field}"] if field else []
         )
+        names += [f"rubric.style.{style}"] if style else []
         return "\n\n".join(t for t in (prompts.optional(n) for n in names) if t)
     return prompts.system("rubric" if variant == "generated" else f"rubric.{variant}")
 
@@ -65,6 +73,11 @@ def rubric_prompt(variant: str, dataset: str = "", kind: str = "short", field: s
 def teacher_block(teacher: TeacherInputs, key: str) -> str:
     """The teacher's instructions as lines for the scheme writer. Empty when there are none."""
     lines = [PART_MARKS[teacher.partial_credit]] if teacher.partial_credit != "rubric" else []
+    if teacher.mark_step:
+        lines.append(
+            f"Marks are given in steps of {teacher.mark_step:g}: write point marks and part-mark "
+            f"levels so that every mark an answer can earn is a multiple of {teacher.mark_step:g}."
+        )
     if teacher.strictness:
         lines.append(STRICTNESS[teacher.strictness])
     if note := teacher.for_question(key):
@@ -74,7 +87,7 @@ def teacher_block(teacher: TeacherInputs, key: str) -> str:
 
 def variant_dir(variant: str, teacher: TeacherInputs | None = None) -> str:
     """The cache folder of a scheme source. Teacher inputs that change the scheme change it."""
-    if variant != "solid" or teacher is None or teacher.is_default:
+    if not is_solid(variant) or teacher is None or teacher.is_default:
         return variant
     digest = hashlib.sha1(teacher.model_dump_json().encode()).hexdigest()[:8]
     return f"{variant}-{digest}"
@@ -124,12 +137,12 @@ def generate_rubric(
     """Ask for a scheme whose marks add up to the question total, retrying with the error."""
     teacher = teacher or TeacherInputs()
     given = structured_rubric(question)
-    if variant == "solid" and given is not None:
+    if is_solid(variant) and given is not None:
         return conform(given, teacher.partial_credit)  # the teacher already wrote the points
-    extra = (teacher_block(teacher, question.key) if variant == "solid" else "") + note
+    extra = (teacher_block(teacher, question.key) if is_solid(variant) else "") + note
     for _ in range(3):
         user = prompts.render(
-            "rubric.solid.user" if variant == "solid" else "rubric.user",
+            "rubric.solid.user" if is_solid(variant) else "rubric.user",
             question=question.text,
             model_answer=question.model_answer,
             rubric=question.rubric.strip() or "Not given.",
@@ -142,7 +155,7 @@ def generate_rubric(
         else:
             rubric = client.ask(system, user, RubricDraft).to_rubric()
         if abs(rubric.total - question.max_mark) < EPS:
-            if variant == "solid":
+            if is_solid(variant):
                 rubric = conform(rubric, teacher.partial_credit)
             return rubric.model_copy(update={"level": variant}) if variant in LEVELS else rubric
         extra = (
@@ -213,7 +226,7 @@ def build_record(
     issues: list[str] = []
     unsourced = not question.has_ref
     wanted = review == "always" or (review == "no_reference" and unsourced)
-    if variant == "solid" and wanted:
+    if is_solid(variant) and wanted:
         rubric, issues = review_rubric(question, rubric, client, teacher or TeacherInputs())
     if not run_selftest:
         return RubricRecord(question_key=question.key, rubric=rubric, review_notes=issues)
@@ -254,6 +267,8 @@ class RubricStore:
         self.review = review
 
     def get(self, question: Question) -> RubricRecord:
+        if question.kind == "mcq":  # a choice is checked by code: nothing to write or cache
+            return mcq_record(question, self.client)
         folder = variant_dir(self.variant, self.teacher)
         path = rubric_path(self.rubrics_dir, self.client.name, question.key, folder)
         if path.exists():

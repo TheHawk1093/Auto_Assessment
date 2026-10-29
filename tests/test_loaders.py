@@ -5,6 +5,7 @@ import pytest
 
 from autograde.datasets import load_dataset, select, split_of
 from autograde.datasets.loaders import BENCHMARK_ONLY, LOADERS
+from autograde.datasets.translate import BASES
 
 SAF_XML = """<?xml version='1.0' encoding='utf-8'?>
 <question id="10.1" module="TC">
@@ -74,7 +75,10 @@ def test_unknown_dataset():
 @pytest.mark.parametrize("name", sorted(LOADERS))
 def test_real_data_loads_and_samples(name: str):
     items = load_dataset(name, Path("data/raw"))
-    assert len(items) > 100 and all(i.human_mark is not None for i in items)
+    if name.split("_")[0] in BASES and name not in {"mohler", "digiklausur"} and not items:
+        pytest.skip("translated set not built yet")
+    assert len(items) > (20 if name == "circuit_hw" or name in BENCHMARK_ONLY - {"engsaf"} else 100)
+    assert all(i.human_mark is not None for i in items)
     assert all(0 <= i.human_mark <= i.max_mark for i in items)
     sample = select(items, "dev", 10, seed=1)
     assert sample == select(items, "dev", 10, seed=1)

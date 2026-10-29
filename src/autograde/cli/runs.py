@@ -220,7 +220,15 @@ def cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
         if r.grading is None:
             return r
         rubric = store.get(to_question(r.item)).rubric
-        fb = write_feedback(r.item, rubric, r.grading, client, args.feedback, args.n)
+        fb = write_feedback(
+            r.item,
+            rubric,
+            r.grading,
+            client,
+            args.feedback,
+            args.n,
+            language=settings.pipeline.feedback_language,
+        )
         return r.model_copy(update={"feedback": fb})
 
     with ThreadPoolExecutor(settings.pipeline.max_workers) as pool:

@@ -1,0 +1,64 @@
+{
+  "question_key": "circuit_hw/P4.3-3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Correct use of supernode across the 24V source and inclusion of the source constraint equation.",
+        "marks": 20.0,
+        "partial_credit": "Lose 4 marks for missing/mis-defining supernode or constraint; lose 3 for invalid loop approach; lose 2 for incorrect power sign convention.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equation: Correct formation of KCL at the supernode and independent equations for node voltages.",
+        "marks": 20.0,
+        "partial_credit": "Lose 4 marks for incorrect KCL terms/signs; lose 3 for incorrect source constraint polarity; lose 3 for missing an independent equation.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Algebraic and arithmetic accuracy in solving for node voltages and subsequent currents/powers.",
+        "marks": 15.0,
+        "partial_credit": "Lose 3 marks for algebraic errors in solving systems; lose 2 for numerical mistakes in power/current; lose 1 for minor rounding slips.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Unit: Consistent and correct use of units (V, A, W) throughout the solution.",
+        "marks": 3.0,
+        "partial_credit": "Lose 1 mark for each instance of missing or incorrect units in final or intermediate results.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: Reporting power for all sources and clearly indicating supply vs absorption.",
+        "marks": 8.0,
+        "partial_credit": "Lose 2.5 marks for omitting power for any source or failing to state supply/absorption.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Base Marks: Starting marks for a complete and correct attempt.",
+        "marks": 34.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "The student starts with 100 marks and deductions are applied for errors. P1-P5 represent the specific deduction categories defined in the rubric. P6 accounts for the remaining marks for a correct solution.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The solution requires defining a supernode around the 24V source, applying KCL at that supernode, and using the constraint equation V_a - V_b = 24V. Solving the resulting system yields node voltages, which are then used to calculate currents through the sources and the power P = VI for each source, clearly labeled as supplied or absorbed."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

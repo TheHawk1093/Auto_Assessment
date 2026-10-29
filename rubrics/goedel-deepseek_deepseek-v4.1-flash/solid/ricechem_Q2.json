@@ -1,0 +1,71 @@
+{
+  "question_key": "ricechem/Q2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the energy of a photon is proportional to its frequency (E = hf or equivalent), so a higher-frequency photon has more energy.",
+        "marks": 2.0,
+        "partial_credit": "Half credit for saying light energy depends on frequency/color but not stating proportionality or E = hf.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says light energy depends on frequency/color but does not state proportionality or E = hf."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the energy levels of an electron in an atom are quantized/discrete, not continuous.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Explains that for absorption/excitation, the photon energy (and therefore frequency) must equal the energy difference between two allowed electron energy levels; frequencies that do not match a level gap cannot be absorbed.",
+        "marks": 2.0,
+        "partial_credit": "Half credit for saying only certain frequencies are absorbed because energy levels are quantized, without stating that the photon energy must equal the gap between levels.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says only certain frequencies are absorbed because energy levels are quantized, but does not state that the photon energy must equal the gap between levels."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that a minimum amount of energy (threshold energy, work function, or ionization energy) is needed to eject an electron from the atom.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Explains that if the photon energy exceeds the minimum ejection energy, the excess energy becomes kinetic energy of the ejected electron, so any frequency above the threshold can eject an electron.",
+        "marks": 2.0,
+        "partial_credit": "Half credit for saying any frequency above threshold can eject an electron without stating that the excess energy becomes kinetic energy.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says any frequency above threshold can eject an electron, but does not state that the excess photon energy becomes kinetic energy."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all five ideas: photon energy is proportional to frequency, electron energy levels are quantized, absorbed photon energy must match an energy-level gap, a minimum energy is needed to eject an electron, and excess energy becomes kinetic energy. Part marks are available on P1, P3 and P5 as specified; P2 and P4 are all-or-nothing. Vague statements that light has different energies or that electrons can be excited/ejected without linking to quantized levels or energy conservation do not earn the relevant points.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

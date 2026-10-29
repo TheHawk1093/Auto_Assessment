@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E06.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a pointer holds/stores the memory address (memory location) of another variable. Accept 'contains the address in memory of another variable', 'stores the location where another variable is kept', or any equivalent wording naming both the address/location and the other variable. Merely saying it 'points to' or 'refers to' another variable, with no mention of an address or memory location, earns partial credit only.",
+        "marks": 3.0,
+        "partial_credit": "Partial credit when the idea of pointing/referring to another variable is present but the address/memory-location idea is missing or vague.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the pointer points to / refers to / is linked to another variable, but does not say it holds that variable's address or memory location."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a pointer is itself a variable (i.e. a variable whose content is an address), not just an address or a label. Accept 'a variable that stores an address', 'a special variable holding a memory location', or equivalent wording.",
+        "marks": 2.0,
+        "partial_credit": "Partial credit when the answer describes a pointer as a data type, value or reference that holds an address, without saying it is a variable.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Describes the pointer as a data type, value or reference holding an address, but does not call it a variable."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both ideas: a pointer is a variable, and its content is the memory address of another variable. An answer that only says it 'points to' another variable, without the address/memory idea, earns about half of P1; an answer that gives the address idea but never says the pointer is itself a variable loses P2. Answers that confuse a pointer with the value it points to, or that give no address idea at all, earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

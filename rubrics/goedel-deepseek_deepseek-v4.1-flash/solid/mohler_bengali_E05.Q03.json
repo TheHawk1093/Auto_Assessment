@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler_bengali/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the best-case scenario is when the input array is already sorted (in ascending/non-decreasing order). Accept 'already in order' or 'sorted array'.",
+        "marks": 2.5,
+        "partial_credit": "No part marks: 'nearly sorted' or 'small array' does not earn this point.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the number of operations is N, where N is the number of elements in the array. Accept N\u22121 if the answer explicitly says comparisons rather than total operations.",
+        "marks": 2.5,
+        "partial_credit": "Half credit for giving only O(N)/linear time without an exact N or N\u22121 count.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Gives only O(N)/linear time, without an exact N or N\u22121 count."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both parts: the best case is an already sorted array, and the operation count is N (or N\u22121 comparisons if explicitly identified as comparisons). Award half of P2 for only O(N)/linear time. No marks for saying the best case is reverse-sorted or that the best-case count is O(N\u00b2).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

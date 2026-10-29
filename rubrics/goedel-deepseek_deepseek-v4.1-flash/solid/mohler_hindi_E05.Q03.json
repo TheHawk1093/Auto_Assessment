@@ -1,0 +1,37 @@
+{
+  "question_key": "mohler_hindi/E05.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that in the best case insertion sort performs N operations, where N is the number of elements/array length. Accept N operations, N-1 comparisons (equivalent linear count), or 'linear in N' as the operation count.",
+        "marks": 3.0,
+        "partial_credit": "Partial credit for saying only O(N)/linear time without giving N or N-1 as the operation count.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the best case takes linear time / O(N) but does not state N or N-1 as the number of operations."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the best-case scenario as an array that is already sorted (in the required order; for ascending sort, already in ascending order). Accept 'sorted array', 'already in order', or equivalent.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the best-case operation count (N, or N-1 comparisons, linear in array length) and the best-case condition (the array is already sorted). A response that gives only one of these earns only that point. O(N) alone without identifying N as the operation count earns partial credit on P1; 'reverse sorted' or 'random order' does not earn P2.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

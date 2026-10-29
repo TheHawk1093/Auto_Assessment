@@ -1,0 +1,42 @@
+{
+  "question_key": "digiklausur/11",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the learning rate controls the speed of convergence (how fast steepest descent converges). A low learning rate gives slow/overdamped convergence. Accept equivalent wording such as 'step size determines how quickly it reaches the minimum' or 'small rate means slow progress'.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the answer says the learning rate affects convergence but does not convey speed/slow-fast, or mentions only that a low rate is slow without saying the rate controls convergence speed.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the learning rate affects or influences convergence, but does not state that it controls the speed (fast/slow) of convergence."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Identifies the danger of a high learning rate: it causes underdamped/zigzagging convergence, and if it exceeds a critical value the learning becomes unstable (may diverge/overshoot). Accept 'too large a step makes it bounce around or fail to converge'.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if the answer mentions zigzagging/overshooting/bouncing with a high learning rate but does not mention instability or failure to converge.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions that a high learning rate causes zigzagging, overshooting or bouncing around, but does not say that learning becomes unstable or fails to converge."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the role of the learning rate in controlling convergence speed and the danger of a high rate causing zigzagging and, beyond a critical value, instability. Part marks are given when the answer gives only a vague effect on convergence or mentions zigzagging without instability. No marks are given for answers that do not mention convergence speed or the high-learning-rate danger.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

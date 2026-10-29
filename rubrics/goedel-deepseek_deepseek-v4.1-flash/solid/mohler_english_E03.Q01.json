@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler_english/E03.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Says the function signature includes the name of the function (e.g., 'the function name').",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Says the function signature includes the types of the parameters (e.g., 'parameter types'). Listing parameter names without their types does not earn this point.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both the function name and the parameter types. An answer that gives only one of these earns the corresponding part mark. Unrelated items such as the function body, return value, or return type alone do not earn marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

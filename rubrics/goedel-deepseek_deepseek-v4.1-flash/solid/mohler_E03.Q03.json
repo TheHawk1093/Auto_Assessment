@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E03.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the compiler makes/inserts a copy of the inline function's code or body, i.e. duplicates the function code rather than leaving a normal function call.",
+        "marks": 3.0,
+        "partial_credit": "Award partial credit if the answer says the compiler 'expands' or 'inlines' the function but does not state that the function code/body is copied or inserted.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the compiler expands or inlines the function, but does not mention copying/inserting the function code or body."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the copying/insertion is done at every place or call site where the function is called, not just once.",
+        "marks": 2.0,
+        "partial_credit": "Award partial credit if the answer says it happens where the function is called but does not make clear that it is done at every/all call sites.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the function code is placed where the function is called, but does not make clear that this is done at every/all call sites."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both ideas: the compiler copies/inserts the inline function's code, and it does this at every call site. An answer that gives only one of these ideas earns only the marks for that point. Vague answers such as 'the compiler optimizes it' or 'it is handled at run time' earn no marks unless they also state the copying at call sites.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

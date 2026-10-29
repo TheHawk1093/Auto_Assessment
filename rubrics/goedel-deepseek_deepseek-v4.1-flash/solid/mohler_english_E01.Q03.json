@@ -1,0 +1,32 @@
+{
+  "question_key": "mohler_english/E01.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that abstraction (or an equivalent idea such as hiding implementation details or focusing on essential features) is an advantage of object-oriented programming.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that reusability (or an equivalent idea such as code reuse or reusable code) is an advantage of object-oriented programming.",
+        "marks": 2.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both advantages named in the model answer: abstraction and reusability. Award the relevant point for equivalent wording; award no marks for an advantage that does not match either idea. If only one advantage is given, only that point is earned.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

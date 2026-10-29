@@ -1,0 +1,77 @@
+{
+  "question_key": "ricechem/Q1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that removing an electron decreases electron\u2013electron repulsion among the remaining electrons, so the remaining electrons are held more tightly by the nucleus. Equivalent wording is acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Relates the decreased electron\u2013electron repulsion to a lower (more negative/more stable) potential energy of the remaining electrons, so more energy is needed to remove the next electron.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the third and fourth electrons removed experience the same core charge / effective nuclear charge, e.g. both are outside the same [Ne] core (core charge +4 for n = 3 in Si).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "States that the third and fourth electrons are removed from the same shell (n = 3) and therefore have essentially the same radius/distance from the nucleus.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "States that the fifth electron is removed from a lower shell (n = 2) and therefore feels a higher core charge / effective nuclear charge than the third and fourth electrons, e.g. core charge +12 for n = 2 in Si.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "States that the fifth electron is in a smaller-radius shell (n = 2) than the third and fourth electrons (n = 3), so by Coulomb's Law the attraction to the nucleus is stronger.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P7",
+        "description": "Explains the relationship between potential energy and ionization energy: ionization energy is the energy needed to overcome Coulomb attraction and raise the electron's potential energy from its bound (negative) value to zero; stronger attraction / lower potential energy means a larger ionization energy.",
+        "marks": 2.0,
+        "partial_credit": "1 mark for a correct but incomplete statement linking stronger attraction to higher ionization energy without the potential-energy explanation; 2 marks for the full potential-energy-to-ionization-energy relationship.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States that ionization energy increases with stronger Coulomb attraction, smaller radius, or higher core charge, but does not explicitly connect this to potential energy or to raising the electron's potential energy to zero."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all seven ideas: decreased electron\u2013electron repulsion, its link to lower potential energy, the same core charge and radius for the third/fourth electrons, the higher core charge and smaller radius for the fifth electron, and the explicit potential-energy-to-ionization-energy relationship. Part marks are available only on P7 for a correct but incomplete statement about stronger attraction increasing ionization energy. Vague answers such as 'more protons per electron' without core charge, radius, or repulsion reasoning do not earn the relevant points.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

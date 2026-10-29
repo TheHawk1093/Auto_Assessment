@@ -1,0 +1,45 @@
+{
+  "question_key": "mohler_bengali/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location/space in memory (e.g. '\u09ae\u09c7\u09ae\u09cb\u09b0\u09bf\u09b0 \u098f\u0995\u099f\u09bf \u0985\u09ac\u09b8\u09cd\u09a5\u09be\u09a8', '\u09ae\u09c7\u09ae\u09cb\u09b0\u09bf\u09a4\u09c7 \u099c\u09be\u09af\u09bc\u0997\u09be', 'memory location'). Equivalent wording accepted.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a variable is a storage place/container/address for data but does not mention memory (e.g. '\u098f\u0995\u099f\u09bf \u099c\u09be\u09af\u09bc\u0997\u09be \u09af\u09c7\u0996\u09be\u09a8\u09c7 \u09a4\u09a5\u09cd\u09af \u09b0\u09be\u0996\u09be \u09b9\u09af\u09bc')."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a value/data is stored or kept in that memory location (e.g. '\u09af\u09c7\u0996\u09be\u09a8\u09c7 \u098f\u0995\u099f\u09bf \u09ae\u09be\u09a8 \u09b8\u0982\u09b0\u0995\u09cd\u09b7\u09a3 \u0995\u09b0\u09be \u09af\u09be\u09af\u09bc'). Equivalent wording such as 'holds a value', 'data \u09b0\u09be\u0996\u09be \u09b9\u09af\u09bc' accepted.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Adds that the stored value can be changed/assigned during program execution (i.e. the value is not fixed), or that the variable is referred to by a name/identifier. Either idea earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need all three ideas: a memory location, holding a value, and the value being changeable (or the variable being named). An answer that only says 'a variable stores data' or only 'a name in a program' gets part marks (P2 or P3 only). An answer that confuses a variable with a constant (says the value cannot change) loses P3, and an answer with no reference to memory loses P1.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,98 @@
+{
+  "question_key": "circuit_hw/P3.2-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Uses appropriate circuit laws (KCL/KVL) and consistent power sign conventions.",
+        "marks": 30.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.833,
+            "says": "Uses correct laws but has minor inconsistency in power sign convention."
+          },
+          {
+            "share": 0.5,
+            "says": "Uses correct laws but fails to state or apply a consistent power sign convention."
+          },
+          {
+            "share": 0.167,
+            "says": "No clear use of KCL/KVL or misidentifies nodes/branches."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equations: Writes correct KCL and KVL equations including all sources and elements.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Equations written but one variable is undefined or has minor sign errors."
+          },
+          {
+            "share": 0.2,
+            "says": "KCL or KVL equation is fundamentally incorrect."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Correct arithmetic for i = -1 A, v_F = 13 V, and power values.",
+        "marks": 25.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 13.0,
+          "unit": "V",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P4",
+        "description": "Units: Correct units (A, V, W) used throughout.",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.4,
+            "says": "Missing units on one final answer."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: Both power values for branches B and F are clearly stated and labeled.",
+        "marks": 15.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.467,
+            "says": "Only one of the two required powers is provided."
+          },
+          {
+            "share": 0.467,
+            "says": "Final answers present but not clearly tied to branch labels."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for correct application of KCL/KVL, accurate algebraic solving, and clear reporting of power values with units. Part marks are deducted for arithmetic errors, missing units, or lack of clarity in labeling final results. No marks are awarded if the method is entirely absent or if the circuit analysis is based on incorrect node/loop identification.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "KCL at node B yields i = -1 A. KVL around loop D-F-E yields v_F = 13 V. Power calculations must be consistent with the passive sign convention (P = vi). Final answers: i = -1 A, v_F = 13 V."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

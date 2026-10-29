@@ -1,0 +1,29 @@
+{
+  "question_key": "mohler/E01.Q04",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a C++ program begins executing at the main function (accept: main(), the main() function, the function named main, 'main' as the entry point). The answer must identify main as the starting point of execution.",
+        "marks": 5.0,
+        "partial_credit": "Half marks if the answer refers to 'main' only vaguely (e.g. 'the main part of the program', 'the main body', 'the first function') without identifying main as the function where execution starts.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions main or 'the main part/body' of the program but does not clearly state that execution starts at the main function."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for stating that execution starts at the main function, in any wording that names main as the entry point. Half marks for a vague reference to 'main' that does not identify it as the function where execution begins. No marks for answers naming any other function or location (e.g. the first line of code, #include, the class definition).",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

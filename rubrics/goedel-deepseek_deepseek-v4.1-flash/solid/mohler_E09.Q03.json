@@ -1,0 +1,58 @@
+{
+  "question_key": "mohler/E09.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the queue is stored in a circular array (ring buffer), not a plain linear array.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Maintains separate front/head and rear/tail indices (or pointers) for the two ends of the queue.",
+        "marks": 1.0,
+        "partial_credit": "Half credit if only one of the front or rear index/pointer is mentioned.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions only one end index/pointer, such as only a front or only a rear pointer."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Keeps the front of the queue toward the beginning of the array and the rear toward the end of the array.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Allows the rear pointer to wrap around from the end of the array back to the beginning, e.g. by using modulo/circular indexing.",
+        "marks": 1.5,
+        "partial_credit": "Half credit if wrap-around is mentioned but not tied to the rear pointer.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions wrap-around or reuse of array positions but does not say that the rear pointer wraps."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a circular array, front and rear indices, the stated front/rear orientation, and rear-pointer wrap-around. Part marks are available for missing one of these elements, especially for mentioning only one pointer or only vague wrap-around. A plain array with shifting elements, or an answer with no wrap-around, does not earn the circular-array/rear-wrap marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E02.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a class can have an unlimited (any) number of constructors \u2014 accept 'unlimited', 'infinite', 'as many as you want', 'no limit', 'any number', or equivalent wording. A specific finite number (e.g. 'two', 'three') or a bare 'more than one' does not earn full marks.",
+        "marks": 5.0,
+        "partial_credit": "Partial marks for answers that show several constructors are allowed but do not say the number is unlimited.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a class can have more than one / several / multiple constructors, without stating that the number is unlimited."
+          },
+          {
+            "share": 0.2,
+            "says": "Says only that a class has at least one constructor, or gives a small finite number of constructors (e.g. two or three) as the answer."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the idea that the number of constructors for a class is unlimited (any number, no limit). Answers saying only that several or more than one constructor is possible earn half marks, and answers giving just one or a small fixed number earn a small part. A blank or irrelevant answer earns nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

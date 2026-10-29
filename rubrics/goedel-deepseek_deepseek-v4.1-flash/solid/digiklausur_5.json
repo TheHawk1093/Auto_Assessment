@@ -1,0 +1,63 @@
+{
+  "question_key": "digiklausur/5",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the weights are arranged in the required topology and initialized randomly, with all weights different.",
+        "marks": 0.25,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Samples an input vector from the input space and performs similarity matching to identify the winning neuron (best matching unit) in the topological lattice.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Samples an input but does not identify the winning neuron/BMU."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Updates the weights of the winning neuron and its neighbours, with the neighbours determined by the neighbourhood function.",
+        "marks": 0.75,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Updates only the winning neuron's weights, without updating the neighbours."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Reduces the neighbourhood and decays the learning rate and share radius, then repeats sampling/updating until ordering and convergence are complete, otherwise stops.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Reduces the neighbourhood/learning rate but does not state repetition or the stopping condition."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all four SOM steps in the correct order: initialization, sampling and BMU matching, weight update of the winner and neighbours, and decay/repetition until convergence. Part marks are available where a step is only partly present, such as updating only the winner or decaying without a stopping condition. No marks are given for vague statements such as 'train the SOM' without the algorithm steps.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

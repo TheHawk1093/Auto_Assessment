@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_hindi/E06.Q03",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the * operator returns an alias (synonym / another name) of an object, rather than a copy of its value.",
+        "marks": 2.5,
+        "partial_credit": "Award partial credit if the answer says it returns the object or value at the pointed-to address but does not mention alias/synonym/another name.",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Says the * operator returns the object or value stored at the pointed-to address, but does not say alias/synonym/another name."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Specifies that the object is the one in memory to which the operand (the pointer) points.",
+        "marks": 1.5,
+        "partial_credit": "Award partial credit if the answer mentions that the operand is a pointer/address but does not clearly say the returned alias is of the object pointed to in memory.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions that the operand is a pointer or address, but does not clearly connect it to the object whose alias is returned."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Identifies the * operator as the dereferencing operator.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require saying that * returns an alias/synonym of the object pointed to by its operand and that it is the dereferencing operator. Part marks are available for saying it gives the object/value at the pointed-to address without the alias idea, or for mentioning the pointer/address without clearly identifying the pointed-to object. Answers that only say 'pointer' or name an unrelated operator earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

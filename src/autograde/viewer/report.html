@@ -144,7 +144,7 @@ details[open] > summary { margin-bottom: 6px; }
     <div class="row">
       <button type="button" data-f="all" aria-pressed="true">All</button>
       <button type="button" data-f="off" aria-pressed="false">Differs from teacher</button>
-      <button type="button" data-f="flag" aria-pressed="false">Flagged</button>
+      <button type="button" data-f="flag" aria-pressed="false">Worth a look</button>
       <select id="sort" aria-label="Sort"><option value="gap">Largest gap first</option><option value="order">Original order</option></select>
       <span class="count" id="count"></span>
     </div>
@@ -398,6 +398,7 @@ function card(it, idx) {
     R.appendChild(jd);
     if (it.judgement.note && it.judgement.note !== "none") R.appendChild(el("p", "muted", "Judge note: " + it.judgement.note));
   }
+  if ((it.review || []).length) { var rv = el("div", "flags"); rv.appendChild(el("span", "chip warn", "Worth a look")); it.review.forEach(function (k) { rv.appendChild(el("span", "flag", (D.review_labels || {})[k] || k)); }); R.appendChild(rv); }
   if (it.flags.length) { var fl = el("div", "flags"); it.flags.forEach(function (x) { fl.appendChild(el("span", "flag", x)); }); R.appendChild(fl); }
   cols.appendChild(R); c.appendChild(cols);
   return c;
@@ -406,7 +407,7 @@ function card(it, idx) {
 function render() {
   var items = D.items.map(function (it, i) { return { it: it, i: i }; }).filter(function (x) {
     if (filter === "off") return x.it.item.human_mark != null && Math.abs(gapOf(x.it)) >= 0.25;
-    if (filter === "flag") return x.it.flags.length > 0;
+    if (filter === "flag") return (x.it.review || []).length > 0;
     return true;
   });
   if ($("sort").value === "gap") items.sort(function (a, b) { return Math.abs(gapOf(b.it) || 0) - Math.abs(gapOf(a.it) || 0); });

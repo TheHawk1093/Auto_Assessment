@@ -5,12 +5,13 @@ Only models that cost nothing are allowed. Gemini: an allow-list taken from Goog
 Anything else raises before a request is made. API keys come from the environment or the
 git-ignored `.env`, travel in headers (never in a URL) and are never logged.
 
-Images should be header-redacted copies (tools/redact_headers.py): free tiers may keep the data.
+Images should be header-redacted copies (tools/ocr/redact_headers.py): free tiers may keep the data.
 """
 
 from __future__ import annotations
 
 import base64
+import http.client
 import json
 import os
 import time
@@ -44,6 +45,10 @@ OPENROUTER_MODELS = "https://openrouter.ai/api/v1/models"
 _free_prices: dict[str, bool] | None = None
 OPENROUTER_CAP_USD = 1.0  # free models should cost nothing; stray costs up to this are tolerated
 _spent = {"usd": 0.0}
+BODHAN_URL = "https://api.bodhan.ai/v1/chat/completions"
+BODHAN_RUPEES_PER_IMAGE = 0.20  # the only paid reader; a per-run cap keeps a mistake cheap
+BODHAN_CAP_RUPEES = 30.0
+_bodhan_spent = {"images": 0}
 
 
 def _key(name: str) -> str:
@@ -79,12 +84,20 @@ def _call(url: str, headers: dict, body: dict, tries: int = 4) -> dict:
                 continue
             return out
         except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", "replace")[:300]
+            full = exc.read().decode("utf-8", "replace")
+            detail = full[:300]
+            if exc.code == 429 and "PerDay" in full:  # waiting a minute will not bring it back
+                raise LLMError(f"HTTP 429: daily quota used up. {detail}") from None
             if exc.code in (429, 500, 502, 503, 504) and attempt < tries - 1:
                 time.sleep(min(20 * (attempt + 1), 60))
                 continue
             raise LLMError(f"HTTP {exc.code}: {detail}") from None
-        except (urllib.error.URLError, TimeoutError) as exc:
+        except (
+            urllib.error.URLError,
+            TimeoutError,
+            ConnectionError,
+            http.client.HTTPException,  # the server dropped or cut off the reply
+        ) as exc:
             if attempt < tries - 1:
                 time.sleep(10)
                 continue
@@ -159,7 +172,25 @@ def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
     return choices[0].get("message", {}).get("content") or ""
 
 
-PROVIDERS = {"gemini": gemini, "openrouter": openrouter}
+def bodhan(pages: list[Path], model: str, system: str, user: str) -> str:
+    """Bodhan AI IndicOCR (paid, ₹0.20 per image) through its OpenAI-compatible API. It is a
+    document parser, so it gets the images and a one-line request, not our exam-sheet prompt."""
+    _bodhan_spent["images"] += len(pages)
+    if _bodhan_spent["images"] * BODHAN_RUPEES_PER_IMAGE > BODHAN_CAP_RUPEES:
+        raise LLMError(f"Bodhan spend this run passed ₹{BODHAN_CAP_RUPEES:.0f}; stopping")
+    content: list[dict] = [{"type": "text", "text": "Transcribe all the text in this image."}]
+    for p in pages:
+        media, data = _image_b64(p)
+        content.append({"type": "image_url", "image_url": {"url": f"data:{media};base64,{data}"}})
+    body = {"model": model, "messages": [{"role": "user", "content": content}], "temperature": 0}
+    out = _call(BODHAN_URL, {"Authorization": "Bearer " + _key("INDIC_OCR_API_KEY")}, body)
+    choices = out.get("choices") or []
+    if not choices:
+        raise LLMError(f"Bodhan returned no choices: {str(out)[:200]}")
+    return choices[0].get("message", {}).get("content") or ""
+
+
+PROVIDERS = {"gemini": gemini, "openrouter": openrouter, "bodhan": bodhan}
 
 
 def extract_sheet_hosted(

@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E12.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the actual (physical, wall-clock) running time of the program is measured, e.g. by timing the execution with a clock/timer, stopwatch, or timing function. Accept everyday wording such as 'run it and see how long it takes' or 'time how long the program takes to finish'.",
+        "marks": 3.0,
+        "partial_credit": "Half marks if timing is mentioned but not tied to actually executing the program (e.g. 'measure the time' with no reference to running it).",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions measuring or timing something, but does not make clear that the real execution time of the running program is what is measured."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the algorithm must be implemented, i.e. written as a working program in some programming language (and then run). Accept 'code the algorithm', 'write a program for it', 'implement it in code'.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if only running/executing is mentioned without saying the algorithm is implemented in code.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Refers to running or executing the algorithm but does not say it is implemented/written as a program."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require both ideas: the algorithm is implemented as a program, and the actual physical running time of that program is measured (e.g. with a timer). Part marks are given when only one of the two ideas is present, or when timing is mentioned without linking it to real execution. Answers that only discuss theoretical analysis (counting operations, Big-O) earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

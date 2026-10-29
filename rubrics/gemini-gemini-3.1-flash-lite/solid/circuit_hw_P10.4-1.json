@@ -1,0 +1,109 @@
+{
+  "question_key": "circuit_hw/P10.4-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Correct phasor/impedance modeling (Z_R=R, Z_C=1/j\u03c9C, Z_L=j\u03c9L) and conversion of sine source to cosine-reference phasor.",
+        "marks": 3.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.66,
+            "says": "One conceptual error in impedance or phasor conversion."
+          },
+          {
+            "share": 0.33,
+            "says": "Two conceptual errors in impedance or phasor conversion."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equation: Correct base equations and consistent phasor notation.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One error in base equations or inconsistent notation."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Correct numerical evaluation of Z_R, Z_C, Z_L1, Z_L2, and Vs at \u03c9 = 5 rad/s.",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.8,
+            "says": "One arithmetic or substitution error."
+          },
+          {
+            "share": 0.6,
+            "says": "Two arithmetic or substitution errors."
+          },
+          {
+            "share": 0.4,
+            "says": "Three arithmetic or substitution errors."
+          },
+          {
+            "share": 0.2,
+            "says": "Four arithmetic or substitution errors."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units: Correct units (\u03a9, V) and consistent angle units.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.75,
+            "says": "One unit error."
+          },
+          {
+            "share": 0.5,
+            "says": "Two unit errors."
+          },
+          {
+            "share": 0.25,
+            "says": "Three unit errors."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: All five required quantities (Z_R, Z_C, Z_L1, Z_L2, Vs) provided with numerical values.",
+        "marks": 88.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.94,
+            "says": "Missing one required quantity or only provides formulas."
+          },
+          {
+            "share": 0.88,
+            "says": "Missing two required quantities or response is vague."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Students start with 100 marks. Deductions are applied for errors in method, equations, calculations, units, and completeness as specified in the rubric. Full marks are awarded for a complete, accurate set of values and expressions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

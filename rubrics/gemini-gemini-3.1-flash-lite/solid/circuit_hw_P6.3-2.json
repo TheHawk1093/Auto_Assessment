@@ -1,0 +1,56 @@
+{
+  "question_key": "circuit_hw/P6.3-2",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method: Correct application of circuit analysis principles (ideal op-amp behavior, KCL/KVL, and current directions).",
+        "marks": 40.0,
+        "partial_credit": "Deductions: -1 for each error (method_opamp_inputs, method_unjustified_vp_vm, method_no_kcl_kvl_structure, method_wrong_reference). Max deduction 4.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equations: Correct formation of KCL/KVL and Ohm's law relationships.",
+        "marks": 20.0,
+        "partial_credit": "Deductions: -3 for eq_kcl_node_signs, -3 for eq_ohms_wrong_element, -2 for eq_kvl_input_loop_error. Max deduction 8.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation: Correct arithmetic, algebra, and sign handling.",
+        "marks": 20.0,
+        "partial_credit": "Deductions: -2 for each error (calc_numeric_error, calc_unit_scale_error, calc_inconsistency). Max deduction 8.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units: Correct and consistent use of units throughout the solution.",
+        "marks": 10.0,
+        "partial_credit": "Deductions: -1 for each error (unit_missing_final, unit_incorrect_type, unit_inconsistent). Max deduction 3.",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Completeness: Inclusion of all required results (vo and io) and clear supporting work.",
+        "marks": 10.0,
+        "partial_credit": "Deductions: -5 for nc_missing_vo_or_io, -3 for nc_sparse_work, -2 for nc_missing_definitions. Max deduction 10.",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "The student starts with 100 marks. Deduct marks for each specific error identified in the rubric categories. Ensure that deductions do not exceed the maximum allowed for each category.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "The solution requires applying KCL at the inverting node and KVL around the input loop, assuming ideal op-amp characteristics (v+ = v- = 0V). Solving the resulting system of equations yields the final values for vo and io."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

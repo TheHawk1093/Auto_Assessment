@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler_tamil/E10.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a binary search tree is a binary tree (a tree in which each node has at most two children).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States the left-side ordering property: for any node, the left child is smaller than the parent (left child < parent). Accept equivalent wording such as 'all values in the left subtree are smaller than the node'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States the right-side ordering property: for any node, the right child is greater than the parent (parent < right child). Accept equivalent wording such as 'all values in the right subtree are greater than the node'.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three ideas: it is a binary tree, the left child is smaller than the parent, and the right child is greater than the parent, for every node. Award the binary-tree mark alone if only 'binary tree' is stated, and award the relevant inequality mark if only one side is correct. No marks for a plain binary tree with no ordering property, or if the inequalities are reversed.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

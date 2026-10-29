@@ -1,0 +1,53 @@
+{
+  "question_key": "mohler_english/E12.Q06",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Defines a queue as a data structure (accept collection, container, or abstract data type).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a queue stores or contains elements/items/data.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States the first-in-first-out (FIFO) principle: the element added first is the one removed first. Accept 'FIFO', 'first in first out', or an equivalent statement such as elements are removed in the order they were added. Do not accept LIFO or last-in-first-out.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Names both main queue operations: enqueue and dequeue. Accept add/insert for enqueue and remove/delete for dequeue. Do not accept push/pop as the queue operations.",
+        "marks": 1.0,
+        "partial_credit": "Award 0.5 if only one of enqueue or dequeue is named.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names only one of the two main operations, enqueue or dequeue (or an accepted equivalent)."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a definition identifying a queue as a data structure that stores elements in FIFO order and naming both enqueue and dequeue. Award partial credit for naming only one operation. A LIFO/stack definition, or an answer missing FIFO, does not earn the FIFO marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

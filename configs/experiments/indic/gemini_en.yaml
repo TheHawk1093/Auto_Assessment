@@ -1,0 +1,13 @@
+# Marking and feedback in English with Google Gemini (free tier).
+# Gemini 3.1 Pro has no free quota on this key (limit 0), so Flash Lite does the work.
+llm: {backend: gemini, model: gemini-3.1-flash-lite, timeout_s: 240, retries: 2}
+judge: {backend: gemini, model: gemini-3.1-flash-lite}
+student: {backend: gemini, model: gemini-3.1-flash-lite}
+pipeline:
+  rubric_selftest: false
+  read_first: false
+  rubric_variant: solid
+  with_feedback: true
+  feedback_language: ""
+  max_workers: 2
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

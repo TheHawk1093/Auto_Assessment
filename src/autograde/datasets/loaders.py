@@ -12,6 +12,7 @@ from typing import Literal
 
 import pandas as pd
 
+from autograde.datasets.circuit import load_circuit_hw
 from autograde.datasets.extra import (
     load_aes2,
     load_asap_sas,
@@ -21,6 +22,8 @@ from autograde.datasets.extra import (
     load_scientsbank,
 )
 from autograde.datasets.ricechem import load_ricechem
+from autograde.datasets.scaa import load_scaa_hindi, load_scaa_marathi
+from autograde.datasets.translate import BASES, LANGUAGES, loader
 from autograde.schemas import Item
 
 Split = Literal["dev", "test"]
@@ -148,7 +151,15 @@ LOADERS: dict[str, Callable[[Path], list[Item]]] = {
     "processbench": load_processbench,
     "imo_grading": load_imo_grading,
     "processbench_hard": load_processbench_hard,
+    "scaa_hindi": load_scaa_hindi,
+    "scaa_marathi": load_scaa_marathi,
+    "circuit_hw": load_circuit_hw,
 }
+
+for _base in BASES:  # English sets translated into other languages (see datasets/translate.py)
+    for _lang in LANGUAGES:
+        LOADERS[f"{_base}_{_lang.lower()}"] = loader(_base, _lang)
+        BENCHMARK_ONLY.add(f"{_base}_{_lang.lower()}")  # already a sample of dev: no second split
 
 
 def load_dataset(name: str, data_dir: Path) -> list[Item]:

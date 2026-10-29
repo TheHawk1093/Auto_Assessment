@@ -1,0 +1,42 @@
+{
+  "question_key": "mohler/E01.Q05",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that a variable is a location (place) in memory \u2014 i.e. a named storage location in the computer's memory. Accept everyday wording such as 'a spot in memory', 'a place in the computer's memory where something is kept', or 'a memory location'. Do not accept a vague 'a thing in the computer' with no reference to memory/storage.",
+        "marks": 3.0,
+        "partial_credit": "Half marks if memory/storage is mentioned only vaguely (e.g. 'a place where data is kept' with no reference to memory).",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions storage or keeping data but does not say it is a location in memory (e.g. 'a container for data')."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that a variable stores (holds/can hold) a value or data. Accept 'stores a value', 'holds data', 'contains a value', or equivalent wording.",
+        "marks": 2.0,
+        "partial_credit": "Half marks if it only says a variable 'represents' or 'refers to' a value without saying it stores/holds it.",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says a variable represents or refers to a value/data but does not say it stores or holds it."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both ideas: a variable is a location in memory and it stores a value. An answer giving only one of the two ideas earns the marks for that point only (with half credit where the idea is vague). Answers that do not mention memory or storing a value earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

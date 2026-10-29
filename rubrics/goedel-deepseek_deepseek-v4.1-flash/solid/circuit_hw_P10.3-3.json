@@ -1,0 +1,105 @@
+{
+  "question_key": "circuit_hw/P10.3-3",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Method (M): Chooses a valid approach for complex arithmetic. Correctly handles the sum in the denominator in rectangular form, and applies polar/phasor rules (multiply magnitudes and add angles; divide magnitudes and subtract angles). Converting to rectangular and back to polar is also acceptable. Deduct 2 for M1 (treats the denominator sum using polar multiplication/angle addition instead of rectangular addition) or M2 (applies incorrect phasor rule to numerator/overall operation, e.g., adds magnitudes for multiplication or adds angles for addition). Any unlisted method error also counts as one method error (typical deduction 2). Maximum deduction 4.",
+        "marks": 16.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.875,
+            "says": "Exactly one method error (M1, M2, or one unlisted typical method error) is present; deduct 2 from the full 16."
+          },
+          {
+            "share": 0.75,
+            "says": "Two or more method errors are present (e.g., both M1 and M2, or equivalent); deduct 4 (the maximum) from the full 16."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equation/Setup (E): Sets up correct relations before computation: writes the denominator as a sum of rectangular components; uses proper polar rules (\u00d7: magnitudes multiply, angles add; \u00f7: magnitudes divide, angles subtract). Clear, consistent notation. Deduct 2 for E1 (incorrectly states the polar division rule, e.g., does not subtract angles or does not divide magnitudes in the setup) or E2 (ambiguous or inconsistent equation setup that mixes operations, e.g., treats a sum as a product without clarification). Any unlisted setup error also counts as one setup error (typical deduction 2). Maximum deduction 4.",
+        "marks": 16.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.875,
+            "says": "Exactly one setup error (E1, E2, or one unlisted typical setup error) is present; deduct 2 from the full 16."
+          },
+          {
+            "share": 0.75,
+            "says": "Two or more setup errors are present (e.g., both E1 and E2, or equivalent); deduct 4 (the maximum) from the full 16."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Calculation (C): Arithmetic and angle calculations are correct: denominator sums to 10, magnitudes multiply/divide correctly, and angles combine correctly; conversions between degrees and radians (if used) are accurate. Deduct 3 for C1 (errors in summing the denominator (4+j8)+(6\u2212j8) \u2260 10), C2 (magnitude arithmetic error, e.g., 25\u00d780/10 \u2260 200), C3 (angle combination error, e.g., 36.9+(\u221253.1) computed incorrectly), or C4 (incorrect degree\u2194radian conversion affecting the final angle value). Any unlisted calculation error also counts as one calculation error (typical deduction 3). Maximum deduction 6.",
+        "marks": 24.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.875,
+            "says": "Exactly one calculation error (C1, C2, C3, C4, or one unlisted typical calculation error) is present; deduct 3 from the full 24."
+          },
+          {
+            "share": 0.75,
+            "says": "Two or more calculation errors are present; deduct 6 (the maximum) from the full 24."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Units/Format (U): Final polar form is clearly expressed with a nonnegative magnitude and an angle with units (degrees or radians). Equivalent exponential form is acceptable if angle units are clear. Deduct 1 for U1 (angle unit omitted or ambiguous in the final answer) or U2 (inconsistent units/symbols in the final form, e.g., mixing rad and \u00b0). Any unlisted units/format error also counts as one units/format error (typical deduction 1). Maximum deduction 2.",
+        "marks": 8.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.875,
+            "says": "Exactly one units/format error (U1, U2, or one unlisted typical units/format error) is present; deduct 1 from the full 8."
+          },
+          {
+            "share": 0.75,
+            "says": "Two or more units/format errors are present; deduct 2 (the maximum) from the full 8."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Not Complete (NC): Work includes essential elements needed for a final polar-form result. Deduct 3 for NC1 (does not simplify the denominator sum or leaves the expression largely unsimplified), NC2 (final answer not presented in polar form, i.e., not magnitude\u2220angle or exponential form), or NC3 (final result missing either magnitude or angle). Any unlisted completeness error also counts as one completeness error (typical deduction 3). Maximum deduction 9.",
+        "marks": 36.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.9167,
+            "says": "Exactly one completeness error (NC1, NC2, NC3, or one unlisted typical completeness error) is present; deduct 3 from the full 36."
+          },
+          {
+            "share": 0.8333,
+            "says": "Exactly two completeness errors are present; deduct 6 from the full 36."
+          },
+          {
+            "share": 0.75,
+            "says": "Three or more completeness errors are present; deduct 9 (the maximum) from the full 36."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded when the solution is correct and complete: denominator sums to 10, numerator magnitude is 2000, final answer is 200\u2220\u221216.2\u00b0 (or equivalent) with clear angle units. Part marks are awarded by deducting the specified amounts for each error found, up to the category maximums. No marks are lost for errors not listed unless they match a category, in which case the typical deduction for that category applies.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Denominator: (4+j8)+(6\u2212j8) = 10 + j0 = 10. Numerator: 25\u222036.9\u00b0 \u00d7 80\u2220\u221253.1\u00b0 = (25\u00d780)\u2220(36.9\u00b0\u221253.1\u00b0) = 2000\u2220\u221216.2\u00b0. Divide: (2000\u2220\u221216.2\u00b0)/10 = 200\u2220\u221216.2\u00b0. Final answer: 200\u2220\u221216.2\u00b0 (or 200\u2220\u22120.283 rad)."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

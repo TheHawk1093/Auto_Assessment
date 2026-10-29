@@ -6,6 +6,7 @@ import hashlib
 import re
 
 from autograde.intake.answers import Answers
+from autograde.intake.figures import split_figures
 from autograde.intake.models import Paper, Reference
 from autograde.schemas import Item, Result, RubricRecord
 
@@ -21,25 +22,59 @@ def exam_key(name: str, paper: Paper, refs: dict[str, Reference]) -> str:
     return f"{re.sub(r'[^A-Za-z0-9_-]+', '-', name)}.{digest}"
 
 
+PART = re.compile(r"^q?(\d+)\W*([a-z])", re.IGNORECASE)
+EARLIER_LIMIT = 600  # characters of each earlier answer shown to the marker
+
+
+def question_number(question_id: str) -> str | None:
+    """The leading number when the id is a part of a numbered question: 2b gives 2, 3 gives
+    None (a whole question, not a part)."""
+    match = PART.match(question_id.strip())
+    return match.group(1) if match else None
+
+
+def earlier_parts(paper: Paper, position: int, per_q: dict[str, str]) -> str:
+    """The student's answers to the parts of the same numbered question that come before this
+    one in the paper, so a part that builds on them can be marked on the student's own result."""
+    number = question_number(paper.questions[position].id)
+    if number is None:
+        return ""
+    lines = []
+    for before in paper.questions[:position]:
+        if question_number(before.id) == number:
+            text = per_q.get(before.id, "").strip()[:EARLIER_LIMIT] or "(no answer)"
+            lines.append(f"Part {before.id}: {text}")
+    return "\n".join(lines)
+
+
 def build_items(key: str, paper: Paper, refs: dict[str, Reference], answers: Answers) -> list[Item]:
-    """One item per student per question. Missing answers become empty strings (marked zero)."""
+    """One item per student per question. Missing answers become empty strings (marked zero).
+    A later part of a multi-part question carries the student's answers to its earlier parts."""
     items = []
     for student, per_q in answers.items():
         slug = re.sub(r"[^A-Za-z0-9_-]+", "-", student).strip("-") or "student"
-        for q in paper.questions:
+        for position, q in enumerate(paper.questions):
             ref = refs.get(q.id, Reference())
+            words, drawn = split_figures(per_q.get(q.id, ""))
+            model_words, model_figs = split_figures(ref.model_answer)
+            if drawn and not words:
+                words = "(the answer is a drawing)"
             items.append(
                 Item(
                     id=f"{key}/{slug}/{q.id}",
                     dataset=key,
                     question_id=q.id,
                     question=q.text,
-                    model_answer=ref.model_answer,
+                    model_answer=model_words,
                     rubric=ref.rubric,
-                    student_answer=per_q.get(q.id, ""),
+                    tests=ref.tests,
+                    student_answer=words,
+                    figures=drawn,
+                    reference_figure=model_figs[0] if model_figs else "",
                     max_mark=q.max_mark,
-                    kind=q.kind,
+                    kind="diagram" if drawn and q.kind == "short" else q.kind,
                     field=q.field,
+                    earlier=earlier_parts(paper, position, per_q),
                 )
             )
     return items

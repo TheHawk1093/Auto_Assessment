@@ -1,0 +1,24 @@
+{
+  "question_key": "scaa_marathi/q6",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Mentions that the frequency (\u0935\u093e\u0930\u0902\u0935\u093e\u0930\u0924\u093e) of the sound is different, leading to a difference in pitch (\u0909\u091a\u094d\u091a\u0928\u0940\u091a\u0924\u093e).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks are awarded for mentioning that different frequencies result in different pitches. No marks are awarded for vague answers that do not mention frequency or pitch.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u092e\u093e\u0923\u0938\u093e\u0902\u091a\u094d\u092f\u093e \u0906\u0935\u093e\u091c\u093e\u091a\u0940 \u0935\u093e\u0930\u0902\u0935\u093e\u0930\u0924\u093e (frequency) \u0935\u0947\u0917\u0935\u0947\u0917\u0933\u0940 \u0905\u0938\u0924\u0947, \u0924\u094d\u092f\u093e\u092e\u0941\u0933\u0947 \u0924\u094d\u092f\u093e\u0902\u091a\u094d\u092f\u093e \u0906\u0935\u093e\u091c\u093e\u091a\u0940 \u0909\u091a\u094d\u091a\u0928\u0940\u091a\u0924\u093e (pitch) \u0935\u0947\u0917\u0935\u0947\u0917\u0933\u0940 \u0905\u0938\u0924\u0947."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

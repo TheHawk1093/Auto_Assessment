@@ -1,0 +1,40 @@
+{
+  "question_key": "mohler/E11.Q09",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the problem is divided/broken down into smaller subproblems. Equivalent wording such as 'split the problem into smaller parts' is acceptable.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the subproblems are solved recursively (or by applying the same divide-and-conquer approach to them).",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the solutions to the subproblems are combined/merged to form a solution to the original problem.",
+        "marks": 1.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all three components: dividing into smaller subproblems, solving them recursively, and combining their solutions. Award each point only when the corresponding idea is clearly present; equivalent wording is acceptable. No marks are given for vague statements that do not mention division, recursion, and combination.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

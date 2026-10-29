@@ -1,0 +1,33 @@
+{
+  "question_key": "mohler/E01.Q01",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that the prototype program simulates (imitates, models, mimics, or lets developers try out) the behaviour of portions (parts, sections, a subset) of the desired software product. Accept everyday wording such as 'a working model that shows how part of the planned software will behave' or 'used to test how parts of the system will work before building the real thing'.",
+        "marks": 5.0,
+        "partial_credit": "Partial marks where the simulation idea is present but the 'portion of the desired product' element is missing or vague, or where only a preliminary/working-model idea is given.",
+        "levels": [
+          {
+            "share": 0.6,
+            "says": "Says the prototype simulates or tests the behaviour of the software (or part of it), but does not make clear that it models portions of the desired final product."
+          },
+          {
+            "share": 0.3,
+            "says": "Only says it is a preliminary/working model or a way to try out ideas, without stating that it simulates the behaviour of the software."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require the idea that the prototype simulates the behaviour of portions of the desired software product, in any wording. Part marks are given for a vague or incomplete version of that idea, such as omitting the 'portion of the desired product' element or giving only a preliminary-model idea. Answers that do not mention simulating or modelling software behaviour earn no marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

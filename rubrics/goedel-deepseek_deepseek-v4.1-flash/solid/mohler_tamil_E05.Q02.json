@@ -1,0 +1,50 @@
+{
+  "question_key": "mohler_tamil/E05.Q02",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States that selection sort moves through the array from left to right, or considers each array position/current element in turn. Equivalent wording is acceptable.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States that the minimum (smallest) value is found among the remaining/unsorted elements.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions finding the minimum/smallest element but does not make clear that it is found among the remaining/unsorted elements."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "States that the minimum element is swapped with the current element, placing the minimum at the current position.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Mentions swapping/exchanging elements but does not identify that the minimum is swapped with the current element."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require a sentence that includes all three ideas: moving left to right/current position, finding the minimum among the remaining elements, and swapping that minimum with the current element. Part marks are available where the answer mentions finding a minimum or swapping but omits the key qualifier. No marks for answers that describe a different sorting method or only say 'sorting' without selection, minimum, or swap.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,154 @@
+{
+  "question_key": "circuit_hw/P10.4-1",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Converts the source 5 sin(5t) to the cosine-reference phasor 5\u2220\u221290\u00b0 V (or equivalent, e.g., 5e^{\u2212j\u03c0/2} V).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Uses correct impedance forms: Z_R = R, Z_C = 1/(j\u03c9C), Z_L = j\u03c9L.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Treats \u03c9 = 5 rad/s (not 5 Hz) in the impedance calculations.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Writes the correct base equations/relations before substituting numbers (e.g., Z_C = 1/(j\u03c9C), Z_L = j\u03c9L, Vs = 5\u2220\u221290\u00b0 V).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P5",
+        "description": "Phasor notation is internally consistent (does not mix angle and exponential forms inconsistently within the same expression).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P6",
+        "description": "Uses \u03c9 = 5 rad/s in the numerical calculations.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P7",
+        "description": "Correctly simplifies Z_C to \u2212j2.4 \u03a9 (or \u2212j12/5 \u03a9), including the negative j.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P8",
+        "description": "Correctly computes the source phasor as 5\u2220\u221290\u00b0 V (magnitude 5 V, angle \u221290\u00b0).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P9",
+        "description": "Correctly computes the inductor impedances: Z_L1 = j10 \u03a9 and Z_L2 = j20 \u03a9.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P10",
+        "description": "Includes the unit \u03a9 for all impedances.",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P11",
+        "description": "Includes the unit V for the source phasor and clearly indicates angle units (degrees or radians).",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P12",
+        "description": "Does not mix angle units inconsistently (e.g., uses degrees and radians together without clarification).",
+        "marks": 0.5,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P13",
+        "description": "Provides all five required quantities: Z_R, Z_C, Z_L1, Z_L2, and Vs.",
+        "marks": 10.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Exactly one of the five required quantities is missing."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P14",
+        "description": "Provides numerical evaluation at \u03c9 = 5 rad/s (not just formulas).",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P15",
+        "description": "Response is clear and interpretable (not just vague symbols without values or definitions).",
+        "marks": 5.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P16",
+        "description": "All five required quantities are correct and the solution is otherwise free of errors not listed in the specific deduction points.",
+        "marks": 69.5,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "One unlisted error (e.g., a minor arithmetic mistake not covered by the specific deduction points)."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks require all five phasor quantities (Z_R, Z_C, Z_L1, Z_L2, Vs) to be correct with proper units and a consistent method. Part marks are given for correct method with minor errors, or for missing one quantity. No marks are given for missing multiple quantities or using fundamentally incorrect impedance models.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u03c9 = 5 rad/s. Z_R = 8 \u03a9. Z_C = 1/(j\u03c9C) = \u2212j/(5C). Given Z_C = \u2212j12/5 \u03a9 = \u2212j2.4 \u03a9, so C = 1/12 F. Z_L1 = j\u03c9L1 = j10 \u03a9, so L1 = 2 H. Z_L2 = j\u03c9L2 = j20 \u03a9, so L2 = 4 H. Vs = 5 sin(5t) = 5 cos(5t \u2212 90\u00b0) \u2192 Vs = 5\u2220\u221290\u00b0 V. Final answer: Z_R = 8 \u03a9, Z_C = \u2212j2.4 \u03a9, Z_L1 = j10 \u03a9, Z_L2 = j20 \u03a9, Vs = 5\u2220\u221290\u00b0 V."
+  },
+  "selftest_passed": null,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -4,11 +4,15 @@ from __future__ import annotations
 
 from typing import Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
+
+from autograde.localize import words
 
 EPS = 1e-6
 NO_REFERENCE = "No reference answer is given. Use the question and standard subject knowledge."
-Kind = Literal["short", "essay", "maths"]  # what sort of answer the question expects
+# What sort of answer the question expects. mcq: choose an option (checked by code). numeric: a
+# calculation with a final number and unit. code: a program. diagram: a drawing, graph or circuit.
+Kind = Literal["short", "essay", "maths", "mcq", "numeric", "code", "diagram"]
 
 
 NOT_GIVEN = "Not given. The marking scheme below is the reference."
@@ -32,6 +36,20 @@ class Item(BaseModel):
     kind: Kind = "short"
     rubric: str = ""  # the teacher's rubric text, when one was given
     field: str = ""  # subject area (engineering, language, ...), for field-specific prompts
+    earlier: str = Field(
+        default="",
+        description="Multi-part: the student's answers to the earlier parts, set by intake.",
+    )
+    figures: list[str] = Field(
+        default_factory=list, description="Image files of the student's drawing, if any."
+    )
+    reference_figure: str = Field(default="", description="Image file of the model drawing.")
+    tests: str = Field(
+        default="", description="Code questions: the teacher's checks, one assert per line."
+    )
+    tests_generated: bool = Field(
+        default=False, description="The tests were written by the model, not the teacher."
+    )
     human_mark: float | None = None
     human_feedback: str | None = None
     labels: dict[str, str] = Field(
@@ -75,6 +93,22 @@ class RubricLevel(BaseModel):
     says: str = Field(description="What an answer at this level looks like.")
 
 
+class NumericSpec(BaseModel):
+    """A final numeric answer that code checks, so the arithmetic is never left to the model."""
+
+    value: float = Field(description="The correct number, in the unit given.")
+    unit: str = Field(default="", description="The unit, such as m/s^2 or kN. Empty if none.")
+    rel_tol: float = Field(default=0.01, ge=0, description="Allowed relative error: 0.01 is 1%.")
+    abs_tol: float = Field(default=0.0, ge=0, description="Allowed absolute error.")
+    unit_share: float = Field(
+        default=0.2,
+        ge=0,
+        le=1,
+        description="Share of the point's marks lost when the number is right but the unit is "
+        "missing or wrong.",
+    )
+
+
 class RubricPoint(BaseModel):
     id: str = Field(description="Short id such as P1, P2.")
     description: str = Field(description="One checkable thing a correct answer contains.")
@@ -87,6 +121,24 @@ class RubricPoint(BaseModel):
         description="Part-marks steps below full marks, each with its share and description. "
         "Empty: the default partial share applies.",
     )
+    numeric: NumericSpec | None = Field(
+        default=None,
+        description="Only for a point that is a final numeric answer: the value, unit and "
+        "tolerance. Code then decides this point, not the marker.",
+    )
+
+    @field_validator("levels", mode="before")
+    @classmethod
+    def _drop_empty_levels(cls, levels):
+        """A writer may list 'no credit' (0) or 'full credit' (1) as a step: those are not
+        part-marks, so they are dropped rather than failing the whole scheme."""
+        kept = []
+        for lv in levels or []:
+            share = lv.get("share") if isinstance(lv, dict) else getattr(lv, "share", None)
+            if isinstance(share, int | float) and not 0 < share < 1:
+                continue
+            kept.append(lv)
+        return kept
 
 
 class DeductionRule(BaseModel):
@@ -143,6 +195,9 @@ class Rubric(BaseModel):
         lines = [self.stance()] if self.stance() else []
         for p in self.points:
             note = f" Partial credit: {p.partial_credit}" if p.partial_credit else ""
+            if p.numeric:
+                n = p.numeric
+                note += f" Final answer {n.value:g} {n.unit} (checked by code; do not re-judge it)."
             lines.append(f"{p.id} ({p.marks:g} marks): {p.description}{note}")
             lines += [f"    level {lv.share:g} of the marks: {lv.says}" for lv in p.levels]
         lines += [f"{d.id} (deduct {d.marks:g}): {d.description}" for d in self.deductions]
@@ -288,15 +343,16 @@ class Feedback(BaseModel):
     strengths: list[str] = Field(description="What the student did well, tied to their own words.")
     improvements: list[Improvement]
     summary: str = Field(description="One or two sentences the student should remember.")
+    language: str = Field(default="", description="Set by code: the language of the feedback.")
 
     def text(self) -> str:
         """The feedback as plain text, in the order the student reads it."""
-        labels = {"partial": "Partly there", "missed": "Missed", "incorrect": "Incorrect"}
+        w = words(self.language)
         parts = [self.asks] if self.asks else []
-        parts += [f"What you did well: {s}" for s in self.strengths]
+        parts += [f"{w['did_well']}: {s}" for s in self.strengths]
         for x in self.improvements:
             body = " ".join(p for p in (x.issue, x.why, x.fix) if p)
-            parts.append(f"{labels[x.kind]}: {body}")
+            parts.append(f"{w[x.kind]}: {body}")
         parts.append(self.summary)
         return "\n".join(parts)
 
@@ -339,3 +395,11 @@ class Result(BaseModel):
         default_factory=list, description="Total of each marking when voting (votes > 1)."
     )
     flags: list[str] = Field(default_factory=list)
+
+
+def effective_kind(kind: str, rubric: Rubric) -> str:
+    """The kind that decides which guidance prompts apply. A calculation with a code-checked
+    final answer is numeric whatever it was labelled (a model often says maths)."""
+    if kind in ("short", "maths") and any(p.numeric for p in rubric.points):
+        return "numeric"
+    return kind
