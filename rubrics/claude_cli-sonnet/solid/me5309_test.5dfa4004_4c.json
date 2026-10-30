@@ -1,0 +1,53 @@
+{
+  "question_key": "me5309_test.5dfa4004/4c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Forms the augmented third-order model with integral state \u03be (state [\u03b8, \u03b8\u0307, \u03be]) and substitutes the control law into the plant: \u03b8\u0308 = \u2212(c+b k1)\u03b8 \u2212 (a+b k2)\u03b8\u0307 + b KI \u03be, with \u03be\u0307 = r \u2212 \u03b8 (A_cl = [[0,1,0],[\u2212(c+bk1), \u2212(a+bk2), bKI],[\u22121,0,0]]). Equivalent sign convention (\u03be\u0307 = \u03b8 \u2212 r with \u2212KI \u03be) accepted if consistent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct symbolic characteristic polynomial det(sI \u2212 A_cl) = s^3 + (a + b k2) s^2 + (c + b k1) s + b KI.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Polynomial is third-order and has one or two of the three coefficients correct, or has a sign error in the KI term only."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Correct desired polynomial from poles \u22124 and \u22122\u00b12j: (s+4)(s^2+4s+8) = s^3 + 8s^2 + 24s + 32.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "Matches coefficients with a=2, b=1, c=6 and obtains all three gains: k2 = 6, k1 = 18, KI = 32. Using \u03be\u0307 = r \u2212 \u03b8 with \u2212KI \u03be giving KI = \u221232 is accepted if the convention is stated and algebra is consistent. Award only if all three gains are correct (follow-through from a wrong earlier polynomial does not earn this mark).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the augmented model, the correct symbolic polynomial, the desired polynomial s^3+8s^2+24s+32 and all three gains (18, 6, 32). Either integrator sign convention is accepted if used consistently. An error in an earlier step loses that step's mark and the gains mark, but not earlier correct steps.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Augmented state x=[\u03b8, \u03b8\u0307, \u03be], \u03be\u0307=r\u2212\u03b8. Closed loop: \u03b8\u0308 = \u2212(c+b k1)\u03b8 \u2212 (a+b k2)\u03b8\u0307 + b KI \u03be. det(sI\u2212A_cl) = s^3 + (a+b k2)s^2 + (c+b k1)s + b KI. Desired: (s+4)(s^2+4s+8) = s^3+8s^2+24s+32. Matching with a=2, b=1, c=6: 2+k2=8 \u2192 k2=6; 6+k1=24 \u2192 k1=18; KI=32. Final: k1=18, k2=6, KI=32."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

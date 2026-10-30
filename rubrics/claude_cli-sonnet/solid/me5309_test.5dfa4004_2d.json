@@ -1,0 +1,37 @@
+{
+  "question_key": "me5309_test.5dfa4004/2d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the new steady-state error is zero (\u03b8_ss = \u03b8d), with the gravity cancellation shown or clearly asserted (the +mg\u2113 sin\u03b8 term cancels the gravity term, leaving J \u03b8\u0308 + (b+Kd) \u03b8\u0307 + Kp(\u03b8\u2212\u03b8d) = 0). A bare 'zero' with no mention of cancellation/linear closed loop earns no more than half.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States zero steady-state error but with no cancellation shown or asserted."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Gives a correct, justified statement about the poles. Award the mark for any of: (a) general answer: the poles change, because the mg\u2113 cos \u03b8 gravity stiffness term is removed from the linearised stiffness (characteristic equation goes from s\u00b2+((b+Kd)/J)s+(Kp+mg\u2113cos\u03b8)/J to s\u00b2+((b+Kd)/J)s+Kp/J); (b) sharper answer: at \u03b8d = 90\u00b0 the gravity stiffness mg\u2113 cos\u03b8 is zero (or very small), so poles are essentially unchanged at this operating point, though they would change elsewhere (e.g. near 0 or 180\u00b0); (c) both together (best; no extra marks, but note on the script). Do not award for an unjustified 'yes' or 'no', or for 'the poles change because the plant is now linear' without identifying which coefficient (the stiffness term mg\u2113 cos\u03b8) moves.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: zero steady-state error with cancellation stated, plus a pole statement that identifies the mg\u2113 cos\u03b8 stiffness term (general, 90\u00b0-specific, or both). Part marks only for P1 if error is zero without cancellation. No marks for unjustified yes/no on poles; mention on the script if a candidate gives both versions.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Gravity cancels exactly, giving J \u03b8\u0308 + (b+Kd) \u03b8\u0307 + Kp(\u03b8\u2212\u03b8d) = 0, so steady-state error is zero. Compensated poles: s\u00b2 + ((b+Kd)/J)s + Kp/J = 0; uncompensated has Kp + mg\u2113 cos\u03b8 in the constant term. So the poles change in general because the gravity stiffness mg\u2113 cos\u03b8 is removed, but at \u03b8d = 90\u00b0 that term is ~0, so the change is negligible there."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

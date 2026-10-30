@@ -1,0 +1,80 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+The pixel pitch is 0.005 mm, so f\_x = 16/0.005 = 3200 pixels.
+Sensor width = 6.4 mm.
+Belt field of view = 400x6.4/16 = 160 mm; spatial resolusion = 160/1280 = 0.125 mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/2\textasciicircum{}12 = 0.0012207 V = 1.2207 mV.
+Sensor sensitivity is 10 mV/N, so ΔF = 1.2207/10 = 0.12207 N.
+The smallest resolvable force change is approximately 0.122 N.\par\smallskip\textit{Calculation:} $2^{12}=4096$ levels. One step is $5/4096=0.0012207$ V, i.e. $1.2207$ mV. Dividing by the sensitivity, $1.2207\,\mathrm{mV}/(10\,\mathrm{mV/N})=0.12207$ N. The mV units cancel, leaving N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+\[\begin{aligned}F = 0.8187, G = 0.0906\end{aligned}\]
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+The state model is ẋ₁ = x₂, ẋ₂ = (τ-0.05x₂-2.4525 sin x₁)/0.02.
+Equilibrium requires τ₀ = 2.4525 sin θ\_e, so τ₀ must be between -2.4525 and +2.4525 N m.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At steady state θ̇ = 0, and I assume θss = θd = 90° because the PD controller tracks the desired angle.
+Thus the steady-state error is zero.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+The gravity term changes the equilibrium, so the steady-state error is still nonzero.
+The poles should change.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+Poles are -2±2j and Nff=8.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+With actual b=0.75 and unchanged Nff=8, k₁=2, the steady-state relation is θss = bNff/(c+bk₁) = 0.75x8/(6+0.75x2)=6/7.5=0.8.
+For r=1, percentage error = (1-0.8)x100\%=20\%.\par\smallskip With the actual gain, the steady-state output is $y_{ss}=b_{actual}N_{ff}r/ (c+b_{actual}k_1)$ for the stated setup. Substituting the given numbers gives $y_{ss}=0.8$ for a unit reference. Therefore $e_{ss}=1-0.8=0.2$, i.e. a 20\% error.
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+The characteristic polynomial is s³+(a+bk₂)s²+(c+bk₁)s+bK\_I.
+I use the target s³+6s²+12s+16, giving k₂=4, k₁=6, K\_I=16.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\end{document}

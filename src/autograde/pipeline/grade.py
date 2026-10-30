@@ -46,6 +46,8 @@ def build_system(
         parts.append(prompts.system("grade.levels"))
     if granularity == "none":
         parts.append(prompts.system("grade.nopartial"))
+    elif granularity == "stated":
+        parts.append(prompts.system("grade.stated"))
     if mark_step:
         parts.append(prompts.system("grade.step").replace("{step}", f"{mark_step:g}"))
     if follow_through:

@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_rule.5fef1d18/3b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct Tustin-discretised difference equation with numerical coefficients to 3 s.f.: y_k = 0.0591(u_k + u_{k-1}) + 0.882 y_{k-1} (b0 = b1 = \u03ba/(1+\u03ba) \u2248 0.0591, a1 = (\u03ba\u22121)/(1+\u03ba) \u2248 \u22120.882, \u03ba = \u03c9cT/2 = 0.0628, \u03c9c=2\u03c0\u00b720, T=1 ms). Both feedforward and feedback coefficients must be correct; equivalent forms accepted. Wrong or missing coefficients (e.g. wrong sign of the y_{k-1} term, or no prewarping error beyond tolerance) earn 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "DC gain evaluated at z = 1 (steady state, y_k = y_{k-1}, u_k = u_{k-1}) as (b0+b1)/(1+a1) = 0.1182/0.1182 = 1, showing it equals unity. A bare assertion of unity without evaluation earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need both the correct numerical difference equation (3 s.f.) and an explicit DC-gain evaluation at z=1 giving 1. Each point is all or nothing; no half marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "\u03c9c = 2\u03c0\u00b720 = 125.66 rad/s, T = 0.001 s, \u03ba = \u03c9cT/2 = 0.062832. H(s)=1/(1+s/\u03c9c); Tustin gives H(z)=\u03ba(1+z^-1)/((1+\u03ba)+(\u03ba\u22121)z^-1). b0=b1=\u03ba/(1+\u03ba)=0.05912, a1=(\u03ba\u22121)/(1+\u03ba)=\u22120.88177. Difference equation: y_k = 0.05912(u_k+u_{k\u22121}) + 0.88177 y_{k\u22121}. DC gain at z=1: (0.05912+0.05912)/(1\u22120.88177)=0.11824/0.11823\u22481.000. Gain is unity."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

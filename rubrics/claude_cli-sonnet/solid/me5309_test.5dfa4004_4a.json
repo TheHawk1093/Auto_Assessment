@@ -1,0 +1,48 @@
+{
+  "question_key": "me5309_test.5dfa4004/4a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Closed-loop poles: characteristic equation s^2 + (a+b k2)s + (c+b k1) = s^2 + 4s + 8 = 0, giving poles s = -2 \u00b1 2j (both stated). Equivalent derivations accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct closed-loop characteristic polynomial s^2+4s+8 but poles wrong or not stated."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Nff = 8, obtained from a stated DC-gain condition (set derivatives to zero / s=0 in the transfer function b Nff/(s^2+4s+8), so theta_ss = Nff/8 r = r). Bare value 8 with no DC-gain condition shown does not earn full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct DC-gain expression theta_ss = Nff/8 r (or equivalent) but final Nff wrong, or Nff = 8 stated without any DC-gain reasoning."
+          }
+        ],
+        "numeric": {
+          "value": 8.0,
+          "unit": "",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.0
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: poles -2\u00b12j and Nff = 8 with DC-gain reasoning. Part marks as per levels for correct polynomial or correct DC-gain expression with an error. An error in the poles that carries into Nff still allows the method mark only if the DC-gain condition is stated.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Closed loop: \u03b8\u0308 + (a+b k2)\u03b8\u0307 + (c+b k1)\u03b8 = b Nff r \u2192 s\u00b2+4s+8=0 \u2192 s = -2 \u00b1 2j. DC gain: \u03b8_ss = b Nff/(c+b k1) r = Nff/8 r = r \u2192 Nff = 8."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

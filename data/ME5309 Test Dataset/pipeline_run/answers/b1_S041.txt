@@ -1,0 +1,34 @@
+where appropriate.
+Q1(a).
+(i) f_x = 16/5 = 3.2 pixels, using focal length 16 mm and pixel size 5 microm. (ii) Sensor width is
+6.4 mm, so field width = 400x6.4/16 = 160 mm and scale = 0.125 mm/pixel.
+Q1(b).
+ADC step = 5/4096 = 1.2207 mV . I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+Q1(c).
+F = 0.8187, G = 0.0906
+Q2(a).
+The state model is ẋ₁ = x₂, ẋ₂ = (τ-0.05x₂-2.4525 sin x₁)/0.02. Equilibrium requires τ₀ = 2.4525 sin
+θ_e, so τ₀ must be between -2.4525 and +2.4525 N m.
+Q2(b).
+A = [[0, 1], [−61.3125, −2.5]], B = [[0], [50]]
+Q2(c).
+At steady state θ̇ = 0, and I assume θss = θd = 90° because the PD controller tracks the desired
+angle. Thus the steady-state error is zero.
+Q2(d).
+The gravity term changes the equilibrium, so the steady-state error is still nonzero. The poles
+should change.
+Q3(a).
+Finite differencing amplifies encoder noise, making the velocity estimate noisy.
+Q3(b).
+For H(s)=ωc/(s+ωc), ωc=2π(20)=125.664 rad/s and T=0.001 s. Tustin gives H(z)=α(1+z⁻¹)/[(1+α)+(α-
+1)z⁻¹], α=ωcT/2=0.0628319. Thus:
+y[k] = 0 .881765y[k − 1] + 0.0591175(xk + x[k − 1])
+DC gain = (2x0.0591175)/(1-0.881765) approximately 1.000.
+ωc = 2 π(20) = 125 .664 rad/s. With T = 0 .001 s, α = ωcT /2 = 125 .664(0.001)/2 = 0 .062832. The
+recurrence coefficients are approximately 0.881765 on the previous output and 0.0591175 on
+each input sample. Check: 2(0.0591175)/(1 − 0.881765) ≈ 1, so the DC gain is close to one.
+Q3(c).
+The characteristic polynomial is s²+(ℓ₁+2)s+(2ℓ₁+ℓ₂). I match it to s²+10s+100 and get ℓ₁=8, ℓ₂=84.
+Q3(d).
+An observer can estimate velocity from position measurements. A filter can be safer because
+it smooths noise.

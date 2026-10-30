@@ -1,0 +1,395 @@
+Roll No.,Name,Question,Part,Variant id,Row type,Category,What the student did,Marks awarded,Max,Marks lost,Counted in total?
+ME25M001,Aarav Sharma,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M002,Diya Nair,Q2,c,ok_approx,Alternative method,Valid alternative,Used the small-error estimate sin(theta_ss) ~ 1 giving 2.81 deg; acceptable because the question asks to estimate (full marks expected),4.0,4,0.0,Yes
+ME25M002,Diya Nair,Q3,b,e4,Error,Incomplete,"Coefficients correct but DC gain only asserted, not verified from the difference equation",1.5,2,0.5,Yes
+ME25M002,Diya Nair,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M002,Diya Nair,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M003,Rohan Mehta,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M003,Rohan Mehta,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M003,Rohan Mehta,Q1,c,e2,Error,Calculation,Integration slip: ∫e^(−2τ)dτ taken as 1−e^(−0.2) (missing 1/2): G = 0.1813 instead of 0.0906; F and formulas right,2.0,3,1.0,Yes
+ME25M003,Rohan Mehta,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,Yes
+ME25M003,Rohan Mehta,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M003,Rohan Mehta,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M003,Rohan Mehta,Q2,d,e1,Error,Conceptual,"Error = 0 correct, but claims poles change (ignores cos 90 deg = 0)",1.0,2,1.0,Yes
+ME25M003,Rohan Mehta,Q4,b,e2,Error,Calculation,Correct DC-gain formula but denominator not updated for b=0.75 (used 8 not 7.5): result 0.75 / 25% instead of 0.8 / 20%,1.0,2,1.0,Yes
+ME25M003,Rohan Mehta,Q4,c,e3,Error,Calculation,Expansion slip: (s+4)(s^2+4s+8) taken as s^3+8s^2+16s+32 (should be 24s) giving k1=10 instead of 18,3.0,4,1.0,Yes
+ME25M003,Rohan Mehta,Q4,d,e1,Error,Conceptual,Zero-error argument correct; failure mode given (noise amplification) is not the standard one (windup),1.0,2,1.0,Yes
+ME25M003,Rohan Mehta,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M004,Ananya Iyer,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M004,Ananya Iyer,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M004,Ananya Iyer,Q1,c,e1,Error,Method,"Used forward-Euler instead of the exact ZOH discretisation (F=0.8, G=0.1); question demands exact model",0.0,3,3.0,Yes
+ME25M004,Ananya Iyer,Q2,b,e3,Error,Incomplete,"B given as [0;1], omitting the 1/J = 50 factor; A fully correct",1.5,2,0.5,Yes
+ME25M004,Ananya Iyer,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M004,Ananya Iyer,Q3,a,e1,Error,Conceptual,One valid reason (noise amplification); second reason (memory/processing cost) is wrong,1.0,2,1.0,No (struck out)
+ME25M004,Ananya Iyer,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,No (struck out)
+ME25M004,Ananya Iyer,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,No (struck out)
+ME25M004,Ananya Iyer,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,No (struck out)
+ME25M004,Ananya Iyer,Q4,b,e3,Error,Calculation,theta_ss = 0.8 correct but % error computed as 80% (should be 20%),1.0,2,1.0,Yes
+ME25M004,Ananya Iyer,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M004,Ananya Iyer,Q3,All,,Struck out,Strike-out,Student crossed the whole answer out; it must not be counted even though it was attempted,6.5,10,3.5,No (struck out)
+ME25M005,Karthik Subramanian,Q1,a,bare,Error,Missing working,Final answers only; no formula or substitution (instruction 5 gives no credit),0.0,4,4.0,Yes
+ME25M005,Karthik Subramanian,Q1,b,bare,Error,Missing working,Bare numeric answer; no formula or substitution (no credit under instruction 5),0.0,3,3.0,Yes
+ME25M005,Karthik Subramanian,Q3,b,bare,Error,Missing working,Final difference equation and DC gain stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M005,Karthik Subramanian,Q3,c,bare,Error,Missing working,Final L stated without derivation of the characteristic polynomial (no credit under instruction 5),0.0,4,4.0,Yes
+ME25M005,Karthik Subramanian,Q4,a,bare,Error,Missing working,Poles and N_ff stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M005,Karthik Subramanian,Q4,b,bare,Error,Missing working,Answer stated without formula or substitution (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M005,Karthik Subramanian,Q4,c,bare,Error,Missing working,Final gains stated without derivation (no credit under instruction 5),0.0,4,4.0,Yes
+ME25M005,Karthik Subramanian,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M006,Meera Krishnan,Q2,a,e1,Error,Incomplete,Equilibrium range given as 0 <= tau0 <= mgl; misses negative torques (should be |tau0| <= mgl),1.5,2,0.5,Yes
+ME25M006,Meera Krishnan,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M006,Meera Krishnan,Q3,d,e2,Error,Vague,Both answers vague (observer is more accurate; filter safer because cheap): half credit each at best,1.0,2,1.0,Yes
+ME25M006,Meera Krishnan,Q4,b,e2,Error,Calculation,Correct DC-gain formula but denominator not updated for b=0.75 (used 8 not 7.5): result 0.75 / 25% instead of 0.8 / 20%,1.0,2,1.0,Yes
+ME25M006,Meera Krishnan,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M006,Meera Krishnan,Q4,d,e2,Error,Weak justification,Hand-wavy zero-error argument (no equation: integrator accumulates until error is zero); windup + anti-windup clamp correct,1.5,2,0.5,Yes
+ME25M007,Vikram Patel,Q2,a,e3,Error,Conceptual,Claims an equilibrium exists for every tau0 (ignores |sin|<=1 so |tau0|<=mgl); model correct,1.0,2,1.0,Yes
+ME25M007,Vikram Patel,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M007,Vikram Patel,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M007,Vikram Patel,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M007,Vikram Patel,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M007,Vikram Patel,Q3,b,e1,Error,Method,Used forward Euler instead of Tustin: coefficients 0.8743/0.1257 wrong for the bilinear transform; DC check done and valid-filter structure partly credited,1.0,2,1.0,Yes
+ME25M007,Vikram Patel,Q3,c,e3,Error,Conceptual,"Confused observer design with state feedback: used A-BK structure, L=[100,18] wrong; only the pole-matching idea is credited",1.0,4,3.0,Yes
+ME25M007,Vikram Patel,Q3,d,e3,Error,Conceptual,Both answers wrong (claims no observer advantage; filter safer when model perfectly known),0.0,2,2.0,Yes
+ME25M007,Vikram Patel,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M007,Vikram Patel,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M007,Vikram Patel,Q4,c,e2,Error,Conceptual,"Ignored the integrator state: used a 2nd-order polynomial, k1=k2=2, K_I=4; no third-order characteristic polynomial",1.0,4,3.0,Yes
+ME25M007,Vikram Patel,Q4,d,e1,Error,Conceptual,Zero-error argument correct; failure mode given (noise amplification) is not the standard one (windup),1.0,2,1.0,Yes
+ME25M007,Vikram Patel,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M008,Sneha Reddy,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M008,Sneha Reddy,Q4,b,e3,Error,Calculation,theta_ss = 0.8 correct but % error computed as 80% (should be 20%),1.0,2,1.0,Yes
+ME25M008,Sneha Reddy,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M008,Sneha Reddy,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M008,Sneha Reddy,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M009,Arjun Das,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M009,Arjun Das,Q2,b,e3,Error,Incomplete,"B given as [0;1], omitting the 1/J = 50 factor; A fully correct",1.5,2,0.5,Yes
+ME25M009,Arjun Das,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M009,Arjun Das,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M009,Arjun Das,Q3,a,e2,Error,Incomplete,Only one distinct reason (noise amplification) stated twice in different words,1.0,2,1.0,Yes
+ME25M009,Arjun Das,Q3,b,e3,Error,Calculation,Feedback coefficient mis-evaluated (0.8187 instead of 0.8818); DC gain only asserted and would not equal 1 with these coefficients,1.0,2,1.0,Yes
+ME25M009,Arjun Das,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M009,Arjun Das,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M010,Priya Venkatesh,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M010,Priya Venkatesh,Q3,b,e1,Error,Method,Used forward Euler instead of Tustin: coefficients 0.8743/0.1257 wrong for the bilinear transform; DC check done and valid-filter structure partly credited,1.0,2,1.0,Yes
+ME25M011,Rahul Gupta,Q1,a,ok_2sf,Error,Unit/Precision,"Per-pixel distance reported to 2 s.f. (0.13 mm/px), violating the 3-s.f. instruction (-0.5)",3.5,4,0.5,Yes
+ME25M011,Rahul Gupta,Q1,b,ok_nu,Error,Unit/Precision,Final answer written without units (-0.5),2.5,3,0.5,Yes
+ME25M011,Rahul Gupta,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,Yes
+ME25M011,Rahul Gupta,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M011,Rahul Gupta,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M011,Rahul Gupta,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M011,Rahul Gupta,Q4,b,e2,Error,Calculation,Correct DC-gain formula but denominator not updated for b=0.75 (used 8 not 7.5): result 0.75 / 25% instead of 0.8 / 20%,1.0,2,1.0,Yes
+ME25M011,Rahul Gupta,Q4,c,e3,Error,Calculation,Expansion slip: (s+4)(s^2+4s+8) taken as s^3+8s^2+16s+32 (should be 24s) giving k1=10 instead of 18,3.0,4,1.0,Yes
+ME25M011,Rahul Gupta,Q4,d,e2,Error,Weak justification,Hand-wavy zero-error argument (no equation: integrator accumulates until error is zero); windup + anti-windup clamp correct,1.5,2,0.5,Yes
+ME25M011,Rahul Gupta,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M012,Ishita Banerjee,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M012,Ishita Banerjee,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M012,Ishita Banerjee,Q4,b,e3,Error,Calculation,theta_ss = 0.8 correct but % error computed as 80% (should be 20%),1.0,2,1.0,Yes
+ME25M012,Ishita Banerjee,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M013,Aditya Verma,Q3,d,ok_alt,Alternative method,Valid alternative,Different wording of correct points: no lag + unmeasured states/disturbances; filter safer under model mismatch or saturation; full marks expected,2.0,2,0.0,Yes
+ME25M013,Aditya Verma,Q4,a,e3,Error,Calculation,"Closed-loop polynomial correct but roots solved wrongly (-2 +/- 4j, forgot to divide by 2); N_ff = 8 right",1.0,2,1.0,Yes
+ME25M013,Aditya Verma,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M014,Kavya Menon,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M014,Kavya Menon,Q3,b,e4,Error,Incomplete,"Coefficients correct but DC gain only asserted, not verified from the difference equation",1.5,2,0.5,Yes
+ME25M014,Kavya Menon,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M014,Kavya Menon,Q3,d,e3,Error,Conceptual,Both answers wrong (claims no observer advantage; filter safer when model perfectly known),0.0,2,2.0,Yes
+ME25M014,Kavya Menon,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M014,Kavya Menon,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M014,Kavya Menon,Q4,d,e1,Error,Conceptual,Zero-error argument correct; failure mode given (noise amplification) is not the standard one (windup),1.0,2,1.0,Yes
+ME25M014,Kavya Menon,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M015,Siddharth Joshi,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M015,Siddharth Joshi,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M015,Siddharth Joshi,Q2,c,ok_approx,Alternative method,Valid alternative,Used the small-error estimate sin(theta_ss) ~ 1 giving 2.81 deg; acceptable because the question asks to estimate (full marks expected),4.0,4,0.0,Yes
+ME25M015,Siddharth Joshi,Q3,b,e4,Error,Incomplete,"Coefficients correct but DC gain only asserted, not verified from the difference equation",1.5,2,0.5,Yes
+ME25M015,Siddharth Joshi,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M015,Siddharth Joshi,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M016,Nisha Kulkarni,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M016,Nisha Kulkarni,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M016,Nisha Kulkarni,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,Yes
+ME25M016,Nisha Kulkarni,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M016,Nisha Kulkarni,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M017,Harsh Agarwal,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M017,Harsh Agarwal,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M017,Harsh Agarwal,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M017,Harsh Agarwal,Q4,d,e1,Error,Conceptual,Zero-error argument correct; failure mode given (noise amplification) is not the standard one (windup),1.0,2,1.0,Yes
+ME25M017,Harsh Agarwal,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M018,Pooja Bhat,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M018,Pooja Bhat,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M018,Pooja Bhat,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M018,Pooja Bhat,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M018,Pooja Bhat,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M018,Pooja Bhat,Q2,d,e4,Error,Incomplete,Error = 0 correct; nothing said about the closed-loop poles,1.0,2,1.0,Yes
+ME25M018,Pooja Bhat,Q4,c,e5,Error,Symbolic slip,Symbolic characteristic polynomial written without the factor b (s^3+(a+k2)s^2+(c+k1)s+K_I); numbers unaffected since b = 1,3.5,4,0.5,Yes
+ME25M018,Pooja Bhat,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M018,Pooja Bhat,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M019,Manish Yadav,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M019,Manish Yadav,Q1,c,e1,Error,Method,"Used forward-Euler instead of the exact ZOH discretisation (F=0.8, G=0.1); question demands exact model",0.0,3,3.0,Yes
+ME25M019,Manish Yadav,Q2,a,e3,Error,Conceptual,Claims an equilibrium exists for every tau0 (ignores |sin|<=1 so |tau0|<=mgl); model correct,1.0,2,1.0,Yes
+ME25M019,Manish Yadav,Q2,b,e2,Error,Conceptual,Used sin(theta_e) instead of cos(theta_e) in the Jacobian: A21 = -106.2 (should be -61.31),1.0,2,1.0,Yes
+ME25M019,Manish Yadav,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M019,Manish Yadav,Q2,d,e1,Error,Conceptual,"Error = 0 correct, but claims poles change (ignores cos 90 deg = 0)",1.0,2,1.0,Yes
+ME25M019,Manish Yadav,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,Yes
+ME25M019,Manish Yadav,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M019,Manish Yadav,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M019,Manish Yadav,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M020,Lakshmi Narayanan,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M020,Lakshmi Narayanan,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M020,Lakshmi Narayanan,Q2,a,e4,Error,Sign error,Sign error on the gravity term in the state equation (+mgl sin x1); equilibrium range |tau0|<=mgl still stated,1.5,2,0.5,Yes
+ME25M020,Lakshmi Narayanan,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M020,Lakshmi Narayanan,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M020,Lakshmi Narayanan,Q2,d,e4,Error,Incomplete,Error = 0 correct; nothing said about the closed-loop poles,1.0,2,1.0,Yes
+ME25M020,Lakshmi Narayanan,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M020,Lakshmi Narayanan,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M020,Lakshmi Narayanan,Q4,c,e5,Error,Symbolic slip,Symbolic characteristic polynomial written without the factor b (s^3+(a+k2)s^2+(c+k1)s+K_I); numbers unaffected since b = 1,3.5,4,0.5,Yes
+ME25M020,Lakshmi Narayanan,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M021,Tanvi Deshmukh,Q2,a,e3,Error,Conceptual,Claims an equilibrium exists for every tau0 (ignores |sin|<=1 so |tau0|<=mgl); model correct,1.0,2,1.0,Yes
+ME25M021,Tanvi Deshmukh,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M021,Tanvi Deshmukh,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M021,Tanvi Deshmukh,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M021,Tanvi Deshmukh,Q3,a,e2,Error,Incomplete,Only one distinct reason (noise amplification) stated twice in different words,1.0,2,1.0,Yes
+ME25M021,Tanvi Deshmukh,Q3,b,bare,Error,Missing working,Final difference equation and DC gain stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M021,Tanvi Deshmukh,Q4,a,bare,Error,Missing working,Poles and N_ff stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M021,Tanvi Deshmukh,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M021,Tanvi Deshmukh,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M022,Gaurav Singh,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M022,Gaurav Singh,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M022,Gaurav Singh,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,Yes
+ME25M022,Gaurav Singh,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M022,Gaurav Singh,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M022,Gaurav Singh,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M023,Shreya Pillai,Q2,a,e4,Error,Sign error,Sign error on the gravity term in the state equation (+mgl sin x1); equilibrium range |tau0|<=mgl still stated,1.5,2,0.5,No (struck out)
+ME25M023,Shreya Pillai,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,No (struck out)
+ME25M023,Shreya Pillai,Q2,d,e1,Error,Conceptual,"Error = 0 correct, but claims poles change (ignores cos 90 deg = 0)",1.0,2,1.0,No (struck out)
+ME25M023,Shreya Pillai,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M023,Shreya Pillai,Q3,b,e3,Error,Calculation,Feedback coefficient mis-evaluated (0.8187 instead of 0.8818); DC gain only asserted and would not equal 1 with these coefficients,1.0,2,1.0,Yes
+ME25M023,Shreya Pillai,Q2,All,,Struck out,Strike-out,Student crossed the whole answer out; it must not be counted even though it was attempted,7.0,10,3.0,No (struck out)
+ME25M024,Nikhil Rao,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,Yes
+ME25M024,Nikhil Rao,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M024,Nikhil Rao,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,Yes
+ME25M024,Nikhil Rao,Q3,d,e2,Error,Vague,Both answers vague (observer is more accurate; filter safer because cheap): half credit each at best,1.0,2,1.0,Yes
+ME25M024,Nikhil Rao,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M024,Nikhil Rao,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M025,Ritika Chopra,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M025,Ritika Chopra,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M026,Varun Malhotra,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M026,Varun Malhotra,Q2,a,e4,Error,Sign error,Sign error on the gravity term in the state equation (+mgl sin x1); equilibrium range |tau0|<=mgl still stated,1.5,2,0.5,Yes
+ME25M026,Varun Malhotra,Q2,c,ok_approx,Alternative method,Valid alternative,Used the small-error estimate sin(theta_ss) ~ 1 giving 2.81 deg; acceptable because the question asks to estimate (full marks expected),4.0,4,0.0,Yes
+ME25M026,Varun Malhotra,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M026,Varun Malhotra,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M027,Aishwarya Hegde,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M027,Aishwarya Hegde,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M027,Aishwarya Hegde,Q2,d,e4,Error,Incomplete,Error = 0 correct; nothing said about the closed-loop poles,1.0,2,1.0,Yes
+ME25M027,Aishwarya Hegde,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M027,Aishwarya Hegde,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M027,Aishwarya Hegde,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M028,Suresh Babu,Q1,c,e4,Error,Notation,F and G computed correctly but swapped in the final model x[k+1] = G x[k] + F u[k],2.5,3,0.5,Yes
+ME25M028,Suresh Babu,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M028,Suresh Babu,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M028,Suresh Babu,Q4,c,e5,Error,Symbolic slip,Symbolic characteristic polynomial written without the factor b (s^3+(a+k2)s^2+(c+k1)s+K_I); numbers unaffected since b = 1,3.5,4,0.5,Yes
+ME25M028,Suresh Babu,Q4,d,e5,Error,Incomplete,Zero-error argument correct; windup named with explanation but no remedy given,1.5,2,0.5,Yes
+ME25M028,Suresh Babu,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M029,Neha Kapoor,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M029,Neha Kapoor,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M029,Neha Kapoor,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M029,Neha Kapoor,Q3,b,e1,Error,Method,Used forward Euler instead of Tustin: coefficients 0.8743/0.1257 wrong for the bilinear transform; DC check done and valid-filter structure partly credited,1.0,2,1.0,Yes
+ME25M029,Neha Kapoor,Q3,c,e3,Error,Conceptual,"Confused observer design with state feedback: used A-BK structure, L=[100,18] wrong; only the pole-matching idea is credited",1.0,4,3.0,Yes
+ME25M029,Neha Kapoor,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M029,Neha Kapoor,Q4,c,e5,Error,Symbolic slip,Symbolic characteristic polynomial written without the factor b (s^3+(a+k2)s^2+(c+k1)s+K_I); numbers unaffected since b = 1,3.5,4,0.5,Yes
+ME25M029,Neha Kapoor,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M029,Neha Kapoor,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M030,Dev Choudhary,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,Yes
+ME25M030,Dev Choudhary,Q2,b,e2,Error,Conceptual,Used sin(theta_e) instead of cos(theta_e) in the Jacobian: A21 = -106.2 (should be -61.31),1.0,2,1.0,Yes
+ME25M030,Dev Choudhary,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M030,Dev Choudhary,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M030,Dev Choudhary,Q3,a,e1,Error,Conceptual,One valid reason (noise amplification); second reason (memory/processing cost) is wrong,1.0,2,1.0,Yes
+ME25M030,Dev Choudhary,Q3,b,e3,Error,Calculation,Feedback coefficient mis-evaluated (0.8187 instead of 0.8818); DC gain only asserted and would not equal 1 with these coefficients,1.0,2,1.0,Yes
+ME25M030,Dev Choudhary,Q3,c,e2,Error,Calculation,"Expanded (s+10)^2 as s^2+10s+100 (should be 20s) giving L=[8,84]; characteristic polynomial derived correctly",2.5,4,1.5,Yes
+ME25M030,Dev Choudhary,Q3,d,ok_alt,Alternative method,Valid alternative,Different wording of correct points: no lag + unmeasured states/disturbances; filter safer under model mismatch or saturation; full marks expected,2.0,2,0.0,Yes
+ME25M030,Dev Choudhary,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M030,Dev Choudhary,Q4,c,e3,Error,Calculation,Expansion slip: (s+4)(s^2+4s+8) taken as s^3+8s^2+16s+32 (should be 24s) giving k1=10 instead of 18,3.0,4,1.0,Yes
+ME25M030,Dev Choudhary,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M031,Anjali Mishra,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M031,Anjali Mishra,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M031,Anjali Mishra,Q1,c,e1,Error,Method,"Used forward-Euler instead of the exact ZOH discretisation (F=0.8, G=0.1); question demands exact model",0.0,3,3.0,Yes
+ME25M031,Anjali Mishra,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M031,Anjali Mishra,Q3,b,e4,Error,Incomplete,"Coefficients correct but DC gain only asserted, not verified from the difference equation",1.5,2,0.5,Yes
+ME25M031,Anjali Mishra,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M031,Anjali Mishra,Q3,d,e3,Error,Conceptual,Both answers wrong (claims no observer advantage; filter safer when model perfectly known),0.0,2,2.0,Yes
+ME25M031,Anjali Mishra,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M031,Anjali Mishra,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M031,Anjali Mishra,Q4,c,e2,Error,Conceptual,"Ignored the integrator state: used a 2nd-order polynomial, k1=k2=2, K_I=4; no third-order characteristic polynomial",1.0,4,3.0,Yes
+ME25M031,Anjali Mishra,Q4,d,e1,Error,Conceptual,Zero-error argument correct; failure mode given (noise amplification) is not the standard one (windup),1.0,2,1.0,Yes
+ME25M031,Anjali Mishra,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M032,Pranav Deshpande,Q1,a,ok_2sf,Error,Unit/Precision,"Per-pixel distance reported to 2 s.f. (0.13 mm/px), violating the 3-s.f. instruction (-0.5)",3.5,4,0.5,Yes
+ME25M032,Pranav Deshpande,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M032,Pranav Deshpande,Q1,c,ok_2sf,Error,Unit/Precision,"F and G reported to 2 s.f. (0.82, 0.09), violating the 3 s.f. instruction (-0.5)",2.5,3,0.5,Yes
+ME25M032,Pranav Deshpande,Q2,b,ok_2sf,Error,Unit/Precision,"A21 given as -61 (2 s.f.), violating the 3 s.f. instruction (-0.5)",1.5,2,0.5,Yes
+ME25M032,Pranav Deshpande,Q3,a,e2,Error,Incomplete,Only one distinct reason (noise amplification) stated twice in different words,1.0,2,1.0,Yes
+ME25M032,Pranav Deshpande,Q3,b,ok_3sf,Error,Unit/Precision,"Coefficients rounded to 2 s.f. (0.059, 0.88), violating the 3 s.f. instruction; DC check only approximately 1 (-0.5)",1.5,2,0.5,Yes
+ME25M032,Pranav Deshpande,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M033,Swati Jain,Q2,d,e4,Error,Incomplete,Error = 0 correct; nothing said about the closed-loop poles,1.0,2,1.0,Yes
+ME25M033,Swati Jain,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M033,Swati Jain,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M034,Imran Sheikh,Q3,c,e2,Error,Calculation,"Expanded (s+10)^2 as s^2+10s+100 (should be 20s) giving L=[8,84]; characteristic polynomial derived correctly",2.5,4,1.5,Yes
+ME25M034,Imran Sheikh,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M034,Imran Sheikh,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M035,Tejas Naik,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,No (struck out)
+ME25M035,Tejas Naik,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,No (struck out)
+ME25M035,Tejas Naik,Q2,b,e2,Error,Conceptual,Used sin(theta_e) instead of cos(theta_e) in the Jacobian: A21 = -106.2 (should be -61.31),1.0,2,1.0,Yes
+ME25M035,Tejas Naik,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M035,Tejas Naik,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M035,Tejas Naik,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M035,Tejas Naik,Q1,All,,Struck out,Strike-out,Student crossed the whole answer out; it must not be counted even though it was attempted,7.5,10,2.5,No (struck out)
+ME25M036,Bhavna Rathore,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M036,Bhavna Rathore,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M036,Bhavna Rathore,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M036,Bhavna Rathore,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M036,Bhavna Rathore,Q3,d,e2,Error,Vague,Both answers vague (observer is more accurate; filter safer because cheap): half credit each at best,1.0,2,1.0,Yes
+ME25M037,Kunal Thakur,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M037,Kunal Thakur,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M037,Kunal Thakur,Q3,d,ok_alt,Alternative method,Valid alternative,Different wording of correct points: no lag + unmeasured states/disturbances; filter safer under model mismatch or saturation; full marks expected,2.0,2,0.0,Yes
+ME25M037,Kunal Thakur,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M037,Kunal Thakur,Q4,b,e3,Error,Calculation,theta_ss = 0.8 correct but % error computed as 80% (should be 20%),1.0,2,1.0,Yes
+ME25M037,Kunal Thakur,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M037,Kunal Thakur,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M038,Divya Sethi,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M038,Divya Sethi,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M038,Divya Sethi,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M039,Mohit Saxena,Q1,c,e4,Error,Notation,F and G computed correctly but swapped in the final model x[k+1] = G x[k] + F u[k],2.5,3,0.5,Yes
+ME25M039,Mohit Saxena,Q2,d,e4,Error,Incomplete,Error = 0 correct; nothing said about the closed-loop poles,1.0,2,1.0,Yes
+ME25M039,Mohit Saxena,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M039,Mohit Saxena,Q4,d,e2,Error,Weak justification,Hand-wavy zero-error argument (no equation: integrator accumulates until error is zero); windup + anti-windup clamp correct,1.5,2,0.5,Yes
+ME25M039,Mohit Saxena,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M040,Ramya Chandran,Q1,a,e2,Error,Conceptual,Similar-triangle ratio inverted (f/Z instead of Z/f): FOV = 0.256 mm instead of 160 mm; f_x correct,2.0,4,2.0,Yes
+ME25M040,Ramya Chandran,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M040,Ramya Chandran,Q3,a,e1,Error,Conceptual,One valid reason (noise amplification); second reason (memory/processing cost) is wrong,1.0,2,1.0,Yes
+ME25M040,Ramya Chandran,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M040,Ramya Chandran,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M040,Ramya Chandran,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M040,Ramya Chandran,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M041,Ayush Tiwari,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M041,Ayush Tiwari,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M041,Ayush Tiwari,Q3,c,e1,Error,Sign error,"Sign error in determinant (-l2 instead of +l2): polynomial s^2+(2+l1)s+(2l1-l2) gives L=[18,-64]",2.0,4,2.0,Yes
+ME25M041,Ayush Tiwari,Q3,d,ok_alt,Alternative method,Valid alternative,Different wording of correct points: no lag + unmeasured states/disturbances; filter safer under model mismatch or saturation; full marks expected,2.0,2,0.0,Yes
+ME25M041,Ayush Tiwari,Q4,a,e3,Error,Calculation,"Closed-loop polynomial correct but roots solved wrongly (-2 +/- 4j, forgot to divide by 2); N_ff = 8 right",1.0,2,1.0,Yes
+ME25M041,Ayush Tiwari,Q4,c,e5,Error,Symbolic slip,Symbolic characteristic polynomial written without the factor b (s^3+(a+k2)s^2+(c+k1)s+K_I); numbers unaffected since b = 1,3.5,4,0.5,Yes
+ME25M041,Ayush Tiwari,Q4,d,e5,Error,Incomplete,Zero-error argument correct; windup named with explanation but no remedy given,1.5,2,0.5,Yes
+ME25M041,Ayush Tiwari,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M042,Sana Qureshi,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M042,Sana Qureshi,Q1,c,e1,Error,Method,"Used forward-Euler instead of the exact ZOH discretisation (F=0.8, G=0.1); question demands exact model",0.0,3,3.0,Yes
+ME25M042,Sana Qureshi,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,Yes
+ME25M042,Sana Qureshi,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M042,Sana Qureshi,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M042,Sana Qureshi,Q4,a,e1,Error,Calculation,Poles correct; N_ff inverted (0.125 instead of 8),1.0,2,1.0,Yes
+ME25M042,Sana Qureshi,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M042,Sana Qureshi,Q4,c,e2,Error,Conceptual,"Ignored the integrator state: used a 2nd-order polynomial, k1=k2=2, K_I=4; no third-order characteristic polynomial",1.0,4,3.0,Yes
+ME25M042,Sana Qureshi,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M042,Sana Qureshi,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M043,Yash Bhatt,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M043,Yash Bhatt,Q1,b,e1,Error,Incomplete,Stopped at ADC LSB voltage; never converted to force via sensor sensitivity,1.5,3,1.5,Yes
+ME25M043,Yash Bhatt,Q2,a,e3,Error,Conceptual,Claims an equilibrium exists for every tau0 (ignores |sin|<=1 so |tau0|<=mgl); model correct,1.0,2,1.0,Yes
+ME25M043,Yash Bhatt,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M043,Yash Bhatt,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M043,Yash Bhatt,Q2,d,e1,Error,Conceptual,"Error = 0 correct, but claims poles change (ignores cos 90 deg = 0)",1.0,2,1.0,Yes
+ME25M043,Yash Bhatt,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M043,Yash Bhatt,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M043,Yash Bhatt,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M043,Yash Bhatt,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M044,Ishaan Kohli,Q1,a,bare,Error,Missing working,Final answers only; no formula or substitution (instruction 5 gives no credit),0.0,4,4.0,Yes
+ME25M044,Ishaan Kohli,Q1,b,bare,Error,Missing working,Bare numeric answer; no formula or substitution (no credit under instruction 5),0.0,3,3.0,Yes
+ME25M044,Ishaan Kohli,Q3,c,bare,Error,Missing working,Final L stated without derivation of the characteristic polynomial (no credit under instruction 5),0.0,4,4.0,Yes
+ME25M044,Ishaan Kohli,Q4,a,bare,Error,Missing working,Poles and N_ff stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M044,Ishaan Kohli,Q4,b,bare,Error,Missing working,Answer stated without formula or substitution (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M044,Ishaan Kohli,Q4,c,e3,Error,Calculation,Expansion slip: (s+4)(s^2+4s+8) taken as s^3+8s^2+16s+32 (should be 24s) giving k1=10 instead of 18,3.0,4,1.0,Yes
+ME25M044,Ishaan Kohli,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M044,Ishaan Kohli,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M045,Gayatri Joshi,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M045,Gayatri Joshi,Q3,c,e2,Error,Calculation,"Expanded (s+10)^2 as s^2+10s+100 (should be 20s) giving L=[8,84]; characteristic polynomial derived correctly",2.5,4,1.5,Yes
+ME25M045,Gayatri Joshi,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M045,Gayatri Joshi,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M045,Gayatri Joshi,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M046,Abhishek Nair,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M046,Abhishek Nair,Q2,c,e2,Error,Unit conversion,theta_d entered in degrees while Kp is in N.m/rad (unit inconsistency): error 0.049 deg instead of 2.81 deg; reasoning right,2.0,4,2.0,Yes
+ME25M046,Abhishek Nair,Q3,c,e2,Error,Calculation,"Expanded (s+10)^2 as s^2+10s+100 (should be 20s) giving L=[8,84]; characteristic polynomial derived correctly",2.5,4,1.5,Yes
+ME25M046,Abhishek Nair,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M047,Fatima Khan,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M047,Fatima Khan,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M047,Fatima Khan,Q2,a,e2,Error,Sign error,Sign error on damping term in state equation (+b x2); equilibrium condition and range correct,1.5,2,0.5,No (struck out)
+ME25M047,Fatima Khan,Q3,d,e3,Error,Conceptual,Both answers wrong (claims no observer advantage; filter safer when model perfectly known),0.0,2,2.0,Yes
+ME25M047,Fatima Khan,Q4,a,e3,Error,Calculation,"Closed-loop polynomial correct but roots solved wrongly (-2 +/- 4j, forgot to divide by 2); N_ff = 8 right",1.0,2,1.0,Yes
+ME25M047,Fatima Khan,Q2,All,,Struck out,Strike-out,Student crossed the whole answer out; it must not be counted even though it was attempted,9.5,10,0.5,No (struck out)
+ME25M048,Rajat Mukherjee,Q4,a,e3,Error,Calculation,"Closed-loop polynomial correct but roots solved wrongly (-2 +/- 4j, forgot to divide by 2); N_ff = 8 right",1.0,2,1.0,Yes
+ME25M048,Rajat Mukherjee,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M048,Rajat Mukherjee,Q4,d,e4,Error,Weak justification,Circular argument for zero error (stable so zero error); windup with clamping remedy correct,1.0,2,1.0,Yes
+ME25M048,Rajat Mukherjee,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M048,Rajat Mukherjee,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M048,Rajat Mukherjee,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M049,Pallavi Shetty,Q3,d,ok_alt,Alternative method,Valid alternative,Different wording of correct points: no lag + unmeasured states/disturbances; filter safer under model mismatch or saturation; full marks expected,2.0,2,0.0,Yes
+ME25M049,Pallavi Shetty,Q1,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M050,Karan Oberoi,Q4,b,e1,Error,Conceptual,Assumed error scales with b (0.75 / 25%) without recomputing DC gain; correct answer is 0.8 / 20%,0.0,2,2.0,Yes
+ME25M050,Karan Oberoi,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M051,Meghna Ghosh,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M051,Meghna Ghosh,Q1,c,e1,Error,Method,"Used forward-Euler instead of the exact ZOH discretisation (F=0.8, G=0.1); question demands exact model",0.0,3,3.0,Yes
+ME25M051,Meghna Ghosh,Q3,a,e1,Error,Conceptual,One valid reason (noise amplification); second reason (memory/processing cost) is wrong,1.0,2,1.0,Yes
+ME25M051,Meghna Ghosh,Q3,b,e4,Error,Incomplete,"Coefficients correct but DC gain only asserted, not verified from the difference equation",1.5,2,0.5,Yes
+ME25M051,Meghna Ghosh,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M051,Meghna Ghosh,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M051,Meghna Ghosh,Q4,b,e2,Error,Calculation,Correct DC-gain formula but denominator not updated for b=0.75 (used 8 not 7.5): result 0.75 / 25% instead of 0.8 / 20%,1.0,2,1.0,Yes
+ME25M051,Meghna Ghosh,Q4,c,e4,Error,Conceptual,"Swapped a and c in characteristic polynomial: k1=22, k2=2 wrong; K_I = 32 right",2.5,4,1.5,Yes
+ME25M051,Meghna Ghosh,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M052,Arvind Krishnamurthy,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M052,Arvind Krishnamurthy,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M052,Arvind Krishnamurthy,Q1,c,e2,Error,Calculation,Integration slip: ∫e^(−2τ)dτ taken as 1−e^(−0.2) (missing 1/2): G = 0.1813 instead of 0.0906; F and formulas right,2.0,3,1.0,Yes
+ME25M052,Arvind Krishnamurthy,Q2,b,e2,Error,Conceptual,Used sin(theta_e) instead of cos(theta_e) in the Jacobian: A21 = -106.2 (should be -61.31),1.0,2,1.0,Yes
+ME25M052,Arvind Krishnamurthy,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M052,Arvind Krishnamurthy,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M053,Trisha Dutta,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M053,Trisha Dutta,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M053,Trisha Dutta,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M053,Trisha Dutta,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M053,Trisha Dutta,Q4,b,e3,Error,Calculation,theta_ss = 0.8 correct but % error computed as 80% (should be 20%),1.0,2,1.0,Yes
+ME25M053,Trisha Dutta,Q4,d,e3,Error,Weak remedy,"Zero-error derivation correct; windup named but remedy (""reduce K_I to zero"") is not a standard anti-windup scheme",1.5,2,0.5,Yes
+ME25M053,Trisha Dutta,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M054,Zoya Ansari,Q1,a,e1,Error,Unit conversion,Unit slip: 16 mm / 5 µm evaluated as 16/5 = 3.2 (µm not converted); FOV and per-pixel values absurd but formulas right (error carried forward),2.0,4,2.0,Yes
+ME25M054,Zoya Ansari,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M054,Zoya Ansari,Q2,a,e3,Error,Conceptual,Claims an equilibrium exists for every tau0 (ignores |sin|<=1 so |tau0|<=mgl); model correct,1.0,2,1.0,Yes
+ME25M054,Zoya Ansari,Q2,b,e1,Error,Calculation,"Calculator left in radian mode: cos(60) = -0.952 gives A21 = +116.8 instead of -61.31; structure, A22 and B right",1.0,2,1.0,Yes
+ME25M054,Zoya Ansari,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M054,Zoya Ansari,Q2,d,e2,Error,Weak justification,Correct conclusions (error 0; poles unchanged) but justification wrong: term depends on theta; real reason is cos 90 deg = 0,1.5,2,0.5,Yes
+ME25M054,Zoya Ansari,Q3,a,e3,Error,Conceptual,Both reasons wrong (adds a pole / derivative of a sampled signal not defined),0.0,2,2.0,Yes
+ME25M054,Zoya Ansari,Q3,b,e1,Error,Method,Used forward Euler instead of Tustin: coefficients 0.8743/0.1257 wrong for the bilinear transform; DC check done and valid-filter structure partly credited,1.0,2,1.0,Yes
+ME25M054,Zoya Ansari,Q3,c,e2,Error,Calculation,"Expanded (s+10)^2 as s^2+10s+100 (should be 20s) giving L=[8,84]; characteristic polynomial derived correctly",2.5,4,1.5,Yes
+ME25M054,Zoya Ansari,Q3,d,e1,Error,Conceptual,"Observer advantage correct (uses model/input, no lag); circumstance wrong (claims filter safer at high sampling rate)",1.0,2,1.0,Yes
+ME25M054,Zoya Ansari,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M055,Harini Sundaram,Q1,a,ok_2sf,Error,Unit/Precision,"Per-pixel distance reported to 2 s.f. (0.13 mm/px), violating the 3-s.f. instruction (-0.5)",3.5,4,0.5,Yes
+ME25M055,Harini Sundaram,Q1,b,e2,Error,Calculation,Decimal-place slip in final division (0.0122 N instead of 0.122 N); method correct,2.5,3,0.5,Yes
+ME25M055,Harini Sundaram,Q1,c,ok_2sf,Error,Unit/Precision,"F and G reported to 2 s.f. (0.82, 0.09), violating the 3 s.f. instruction (-0.5)",2.5,3,0.5,Yes
+ME25M055,Harini Sundaram,Q2,b,ok_2sf,Error,Unit/Precision,"A21 given as -61 (2 s.f.), violating the 3 s.f. instruction (-0.5)",1.5,2,0.5,Yes
+ME25M055,Harini Sundaram,Q2,c,ok_2sf,Error,Unit/Precision,"Final error quoted as 2.8 deg (2 s.f.), violating the 3 s.f. instruction (-0.5)",3.5,4,0.5,Yes
+ME25M055,Harini Sundaram,Q3,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M056,Omkar Patil,Q1,a,bare,Error,Missing working,Final answers only; no formula or substitution (instruction 5 gives no credit),0.0,4,4.0,Yes
+ME25M056,Omkar Patil,Q1,b,bare,Error,Missing working,Bare numeric answer; no formula or substitution (no credit under instruction 5),0.0,3,3.0,Yes
+ME25M056,Omkar Patil,Q1,c,e4,Error,Notation,F and G computed correctly but swapped in the final model x[k+1] = G x[k] + F u[k],2.5,3,0.5,Yes
+ME25M056,Omkar Patil,Q3,b,bare,Error,Missing working,Final difference equation and DC gain stated without derivation (no credit under instruction 5),0.0,2,2.0,Yes
+ME25M056,Omkar Patil,Q3,c,bare,Error,Missing working,Final L stated without derivation of the characteristic polynomial (no credit under instruction 5),0.0,4,4.0,Yes
+ME25M056,Omkar Patil,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M057,Naveen Kumar,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M057,Naveen Kumar,Q1,c,e2,Error,Calculation,Integration slip: ∫e^(−2τ)dτ taken as 1−e^(−0.2) (missing 1/2): G = 0.1813 instead of 0.0906; F and formulas right,2.0,3,1.0,Yes
+ME25M057,Naveen Kumar,Q2,a,e1,Error,Incomplete,Equilibrium range given as 0 <= tau0 <= mgl; misses negative torques (should be |tau0| <= mgl),1.5,2,0.5,Yes
+ME25M057,Naveen Kumar,Q2,d,e3,Error,Conceptual,Claims a residual error of ~0.5 deg (should be exactly 0); poles unchanged with correct reason (cos 90 deg = 0),1.0,2,1.0,Yes
+ME25M057,Naveen Kumar,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M057,Naveen Kumar,Q3,d,e3,Error,Conceptual,Both answers wrong (claims no observer advantage; filter safer when model perfectly known),0.0,2,2.0,Yes
+ME25M057,Naveen Kumar,Q4,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M058,Shalini Pandey,Q1,b,e4,Error,Unit conversion,"Read 10 mV/N as 10 V/N: LSB correct, method right, result 1.22e-4 N (off by 1000)",2.0,3,1.0,Yes
+ME25M058,Shalini Pandey,Q1,c,e4,Error,Notation,F and G computed correctly but swapped in the final model x[k+1] = G x[k] + F u[k],2.5,3,0.5,Yes
+ME25M058,Shalini Pandey,Q4,a,e3,Error,Calculation,"Closed-loop polynomial correct but roots solved wrongly (-2 +/- 4j, forgot to divide by 2); N_ff = 8 right",1.0,2,1.0,Yes
+ME25M058,Shalini Pandey,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M058,Shalini Pandey,Q2,All,,Not attempted,Omission,Question left blank (0 marks; may be dropped from best-3 anyway),0.0,10,10.0,
+ME25M059,Vivek Rao,Q2,c,e3,Error,Conceptual,Claims PD drives error to zero and ignores gravity at steady state; only states theta-dot = theta-ddot = 0,0.5,4,3.5,Yes
+ME25M059,Vivek Rao,Q3,b,e2,Error,Calculation,Forgot 2*pi: used w_c = 20 rad/s instead of 125.66 rad/s; Tustin method and DC check correct,1.5,2,0.5,Yes
+ME25M059,Vivek Rao,Q4,a,e2,Error,Conceptual,"Gravity stiffness c dropped from the characteristic equation (s^2+4s+2): poles -0.59,-3.41 and N_ff=2 wrong; structure of derivation right",0.5,2,1.5,Yes
+ME25M059,Vivek Rao,Q4,c,e1,Error,Sign error,Sign error in constant term (-b*K_I): gives K_I = -32 instead of +32; other coefficients right,3.0,4,1.0,Yes
+ME25M059,Vivek Rao,Q1,All,,Struck out,Strike-out,Student crossed the whole answer out; it must not be counted even though it was attempted,10.0,10,0.0,No (struck out)
+ME25M060,Ankita Sinha,Q1,a,e3,Error,Incomplete,f_x and FOV correct but distance per pixel never given (-1.0),3.0,4,1.0,Yes
+ME25M060,Ankita Sinha,Q1,c,e3,Error,Misread data,"Sampling period misread as 0.01 s (should be 0.1 s); formulas right, numbers consistently wrong (F=0.9802, G=0.0099)",2.0,3,1.0,Yes
+ME25M060,Ankita Sinha,Q2,c,e4,Error,Calculation,Decimal slip: 2.4525/50 evaluated as 0.00491 rad giving 0.281 deg instead of 2.81 deg; reasoning and equation correct,2.5,4,1.5,Yes
+ME25M060,Ankita Sinha,Q3,a,e2,Error,Incomplete,Only one distinct reason (noise amplification) stated twice in different words,1.0,2,1.0,Yes
+ME25M060,Ankita Sinha,Q3,c,e4,Error,Calculation,Arithmetic slip: l2 = 100 - 18 = 82 (forgot 2*l1 = 36) instead of 64; derivation and l1 correct,3.0,4,1.0,Yes
+ME25M060,Ankita Sinha,Q4,d,e2,Error,Weak justification,Hand-wavy zero-error argument (no equation: integrator accumulates until error is zero); windup + anti-windup clamp correct,1.5,2,0.5,Yes

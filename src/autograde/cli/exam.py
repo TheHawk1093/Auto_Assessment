@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 from autograde.cli.common import run_dir, write_json
-from autograde.config import Settings, TeacherInputs
+from autograde.config import Settings
 from autograde.intake.answers import load_answers
 from autograde.intake.exam import (
     build_items,
@@ -18,10 +18,12 @@ from autograde.intake.exam import (
     schemes_markdown,
     student_markdown,
 )
+from autograde.intake.models import ExamRules
 from autograde.intake.paper import load_paper
 from autograde.intake.reference import load_references
+from autograde.intake.rules import apply_rules, extract_rules
 from autograde.llm import build_client
-from autograde.pipeline.rubric import store_for
+from autograde.pipeline.rubric import rubric_client, store_for
 from autograde.pipeline.run import run_items, to_question
 
 log = logging.getLogger(__name__)
@@ -42,8 +44,9 @@ def register(sub) -> None:
     )  # fmt: skip
     p.add_argument("--name", required=True, help="exam name; results go to runs/<name>/")
     p.add_argument(
-        "--granularity", choices=["rubric", "none", "half", "quarter"], default="rubric",
-        help="part marks: as the rubric says, none, halves, or quarters of a point",
+        "--granularity", choices=["rubric", "stated", "none", "half", "quarter"],
+        help="part marks, overriding what the rubric says: the rubric's own levels, only levels "
+        "it names (else all or nothing), none, halves, or quarters of a point",
     )  # fmt: skip
     p.add_argument(
         "--mark-step", type=float,
@@ -64,6 +67,15 @@ def register(sub) -> None:
         help="do not credit a later part that is right on the student's own earlier result",
     )  # fmt: skip
     p.add_argument(
+        "--working-required", action="store_true",
+        help="a numerical answer with no formula or working written earns no marks",
+    )  # fmt: skip
+    p.add_argument(
+        "--ignore-rubric-rules", action="store_true",
+        help="do not read exam-wide marking rules (whole marks, working required, carry-through) "
+        "from the paper and rubric",
+    )  # fmt: skip
+    p.add_argument(
         "--code-exec", action="store_true",
         help="run tests on student code in the sandbox (the model writes tests if none are given)",
     )  # fmt: skip
@@ -73,6 +85,25 @@ def register(sub) -> None:
     )  # fmt: skip
     p.add_argument("--schemes-only", action="store_true", help="write the marking schemes and stop")
     p.set_defaults(func=cmd_exam)
+
+
+def rules_markdown(rules: ExamRules) -> str:
+    """The exam-wide rules read from the documents, shown above the schemes for the teacher."""
+    if not rules.found:
+        return ""
+    lines = ["## Exam-wide rules read from the paper and rubric", ""]
+    if rules.working_required:
+        lines.append("- A numerical answer with no formula or working earns no marks.")
+    if rules.part_marks != "unstated":
+        lines.append(f"- Part marks: {rules.part_marks.replace('_', ' ')}.")
+    if rules.mark_step:
+        lines.append(f"- Marks come in multiples of {rules.mark_step:g}.")
+    if rules.follow_through is not None:
+        lines.append(
+            f"- Follow-through on earlier parts: {'yes' if rules.follow_through else 'no'}."
+        )
+    lines += [f"- {n}" for n in rules.notes]
+    return "\n".join(lines) + "\n\n"
 
 
 def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
@@ -85,11 +116,17 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
     answers, more = load_answers(args.answers, paper, client)
     warnings += more
     key = exam_key(args.name, paper, refs)
+    rules = ExamRules()
+    if not args.ignore_rubric_rules:
+        rules = extract_rules(
+            args.paper, args.reference, rubric_client(settings, settings.pipeline)
+        )
     write_json(
         out / "intake.json",
         {
             "paper": paper.model_dump(),
             "references": {k: v.model_dump() for k, v in refs.items()},
+            "rules": rules.model_dump(),
             "students": list(answers),
             "warnings": warnings,
         },
@@ -101,14 +138,18 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
     settings.pipeline.rubric_variant = "solid"
     settings.pipeline.with_feedback = True  # feedback is part of the product
     notes = dict(n.split("=", 1) for n in args.question_note if "=" in n)
-    settings.pipeline.teacher = TeacherInputs(
-        partial_credit=args.granularity,
+    settings.pipeline.teacher = apply_rules(
+        rules,
+        granularity=args.granularity,
         mark_step=args.mark_step,
         strictness=args.strictness,
-        follow_through=not args.no_follow_through,
+        follow_through=False if args.no_follow_through else None,
+        working_required=args.working_required,
         notes=args.note,
         question_notes={f"{key}/{qid.strip()}": text for qid, text in notes.items()},
     )
+    if rules.found:
+        print("rules read from the paper and rubric:", rules.model_dump_json())
     settings.pipeline.code_exec = args.code_exec
     settings.pipeline.code_sandbox = args.code_sandbox
     items = build_items(key, paper, refs, answers)
@@ -119,7 +160,8 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
         item = first.get(q.id)
         if item is not None:
             records[q.id] = store.get(to_question(item))
-    (out / "schemes.md").write_text(schemes_markdown(paper, records), encoding="utf-8")
+    header = rules_markdown(rules)
+    (out / "schemes.md").write_text(header + schemes_markdown(paper, records), encoding="utf-8")
     print("marking schemes:", out / "schemes.md")
     if args.schemes_only:
         return

@@ -1,0 +1,99 @@
+Given: sensor 1280 px wide, pixel pitch p = 5 µm (square), lens f = 16 mm, standoff Z = 400 mm;
+force sensor 10 mV/N, 12-bit ADC over 0–5 V; plant ẋ = −2x + u with zero-order hold, T = 0.1 s.
+Q1(a). Assumptions: pinhole (thin-lens) camera model, lens focused on the belt plane, belt plane
+perpendicular to the optical axis, no lens distortion, so every pixel images the same length on the
+belt.
+(i) The focal length in pixel units is the physical focal length divided by the pixel pitch: fx = f/p =
+(16×10-3 m)/(5×10-6 m) = 3200. The metres cancel so the answer is in pixels. fx = 3200 px.
+(ii) Width of the sensor = N·p = 1280 × 5 µm = 6400 µm = 6.4 mm. Using similar triangles between
+the sensor and the belt plane, Ws/f = FOV/Z, hence FOV = Ws·Z/f = (6.4 mm)(400 mm)/(16 mm) =
+160 mm. FOV = 160 mm.
+Ground sampling distance = FOV/N = 160 mm / 1280 px = 0.125 mm/px. Cross-check with the
+pixel-based formula Z/fx = 400 mm / 3200 px = 0.125 mm/px; both agree, so 1 pixel = 0.125 mm
+= 125 µm on the belt.
+Q1(b). Assumptions: ideal 12-bit ADC (4096 codes), the full 0–5 V range is used, no offset or gain
+error, and sensor noise is below one LSB so quantisation sets the limit.
+Voltage step: 1 LSB = VFS/2N = 5 V/4096 = 1.2207×10-3 V = 1.2207 mV.
+The sensor maps force to voltage by V = S·F with S = 10 mV/N, so ΔFmin = ΔV/S = 1.2207 mV / (10
+mV/N) = 0.12207 N. ΔFmin ≈ 0.122 N. (Using 4095 steps instead of 4096 codes gives 0.1221 N,
+the same at 3 s.f.)
+Q1(c). With u held constant over [kT, (k+1)T] (zero-order hold) the variation-of-constants formula
+gives x((k+1)T) = eAT x(kT) + ∫0T eA(T−s) B u(kT) ds. Since u(kT) is constant it leaves the integral, so
+F = eAT and G = ∫0T eAσ B dσ = A-1(eAT − I)B for invertible A.
+Substitutting A = −2, B = 1, T = 0.1 s: F = e−0.2 = 0.81873. G = (0.81873 − 1)/(−2) = 0.090635.
+Sanity check: the DC gain of the continuous plant is −A-1B = 0.5, and the discrete DC gain G/(1 − F)
+= 0.090635/0.18127 = 0.5 ✓.
+xk+1 = 0.8187 xk + 0.0906 uk
+Given: A = [0, 1; 0, −2], B = [0; 1], C = [1, 0], fs = 1 kHz so the sample time is T = 1/fs = 1 ms.
+Q3(a). Reason 1 – noise amplification: the backward difference ωˆk = (θk − θk−1)/T has frequency
+response (1 − e−jωT)/T, whose magnitude grows with frequency (≈ ω for small ωT), i.e. it is a
+high-pass operation. Any noise on the encoder signal therefore appears in the velocity multiplied by
+roughly 1/T = 1000 s-1, and can swamp the true velocity.
+Reason 2 – quantisation: the encoder only reports integer counts, so Δθ is an integer multiple of the
+count size q. Dividing by T = 1 ms gives velocity steps of q/T; for a 4096-count encoder q =
+2π/4096 = 1.53×10-3 rad, so one step is 1.53 rad/s. At low speed the estimat flips between 0 and
+one step (a noisy staircase), exactly where the damping term of the PD law is needed.
+(A further, smaller issue is the half-sample delay of a backward difference, but the two reasons
+above are the main ones.)
+
+ME25M038 – Divya Sethi
+Q3(b). The analogue prototype is the first-order low-pass H(s) = ωc/(s + ωc) with ωc = 2πfc = 2π × 20
+= 125.66 rad/s. The bilinear (Tustin) transform replaces s by (2/T)(z − 1)/(z + 1) with T = 1/fs =
+0.001 s.
+Define a = ωcT/2 = 125.66 × 0.001/2 = 0.062832. Then H(z) = ωc / [(2/T)(z−1)/(z+1) + ωc] = a(z +
+1) / [(1 + a) z − (1 − a)] = a(1 + z-1) / [(1 + a) − (1 − a) z-1].
+Dividing through by (1 + a): a/(1 + a) = 0.062832/1.062832 = 0.059117 and (1 − a)/(1 + a) =
+0.937168/1.062832 = 0.881767. Hence with u = differenced signal and y = filtered velocity: yk =
+0.05912 (uk + uk−1) + 0.88177 yk−1. (Frequency pre-warping is neglected since fc ≪ fs/2.)
+Verification of the DC gain: set u and y constant (z = 1): y = 2(0.05912)u + 0.88177 y ⇒ y(1 −
+0.88177) = 0.11824 u ⇒ y/u = 0.11824/0.11823 = 1.000. In general H(1) = 2a/[(1 + a) − (1 − a)] =
+2a/2a = 1 exactly, so the steady-state output equals the commanded input ✓.
+Q3(c). A − LC = [−ℓ1, 1; −ℓ2, −2]; characteristic polynomial det(sI − A + LC) = (s + ℓ1)(s + 2) + ℓ2 = s²
++ (2 + ℓ1)s + (2ℓ1 + ℓ2).
+Desired (s + 10)² = s² + 20s + 100. Then 2 + ℓ1 = 20 ⇒ ℓ1 = 18, and 2ℓ1 + ℓ2 = 100 ⇒ ℓ2 = 100 −
+18 = 82.
+L = [18, 82]T.
+Q3(d). Advantage of the observer that no filter of this kind can give: the observer is driven by both the
+measurement y and the model with the actual input u, so it predicts the motion between samples.
+The velocity estimate therefore has little or no phase lag. The low-pass filter on differenced data, by
+contrast, always pays a lag of about 1/(2π fc) = 8 ms for its noise rejection, a trade-off it cannot
+escape. In addition the observer gives all states, and can be augmented with a disturbance state
+(e.g. unknown load torque) which no fliter on θ can estimate.
+Circumstance where the filter is safer: when the plant model is poorly known or changes during
+operation, for example an unknown payload, varying friction, contact with the environment, or
+actuator saturation making u differ from the commanded value. The observer propagates the
+wrong model so its estimate can be biased (and in the worst case unstable with the feedback loop),
+whereas the model-free fliter just smooths what the encoder actually measures.
+Given: plant θ¨ + aθ˙ + cθ = b u with a = 2, c = 6, b = 1; controller u = Nff r − k1θ − k2θ˙.
+Q4(a). Substitute the control law into the plant: θ¨ + aθ˙ + cθ = b Nff r − b k1 θ − b k2 θ˙. Moving the
+feedback terms to the left: θ¨ + (a + b k2) θ˙ + (c + b k1) θ = b Nff r.
+Numerically, a + b k2 = 2 + 2 = 4 and c + b k1 = 6 + 2 = 8, so the characteristic equation is s² + 4s
++ 8 = 0. Roots: s = [−4 ± √(16 − 32)]/2 = −2 ± 2j. They have negative real parts, so the loop is
+stable; ωn = √8 = 2.83 rad/s and ζ = 4/(2 × 2.83) = 0.707.
+Transfer function from r to θ: T(s) = b Nff / (s² + 4s + 8). DC gain (s = 0): T(0) = Nff/8. For unity DC
+gain, Nff = 8. (Note that this is larger than 1 because the gravity-related stiffness c and the
+feedback k1 both resist the displacement.)
+Q4(b). With the actual b = 0.75 and unchanged Nff = 8, k1 = k2 = 2, the closed loop becomes θ¨ + (a
++ bk2)θ˙ + (c + bk1)θ = bNff r, i.e. θ¨ + 3.5θ˙ + 7.5θ = 6 r.
+For a unit step the steady state is found by setting derivatives to zero: 7.5 θss = 6 × 1, so θss =
+6/7.5 = 0.8.
+Tracking error = (r − θss)/r × 100% = (1 − 0.8) × 100 = 20%. A common mistake would be to say
+the output falls by the same 25% as the actuator gain; that is wrong here, because b also appears
+in the feedback stiffness c + bk1, which decreases from 8 to 7.5 and partially compensates. The
+poles also change: s² + 3.5s + 7.5 → s = −1.75 ± 2.11j, still stable.
+
+ME25M038 – Divya Sethi
+Q4(c). Take the state z = [θ, θ˙, ξ]T. The plant gives θ¨ = −aθ˙ − cθ + b u with u = −k1θ − k2θ˙ + KIξ,
+and ξ˙ = r − θ. With r = 0 (r only shifts the equilibrium) the closed-loop matrix is Acl = [0, 1, 0; −(c
++ bk1), −(a + bk2), bKI; −1, 0, 0].
+Characteristic polynomial det(sI − Acl), expanding along the first row: s·[(s + a + bk2)s − 0] + 1·[(c
++ bk1)s + bKI] = s³ + (a + bk2)s² + (c + bk1)s + bKI. (Result)
+Desired poles −4 and −2 ± 2j: (s + 2 − 2j)(s + 2 + 2j) = (s + 2)² + 4 = s² + 4s + 8. Multiply by (s +
+4): s³ + 4s² + 8s + 4s² + 16s + 32 = s³ + 8s² + 24s + 32.
+Compare coefficients with a = 2, b = 1, c = 6: s²: 2 + k2 = 8 ⇒ k2 = 6. s¹: 6 + k1 = 24 ⇒ k1 = 18.
+s⁰: b KI = 32 ⇒ KI = 32.
+Check: all coefficients of the desired polynomial are positive and (8)(24) = 192 > 32, so
+Routh–Hurwitz confirms the three poles are in the left half plane ✓.
+Q4(d). Because the closed loop is stable, the steady-state error is zero for any b and c.
+Failure mode: integrater windup. Remedy: clamp the integrator output (anti-windup).
+Note: the integrator adds one state, so the loop becomes third order.

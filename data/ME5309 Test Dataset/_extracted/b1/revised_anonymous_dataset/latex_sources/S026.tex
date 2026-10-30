@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+(i) Pixel pitch p = 5 microm = 0.005 mm.
+Hence:\[\begin{aligned}f_x = f/p = 16/0.005 = 3200 pixels\end{aligned}\]
+(ii) Sensor width = 1280(0.005) = 6.40 mm.
+At standoff Z = 400 mm, belt width W = Z(6.40)/16 = 160 mm.
+\[\begin{aligned}Scale = 160/1280 = 0.125 mm/pixel\end{aligned}\]\par\smallskip\textit{Working:} $5\,\mu\mathrm{m}=5\times10^{-3}\,\mathrm{mm}=0.005\,\mathrm{mm}$. So $16/0.005=16\times200=3200$ pixels. For the sensor, $1280\times0.005=6.4$ mm. Then $W=(400/16)\times6.4=25\times6.4=160$ mm, and $160/1280=0.125$ mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+\[\begin{aligned}Sensitivity = 10 mV/N\end{aligned}\]
+The ADC has 12 bits, so there are 4096 levels.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+For zero-order hold, F = e\textasciicircum{}(AT) and G = integral\_0\textasciicircum{}T e\textasciicircum{}(Aτ)B dτ.
+Here:\[\begin{aligned}A = -2, B = 1, T = 0.1 s\end{aligned}\]
+Thus:\[\begin{aligned}F = e^(-0.2) = 0.818731\\ G = (1-e^(-0.2))/2 = 0.0906346\end{aligned}\]
+Therefore:\[\begin{aligned}x_{k+1} = 0.818731 x_k + 0.0906346 u_k\end{aligned}\]\par\smallskip With $AT=(-2)(0.1)=-0.2$, $F=e^{-0.2}=0.8187308$. For $G$, $(1-F)/2=(1-0.8187308)/2=0.1812692/2=0.0906346$. Thus the input contribution is positive.
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+Choose x₁ = θ and x₂ = θ̇.
+Then ẋ₁ = x₂ and ẋ₂ = [τ - b x₂ - mgℓ sin(x₁)]/J.
+At equilibrium:\[\begin{aligned}x_2 = 0 and τ_0 = mg\ell sin \theta_e\end{aligned}\]
+Since |sin θ\_e| less than or equal to 1, an equilibrium exists when |τ₀| less than or equal to mgℓ = 2.4525 N m.\par\smallskip At rest $\dot\theta=0$ and $\ddot\theta=0$, so the damping term vanishes. Rearranging gives $\tau_0=mg\ell\sin\theta_e$. Here $mg\ell=1\times9.81\times0.25=2.4525$ N\,m. Since $-1\leq\sin\theta_e\leq1$, the required torque must lie between $-2.4525$ and $+2.4525$ N\,m.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+With x = [θ, θ̇]ᵀ, A = [[0,1], [-(mgℓ/J)cos θ\_e, -b/J]], B = [[0],[1/J]].
+At θ\_e = 60°, A = [[0,1], [-61.3125, -2.5]] and B = [[0],[50]].\par\smallskip At the equilibrium, the constant torque balances gravity. For a small perturbation, use $\sin(\theta_e+\delta\theta)\approx\sin\theta_e+\cos\theta_e\,\delta\theta$. The constant terms cancel against $\tau_0$; the remaining linear term gives the local state matrix.
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At steady state the derivative terms vanish.
+The proportional torque is Kp(θd-θ), which must balance mgℓ sin θ.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+With gravity compensation, the gravity term cancels the plant's mgℓ sin θ term.
+At rest, Kp(θd-θss)=0, so θss=θd and the steady-state error is zero.
+The linearised gravity stiffness term is also cancelled, so the closed-loop poles generally change; the stiffness contribution mgℓ cos θd is removed.\par\smallskip The compensation term cancels the nominal gravity torque in the plant model. At steady state the proportional term must then be zero, which requires $\theta_d-\theta_{ss}=0$. This does not mean the transient response is unchanged: removing the gravity derivative changes the linearized stiffness.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+Closed-loop characteristic polynomial is s²+(a+bk₂)s+(c+bk₁)=s²+4s+8, giving poles -2±2j.
+At DC, θ/r = bNff/(c+bk₁), so unity gain requires Nff=(c+bk₁)/b=(6+2)/1=8.\par\smallskip Comparing coefficients with $s^2+4s+8$ gives $a+bk_2=4$ and $c+bk_1=8$. The feedforward gain is chosen from the nominal plant so the reference scaling is unity; here this gives $N_{ff}=8$. The closed-loop roots of $s^2+4s+8$ are $-2\pm2j$.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+The actual feedforward contribution is 0.75x8=6.
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+The desired polynomial is (s+4)(s²+4s+8).
+The closed-loop polynomial should be cubic because an integrator is added.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+Integral action removes steady-state error, although this only holds for the nominal values of b and c.
+Saturation can cause windup, which should be handled by anti-windup.
+
+\end{document}

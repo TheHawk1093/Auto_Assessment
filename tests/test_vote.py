@@ -220,3 +220,32 @@ def test_form_gate_leaves_a_requested_list_alone():
     assert kept.total == 2.0 and flag is None
     capped, flag = apply_form_gate(Grading(verdicts=[v]), reading, 2.0, "Explain why it works.")
     assert capped.total == 1.0 and flag == "keyword_list_capped"
+
+
+def test_working_gate_zeroes_a_bare_numerical_answer_only_when_asked():
+    from autograde.pipeline.verify import apply_working_gate
+    from autograde.schemas import (
+        Grading,
+        NumericSpec,
+        PointVerdict,
+        Reading,
+        Rubric,
+        RubricPoint,
+    )
+
+    v = PointVerdict(point_id="P1", status="met", marks_awarded=2.0, evidence="a", reason="r")
+    g = Grading(verdicts=[v])
+    spec = NumericSpec(value=3200)
+    numeric = Rubric(points=[RubricPoint(id="P1", description="d", marks=2.0, numeric=spec)])
+    plain = Rubric(points=[RubricPoint(id="P1", description="d", marks=2.0)])
+    bare = Reading(gist="g", ideas=[], problems=[], working_shown=False)
+    shown = Reading(gist="g", ideas=[], problems=[])
+
+    zero, flag = apply_working_gate(g, bare, numeric)
+    assert zero.total == 0.0 and flag == "no_working"
+    assert apply_working_gate(g, shown, numeric) == (g, None)
+    assert apply_working_gate(g, bare, plain) == (
+        g,
+        None,
+    )  # nothing numerical to demand working for
+    assert apply_working_gate(g, None, numeric) == (g, None)

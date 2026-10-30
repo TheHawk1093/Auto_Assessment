@@ -1,0 +1,42 @@
+{
+  "question_key": "me5309_test.9383b4fa/3a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid mechanism, correctly explained: quantisation amplification. The encoder position is quantised to discrete counts; differencing (\u03b8k \u2212 \u03b8k\u22121)/T divides a one-count error (\u0394\u03b8) by the small sample period T, so a one-count jitter gives a large spurious velocity (e.g. 0.01\u00b0 count at 1 kHz \u2192 10\u00b0/s). Must explain why differencing causes it, not just name it.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names quantisation / finite encoder resolution as a cause but gives no explanation of why differencing amplifies it (no division by small T, no one-count jitter effect)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Second, genuinely distinct mechanism, correctly explained: noise amplification by differentiation. Differentiation has gain rising with frequency, so broadband sensor/electrical noise on the position signal is amplified at high frequencies where there is no useful signal. Must explain why differencing causes it. Generic 'it is noisy' or 'noise is amplified' that merely restates quantisation noise does not count as distinct.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names sensor/measurement noise (or high-frequency noise) as a problem but gives no explanation of why differencing amplifies it (no mention of rising gain with frequency or high-pass behaviour)."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need two distinct mechanisms, each explained: quantisation divided by small T, and high-frequency noise amplification by differentiation. A mechanism only named without explanation earns half. Vague 'noise' stated twice in different words counts as one mechanism; ignore any discussion of changing fs.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

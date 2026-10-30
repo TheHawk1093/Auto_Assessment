@@ -63,14 +63,16 @@ class TeacherInputs(BaseModel):
     These are the only human inputs at run time; nothing here is tuned to a dataset.
     """
 
-    partial_credit: Literal["rubric", "none", "half", "quarter"] = "rubric"
-    # rubric: the rubric's own levels. none: all or nothing. half: 0.5. quarter: 0.25, 0.5, 0.75.
+    partial_credit: Literal["rubric", "stated", "none", "half", "quarter"] = "rubric"
+    # rubric: the rubric's own levels. stated: only the levels the rubric names; any other point is
+    # all or nothing. none: all or nothing. half: 0.5. quarter: 0.25, 0.5, 0.75.
     mark_step: float | None = Field(default=None, gt=0)
     # Marks come in multiples of this many marks: 0.5 allows 1.5 out of 2, 0.2 allows 1.8.
     # It decides the partial marks of a point, so it wins over `partial_credit` when both are set.
     strictness: Literal["lenient", "moderate", "strict"] | None = None  # how tightly to judge
     follow_through: bool = True  # multi-part: credit a later part that is right on the student's
     # own (wrong) earlier result
+    working_required: bool = False  # a numerical answer with no formula or working earns nothing
     notes: str = ""  # free text for every question, e.g. "units are required"
     question_notes: dict[str, str] = {}  # the same, for one question key
 

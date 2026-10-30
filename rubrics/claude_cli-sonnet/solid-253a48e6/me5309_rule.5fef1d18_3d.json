@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_rule.5fef1d18/3d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid advantage of the observer over a filter, with correct reasoning. Acceptable: uses the known input u and plant model to predict rather than differentiate, so it tracks changing velocity with no/less lag within its bandwidth (a low-pass filter trades lag against smoothing); OR it estimates a state not directly measured, not just a smoothed differentiated signal; OR quantisation enters through a bounded filtered path rather than being divided by T. A bare claim with no reason (e.g. 'it is better' or 'more accurate') earns nothing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States one valid circumstance where the filter is safer, specifically invoking model error or parameter uncertainty. Acceptable: the filter is model-free, whereas the observer is biased/misleading when A, B or actuator gain are wrong; OR plant parameters drift (temperature, load, wear) or strong nonlinearity away from the linearisation point; OR a badly identified model/sign error can make the observer diverge. Generic reasons not tied to model error (e.g. 'simpler', 'cheaper to compute') earn nothing.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Award 1 mark for a valid, reasoned observer advantage and 1 mark for a filter-favouring circumstance that cites model error or parameter uncertainty. Marks are whole only. Vague statements without reasoning, or filter reasons unrelated to model uncertainty, earn no mark.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

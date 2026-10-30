@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+(i) f\_x = 16/5 = 3.2 pixels, using focal length 16 mm and pixel size 5 microm.
+(ii) Sensor width is 6.4 mm, so field width = 400x6.4/16 = 160 mm and scale = 0.125 mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/4096 = 1.2207 mV.
+I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+For zero-order hold, F = e\textasciicircum{}(AT) and G = integral\_0\textasciicircum{}T e\textasciicircum{}(Aτ)B dτ.
+Here:\[\begin{aligned}A = -2, B = 1, T = 0.1 s\end{aligned}\]
+Thus:\[\begin{aligned}F = e^(-0.2) = 0.818731\\ G = (1-e^(-0.2))/2 = 0.0906346\end{aligned}\]
+Therefore:\[\begin{aligned}x_{k+1} = 0.818731 x_k + 0.0906346 u_k\end{aligned}\]\par\smallskip With $AT=(-2)(0.1)=-0.2$, $F=e^{-0.2}=0.8187308$. For $G$, $(1-F)/2=(1-0.8187308)/2=0.1812692/2=0.0906346$. Thus the input contribution is positive.
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+Choose x₁ = θ and x₂ = θ̇.
+Then ẋ₁ = x₂ and ẋ₂ = [τ - b x₂ - mgℓ sin(x₁)]/J.
+At equilibrium:\[\begin{aligned}x_2 = 0 and τ_0 = mg\ell sin \theta_e\end{aligned}\]
+Since |sin θ\_e| less than or equal to 1, an equilibrium exists when |τ₀| less than or equal to mgℓ = 2.4525 N m.\par\smallskip At rest $\dot\theta=0$ and $\ddot\theta=0$, so the damping term vanishes. Rearranging gives $\tau_0=mg\ell\sin\theta_e$. Here $mg\ell=1\times9.81\times0.25=2.4525$ N\,m. Since $-1\leq\sin\theta_e\leq1$, the required torque must lie between $-2.4525$ and $+2.4525$ N\,m.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+The Jacobian has A₁₂ = 1 and A₂₂ = -b/J = -2.5.
+The input matrix is B = [0, 50]ᵀ.
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+The balance is 50(90-θss) = 2.4525 sin θss.
+Solving gives a small error of about 0.05°.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\section*{Question 3 \hfill [10 marks]}
+\subsection*{Q3(a) \hfill [2 marks]}
+
+First, numerical differentiation amplifies high-frequency encoder noise and quantisation because a small position error is divided by the short sample interval.
+Second, differencing is sensitive to sampling/timing and can produce a noisy, jittery velocity signal; filtering reduces noise but adds lag.\par\smallskip In a finite difference, the change in position is divided by the sample interval. Encoder quantization error appears in the difference of two measurements, so it can be magnified by the division by $T_s$. The result may jump around even if the actual motion is smooth.
+
+\subsection*{Q3(b) \hfill [2 marks]}
+
+Tustin uses s = (2/T)(z-1)/(z+1).
+
+\subsection*{Q3(c) \hfill [4 marks]}
+
+The characteristic polynomial is s²+(ℓ₁+2)s+(2ℓ₁+ℓ₂).
+I match it to s²+10s+100 and get ℓ₁=8, ℓ₂=84.
+
+\subsection*{Q3(d) \hfill [2 marks]}
+
+The observer is better and the filter is safer in some cases.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+The characteristic polynomial is s²+4s+8, so I report poles -4 and -8.
+Unity DC gain requires Nff=8.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+\[\begin{aligned}\theta_{ss} = 0.75\times8/(6+2)=0.75,\\ \text{the percentage tracking error is 25\%}\end{aligned}\]
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+The characteristic polynomial is s³+(a+bk₂)s²+(c+bk₁)s+bK\_I.
+I use the target s³+6s²+12s+16, giving k₂=4, k₁=6, K\_I=16.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+At steady state, a stable closed loop with integral action drives ξ̇=r-θ to zero; therefore r-θ=0 and the tracking error is zero, assuming no saturation or other implementation limits prevent convergence.
+A practical failure mode is integrator windup during actuator saturation; the standard remedy is anti-windup, such as back-calculation or conditional integration.\par\smallskip With integral action, a constant tracking error keeps accumulating in the integral state, so the controller can adjust its output until the error goes to zero, assuming the closed loop is stable and the actuator is not constrained. Under saturation the integral state can keep growing; anti-windup limits or back-calculates that state.
+
+\end{document}

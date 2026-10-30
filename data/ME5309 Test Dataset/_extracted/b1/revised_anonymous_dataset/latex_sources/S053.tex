@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+(i) Pixel pitch p = 5 microm = 0.005 mm.
+Hence:\[\begin{aligned}f_x = f/p = 16/0.005 = 3200 pixels\end{aligned}\]
+(ii) Sensor width = 1280(0.005) = 6.40 mm.
+At standoff Z = 400 mm, belt width W = Z(6.40)/16 = 160 mm.
+\[\begin{aligned}Scale = 160/1280 = 0.125 mm/pixel\end{aligned}\]\par\smallskip\textit{Working:} $5\,\mu\mathrm{m}=5\times10^{-3}\,\mathrm{mm}=0.005\,\mathrm{mm}$. So $16/0.005=16\times200=3200$ pixels. For the sensor, $1280\times0.005=6.4$ mm. Then $W=(400/16)\times6.4=25\times6.4=160$ mm, and $160/1280=0.125$ mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+\[\begin{aligned}Sensitivity = 10 mV/N\end{aligned}\]
+The ADC has 12 bits, so there are 4096 levels.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+Using forward Euler, F approximately 1 + AT = 0.8 and G approximately BT = 0.1.
+Hence x[k+1] approximately 0.8x[k] + 0.1u[k].
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+Choose x₁ = θ and x₂ = θ̇.
+Then ẋ₁ = x₂ and ẋ₂ = [τ - b x₂ - mgℓ sin(x₁)]/J.
+At equilibrium:\[\begin{aligned}x_2 = 0 and τ_0 = mg\ell sin \theta_e\end{aligned}\]
+Since |sin θ\_e| less than or equal to 1, an equilibrium exists when |τ₀| less than or equal to mgℓ = 2.4525 N m.\par\smallskip At rest $\dot\theta=0$ and $\ddot\theta=0$, so the damping term vanishes. Rearranging gives $\tau_0=mg\ell\sin\theta_e$. Here $mg\ell=1\times9.81\times0.25=2.4525$ N\,m. Since $-1\leq\sin\theta_e\leq1$, the required torque must lie between $-2.4525$ and $+2.4525$ N\,m.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+With x = [θ, θ̇]ᵀ, A = [[0,1], [-(mgℓ/J)cos θ\_e, -b/J]], B = [[0],[1/J]].
+At θ\_e = 60°, A = [[0,1], [-61.3125, -2.5]] and B = [[0],[50]].\par\smallskip At the equilibrium, the constant torque balances gravity. For a small perturbation, use $\sin(\theta_e+\delta\theta)\approx\sin\theta_e+\cos\theta_e\,\delta\theta$. The constant terms cancel against $\tau_0$; the remaining linear term gives the local state matrix.
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At rest, θ̇ = θ̈ = 0, so the torque balance is Kp(θd-θss) = mgℓ sin θss.
+With Kp = 50, θd = π/2 and mgℓ = 2.4525, solve 50(π/2-θss) = 2.4525 sin θss.
+This gives θss approximately 1.52181 rad = 87.193°, so the error is 90°-87.193° = 2.807°; it is not zero.\par\smallskip Rearranging the steady-state equation gives $50(\pi/2-\theta_{ss})=2.4525\sin\theta_{ss}$. I used radians in the equation. Solving numerically gives $\theta_{ss}\approx1.522\,$rad $\approx87.19^\circ$, so the gap from $90^\circ$ is about $2.81^\circ$.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+With gravity compensation, the gravity term cancels the plant's mgℓ sin θ term.
+At rest, Kp(θd-θss)=0, so θss=θd and the steady-state error is zero.
+The linearised gravity stiffness term is also cancelled, so the closed-loop poles generally change; the stiffness contribution mgℓ cos θd is removed.\par\smallskip The compensation term cancels the nominal gravity torque in the plant model. At steady state the proportional term must then be zero, which requires $\theta_d-\theta_{ss}=0$. This does not mean the transient response is unchanged: removing the gravity derivative changes the linearized stiffness.
+
+\section*{Question 3 \hfill [10 marks]}
+\subsection*{Q3(a) \hfill [2 marks]}
+
+Finite differencing amplifies encoder noise, making the velocity estimate noisy.
+
+\subsection*{Q3(b) \hfill [2 marks]}
+
+I use ωc=20 rad/s and α=ωcT/2=0.01.
+Then:\[\begin{aligned}y[k] = 0.980198y[k-1] + 0.009901(x_k+x[k-1])\end{aligned}\]
+The DC gain is approximately 1.
+
+\subsection*{Q3(c) \hfill [4 marks]}
+
+The characteristic polynomial is s²+(ℓ₁+2)s+(2ℓ₁+ℓ₂).
+I match it to s²+10s+100 and get ℓ₁=8, ℓ₂=84.
+
+\subsection*{Q3(d) \hfill [2 marks]}
+
+The observer is simpler because it only smooths the measured velocity.
+The filter is safer when the model is poor.
+
+\end{document}

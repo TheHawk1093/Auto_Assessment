@@ -1,0 +1,39 @@
+where appropriate.
+Q1(a).
+Pixel pitch = 0.005 mm, sensor width = 1280x0.005 = 6.4 mm. how to calculate the belt field of
+view.
+Q1(b).
+Sensitivity = 10mV /N
+The ADC has 12 bits, so there are 4096 levels.
+Q1(c).
+Q2(a).
+Q2(b).
+A = [[0, 1], [−61.3125, −2.5]], B = [[0], [50]]
+Q2(c).
+At rest, 50(π/2-θss) = 2.4525. This gives θss = 1.5218 rad = 87.19°, so error approximately 2.81°.
+Q2(d).
+The added gravity torque should cancel the load, so the steady-state error becomes zero.
+Q3(a).
+Finite differences are poor mainly because the encoder measures angle in degrees instead of
+radians, and because the velocity signal is always delayed by one full second.
+Q3(b).
+y[k] = 0 .8818y[k − 1] + 0.0591xk + 0.0591x[k − 1], DCgain 1
+Q3(c).
+A-LC=[[-ℓ₁,1], [-ℓ₂,-2]]. The desired polynomial is (s+10)² = s²+20s+100.
+Q3(d).
+The observer is better and the filter is safer in some cases.
+Q4(a).
+Poles are -2±2j and Nff=8.
+Q4(b).
+The actual feedforward contribution is 0.75x8=6.
+Q4(c).
+k1 = 18, k2 = 6, KI = 32
+Q4(d).
+At steady state, a stable closed loop with integral action drives ξ ̇ =r-θ to zero; therefore r-θ=0
+and the tracking error is zero, assuming no saturation or other implementation limits prevent
+convergence. A practical failure mode is integrator windup during actuator saturation; the
+standard remedy is anti-windup, such as back-calculation or conditional integration.
+With integral action, a constant tracking error keeps accumulating in the integral state, so the
+controller can adjust its output until the error goes to zero, assuming the closed loop is stable
+and the actuator is not constrained. Under saturation the integral state can keep growing; anti-
+windup limits or back-calculates that state.

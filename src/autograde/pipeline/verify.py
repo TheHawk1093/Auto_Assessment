@@ -125,7 +125,7 @@ def _check_verdict(v: PointVerdict, worth: float, answer: str, require_evidence:
     return out
 
 
-GRANULARITY_SHARES = {"none": (), "half": (0.5,), "quarter": (0.25, 0.5, 0.75)}
+GRANULARITY_SHARES = {"none": (), "stated": (), "half": (0.5,), "quarter": (0.25, 0.5, 0.75)}
 
 
 def allowed_shares(
@@ -247,6 +247,34 @@ def apply_form_gate(
         ]
         return grading.model_copy(update={"verdicts": scaled}), "keyword_list_capped"
     return grading, None
+
+
+NO_WORKING = (
+    "No formula or working is written, and the teacher's rule gives no credit for a bare "
+    "numerical answer."
+)
+
+
+def apply_working_gate(
+    grading: Grading, reading: Reading | None, rubric: Rubric
+) -> tuple[Grading, str | None]:
+    """Teacher rule: a numerical answer with no working earns nothing, even when it is right.
+
+    Applies to a question whose scheme has a numeric final answer, when the reader found only
+    bare values. Every point is zeroed, because the rule is on the part as a whole.
+    """
+    if reading is None or reading.working_shown or not any(p.numeric for p in rubric.points):
+        return grading, None
+    zeroed = [
+        v.model_copy(
+            update={"status": "not_met", "marks_awarded": 0.0, "evidence": "", "reason": NO_WORKING}
+        )
+        if v.marks_awarded > 0
+        else v
+        for v in grading.verdicts
+    ]
+    changed = any(v.marks_awarded > 0 for v in grading.verdicts)
+    return grading.model_copy(update={"verdicts": zeroed}), "no_working" if changed else None
 
 
 def finalise_deductions(grading: Grading, rubric: Rubric, answer: str) -> tuple[Grading, list[str]]:

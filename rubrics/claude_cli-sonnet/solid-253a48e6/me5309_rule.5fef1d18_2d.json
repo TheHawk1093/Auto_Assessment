@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_rule.5fef1d18/2d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the new steady-state error is zero (\u03b8ss = \u03b8d, for any \u03b8d), with the cancellation of the gravity term shown or clearly asserted (the added +mg\u2113 sin\u03b8 cancels the plant's gravity term, leaving J \u03b8\u0308 + (b+Kd) \u03b8\u0307 + Kp(\u03b8\u2212\u03b8d) = 0). A bare 'zero' with no mention of cancellation earns no marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct, justified statement about the closed-loop poles. Award the mark for either: (a) the general answer: the poles do change, because the gravity stiffness term mg\u2113cos\u03b8 is removed from the s-coefficient/stiffness term (compensated: s\u00b2 + ((b+Kd)/J)s + Kp/J, versus (Kp+mg\u2113cos\u03b8)/J before); or (b) the specific answer: at \u03b8d = 90\u00b0 the gravity stiffness mg\u2113cos\u03b8 is zero or very small, so the poles are essentially unchanged at this operating point, though they would change elsewhere. Both together is the best answer (no extra marks; marker should note it on the script). No mark for an unjustified 'yes' or 'no', or for 'poles change because the plant is now linear' without identifying which coefficient (the mg\u2113cos\u03b8 stiffness) changes.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Each point is worth 1 mark, all or nothing. P1 needs zero error plus cancellation of gravity. P2 needs a justified pole statement identifying the mg\u2113cos\u03b8 stiffness term, either the general 'poles change' or the 'negligible at 90\u00b0' version.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

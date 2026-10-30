@@ -36,6 +36,11 @@ NON_ANSWER = "I do not know."
 
 PART_MARKS = {
     "rubric": "Part marks: use whatever steps suit each point.",
+    "stated": (
+        "Part marks: only where the rubric names them. Give a point levels only for the part marks "
+        "the rubric states; every other point is all or nothing, and do not add levels, leniency "
+        "or alternative credit that the rubric does not state."
+    ),
     "none": "Part marks: not allowed. Every point is all or nothing, so give no levels.",
     "half": "Part marks: half of a point's marks only. Give at most one level, with share 0.5.",
     "quarter": "Part marks: quarter steps only. Levels may have the shares 0.25, 0.5 and 0.75.",
@@ -95,7 +100,7 @@ def variant_dir(variant: str, teacher: TeacherInputs | None = None) -> str:
 
 def conform(rubric: Rubric, granularity: str) -> Rubric:
     """Make part-mark levels agree with the teacher's granularity, whatever the writer did."""
-    if granularity == "rubric":
+    if granularity in ("rubric", "stated"):
         return rubric
     allowed = GRANULARITY_SHARES[granularity]
     points = []
@@ -303,22 +308,29 @@ def _slug(text: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "_", text)
 
 
+def rubric_client(
+    settings: Settings, cfg: PipelineConfig, grader: LLMClient | None = None
+) -> LLMClient:
+    """The model that writes schemes (and reads the exam's rules): `rubric_model` if set."""
+    if not cfg.rubric_model:
+        return grader or build_client(settings.llm)
+    return build_client(
+        settings.llm.model_copy(
+            update={
+                "model": cfg.rubric_model,
+                "effort": None,
+                "backend": cfg.strong_backend or settings.llm.backend,
+            }
+        )
+    )
+
+
 def store_for(
     settings: Settings, cfg: PipelineConfig | None = None, grader: LLMClient | None = None
 ):
     """The scheme store a run uses. With `rubric_model`, that model writes the schemes."""
     cfg = cfg or settings.pipeline
-    author = grader or build_client(settings.llm)
-    if cfg.rubric_model:
-        author = build_client(
-            settings.llm.model_copy(
-                update={
-                    "model": cfg.rubric_model,
-                    "effort": None,
-                    "backend": cfg.strong_backend or settings.llm.backend,
-                }
-            )
-        )
+    author = rubric_client(settings, cfg, grader)
     return RubricStore(
         settings.paths.rubrics_dir,
         author,

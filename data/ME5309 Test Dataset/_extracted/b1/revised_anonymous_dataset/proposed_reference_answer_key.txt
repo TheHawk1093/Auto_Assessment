@@ -1,0 +1,17 @@
+PROPOSED REFERENCE ANSWER KEY (based on the question paper)
+
+Q1(a): f_x = f/p = 16 mm / 0.005 mm = 3200 px. Sensor width = 1280*0.005 = 6.4 mm. Belt FOV = Z*sensor_width/f = 400*6.4/16 = 160 mm. Scale = 160/1280 = 0.125 mm/px.
+Q1(b): ADC step = 5/4096 = 1.2207 mV. Force step = 1.2207 mV / (10 mV/N) = 0.12207 N.
+Q1(c): F = exp(AT)=exp(-0.2)=0.818731. G = integral_0^T exp(A*tau)B dt = (1-exp(-0.2))/2 = 0.0906346.
+Q2(a): x=[theta, theta_dot]^T; xdot=[theta_dot, (tau-b theta_dot-mgℓ sin(theta))/J]^T. Equilibrium: theta_dot=0, tau0=mgℓ sin(theta_e); |tau0| <= mgℓ = 2.4525 N m.
+Q2(b): A=[[0,1],[-(mgℓ/J)cos(theta_e), -b/J]], B=[[0],[1/J]]. At 60 deg A=[[0,1],[-61.3125,-2.5]], B=[[0],[50]].
+Q2(c): At steady state 50(pi/2-theta_ss)=2.4525 sin(theta_ss). theta_ss≈1.521805 rad=87.1930 deg; error≈2.80699 deg.
+Q2(d): Gravity compensation cancels mgℓ sin(theta), so theta_ss=theta_d and steady-state error is zero. Its local derivative cancels gravity stiffness mgℓ cos(theta_d), so the linearised closed-loop poles generally change. Kd is not numerically specified in the paper.
+Q3(a): Differentiation amplifies encoder noise/quantisation; also sensitive to sampling/timing and produces jitter. Filtering reduces noise at the cost of lag.
+Q3(b): H(s)=omega_c/(s+omega_c), omega_c=2*pi*20 rad/s, T=.001 s, alpha=omega_c*T/2=.0628319. y[k]=0.881765 y[k-1]+0.0591175(x[k]+x[k-1]); DC gain=2*0.0591175/(1-0.881765)≈1.
+Q3(c): A-LC=[[-l1,1],[-l2,-2]], p(s)=s^2+(l1+2)s+(2l1+l2). Match (s+10)^2: l1=18, l2=64.
+Q3(d): Observer uses state-space model and known input to estimate unmeasured states and allows pole placement. A simple filter may be safer if model uncertainty is large/unreliable.
+Q4(a): p(s)=s^2+(a+bk2)s+(c+bk1)=s^2+4s+8; poles=-2±2j. Unity DC gain Nff=(c+bk1)/b=8.
+Q4(b): theta_ss=b_actual*Nff/(c+b_actual*k1)=.75*8/(6+.75*2)=.8; error=20%.
+Q4(c): p(s)=s^3+(a+bk2)s^2+(c+bk1)s+b*KI. Desired (s+4)(s+2-2j)(s+2+2j)=(s+4)(s^2+4s+8)=s^3+8s^2+24s+32. Thus k2=6, k1=18, KI=32.
+Q4(d): For stable closed loop, xi_dot=r-theta tends to zero, hence steady-state error zero (assuming no limiting implementation issue). Windup under saturation; use anti-windup such as back-calculation or conditional integration.

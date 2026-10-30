@@ -1,0 +1,48 @@
+{
+  "question_key": "me5309_test.9383b4fa/4a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Closed-loop poles: substitutes the control law to get s\u00b2 + 4s + 8 = 0 (i.e. \u03b8\u0308 + (a+bk2)\u03b8\u0307 + (c+bk1)\u03b8 = bN_ff r) and finds poles s = \u22122 \u00b1 2j. Equivalent forms (\u22122 \u00b1 j2) accepted.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct closed-loop characteristic equation s\u00b2+4s+8=0 but poles wrong or not found."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "N_ff = 8, obtained from a stated DC-gain condition (e.g. set derivatives to zero or final value: \u03b8ss/r = bN_ff/(c+bk1) = N_ff/8 = 1). A bare value 8 with no DC-gain condition shown does not earn full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct DC-gain expression N_ff/8 (or b N_ff/(c+bk1)) stated but final N_ff wrong, or N_ff = 8 given without showing the DC-gain condition."
+          }
+        ],
+        "numeric": {
+          "value": 8.0,
+          "unit": "",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.0
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for poles \u22122 \u00b1 2j and N_ff = 8 justified by a DC-gain condition. Part marks as per levels for correct intermediate equation or DC-gain expression with a later error. No marks for the wrong closed-loop equation, e.g. ignoring the gravity term c.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Closed loop: \u03b8\u0308 + (a+bk2)\u03b8\u0307 + (c+bk1)\u03b8 = bN_ff r \u2192 \u03b8\u0308 + 4\u03b8\u0307 + 8\u03b8 = N_ff r. Characteristic: s\u00b2+4s+8=0 \u2192 s = \u22122 \u00b1 2j. DC gain (derivatives zero): \u03b8ss = N_ff r/8, so unity gain requires N_ff = 8."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

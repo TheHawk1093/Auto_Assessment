@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+\[\begin{aligned}f_x = 3200 pixels; field of view = 160 mm; 1 pixel = 0.125 mm\end{aligned}\]
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/4096 = 1.2207 mV.
+I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+\[\begin{aligned}F = 0.8187, G = 0.0906\end{aligned}\]
+
+\section*{Question 3 \hfill [10 marks]}
+\subsection*{Q3(a) \hfill [2 marks]}
+
+Finite differences are poor mainly because the encoder measures angle in degrees instead of radians, and because the velocity signal is always delayed by one full second.
+
+\subsection*{Q3(b) \hfill [2 marks]}
+
+I use ωc=20 rad/s and α=ωcT/2=0.01.
+Then:\[\begin{aligned}y[k] = 0.980198y[k-1] + 0.009901(x_k+x[k-1])\end{aligned}\]
+The DC gain is approximately 1.
+
+\subsection*{Q3(c) \hfill [4 marks]}
+
+\[\begin{aligned}L = [18,64]^T\end{aligned}\]
+
+\subsection*{Q3(d) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+Poles are -2±2j and Nff=8.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+With actual b=0.75 and unchanged Nff=8, k₁=2, the steady-state relation is θss = bNff/(c+bk₁) = 0.75x8/(6+0.75x2)=6/7.5=0.8.
+For r=1, percentage error = (1-0.8)x100\%=20\%.\par\smallskip With the actual gain, the steady-state output is $y_{ss}=b_{actual}N_{ff}r/ (c+b_{actual}k_1)$ for the stated setup. Substituting the given numbers gives $y_{ss}=0.8$ for a unit reference. Therefore $e_{ss}=1-0.8=0.2$, i.e. a 20\% error.
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+\[\begin{aligned}k_1=18, k_2=6, K_I=32\end{aligned}\]
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+Integral action helps eliminate error.
+A problem is that the controller can become unstable.
+
+\end{document}

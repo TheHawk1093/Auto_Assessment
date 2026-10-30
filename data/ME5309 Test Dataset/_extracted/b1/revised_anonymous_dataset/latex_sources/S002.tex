@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+(i) Pixel pitch p = 5 microm = 0.005 mm.
+Hence:\[\begin{aligned}f_x = f/p = 16/0.005 = 3200 pixels\end{aligned}\]
+(ii) Sensor width = 1280(0.005) = 6.40 mm.
+At standoff Z = 400 mm, belt width W = Z(6.40)/16 = 160 mm.
+\[\begin{aligned}Scale = 160/1280 = 0.125 mm/pixel\end{aligned}\]\par\smallskip\textit{Working:} $5\,\mu\mathrm{m}=5\times10^{-3}\,\mathrm{mm}=0.005\,\mathrm{mm}$. So $16/0.005=16\times200=3200$ pixels. For the sensor, $1280\times0.005=6.4$ mm. Then $W=(400/16)\times6.4=25\times6.4=160$ mm, and $160/1280=0.125$ mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/2\textasciicircum{}12 = 0.0012207 V = 1.2207 mV.
+Sensor sensitivity is 10 mV/N, so ΔF = 1.2207/10 = 0.12207 N.
+The smallest resolvable force change is approximately 0.122 N.\par\smallskip\textit{Calculation:} $2^{12}=4096$ levels. One step is $5/4096=0.0012207$ V, i.e. $1.2207$ mV. Dividing by the sensitivity, $1.2207\,\mathrm{mV}/(10\,\mathrm{mV/N})=0.12207$ N. The mV units cancel, leaving N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+For zero-order hold, F = e\textasciicircum{}(AT) and G = integral\_0\textasciicircum{}T e\textasciicircum{}(Aτ)B dτ.
+Here:\[\begin{aligned}A = -2, B = 1, T = 0.1 s\end{aligned}\]
+Thus:\[\begin{aligned}F = e^(-0.2) = 0.818731\\ G = (1-e^(-0.2))/2 = 0.0906346\end{aligned}\]
+Therefore:\[\begin{aligned}x_{k+1} = 0.818731 x_k + 0.0906346 u_k\end{aligned}\]\par\smallskip With $AT=(-2)(0.1)=-0.2$, $F=e^{-0.2}=0.8187308$. For $G$, $(1-F)/2=(1-0.8187308)/2=0.1812692/2=0.0906346$. Thus the input contribution is positive.
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+ẋ₁ = x₂ and ẋ₂ = (τ-b x₂+mgℓ sin θ)/J.
+At equilibrium:\[\begin{aligned}τ_0 = -mg\ell sin \theta_e,\\ \text{an equilibrium exists for |τ₀| less than or equal to 2.4525 N m}\end{aligned}\]
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+With x = [θ, θ̇]ᵀ, A = [[0,1], [-(mgℓ/J)cos θ\_e, -b/J]], B = [[0],[1/J]].
+At θ\_e = 60°, A = [[0,1], [-61.3125, -2.5]] and B = [[0],[50]].\par\smallskip At the equilibrium, the constant torque balances gravity. For a small perturbation, use $\sin(\theta_e+\delta\theta)\approx\sin\theta_e+\cos\theta_e\,\delta\theta$. The constant terms cancel against $\tau_0$; the remaining linear term gives the local state matrix.
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At rest, θ̇ = θ̈ = 0, so the torque balance is Kp(θd-θss) = mgℓ sin θss.
+With Kp = 50, θd = π/2 and mgℓ = 2.4525, solve 50(π/2-θss) = 2.4525 sin θss.
+This gives θss approximately 1.52181 rad = 87.193°, so the error is 90°-87.193° = 2.807°; it is not zero.\par\smallskip Rearranging the steady-state equation gives $50(\pi/2-\theta_{ss})=2.4525\sin\theta_{ss}$. I used radians in the equation. Solving numerically gives $\theta_{ss}\approx1.522\,$rad $\approx87.19^\circ$, so the gap from $90^\circ$ is about $2.81^\circ$.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+With gravity compensation, the gravity term cancels the plant's mgℓ sin θ term.
+At rest, Kp(θd-θss)=0, so θss=θd and the steady-state error is zero.
+The linearised gravity stiffness term is also cancelled, so the closed-loop poles generally change; the stiffness contribution mgℓ cos θd is removed.\par\smallskip The compensation term cancels the nominal gravity torque in the plant model. At steady state the proportional term must then be zero, which requires $\theta_d-\theta_{ss}=0$. This does not mean the transient response is unchanged: removing the gravity derivative changes the linearized stiffness.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+The characteristic polynomial is s³+(a+bk₂)s²+(c+bk₁)s+bK\_I.
+I use the target s³+6s²+12s+16, giving k₂=4, k₁=6, K\_I=16.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+At steady state, a stable closed loop with integral action drives ξ̇=r-θ to zero; therefore r-θ=0 and the tracking error is zero, assuming no saturation or other implementation limits prevent convergence.
+A practical failure mode is integrator windup during actuator saturation; the standard remedy is anti-windup, such as back-calculation or conditional integration.\par\smallskip With integral action, a constant tracking error keeps accumulating in the integral state, so the controller can adjust its output until the error goes to zero, assuming the closed loop is stable and the actuator is not constrained. Under saturation the integral state can keep growing; anti-windup limits or back-calculates that state.
+
+\end{document}

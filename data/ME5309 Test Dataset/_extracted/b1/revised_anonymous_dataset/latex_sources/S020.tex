@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+At equilibrium the velocity should be zero.
+The torque and gravity torque must balance.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+\[\begin{aligned}A = [[0,1], [-61.3125,-2.5]], B = [[0],[50]]\end{aligned}\]
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At steady state θ̇ = 0, and I assume θss = θd = 90° because the PD controller tracks the desired angle.
+Thus the steady-state error is zero.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+Gravity compensation makes the steady-state error zero.
+It does not change the closed-loop poles because it only adds a constant torque.
+
+\section*{Question 3 \hfill [10 marks]}
+\subsection*{Q3(a) \hfill [2 marks]}
+
+The estimate is noisy and can fluctuate from sample to sample.
+
+\subsection*{Q3(b) \hfill [2 marks]}
+
+The Tustin coefficients are y[k]=0.881765y[k-1]+0.0591175(x[k]+x[k-1]).
+The DC gain is 0.0591175/(1-0.881765)=0.5.
+
+\subsection*{Q3(c) \hfill [4 marks]}
+
+With L=[ℓ₁,ℓ₂]ᵀ and C=[1,0], A-LC=[[-ℓ₁,1], [-ℓ₂,-2]].
+Its characteristic polynomial is det(sI-(A-LC)) = (s+ℓ₁)(s+2)+ℓ₂ = s²+(ℓ₁+2)s+(2ℓ₁+ℓ₂).
+Desired poles at -10 give (s+10)²=s²+20s+100.
+Hence ℓ₁+2=20 gives ℓ₁=18, and 2ℓ₁+ℓ₂=100 gives ℓ₂=64.\par\smallskip Expanding $(s+\ell_1)(s+2)+\ell_2$ gives $s^2+(\ell_1+2)s+(2\ell_1+\ell_2)$. The desired polynomial is $(s+10)^2=s^2+20s+100$. Matching the $s$ coefficient gives $\ell_1=18$; matching the constant term then gives $36+\ell_2=100$, hence $\ell_2=64$.
+
+\subsection*{Q3(d) \hfill [2 marks]}
+
+An observer can estimate velocity from position measurements.
+A filter can be safer because it smooths noise.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+The closed-loop poles are -2±2j.
+I use Nff=c/b=6 for unity DC gain.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+The desired polynomial is (s+4)(s²+4s+8).
+The closed-loop polynomial should be cubic because an integrator is added.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+Integral action removes steady-state error, although this only holds for the nominal values of b and c.
+Saturation can cause windup, which should be handled by anti-windup.
+
+\end{document}

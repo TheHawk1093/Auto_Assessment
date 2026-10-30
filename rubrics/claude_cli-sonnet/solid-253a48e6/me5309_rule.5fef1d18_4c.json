@@ -1,0 +1,48 @@
+{
+  "question_key": "me5309_rule.5fef1d18/4c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Forms the augmented third-order model with the integral state included (e.g. x=[\u03b8 \u03b8\u0307 \u03be], \u03be\u0307=r\u2212\u03b8, \u03b8\u0308=\u2212(c+bk1)\u03b8\u2212(a+bk2)\u03b8\u0307+bK_I\u03be, or equivalent Acl matrix). Either sign convention accepted if consistent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct symbolic closed-loop characteristic polynomial s\u00b3+(a+bk2)s\u00b2+(c+bk1)s+bK_I.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Correct desired polynomial (s+4)(s\u00b2+4s+8)=s\u00b3+8s\u00b2+24s+32.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P4",
+        "description": "All three gains correct by coefficient matching: k1=18, k2=6, K_I=32. (If the student uses \u03be\u0307=r\u2212\u03b8 with \u2212K_I\u03be, K_I=\u221232 is accepted if the convention is stated and algebra consistent.)",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "One mark each for the augmented model, the symbolic characteristic polynomial, the desired polynomial, and the correct three gains. No part marks; each point is all or nothing. A different valid method (e.g. Routh or Laplace transfer function) that gives the same polynomial earns the marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Augmented model: \u03b8\u0308=\u2212(c+bk1)\u03b8\u2212(a+bk2)\u03b8\u0307+bK_I\u03be, \u03be\u0307=r\u2212\u03b8. Characteristic polynomial: s\u00b3+(a+bk2)s\u00b2+(c+bk1)s+bK_I. Desired: (s+4)(s\u00b2+4s+8)=s\u00b3+8s\u00b2+24s+32. With a=2,b=1,c=6: 2+k2=8 \u2192 k2=6; 6+k1=24 \u2192 k1=18; K_I=32. Final: k1=18, k2=6, K_I=32."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_test.9383b4fa/2b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct symbolic linearised state-space form with states x=[\u03b4\u03b8, \u03b4\u03b8\u0307]: A = [[0,1],[\u2212mg\u2113 cos\u03b8e/J, \u2212b/J]] and B = [[0],[1/J]]. Must use cos \u03b8e (derivative of sin \u03b8) with the correct negative sign on A21 and \u2212b/J in A22. Using sin \u03b8e, a sign error on A21, or other wrong symbolic form earns no marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct numerical entries: A = [[0,1],[\u221261.3,\u22122.5]] (A21 \u2248 \u221261.3 from 1\u00d79.81\u00d70.25\u00d70.5/0.02), and B = [[0],[50]]. Accept g=9.81 (\u221261.3) or small rounding differences. Award if numbers are consistent with the student's own symbolic expression only where the error is not in B (e.g. an own-expression A21 with correct \u22122.5 and 50); B=[0,1]^T (forgot 1/J) loses this mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "P1 is for the correct symbolic A and B (cos \u03b8e, correct signs). P2 is for the numerical entries \u221261.3, \u22122.5, 50. Using sin \u03b8e or measuring from the horizontal (A21 = \u2212106.2) loses P1; the numerical mark may be given only if the numbers follow from the student's own expression and B is correct. Maximum 1 for any single common error.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Let x1 = \u03b4\u03b8, x2 = \u03b4\u03b8\u0307, u = \u03b4\u03c4. \u03b8\u0308 = (\u03c4 \u2212 b\u03b8\u0307 \u2212 mg\u2113 sin\u03b8)/J. Linearising: sin\u03b8 \u2248 sin\u03b8e + cos\u03b8e \u03b4\u03b8, so \u03b4\u03b8\u0308 = \u2212(mg\u2113 cos\u03b8e/J) \u03b4\u03b8 \u2212 (b/J) \u03b4\u03b8\u0307 + \u03b4\u03c4/J.\nmg\u2113 = 1\u00d79.81\u00d70.25 = 2.4525; \u00d7cos60\u00b0 = 1.22625; /0.02 = 61.31. b/J = 2.5. 1/J = 50.\nA = [[0, 1], [\u221261.3, \u22122.5]], B = [[0], [50]]."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

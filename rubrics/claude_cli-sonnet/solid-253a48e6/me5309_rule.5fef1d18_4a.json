@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_rule.5fef1d18/4a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Closed-loop poles: substitutes the control law to get \u03b8\u0308 + 4\u03b8\u0307 + 8\u03b8 = Nff r (characteristic polynomial s\u00b2+4s+8) and gives poles s = \u22122 \u00b1 2j. Both poles must be correct (complex pair \u22122\u00b12j).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Nff = 8, obtained from a stated DC-gain condition (e.g. set derivatives to zero: \u03b8ss = b\u00b7Nff/(c+b\u00b7k1)\u00b7r = Nff/8\u00b7r, so unity gain requires Nff = 8). A bare value 8 with no DC-gain reasoning earns no mark. Consistent use of an incorrect closed-loop polynomial from P1 does not earn this mark unless the result is 8.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: poles \u22122\u00b12j (1) and Nff = 8 with stated DC-gain condition (1). No part-marks: each point is all or nothing. Answers with Nff = 8 but no DC-gain reasoning get 0 for P2.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Closed loop: \u03b8\u0308 + (a+bk2)\u03b8\u0307 + (c+bk1)\u03b8 = b Nff r \u2192 \u03b8\u0308 + 4\u03b8\u0307 + 8\u03b8 = Nff r. Characteristic polynomial s\u00b2+4s+8=0 \u2192 s = \u22122 \u00b1 2j. DC gain: derivatives zero \u2192 \u03b8ss = Nff/8 \u00b7 r; unity requires Nff = 8. Final: poles \u22122\u00b12j, Nff = 8 (dimensionless)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

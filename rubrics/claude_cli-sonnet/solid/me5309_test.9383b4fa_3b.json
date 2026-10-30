@@ -1,0 +1,37 @@
+{
+  "question_key": "me5309_test.9383b4fa/3b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Correct Tustin-discretised difference equation with numerical coefficients to 3 s.f.: y_k = 0.0591(u_k + u_{k-1}) + 0.882 y_{k-1} (b0 = b1 = \u03ba/(1+\u03ba) \u2248 0.0591, with \u03ba = \u03c9cT/2 = 0.0628, and a1 = (\u03ba\u22121)/(1+\u03ba) \u2248 \u22120.882, i.e. +0.882 y_{k-1} on the right-hand side). Equivalent forms accepted (e.g. y_k \u2212 0.882 y_{k-1} = 0.0591 u_k + 0.0591 u_{k-1}). Sign error on the y_{k-1} term or wrong coefficients earns no credit.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct method (Tustin substitution with \u03c9c = 125.66 rad/s, T = 1 ms) and correct general form of H(z), but numerical coefficients wrong or not given to 3 s.f."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "DC gain verified by evaluating H(z) at z = 1 (or by setting y_k = y_{k-1}, u_k = u_{k-1} in the difference equation): (b0+b1)/(1+a1) = 0.1182/0.1182 = 1, so the gain is unity. Must show the evaluation, not just assert it. Follow-through is allowed using the student's own coefficients if they are consistent.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks for the correct difference equation with coefficients 0.0591 (both input terms) and 0.882 (feedback term), and for showing the z=1 evaluation giving a gain of exactly 1. Give half of P1 for a correct method with a numerical slip. A bare statement that the DC gain is 1 without evaluation earns nothing for P2.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "H(s)=1/(1+s/\u03c9c), \u03c9c=2\u03c0\u00b720=125.66 rad/s, T=1 ms. Tustin: s=(2/T)(1\u2212z\u207b\u00b9)/(1+z\u207b\u00b9). \u03ba=\u03c9cT/2=0.062832. H(z)=\u03ba(1+z\u207b\u00b9)/((1+\u03ba)+(\u03ba\u22121)z\u207b\u00b9). b0=b1=\u03ba/(1+\u03ba)=0.0591; a1=(\u03ba\u22121)/(1+\u03ba)=\u22120.8818. Difference equation: y_k = 0.0591(u_k+u_{k-1}) + 0.882 y_{k-1}. DC gain at z=1: (0.1182)/(1\u22120.8818)=0.1182/0.1182=1. Gain is unity."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

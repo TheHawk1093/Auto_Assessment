@@ -1,0 +1,43 @@
+{
+  "question_key": "me5309_test.5dfa4004/1b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Resolution (LSB) of the ADC: writes the formula LSB = VFS/2^N (accept VFS/(2^N \u2212 1)) and substitutes VFS = 5 V, N = 12 to get LSB \u2248 1.22 mV (5/4096 = 1.2207 mV; 1.2210 mV with 4095 also accepted). The formula must be written; a bare 1.22 mV with no formula earns 0 for this point. If a wrong range is used (10 V or \u00b15 V), flag it; award marks only if arithmetic matches the stated range and formula.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Formula VFS/2^N written and substituted correctly but the arithmetic result is wrong or missing."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Divides the LSB voltage by the sensitivity: dF = 1.22 mV / (10 mV/N) = 0.122 N (0.1221 N). Multiplying by the sensitivity instead earns 0 here. If no LSB formula was shown, this mark is given only if the division itself is shown.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.1221,
+          "unit": "N",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0005,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: LSB computed from a written VFS/2^N (1.22 mV) and divided by 10 mV/N to give 0.122 N. Using 4095 instead of 4096 is accepted in full. Multiplying by sensitivity loses the last mark; a bare 1.22 mV with no formula earns no LSB marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "LSB = VFS/2^N = 5 V/4096 = 1.2207 mV. Smallest resolvable force change = LSB / sensitivity = 1.2207 mV / (10 mV/N) = 0.1221 N (\u22480.122 N)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

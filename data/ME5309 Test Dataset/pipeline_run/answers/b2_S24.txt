@@ -1,0 +1,114 @@
+Given: sensor 1280 px wide, pixel pitch p = 5 µm (square), lens f = 16 mm, standoff Z = 400 mm;
+force sensor 10 mV/N, 12-bit ADC over 0–5 V; plant ẋ = −2x + u with zero-order hold, T = 0.1 s.
+Q1(a). Assumptions: pinhole (thin-lens) camera model, lens focused on the belt plane, belt plane
+perpendicular to the optical axis, no lens distortion, so every pixel images the same length on the
+belt.
+(i) The focal length in pixel units is the physical focal length divided by the pixel pitch: fx = f/p =
+(16×10-3 m)/(5×10-6 m) = 3200. The metres cancel so the answer is in pixels. fx = 3200 px.
+(ii) Width of the sensor = N·p = 1280 × 5 µm = 6400 µm = 6.4 mm. Using similar triangles between
+the sensor and the belt plane, Ws/f = FOV/Z, hence FOV = Ws·Z/f = (6.4 mm)(400 mm)/(16 mm) =
+160 mm. FOV = 160 mm.
+Ground sampling distance = FOV/N = 160 mm / 1280 px = 0.125 mm/px. Cross-check with the
+pixel-based formula Z/fx = 400 mm / 3200 px = 0.125 mm/px; both agree, so 1 pixel = 0.125 mm
+= 125 µm on the belt.
+Q1(b). Assumtions: ideal 12-bit ADC (4096 codes), the full 0–5 V range is used, no offset or gain error,
+and sensor noise is below one LSB so quantisation sets the limit.
+Voltage step: 1 LSB = VFS/2N = 5 V/4096 = 1.2207×10-3 V = 1.2207 mV.
+The sensor maps force to voltage by V = S·F with S = 10 mV/N, so ΔFmin = ΔV/S = 1.2207 mV / (10
+mV/N) = 0.12207 N. ΔFmin ≈ 0.122 N. (Using 4095 steps instead of 4096 codes gives 0.1221 N,
+the same at 3 s.f.)
+Q1(c). With u held constant over [kT, (k+1)T] (zero-order hold) the variation-of-constants formula
+gives x((k+1)T) = eAT x(kT) + ∫0T eA(T−s) B u(kT) ds. Since u(kT) is constant it leaves the integral, so
+F = eAT and G = ∫0T eAσ B dσ = A-1(eAT − I)B for invertible A.
+Substituting A = −2, B = 1, T = 0.1 s: F = e−0.2 = 0.81873. G = (0.81873 − 1)/(−2) = 0.090635.
+Sanity check: the DC gain of the continuous plant is −A-1B = 0.5, and the discrete DC gain G/(1 − F)
+= 0.090635/0.18127 = 0.5 ✓.
+xk+1 = 0.8187 xk + 0.0906 uk
+Sanity check: a 160 mm field of view across 1280 pixels is plausible for a 400 mm standoff and a 16
+mm lens.
+Given: J = 0.02 kg·m², b = 0.05 N·m·s/rad, m = 1 kg, ℓ = 0.25 m, g = 9.81 m/s². So mgℓ = 1 × 9.81
+× 0.25 = 2.4525 N·m (used throughout).
+Q2(a). Let x1 = θ and x2 = θ˙. x˙1 = x2; x˙2 = (1/J)[τ + b x2 − mgℓ sin x1].
+Equilibrium: x2 = 0 and mgℓ sin θe = τ0. Because −1 ≤ sin θ ≤ 1 we need |τ0| ≤ mgℓ = 2.4525 N·m.
+Q2(b). Jacobian at θe = 60°: A = [0, 1; −(mgℓ/J) cos θe, −b/J].
+mgℓ/J = 2.4525/0.02 = 122.625; cos(60) = −0.9524, so A21 = −122.625 × (−0.9524) = +116.8. A22
+= −b/J = −2.5.
+A = [0, 1; 116.8, −2.5], B = [0; 50].
+
+ME25M024 – Nikhil Rao
+Q2(c). Set all time derivatives to zero in the closed loop. With τ = Kp(θd − θ) − Kdθ˙ and θ˙ = θ¨ = 0
+the damper term vanishes (so Kd has no effect on the final position) and the dynamics reduce to
+mgℓ sin θss = Kp(θd − θss).
+Why θss ≠ θd: if the joint were at rest exactly at θd = 90° the PD torque would be Kp·0 − Kd·0 = 0,
+yet graviy pulls with mgℓ sin 90° = 2.4525 N·m. The net torque would be non-zero, so the joint
+could not be at rest. A purely proportional-derivative law can only hold a load if there is a stedy
+error.
+Let e = θd − θss (in rad). Then sin θss = sin(π/2 − e) = cos e, and the equation becomes 50 e =
+2.4525 cos e. Fixed-point iteration: e0 = 2.4525/50 = 0.04905 (taking cos e ≈ 1); e1 = 0.04905 ×
+cos(0.04905) = 0.04899; e2 = 0.04905 × cos(0.04899) = 0.04899, converged.
+e = 0.04899 rad × (180/π) = 2.807°, so θss = 87.19°. Steady-state error ≈ 2.81° (the arm sags
+below the target). This is small because Kp is much larger than mgℓ (Kp/mgℓ ≈ 20).
+Q2(d). Stedy state: θ˙ = θ¨ = 0 and the control law gives τ = Kp(θd − θss) + mgℓ sin θss. Plugging into
+the plant, mgℓ sin θss = Kp(θd − θss) + mgℓ sin θss, so Kp(θd − θss) = 0 and θss = θd: steady-state
+error is zero.
+Poles: linearise the closed loop about θd. Before compensation, Jθ¨ + (b + Kd)θ˙ + (Kp + mgℓ cos
+θd) δθ = 0, characteristic polynomial Jλ² + (b + Kd)λ + Kp + mgℓ cos θd. After compensation the
+added term mgℓ sin θ cancels the plant's graviy term exactly, leaving Jλ² + (b + Kd)λ + Kp.
+The two differ only by mgℓ cos θd, and for θd = 90° this is 2.4525 × 0 = 0. So the closed-loop pols
+are unchanged at this operating angle. I should stress this is becuase cos 90° = 0; if θd were, say,
+60°, the compensation would raise the stiffness by 61.3 × 0.02... i.e. it would move the poles.
+Given: A = [0, 1; 0, −2], B = [0; 1], C = [1, 0], fs = 1 kHz so the sample time is T = 1/fs = 1 ms.
+Q3(a). Reason 1 – noice amplification: the backward difference ωˆk = (θk − θk−1)/T has frequency
+response (1 − e−jωT)/T, whose magnitude grows with frequncy (≈ ω for small ωT), i.e. it is a
+high-pass operation. Any noise on the encoder signal therefore appears in the velocity multiplied by
+roughly 1/T = 1000 s-1, and can swamp the true velocity.
+Reason 2 – quantisaton: the encoder only reports integer counts, so Δθ is an integer multiple of the
+count size q. Dividing by T = 1 ms gives velocity steps of q/T; for a 4096-count encoder q =
+2π/4096 = 1.53×10-3 rad, so one step is 1.53 rad/s. At low speed the estimate flips between 0 and
+one step (a noisy staircase), exactly where the damping term of the PD law is needed.
+(A further, smaller issue is the half-sample delay of a backward difference, but the two reasons
+above are the main ones.)
+Q3(b). ωc = 20 rad/s. Tustin with T = 0.001: a = ωcT/2 = 0.01.
+yk = [a/(1 + a)](uk + uk−1) + [(1 − a)/(1 + a)] yk−1 = 0.00990 (uk + uk−1) + 0.98020 yk−1.
+DC gain: 2(0.0099)/(1 − 0.9802) = 0.0198/0.0198 = 1 ✓.
+Q3(c). First check observability: O = [C; CA] = [1, 0; 0, 1], full rank, so the observer poles can be
+placed arbitrarily.
+With L = [ℓ1, ℓ2]T and C = [1, 0], LC = [ℓ1, 0; ℓ2, 0], so A − LC = [−ℓ1, 1; −ℓ2, −2].
+Characteristic polynomial: det(sI − (A − LC)) = det[s + ℓ1, −1; ℓ2, s + 2] = (s + ℓ1)(s + 2) − (−1)(ℓ2)
+= s² + (2 + ℓ1) s + (2ℓ1 + ℓ2).
+Both estimator poles at s = −10 means the desiered polynomial is (s + 10)² = s² + 20 s + 100.
+Comparing coefficients: s¹: 2 + ℓ1 = 20 ⇒ ℓ1 = 18. s⁰: 2ℓ1 + ℓ2 = 100 ⇒ ℓ2 = 100 − 36 = 64.
+L = [18, 64]T. Verification: A − LC = [−18, 1; −64, −2] has trace −20 and determinant (−18)(−2)
+− (1)(−64) = 36 + 64 = 100, so the polynomal is s² + 20s + 100 = (s + 10)² ✓.
+
+ME25M024 – Nikhil Rao
+Q3(d). The observer is more accurate than the filter.
+The filter is safer when you need something simple and cheap to implement.
+Given: plant θ¨ + aθ˙ + cθ = b u with a = 2, c = 6, b = 1; controler u = Nff r − k1θ − k2θ˙.
+Q4(a). Closed loop: θ¨ + (a + bk2)θ˙ + (c + bk1)θ = bNff r, i.e. s² + 4s + 8 = 0 so the pols are s = −2
+± 2j.
+DC gain = bNff/(c + bk1) = Nff/8. For unity gain Nff = 1/8 = 0.125.
+Q4(b). With the actual b = 0.75 and unchanged Nff = 8, k1 = k2 = 2, the closed loop becomes θ¨ + (a
++ bk2)θ˙ + (c + bk1)θ = bNff r, i.e. θ¨ + 3.5θ˙ + 7.5θ = 6 r.
+For a unit step the steady state is found by setting derivatives to zero: 7.5 θss = 6 × 1, so θss =
+6/7.5 = 0.8.
+Tracking error = (r − θss)/r × 100% = (1 − 0.8) × 100 = 20%. A common mistake would be to say
+the output falls by the same 25% as the acuator gain; that is wrong here, because b also appears in
+the feedback stiffness c + bk1, wich decreases from 8 to 7.5 and partially compensates. The poles
+also change: s² + 3.5s + 7.5 → s = −1.75 ± 2.11j, still stable.
+Q4(c). Substituting the control law and differentiating once: s³ + (c + bk2)s² + (a + bk1)s + bKI.
+Desired: (s + 4)(s² + 4s + 8) = s³ + 8s² + 24s + 32.
+6 + k2 = 8 ⇒ k2 = 2; 2 + k1 = 24 ⇒ k1 = 22; KI = 32.
+Q4(d). Suppose the closed loop is stable and r is constant. Then the state converges to a constant, so
+θ˙ = θ¨ = 0 and, crucially, ξ˙ = 0 as well (ξ itself is constant at its final value ξss). From the
+integrator equation ξ˙ = r − θ, we get r − θss = 0, i.e. θss = r.
+Neither b nor c appears in this argument. They only influence the value of ξss needed to hold the
+equilibrium (from the plant equation cθss = buss = b(−k1θss + KIξss)), and the pole locations, so the
+zero error survives any error in the model parameters provided the loop stays stable (unlike the
+feed-forward Nff scheme of part (b)).
+Practical failure mode: integrator windup. If the actuator saturates (torque limit), the loop is
+effectively open, the error stays non-zero and ξ keeps integrating to a huge value. When the
+reference becomes reachable the stored integral forces a large overshoot and a long recovery.
+Standard remidy: anti-windup, such as clamping the integrator when the acuator is saturated,
+conditional integration, or back-calculation that feeds the difference between commanded and
+saturated torque back to the integrator.

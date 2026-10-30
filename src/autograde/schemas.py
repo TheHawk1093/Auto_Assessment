@@ -374,6 +374,14 @@ class Reading(BaseModel):
             "incoherent: scrambled or meaningless text from which no claim can be read."
         ),
     )
+    working_shown: bool = Field(
+        default=True,
+        description=(
+            "False when a numerical result is given with no formula, substitution, derivation or "
+            "reasoning behind it, only bare final values. True otherwise, and for answers with "
+            "no numerical result."
+        ),
+    )
 
 
 class Result(BaseModel):

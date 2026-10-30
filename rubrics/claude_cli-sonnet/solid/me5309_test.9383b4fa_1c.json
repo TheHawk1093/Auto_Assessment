@@ -1,0 +1,62 @@
+{
+  "question_key": "me5309_test.9383b4fa/1c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States the ZOH discretisation formulae before substituting: F = e^{AT} and G = (\u222b\u2080\u1d40 e^{A\u03c4} d\u03c4)\u00b7B (or equivalent G = A^{-1}(F \u2212 I)B). Both F and G formulae must be given. Stating Euler or Tustin formulae does not earn this mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only one of the two formulae (F or G) is stated correctly."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct F = e^{-0.2} = 0.8187 (accept 0.819, 0.81873). Euler value 0.8 is wrong.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct exponent e^{-0.2} written but not evaluated numerically."
+          }
+        ],
+        "numeric": {
+          "value": 0.8187,
+          "unit": "",
+          "rel_tol": 0.0,
+          "abs_tol": 0.0005,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P3",
+        "description": "Correct G = (1 \u2212 e^{-0.2})/2 = 0.0906 (accept 0.09063). Sign-inverted (\u22120.0906) or Euler value 0.1 is wrong.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.0906,
+          "unit": "",
+          "rel_tol": 0.0,
+          "abs_tol": 0.0003,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: both formulae stated, F \u2248 0.8187 and G \u2248 0.0906. Only F given: 2 marks. Forward Euler (F=0.8, G=0.1) or Tustin, if clearly labelled, earns 1 mark maximum in total. Sign error giving G = \u22120.0906 keeps formula and F marks (2 total). Correct method with F and G left unevaluated: 1.5 maximum, but if it amounts to Euler, 1 maximum.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Formulae: F = e^{AT}, G = \u222b\u2080\u1d40 e^{A\u03c4}d\u03c4\u00b7B = A^{-1}(F \u2212 I)B. With A=\u22122, B=1, T=0.1: F = e^{\u22120.2} = 0.8187; G = (1 \u2212 e^{\u22120.2})/2 = 0.18127/2 = 0.0906. So x_{k+1} = 0.8187 x_k + 0.0906 u_k."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,45 @@
+{
+  "question_key": "me5309_rule.5fef1d18/2c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows that \u03b8ss = \u03b8d is impossible: at steady state (\u03b8\u0308=\u03b8\u0307=0) with \u03b8=\u03b8d the PD torque Kp(\u03b8d\u2212\u03b8) is zero while gravity torque mg\u2113 sin90\u00b0 = 2.4525 N\u00b7m \u2260 0 (substitution or torque-balance argument that P-term needs an offset to hold the load). Merely saying 'no integral action' with no argument earns no marks here unless it gives the torque-balance idea.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct steady-state equation Kp(\u03b8d \u2212 \u03b8ss) = mg\u2113 sin \u03b8ss (Kd term vanishes since \u03b8\u0307=0).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Correct steady-state error: e = 0.049 rad \u2248 2.81\u00b0, expressed in degrees. Accept any value 2.7\u00b0\u20132.9\u00b0 (or 0.047\u20130.050 rad, with conversion to degrees), by linearisation (e \u2248 mg\u2113/Kp since cos90\u00b0=0), numerical iteration or graphical solution; \u03b8ss \u2248 87.2\u00b0 accepted. Small-angle sin\u03b8\u2248\u03b8 about zero is invalid and earns nothing here.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct method giving the right value or setting up the solution properly, but the answer is left in radians without conversion to degrees, or only \u03b8ss (e.g. 87.2\u00b0) is given without stating the error, or the value falls in the band only via a mixed operating point (e.g. cos60\u00b0 giving 2.70\u00b0)."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the impossibility argument, the equation Kp(\u03b8d\u2212\u03b8ss)=mg\u2113 sin\u03b8ss, and an error of about 2.8\u00b0 (2.7\u00b0\u20132.9\u00b0). Using small-angle sin\u03b8\u2248\u03b8 loses the final 2 marks. Radians-only answers or unstated error get 1 of the final 2.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "mg\u2113 = 1\u00d79.81\u00d70.25 = 2.4525 N\u00b7m. Steady state: Kp(\u03b8d\u2212\u03b8ss) = mg\u2113 sin\u03b8ss. If \u03b8ss=\u03b8d, LHS=0 but RHS=2.4525 \u2260 0, so impossible. With e=\u03b8d\u2212\u03b8ss, sin\u03b8ss \u2248 sin\u03b8d \u2212 e cos\u03b8d = 1 (cos90\u00b0=0), so e \u2248 2.4525/50 = 0.0491 rad \u2248 2.81\u00b0. Numerical solution: \u03b8ss \u2248 87.19\u00b0, e \u2248 2.81\u00b0."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

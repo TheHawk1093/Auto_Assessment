@@ -1,0 +1,56 @@
+{
+  "question_key": "me5309_test.5dfa4004/2c",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows that theta_ss = theta_d is impossible, by substitution or torque-balance argument (at rest with theta = theta_d = 90 deg the PD torque is zero but gravity torque mgl sin90 = 2.4525 N\u00b7m is non-zero; the proportional term must supply holding torque, so an error is needed).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Only the qualitative statement that PD (no integral action) gives steady-state error, without the gravity/torque-balance or substitution argument."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Correct steady-state equation obtained by setting theta-dot = theta-ddot = 0: Kp(theta_d - theta_ss) = m g l sin(theta_ss) (Kd term vanishes).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Correct steady-state error value: about 0.049 rad = 2.81 deg (accept 2.7 to 2.9 deg or 0.047 to 0.050 rad, by linearised estimate e = mgl/Kp, iteration, or graphical solution; theta_ss about 87.2 deg). Using sin(theta_ss) ~ theta_ss (small-angle about zero) is wrong and earns nothing here. Answer in radians with no conversion to degrees loses the unit share.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct method (linearisation or numerical solution of the equation) but arithmetic slip, or value only given as theta_ss without stating the error; or value from a wrong operating point (e.g. cos 60 deg in denominator) that lands in range by coincidence."
+          }
+        ],
+        "numeric": {
+          "value": 2.81,
+          "unit": "deg",
+          "rel_tol": 0.03,
+          "abs_tol": 0.1,
+          "unit_share": 0.25
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the impossibility argument, the equation Kp(\u03b8d\u2212\u03b8ss)=mg\u2113 sin\u03b8ss, and an error of about 2.81\u00b0 (2.7\u20132.9\u00b0). Qualitative \"no integral action\" alone earns half of P1. Small-angle sin\u03b8\u2248\u03b8 loses the value marks; a numerical solution giving only \u03b8ss without the error earns 3 of 4 in total.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Plant with PD: J \u03b8\u0308 + b\u03b8\u0307 + mg\u2113 sin\u03b8 = Kp(\u03b8d \u2212 \u03b8) \u2212 Kd \u03b8\u0307. Steady state (\u03b8\u0307=\u03b8\u0308=0): Kp(\u03b8d \u2212 \u03b8ss) = mg\u2113 sin\u03b8ss. mg\u2113 = 1\u00d79.81\u00d70.25 = 2.4525 N\u00b7m. If \u03b8ss = \u03b8d = 90\u00b0, LHS = 0 but RHS = 2.4525 \u2260 0, so the joint cannot rest at \u03b8d. With e = \u03b8d \u2212 \u03b8ss, sin\u03b8ss \u2248 sin\u03b8d \u2212 e cos\u03b8d = 1 (cos90\u00b0 = 0), so e \u2248 2.4525/50 = 0.04905 rad = 2.81\u00b0. Numerical solution gives \u03b8ss \u2248 87.19\u00b0, e \u2248 2.81\u00b0. Final: steady-state error \u2248 2.81 degrees (\u03b8ss \u2248 87.2\u00b0)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

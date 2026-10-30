@@ -1,0 +1,44 @@
+Q1(a). (i) fx = f / p = 16 mm / 5 µm = 16×10-3 / 5×10-6 = 3200 px.
+(ii) Sensor width Ws = 1280 × 5 µm = 6.4 mm. By similar triangles FOV = Ws·Z / f = 6.4 × 400 / 16
+= 160 mm.
+Distance per pixel = FOV / 1280 = 160/1280 = 0.125 mm/px (chek: Z/fx = 400/3200 = 0.125
+mm/px).
+Q1(b). LSB = Vrange/2n = 5 V / 212 = 5/4096 = 1.2207 mV.
+Smallest resolvable force ΔF = LSB / S = 1.2207 mV / (10 mV/N) = 0.1221 N.
+Q1(c). F = eAT = e−0.2 = 0.8187. G = A-1(F − I)B = (0.8187 − 1)/(−2) = 0.0906.
+Hence the exact model is xk+1 = 0.0906 xk + 0.8187 uk.
+Q3(a). (1) Differentiation is a high-pass operation (gain ∝ ω), so encoder measurement/quantisation
+noice is amplifed, by about 1/T = 1000 at 1 kHz.
+(2) Encoder quantisation: Δθ is a whole number of counts, so ωˆ = Δθ/T moves in steps of (count
+size)/T; at low speed the estimate is a coarse staircase of zeros and spikes.
+Q3(b). H(s) = ωc/(s + ωc), ωc = 2π(20) = 125.66 rad/s. Tustin: s = (2/T)(z − 1)/(z + 1), T = 1 ms. With
+a = ωcT/2 = 0.06283: H(z) = a(1 + z-1) / [(1 + a) − (1 − a)z-1].
+yk = [a/(1+a)](uk + uk−1) + [(1−a)/(1+a)] yk−1 = 0.05912 (uk + uk−1) + 0.88177 yk−1.
+DC gain: z = 1 gives H(1) = 2(0.05912)/(1 − 0.88177) = 0.11824/0.11823 = 1.000 ✓.
+Q3(c). A − LC = [−ℓ1, 1; −ℓ2, −2]; characteristic polynomal det(sI − A + LC) = (s + ℓ1)(s + 2) + ℓ2 = s²
++ (2 + ℓ1)s + (2ℓ1 + ℓ2).
+Desired (s + 10)² = s² + 20s + 100. Then 2 + ℓ1 = 20 ⇒ ℓ1 = 18, and 2ℓ1 + ℓ2 = 100 ⇒ ℓ2 = 100 −
+18 = 82.
+L = [18, 82]T.
+Q3(d). Advantage of the observer: it uses the plant model and the applied input u, so its velocity
+estimate has (almost) no phase lag; the 20 Hz filter on differenced data always delays by about
+1/(2π fc) ≈ 8 ms. It can also reconstruct states that cannot be obtained by differencing (e.g.
+disturbance, when augmented).
+Fliter is safer when the model is uncertain or changes (unknown payload, friction, contact, actuator
+saturation): the observer then gives a biased or poorly-behaved estimat while the model-free filter
+still follows the measured data.
+Q4(a). Substituting u: θ¨ + (a + bk2)θ˙ + bk1θ = bNff r (the c term is the gravity load, handled
+separately).
+So s² + 4s + 2 = 0, giving s = −0.586 and s = −3.414. DC gain = bNff/(bk1) = Nff/2 = 1 ⇒ Nff = 2.
+Q4(b). With b = 0.75 (Nff = 8, k1 = 2): GDC = bNff/(c + bk1) = 0.75 × 8/(6 + 0.75 × 2) = 6/7.5 = 0.8.
+
+ME25M028 – Suresh Babu
+θss = 0.8. Tracking error = (1 − 0.8)/1 × 100 = 20%. (Less than the 25% actuator loss, because
+the stiffness also dropped.)
+Q4(c). Substituting u into the plant and using ξ˙ = −θ (r = 0): characteristic polynomial s³ + (a + k2)s²
++ (c + k1)s + KI.
+Desiered: (s + 4)(s² + 4s + 8) = s³ + 8s² + 24s + 32.
+2 + k2 = 8 ⇒ k2 = 6; 6 + k1 = 24 ⇒ k1 = 18; KI = 32.
+Q4(d). In stedy state ξ˙ = r − θss = 0, so θss = r whatever b and c are, provided the loop is stabel.
+Failure mode: integrater windup — when the actuator saturates the integral keeps growing and
+causes a big overshoot later.

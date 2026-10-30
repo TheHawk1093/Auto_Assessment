@@ -1,0 +1,39 @@
+Q1(a). (i) fx = f/p = 16/5 = 3.2 px.
+(ii) Width of sensor = 1280 × 5 = 6400. FOV = N·Z/fx = 1280 × 400 / 3.2 = 160000 mm.
+One pixel = FOV/N = 160000/1280 = 125 mm per pixel. (looks large but the formula is right)
+Q1(b). LSB = Vrange/2n = 5 V / 212 = 5/4096 = 1.2207 mV.
+Smallest resolvable force ΔF = LSB / S = 1.2207 mV / (10 mV/N) = 0.1221 N.
+Q1(c). F = eAT, G = A-1(F − I)B. Taking T = 0.01 s.
+F = e−0.02 = 0.9802.
+G = (0.9802 − 1)/(−2) = 0.0099.
+Q2(a). Let x1 = θ and x2 = θ˙. x˙1 = x2; x˙2 = (1/J)[τ + b x2 − mgℓ sin x1].
+Equilibrium: x2 = 0 and mgℓ sin θe = τ0. Because −1 ≤ sin θ ≤ 1 we need |τ0| ≤ mgℓ = 2.4525 N·m.
+Q2(b). δx˙ = A δx + B δτ, A = ∂f/∂x, B = ∂f/∂τ at θe = 60°, x2e = 0.
+A = [0, 1; −(mgℓ/J) cos θe, −b/J] = [0, 1; −122.6×0.5, −2.5] = [0, 1; −61.31, −2.5].
+B = [0; 1/J] = [0; 50].
+Q2(c). At rest θ˙ = θ¨ = 0, so the PD torque must balance gravity: Kp(θd − θss) = mgℓ sin θss.
+If θss = θd = 90° the left side is 0 but the right side is mgℓ sin 90° = 2.4525 ≠ 0: contradiction. So
+the joint cannot rest at θd; the graviy torque needs a non-zero error to produce the holding torque.
+Solve 50(π/2 − θss) = 2.4525 sin θss numerically: θss ≈ 1.5218 rad = 87.19°. Error ≈ 90° − 87.19°
+= 2.81° (joint sags below θd).
+Q2(d). With compensation, at rest: Kp(θd − θss) + mgℓ sin θss = mgℓ sin θss ⇒ θss = θd: steady-state
+error = 0.
+Closed loop: Jθ¨ + (b + Kd)θ˙ + Kp(θ − θd) = 0; gravity cancels. Without compensation the
+linearised stiffness is Kp + mgℓ cos θd, and at θd = 90° cos θd = 0, so the stiffness is Kp either way.
+Poles unchanged (specific to 90°; at other angles they would shift).
+Q4(a). θ¨ + aθ˙ + cθ = b(Nff r − k1θ − k2θ˙) ⇒ θ¨ + (a + bk2)θ˙ + (c + bk1)θ = bNff r.
+With a = 2, b = 1, c = 6, k1 = k2 = 2: s² + 4s + 8 = 0 ⇒ s = −2 ± 2j (stabel).
+DC gain = bNff/(c + bk1) = Nff/8 = 1 ⇒ Nff = 8.
+Q4(b). With b = 0.75 (Nff = 8, k1 = 2): GDC = bNff/(c + bk1) = 0.75 × 8/(6 + 0.75 × 2) = 6/7.5 = 0.8.
+θss = 0.8. Tracking error = (1 − 0.8)/1 × 100 = 20%. (Less than the 25% acuator loss, because the
+stiffness also dropped.)
+Q4(c). Substitutting the control law and differentiating once: s³ + (c + bk2)s² + (a + bk1)s + bKI.
+Desiered: (s + 4)(s² + 4s + 8) = s³ + 8s² + 24s + 32.
+6 + k2 = 8 ⇒ k2 = 2; 2 + k1 = 24 ⇒ k1 = 22; KI = 32.
+
+ME25M016 – Nisha Kulkarni
+Q4(d). For a constant r, in steady state all derivatives vanish: ξ˙ = r − θss = 0 ⇒ θss = r, independent
+of b and c; the closed loop only needs to be stabel so that a steady state exists.
+Failure mode: integrator windup. When the actuator saturates the error persists, ξ keeps growing
+and causes a large overshoot afterwards. Remedy: anti-windup (clamp the integrater, conditional
+integration or back-calculation).

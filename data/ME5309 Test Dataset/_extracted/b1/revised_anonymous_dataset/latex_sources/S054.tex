@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/2\textasciicircum{}12 = 0.0012207 V = 1.2207 mV.
+Sensor sensitivity is 10 mV/N, so ΔF = 1.2207/10 = 0.12207 N.
+The smallest resolvable force change is approximately 0.122 N.\par\smallskip\textit{Calculation:} $2^{12}=4096$ levels. One step is $5/4096=0.0012207$ V, i.e. $1.2207$ mV. Dividing by the sensitivity, $1.2207\,\mathrm{mV}/(10\,\mathrm{mV/N})=0.12207$ N. The mV units cancel, leaving N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+\[\begin{aligned}F = e^(-2\times0.1) = 0.818731\end{aligned}\]
+I used G = (1-F)/(-2) = -0.0906346.
+So:\[\begin{aligned}x_{k+1} = 0.818731x_k - 0.0906346u_k\end{aligned}\]
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+ẋ₁ = x₂ and ẋ₂ = (τ-b x₂+mgℓ sin θ)/J.
+At equilibrium:\[\begin{aligned}τ_0 = -mg\ell sin \theta_e,\\ \text{an equilibrium exists for |τ₀| less than or equal to 2.4525 N m}\end{aligned}\]
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+\[\begin{aligned}A = [[0,1], [-mg\ell sin(60^{\circ})/J, -b/J]] = [[0,1], [-106.2, -2.5]],\\ B = [[0],[50]]\end{aligned}\]
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+\vspace{2mm}
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+The added gravity torque should cancel the load, so the steady-state error becomes zero. 
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+The closed-loop poles are -2±2j.
+I use Nff=c/b=6 for unity DC gain.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+\[\begin{aligned}\theta_{ss} = 0.75\times8/(6+2)=0.75,\\ \text{the percentage tracking error is 25\%}\end{aligned}\]
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+\[\begin{aligned}k_1=18, k_2=6, K_I=32\end{aligned}\]
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+Integral action helps eliminate error.
+A problem is that the controller can become unstable.
+
+\end{document}

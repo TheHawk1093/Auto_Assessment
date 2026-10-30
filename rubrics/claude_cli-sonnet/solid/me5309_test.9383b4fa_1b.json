@@ -1,0 +1,43 @@
+{
+  "question_key": "me5309_test.9383b4fa/1b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Resolution (LSB) found from a written formula LSB = V_FS / 2^N with substitution 5 V / 2^12 (or 4095), giving about 1.22 mV (1.2207 mV; 1.2210 mV from 4095 also accepted). Must show the formula/substitution; a bare 1.22 mV with no formula earns 0. If a different range (e.g. 10 V or \u00b15 V) is used, award this mark only if the arithmetic matches the stated range, and flag it.",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Formula or substitution written correctly (V_FS / 2^N with N = 12) but arithmetic result for LSB is wrong or missing."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Divides the LSB voltage by the sensitivity (1.22 mV / 10 mV/N) to get the smallest resolvable force change. Multiplying by the sensitivity earns 0 here. The division must be shown. Final answer about 0.122 N (0.1221 N); give the unit in N.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.1221,
+          "unit": "N",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need the LSB from a written V_FS/2^N (2 marks) and division by the sensitivity to give about 0.122 N (1 mark). Using 4095 instead of 4096 is accepted in full. Multiplying by the sensitivity loses the last mark. A bare 1.22 mV with no formula earns no LSB marks. A wrong voltage range earns the LSB marks only if the arithmetic matches that range, and the marker should flag it.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "LSB = V_FS / 2^N = 5 V / 4096 = 1.2207 mV. Smallest resolvable force change = LSB / sensitivity = 1.2207 mV / (10 mV/N) = 0.1221 N."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

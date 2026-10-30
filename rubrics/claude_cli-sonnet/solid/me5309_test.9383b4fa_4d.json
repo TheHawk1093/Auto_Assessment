@@ -1,0 +1,42 @@
+{
+  "question_key": "me5309_test.9383b4fa/4d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Shows zero steady-state error: at steady state all derivatives vanish, including the integrator state, so \u03be\u0307 = r \u2212 \u03b8 = 0, hence \u03b8 = r exactly, independent of a, b and c (\u03be just settles at the value giving the needed constant control). Should note the requirement that the closed loop is stable so a steady state is reached. Merely asserting 'integral action removes error' without the \u03be\u0307 = 0 \u21d2 \u03b8 = r argument earns no marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "States that integral action gives zero error or that \u03be\u0307 = 0 at steady state, but does not clearly conclude \u03b8 = r independent of b and c (or gives only a calculation for the specific values)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Names one valid practical failure mode of integral action AND gives its matching standard remedy. Acceptable pairs: integrator windup with anti-windup (clamping/conditional integration/back-calculation); reduced stability margin/phase lag with lowering KI, placing the integral pole slower than dominant poles, or adding derivative/feedforward; integration of sensor bias with calibration or leaky integrator. A failure mode with no remedy or a mismatched remedy earns at most half.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names a valid failure mode but gives no remedy or an incorrect/mismatched remedy."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: the \u03be\u0307 = r \u2212 \u03b8 = 0 \u21d2 \u03b8 = r argument independent of b, c (with stability caveat), plus one valid failure mode with its remedy. Half marks for each point if only partly given as described. No marks for vague statements without the steady-state argument or a failure mode.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "At steady state all derivatives are zero, including the integrator state \u03be\u0307 = r \u2212 \u03b8 = 0, so \u03b8 = r regardless of a, b, c (\u03bess = (c + b k1) r/(b KI) adjusts to supply the needed constant control; requires stability and b \u2260 0). Failure mode: integrator windup when the actuator saturates; remedy: anti-windup (conditional integration/clamping or back-calculation)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -21,7 +21,7 @@ from autograde.pipeline.levels import LEVEL_PARTIAL_WEIGHT, LEVEL_POLICY
 from autograde.pipeline.objective import mark_mcq
 from autograde.pipeline.read import read_answer
 from autograde.pipeline.rubric import RubricStore, store_for
-from autograde.pipeline.verify import apply_form_gate, snap_grading
+from autograde.pipeline.verify import apply_form_gate, apply_working_gate, snap_grading
 from autograde.pipeline.vote import combine, models_disagree
 from autograde.schemas import (
     NOT_GIVEN,
@@ -134,6 +134,10 @@ def mark_item(
     grading, gate_flag = apply_form_gate(grading, reading, item.max_mark, item.question)
     if gate_flag:
         flags = [*flags, gate_flag]
+    if cfg.teacher.working_required:
+        grading, working_flag = apply_working_gate(grading, reading, rubric)
+        if working_flag:
+            flags = [*flags, working_flag]
     if step:
         grading = snap_grading(grading, rubric, step)
     flags = [*flags, *checks.flags]

@@ -1,0 +1,51 @@
+{
+  "question_key": "me5309_test.9383b4fa/1a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Focal length in pixels: fx = f / pixel width = 16 mm / 0.005 mm = 3200 pixels. Full marks for the correct value with the method shown (formula or substitution).",
+        "marks": 2.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct formula fx = f/pixel size with substitution, but arithmetic or unit-conversion error in the result (e.g. 3.2 or 32000)."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Field of view width on the belt = 160 mm, by sensor width 6.4 mm \u00d7 400/16, or by 1280 \u00d7 Z/fx. Either direction of working is acceptable (standoff and Z are the same).",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Distance on the belt per pixel = 0.125 mm (160/1280, or Z/fx = 400/3200). Final answer.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.125,
+          "unit": "mm",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need fx = 3200 px, FOV = 160 mm and 0.125 mm per pixel; either route (similar triangles or Z/fx) is fine. If fx is wrong but later steps are consistent with the student's own value and method, award the later method steps, but the final value only if it is 0.125 mm. Missing units on the final answer lose a small share.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "(i) fx = f / pixel size = 16 mm / 0.005 mm = 3200 pixels (fy = 3200 too).\n(ii) Sensor width = 1280 \u00d7 5 \u00b5m = 6.4 mm. FOV = 6.4 \u00d7 400/16 = 160 mm. Per pixel = 160/1280 = 0.125 mm (equivalently Z/fx = 400/3200 = 0.125 mm). Final: 0.125 mm per pixel on the belt (FOV 160 mm, fx 3200 px)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

@@ -1,0 +1,114 @@
+Okay, let me start with Q1 since it looks the easiest. I will go slowly and write everything out.
+Given: sensor 1280 px wide, pixel pitch p = 5 µm (square), lens f = 16 mm, standoff Z = 400 mm;
+force sensor 10 mV/N, 12-bit ADC over 0–5 V; plant ẋ = −2x + u with zero-order hold, T = 0.1 s.
+Q1(a). Assumptions: pinhole (thin-lens) camera model, lens focused on the belt plane, belt plane
+perpendicular to the optical axis, no lens distortion, so every pixel images the same length on the
+belt.
+(i) The focal length in pixel units is the physical focal length divided by the pixel pitch: fx = f/p =
+(16×10-3 m)/(5×10-6 m) = 3200. The metres cancel so the answer is in pixels. fx = 3200 px.
+(ii) Width of the sensor = N·p = 1280 × 5 µm = 6400 µm = 6.4 mm. Using similar triangles between
+the sensor and the belt plane, Ws/f = FOV/Z, hence FOV = Ws·Z/f = (6.4 mm)(400 mm)/(16 mm) =
+160 mm. FOV = 160 mm.
+Ground sampling distance = FOV/N = 160 mm / 1280 px = 0.125 mm/px. Cross-check with the
+pixel-based formula Z/fx = 400 mm / 3200 px = 0.125 mm/px; both agree, so 1 pixel = 0.125 mm
+= 125 µm on the belt.
+Q1(b). Assumptions: ideal 12-bit ADC (4096 codes), the full 0–5 V range is used, no offset or gain
+error, and sensor noise is below one LSB so quantisaton sets the limit.
+Voltage step: 1 LSB = VFS/2N = 5 V/4096 = 1.2207×10-3 V = 1.2207 mV.
+The sensor maps force to voltage by V = S·F with S = 10 mV/N, so ΔFmin = ΔV/S = 1.2207 mV / (10
+mV/N) = 0.12207 N. ΔFmin ≈ 0.122 N. (Using 4095 steps instead of 4096 codes gives 0.1221 N,
+the same at 3 s.f.)
+Q1(c). With u held constant over [kT, (k+1)T] (zero-order hold) the variation-of-constants formula
+gives x((k+1)T) = eAT x(kT) + ∫0T eA(T−s) B u(kT) ds. Sence u(kT) is constant it leaves the integral,
+so F = eAT and G = ∫0T eAσ B dσ = A-1(eAT − I)B for invertible A.
+Substitutting A = −2, B = 1, T = 0.1 s: F = e−0.2 = 0.81873. G = (0.81873 − 1)/(−2) = 0.090635.
+Sanity check: the DC gain of the continuous plant is −A-1B = 0.5, and the discrete DC gain G/(1 − F)
+= 0.090635/0.18127 = 0.5 ✓.
+xk+1 = 0.8187 xk + 0.0906 uk
+Hmm, this is the pendulum question. I remember doing something similar in class so lets see.
+Given: J = 0.02 kg·m², b = 0.05 N·m·s/rad, m = 1 kg, ℓ = 0.25 m, g = 9.81 m/s². So mgℓ = 1 × 9.81
+× 0.25 = 2.4525 N·m (used throughout).
+Q2(a). x1 = θ, x2 = θ˙. x˙1 = x2, x˙2 = (τ − b x2 − mgℓ sin x1)/J.
+At equilibrium x2 = 0 and sin θe = τ0/(mgℓ), so 0 ≤ τ0 ≤ mgℓ = 2.45 N·m.
+Q2(b). The equilibrium at θe = 60° needs the torque τe = mgℓ sin 60° = 2.4525 × 0.8660 = 2.124
+N·m. Define deviations δx = x − xe with xe = [60°, 0]T and δτ = τ − τe; then δx˙ ≈ A δx + B δτ with
+the Jacobians evaluated at the equilibrium.
+∂f1/∂x = [0, 1]. ∂f2/∂x1 = −(mgℓ/J) cos x1 = −(2.4525/0.02)(0.5) = −122.625 × 0.5 = −61.31 (s-2).
+∂f2/∂x2 = −b/J = −0.05/0.02 = −2.5 s-1.
+
+ME25M006 – Meera Krishnan
+A = [0, 1; −61.31, −2.5], and since ∂f2/∂τ = 1/J = 50, B = [0; 50].
+Check: the characteristic equation λ² + 2.5λ + 61.31 = 0 gives λ = −1.25 ± 7.73j, a lightly damped
+stabel oscillation, as expected for a pendulum hanging near-vertical (60° below the downward
+vertical).
+Q2(c). At rest θ˙ = θ¨ = 0: Kp(θd − θss) = mgℓ sin θss = 2.4525 sin θss. At θd = 90° the right side ≠ 0
+while the left side = 0, so the joint cannot rest at θd.
+With sin θss ≈ 1: θd − θss = 2.4525/50 = 0.00491 rad = 0.281°.
+Q2(d). Stedy state: θ˙ = θ¨ = 0 and the control law gives τ = Kp(θd − θss) + mgℓ sin θss. Plugging into
+the plant, mgℓ sin θss = Kp(θd − θss) + mgℓ sin θss, so Kp(θd − θss) = 0 and θss = θd: steady-state
+error is zero.
+Poles: linearise the closed loop about θd. Before compensaton, Jθ¨ + (b + Kd)θ˙ + (Kp + mgℓ cos θd)
+δθ = 0, characteristic polynomal Jλ² + (b + Kd)λ + Kp + mgℓ cos θd. After compensation the added
+term mgℓ sin θ cancels the plant's gravity term exactly, leaving Jλ² + (b + Kd)λ + Kp.
+The two differ only by mgℓ cos θd, and for θd = 90° this is 2.4525 × 0 = 0. So the closed-loop
+poles are unchanged at this operating angle. I should stress this is because cos 90° = 0; if θd
+were, say, 60°, the compensaton would raise the stiffness by 61.3 × 0.02... i.e. it would move the
+poles.
+(not 100% sure about the last part, moving on)
+This one looks long but I think I know the observer part.
+Given: A = [0, 1; 0, −2], B = [0; 1], C = [1, 0], fs = 1 kHz so the sample time is T = 1/fs = 1 ms.
+Q3(a). Reason 1 – noise amplification: the backward diffrence ωˆk = (θk − θk−1)/T has frequency
+response (1 − e−jωT)/T, whose magnitude grows with frequncy (≈ ω for small ωT), i.e. it is a
+high-pass operation. Any noise on the encoder signal therefor appears in the velocity multiplied by
+roughly 1/T = 1000 s-1, and can swamp the true velocity.
+Reason 2 – quantisation: the encoder only reports integer counts, so Δθ is an integer multiple of the
+count size q. Dividing by T = 1 ms gives velocity steps of q/T; for a 4096-count encoder q =
+2π/4096 = 1.53×10-3 rad, so one step is 1.53 rad/s. At low speed the estimate flips between 0 and
+one step (a noisy staircase), exactly where the damping term of the PD law is needed.
+(A further, smaller issue is the half-sample delay of a backward difference, but the two reasons
+above are the main ones.)
+Q3(b). The analogue prototype is the first-order low-pass H(s) = ωc/(s + ωc) with ωc = 2πfc = 2π × 20
+= 125.66 rad/s. The bilinear (Tustin) transform replaces s by (2/T)(z − 1)/(z + 1) with T = 1/fs =
+0.001 s.
+Define a = ωcT/2 = 125.66 × 0.001/2 = 0.062832. Then H(z) = ωc / [(2/T)(z−1)/(z+1) + ωc] = a(z +
+1) / [(1 + a) z − (1 − a)] = a(1 + z-1) / [(1 + a) − (1 − a) z-1].
+Dividing through by (1 + a): a/(1 + a) = 0.062832/1.062832 = 0.059117 and (1 − a)/(1 + a) =
+0.937168/1.062832 = 0.881767. Hence with u = differenced signal and y = filtered velocity: yk =
+0.05912 (uk + uk−1) + 0.88177 yk−1. (Frequency pre-warping is neglected since fc ≪ fs/2.)
+Verification of the DC gain: set u and y constant (z = 1): y = 2(0.05912)u + 0.88177 y ⇒ y(1 −
+0.88177) = 0.11824 u ⇒ y/u = 0.11824/0.11823 = 1.000. In general H(1) = 2a/[(1 + a) − (1 − a)] =
+2a/2a = 1 exactly, so the steady-state output equals the commanded input ✓.
+Q3(c). First check observability: O = [C; CA] = [1, 0; 0, 1], full rank, so the observer poles can be
+placed arbitrarily.
+With L = [ℓ1, ℓ2]T and C = [1, 0], LC = [ℓ1, 0; ℓ2, 0], so A − LC = [−ℓ1, 1; −ℓ2, −2].
+
+ME25M006 – Meera Krishnan
+Characterstic polynomial: det(sI − (A − LC)) = det[s + ℓ1, −1; ℓ2, s + 2] = (s + ℓ1)(s + 2) − (−1)(ℓ2)
+= s² + (2 + ℓ1) s + (2ℓ1 + ℓ2).
+Both estimator poles at s = −10 means the desired polynomal is (s + 10)² = s² + 20 s + 100.
+Comparing coefficients: s¹: 2 + ℓ1 = 20 ⇒ ℓ1 = 18. s⁰: 2ℓ1 + ℓ2 = 100 ⇒ ℓ2 = 100 − 36 = 64.
+L = [18, 64]T. Verification: A − LC = [−18, 1; −64, −2] has trace −20 and determinant (−18)(−2)
+− (1)(−64) = 36 + 64 = 100, so the polynomial is s² + 20s + 100 = (s + 10)² ✓.
+Q3(d). The observer is more accurate than the filter.
+The filter is safer when you need something simple and cheap to implement.
+Last question, only a few minutes left so I might rush a bit.
+Given: plant θ¨ + aθ˙ + cθ = b u with a = 2, c = 6, b = 1; controler u = Nff r − k1θ − k2θ˙.
+Q4(a). Substitute the control law into the plant: θ¨ + aθ˙ + cθ = b Nff r − b k1 θ − b k2 θ˙. Moving the
+feedback terms to the left: θ¨ + (a + b k2) θ˙ + (c + b k1) θ = b Nff r.
+Numerically, a + b k2 = 2 + 2 = 4 and c + b k1 = 6 + 2 = 8, so the characterstic equation is s² + 4s
++ 8 = 0. Roots: s = [−4 ± √(16 − 32)]/2 = −2 ± 2j. They have negative real parts, so the loop is
+stabel; ωn = √8 = 2.83 rad/s and ζ = 4/(2 × 2.83) = 0.707.
+Transfer function from r to θ: T(s) = b Nff / (s² + 4s + 8). DC gain (s = 0): T(0) = Nff/8. For unity DC
+gain, Nff = 8. (Note that this is larger than 1 because the graviy-related stiffness c and the
+feedback k1 both resist the displacement.)
+Q4(b). GDC = bNff/(c + bk1). Numerator: 0.75 × 8 = 6. Denominator: c + k1 = 8 as before.
+θss = 6/8 = 0.75, so error = 25%.
+Q4(c). Substituting u and differentiating: the integral term enters with a minus sign, so the
+characteristic polynomial is s³ + (a + bk2)s² + (c + bk1)s − bKI.
+Desired: (s + 4)(s² + 4s + 8) = s³ + 8s² + 24s + 32.
+So 2 + k2 = 8 ⇒ k2 = 6; 6 + k1 = 24 ⇒ k1 = 18; −KI = 32 ⇒ KI = −32.
+Q4(d). The integrator keeps accumulating the error until the error becomes zero, so the steady-state
+error is zero whatever b and c are, if the loop is stable.
+Failure mode: integrator windup when the acuator saturates. Remidy: anti-windup, e.g. clamp the
+integrator.
+Sorry, running out of time. Hope partial marks are given for the method.

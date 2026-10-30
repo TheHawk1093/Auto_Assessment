@@ -1,0 +1,50 @@
+Q1(a). (i) fx = f/p = 16×10-3 / 5×10-6 = 3200 px.
+(ii) Sensor width = 1280 × 5 µm = 6.4 mm. Using similar triangles, FOV = Ws·f / Z = 6.4 × 16/400 =
+0.256 mm.
+Distance per pixel = FOV/1280 = 0.256/1280 = 2×10-4 mm = 0.2 µm.
+Q1(b). LSB = Vrange/2n = 5 V / 212 = 5/4096 = 1.2207 mV.
+Smallest resolvable force ΔF = LSB / S = 1.2207 mV / (10 mV/N) = 0.1221 N.
+Q1(c). With u held constant over [kT, (k+1)T] (zero-order hold) the variation-of-constants formula
+gives x((k+1)T) = eAT x(kT) + ∫0T eA(T−s) B u(kT) ds. Since u(kT) is constant it leaves the integral, so
+F = eAT and G = ∫0T eAσ B dσ = A-1(eAT − I)B for invertible A.
+Substituting A = −2, B = 1, T = 0.1 s: F = e−0.2 = 0.81873. G = (0.81873 − 1)/(−2) = 0.090635.
+Sanity check: the DC gain of the continuous plant is −A-1B = 0.5, and the discrete DC gain G/(1 − F)
+= 0.090635/0.18127 = 0.5 ✓.
+xk+1 = 0.8187 xk + 0.0906 uk
+Q2(a). The model is second order, so I choose the position and velocity as states: x = [x1, x2]T = [θ,
+θ˙]T, with input τ.
+Rewriting Jθ¨ + bθ˙ + mgℓ sin θ = τ gives the nonlinear state-space model: x˙1 = x2, x˙2 = (1/J)(τ −
+b x2 − mgℓ sin x1), i.e. x˙ = f(x, τ).
+Equilibria for constant τ0 need x˙ = 0: the first equation gives x2 = 0, and the second then gives
+mgℓ sin θe = τ0, i.e. sin θe = τ0/(mgℓ).
+This has a solution only if |τ0/(mgℓ)| ≤ 1, so |τ0| ≤ mgℓ = 2.4525 N·m. For |τ0| < mgℓ there are
+two equilibria per revolution (θe and π − θe); at |τ0| = mgℓ they merge, and beyond it the joint
+cannot be held statically.
+Q2(b). A = [0, 1; −(mgℓ/J) cos 60°, −b/J] = [0, 1; −61.31, −2.5].
+B = ∂f/∂τ = [0; 1] (the torque enters directly) so B = [0; 1].
+Q2(c). At rest θ˙ = θ¨ = 0, so Kp(θd − θss) = mgℓ sin θss, i.e. 50(90 − θss) = 2.4525 sin θss.
+Gravity torque is non-zero at 90°, so the left side can't be zero, hence θss ≠ θd.
+Taking sin θss ≈ 1: 90 − θss = 2.4525/50 = 0.049, so the stedy-state error ≈ 0.049°.
+Q2(d). Gravity compensation reduces the stedy-state error to about 0.5°, not exactly zero, sence the
+compensation is evaluated at the measured angle and the sensor and model are not perfect.
+Poles: unchanged. The linearisation of the graviy term about θd is mgℓ cos θd, which is zero at 90°,
+so the stiffness stays Kp.
+Q3(a). (1) Taking the diffrence of two readings amplifies noice.
+(2) The high frequency noice in the encoder signal gets magnified when we subtract successive
+readings and divide by a small T.
+
+ME25M009 – Arjun Das
+Q3(b). ωc = 2π × 20 = 125.66 rad/s, a = ωcT/2 = 0.0628, Tustin transform.
+yk = 0.0591 (uk + uk−1) + 0.8187 yk−1.
+The DC gain is 1 since low-pass filters always have unity gain at DC.
+Q3(c). A − LC = [−ℓ1, 1; −ℓ2, −2]. det(sI − A + LC) = (s + ℓ1)(s + 2) − ℓ2 = s² + (2 + ℓ1)s + (2ℓ1 − ℓ2).
+Desired (s + 10)² = s² + 20s + 100. So 2 + ℓ1 = 20 ⇒ ℓ1 = 18 and 2ℓ1 − ℓ2 = 100 ⇒ ℓ2 = 36 − 100 =
+−64.
+L = [18, −64]T.
+Q3(d). Advantage of the obsever: it uses the plant model and the applied input u, so its velocity
+estimate has (almost) no phase lag; the 20 Hz filter on differenced data always delays by about
+1/(2π fc) ≈ 8 ms. It can also reconstruct states that cannot be obtained by differencing (e.g.
+disturbance, when augmented).
+Filter is safer when the model is uncertain or changes (unknown payload, friction, contact, actuator
+saturation): the obsever then gives a biased or poorly-behaved estimate while the model-free filter
+still follows the measured data.

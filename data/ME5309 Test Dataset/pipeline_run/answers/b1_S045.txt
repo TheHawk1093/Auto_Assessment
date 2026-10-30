@@ -1,0 +1,61 @@
+where appropriate.
+Q1(a).
+(i) f_x = 16/5 = 3.2 pixels, using focal length 16 mm and pixel size 5 microm. (ii) Sensor width is
+6.4 mm, so field width = 400x6.4/16 = 160 mm and scale = 0.125 mm/pixel.
+Q1(b).
+ADC step = 5/4096 = 1.2207 mV . I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+Q1(c).
+For zero-order hold, F = e^(AT) and G = integral_0^T e^(Aτ)B dτ. Here:
+A = −2, B = 1, T = 0.1s
+Thus:
+F = e( − 0.2) = 0 .818731
+G = (1 − e( − 0.2))/2 = 0 .0906346
+Therefore:
+xk+1 = 0.818731xk + 0.0906346uk
+With AT = ( −2)(0.1) = −0.2, F = e−0.2 = 0 .8187308. For G, (1 − F )/2 = (1 − 0.8187308)/2 =
+0.1812692/2 = 0 .0906346. Thus the input contribution is positive.
+Q2(a).
+Choose x₁ = θ and x₂ = θ ̇ . Then ẋ₁ = x₂ and ẋ₂ = [τ - b x₂ - mgℓ sin(x₁)]/J. At equilibrium:
+x2 = 0and0 = mgℓsinθe
+Since |sin θ_e| less than or equal to 1, an equilibrium exists when |τ₀| less than or equal to
+mgℓ = 2.4525 N m.
+At rest ˙θ = 0 and ¨θ = 0 , so the damping term vanishes. Rearranging gives τ0 = mgℓ sin θe. Here
+mgℓ = 1 × 9.81 × 0.25 = 2 .4525 N m. Since −1 ≤ sin θe ≤ 1, the required torque must lie between
+−2.4525 and +2.4525 N m.
+Q2(b).
+The Jacobian has A₁₂ = 1 and A₂₂ = -b/J = -2.5. The input matrix is B = [0, 50]ᵀ.
+Q2(c).
+The balance is 50(90-θss) = 2.4525 sin θss. Solving gives a small error of about 0.05°.
+Q2(d).
+Q3(a).
+First, numerical differentiation amplifies high-frequency encoder noise and quantisation be-
+cause a small position error is divided by the short sample interval. Second, differencing is
+sensitive to sampling/timing and can produce a noisy, jittery velocity signal; filtering reduces
+noise but adds lag.
+In a finite difference, the change in position is divided by the sample interval. Encoder quan-
+tization error appears in the difference of two measurements, so it can be magnified by the
+division by Ts. The result may jump around even if the actual motion is smooth.
+Q3(b).
+Tustin uses s = (2/T)(z-1)/(z+1).
+Q3(c).
+The characteristic polynomial is s²+(ℓ₁+2)s+(2ℓ₁+ℓ₂). I match it to s²+10s+100 and get ℓ₁=8, ℓ₂=84.
+Q3(d).
+The observer is better and the filter is safer in some cases.
+Q4(a).
+The characteristic polynomial is s²+4s+8, so I report poles -4 and -8. Unity DC gain requires
+Nff=8.
+Q4(b).
+θss = 0.75 × 8/(6 + 2) = 0 .75,
+the percentage tracking error is 25%
+Q4(c).
+The characteristic polynomial is s³+(a+bk₂)s²+(c+bk₁)s+bK_I. I use the target s³+6s²+12s+16, giv-
+ing k₂=4, k₁=6, K_I=16.
+Q4(d).
+At steady state, a stable closed loop with integral action drives ξ ̇ =r-θ to zero; therefore r-θ=0
+and the tracking error is zero, assuming no saturation or other implementation limits prevent
+convergence. A practical failure mode is integrator windup during actuator saturation; the
+standard remedy is anti-windup, such as back-calculation or conditional integration.
+With integral action, a constant tracking error keeps accumulating in the integral state, so the
+controller can adjust its output until the error goes to zero, assuming the closed loop is stable
+and the actuator is not constrained. Under saturation the integral state can keep growing; anti-
+windup limits or back-calculates that state.

@@ -1,0 +1,32 @@
+{
+  "question_key": "me5309_rule.5fef1d18/3a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Quantisation amplification: the encoder position is quantised to whole counts, and differencing (\u03b8k \u2212 \u03b8k\u22121)/T divides a one-count uncertainty by the small sample period T, so the velocity has a large error/jitter of \u0394\u03b8/T (e.g. 0.01\u00b0 per count at 1 kHz gives 10\u00b0/s). Must explain why differencing causes the problem; just the word 'quantisation' earns 0.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Noise amplification: differentiation has gain rising with frequency, so broadband sensor/electrical noise on the position signal is amplified most at high frequencies where there is no useful signal. Must explain why differencing causes it. Vague 'it is noisy' with no mechanism earns 0. This must be distinct from P1: restating quantisation noise in other words, or saying 'noise' twice, earns only one of the two points.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Award 1 for each of two distinct, explained mechanisms: quantisation divided by T, and high-frequency noise amplification by differentiation. A mechanism merely named without explanation of why differencing causes it earns 0 because marks are in whole steps. Discussion of changing fs earns nothing extra and loses nothing.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

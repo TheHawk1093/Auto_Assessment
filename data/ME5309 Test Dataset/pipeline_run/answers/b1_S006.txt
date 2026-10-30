@@ -1,0 +1,41 @@
+where appropriate.
+Q1(a).
+Pixel pitch = 0.005 mm, sensor width = 1280x0.005 = 6.4 mm. how to calculate the belt field of
+view.
+Q1(b).
+Sensitivity = 10mV /N
+The ADC has 12 bits, so there are 4096 levels.
+Q1(c).
+F = e(AT ) = e( − 0.2) = 0 .818731
+Q2(a).
+The state model is ẋ₁ = x₂, ẋ₂ = (τ-0.05x₂-2.4525 sin x₁)/0.02. Equilibrium requires τ₀ = 2.4525 sin
+θ_e, so τ₀ must be between -2.4525 and +2.4525 N m.
+Q2(b).
+A = [[0, 1], [−mgℓsin(60◦)/J, −b/J]] = [[0 , 1], [−106.2, −2.5]],
+B = [[0], [50]]
+Q2(c).
+At rest, θ̇ = θ̈ = 0, so the torque balance is Kp(θd-θss) = mgℓ sin θss. With Kp = 50, θd = π/2 and mgℓ
+= 2.4525, solve 50(π/2-θss) = 2.4525 sin θss. This gives θss approximately 1.52181 rad = 87.193°,
+so the error is 90°-87.193° = 2.807°; it is not zero.
+Rearranging the steady-state equation gives 50(π/2 − θss) = 2 .4525 sin θss. I used radians in the
+equation. Solving numerically gives θss ≈ 1.522 rad ≈ 87.19◦, so the gap from 90◦ is about 2.81◦.
+Q2(d).
+With gravity compensation, the gravity term cancels the plant’s mgℓ sin θ term. At rest, Kp(θd-
+θss)=0, so θss=θd and the steady-state error is zero. The linearised gravity stiffness term is also
+cancelled, so the closed-loop poles generally change; the stiffness contribution mgℓ cos θd is
+removed.
+The compensation term cancels the nominal gravity torque in the plant model. At steady state
+the proportional term must then be zero, which requires θd − θss = 0 . This does not mean
+the transient response is unchanged: removing the gravity derivative changes the linearized
+stiffness.
+Q4(a).
+The closed-loop poles are -2±2j. I use Nff=c/b=6 for unity DC gain.
+Q4(b).
+The nominal controller has unity DC gain, so θss=1 and the tracking error is zero even after the
+actuator gain changes.
+Q4(c).
+The desired polynomial is (s+4)(s²+4s+8). The closed-loop polynomial should be cubic because
+an integrator is added.
+Q4(d).
+Integral action removes steady-state error , although this only holds for the nominal values of b
+and c. Saturation can cause windup, which should be handled by anti-windup.

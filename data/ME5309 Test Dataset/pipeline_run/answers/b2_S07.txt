@@ -1,0 +1,38 @@
+Q2(a). x1 = θ, x2 = θ˙. x˙1 = x2, x˙2 = (1/J)(τ − b x2 − mgℓ sin x1).
+Equilibrium means x˙ = 0, so x2 = 0 and mgℓ sin θe = τ0. Since sine is periodic we can always find a
+θe that satisfies this, so an equilibrum exists for any τ0.
+Q2(b). Jacobian at θe = 60°: A = [0, 1; −(mgℓ/J) cos θe, −b/J].
+mgℓ/J = 2.4525/0.02 = 122.625; cos(60) = −0.9524, so A21 = −122.625 × (−0.9524) = +116.8. A22
+= −b/J = −2.5.
+A = [0, 1; 116.8, −2.5], B = [0; 50].
+Q2(c). At steady state θ˙ = 0 and θ¨ = 0.
+A PD controller is stable and its job is to drive (θd − θ) to zero, so θss = θd = 90°. The gravity term
+only affects the transient. Hence the steady-state error is 0° and the joint does come to rest at θd.
+Q2(d). Gravity compensation reduces the stedy-state error to about 0.5°, not exactly zero, since the
+compensaton is evaluated at the measured angle and the sensor and model are not perfect.
+Poles: unchanged. The linearisation of the gravity term about θd is mgℓ cos θd, wich is zero at 90°,
+so the stiffness stays Kp.
+Q3(a). (1) Finite differencing introduces an extra pole wich makes the plant unstable.
+(2) It cannot be implemented digitally because the derivative of a sampled signal is not defined.
+Q3(b). I discretise with forward Euler (s ≈ (z − 1)/T) to keep it simple. ωc = 2π × 20 = 125.66 rad/s.
+yk = (1 − ωcT) yk−1 + ωcT uk−1 = 0.8743 yk−1 + 0.1257 uk−1.
+DC gain: 0.1257/(1 − 0.8743) = 0.1257/0.1257 = 1 ✓.
+Q3(c). To place the poles I look at the characteristic polynomial of the closed loop. Treating the gain
+as in A − BK: A − BK = [0, 1; −k1, −2 − k2], so det = s² + (2 + k2)s + k1.
+Desiered s² + 20s + 100: k2 = 18 and k1 = 100, so L = [100, 18]T.
+Q3(d). An observer works only when there is no noice, so it has no advantage; a filter is always better
+becuase it is simpler.
+The fliter is safer when the model is perfectly known.
+Q4(a). Substituting u: θ¨ + (a + bk2)θ˙ + bk1θ = bNff r (the c term is the graviy load, handled
+separately).
+So s² + 4s + 2 = 0, giving s = −0.586 and s = −3.414. DC gain = bNff/(bk1) = Nff/2 = 1 ⇒ Nff = 2.
+Q4(b). The actuator is 25% weaker, so the output is also 25% lower: θss = 0.75, and the tracking error
+= 25%.
+Q4(c). Closed-loop: θ¨ + (a + bk2)θ˙ + (c + bk1)θ = 0, so s² + (a + bk2)s + (c + bk1) = 0.
+Pols at −2 ± 2j give s² + 4s + 8, so k2 = 2 and k1 = 2. The extra pole at s = −4 comes from the
+integrator, so choose KI = 4.
+
+ME25M007 – Vikram Patel
+Q4(d). In steady state ξ˙ = 0, so r − θss = 0 ⇒ θss = r for any b and c as long as the system is stable.
+Failure mode: integral action amplifies noise and makes the system oscillate. Remidy: put a
+low-pass fliter on the measurement.

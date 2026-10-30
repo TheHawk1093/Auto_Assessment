@@ -1,0 +1,1 @@
+Part marks exist only where the scheme lists levels for a point. A point that lists levels may be marked "partial" at one of those levels. A point with no levels is all or nothing: mark it "met" or "not_met", never "partial". Do not invent a level, and do not give credit for something the scheme says earns nothing.

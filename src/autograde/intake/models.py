@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, Field, model_validator
 
 from autograde.schemas import Kind
@@ -50,3 +52,44 @@ class Reference(BaseModel):
     model_answer: str = ""
     rubric: str = ""
     tests: str = ""  # code questions: one assert per line
+
+
+class ExamRules(BaseModel):
+    """Marking rules that the paper's instructions or the teacher's rubric state for the whole exam.
+
+    Nothing here is guessed: a field keeps its neutral value unless a document says otherwise.
+    """
+
+    working_required: bool = Field(
+        default=False,
+        description="True only when a numerical answer with no formula or working written earns "
+        "no marks, even if the number is right.",
+    )
+    part_marks: Literal["unstated", "stated_only", "none", "half", "quarter"] = Field(
+        default="unstated",
+        description="unstated: nothing is said. stated_only: part marks are given only where the "
+        "rubric names them (whole marks otherwise). none: no part marks anywhere. half or "
+        "quarter: part marks come in halves or quarters of a point.",
+    )
+    mark_step: float | None = Field(
+        default=None,
+        gt=0,
+        description="Set only when every mark in the exam is stated to be a multiple of one "
+        "number, such as 0.5. Leave empty when whole marks are the usual rule but the rubric "
+        "names exceptions.",
+    )
+    follow_through: bool | None = Field(
+        default=None,
+        description="True when a later part is marked on the student's own earlier wrong result; "
+        "False when the documents forbid it; empty when nothing is said.",
+    )
+    notes: list[str] = Field(
+        default_factory=list,
+        description="Other exam-wide rules that change how a single answer is marked (for "
+        "example deductions for missing units, or what to do with a method that differs from "
+        "the key). One short sentence each, close to the document's own words.",
+    )
+
+    @property
+    def found(self) -> bool:
+        return self != ExamRules()

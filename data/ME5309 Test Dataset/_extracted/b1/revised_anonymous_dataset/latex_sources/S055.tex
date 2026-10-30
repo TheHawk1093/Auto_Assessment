@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=19mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Noto Serif}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\definecolor{navy}{HTML}{183153}
+\definecolor{lightgray}{HTML}{F3F5F7}
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small ME 5309 -- Mid-Semester Examination}
+\rhead{\small ME 5309}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\Large\bfseries ME 5309 -- Mid-Semester Examination}\\[3pt]
+{\large Answer Booklet}\\[8pt]
+\end{center}
+\textbf{Instructions:} Attempt any three questions. Each question carries 10 marks. Show working where appropriate.
+\section*{Question 1 \hfill [10 marks]}
+\subsection*{Q1(a) \hfill [4 marks]}
+
+(i) f\_x = 16/5 = 3.2 pixels, using focal length 16 mm and pixel size 5 microm.
+(ii) Sensor width is 6.4 mm, so field width = 400x6.4/16 = 160 mm and scale = 0.125 mm/pixel.
+
+\subsection*{Q1(b) \hfill [3 marks]}
+
+ADC step = 5/4096 = 1.2207 mV.
+I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+
+\subsection*{Q1(c) \hfill [3 marks]}
+
+\vspace{2mm}
+
+\section*{Question 2 \hfill [10 marks]}
+\subsection*{Q2(a) \hfill [2 marks]}
+
+At equilibrium the velocity should be zero.
+The torque and gravity torque must balance.
+
+\subsection*{Q2(b) \hfill [2 marks]}
+
+\[\begin{aligned}A = [[0,1], [-mg\ell sin(60^{\circ})/J, -b/J]] = [[0,1], [-106.2, -2.5]],\\ B = [[0],[50]]\end{aligned}\]
+
+\subsection*{Q2(c) \hfill [4 marks]}
+
+At rest, 50(π/2-θss) = 2.4525.
+This gives θss = 1.5218 rad = 87.19°, so error approximately 2.81°.
+
+\subsection*{Q2(d) \hfill [2 marks]}
+
+Gravity compensation makes the steady-state error zero.
+It does not change the closed-loop poles because it only adds a constant torque.
+
+\section*{Question 3 \hfill [10 marks]}
+\subsection*{Q3(a) \hfill [2 marks]}
+
+Finite differencing amplifies encoder noise, making the velocity estimate noisy.
+
+\subsection*{Q3(b) \hfill [2 marks]}
+
+Tustin uses s = (2/T)(z-1)/(z+1).
+
+\subsection*{Q3(c) \hfill [4 marks]}
+
+A-LC=[[-ℓ₁,1], [-ℓ₂,-2]].
+I obtain p(s)=s²+(ℓ₁+2)s+(ℓ₁+ℓ₂).
+Matching (s+10)² gives ℓ₁=18 and ℓ₂=82.
+
+\subsection*{Q3(d) \hfill [2 marks]}
+
+An observer uses the plant model and known control input to estimate unmeasured states such as velocity, and its poles can be designed.
+A simple low-pass filter cannot exploit the state-space model in this way.
+A filter may be safer when the model is poorly known or unreliable, because it relies less on model accuracy.\par\smallskip The observer uses the plant model and the measured output to reconstruct the unmeasured state. Its convergence depends on the model and the observer poles. A low-pass filter is simpler, but generally introduces phase lag and does not explicitly use the plant dynamics.
+
+\section*{Question 4 \hfill [10 marks]}
+\subsection*{Q4(a) \hfill [2 marks]}
+
+Closed-loop characteristic polynomial is s²+(a+bk₂)s+(c+bk₁)=s²+4s+8, giving poles -2±2j.
+At DC, θ/r = bNff/(c+bk₁), so unity gain requires Nff=(c+bk₁)/b=(6+2)/1=8.\par\smallskip Comparing coefficients with $s^2+4s+8$ gives $a+bk_2=4$ and $c+bk_1=8$. The feedforward gain is chosen from the nominal plant so the reference scaling is unity; here this gives $N_{ff}=8$. The closed-loop roots of $s^2+4s+8$ are $-2\pm2j$.
+
+\subsection*{Q4(b) \hfill [2 marks]}
+
+With actual b=0.75 and unchanged Nff=8, k₁=2, the steady-state relation is θss = bNff/(c+bk₁) = 0.75x8/(6+0.75x2)=6/7.5=0.8.
+For r=1, percentage error = (1-0.8)x100\%=20\%.\par\smallskip With the actual gain, the steady-state output is $y_{ss}=b_{actual}N_{ff}r/ (c+b_{actual}k_1)$ for the stated setup. Substituting the given numbers gives $y_{ss}=0.8$ for a unit reference. Therefore $e_{ss}=1-0.8=0.2$, i.e. a 20\% error.
+
+\subsection*{Q4(c) \hfill [4 marks]}
+
+I obtain s³+(a+bk₂)s²+(c+bk₁)s-bK\_I.
+Desired polynomial is s³+8s²+24s+32, so k₂=6, k₁=18, K\_I=-32.
+
+\subsection*{Q4(d) \hfill [2 marks]}
+
+\vspace{2mm}
+
+\end{document}

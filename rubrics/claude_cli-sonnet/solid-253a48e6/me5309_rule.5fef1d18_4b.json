@@ -1,0 +1,38 @@
+{
+  "question_key": "me5309_rule.5fef1d18/4b",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Gives steady-state \u03b8ss = 0.800 (from \u03b8ss = b\u00b7Nff/(c+b\u00b7k1) = 0.75\u00d78/(6+0.75\u00d72) = 6/7.5, using Nff=8, k1=2) and the resulting tracking error of 20% below the reference (\u221220%). Accept error stated as 20% undershoot/shortfall; the magnitude must be 20%.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.8,
+          "unit": "",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      },
+      {
+        "id": "P2",
+        "description": "Explains that Nff is a feedforward gain on the reference path, outside the feedback loop, so feedback (k1, k2 on measured state, no integrator/no error-driven correction) cannot correct the DC gain error, and the actuator gain error appears directly in the steady-state output. Merely restating that the output is low, without reference to Nff being outside the feedback path / uncorrected by feedback, earns no mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need \u03b8ss = 0.800 with a \u221220% (20% shortfall) error, and a correct explanation that Nff is outside the feedback loop so it is not corrected. Each point is worth 1 mark, all or nothing. A wrong \u03b8ss from an earlier slip loses only the first point.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "Nominal gains from part (a): Nff = 8, k1 = 2 (nominal DC gain b\u00b7Nff/(c+b\u00b7k1) = 8/8 = 1). At steady state \u03b8\u0308=\u03b8\u0307=0, so c\u03b8 = b(Nff r \u2212 k1\u03b8), giving \u03b8ss = b\u00b7Nff\u00b7r/(c + b\u00b7k1). With b = 0.75: \u03b8ss = 0.75\u00d78/(6+0.75\u00d72) = 6/7.5 = 0.800. Tracking error = (0.8\u22121)/1 = \u221220% (20% undershoot). Reason: Nff is a feedforward gain on the reference path outside the feedback loop; the state feedback has no integrator or error signal to correct DC calibration error, so the actuator gain error passes directly into the steady-state gain."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

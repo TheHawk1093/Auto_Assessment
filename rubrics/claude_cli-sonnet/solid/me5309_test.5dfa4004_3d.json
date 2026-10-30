@@ -1,0 +1,42 @@
+{
+  "question_key": "me5309_test.5dfa4004/3d",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "States one valid advantage of the observer over a filter, with correct reasoning. Acceptable: it uses the known input u and plant model so it predicts rather than differentiates, tracking velocity without the lag/smoothing trade-off of a low-pass filter; OR it estimates a state that is not measured, not merely a smoothed differentiated signal; OR quantisation enters through a bounded, filtered path rather than being divided by T. A bare assertion such as 'it is better/more accurate' with no reason does not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names a valid advantage (e.g. uses the model/input) but gives no reasoning or a muddled reason."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "States one circumstance where the filter is safer, specifically invoking model error or parameter uncertainty. Acceptable: model-free so unaffected by wrong A, B or actuator gain (observer is biased by model error); plant parameters drift (temperature, load, wear) or strong nonlinearity away from linearisation point, making the observer's prediction misleading; a poorly identified model can make the observer diverge/be hard to diagnose. A circumstance not about model error/uncertainty (e.g. 'simpler to implement', 'cheaper') does not earn the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Says the filter is safer because it is simpler or does not need a model, but does not link this to model error, parameter uncertainty or drift."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks need one valid observer advantage with a reason and one filter-favouring circumstance tied to model error or parameter uncertainty. Half marks are for a correct but unreasoned or unspecific statement. Generic claims (simpler, cheaper) with no link to the model earn nothing on P2.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

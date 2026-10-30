@@ -1,0 +1,105 @@
+Starting with this one because it looks the shortest.
+Given: sensor 1280 px wide, pixel pitch p = 5 µm (square), lens f = 16 mm, standoff Z = 400 mm;
+force sensor 10 mV/N, 12-bit ADC over 0–5 V; plant ẋ = −2x + u with zero-order hold, T = 0.1 s.
+Q1(a). Assumptions: pinhole (thin-lens) camera model, lens focused on the belt plane, belt plane
+perpendicular to the optical axis, no lens distortion, so every pixel images the same length on the
+belt.
+(i) The focal length in pixel units is the physical focal length divided by the pixel pitch: fx = f/p =
+(16×10-3 m)/(5×10-6 m) = 3200. The metres cancel so the answer is in pixels. fx = 3200 px.
+(ii) Width of the sensor = N·p = 1280 × 5 µm = 6400 µm = 6.4 mm. Using similar triangles between
+the sensor and the belt plane, Ws/f = FOV/Z, hence FOV = Ws·Z/f = (6.4 mm)(400 mm)/(16 mm) =
+160 mm. FOV = 160 mm.
+Ground sampling distance = FOV/N = 160 mm / 1280 px = 0.125 mm/px. Cross-chek with the
+pixel-based formula Z/fx = 400 mm / 3200 px = 0.125 mm/px; both agree, so 1 pixel = 0.125 mm
+= 125 µm on the belt.
+Q1(b). Assumtions: ideal 12-bit ADC (4096 codes), the full 0–5 V range is used, no offset or gain error,
+and sensor noise is below one LSB so quantisation sets the limit.
+Voltage step: 1 LSB = VFS/2N = 5 V/4096 = 1.2207×10-3 V = 1.2207 mV.
+The sensor maps force to voltage by V = S·F with S = 10 mV/N, so ΔFmin = ΔV/S = 1.2207 mV / (10
+mV/N) = 0.12207 N. ΔFmin ≈ 0.122 N. (Using 4095 steps instead of 4096 codes gives 0.1221 N,
+the same at 3 s.f.)
+Q1(c). With u held constant over [kT, (k+1)T] (zero-order hold) the variation-of-constants formula
+gives x((k+1)T) = eAT x(kT) + ∫0T eA(T−s) B u(kT) ds. Since u(kT) is constant it leaves the integral, so
+F = eAT and G = ∫0T eAσ B dσ = A-1(eAT − I)B for invertible A.
+Substituting A = −2, B = 1, T = 0.1 s: F = e−0.2 = 0.81873. G = (0.81873 − 1)/(−2) = 0.090635.
+Sanity chek: the DC gain of the continuous plant is −A-1B = 0.5, and the discrete DC gain G/(1 − F)
+= 0.090635/0.18127 = 0.5 ✓.
+xk+1 = 0.8187 xk + 0.0906 uk
+I think I know the first two parts, the third one is tricky.
+Given: J = 0.02 kg·m², b = 0.05 N·m·s/rad, m = 1 kg, ℓ = 0.25 m, g = 9.81 m/s². So mgℓ = 1 × 9.81
+× 0.25 = 2.4525 N·m (used throughout).
+Q2(a). The model is second order, so I choose the position and velocity as states: x = [x1, x2]T = [θ,
+θ˙]T, with input τ.
+Rewriting Jθ¨ + bθ˙ + mgℓ sin θ = τ gives the nonlinear state-space model: x˙1 = x2, x˙2 = (1/J)(τ −
+b x2 − mgℓ sin x1), i.e. x˙ = f(x, τ).
+Equilibria for constant τ0 need x˙ = 0: the first equation gives x2 = 0, and the second then gives
+mgℓ sin θe = τ0, i.e. sin θe = τ0/(mgℓ).
+This has a solution only if |τ0/(mgℓ)| ≤ 1, so |τ0| ≤ mgℓ = 2.4525 N·m. For |τ0| < mgℓ there are
+two equilibria per revolution (θe and π − θe); at |τ0| = mgℓ they merge, and beyond it the joint
+
+ME25M033 – Swati Jain
+cannot be held statically.
+Q2(b). The equilibrium at θe = 60° needs the torque τe = mgℓ sin 60° = 2.4525 × 0.8660 = 2.124
+N·m. Define deviations δx = x − xe with xe = [60°, 0]T and δτ = τ − τe; then δx˙ ≈ A δx + B δτ with
+the Jacobians evaluated at the equilibrum.
+∂f1/∂x = [0, 1]. ∂f2/∂x1 = −(mgℓ/J) cos x1 = −(2.4525/0.02)(0.5) = −122.625 × 0.5 = −61.31 (s-2).
+∂f2/∂x2 = −b/J = −0.05/0.02 = −2.5 s-1.
+A = [0, 1; −61.31, −2.5], and since ∂f2/∂τ = 1/J = 50, B = [0; 50].
+Check: the characterstic equation λ² + 2.5λ + 61.31 = 0 gives λ = −1.25 ± 7.73j, a lightly damped
+stable oscillation, as expected for a pendulum hanging near-vertical (60° below the downward
+vertical).
+Q2(c). Set all time derivatives to zero in the closed loop. With τ = Kp(θd − θ) − Kdθ˙ and θ˙ = θ¨ = 0
+the damper term vanishes (so Kd has no effect on the final position) and the dynamics reduce to
+mgℓ sin θss = Kp(θd − θss).
+Why θss ≠ θd: if the joint were at rest exactly at θd = 90° the PD torqe would be Kp·0 − Kd·0 = 0, yet
+gravity pulls with mgℓ sin 90° = 2.4525 N·m. The net torque would be non-zero, so the joint could
+not be at rest. A purely proportional-derivative law can only hold a load if there is a steady error.
+Let e = θd − θss (in rad). Then sin θss = sin(π/2 − e) = cos e, and the equation becomes 50 e =
+2.4525 cos e. Fixed-point iteration: e0 = 2.4525/50 = 0.04905 (taking cos e ≈ 1); e1 = 0.04905 ×
+cos(0.04905) = 0.04899; e2 = 0.04905 × cos(0.04899) = 0.04899, converged.
+e = 0.04899 rad × (180/π) = 2.807°, so θss = 87.19°. Stedy-state error ≈ 2.81° (the arm sags
+below the target). This is small because Kp is much larger than mgℓ (Kp/mgℓ ≈ 20).
+Q2(d). With the compensaton term, at rest Kp(θd − θss) + mgℓ sin θss = mgℓ sin θss, so θss = θd and
+the stedy-state error is 0.
+Skipping the check, running out of time. Hope partial marks are given for method.
+Obsever question. I remember the idea from class, hope I get the algebra right.
+Given: A = [0, 1; 0, −2], B = [0; 1], C = [1, 0], fs = 1 kHz so the sample time is T = 1/fs = 1 ms.
+Q3(a). Reason 1 – noice amplification: the backward difference ωˆk = (θk − θk−1)/T has frequncy
+response (1 − e−jωT)/T, whose magnitude grows with frequency (≈ ω for small ωT), i.e. it is a
+high-pass operation. Any noise on the encoder signal therefore appears in the velocity multiplied by
+roughly 1/T = 1000 s-1, and can swamp the true velocity.
+Reason 2 – quantisation: the encoder only reports integer counts, so Δθ is an integer multiple of the
+count size q. Dividing by T = 1 ms gives velocity steps of q/T; for a 4096-count encoder q =
+2π/4096 = 1.53×10-3 rad, so one step is 1.53 rad/s. At low speed the estimate flips between 0 and
+one step (a noisy staircase), exactly where the damping term of the PD law is needed.
+(A further, smaller issue is the half-sample delay of a backward difference, but the two reasons
+above are the main ones.)
+Q3(b). The analogue prototype is the first-order low-pass H(s) = ωc/(s + ωc) with ωc = 2πfc = 2π × 20
+= 125.66 rad/s. The bilinear (Tustin) transform replaces s by (2/T)(z − 1)/(z + 1) with T = 1/fs =
+0.001 s.
+Define a = ωcT/2 = 125.66 × 0.001/2 = 0.062832. Then H(z) = ωc / [(2/T)(z−1)/(z+1) + ωc] = a(z +
+1) / [(1 + a) z − (1 − a)] = a(1 + z-1) / [(1 + a) − (1 − a) z-1].
+Dividing through by (1 + a): a/(1 + a) = 0.062832/1.062832 = 0.059117 and (1 − a)/(1 + a) =
+0.937168/1.062832 = 0.881767. Hence with u = differenced signal and y = filtered velocity: yk =
+0.05912 (uk + uk−1) + 0.88177 yk−1. (Frequency pre-warping is neglected sence fc ≪ fs/2.)
+
+ME25M033 – Swati Jain
+Verification of the DC gain: set u and y constant (z = 1): y = 2(0.05912)u + 0.88177 y ⇒ y(1 −
+0.88177) = 0.11824 u ⇒ y/u = 0.11824/0.11823 = 1.000. In general H(1) = 2a/[(1 + a) − (1 − a)] =
+2a/2a = 1 exactly, so the stedy-state output equals the commanded input ✓.
+Q3(c). A − LC = [−ℓ1, 1; −ℓ2, −2]; characteristic polynomial det(sI − A + LC) = (s + ℓ1)(s + 2) + ℓ2 = s²
++ (2 + ℓ1)s + (2ℓ1 + ℓ2).
+Desired (s + 10)² = s² + 20s + 100. Then 2 + ℓ1 = 20 ⇒ ℓ1 = 18, and 2ℓ1 + ℓ2 = 100 ⇒ ℓ2 = 100 −
+18 = 82.
+L = [18, 82]T.
+Q3(d). Advantage of the obsever that no filter of this kind can give: the observer is driven by both the
+measurement y and the model with the actual input u, so it predicts the motion between samples.
+The velocity estimate therefore has little or no phase lag. The low-pass fliter on differenced data, by
+contrast, always pays a lag of about 1/(2π fc) = 8 ms for its noise rejection, a trade-off it cannot
+escape. In addition the obsever gives all states, and can be augmented with a disturbance state
+(e.g. unknown load torque) which no fliter on θ can estimate.
+Circumstance where the filter is safer: when the plant model is poorly known or changes during
+operation, for example an unknown payload, varying friction, contact with the environment, or
+actuator saturation making u differ from the commanded value. The observer propagates the
+wrong model so its estimate can be biased (and in the worst case unstable with the feedback loop),
+whereas the model-free filter just smooths what the encoder actually measures.

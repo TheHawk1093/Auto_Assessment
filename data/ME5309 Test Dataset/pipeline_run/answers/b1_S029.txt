@@ -1,0 +1,56 @@
+where appropriate.
+Q1(a).
+Pixel pitch = 0.005 mm, sensor width = 1280x0.005 = 6.4 mm. how to calculate the belt field of
+view.
+Q1(b).
+ADC step = 5/4096 = 1.2207 mV . I divide by 0.1 mV/N, giving ΔF = 12.207 N.
+Q1(c).
+F = e( − 2 × 0.1) = 0 .818731
+I used G = (1-F)/(-2) = -0.0906346. So:
+xk+1 = 0.818731xk − 0.0906346uk
+Q2(a).
+At equilibrium the velocity should be zero. The torque and gravity torque must balance.
+Q2(b).
+With x = [θ, θ ̇ ]ᵀ, A = [[0,1], [-(mgℓ/J)cos θ_e, -b/J]], B = [[0],[1/J]]. At θ_e = 60°, A = [[0,1], [-61.3125,
+-2.5]] and B = [[0],[50]].
+At the equilibrium, the constant torque balances gravity. For a small perturbation, use sin (θe +
+δθ) ≈ sin θe + cos θe δθ. The constant terms cancel against τ0; the remaining linear term gives
+the local state matrix.
+Q2(c).
+At rest, 50(π/2-θss) = 2.4525. This gives θss = 1.5218 rad = 87.19°, so error approximately 2.81°.
+Q2(d).
+The gravity term changes the equilibrium, so the steady-state error is still nonzero. The poles
+should change.
+Q3(a).
+Q3(b).
+For H(s)=ωc/(s+ωc), ωc=2π(20)=125.664 rad/s and T=0.001 s. Tustin gives H(z)=α(1+z⁻¹)/[(1+α)+(α-
+1)z⁻¹], α=ωcT/2=0.0628319. Thus:
+y[k] = 0 .881765y[k − 1] + 0.0591175(xk + x[k − 1])
+DC gain = (2x0.0591175)/(1-0.881765) approximately 1.000.
+ωc = 2 π(20) = 125 .664 rad/s. With T = 0 .001 s, α = ωcT /2 = 125 .664(0.001)/2 = 0 .062832. The
+recurrence coefficients are approximately 0.881765 on the previous output and 0.0591175 on
+each input sample. Check: 2(0.0591175)/(1 − 0.881765) ≈ 1, so the DC gain is close to one.
+Q3(c).
+A-LC=[[-ℓ₁,1], [-ℓ₂,-2]]. The desired polynomial is (s+10)² = s²+20s+100.
+Q3(d).
+An observer uses the plant model and known control input to estimate unmeasured states such
+as velocity, and its poles can be designed. A simple low-pass filter cannot exploit the state-space
+model in this way. A filter may be safer when the model is poorly known or unreliable, because
+it relies less on model accuracy.
+The observer uses the plant model and the measured output to reconstruct the unmeasured
+state. Its convergence depends on the model and the observer poles. A low-pass filter is simpler ,
+but generally introduces phase lag and does not explicitly use the plant dynamics.
+Q4(a).
+The closed-loop poles are -2±2j. I use Nff=c/b=6 for unity DC gain.
+Q4(b).
+The actual feedforward contribution is 0.75x8=6.
+Q4(c).
+With ξ̇ =r-θ and u=-k₁θ-k₂θ ̇ +K_Iξ, the homogeneous closed-loop characteristic polynomial is s³+(a+bk₂)s²+(c+bk₁)s+bK_I.
+Desired polynomial: (s+4)[(s+2)²+4]=(s+4)(s²+4s+8)=s³+8s²+24s+32. For a=2,b=1,c=6, matching
+coefficients gives k₂=6, k₁=18 and K_I=32.
+First multiply (s + 4)(s2 + 4s + 8) = s3 + 8s2 + 24s + 32. Comparing this with the augmented
+characteristic polynomial gives k2 = 6 , k1 = 18 , and KI = 32 . I checked the coefficients in
+descending powers of s.
+Q4(d).
+Integral action removes steady-state error , although this only holds for the nominal values of b
+and c. Saturation can cause windup, which should be handled by anti-windup.

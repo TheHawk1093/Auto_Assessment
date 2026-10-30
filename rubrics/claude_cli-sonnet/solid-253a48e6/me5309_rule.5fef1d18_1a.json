@@ -1,0 +1,51 @@
+{
+  "question_key": "me5309_rule.5fef1d18/1a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Focal length in pixels: fx = f / pixel size = 16 mm / 0.005 mm = 3200 pixels (fy = fx as pixels are square). Full marks need the correct value 3200 px.",
+        "marks": 2.0,
+        "partial_credit": "1 mark for the correct method with a slip in the value; 0 if the formula is wrong (e.g. multiplying f by pixel size).",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Uses the correct relation fx = f / pixel width (or 16 mm / 5 \u00b5m) but makes a unit-conversion or arithmetic slip, so the value is not 3200."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Field of view width on the belt = 160 mm. Sensor width 1280 \u00d7 5 \u00b5m = 6.4 mm, times 400/16 = 25 (or 1280 \u00d7 Z/fx). Any valid route to 160 mm earns the mark.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": null
+      },
+      {
+        "id": "P3",
+        "description": "Distance on the belt per pixel = 160 mm / 1280 = 0.125 mm per pixel (equivalently Z/fx = 400/3200). Accept 0.125 mm/pixel or 125 \u00b5m/pixel. A value consistent with the student's own wrong FOV does not earn this mark unless it equals 0.125 mm.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [],
+        "numeric": {
+          "value": 0.125,
+          "unit": "mm",
+          "rel_tol": 0.01,
+          "abs_tol": 0.0,
+          "unit_share": 0.2
+        }
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: fx = 3200 px (2), FOV = 160 mm (1), 0.125 mm per pixel (1). Either route (sensor size \u00d7 do/f, or Z/fx) is acceptable. One mark is given for fx if the method is right but the arithmetic is wrong; otherwise no part marks.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "(i) fx = f / pixel width = 16 mm / 0.005 mm = 3200 pixels (fy = fx).\n(ii) Sensor width = 1280 \u00d7 5 \u00b5m = 6.4 mm. FOV = 6.4 \u00d7 400/16 = 160 mm. One pixel = 160/1280 = 0.125 mm (check: Z/fx = 400/3200 = 0.125 mm). Final answer: 0.125 mm per pixel (FOV 160 mm, fx = 3200 px)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

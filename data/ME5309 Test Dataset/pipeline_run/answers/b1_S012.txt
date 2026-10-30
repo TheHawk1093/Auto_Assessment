@@ -1,0 +1,27 @@
+where appropriate.
+Q2(a).
+ẋ₁ = x₂ and ẋ₂ = (τ-b x₂+mgℓ sin θ)/J. At equilibrium:
+0 = −mgℓsinθe,
+an equilibrium exists for |τ₀| less than or equal to 2.4525 N m
+Q2(b).
+A = [[0, 1], [−61.3125, −2.5]], B = [[0], [50]]
+Q2(c).
+At steady state the derivative terms vanish. The proportional torque is Kp(θd-θ), which must
+balance mgℓ sin θ.
+Q2(d).
+Q3(a).
+Finite differencing amplifies encoder noise, making the velocity estimate noisy.
+Q3(b).
+Tustin uses s = (2/T)(z-1)/(z+1).
+Q3(c).
+A-LC=[[-ℓ₁,1], [-ℓ₂,-2]]. I obtain p(s)=s²+(ℓ₁+2)s+(ℓ₁+ℓ₂). Matching (s+10)² gives ℓ₁=18 and ℓ₂=82.
+Q3(d).
+The observer is simpler because it only smooths the measured velocity. The filter is safer when
+the model is poor .
+Q4(a).
+The closed-loop poles are -2±2j. I use Nff=c/b=6 for unity DC gain.
+Q4(b).
+The actual feedforward contribution is 0.75x8=6.
+Q4(c).
+Q4(d).
+Integral action helps eliminate error . A problem is that the controller can become unstable.

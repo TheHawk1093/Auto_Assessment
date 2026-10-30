@@ -1,0 +1,46 @@
+{
+  "question_key": "me5309_test.9383b4fa/2a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "Chooses state x1 = \u03b8, x2 = \u03b8\u0307 (equivalent choice acceptable) and writes both state equations: \u1e8b1 = x2 and \u1e8b2 = (1/J)(\u03c4 \u2212 b x2 \u2212 mg\u2113 sin x1). Both equations must be correct for full marks.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "State vector chosen and one of the two equations correct, or both equations present with a minor algebra/sign slip."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Equilibrium condition: x2 = 0 and mg\u2113 sin \u03b8e = \u03c40, together with the existence range |\u03c40| \u2264 mg\u2113 = 2.4525 N\u00b7m (g = 9.81), because |sin \u03b8e| \u2264 1. A range with no equilibrium equation, or an equilibrium equation with no range, earns no credit for the range.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Correct equilibrium equation and range given symbolically as |\u03c40| \u2264 mg\u2113 without evaluating the number."
+          },
+          {
+            "share": 0.5,
+            "says": "Correct equilibrium equation and numerical range written as \u03c40 \u2264 2.4525 N\u00b7m without the modulus, with symmetry (negative torque) not mentioned anywhere."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Full marks: correct two-equation state model, and equilibrium equation with the evaluated range |\u03c40| \u2264 2.4525 N\u00b7m. Half of the second mark for the symbolic range, or for the one-sided range with no mention of symmetry. Equilibrium equation without any range earns 0 for the second point. Claiming a unique equilibrium is not penalised in the marks, but note it.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": "x1 = \u03b8, x2 = \u03b8\u0307. \u1e8b1 = x2; \u1e8b2 = (1/J)(\u03c4 \u2212 b x2 \u2212 mg\u2113 sin x1). With \u03c4 = \u03c40 and \u1e8b = 0: x2 = 0 and mg\u2113 sin \u03b8e = \u03c40, with mg\u2113 = 1\u00d79.81\u00d70.25 = 2.4525 N\u00b7m. Since |sin \u03b8e| \u2264 1, an equilibrium exists only when |\u03c40| \u2264 2.4525 N\u00b7m (two equilibria in each period for |\u03c40| < 2.4525)."
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

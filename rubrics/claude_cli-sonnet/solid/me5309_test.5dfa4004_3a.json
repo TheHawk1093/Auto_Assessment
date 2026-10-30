@@ -1,0 +1,42 @@
+{
+  "question_key": "me5309_test.5dfa4004/3a",
+  "rubric": {
+    "points": [
+      {
+        "id": "P1",
+        "description": "First valid mechanism, correctly explained. Quantisation: the encoder output is quantised to whole counts, and differencing (\u03b8k \u2212 \u03b8k\u22121)/T divides the one-count step by the small sample period T, so a one-count uncertainty becomes a large spurious velocity error (\u0394\u03b8/T, e.g. 0.01 deg \u00d7 1000 = 10 deg/s). Mechanism must be linked to why differencing causes it.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names quantisation/resolution as a cause but gives no explanation of why differencing amplifies it (e.g. just 'quantisation')."
+          }
+        ],
+        "numeric": null
+      },
+      {
+        "id": "P2",
+        "description": "Second, genuinely distinct mechanism, correctly explained. Noise amplification: differentiation has gain rising with frequency, so broadband sensor/electrical noise on the position signal is amplified most at high frequencies where there is no useful signal. Must be distinct from the quantisation point; 'it is noisy' or 'noise gets amplified' restated in different words does not count as a second mechanism.",
+        "marks": 1.0,
+        "partial_credit": "",
+        "levels": [
+          {
+            "share": 0.5,
+            "says": "Names sensor/measurement noise (or high-frequency noise) amplification but gives no explanation of why differencing causes it (e.g. just 'noise')."
+          }
+        ],
+        "numeric": null
+      }
+    ],
+    "deductions": [],
+    "notes": "Award 1 mark each for quantisation amplification (via division by T) and for high-frequency noise amplification by differentiation, each with an explanation. A bare named mechanism earns 0.5. Giving only one mechanism, or 'noise' twice in different words, gives a maximum of 1; ignore any discussion of changing fs.",
+    "policy": null,
+    "partial_weight": null,
+    "level": null,
+    "answer_key": ""
+  },
+  "selftest_passed": true,
+  "selftest_notes": [],
+  "review_notes": []
+}

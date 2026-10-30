@@ -1,0 +1,31 @@
+where appropriate.
+Q1(a).
+Pixel pitch = 0.005 mm, sensor width = 1280x0.005 = 6.4 mm. how to calculate the belt field of
+view.
+Q1(b).
+Sensitivity = 10mV /N
+The ADC has 12 bits, so there are 4096 levels.
+Q1(c).
+F = e(AT ) = e( − 0.2) = 0 .818731
+Q3(a).
+The estimate is noisy and can fluctuate from sample to sample.
+Q3(b).
+Tustin uses s = (2/T)(z-1)/(z+1).
+Q3(c).
+A-LC=[[-ℓ₁,1], [-ℓ₂,-2]]. The desired polynomial is (s+10)² = s²+20s+100.
+Q3(d).
+An observer uses the plant model and known control input to estimate unmeasured states such
+as velocity, and its poles can be designed. A simple low-pass filter cannot exploit the state-space
+model in this way. A filter may be safer when the model is poorly known or unreliable, because
+it relies less on model accuracy.
+The observer uses the plant model and the measured output to reconstruct the unmeasured
+state. Its convergence depends on the model and the observer poles. A low-pass filter is simpler ,
+but generally introduces phase lag and does not explicitly use the plant dynamics.
+Q4(a).
+The characteristic polynomial is s²+4s+8, so I report poles -4 and -8. Unity DC gain requires
+Nff=8.
+Q4(b).
+The actual feedforward contribution is 0.75x8=6.
+Q4(c).
+k1 = 18, k2 = 6, KI = 32
+Q4(d).
