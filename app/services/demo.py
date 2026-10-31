@@ -1050,13 +1050,24 @@ def main() -> None:
             "Demo exams removed; accounts, courses and enrolments reset:",
             config.APP_DATA / "demo_personas.md",
         )
+    elif action == "setup":
+        from app.services import cases
+
+        clean()
+        samples()
+        for case in cases.CASE_DIR:
+            if why := cases.available(case):
+                print(f"{case}: skipped ({why})")
+            else:
+                print(f"{case}: created exam {cases.seed(case)}")
+        print("Ready. Accounts:", ACCOUNTS_DOC)
     elif action == "remove":
         remove()
         print("Removed the demo exams, courses, students and persona accounts.")
     elif action == "compare" and len(sys.argv) > 2:
         print(_report(compare(sys.argv[2]), 1.0))
     else:
-        sys.exit("usage: python -m app.services.demo seed | clean | remove | compare <exam id>")
+        sys.exit("usage: python -m app.services.demo setup | seed | clean | remove | compare <exam id>")
 
 
 if __name__ == "__main__":

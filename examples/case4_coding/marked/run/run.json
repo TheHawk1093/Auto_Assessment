@@ -1,0 +1,44 @@
+{
+  "mode": "pipeline",
+  "pipeline": {
+    "rubric_selftest": true,
+    "read_first": true,
+    "evidence_policy": "flag",
+    "policy": "essence",
+    "mark_rule": "status",
+    "partial_weight": 0.5,
+    "rubric_variant": "solid",
+    "rubric_review": "no_reference",
+    "teacher": {
+      "partial_credit": "rubric",
+      "mark_step": null,
+      "strictness": null,
+      "follow_through": true,
+      "working_required": false,
+      "notes": "",
+      "question_notes": {}
+    },
+    "feedback_variant": "formal",
+    "votes": 1,
+    "second_model": null,
+    "disagree_gap": 0.15,
+    "escalate_model": null,
+    "escalate_when": [
+      "partial",
+      "mid",
+      "deduction"
+    ],
+    "with_feedback": true,
+    "feedback_language": "",
+    "code_exec": true,
+    "code_sandbox": "wasm",
+    "code_tests_n": 6,
+    "feedback_n": 1,
+    "deductions": false,
+    "strong_backend": "claude_cli",
+    "rubric_model": "haiku",
+    "ocr": null,
+    "grade_retries": 1,
+    "max_workers": 2
+  }
+}

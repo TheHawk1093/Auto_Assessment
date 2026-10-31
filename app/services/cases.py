@@ -200,6 +200,8 @@ def seed_case4() -> str:
 
 
 SNAPSHOTS = config.APP_DATA / "preseeded"  # a marked case saved by `snapshot`, put back by `seed`
+# Case 4 is synthetic, so its marked run is kept in the repository for anyone who clones it.
+SHIPPED = {"case4": CASE_DIR["case4"] / "marked"}
 
 
 def snapshot(case: str) -> Path:
@@ -220,6 +222,8 @@ def restore(case: str) -> bool:
     """Put a saved marked case back over a fresh seed. Returns whether there was one."""
     out = SNAPSHOTS / case
     if not (out / "run").exists():
+        out = SHIPPED.get(case, out)
+    if not (out / "run").exists():
         return False
     eid = EXAM_ID[case]
     shutil.rmtree(storage.run_path(eid), ignore_errors=True)
@@ -230,6 +234,18 @@ def restore(case: str) -> bool:
         for p in (out / "answers").glob("*.md"):
             shutil.copy2(p, target / p.name)
     return True
+
+
+def available(case: str) -> str:
+    """Empty when the case can be seeded here, else why not (its data is missing)."""
+    if case == "case2":
+        return "" if (DATA / "pages").exists() else "needs data/raw/mendeley_exam"
+    if case == "case4" or (CASE_DIR[case] / "roster.csv").exists():
+        return ""
+    return f"needs its data built: python examples/{BUILDER[case]}/build.py"
+
+
+BUILDER = {"case1": "case1_printed", "case3": "case3_language"}
 
 
 def seed(case: str) -> str:

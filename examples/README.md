@@ -12,16 +12,29 @@ files below.
 | `case4_coding/` | A coding exam: paper, answer key with tests, class list, 7 student zip files and the expected marks | `python -m app.services.cases seed case4` |
 | `case1_printed/`, `case2_ocr/`, `case3_language/` | Builders for the other demo cases. They need public datasets in `data/raw/`, which cannot be shared here, so they work only after you download those datasets | [docs/DEMO_CASES.md](../docs/DEMO_CASES.md) |
 
-## A web app with demo data, in three commands
+## A web app with demo data, in a few commands
 
 ```bash
-uv run python -m app.services.demo seed                 # accounts, courses, students and demo exams
-uv run python -m app.services.cases seed case4          # the self-contained coding exam
-uv run streamlit run app/main.py
+uv pip install -e ".[app]"                       # once, with OPENROUTER_API_KEY in .env
+python -m app.services.demo setup                # accounts, courses, sample exams, every case it can
+streamlit run app/main.py
 ```
 
-Every demo account uses the made-up password `demo1234`, and the administrator is `admin` /
-`admin`. None of these accounts belongs to a real person. Each account's story is written in
+`setup` makes the sample exams (Mechanics, Thermodynamics, Circuits, Fluids homework) and every case
+whose data is here. Case 4 (programming assignment) needs nothing else and comes **already
+marked**, with feedback, from `case4_coding/marked/`. Cases 1 to 3 are built from public datasets
+that cannot be shared: put the data in `data/raw/`, run the builder in `case1_printed/` or
+`case3_language/` (case 2 needs `data/raw/mendeley_exam`), run `setup` again, then mark them:
+
+```bash
+python -m app.services.casemark all              # marks and saves each case; spends OpenRouter credit
+```
+
+Later `setup` runs bring the marked cases back without calling a model.
+
+The accounts and passwords are in [docs/DEMO_ACCOUNTS.md](../docs/DEMO_ACCOUNTS.md): every demo
+account uses the made-up password `demo1234`, and the administrator is `admin` / `admin`. None of
+these accounts belongs to a real person. Each account's story is written in
 `app_data/demo_personas.md`.
 
 Seeding can be repeated safely. To remove all the demo data, run

@@ -1,0 +1,93 @@
+[
+  {
+    "source": "S24001.md",
+    "student_id": "S24001",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24001",
+      "name": "student_A"
+    },
+    "name": "student_A",
+    "candidates": []
+  },
+  {
+    "source": "S24002.md",
+    "student_id": "S24002",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24002",
+      "name": "student_B"
+    },
+    "name": "student_B",
+    "candidates": []
+  },
+  {
+    "source": "S24003.md",
+    "student_id": "S24003",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24003",
+      "name": "student_C"
+    },
+    "name": "student_C",
+    "candidates": []
+  },
+  {
+    "source": "S24004.md",
+    "student_id": "S24004",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24004",
+      "name": "student_D"
+    },
+    "name": "student_D",
+    "candidates": []
+  },
+  {
+    "source": "S24005.md",
+    "student_id": "S24005",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24005",
+      "name": "student_E"
+    },
+    "name": "student_E",
+    "candidates": []
+  },
+  {
+    "source": "S24006.md",
+    "student_id": "S24006",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24006",
+      "name": "student_F"
+    },
+    "name": "student_F",
+    "candidates": []
+  },
+  {
+    "source": "S24007.md",
+    "student_id": "S24007",
+    "method": "roll+name",
+    "status": "ok",
+    "flags": [],
+    "claimed": {
+      "roll": "S24007",
+      "name": "student_G"
+    },
+    "name": "student_G",
+    "candidates": []
+  }
+]
