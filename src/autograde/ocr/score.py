@@ -1,6 +1,6 @@
 """Score OCR output against a hand-made truth file.
 
-    python -m autograde.ocr.score data/OCR_Dataset/truth.json runs/ocr_haiku runs/ocr_rapid ...
+    python -m autograde.ocr.score data/OCR_Dataset/truth.json output/runs/ocr_haiku ...
 
 A folder holds either `<sheet>.sheet.json` files (model extraction) or `lines.json` (plain OCR
 text lines per image). Three scores per sheet, where the truth file has the data for them:

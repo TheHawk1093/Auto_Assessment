@@ -35,7 +35,7 @@ def excel_bytes(exam_id: str) -> bytes:
                 "teacher comment": o["comment"] if o else "",
                 "feedback": r.feedback.text() if r.feedback else "",
                 "flags": ", ".join(r.flags),
-                "worth a look": "; ".join(LABELS[x] for x in review_reasons(r)),
+                "to check": "; ".join(LABELS[x] for x in review_reasons(r)),
             }
         )
     buf = io.BytesIO()

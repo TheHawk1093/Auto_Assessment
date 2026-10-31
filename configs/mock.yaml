@@ -13,4 +13,4 @@ pipeline:
   with_feedback: true
   feedback_variant: formal
   max_workers: 2
-paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}
+paths: {data_dir: data/raw, rubrics_dir: output/rubrics, runs_dir: output/runs, logs_dir: output/logs}

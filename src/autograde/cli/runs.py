@@ -69,7 +69,7 @@ def register(sub) -> None:
     run.add_argument("--all", action="store_true", help="use the whole split")
     run.add_argument("--seed", type=int, default=0)
     run.add_argument("--mode", default="pipeline", choices=["pipeline", "baseline"])
-    run.add_argument("--name", required=True, help="run folder name under runs/")
+    run.add_argument("--name", required=True, help="run folder name under output/runs/")
     run.add_argument(
         "--perturb-model", metavar="SPEC",
         help="alter model answers: mask<percent> blanks words, short<percent> keeps the start",
@@ -130,7 +130,9 @@ def register(sub) -> None:
         func=lambda args, settings: print(history())
     )
 
-    view = sub.add_parser("view", help="(re)build runs/<name>/report.html to read the samples")
+    view = sub.add_parser(
+        "view", help="(re)build output/runs/<name>/report.html to read the samples"
+    )
     view.add_argument("--name", required=True)
     view.add_argument("--limit", type=int, help="show only N answers, spread over questions")
     view.add_argument("--seed", type=int, default=0)

@@ -8,6 +8,7 @@ import streamlit as st
 from app.services import exports, grades, report
 from app.services import results as res
 from app.ui import rich, session
+from app.ui.widgets import original_pages
 
 
 def render(exam_id: str) -> None:
@@ -35,7 +36,7 @@ def _headline(exam_id: str, marks: pd.DataFrame, flagged: pd.DataFrame) -> None:
     cols[0].metric("Students", len(marks))
     cols[1].metric("Average", f"{marks[total].mean():.1f} / {out_of:g}")
     cols[2].metric("Highest / lowest", f"{marks[total].max():g} / {marks[total].min():g}")
-    cols[3].metric("Worth a look", len(flagged))
+    cols[3].metric("To check", len(flagged))
 
 
 def _marks_table(exam_id: str, marks: pd.DataFrame) -> None:
@@ -71,8 +72,8 @@ def _downloads(exam_id: str) -> None:
 
 
 def _flagged(flagged: pd.DataFrame) -> None:
-    st.subheader("Answers worth a look")
-    st.caption("The model was less sure about these. Marks stand unless you change them below.")
+    st.subheader("Answers to check")
+    st.caption("These may need a quick check. Marks stay as they are unless you change them.")
     if flagged.empty:
         st.success("Nothing flagged.")
     else:
@@ -90,8 +91,9 @@ def _one_answer(exam_id: str, rs: list) -> None:
     row = next(x for x in report.rows(exam_id, student) if x["question"] == qid)
     changed = f" (model gave {row['model_mark']:g})" if row["overridden"] else ""
     st.markdown(f"**{row['mark']:g} / {row['max']:g}**{changed}")
+    original_pages(exam_id, student)
     left, right = st.columns(2)
-    left.caption("Student's answer")
+    left.caption("Student's answer (the text the pipeline marked)")
     with left:
         rich.rich_text(r.item.student_answer)
     right.caption("Feedback to the student")
@@ -99,22 +101,10 @@ def _one_answer(exam_id: str, rs: list) -> None:
         rich.rich_text(row["feedback"], empty="(none: full marks)")
     _override_form(exam_id, student, row)
     if r.grading:
-        st.dataframe(
-            pd.DataFrame(
-                [
-                    {
-                        "point": v.point_id,
-                        "status": v.status,
-                        "marks": v.marks_awarded,
-                        "quote": v.evidence,
-                        "reason": v.reason,
-                    }
-                    for v in r.grading.verdicts
-                ]
-            ),
-            hide_index=True,
-            width="stretch",
-        )
+        for v in r.grading.verdicts:
+            quote = f" Quote: “{v.evidence}”" if v.evidence else ""
+            head = f"{v.point_id}: {v.status}, {v.marks_awarded:g} mark(s)."
+            rich.rich_text(f"{head} {v.reason}{quote}")
     if r.flags:
         st.caption("Flags: " + ", ".join(r.flags))
     with st.expander(f"Full feedback report for {student}"):

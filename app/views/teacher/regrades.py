@@ -10,6 +10,7 @@ import streamlit as st
 
 from app.services import jobs, models, recheck, regrades, report, storage
 from app.ui import rich, session
+from app.ui.widgets import original_pages
 
 
 def render(exam_id: str) -> None:
@@ -39,8 +40,9 @@ def _request(exam_id: str, req: dict) -> None:
         st.caption(f"{regrades.KINDS[req['kind']]} · asked {req['created']}")
         st.markdown("**The student's reason**")
         rich.rich_text(req["reason"])
+        original_pages(exam_id, req["student"], expanded=True)
         left, right = st.columns(2)
-        left.caption("Their answer")
+        left.caption("Their answer (the text the pipeline marked)")
         with left:
             rich.rich_text(row["answer"])
         right.caption("The feedback they were given")
@@ -53,7 +55,8 @@ def _request(exam_id: str, req: dict) -> None:
         )
         new_mark = None
         if uphold == "Change the mark":
-            new_mark = st.number_input("New mark", 0.0, float(row["max"]), float(row["mark"]),
+            st.caption(f"Current mark: {row['mark']:g} out of {row['max']:g}.")
+            new_mark = st.number_input("New mark", 0.0, float(row["max"]), float(row["max"]),
                                        step=0.5, key=f"{key}_m")  # fmt: skip
         reply = st.text_area("Reply to the student", key=f"{key}_r")
         if st.button("Send decision", key=f"{key}_b", type="primary"):

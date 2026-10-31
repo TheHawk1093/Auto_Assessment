@@ -4,7 +4,7 @@ Each run adds one line with its settings, prompt fingerprint and score against t
 teacher's marks, plus a readable table. Purpose: know what changed, what it did, and what to
 fall back to.
 
-Files (committed to git, unlike runs/):
+Files (committed to git, unlike output/runs/):
     experiments/log.jsonl    machine-readable, append-only
     experiments/RESULTS.md   table rebuilt from the log, with change against earlier runs
 """

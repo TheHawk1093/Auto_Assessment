@@ -1,6 +1,6 @@
 # Auto Assessment — Project Doc
 
-Living doc. One fact per line, update on every decision. Coding/tooling rules live in CLAUDE.md. Readable plan: `artifacts/Planning_and_Ideation/project_roadmap.html`. Live status: `artifacts/Project_Tracker/tracker.html` (edit only `tracker.json` there, then run `python artifacts/Project_Tracker/build.py`; result numbers come from `runs/` automatically).
+Living doc. One fact per line, update on every decision. Coding/tooling rules live in CLAUDE.md. Readable plan: `artifacts/Planning_and_Ideation/project_roadmap.html`. Live status: `artifacts/Project_Tracker/tracker.html` (edit only `tracker.json` there, then run `python artifacts/Project_Tracker/build.py`; result numbers come from `output/runs/` automatically).
 
 ## 1. Goal
 Grade a full answer sheet against model answers and a marking scheme, fully automatically, with feedback a student can learn from.
@@ -42,7 +42,7 @@ Grade a full answer sheet against model answers and a marking scheme, fully auto
 | 3 | Handwriting, circuits | EDU-CIRCUIT-HW | later |
 | 4 | Other fields | none identified | optional |
 
-Dataset detail: [DATASETS.md](DATASETS.md).
+Dataset detail: [DATASETS.md](../DATASETS.md).
 
 ## 8. Decisions
 | # | Decision | Status |
@@ -72,7 +72,7 @@ Dataset detail: [DATASETS.md](DATASETS.md).
 - 2026-10-16 — Experiment tracking (log, tags per run); design v2b: read-first, code-priced verdicts, sized schemes; beats baseline on all three dev sets.
 - 2026-10-17 — Feedback now explains why; model/effort sweep (sonnet default best value); revision test; hints/critique feedback; side-by-side comparison page.
 - 2026-10-18 — Stress test (answers with a known right outcome) found v2b too easy to fool; form gate and injection guard added (stress 0.67 to 0.86); transfer test; formal and best-of-3 feedback; model-answer masking; EngSAF added as a benchmark-only dataset; second-model review flag. Same-model voting found useless.
-- 2026-10-25 — Cleanup: commands split into `cli/` modules; all rubrics moved to `rubrics/` (JSON plus readable markdown); rejected prompt removed. Rubrics can set their own policy and partial weight (RiceChem official: balanced, 0.5; "implied is not stated" added to moderate). OCR option added to the reader (`run --ocr light|medium|heavy`). Haiku-only proof of concept (`configs/poc.yaml`, `autograde poc`): pipeline beats baseline on 4 of 5 datasets at 8 answers each; EngSAF is the exception.
+- 2026-10-25 — Cleanup: commands split into `cli/` modules; all rubrics moved to `output/rubrics/` (JSON plus readable markdown); rejected prompt removed. Rubrics can set their own policy and partial weight (RiceChem official: balanced, 0.5; "implied is not stated" added to moderate). OCR option added to the reader (`run --ocr light|medium|heavy`). Haiku-only proof of concept (`configs/poc.yaml`, `autograde poc`): pipeline beats baseline on 4 of 5 datasets at 8 answers each; EngSAF is the exception.
 - 2026-10-26 — Why Haiku under-marks (small PoC): it uses "partial" or "not met" when the idea is there in other words (reads the model answer too literally), and once mistook a requested list for a keyword list. Form gate now also checks the question asks to explain. New `autograde calibrate --name RUN` fits the partial-credit weight and a mark stretch from teacher-marked answers using saved verdicts (no model calls). Fitted partial weight: about 1.0 on DigiKlausur, SAF, Mohler, EngSAF; 0.5 on RiceChem (8 answers each, indicative only).
 - 2026-10-25 — Real sheets: `autograde ocr` reads photographed marked sheets into `Item` jsonl (3 sheets, 9 photos). Claude readers beat classical OCR by a wide margin (Haiku 96-100% of words at $0.03, Opus 100% at $0.55; RapidOCR 57-64%). Items run through the pipeline; the open problem is the missing model answer and figures in questions. See `src/autograde/ocr/README.md`.
 - 2026-10-27 — Feedback redesigned (asks, quoted strengths, partly there / missed / incorrect, overall; formal is the default; full-mark answers get code-built feedback with no model call). `with_feedback: false` for cheaper grader tuning. Fix-the-misses loop on Haiku (3 rounds, see DESIGN.md). DESIGN.md added as the shared record of design choices and experiments.

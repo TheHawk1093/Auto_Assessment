@@ -38,15 +38,10 @@ runs_*.flag
 data/
 
 # --- generated output ---------------------------------------------------------------------
-runs/
+output/
 app_data/
 *.db
 sandbox_tmp/
-
-# --- marking schemes ----------------------------------------------------------------------
-# Schemes are cached per model under rubrics/<client_name>/ and regenerated on demand. The
-# `dev` branch tracks the curated ones; the core release ships none.
-rubrics/
 
 # --- one-off experiment history (kept locally, not part of the release) -------------------
 experiments/

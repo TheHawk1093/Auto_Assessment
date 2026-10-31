@@ -1,116 +1,194 @@
-# autograde: detailed usage and experiment reference
+# Usage reference
 
-The quick start is in the [README](../README.md). This page keeps the full command, switch and experiment reference.
+This page lists every command, flag and switch. For a first run, use the quick start in the
+[README](../README.md). To understand the code, read the [codebase guide](GUIDE.md).
 
-## Setup (Python 3.11+)
+## 1. Set up
+
+You need Python 3.11 or newer and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-uv sync --all-extras          # add --extra anthropic etc. individually if you prefer
-uv run autograde download     # DigiKlausur, SAF, Mohler -> data/raw
-uv run pytest
+uv sync --all-extras          # runtime, web app, file readers, sandbox and dev tools
+uv run pytest                 # optional: the tests run offline
 ```
 
-## Use
+For a real model, copy `.env.example` to `.env` and add `OPENROUTER_API_KEY`. Keys are never put in
+a config file.
+
+## 2. Mark an exam: `autograde exam`
 
 ```bash
-# one-prompt baseline vs the full pipeline, same sample
+autograde --config configs/exam.yaml exam \
+  --paper paper.docx --reference key.docx --answers answers/ \
+  --name quiz1 --strictness moderate --note "units are required"
+```
+
+Put `--config` **before** the command name, and keep the `.yaml` ending. Use `configs/mock.yaml` to
+try the command offline.
+
+### Inputs
+
+| Flag | Meaning |
+|---|---|
+| `--paper` | The question paper: txt, md, docx, text PDF or json. Required |
+| `--reference` | The model answers and/or rubric, in one file or several. Optional |
+| `--answers` | A folder with one file per student (or the output of `autograde scan`), or one json file. Required |
+| `--name` | A name for this run. Results go to `output/runs/<name>/`. Required |
+| `--max-mark` | The marks for a single question when the paper does not print them |
+
+### Teacher controls
+
+| Flag | Meaning |
+|---|---|
+| `--strictness` | `lenient`, `moderate` or `strict`: how tightly each point is judged |
+| `--granularity` | How part marks work, overriding the rubric: `rubric` (its own levels), `stated` (only the levels it names, otherwise all or nothing), `none`, `half` or `quarter` |
+| `--mark-step` | Marks come in multiples of this number: 0.5 allows 1.5 out of 2, and 0.2 allows 1.8 |
+| `--note` | Free text for the marker, for example `"units are required"` |
+| `--question-note ID=TEXT` | A note for one question only. Repeat the flag for more |
+| `--no-follow-through` | Do not credit a later part that is right on the student's own earlier result |
+| `--working-required` | A numerical answer with no formula or working earns no marks |
+| `--count-best N` | Only the best N questions count towards the total. By default this is read from the paper |
+| `--struck-out STUDENT=Q` | A question the student struck out. It is not marked |
+| `--ignore-rubric-rules` | Do not read exam-wide rules from the paper and the rubric |
+| `--schemes-only` | Write the marking schemes and stop. Read `schemes.md` before you mark |
+
+Feedback is always written for answers that lost marks.
+
+### Code questions
+
+| Flag | Meaning |
+|---|---|
+| `--code-exec` | Run tests on student code in the sandbox. If the teacher gave no tests, the model writes them, and only tests that the reference solution passes are kept |
+| `--code-sandbox` | Where the code runs: `wasm` (the default, standard library only), `docker`, or `process` (only for code you trust) |
+
+### Who wrote each sheet
+
+| Flag | Meaning |
+|---|---|
+| `--directory` | A student list: the web app's database and/or CSV files with `student_id` and `name`. Each sheet is then matched to a student by the roll number and name written on it, and not by its file name |
+| `--course-id` | With `--directory`: prefer the students enrolled in this course when matching names |
+| `--identity-fixes` | A json file `{file name: student id}` for sheets a teacher matched by hand |
+| `--allow-unresolved` | Mark the sheets that were identified and leave out the rest. By default, marking stops if any sheet cannot be matched |
+
+### What you get
+
+All files are in `output/runs/<name>/`:
+
+| File | Contents |
+|---|---|
+| `schemes.md` | The marking scheme for each question. **Read this first** |
+| `marks.csv` | One row per student |
+| `students/<student>.md` | Each student's marks and feedback |
+| `results.jsonl` | Every verdict, quote, flag and piece of feedback |
+| `report.html` | A page for reading the results (see section 5) |
+| `usage.json` | Tokens used |
+
+An interrupted run resumes where it stopped.
+
+## 3. Read handwritten sheets: `autograde scan`
+
+```bash
+autograde --config configs/exam.yaml scan sheets/ --out answers/ --paper paper.docx
+```
+
+This reads photographed sheets into one text file per student, which you can pass to `exam`.
+
+**You choose the readers.** The `ocr:` block of the config holds the main reader (`reader`) and
+the fallbacks (`fallbacks`), which are tried in order. A reader is passed over when it fails, reads
+nothing, marks more than 25% of the words as uncertain, or repeats one word. If none is clean, the
+least doubtful read is kept and marked as degraded in `scan.json`. The README section "Reading
+handwriting" has the diagram, the default chain and the keys and costs.
+
+`--provider` and `--model` replace the main reader for one run. The fallbacks from the config still
+apply after it.
+
+**Optional Indian-script route.** Add this to the `ocr:` block to re-read every page that looks
+Indian-script (30% or more of its letters), even when the main reader was clean:
+
+```yaml
+  routes:
+    - {when: indic, reader: {provider: bodhan, model: "<model name from the Bodhan console>"}}
+```
+
+Check the text before marking, because reading handwriting is an AI step and it can make mistakes.
+
+## 4. Mark one answer again: `autograde recheck`
+
+```bash
+autograde --config configs/exam.yaml recheck --name quiz1 --student S01 --question 2b \
+  --note "accept either method" --out proposal.json
+```
+
+This marks one answer again with a note from the teacher. It only writes a proposal. Nothing in the
+finished run changes until a person accepts it.
+
+## 5. Read a run: `report.html`
+
+`output/runs/<name>/report.html` shows every answer: the question, the model answer, the student's
+answer with the quoted evidence highlighted, the marks, and the feedback. When a dataset run has
+teacher marks, it also shows ours against the teacher's, and it can filter to the answers that
+differ. `autograde view --name <run>` rebuilds the page.
+
+## 6. Measure the grader on public datasets
+
+These commands are for developers who want to know how accurate the grader is. They need the public
+datasets in `data/raw/` (see [DATASETS.md](DATASETS.md)).
+
+```bash
+uv run autograde download                      # fetch the openly licensed datasets
 autograde run --dataset digiklausur --split dev -n 24 --mode baseline --name dk_baseline
 autograde run --dataset digiklausur --split dev -n 24 --mode pipeline --name dk_pipeline
-autograde judge --name dk_pipeline     # scores the feedback with a second model
-autograde report --name dk_baseline
-autograde view --name dk_pipeline      # rebuild runs/dk_pipeline/report.html
+autograde judge --name dk_pipeline             # score the feedback with a second model
+autograde report --name dk_pipeline            # print the accuracy figures
 ```
 
-Mark a whole exam from its files (see DESIGN.md section 20):
+Questions are split between `dev` and `test` by a hash of the question's id, so no question is in
+both. Tune on `dev`, and run `test` rarely. Always compare designs on the **same sample** (same
+dataset, split, `-n` and `--seed`).
 
-```bash
-autograde --config configs/exam.yaml exam --paper paper.md --reference reference.md \
-  --answers answers/ --name quiz1 --granularity half --note "units are required"
-```
+### The experiment log
 
-`--paper` is the question paper (txt, md, docx, text pdf or json). `--reference` takes the model answer and/or rubric as one combined file or several files; it may be left out. `--answers` is a folder with one file per student (or the output folder of `autograde ocr`), or one JSON file. The teacher's only inputs are `--granularity` (rubric, none, half, quarter), `--strictness` and a free-text `--note`. Results go to `runs/<name>/`: `schemes.md` (read this first), `marks.csv`, `students/<student>.md` (marks and feedback). `--schemes-only` stops after the schemes. Feedback is always written.
+Each `autograde run` adds one line to `experiments/log.jsonl` (the settings, a fingerprint of the
+prompts and the score against the teacher) and rebuilds `experiments/RESULTS.md`. Use
+`autograde history` to list what has been tried. Add `--commit` to also make a git commit and tag
+for the run. This is off by default, because it runs `git add -A`.
 
-Open `runs/<name>/report.html` to read the samples (question, model answer, student answer with quoted evidence highlighted, our marks vs the teacher's, feedback; filter to answers that differ from the teacher). `run` and `judge` rebuild it automatically.
+### Pipeline switches
 
-Outputs go to `runs/<name>/`: `report.html`, `results.jsonl` (marks, per-point verdicts, feedback, flags), `metrics.json`, `usage.json`. Interrupted runs resume where they stopped. Marking schemes are stored in `rubrics/<model>/<variant>/` (JSON, plus readable `<dataset>.md` from `autograde rubrics-md`).
-
-Models are set in `configs/default.yaml`. `claude_cli` uses your Claude Code login (good for early tests, one process per call). `anthropic` uses the API and needs `ANTHROPIC_API_KEY`.
-
-## How it works
-
-```
-Item -> RubricStore (write once per question, self-test, cache)
-     -> mark_answer (per-point verdicts + quotes) -> verify (quotes real, limits, code sums marks; one retry, then repair)
-     -> write_feedback (from the checked marking only)
-```
-
-| Path | Purpose |
-|---|---|
-| `src/autograde/schemas.py` | Data contracts |
-| `src/autograde/datasets/` | Loaders, dev/test split by question, downloader |
-| `src/autograde/llm/` | One `ask(system, user, PydanticModel)` interface; CLI and API backends |
-| `src/autograde/pipeline/` | rubric, grade, verify, feedback, baseline, run |
-| `src/autograde/prompts/` | Every prompt, as markdown, grouped by stage (`rubric/`, `grade/`, `feedback/`, `language/` for anything specific to a language other than English, `intake/`, `ocr/`, `checks/`, `eval/`); a prompt is found by file name |
-| `configs/` | `default.yaml`, `exam.yaml`, `poc.yaml`, `models/`; one-off experiment configs are in `configs/experiments/<group>/` |
-| `scripts/` | Shell chains that ran sets of experiments (A/B tests, translated sets, OCR) |
-| `tools/` | Standalone OCR scripts (`tools/ocr/`) and the code-sandbox interpreter (`tools/sandbox/`) |
-| `rubrics/` | Every stored marking scheme, by model and strictness |
-| `src/autograde/cli/` | Commands, one module per group (runs, evals, rubrics, pages) |
-| `src/autograde/ocr/` | OCR track: simulated noise, image transcription (see its README) |
-| `src/autograde/evaluation/` | Mark metrics, feedback judge |
-| `src/autograde/viewer/` | `report.html` template and builder |
-
-Data splits: a question goes to `dev` or `test` by a hash of its id, so no question appears in both. Tune on `dev`; run `test` rarely.
-
-## Experiment workflow (every test against the teacher's marks)
-
-`autograde run ... --variant NAME --note "what changed"` does five things in order:
-grades the sample, scores it against the teacher's marks, appends a line to `experiments/log.jsonl`,
-rebuilds `experiments/RESULTS.md` (all runs, with change against the baseline and the previous run
-on the same sample), then commits the code and tags it.
-
-- Commit subject carries the scores: `exp(v1): error 0.150 | bias -0.04 | r 0.85 | qwk 0.75 | $0.60 [...]`.
-- Tag `exp-<variant>-<run>` holds the full message: `git show exp-v1-dk_s1_v1`.
-- List everything tried: `autograde history` (same as `git tag -n1 -l "exp-*"`).
-- Fall back: `git checkout exp-<variant>-<run>`. Marking schemes in `rubrics/` are committed,
-  so the exact schemes come back with the code.
-- Nothing is pushed. Push when you choose: `git push --follow-tags`.
-- The git commit and tag happen only with `--commit` (off by default; it runs `git add -A`).
-
-Compare designs on the **same sample** (same dataset, split, `-n`, `--seed`). Tune on one seed and
-confirm on another so a gain is not just fitting the tuning sample.
-
-## Switches (configs/default.yaml, `pipeline:`)
+These are the `pipeline:` settings in `configs/default.yaml`.
 
 | Switch | Default | Meaning |
 |---|---|---|
-| `read_first` | true | A first pass reads the answer alone (no model answer, no scheme), then marking uses that reading |
-| `evidence_policy` | flag | `strict`: credit with an unfound quote is removed. `flag`: kept and reported |
-| `policy` | essence | `essence`: judge the central idea, model answer is one example. `literal`: original wording |
-| `rubric_variant` | sized | Folder name for a different marking-scheme source, so schemes can be compared |
-| `feedback_variant` | standard | `standard`, `hints` (guide, do not give the idea), `critique` (draft then review), `formal` |
-| `feedback_n` | 1 | Write this many feedback drafts; code checks drop bad ones and the model picks the best |
-| `votes` | 1 | Mark this many times and take the majority per point. Same-model votes were identical in tests, so leave at 1 |
-| `second_model` | none | A cheaper model also marks; a gap over `disagree_gap` adds the flag `models_disagree` |
+| `read_first` | true | A first pass reads the answer alone, then marking uses that reading |
+| `evidence_policy` | flag | `strict` removes credit whose quote is not found. `flag` keeps the credit and reports it |
+| `policy` | essence | `essence` judges the central idea, and the model answer is only one example. `literal` follows the original wording |
+| `rubric_variant` | sized | The name of the scheme source, so different schemes can be compared |
+| `feedback_variant` | standard | `standard`, `hints` (guide, but do not give the idea), `critique` (draft, then review) or `formal` |
+| `feedback_n` | 1 | Write this many drafts. Code removes bad ones and the model picks the best |
+| `votes` | 1 | Mark this many times and take the majority per point. In tests, votes from one model were identical, so leave it at 1 |
+| `second_model` | none | A cheaper model also marks. A gap above `disagree_gap` adds the flag `models_disagree` |
 
-Marking always applies a form check: scrambled text earns 0, a bare list of terms (where an explanation was asked) is capped at half, and instructions inside a student answer are ignored.
+Marking always applies a form check. Scrambled text earns 0, a bare list of terms (when an
+explanation was asked for) is capped at half marks, and instructions written inside a student answer
+are ignored.
 
-`configs/experiments/compare/v0_citations.yaml` switches all three off to reproduce the first design.
-
-## Tests beyond the teacher's marks
+### Tests beyond the teacher's marks
 
 | Command | What it checks |
 |---|---|
-| `autograde stress --dataset D --mode pipeline\|baseline --name N` | Answers built so the right outcome is known (shuffled words, keyword lists, off-topic, confident wrong, pasted model answer, injected instructions). Needs no human labels |
-| `autograde revision --name R [--sample N]` | A simulated student rewrites the answer using only the feedback; the grader marks the rewrite. Compared with a no-feedback rewrite |
-| `autograde transfer --name R` | The same student answers a different question on the same idea, so memorised answers do not count |
-| `autograde run ... --perturb-model mask30\|short50` then `autograde sensitivity --a A --b B` | How far marks move when the model answer is blanked or shortened |
-| `autograde refeedback --name R --new-name N --feedback hints --variant V` | New feedback on a finished run; marks stay identical |
-| `autograde votes --name R` | Vote spread and, with `second_model`, how well disagreement points at errors |
-| `autograde compare --run NAME=LABEL\|SHORT\|DESCRIPTION ...` | One page, one tab per method, the same answers in each |
+| `autograde stress --dataset D --mode pipeline --name N` | Answers built so that the right outcome is known: shuffled words, keyword lists, off-topic text, confident wrong answers, pasted model answers and injected instructions. It needs no human marks |
+| `autograde revision --name R` | A simulated student rewrites an answer using only the feedback, and the grader marks the rewrite. This is compared with a rewrite made without feedback |
+| `autograde transfer --name R` | The same simulated student answers a different question on the same idea, so memorised answers do not count |
+| `autograde sensitivity --a A --b B` | How far marks move between two runs, for example when the model answer was blanked or shortened (`--perturb-model`) |
+| `autograde refeedback --name R --new-name N --feedback hints` | Writes new feedback for a finished run. The marks stay identical |
+| `autograde votes --name R` | How much votes differ, and how well disagreement points at errors |
+| `autograde compare --run NAME=LABEL\|SHORT\|DESCRIPTION ...` | One page with a tab per method, showing the same answers in each |
 
-`autograde download --engsaf` fetches EngSAF (benchmark only: it ignores the dev/test split and is never tuned on).
+`autograde download --engsaf` fetches EngSAF. It is for benchmarking only: it ignores the dev/test
+split and is never used for tuning.
 
-## Framework choice
+## 7. Why there is no agent framework
 
-No agent framework (LangGraph, Agents SDK). The flow is a fixed sequence of model calls with code checks between them, so plain functions are simpler to test and debug. Revisit if the flow needs branching or tool use (for example a calculator in stage 2).
+The flow is a fixed series of AI calls with code checks between them, so plain functions are easier
+to test and debug than an agent framework. This choice can be revisited if the flow ever needs
+branching or tools, for example a calculator.

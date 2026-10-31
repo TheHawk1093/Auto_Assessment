@@ -133,6 +133,12 @@ def decide(
     if upheld:
         if new_mark is None:
             raise ValueError("Enter the new mark.")
+        current = grades.final_marks(row["exam_id"]).get(row["student"], {}).get(row["question"])
+        if current is not None and abs(new_mark - current) < 1e-9:
+            raise ValueError(
+                f"The new mark is the same as the current mark ({current:g}). "
+                "Enter the mark you want, or reject the request."
+            )
         grades.override(
             row["exam_id"], row["student"], row["question"], new_mark, reply, by, notify=False
         )

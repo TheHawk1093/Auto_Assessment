@@ -24,24 +24,36 @@ PER_ROW = 3
 def render() -> None:
     """Show the exam cards, the new-exam button and the Courses tab."""
     user = session.current_user()
-    head, action = st.columns([4, 1], vertical_alignment="bottom")
+    head, a1, a2 = st.columns([4, 1, 1], vertical_alignment="bottom")
     with head:
-        ui.page_header(
-            "Your exams", "Upload, mark, review and publish. Pick up where you left off."
-        )
-    with action:
-        _new_exam(user)
-    exams_tab, courses_view = st.tabs([":material/description: Exams", ":material/groups: Courses"])
+        ui.page_header("Your work", "Exams and assignments: upload, mark, review and publish.")
+    with a1:
+        _new_exam(user, "exam")
+    with a2:
+        _new_exam(user, "assignment")
+    exams_tab, work_tab, courses_view = st.tabs(
+        [
+            ":material/description: Exams",
+            ":material/assignment: Assignments",
+            ":material/groups: Courses",
+        ]
+    )
     with exams_tab:
-        _exams(user)
+        _exams(user, "exam")
+    with work_tab:
+        _exams(user, "assignment")
     with courses_view:
         courses_tab.render()
 
 
-def _exams(user: dict) -> None:
-    cards = overview.for_owner(None if user["role"] == "admin" else user["username"])
+def _exams(user: dict, kind: str) -> None:
+    cards = [
+        c
+        for c in overview.for_owner(None if user["role"] == "admin" else user["username"])
+        if c["kind"] == kind
+    ]
     if not cards:
-        st.info("No exams yet. Use “New exam” to create the first one.")
+        st.info(f"No {kind}s yet. Use “New {kind}” to create the first one.")
         return
     _attention(cards)
     for start in range(0, len(cards), PER_ROW):
@@ -51,11 +63,14 @@ def _exams(user: dict) -> None:
                 _card(card)
 
 
-def _new_exam(user: dict) -> None:
+def _new_exam(user: dict, kind: str) -> None:
     mine = courses.list_courses(None if user["role"] == "admin" else user["username"])
-    popover = st.popover("＋ New exam", width="stretch")
-    with popover, st.form("new_exam", clear_on_submit=True, border=False):
-        title = st.text_input("Exam name", placeholder="e.g. ME5309 Quiz 2")
+    popover = st.popover(f"＋ New {kind}", width="stretch")
+    with popover, st.form(f"new_{kind}", clear_on_submit=True, border=False):
+        title = st.text_input(
+            f"{kind.capitalize()} name",
+            placeholder="e.g. Midterm Quiz 2" if kind == "exam" else "e.g. Homework 3",
+        )
         options = [None, *[c["id"] for c in mine]]
         names = {c["id"]: courses.label(c) for c in mine} | {
             None: "No course (anyone marked sees it)"
@@ -63,7 +78,7 @@ def _new_exam(user: dict) -> None:
         course_id = st.selectbox("Course", options, format_func=names.get)
         if st.form_submit_button("Create", type="primary") and title.strip():
             st.session_state["exam_id"] = storage.create_exam(
-                title, owner=user["username"], course_id=course_id
+                title, owner=user["username"], course_id=course_id, kind=kind
             )
             st.rerun()
 
@@ -73,7 +88,7 @@ def _attention(cards: list[dict]) -> None:
     waiting = sum(c["status"] in ("ready", "prepared") for c in cards)
     unpublished = sum(c["status"] == "marked" for c in cards)
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Exams", len(cards))
+    c1.metric(cards[0]["kind"].capitalize() + "s", len(cards))
     c2.metric("Waiting to be marked", waiting)
     c3.metric("Marked, not published", unpublished)
     c4.metric("Regrade requests", pending)

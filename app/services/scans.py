@@ -251,3 +251,17 @@ def remove_sheet(exam_id: str, sheet: str) -> None:
     known = _json(path)
     if known.pop(sheet, None) is not None:
         path.write_text(json.dumps(known), encoding="utf-8")
+
+
+def pages_for(exam_id: str, student_id: str) -> list[Path]:
+    """The original page images of the student's scanned sheet, if their answer came from one.
+
+    Found through the identity report: the sheet whose text was attributed to this student.
+    """
+    from app.services import identity
+
+    have = sheets(exam_id)
+    for entry in identity.report(exam_id):
+        if entry["student_id"] == student_id and Path(entry["source"]).stem in have:
+            return have[Path(entry["source"]).stem]
+    return []

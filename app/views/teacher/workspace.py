@@ -65,27 +65,37 @@ def render(exam_id: str) -> None:
         text, kind = STATUS_CHIP[status]
         model = models.get(meta["model"]).label
         course = courses.label(courses.get(meta["course_id"]))
+        what = "Assignment" if meta["kind"] == "assignment" else "Exam"
         ui.page_header(
-            meta["title"], chip_row=ui.chips((text, kind), (course, "blue"), (model, "violet"))
+            meta["title"],
+            chip_row=ui.chips((what, "neutral"), (text, kind), (course, "blue"), (model, "violet")),
         )
-    ui.stepper(_steps(exam_id, status))
-    for tab, t in zip(st.tabs([t.label(exam_id) for t in TABS]), TABS, strict=True):
+    tabs = _tabs_for(meta["kind"])
+    ui.stepper(_steps(exam_id, status, tabs))
+    for tab, t in zip(st.tabs([t.label(exam_id) for t in tabs]), tabs, strict=True):
         with tab:
             t.render(exam_id)
     _danger_zone(exam_id)
 
 
-def _steps(exam_id: str, status: str) -> list[tuple[str, str, str]]:
+def _tabs_for(kind: str) -> list[Tab]:
+    """An assignment's first tab collects its brief and the students' submissions."""
+    if kind == "assignment":
+        return [Tab("Brief and submissions", "upload_file", upload.render), *TABS[1:]]
+    return TABS
+
+
+def _steps(exam_id: str, status: str, tabs: list[Tab]) -> list[tuple[str, str, str]]:
     nxt = NEXT_STEP[status]
     steps = []
-    for i, t in enumerate(TABS):
+    for i, t in enumerate(tabs):
         state = "done" if i < nxt else "current" if i == nxt else "todo"
         steps.append((t.name, state, t.badge(exam_id) if t.badge else ""))
     return steps
 
 
 def _danger_zone(exam_id: str) -> None:
-    with st.expander("Rename this exam"), st.form(f"rename_{exam_id}", border=False):
+    with st.expander("Rename"), st.form(f"rename_{exam_id}", border=False):
         title = st.text_input("Title", storage.load_meta(exam_id)["title"])
         if st.form_submit_button("Rename"):
             try:
@@ -94,7 +104,7 @@ def _danger_zone(exam_id: str) -> None:
                 st.error(str(e))
             else:
                 st.rerun()
-    with st.expander("Delete this exam"):
+    with st.expander("Delete"):
         sure = st.checkbox("Delete its files, marks and regrade requests", key=f"sure_{exam_id}")
         if st.button("Delete exam", disabled=not sure):
             if jobs.job_state(exam_id).get("state") == "running":

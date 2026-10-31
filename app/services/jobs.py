@@ -3,7 +3,7 @@
 A run is a detached process (`jobwrap`) that writes job.json and job.log in the exam folder, so
 the UI never holds the process: a browser refresh or a Streamlit restart loses nothing, and a run
 whose process has died is reported as failed instead of running forever. One run at a time:
-Goedel allows only four concurrent requests in total, so two marking runs must not overlap.
+marking runs share one rate limit, so two must not overlap.
 """
 
 from __future__ import annotations
@@ -12,13 +12,31 @@ import json
 import os
 import subprocess
 import sys
+import time
 from datetime import datetime
 
 from app import config
-from app.services import db, models, scans, settings_spec, storage
+from app.services import combine, db, models, scans, settings_spec, storage
 from app.services.storage import exam_dir, run_name, uploaded_files
 
 ACTIVE = ("running",)
+
+
+def paper_file(exam_id: str):
+    """The question paper as one file: the upload itself, or its files joined (a zip of parts).
+
+    Raises:
+        RuntimeError: If none of the paper files could be read.
+    """
+    files = uploaded_files(exam_id, "paper")
+    if len(files) == 1:
+        return files[0]
+    text, unreadable = combine.combine(files, by_question=False)
+    if not text.strip():
+        raise RuntimeError(f"The question paper files could not be read: {', '.join(unreadable)}.")
+    target = exam_dir(exam_id) / "paper_combined.md"
+    target.write_text(text, encoding="utf-8")
+    return target
 
 
 def build_command(exam_id: str, schemes_only: bool) -> list[str]:
@@ -26,7 +44,6 @@ def build_command(exam_id: str, schemes_only: bool) -> list[str]:
     meta = storage.load_meta(exam_id)
     settings = meta["settings"]
     config_path = models.write_config(models.get(meta["model"]), exam_dir(exam_id) / "config.yaml")
-    paper = uploaded_files(exam_id, "paper")
     refs = uploaded_files(exam_id, "reference")
     answers = [p for p in uploaded_files(exam_id, "answers") if p.suffix.lower() != ".csv"]
     json_only = len(answers) == 1 and answers[0].suffix.lower() == ".json"
@@ -35,7 +52,7 @@ def build_command(exam_id: str, schemes_only: bool) -> list[str]:
     cmd = [
         sys.executable, "-c", "from autograde.cli import main; main()",
         "--config", str(config_path), "exam",
-        "--paper", str(paper[0]),
+        "--paper", str(paper_file(exam_id)),
         "--answers", str(answers_arg),
         "--name", run_name(exam_id),
     ]  # fmt: skip
@@ -82,7 +99,11 @@ def pid_alive(pid: int) -> bool:
 
 
 def _write(exam_id: str, state: dict) -> None:
-    (exam_dir(exam_id) / "job.json").write_text(json.dumps(state), encoding="utf-8")
+    """Replace job.json in one step, so a reader never sees it half written."""
+    path = exam_dir(exam_id) / "job.json"
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(state), encoding="utf-8")
+    os.replace(tmp, path)
 
 
 def job_state(exam_id: str) -> dict:
@@ -95,7 +116,15 @@ def job_state(exam_id: str) -> dict:
     path = exam_dir(exam_id) / "job.json"
     if not path.exists():
         return {}
-    state = json.loads(path.read_text(encoding="utf-8"))
+    state = {}
+    for _ in range(5):  # the runner may be replacing the file at this very moment
+        try:
+            state = json.loads(path.read_text(encoding="utf-8"))
+            break
+        except (json.JSONDecodeError, OSError):
+            time.sleep(0.05)
+    if not state:
+        return {}
     if state.get("state") == "running":
         pid = state.get("pid")
         age = (datetime.now() - datetime.fromisoformat(state["started"])).total_seconds()
@@ -186,11 +215,11 @@ def build_scan_command(exam_id: str) -> list[str]:
         "--config", str(config_path), "scan", str(scans.folder(exam_id)),
         "--out", str(storage.upload_dir(exam_id, "answers")),
         "--summary", str(scans.summary_file(exam_id)),
-        "--provider", reader.provider, "--model", reader.model,
     ]  # fmt: skip
-    paper = uploaded_files(exam_id, "paper")
-    if paper:
-        cmd += ["--paper", str(paper[0])]
+    if reader.provider != "config":  # "config": the reader chain written in the config
+        cmd += ["--provider", reader.provider, "--model", reader.model]
+    if uploaded_files(exam_id, "paper"):
+        cmd += ["--paper", str(paper_file(exam_id))]
     known = scans.identities_file(exam_id)
     if known:
         cmd += ["--identities", str(known)]

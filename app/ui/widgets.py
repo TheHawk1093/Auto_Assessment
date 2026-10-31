@@ -81,3 +81,21 @@ def job_banner(exam_id: str) -> None:
         )
     with st.expander("Log", expanded=state["state"] == "failed"):
         st.code(jobs.log_tail(exam_id) or "(empty)", language=None)
+
+
+def original_pages(exam_id: str, student_id: str, *, expanded: bool = False) -> None:
+    """Show the student's original handwritten pages, when their answer was read from a scan.
+
+    The page is the ground truth. The text beside it was read from it for the marking pipeline
+    only, and can contain mistakes.
+    """
+    pages = scans.pages_for(exam_id, student_id)
+    if not pages:
+        return
+    with st.expander(f"Original handwritten sheet ({len(pages)} page(s))", expanded=expanded):
+        st.caption(
+            "This is what the student wrote. The text shown elsewhere was read from it so the "
+            "pipeline can mark it; if they differ, the page is right."
+        )
+        for page in pages:
+            st.image(str(page), caption=page.name, width="stretch")

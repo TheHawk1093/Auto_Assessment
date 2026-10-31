@@ -202,7 +202,7 @@ def test_teacher_page_renders_every_tab(env):
     assert [t.split(": ")[-1] for t in tabs] == [
         "Upload", "Settings", "Mark", "Results", "Publish", "Regrades",
     ]  # fmt: skip
-    assert {"Questions", "Students", "Average", "Worth a look"} <= {m.label for m in at.metric}
+    assert {"Questions", "Students", "Average", "To check"} <= {m.label for m in at.metric}
 
 
 def test_login_screen_and_first_admin_setup(env):

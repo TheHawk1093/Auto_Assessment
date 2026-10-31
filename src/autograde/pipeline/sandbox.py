@@ -30,7 +30,7 @@ TIMEOUT_S = 10  # a container also has to start; the code's own limit is inside 
 # Reads {"code": str, "tests": [str]} on stdin, runs each test line against the code, prints one
 # JSON result. Its own prints are discarded so a student's output cannot forge the result.
 RUNNER = r"""
-import json, sys, os
+import io, json, sys
 try:
     import resource
     resource.setrlimit(resource.RLIMIT_AS, (512 * 2**20, 512 * 2**20))
@@ -38,7 +38,7 @@ except Exception:
     pass
 job = json.loads(sys.stdin.read())
 real_out = sys.stdout
-sys.stdout = open(os.devnull, "w")
+sys.stdout = io.StringIO()  # not os.devnull: WASI has none
 scope = {"__name__": "student"}
 result = {"loaded": True, "error": "", "passed": 0, "failed": []}
 try:

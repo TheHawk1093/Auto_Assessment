@@ -53,7 +53,7 @@ def flagged_table(rs: list[Result]) -> pd.DataFrame:
                     "student": student_of(r.item),
                     "question": r.item.question_id,
                     "mark": f"{r.predicted_mark:g} / {r.item.max_mark:g}",
-                    "why look": "; ".join(LABELS[x] for x in reasons),
+                    "reason": "; ".join(LABELS[x] for x in reasons),
                 }
             )
-    return pd.DataFrame(rows, columns=["student", "question", "mark", "why look"])
+    return pd.DataFrame(rows, columns=["student", "question", "mark", "reason"])

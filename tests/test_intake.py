@@ -31,6 +31,11 @@ def test_markers_are_found_in_common_layouts():
     assert split_text(text, PAPER) == {"1": "first\nmore", "2a": "second", "2b": "third"}
 
 
+def test_answers_written_out_of_paper_order_are_all_found():
+    text = "Q2b. third\n\nQ2a. second\n\nQ1. first"
+    assert split_text(text, PAPER) == {"1": "first", "2a": "second", "2b": "third"}
+
+
 def test_the_model_splits_text_without_markers():
     c = FakeClient({_Split: lambda _u: {"answers": {"1": "a", "2a": "b"}}})
     assert split_text("one long unlabelled answer", PAPER, c) == {"1": "a", "2a": "b"}
@@ -173,3 +178,17 @@ def test_later_parts_carry_the_earlier_answers_of_the_same_question():
     assert items["1"].earlier == "" and items["2a"].earlier == "" and items["3"].earlier == ""
     assert items["2b"].earlier == "Part 2a: m = 3 kg"
     assert items["2c"].earlier == "Part 2a: m = 3 kg\nPart 2b: F = 30 N"
+
+
+def test_a_reference_may_name_a_question_with_or_without_the_Q(tmp_path):
+    paper = Paper(questions=[QuestionSpec(id="Q1", text="a", max_mark=2),
+                             QuestionSpec(id="Q2", text="b", max_mark=2)])  # fmt: skip
+    ref = tmp_path / "ref.json"
+    ref.write_text(
+        json.dumps({"1": {"model_answer": "M1", "tests": "assert f(1)"}, "q 2.": {"rubric": "R2"}}),
+        encoding="utf-8",
+    )
+    refs, warnings = load_references([ref], paper)
+    assert refs["Q1"].model_answer == "M1" and refs["Q1"].tests == "assert f(1)"
+    assert refs["Q2"].rubric == "R2"
+    assert not any("unknown question" in w for w in warnings)

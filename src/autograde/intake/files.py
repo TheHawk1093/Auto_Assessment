@@ -9,18 +9,36 @@ from pathlib import Path
 from autograde.intake.figures import anchor_figures, docx_pictures
 
 TEXT = {".txt", ".md", ".json", ".jsonl", ".csv", ".tex"}
+CODE = {
+    ".py",
+    ".java",
+    ".c",
+    ".cpp",
+    ".h",
+    ".js",
+    ".ts",
+    ".cs",
+    ".go",
+    ".rs",
+    ".m",
+    ".r",
+    ".sql",
+    ".sh",
+}  # read as plain text
 
 
 def read_document(path: Path) -> str:
     """Plain text of a .txt, .md, .json, .csv, .docx or text-based .pdf file."""
     suffix = path.suffix.lower()
-    if suffix in TEXT:
+    if suffix in TEXT or suffix in CODE:
         return anchor_figures(path.read_text(encoding="utf-8"), path.parent)
     if suffix == ".docx":
         return _docx_text(path)
     if suffix == ".pdf":
         return _pdf_text(path)
-    raise ValueError(f"Cannot read {path.name}: use txt, md, json, csv, docx or pdf.")
+    raise ValueError(
+        f"Cannot read {path.name}: use txt, md, json, csv, docx, pdf or a source file."
+    )
 
 
 def _docx_text(path: Path) -> str:
@@ -33,7 +51,8 @@ def _docx_text(path: Path) -> str:
         lines = []
         for i, para in enumerate(paragraphs):
             para = re.sub(r"<w:tab/>", "\t", para)
-            text = "".join(re.findall(r"<w:t[^>]*>([^<]*)</w:t>", para))
+            # w:t is ordinary text, m:t the text of an equation (kept flat, in reading order)
+            text = "".join(re.findall(r"<[wm]:t[^>]*>([^<]*)</[wm]:t>", para))
             lines.append(_unescape(text))
             for name in pictures.get(i, []):
                 media.mkdir(exist_ok=True)

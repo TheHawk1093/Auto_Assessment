@@ -21,10 +21,8 @@ def render_box(exam_id: str) -> None:
     with st.container(border=True):
         st.markdown("**Handwritten or scanned answer sheets**")
         st.caption(
-            "Photos (png, jpg, webp) or PDFs, one sheet per student, or a .zip of them. Pages of "
-            "one sheet can be named `name_p1`, `name_p2`; a PDF is split into its pages. Each "
-            "sheet is read into text that you can check and correct on the Mark tab. The student "
-            "writes their name and roll number at the top."
+            "Photos or PDFs, one sheet per student, or a zip. Name pages like `21ME004_p1`, "
+            "`21ME004_p2`, or have the student write the roll number at the top of the sheet."
         )
         picked = st.file_uploader(
             "Scans", type=TYPES, accept_multiple_files=True, label_visibility="collapsed",
@@ -41,6 +39,11 @@ def render_box(exam_id: str) -> None:
         if skipped:
             st.warning("Skipped: " + "; ".join(skipped[:8]))
         _sheets_and_reader(exam_id)
+
+
+def render_reader(exam_id: str) -> None:
+    """Show the scanned sheets, who reads them, and the button that reads them."""
+    _sheets_and_reader(exam_id)
 
 
 def _sheets_and_reader(exam_id: str) -> None:

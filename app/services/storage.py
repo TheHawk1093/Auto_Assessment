@@ -56,6 +56,7 @@ DEFAULT_SUBMISSIONS: dict = {
     "open": False,
     "deadline": "",  # YYYY-MM-DD, the last day to submit; empty means no limit
     "instructions": "",  # shown to students beside the upload box
+    "formats": [],  # accepted file type groups (see submissions.GROUPS); empty means all
 }
 
 
@@ -70,9 +71,13 @@ def list_exams(owner: str | None = None) -> list[dict]:
 
 
 def create_exam(
-    title: str, owner: str = "", exam_id: str | None = None, course_id: int | None = None
+    title: str,
+    owner: str = "",
+    exam_id: str | None = None,
+    course_id: int | None = None,
+    kind: str = "exam",
 ) -> str:
-    """A new exam folder. The id is made from the title and the time unless one is given."""
+    """A new exam or assignment folder. The id comes from the title and the time unless given."""
     title = normalize(title).strip()
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:30] or "exam"
     exam_id = exam_id or f"{slug}-{datetime.now():%y%m%d-%H%M%S}"
@@ -81,6 +86,7 @@ def create_exam(
         exam_id,
         {
             "id": exam_id,
+            "kind": kind,  # exam | assignment
             "title": title,
             "created": datetime.now().isoformat(timespec="seconds"),
             "owner": owner,
@@ -109,6 +115,7 @@ def load_meta(exam_id: str) -> dict:
     meta["policy"] = {**DEFAULT_POLICY, **meta.get("policy", {})}
     meta["submissions"] = {**DEFAULT_SUBMISSIONS, **meta.get("submissions", {})}
     meta.setdefault("reader", models.DEFAULT_READER)
+    meta.setdefault("kind", "exam")
     meta.setdefault("owner", "")
     meta.setdefault("course_id", None)
     meta.setdefault("published", None)

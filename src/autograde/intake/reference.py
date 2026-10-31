@@ -8,6 +8,7 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from autograde import prompts
+from autograde.intake.answers import norm
 from autograde.intake.files import read_document
 from autograde.intake.models import Paper, Reference
 from autograde.llm import LLMClient
@@ -61,6 +62,9 @@ def load_references(
                 model_answer=entry.model_answer or old.model_answer,
                 rubric=entry.rubric or old.rubric,
             )
+    # a reference may say "1", "Q1" or "q 1." for the paper's question "Q1"
+    by_norm = {norm(q.id): q.id for q in paper.questions}
+    refs = {by_norm.get(norm(qid), qid): ref for qid, ref in refs.items()}
     warnings = [
         f"Reference names an unknown question: {qid}" for qid in refs if qid not in paper.ids
     ]

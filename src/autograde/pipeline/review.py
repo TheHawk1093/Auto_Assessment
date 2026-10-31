@@ -15,14 +15,14 @@ from collections.abc import Sequence
 from autograde.schemas import Result
 
 LABELS = {
-    "marking_unstable": "the marker had to be asked again or its answer was repaired",
-    "scheme_unreliable": "the marking scheme for this question failed its own self-test",
-    "credit_unquoted": "credit was given but its quote is missing or not in the answer",
-    "models_disagree": "a second marker disagreed, or a stronger one re-marked it",
-    "form_or_deduction": "a form rule capped the mark or a deduction was applied",
-    "ocr_unsure": "the handwriting reader was unsure of a word in this answer",
-    "figure_unchecked": "a drawing could not be checked",
-    "ambiguous_partial": "partly right and the total is mid-range, so the level was a close call",
+    "marking_unstable": "The marker gave an unclear answer first and had to be asked again.",
+    "scheme_unreliable": "The marking scheme for this question did not pass its own check.",
+    "credit_unquoted": "Marks were given, but the words that earned them are not in the answer.",
+    "models_disagree": "Two markers gave different marks.",
+    "form_or_deduction": "A rule lowered the mark (for example a missing unit).",
+    "ocr_unsure": "The handwriting was hard to read in this answer.",
+    "figure_unchecked": "A drawing could not be checked.",
+    "ambiguous_partial": "The answer is partly right, so the exact mark was a close call.",
 }
 MID = (0.3, 0.7)  # share of the total that counts as mid-range
 PARTIAL_WEIGHT = 0.2  # partial credit must be worth this share of the total to be a close call

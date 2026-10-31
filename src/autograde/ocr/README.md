@@ -1,5 +1,10 @@
 # OCR side-track: design note
 
+> **Deployed reader order** (the current setup): the OpenRouter free vision-model chain from
+> `configs/exam.yaml` first, then Bodhan IndicOCR for pages the chain reads as Indic script. See
+> the diagram and rules in the [main README](../../../README.md#reading-handwriting). The rest of
+> this note is the research log behind those choices, including readers that are no longer used.
+
 Goal: make the grader work on OCR'd handwritten answers, and measure how much marks drift.
 
 ## What is here
@@ -35,9 +40,9 @@ Keep dev/test split by question as usual; never tune the noise rates on test.
 5. Add the drift metrics (per-item mark difference vs the clean run) to the report; the clean run name goes in `compare`.
 
 ## Real answer sheets (done 2025-10-25)
-`autograde ocr <folder> --out runs/<name> [--model haiku|sonnet|opus] [--key key.json]` reads photographed sheets (`<sheet>_p<page>.jpeg`, all pages of a sheet in one call) into `<sheet>.sheet.json` and `items.jsonl` in the `Item` format (`sheets.py`, prompt `ocr.sheet.system.md`). Questions, marks and the teacher's per-question totals are read from the page too; `model_answer` stays empty unless a key is given.
+`autograde ocr <folder> --out output/runs/<name> [--model haiku|sonnet|opus] [--key key.json]` reads photographed sheets (`<sheet>_p<page>.jpeg`, all pages of a sheet in one call) into `<sheet>.sheet.json` and `items.jsonl` in the `Item` format (`sheets.py`, prompt `ocr.sheet.system.md`). Questions, marks and the teacher's per-question totals are read from the page too; `model_answer` stays empty unless a key is given.
 
-Test: 9 photos of three marked sheets (German quiz, probability quiz, network-control quiz with long derivations), scored by `python -m autograde.ocr.score data/OCR_Dataset/truth.json runs/ocr_*`. The truth file was read by Claude, not by an independent person.
+Test: 9 photos of three marked sheets (German quiz, probability quiz, network-control quiz with long derivations), scored by `python -m autograde.ocr.score data/OCR_Dataset/truth.json output/runs/ocr_*`. The truth file was read by Claude, not by an independent person.
 
 | reader | German words | Probab words | Network facts | teacher totals | cost (9 pages) |
 |---|---|---|---|---|---|
@@ -51,7 +56,7 @@ Findings: classical OCR cannot read this handwriting or matrices. The three Clau
 Gaps: figures and tables inside questions (a joint PMF table) are not in the question text, so a reference answer drafted from the text alone is wrong for those. A student sheet has no model answer, so the key or a figure-aware solving step must come before marking. Whether a YES/NO was circled by the student is not readable.
 
 ## Classical OCR vs Claude, with tuning (2025-10-25)
-Harness: `tools/ocr/ocr_bench.py` (engines, grids, scoring), `tools/ocr/ocr_prep.py` (blue-ink isolation), `tools/ocr/ocr_pipeline_eval.py` (grade the same sheets from each source). Engines need a separate venv (docling, easyocr, rapidocr-onnxruntime, transformers, opencv) and Tesseract 5.4 with `deu`/`eng` data. Truth is `data/OCR_Dataset/truth_pages.json`, read by Claude from the photos. Tuned on dev pages only (German p1, Probab p1, Network p1-2); scored on test pages (German p2, Probab p2, Network p3-4). Tiny set: 8 pages, 3 sheets, one student.
+The local-engine harness scripts were removed from this repository (they are in the `legacy-history` branch); only the hosted readers (API keys in `.env`) are supported now. Truth is `data/OCR_Dataset/truth_pages.json`, read by Claude from the photos. Tuned on dev pages only (German p1, Probab p1, Network p1-2); scored on test pages (German p2, Probab p2, Network p3-4). Tiny set: 8 pages, 3 sheets, one student.
 
 Reading accuracy, mean over pages (recall = the student's words/numbers found exactly, fuzzy = also near matches):
 
@@ -100,7 +105,7 @@ Machine: 4-core i5-8250U laptop, 7.9 GB RAM, no GPU.
 - Union of classical engines (their words pooled; the text-assignment step separates answers from print), 8 truth pages, near-match recall: RapidOCR alone 73%; RapidOCR + EasyOCR 89%; all five engines 94%. Marks (same 20 answers as above): RapidOCR tuned 0.263 mean error / 60% identical; union of all five 0.208 / 75% identical; Claude Haiku 0.133 / 80%. Sample is small, so treat the gap between union and Claude as indicative.
 
 ## Free hosted models (2025-10-26)
-`autograde ocr <folder> --per-page --provider gemini|openrouter --model <id> --out runs/<name>` (`ocr/hosted.py`). Free only, enforced in code: Gemini models must be on the free-tier allow-list; OpenRouter ids must end in `:free` and be listed at zero price. Keys come from the git-ignored `.env`, travel in headers, and are never logged. Images sent were header-redacted copies (`tools/ocr/redact_headers.py`), since free tiers may keep the data. Scoring now tolerates LaTeX (`a_{12}`, `\lambda`), underscores and commas inside matrix rows; all engines were rescored with the same rules.
+`autograde ocr <folder> --per-page --provider gemini|openrouter --model <id> --out output/runs/<name>` (`ocr/hosted.py`). Free only, enforced in code: Gemini models must be on the free-tier allow-list; OpenRouter ids must end in `:free` and be listed at zero price. Keys come from the git-ignored `.env`, travel in headers, and are never logged. Images sent were header-redacted copies (`tools/ocr/redact_headers.py`), since free tiers may keep the data. Scoring now tolerates LaTeX (`a_{12}`, `\lambda`), underscores and commas inside matrix rows; all engines were rescored with the same rules.
 
 | reader (free) | dev words (exact / near) | test words | matrix and formula facts | marks: mean error / identical |
 |---|---|---|---|---|

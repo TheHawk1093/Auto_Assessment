@@ -3,7 +3,7 @@
 The command line already takes backend, model and effort from a YAML config, so the app does not
 re-implement any of that: it writes a per-exam config (the base `configs/exam.yaml` with the
 model fields replaced) and passes it with `--config`. The administrator decides which options
-are available; OpenRouter options are listed but locked until the admin enables them.
+teachers see. Teachers see only a name, what it suits and what it costs, never how it is wired.
 
 To add a model: add one `ModelOption` to CATALOGUE.
 """
@@ -24,30 +24,28 @@ from app.services import db
 
 PATH = config.APP_DATA / "models.json"  # the admin's choices; module-level for tests
 DEFAULT = "deepseek-flash"
-
-COST = {
-    "free": "Free",
-    "plan": "Uses your Claude plan",
-    "paid": "Paid per use (OpenRouter)",
-}
-TIER = {"fast": "Fast", "balanced": "Balanced", "best": "Most careful"}
+DEFAULT_READER = "gemini-lite"
 
 
 @dataclass(frozen=True)
 class ModelOption:
-    """One choice in the model menu: which backend and model, and what it needs to run."""
+    """One choice in the model menu: what it suits, what it costs, and how it is reached."""
 
     id: str
     label: str
-    blurb: str
-    backend: str  # claude_cli | goedel | openrouter | anthropic | gemini
+    use: str  # what it suits, in a sentence
+    price: str  # cost as listed on OpenRouter
+    backend: str  # goedel | claude_cli | openrouter (never shown to teachers)
     model: str
-    tier: str  # fast | balanced | best
-    cost: str  # free | plan | paid
-    effort: str | None = None  # claude_cli only
+    effort: str | None = None
     rubric_model: str | None = None  # a different model writes the marking schemes
     rubric_backend: str | None = None
-    needs: str = ""  # what must be present: claude | goedel | openrouter
+    needs: str = "goedel"  # what must be present: goedel | claude | openrouter
+
+    @property
+    def blurb(self) -> str:
+        """Suits and cost, as one short text for teachers."""
+        return f"{self.use} {self.price}"
 
     @property
     def key_var(self) -> str:
@@ -58,44 +56,22 @@ class ModelOption:
 CATALOGUE: list[ModelOption] = [
     ModelOption(
         "deepseek-flash", "DeepSeek V4.1 Flash",
-        "The default. Quick and free; a good first choice for most exams.",
-        "goedel", "deepseek/deepseek-v4.1-flash", "fast", "free", needs="goedel",
+        "Suits most exams: short answers, definitions, routine working.",
+        "Cost: $0.045 in / $0.50 out per 1M tokens (about 2 cents for 40 answers).",
+        "goedel", "deepseek/deepseek-v4.1-flash", needs="goedel",
     ),
     ModelOption(
         "claude-haiku", "Claude Haiku",
-        "Quick and inexpensive; careful enough for short answers.",
-        "claude_cli", "haiku", "fast", "plan", effort="low", needs="claude",
+        "Suits maths, long working and answers where partial credit needs judgement.",
+        "Cost: $1 in / $5 out per 1M tokens.",
+        "claude_cli", "haiku", effort="low", needs="claude",
     ),
     ModelOption(
-        "claude-sonnet", "Claude Sonnet",
-        "A balanced choice for most subjects, including working and maths.",
-        "claude_cli", "sonnet", "balanced", "plan", effort="low", needs="claude",
-    ),
-    ModelOption(
-        "claude-sonnet-careful", "Claude Sonnet, high effort",
-        "Thinks longer before marking. Slower; use for hard questions.",
-        "claude_cli", "sonnet", "best", "plan", effort="high", needs="claude",
-    ),
-    ModelOption(
-        "claude-opus", "Claude Opus",
-        "The most careful option. Slowest; use for high-stakes marking.",
-        "claude_cli", "opus", "best", "plan", effort="medium", needs="claude",
-    ),
-    ModelOption(
-        "deepseek-sonnet-schemes", "DeepSeek marks, Claude Sonnet writes the schemes",
-        "Marks cheaply, but the marking scheme for each question is written by a stronger model.",
-        "goedel", "deepseek/deepseek-v4.1-flash", "balanced", "plan",
-        rubric_model="sonnet", rubric_backend="claude_cli", needs="goedel",
-    ),
-    ModelOption(
-        "or-claude-sonnet", "Claude Sonnet via OpenRouter",
-        "Locked until the administrator enables OpenRouter.",
-        "openrouter", "anthropic/claude-sonnet-4.5", "balanced", "paid", needs="openrouter",
-    ),
-    ModelOption(
-        "or-deepseek", "DeepSeek via OpenRouter",
-        "Locked until the administrator enables OpenRouter.",
-        "openrouter", "deepseek/deepseek-chat", "fast", "paid", needs="openrouter",
+        "deepseek-haiku-schemes", "DeepSeek, with Claude Haiku marking schemes",
+        "Suits open-ended answers where the marking scheme matters most.",
+        "Cost: DeepSeek rates above, plus Haiku ($1 in / $5 out) once per question.",
+        "goedel", "deepseek/deepseek-v4.1-flash",
+        rubric_model="haiku", rubric_backend="claude_cli", needs="goedel",
     ),
 ]  # fmt: skip
 
@@ -106,36 +82,38 @@ class ReaderOption:
 
     id: str
     label: str
-    blurb: str
-    provider: str  # gemini | claude_cli
+    use: str
+    price: str
+    provider: str  # openrouter | bodhan | gemini | claude_cli (never shown to teachers)
     model: str
-    cost: str  # free | plan
-    needs: str  # gemini | claude
+    needs: str  # openrouter | bodhan | gemini | claude
+
+    @property
+    def blurb(self) -> str:
+        """Suits and cost, as one short text for teachers."""
+        return f"{self.use} {self.price}"
 
 
 READERS: list[ReaderOption] = [
     ReaderOption(
         "gemini-lite", "Gemini 3.5 Flash-Lite",
-        "Free and quick. Good on neat handwriting; the free tier may keep the images.",
-        "gemini", "gemini-3.5-flash-lite", "free", "gemini",
+        "Suits neat handwriting in English. Quick.",
+        "Cost: $0.30 in / $2.50 out per 1M tokens.",
+        "gemini", "gemini-3.5-flash-lite", "gemini",
     ),
     ReaderOption(
-        "gemini-flash", "Gemini 2.5 Flash",
-        "Free. A little slower, often better on untidy handwriting and Indic scripts.",
-        "gemini", "gemini-2.5-flash", "free", "gemini",
+        "gemini-flash", "Gemini 3.6 Flash",
+        "Suits untidy handwriting, or when the quick reader is unsure of many words.",
+        "Cost: $0.75 in / $3.75 out per 1M tokens.",
+        "gemini", "gemini-3.6-flash", "gemini",
     ),
     ReaderOption(
-        "claude-haiku-read", "Claude Haiku",
-        "Uses your Claude plan. Images stay with Anthropic.",
-        "claude_cli", "haiku", "plan", "claude",
-    ),
-    ReaderOption(
-        "claude-sonnet-read", "Claude Sonnet",
-        "Uses your Claude plan. The most accurate on difficult handwriting.",
-        "claude_cli", "sonnet", "plan", "claude",
+        "bodhan", "Bodhan IndicOCR",
+        "Suits Hindi, Marathi and other Indian-language handwriting.",
+        "Cost: about Rs 0.20 per page.",
+        "bodhan", "indic-ocr", "bodhan",
     ),
 ]  # fmt: skip
-DEFAULT_READER = "gemini-lite"
 
 
 # ---------- the admin's choices ----------
@@ -168,9 +146,8 @@ def get(option_id: str) -> ModelOption:
 
 
 def is_enabled(option: ModelOption) -> bool:
-    """On unless the admin turned it off; OpenRouter options are off until turned on."""
-    default = option.needs != "openrouter"
-    return bool(_load().get("enabled", {}).get(option.id, default))
+    """On unless the admin turned it off."""
+    return bool(_load().get("enabled", {}).get(option.id, True))
 
 
 def set_enabled(option_id: str, enabled: bool, by: str) -> None:
@@ -209,8 +186,6 @@ def _has_key(var: str) -> bool:
 def availability(option: ModelOption) -> tuple[bool, str]:
     """(usable now, why not). Checks the admin's switch, then what the machine has."""
     if not is_enabled(option):
-        if option.needs == "openrouter":
-            return False, "OpenRouter is switched off by the administrator."
         return False, "Switched off by the administrator."
     if option.needs == "claude" and not shutil.which("claude"):
         return False, "The Claude CLI is not installed on this machine."
@@ -230,6 +205,10 @@ def reader_availability(option: ReaderOption) -> tuple[bool, str]:
         return False, "Switched off by the administrator."
     if option.needs == "claude" and not shutil.which("claude"):
         return False, "The Claude CLI is not installed on this machine."
+    if option.needs == "bodhan" and not _has_key("INDIC_OCR_API_KEY"):
+        return False, "INDIC_OCR_API_KEY is not set (environment or .env)."
+    if option.needs == "openrouter" and not _has_key("OPENROUTER_API_KEY"):
+        return False, "OPENROUTER_API_KEY is not set (environment or .env)."
     if option.needs == "gemini" and not _has_key("GEMINI_API_KEY"):
         return False, "GEMINI_API_KEY is not set (environment or .env)."
     return True, ""

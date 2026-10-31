@@ -155,8 +155,8 @@ def download_indic_words(data_dir: Path, languages: tuple[str, ...] = INDIC_LANG
 
     The archive keeps, for each page, a text file listing `<page>_<k>.jpg<TAB>word` for every word
     and one cropped image per word. The words of a page are put back in reading order later
-    (tools/ocr/compose_indic_pages.py). Pages are chosen by a hash of the page id; every other page
-    is the sealed benchmark and is never fetched.
+    (by a page composer that is no longer in this repository). Pages are chosen by a hash of the
+    page id; every other page is the sealed benchmark and is never fetched.
     """
     target = data_dir / "indic_words"
     manifest: dict[str, dict] = {}

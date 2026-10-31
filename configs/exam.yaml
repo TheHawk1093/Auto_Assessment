@@ -1,6 +1,7 @@
-# Marking a whole exam end to end with DeepSeek V4.1 Flash on Goedel Machines (free):
+# Marking a whole exam end to end with DeepSeek V4.1 Flash by default:
 # it reads the files, writes the marking schemes, marks, and writes the feedback.
-# Swap rubric_model/strong_backend for a stronger scheme writer, e.g. {rubric_model: sonnet, strong_backend: claude_cli}.
+# Swap rubric_model for a stronger scheme writer, e.g. {rubric_model: haiku, strong_backend: claude_cli}.
+# The app writes a per-exam copy of this file with the teacher's model and reader.
 llm: {backend: goedel, model: "deepseek/deepseek-v4.1-flash", timeout_s: 300, retries: 2}
 judge: {backend: claude_cli, model: haiku, effort: low}
 student: {backend: claude_cli, model: haiku, effort: low}
@@ -14,4 +15,18 @@ pipeline:
   with_feedback: true
   feedback_variant: formal
   max_workers: 4
-paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}
+# Reading photographed sheets. You choose the main reader and the fallbacks. The main reader is
+# tried first. If it fails, reads nothing, or reads doubtfully, the next fallback is tried, in order.
+# Providers: openrouter (OPENROUTER_API_KEY), bodhan (INDIC_OCR_API_KEY), gemini (GEMINI_API_KEY),
+# claude_cli. An OpenRouter reader may be paid; a run stops if its reported cost passes
+# $1 (raise it with AUTOGRADE_OCR_CAP_USD). Bodhan is paid, about Rs 0.20 an image, capped at Rs 30.
+ocr:
+  reader: {provider: gemini, model: "gemini-3.5-flash-lite"}
+  fallbacks:
+    - {provider: gemini, model: "gemini-3.6-flash"}
+    - {provider: bodhan, model: "indic-ocr"}
+  # Bodhan IndicOCR (about Rs 0.20 a page) can be the main reader; the Gemini readers then back it up.
+  # Pages that look Hindi, Marathi or another Indian script are also re-read by Bodhan:
+  routes:
+    - {when: indic, reader: {provider: bodhan, model: "indic-ocr"}}
+paths: {data_dir: data/raw, rubrics_dir: output/rubrics, runs_dir: output/runs, logs_dir: output/logs}

@@ -17,6 +17,7 @@ from autograde.config import LLMConfig
 from autograde.llm import build_client
 from autograde.llm.base import LLMError
 from autograde.ocr.hosted import PROVIDERS
+from autograde.ocr.readers import INDIC_SHARE, is_indic
 from autograde.ocr.transcribe import UNSURE, cli_read
 
 PAPER_LIMIT = 6000  # characters of the question paper shown to the reader, to learn the numbering
@@ -42,10 +43,26 @@ def read_answer_sheet(
         text = PROVIDERS[provider](pages, model, system, user)
     else:
         raise LLMError(f"Unknown reader {provider!r}")
-    text = _unfence(text)
+    text = _plain(_unfence(text))
     if not text.strip():
         raise LLMError("The reader returned nothing for this sheet.")
     return text
+
+
+def looks_indic(text: str) -> bool:
+    """True when most letters are in an Indian script (pages for the Indic specialist)."""
+    letters = [c for c in text if c.isalpha()]
+    return len(letters) >= 5 and sum(is_indic(c) for c in letters) / len(letters) >= INDIC_SHARE
+
+
+def _plain(text: str) -> str:
+    """Turn the HTML tables a document parser returns into lines of words."""
+    if "<t" not in text:
+        return text
+    text = re.sub(r"</t[dh]>\s*", " ", text)
+    text = re.sub(r"</tr>\s*", "\n", text)
+    text = re.sub(r"<[^>]+>", "", text)
+    return "\n".join(" ".join(line.split()) for line in text.splitlines()).strip()
 
 
 def _unfence(text: str) -> str:

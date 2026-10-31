@@ -12,6 +12,7 @@ def summary(meta: dict) -> dict:
     return {
         "id": exam_id,
         "title": meta["title"],
+        "kind": meta["kind"],
         "owner": meta["owner"],
         "created": meta["created"],
         "status": storage.exam_status(exam_id),

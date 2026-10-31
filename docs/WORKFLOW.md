@@ -1,27 +1,33 @@
 # Workflow
 
-![Workflow](images/workflow.svg)
+![How autograde works: exam files go in, marks and feedback come out](images/workflow.svg)
 
-The diagram source is [images/workflow.mmd](images/workflow.mmd) (Mermaid). Re-render with
-`npx @mermaid-js/mermaid-cli -i docs/images/workflow.mmd -o docs/images/workflow.svg`.
+The diagrams in this repository are drawn by `docs/images/build_diagrams.py`. Run
+`python docs/images/build_diagrams.py` to rebuild them. They are plain SVG, so they stay sharp at
+any size.
 
-## Stages
+## The four stages
 
-1. **Intake** (`intake/`). Reads the paper, the reference and the answers into `Item`s: question,
-   model answer, student answer, max mark and question kind. Exam-wide rules (working required,
-   part-mark rule, carry-through) come from the documents (`intake/rules.py`). `intake/identity.py`
-   checks who wrote each sheet.
-2. **Marking scheme** (`pipeline/rubric.py`). One scheme per question: points with marks and
-   optional partial-credit levels. A self-test grades the model answer (must score full) and a
-   non-answer (must score zero); a failing scheme is rewritten once. Schemes are cached in
-   `rubrics/<client>/<variant>/`.
-3. **Marking** (`pipeline/run.py`, per answer, in parallel).
-   `checks.py` settles multiple choice, numbers and code facts by code; `read.py` reads the answer
-   alone; `grade.py` gives per-point verdicts with quotes; `verify.py` confirms quotes are real,
-   marks add up and forms are respected, with one retry and then repair. Doubtful answers can be
-   re-marked by a stronger or second model (`cascade.py`, `vote.py`).
-4. **Feedback and output** (`pipeline/feedback.py`, `viewer/`). Feedback is written from the
-   verified marking only. Output: `schemes.md`, `marks.csv`, `students/*.md`, `report.html`.
+1. **Read the files** (`intake/`). The paper, answer key and student answers become items. Each
+   item holds the question, the model answer, the student's answer, the maximum mark and the
+   question type. Rules written in the exam documents (working required, how part marks work,
+   carrying an earlier mistake forward) are read by `intake/rules.py`. `intake/identity.py` checks
+   who wrote each sheet.
+2. **Write a marking scheme** (`pipeline/rubric.py`). Each question gets one scheme: points with
+   marks, and optional partial-credit levels. The scheme is tested before use. The model answer
+   must score full marks and a blank answer must score zero. A scheme that fails is rewritten once.
+   Schemes are saved in `output/rubrics/<client>/<variant>/`.
+3. **Mark each answer** (`pipeline/run.py`, several answers at a time).
+   - `checks.py` settles multiple choice, numbers and code facts with fixed rules.
+   - `read.py` reads the answer on its own.
+   - `grade.py` gives a verdict on every scheme point, with a quote.
+   - `verify.py` confirms that the quotes are real, that the marks add up and that the answer is
+     in the required form. It allows one retry, then repairs the result.
+   - Answers the grader is unsure about can be marked again by a stronger or second model
+     (`cascade.py` and `vote.py`).
+4. **Write feedback and save the results** (`pipeline/feedback.py` and `viewer/`). Feedback is
+   written only from the checked marking. The output is `schemes.md`, `marks.csv`,
+   `students/*.md` and `report.html`.
 
-Every model call goes through `llm/` (`ask(system, user, PydanticModel)`), so a backend can be
-swapped, or replaced by the offline `mock`, without touching a stage.
+Every call to an AI model goes through `llm/` (`ask(system, user, PydanticModel)`). A backend can
+therefore be swapped, or replaced by the offline `mock`, without changing any step.

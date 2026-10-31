@@ -1,0 +1,29 @@
+student,question,low,high,why
+S24001,1,6,6,correct
+S24001,2,6,6,correct
+S24001,3,8,8,correct
+S24001,4,9,10,complete report
+S24002,1,6,6,correct
+S24002,2,6,6,correct
+S24002,3,8,8,correct
+S24002,4,6,8,no discriminant explanation
+S24003,1,1,4,ignores punctuation: 2 of 5 tests fail
+S24003,2,0,3,off by one: most tests fail
+S24003,3,8,8,correct
+S24003,4,2,6,skips the completing-the-square steps
+S24004,1,6,6,correct
+S24004,2,0,2,syntax error
+S24004,3,0,2,left unfinished
+S24004,4,9,10,complete report
+S24005,1,6,6,correct
+S24005,2,0,3,endless loop
+S24005,3,4,7,works but wrong exception for an empty list
+S24005,4,9,10,complete report
+S24006,1,6,6,correct
+S24006,2,0,0,missing
+S24006,3,0,0,missing
+S24006,4,9,10,complete report
+S24007,1,6,6,correct (one file)
+S24007,2,6,6,correct (one file)
+S24007,3,8,8,correct (one file)
+S24007,4,9,10,complete report

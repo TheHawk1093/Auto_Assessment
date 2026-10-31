@@ -186,10 +186,17 @@ def split_text(text: str, paper: Paper, client: LLMClient | None = None) -> dict
     spots: list[tuple[int, int, str]] = []
     pos = 0
     for q in paper.questions:
-        m = _marker(q.id).search(text, pos)
+        marker = _marker(q.id)
+        m = marker.search(text, pos)
+        if m:
+            pos = m.end()
+        else:  # the student answered out of paper order (short answers before the ticks)
+            m = marker.search(text)
+            if m and any(s[0] <= m.start() < s[1] for s in spots):
+                m = None
         if m:
             spots.append((m.start(), m.end(), q.id))
-            pos = m.end()
+    spots.sort()
     if len(spots) >= math.ceil(len(paper.questions) / 2) or client is None:
         out = {}
         for i, (_, end, qid) in enumerate(spots):

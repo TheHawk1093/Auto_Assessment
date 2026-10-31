@@ -22,7 +22,7 @@ from autograde.pipeline.run import read_results, run_items
 def register(sub) -> None:
     """Add the `recheck` command and its flags to the subparsers."""
     p = sub.add_parser("recheck", help="mark one answer of a finished exam again, with a note")
-    p.add_argument("--name", required=True, help="the exam's run name (runs/<name>/)")
+    p.add_argument("--name", required=True, help="the exam's run name (output/runs/<name>/)")
     p.add_argument("--student", required=True)
     p.add_argument("--question", required=True)
     p.add_argument("--note", default="", help="what the teacher wants the marker to look at")

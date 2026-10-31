@@ -179,9 +179,9 @@ def test_regrade_scenario_a_waits_and_b_was_upheld(seeded):
     assert regrades.allowance(MECH, C)["left"] == 2
 
 
-def test_hindi_and_maths_reach_the_student(seeded):
+def test_maths_reaches_the_student(seeded):
     rows = publishing.student_view(MECH, E)["rows"]
-    assert "परास" in rows[0]["answer"] and r"\frac{u^2" in rows[0]["answer"]
+    assert "range" in rows[0]["answer"] and r"\frac{u^2" in rows[0]["answer"]
 
 
 # ---------- the pipeline test exam ----------
@@ -204,7 +204,8 @@ def test_pipeline_exam_is_ready_with_real_files_in_an_empty_course(seeded):
 def test_after_marking_the_pipeline_exam_enrols_its_students_and_makes_the_missing_account(seeded):
     """Stand in for a finished run, then use the Publish tab's step: all eight students are
     enrolled, and only the one without an account (H) gets one."""
-    answers = {r: demo.MECH_ANSWERS[A] for r in demo.ROLLS}
+    full = {q["id"]: ("answer", q["max_mark"], []) for q in demo.MECH_Q}  # no feedback needed
+    answers = {r: full for r in demo.ROLLS}
     demo._write_run(demo.DemoExam("pipeline", "x", "som", "marked", demo.MECH_Q, answers))
     rows = {r["student"]: r for r in roster.create_accounts(PIPE, by="teacher_1")}
     assert {s for s, r in rows.items() if r["status"] == "created"} == {H}
@@ -347,3 +348,18 @@ def test_every_persona_page_renders(seeded):
     assert "Teacher 2" in d_card and "Teacher 1" not in d_card
     g_page = page("student_G", "student", G)
     assert any("not enrolled in any course" in i.value for i in g_page.info)
+
+
+# ---------- the feedback fits the answers ----------
+
+
+def test_every_demo_note_fits_its_answer_and_exam():
+    for ex in demo.EXAMS:
+        if ex.answers:
+            demo.check_notes(ex)  # raises when a note is missing, stray or quotes other words
+
+
+def test_a_note_cannot_be_shown_on_another_exam():
+    assert demo.item_key("mech", A, "1") != demo.item_key("thermo", A, "1")
+    thermo = demo.NOTES[demo.item_key("thermo", B, "2")]
+    assert "constant pressure" in thermo.issue and "slope" not in thermo.issue

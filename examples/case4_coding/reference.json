@@ -1,0 +1,21 @@
+{
+  "1": {
+    "model_answer": "```python\ndef is_palindrome(s):\n    cleaned = [ch.lower() for ch in s if ch.isalnum()]\n    return cleaned == cleaned[::-1]\n```",
+    "rubric": "Keeps only letters and digits and ignores case (3 marks). Compares the cleaned text with its reverse (2 marks). Handles the empty string and returns a boolean (1 mark).",
+    "tests": "assert is_palindrome(\"A man, a plan, a canal: Panama\") is True\nassert is_palindrome(\"race a car\") is False\nassert is_palindrome(\"\") is True\nassert is_palindrome(\"No 'x' in Nixon\") is True\nassert is_palindrome(\"ab\") is False"
+  },
+  "2": {
+    "model_answer": "```python\ndef fizzbuzz(n):\n    out = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            out.append(\"FizzBuzz\")\n        elif i % 3 == 0:\n            out.append(\"Fizz\")\n        elif i % 5 == 0:\n            out.append(\"Buzz\")\n        else:\n            out.append(str(i))\n    return out\n```",
+    "rubric": "Loops over 1 to n inclusive (2 marks). Tests the multiple of both first (2 marks). Fizz, Buzz and the plain number are right, and 0 gives an empty list (2 marks).",
+    "tests": "assert fizzbuzz(5) == [\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\"]\nassert fizzbuzz(15)[-1] == \"FizzBuzz\"\nassert fizzbuzz(0) == []\nassert fizzbuzz(3)[2] == \"Fizz\"\nassert len(fizzbuzz(20)) == 20"
+  },
+  "3": {
+    "model_answer": "```python\nimport math\n\ndef mean_std(values):\n    if not values:\n        raise ValueError(\"no values\")\n    mean = sum(values) / len(values)\n    var = sum((v - mean) ** 2 for v in values) / len(values)\n    return mean, math.sqrt(var)\n```",
+    "rubric": "Correct mean (2 marks). Correct population variance and square root (3 marks). Raises ValueError for an empty list (2 marks). Returns a tuple (mean, std) (1 mark).",
+    "tests": "assert mean_std([2, 4, 4, 4, 5, 5, 7, 9]) == (5.0, 2.0)\nassert abs(mean_std([1, 2, 3])[1] - 0.816496580927726) < 1e-9\nassert mean_std([5]) == (5.0, 0.0)\nexec(\"try:\\n    mean_std([])\\nexcept ValueError:\\n    ok = True\\nelse:\\n    ok = False\", globals()); assert ok is True"
+  },
+  "4": {
+    "model_answer": "Divide by a: x^2 + (b/a)x + c/a = 0. Move c/a across and add (b/2a)^2 to both sides: (x + b/2a)^2 = (b^2 - 4ac)/(4a^2). Take square roots: x = (-b ± sqrt(b^2 - 4ac)) / (2a). For x^2 - 5x + 6 = 0: a=1, b=-5, c=6, D = 25 - 24 = 1, so x = (5 ± 1)/2, giving 3 and 2. The discriminant D = b^2 - 4ac: D > 0 two distinct real roots, D = 0 one repeated real root, D < 0 no real roots (a complex pair).",
+    "rubric": "Derivation by completing the square: divides by a (1 mark), completes the square correctly (2 marks), takes the square root to reach the formula (1 mark). Solves x^2 - 5x + 6 = 0 correctly with roots 2 and 3 (3 marks). Explains the discriminant: positive, zero and negative cases (3 marks)."
+  }
+}

@@ -127,11 +127,12 @@ class PipelineConfig(BaseModel):
 
 
 class PathsConfig(BaseModel):
-    """Where the data, the stored marking schemes and the runs live."""
+    """Where the data lives, and where everything the program writes goes (under `output/`)."""
 
     data_dir: Path = Path("data/raw")
-    rubrics_dir: Path = Path("rubrics")
-    runs_dir: Path = Path("runs")
+    rubrics_dir: Path = Path("output/rubrics")  # marking schemes, cached per model
+    runs_dir: Path = Path("output/runs")  # one folder per run: marks, feedback, report
+    logs_dir: Path = Path("output/logs")  # autograde.log, rotated
 
 
 class Settings(BaseModel):

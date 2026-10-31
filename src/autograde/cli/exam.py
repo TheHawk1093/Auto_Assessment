@@ -46,7 +46,7 @@ def register(sub) -> None:
         "--answers", type=Path, required=True,
         help="folder with one file per student (or `autograde ocr` output), or one JSON file",
     )  # fmt: skip
-    p.add_argument("--name", required=True, help="exam name; results go to runs/<name>/")
+    p.add_argument("--name", required=True, help="exam name; results go to output/runs/<name>/")
     p.add_argument(
         "--granularity", choices=["rubric", "stated", "none", "half", "quarter"],
         help="part marks, overriding what the rubric says: the rubric's own levels, only levels "

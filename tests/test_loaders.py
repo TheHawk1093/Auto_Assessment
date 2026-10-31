@@ -74,7 +74,10 @@ def test_unknown_dataset():
 @pytest.mark.skipif(not Path("data/raw/saf").exists(), reason="datasets not downloaded")
 @pytest.mark.parametrize("name", sorted(LOADERS))
 def test_real_data_loads_and_samples(name: str):
-    items = load_dataset(name, Path("data/raw"))
+    try:
+        items = load_dataset(name, Path("data/raw"))
+    except FileNotFoundError:
+        pytest.skip(f"{name} is not downloaded (some sets are given on request only)")
     if name.split("_")[0] in BASES and name not in {"mohler", "digiklausur"} and not items:
         pytest.skip("translated set not built yet")
     assert len(items) > (20 if name == "circuit_hw" or name in BENCHMARK_ONLY - {"engsaf"} else 100)

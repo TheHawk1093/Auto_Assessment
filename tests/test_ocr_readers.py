@@ -42,9 +42,15 @@ def test_default_reader_is_a_free_gemini_model():
 
 
 def test_example_config_has_a_fallback_chain_and_separate_marker():
-    cfg = load_settings(Path("configs/ocr_free.yaml"))
+    cfg = load_settings(Path("configs/exam.yaml"))
     chain = [cfg.ocr.reader, *cfg.ocr.fallbacks]
-    assert [r.provider for r in chain] == ["gemini", "gemini", "gemini", "openrouter", "claude_cli"]
+    # the user picks the main reader; the others are fallbacks, tried in order
+    assert [(r.provider, r.model) for r in chain] == [
+        ("gemini", "gemini-3.5-flash-lite"),
+        ("gemini", "gemini-3.6-flash"),
+        ("bodhan", "indic-ocr"),
+    ]
+    assert [(r.when, r.reader.provider) for r in cfg.ocr.routes] == [("indic", "bodhan")]
     assert cfg.llm.backend == "goedel"  # marking uses a different model from reading
 
 

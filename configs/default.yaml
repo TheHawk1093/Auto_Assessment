@@ -24,5 +24,6 @@ pipeline:
 
 paths:
   data_dir: data/raw
-  rubrics_dir: rubrics
-  runs_dir: runs
+  rubrics_dir: output/rubrics
+  runs_dir: output/runs
+  logs_dir: output/logs

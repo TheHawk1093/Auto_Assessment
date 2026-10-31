@@ -6,11 +6,11 @@ Each command module has a `register(sub)` that adds its subcommands and sets `fu
 from __future__ import annotations
 
 import argparse
-import logging
 from pathlib import Path
 
 from autograde.cli import evals, exam, ocr, pages, recheck, rubrics, runs, scan
 from autograde.config import load_settings
+from autograde.logsetup import setup_logging
 
 MODULES = (runs, evals, rubrics, pages, ocr, exam, scan, recheck)
 
@@ -32,8 +32,9 @@ def main(argv: list[str] | None = None) -> None:
 
     """
     args = _parser().parse_args(argv)
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    args.func(args, load_settings(args.config))
+    settings = load_settings(args.config)
+    setup_logging(settings.paths.logs_dir, args.cmd)
+    args.func(args, settings)
 
 
 if __name__ == "__main__":

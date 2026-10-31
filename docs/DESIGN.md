@@ -16,7 +16,7 @@ Rules we keep:
 
 | Stage | What it does | Why |
 |---|---|---|
-| Marking scheme | One short list of points with marks, written once per question and stored in `rubrics/` | A fixed scheme makes marks repeatable and lets us price verdicts in code |
+| Marking scheme | One short list of points with marks, written once per question and stored in `output/rubrics/` | A fixed scheme makes marks repeatable and lets us price verdicts in code |
 | Read first | The answer is read alone (gist, ideas, problems, form) before marking | The marker is not pulled towards the model answer's wording; helps garbled answers and formulas |
 | Mark per point | Verdict (met, partial, not met) plus an exact quote, for each point | A verdict is easier to get right than a number, and the quote can be checked |
 | Price in code | met is full marks, partial is weight times full marks, not met is 0 | Removes the model's arithmetic noise; partial value is one setting |
@@ -247,7 +247,7 @@ Costs: Haiku pipeline about $0.05 to $0.10 per 30 answers, Haiku baseline $0.003
 ## 18. Current workflow, in one place
 
 1. **Input:** question, model answer (or none), optional teacher rubric, the student's answer.
-2. **Marking scheme (once per question, cached in `rubrics/`):** a strong model turns the question and model answer into weighted points. A teacher rubric is used as is. Variants: sized (default), atomic, lenient, moderate, harsh, official.
+2. **Marking scheme (once per question, cached in `output/rubrics/`):** a strong model turns the question and model answer into weighted points. A teacher rubric is used as is. Variants: sized (default), atomic, lenient, moderate, harsh, official.
 3. **Read:** the answer is summarised on its own: ideas, problems and form (explanation, short answer, keyword list, incoherent).
 4. **Mark:** each point is met, partial or not met, with an exact quote. Code prices it: met is full, partial is 50% of the point's marks unless the rubric or level says otherwise.
 5. **Checks in code:** the quote must be in the answer (otherwise flagged), the form gate (scrambled text 0, a bare keyword list at most half when an explanation was asked), deductions only if enabled.
@@ -290,7 +290,7 @@ Feedback helps in every case tested, by about 0.4 to 0.6 marks above a rewrite w
 3. `answers.py`: a folder with one file per student (markers like `Q1.`, `Answer 2(a):`, `2 b)` are found by code; if too few are found the model splits the text), one JSON file, or the output folder of `autograde ocr` (sheet items are matched to the paper's ids loosely: `2(a)` = `2a`). Missing answers and stray answers are reported.
 4. `exam.py`: one item per student per question. The exam's cache name carries a hash of the paper and references, so an edited question never reuses an old scheme.
 5. The grading workflow below, unchanged, with feedback always on.
-6. Outputs in `runs/<name>/`: `schemes.md` (the teacher reads this first; `--schemes-only` stops here), `marks.csv`, `students/<student>.md` (marks, feedback, flags for the teacher), `intake.json` (what was parsed and the warnings).
+6. Outputs in `output/runs/<name>/`: `schemes.md` (the teacher reads this first; `--schemes-only` stops here), `marks.csv`, `students/<student>.md` (marks, feedback, flags for the teacher), `intake.json` (what was parsed and the warnings).
 
 **Grading workflow (per answer, unchanged).** Read-first summary of what the student wrote; mark each point met / partial / not met with an exact quote; code prices the verdicts (met = full, not met = 0, partial = the point's own level, else the teacher's granularity, else 50%); code checks (quote present, form gate, deductions only if the teacher gave them); optional cascade; feedback.
 
@@ -306,7 +306,7 @@ Feedback helps in every case tested, by about 0.4 to 0.6 marks above a rewrite w
 
 **What changed in the writer** (variant `solid`): a strong model writes the scheme (Sonnet in these runs), with part-mark levels (a share and a description each) so partial credit comes from the rubric, band-style criteria for essays, steps plus a worked solution for maths, an answer key when there is no reference, and a review pass when there is no reference. Teacher inputs change the cache folder through a hash. Unit tests only; the teacher inputs have not yet been used in a measured run.
 
-**An invalid batch, recorded for honesty.** Nine of ten first pipeline runs were launched with the config path missing its `.yaml` extension; the loader silently used the defaults, so they ran Sonnet with old rubrics and feedback. They are kept, unused, in `runs/_invalid_default_config/`, were rerun with the right config, and a missing config file is now an error. Two hard-set chains also failed once on a Claude CLI error (probably the usage limit) and were rerun. One DeepSeek hard-maths answer hung for over ten minutes and was stopped, so that run has 29 answers.
+**An invalid batch, recorded for honesty.** Nine of ten first pipeline runs were launched with the config path missing its `.yaml` extension; the loader silently used the defaults, so they ran Sonnet with old rubrics and feedback. They are kept, unused, in `output/runs/_invalid_default_config/`, were rerun with the right config, and a missing config file is now an error. Two hard-set chains also failed once on a Claude CLI error (probably the usage limit) and were rerun. One DeepSeek hard-maths answer hung for over ten minutes and was stopped, so that run has 29 answers.
 
 **Results** (30 answers per set, seed 1, error as a share of total marks, bias in brackets; "old" is the earlier pipeline where the marking model wrote its own scheme; "solid" is Sonnet-written schemes; Haiku was not run on the two hard sets):
 

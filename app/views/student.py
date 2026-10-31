@@ -11,6 +11,7 @@ import streamlit as st
 from app.services import gradecard, publishing, regrades, students, submissions
 from app.ui import components as ui
 from app.ui import rich, session
+from app.ui.widgets import original_pages
 
 STATUS = {
     "pending": ("Waiting for the teacher", "amber"),
@@ -103,6 +104,8 @@ def _exam_details(sid: str) -> None:
         view["exam"], view["total"], view["out_of"], f"Published {view['published'][:10]}"
     )
     requests = regrades.list_requests(exam_id, sid)
+    if view["policy"]["show_answer"]:
+        original_pages(exam_id, sid)
     st.subheader("Question by question")
     for row in view["rows"]:
         _question(row, [r for r in requests if r["question"] == row["question"]])
@@ -205,11 +208,11 @@ def _hand_in_one(meta: dict, sid: str) -> None:
             return
         nonce_key = f"submit_nonce_{exam_id}"
         nonce = st.session_state.setdefault(nonce_key, 0)
+        kinds = sorted(e.lstrip(".") for e in submissions.allowed(exam_id))
+        st.caption("Accepted: " + "; ".join(submissions.allowed_labels(exam_id)) + ".")
         picked = st.file_uploader(
-            "Documents (txt, md, docx, pdf) or photos of your pages (png, jpg, webp)",
-            type=["txt", "md", "docx", "pdf", "png", "jpg", "jpeg", "webp"],
-            accept_multiple_files=True, key=f"submit_{exam_id}_{nonce}",
-        )  # fmt: skip
+            "Your files", type=kinds, accept_multiple_files=True, key=f"submit_{exam_id}_{nonce}"
+        )
         if mine:
             st.caption("Submitting again replaces your earlier submission.")
         if st.button("Submit" if not mine else "Replace my submission", key=f"submit_go_{exam_id}",

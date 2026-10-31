@@ -11,7 +11,9 @@ one who dropped a course, and one who was marked but never enrolled. Five exams 
 marking runs (so no model is called and nothing is spent); `[Demo] Pipeline Test` carries the real
 teacher files from examples/exam_pipeline and is left ready to mark, so the pipeline can be run for
 real. Seeding is repeatable: demo data is rebuilt and persona accounts keep their passwords.
-Passwords are random (the admin is `admin`/`admin`, for local demos only) and are written, with each
+Every demo account has the same simple password, `demo1234` (the admin's is `admin`): these are
+made-up accounts for local trials, not real users, so change them before exposing the app on a
+network. The accounts are listed, with each
 persona's story and what to try, to app_data/demo_personas.md (git-ignored). Demo exam ids start
 with `demo-`; `remove` deletes exactly the demo exams, courses, students and persona accounts.
 """
@@ -23,10 +25,13 @@ import json
 import re
 import sys
 from dataclasses import dataclass, field
+from datetime import date, timedelta
 from pathlib import Path
+from typing import NamedTuple
 
 from app import config
 from app.services import auth, courses, db, publishing, regrades, results, storage
+from app.services.demo_pdf import pdf_bytes
 from autograde.schemas import Feedback, Grading, Improvement, Item, PointVerdict, Result
 
 PREFIX = "demo-"
@@ -61,7 +66,7 @@ class Persona:
     title: str
     story: str
     try_this: tuple[str, ...]
-    password: str = ""  # fixed when set; otherwise random
+    password: str = "demo1234"  # the shared dummy password (see DEMO_PASSWORD)
     student_id: str = ""  # students only
 
 
@@ -79,7 +84,7 @@ PERSONAS = [
             "Admin, Courses and students: every course with its teacher and head-count, and every "
             "student with the courses they are in.",
             "Admin, AI models: switch a model off and see it vanish from a teacher's Settings. "
-            "The OpenRouter options stay locked until you enable them.",
+            "Switch a model off and it disappears from a teacher's Settings.",
         ),
         password="admin",
     ),
@@ -247,21 +252,6 @@ MODEL = {
     ("mech", "2"): r"$a = g\sin\theta = 9.8 \times 0.5 = 4.9\ \mathrm{m/s^2}$ down the slope.",
     ("mech", "3"): "The net force on a body equals its mass times its acceleration, $F = ma$. Example: pushing a trolley.",
 }  # fmt: skip
-HINTS = {  # what to say when marks were lost: (strength, issue, why, fix)
-    "1": ("You set up the motion in two directions.",
-          "The range is not derived from the time of flight.",
-          "Range is horizontal speed multiplied by the time in the air.",
-          "Find $T = 2u\\sin\\theta/g$ first, then multiply by $u\\cos\\theta$."),
-    "2": ("You chose the component of gravity along the slope.",
-          "The numerical value of the acceleration is missing or wrong.",
-          "The mass cancels, so only $g\\sin\\theta$ matters.",
-          "Substitute $\\sin 30^\\circ = 0.5$ to get $4.9\\ \\mathrm{m/s^2}$."),
-    "3": ("You named the law.",
-          "No example is given.",
-          "An example shows you can apply the law, not only recite it.",
-          "Add one, such as a pushed trolley accelerating more when the push is larger."),
-}  # fmt: skip
-
 MECH_ANSWERS = {
     A: {
         "1": (r"Time of flight $T = 2u\sin\theta/g$. Range $R = u\cos\theta\,T = \frac{u^2\sin 2\theta}{g}$.", 4.0, []),
@@ -279,9 +269,9 @@ MECH_ANSWERS = {
         "3": ("Newton said force depends on mass and acceleration.", 1.5, []),
     },
     E: {
-        "1": (r"प्रक्षेप्य का उड़ान-काल \(T = 2u\sin\theta/g\) है। परास \(R = u\cos\theta \cdot T = \frac{u^2 \sin 2\theta}{g}\)।", 3.0, []),
-        "2": (r"ढलान के अनुदिश त्वरण \(a = g\sin 30^\circ = 4.9\,\mathrm{m/s^2}\)।", 3.0, []),
-        "3": (r"न्यूटन का द्वितीय नियम: बल \(F = ma\) होता है, अर्थात् बल द्रव्यमान और त्वरण का गुणनफल है।", 2.0, []),
+        "1": (r"The time of flight is $T = 2u\sin\theta/g$, so the range is $R = u\cos\theta \cdot T = \frac{u^2 \sin 2\theta}{g}$.", 3.0, []),
+        "2": (r"Along the slope $a = g\sin 30^\circ = 4.9\,\mathrm{m/s^2}$.", 3.0, []),
+        "3": (r"Newton's second law: force $F = ma$, the product of mass and acceleration.", 2.0, []),
     },
     F: {  # dropped the course afterwards: the marks stay
         "1": (r"Range is $R = u^2\sin 2\theta/g$ from the time of flight $2u\sin\theta/g$.", 3.5, []),
@@ -333,6 +323,214 @@ LAB_ANSWERS = {
         "2": (r"$I = 12/4 = 3\ \mathrm{A}$", 0.0, [])},
 }  # fmt: skip
 
+# Written by hand for every answer that lost marks: (exam, student, question) -> a `Note`'s
+# fields in order (see `Note` below).
+# Quotes are words the student wrote; a point with no marks has an empty quote.
+FEEDBACK = {
+    ("mech", A, "2"): (
+        "so $a = g\\sin 30^\\circ = 9.8 \\times 0.5 = 4.9$", "Method and value are correct.",
+        "", "The direction of the acceleration is not stated.",
+        "You used the component of gravity along the slope and got 4.9.",
+        "The direction of the acceleration is not stated.",
+        "The question asks for the acceleration, which is a vector.",
+        "Add that it is directed down the slope.", "partial",
+    ),
+    ("mech", B, "1"): (
+        "the time in the air is $2u\\sin\\theta/g$", "Horizontal speed and time in the air are both given.",
+        "so the range is $u^2\\sin 2\\theta/g$ roughly", "The result is right but 'roughly' hides the missing step.",
+        "You found both the horizontal speed and the time in the air.",
+        "The step from the product to $u^2\\sin 2\\theta/g$ is not shown.",
+        "Without it the formula looks guessed rather than derived.",
+        "Multiply $u\\cos\\theta$ by $2u\\sin\\theta/g$ and use $2\\sin\\theta\\cos\\theta=\\sin 2\\theta$.",
+        "partial",
+    ),
+    ("mech", B, "2"): (
+        "a = g sin 30", "The right component of gravity is chosen.",
+        "", "The number is never worked out.",
+        "You chose the component of gravity along the slope.",
+        "The numerical value of the acceleration is missing.",
+        "The question asks for a value, not only the formula.",
+        "Substitute $\\sin 30^\\circ = 0.5$ to get $4.9\\ \\mathrm{m/s^2}$.", "partial",
+    ),
+    ("mech", B, "3"): (
+        "Force is mass times acceleration.", "The law is stated correctly.",
+        "", "No example is given.",
+        "You stated the law correctly.", "No example is given.",
+        "An example shows you can apply the law, not only recite it.",
+        "Add one, such as a harder push making a trolley speed up faster.", "partial",
+    ),
+    ("mech", C, "1"): (
+        "The ball goes up and comes down", "The motion is described, but only in words.",
+        "", "No formula or derivation of the range.",
+        "You describe the ball going up and coming down.",
+        "The range is not derived.",
+        "Range is horizontal speed multiplied by the time in the air.",
+        "Find $T = 2u\\sin\\theta/g$ first, then multiply by $u\\cos\\theta$.", "incorrect",
+    ),
+    ("mech", C, "2"): (
+        "", "No method for the incline.",
+        "", "The value 9.8 ignores the slope.",
+        "You attempted the question.",
+        "The acceleration is taken as $g$, not the part of gravity along the slope.",
+        "On a frictionless incline only the component along the slope accelerates the block.",
+        "Use $a = g\\sin 30^\\circ = 4.9\\ \\mathrm{m/s^2}$.", "incorrect",
+    ),
+    ("mech", C, "3"): (
+        "force depends on mass and acceleration", "Both quantities are named.",
+        "", "No formula and no example.",
+        "You named mass and acceleration as what the force depends on.",
+        "The law is not written as $F = ma$ and no example is given.",
+        "The exact relation is what makes it a law.",
+        "State $F = ma$ and add an example such as a pushed trolley.", "partial",
+    ),
+    ("mech", E, "1"): (
+        "so the range is $R = u\\cos\\theta \\cdot T", "The range is built from the time of flight.",
+        "", "The simplification to $u^2\\sin 2\\theta/g$ skips a step.",
+        "You derived the range from the time of flight.",
+        "The step from $2u^2\\sin\\theta\\cos\\theta/g$ to $u^2\\sin 2\\theta/g$ is not shown.",
+        "The identity is what turns the product into the standard formula.",
+        "Add the double-angle identity $2\\sin\\theta\\cos\\theta=\\sin 2\\theta$.", "partial",
+    ),
+    ("mech", E, "3"): (
+        "force $F = ma$", "The law is stated correctly.",
+        "", "No example is given.",
+        "You stated the law as $F = ma$.", "No example is given.",
+        "An example shows you can apply the law, not only recite it.",
+        "Add one, such as a pushed trolley accelerating more when the push is larger.", "partial",
+    ),
+    ("mech", F, "1"): (
+        "from the time of flight $2u\\sin\\theta/g$", "The time of flight is used.",
+        "", "The horizontal speed $u\\cos\\theta$ is not mentioned.",
+        "You gave the correct range formula and the time of flight.",
+        "The horizontal speed is not mentioned.",
+        "The range is the horizontal speed multiplied by the time in the air.",
+        "Say that the range is $u\\cos\\theta \\times T$.", "partial",
+    ),
+    ("mech", G, "1"): (
+        "Range depends on speed and angle.", "The two quantities are named.",
+        "", "No formula or derivation.",
+        "You named speed and angle as what the range depends on.",
+        "There is no formula for the range.",
+        "The question asks you to derive it.",
+        "Find $T = 2u\\sin\\theta/g$, then multiply by $u\\cos\\theta$.", "partial",
+    ),
+    ("mech", G, "2"): (
+        "down the slope", "The direction is right and the value is close.",
+        "", "No working shows where about 5 comes from.",
+        "You gave the right direction and a close value.",
+        "The value is rounded and there is no working.",
+        "The exact value follows from one line of working.",
+        "Show $a = g\\sin 30^\\circ = 4.9\\ \\mathrm{m/s^2}$.", "partial",
+    ),
+    ("mech", G, "3"): (
+        "F = ma", "The law is written correctly.",
+        "", "No explanation and no example.",
+        "You wrote the law correctly.", "No explanation or example is given.",
+        "A sentence and an example show you understand what the symbols mean.",
+        "Say what $F$, $m$ and $a$ are and add an example.", "partial",
+    ),
+    ("thermo", B, "2"): (
+        "$W = P\\Delta V$", "Work done by the gas is the starting point.",
+        "", "Pressure is not constant in an isothermal expansion.",
+        "You started from the work done by the gas.",
+        "$W = P\\Delta V$ assumes constant pressure.",
+        "In an isothermal expansion the pressure falls as the volume grows.",
+        "Use $P = RT/V$ and integrate: $W = RT\\ln(V_2/V_1)$.", "incorrect",
+    ),
+    ("thermo", C, "1"): (
+        "Energy cannot be created.", "Conservation of energy is the core idea.",
+        "", "Heat, work and internal energy are not linked.",
+        "You state that energy is conserved.",
+        "The link between heat, work and internal energy is missing.",
+        "The first law says how these three quantities are related.",
+        "Write $\\Delta U = Q - W$ and say what each symbol stands for.", "partial",
+    ),
+    ("thermo", C, "2"): (
+        "", "No attempt at the integral.",
+        "", "No answer is given.",
+        "You attempted the question.",
+        "No expression for the work is given.",
+        "Even a start earns marks.",
+        "Start from $W = \\int P\\,dV$ with $P = RT/V$.", "incorrect",
+    ),
+    ("circuits", A, "2"): (
+        "$R = 6 + 3 = 9\\ \\Omega$", "Both resistor values are used.",
+        "", "The resistors are added as if they were in series.",
+        "You used both resistor values.",
+        "The resistors are added as if they were in series.",
+        "In parallel the total is smaller than either resistor.",
+        "Use $R = \\frac{6\\times 3}{6+3} = 2\\ \\Omega$.", "incorrect",
+    ),
+    ("lab", A, "1"): (
+        "V = IR", "The relation is written correctly.",
+        "", "No condition for the law to hold is given.",
+        "You wrote the relation $V = IR$.",
+        "No condition for the law to hold is given.",
+        "Ohm's law only holds when conditions such as temperature stay constant.",
+        "Add that the temperature must stay constant.", "partial",
+    ),
+    ("lab", A, "2"): (
+        "", "No method for finding the total resistance.",
+        "", "One of the two resistors is left out.",
+        "You used Ohm's law to find the current.",
+        "Only the $4\\ \\Omega$ resistor is used.",
+        "In series the resistances add before you divide the voltage by them.",
+        "Use $I = 12/(4+2) = 2\\ \\mathrm{A}$.", "incorrect",
+    ),
+}
+
+
+class Note(NamedTuple):
+    """The marker's reasons for one answer that lost marks, point by point."""
+
+    point1_quote: str  # words the student wrote that earned (or failed to earn) point 1
+    point1_reason: str
+    point2_quote: str  # empty when the point earned nothing
+    point2_reason: str
+    strength: str  # one thing the answer did well
+    issue: str  # what cost the marks
+    why: str  # why it matters
+    fix: str  # what to write next time
+    kind: str  # partial | incorrect
+
+
+def item_key(exam_key: str, student: str, question: str) -> str:
+    """The id of one answer, `<exam id>/<student id>/<question id>`: the same as `Item.id`."""
+    return f"{PREFIX}{exam_key}/{student}/{question}"
+
+
+# Notes by answer id. An answer is matched to its note by exam, student and question together, so
+# one exam's feedback can never be shown on another's.
+NOTES: dict[str, Note] = {item_key(*key): Note(*note) for key, note in FEEDBACK.items()}
+
+
+def check_notes(ex: DemoExam) -> None:
+    """Fail loudly when an exam's feedback does not fit its answers.
+
+    Every answer below full marks needs a note, no note may sit on a full-marks answer or on an
+    answer that does not exist, and each quote must be words from that student's answer.
+    """
+    wanted = set()
+    for student, per_q in ex.answers.items():
+        for q in ex.questions:
+            answer, mark, _ = per_q[q["id"]]
+            key = item_key(ex.key, student, q["id"])
+            note = NOTES.get(key)
+            if mark >= q["max_mark"]:
+                if note:
+                    raise ValueError(f"{key}: full marks but has feedback")
+                continue
+            wanted.add(key)
+            if note is None:
+                raise ValueError(f"{key}: lost marks but has no feedback")
+            for quote in (note.point1_quote, note.point2_quote):
+                if quote and quote not in answer:
+                    raise ValueError(f"{key}: quote {quote!r} is not in the student's answer")
+    own = f"{PREFIX}{ex.key}/"
+    if stray := [k for k in NOTES if k.startswith(own) and k not in wanted]:
+        raise ValueError(f"feedback for answers that do not exist or have full marks: {stray}")
+
+
 EXAMS = [
     DemoExam("mech", "[Demo] Mechanics Quiz", "mech", "published", MECH_Q, MECH_ANSWERS),
     DemoExam("thermo", "[Demo] Thermodynamics Midterm", "thermo", "marked", THERMO_Q, THERMO_ANSWERS),
@@ -356,30 +554,33 @@ def _result(
     qid, top = q["id"], q["max_mark"]
     half = top / 2
     got = [min(mark, half), max(mark - half, 0.0)]
+    note = NOTES.get(item_key(ex.key, student, qid))
     verdicts = []
     for i, a in enumerate(got, 1):
         status = "met" if a >= half else "partial" if a > 0 else "not_met"
-        reason = {"met": "Credited.", "partial": "Partly there.", "not_met": "Not shown."}[status]
+        if note:
+            evidence = (note.point1_quote, note.point2_quote)[i - 1]
+            reason = (note.point1_reason, note.point2_reason)[i - 1]
+        else:
+            evidence, reason = "", "Matches the model answer."
+        if a > 0 and not evidence:
+            evidence = answer[:80]
         verdicts.append(
             PointVerdict(
-                point_id=f"p{i}",
-                status=status,
-                marks_awarded=a,
-                evidence=answer[:40] if a > 0 else "",
-                reason=reason,
-            )  # fmt: skip
+                point_id=f"p{i}", status=status, marks_awarded=a, evidence=evidence, reason=reason
+            )
         )
     feedback = None
-    if mark < top:
-        strength, issue, why, fix = HINTS.get(
-            qid, ("You made an attempt.", "Part is missing.", "", "Add it.")
-        )
+    if note:
         lost = "p1" if got[0] < half else "p2"
-        kind = "incorrect" if mark == 0 else "partial"
         feedback = Feedback(
-            strengths=[strength] if mark > 0 else ["You attempted the question."],
-            improvements=[Improvement(point_id=lost, kind=kind, issue=issue, why=why, fix=fix)],
-            summary=f"Revisit this once more: {fix}",
+            strengths=[note.strength],
+            improvements=[
+                Improvement(
+                    point_id=lost, kind=note.kind, issue=note.issue, why=note.why, fix=note.fix
+                )
+            ],
+            summary=f"Next time: {note.fix}",
         )
     item = Item(
         id=f"{exam_id(ex.key)}/{student}/{qid}", dataset="exam", question_id=qid,
@@ -393,6 +594,7 @@ def _result(
 
 
 def _write_run(ex: DemoExam) -> None:
+    check_notes(ex)
     eid = exam_id(ex.key)
     run = storage.run_path(eid)
     (run / "students").mkdir(parents=True, exist_ok=True)
@@ -421,18 +623,26 @@ def _write_run(ex: DemoExam) -> None:
     (run / "schemes.md").write_text("\n".join(schemes), encoding="utf-8")
 
 
-def _write_uploads(ex: DemoExam) -> None:
-    """The files a teacher would have uploaded for a fabricated exam, so the Upload tab is full."""
+def _write_uploads(ex: DemoExam, pdf: bool = False) -> None:
+    """The files a teacher would have uploaded for a fabricated exam, so the Upload tab is full.
+
+    With `pdf` the paper and the model answers are PDF files, as teachers often have them.
+    """
     eid = exam_id(ex.key)
     paper = "\n\n".join(f"{q['id']}. [{q['max_mark']:g} marks] {q['text']}" for q in ex.questions)
-    storage.save_uploads(
-        eid, "paper", [("paper.md", f"# {ex.title}\n\n{paper}\n".encode())], False, set()
-    )
     refs = "\n\n".join(
         f"{q['id']}. {MODEL.get((ex.key, q['id']), 'Marks for the key ideas.')}"
         for q in ex.questions
     )
-    storage.save_uploads(eid, "reference", [("model_answer.md", refs.encode())], False, set())
+    paper_text = f"# {ex.title}\n\n{paper}\n"
+    if pdf:
+        files = [("paper.pdf", pdf_bytes(paper_text))]
+        ref_files = [("model_answer.pdf", pdf_bytes(refs))]
+    else:
+        files = [("paper.md", paper_text.encode())]
+        ref_files = [("model_answer.md", refs.encode())]
+    storage.save_uploads(eid, "paper", files, False, set())
+    storage.save_uploads(eid, "reference", ref_files, False, set())
     files = []
     for student, per_q in ex.answers.items():
         body = "\n\n".join(f"{qid}. {answer}" for qid, (answer, _, _) in per_q.items())
@@ -475,11 +685,18 @@ def _known_passwords(app_data: Path) -> dict[str, str]:
     return dict(rows)
 
 
-def _forget_exam(eid: str) -> None:
+CASE_EXAMS = tuple(f"case{n}-demo" for n in range(1, 5))  # made by app/services/cases.py
+
+
+def forget_exam(eid: str) -> None:
+    """Delete an exam's files and every record about it: overrides, regrades, hand-ins, messages."""
     storage.delete_exam(eid)
     with db.connect() as c:
-        for table in ("overrides", "regrades"):
+        for table in ("overrides", "regrades", "submissions", "notifications"):
             c.execute(f"DELETE FROM {table} WHERE exam_id = ?", (eid,))
+
+
+_forget_exam = forget_exam
 
 
 def _forget_people() -> None:
@@ -501,6 +718,9 @@ def _forget_people() -> None:
             "AND student_id IS NOT NULL", names)]  # fmt: skip
         c.execute(f"DELETE FROM users WHERE username IN ({','.join('?' * len(names))})", names)
         gone = [*ROLLS, *links]
+        c.execute(
+            f"DELETE FROM submissions WHERE student_id IN ({','.join('?' * len(gone))})", gone
+        )
         c.execute(f"DELETE FROM students WHERE student_id IN ({','.join('?' * len(gone))})", gone)
 
 
@@ -569,7 +789,7 @@ def _write_sheet(passwords: dict[str, str], path: Path) -> None:
     lines = [
         "# Test personas",
         "",
-        "Sign in at the app's login page. Passwords are random except the admin's; this file is git-ignored.",
+        "Sign in at the app's login page. Every account uses the dummy password `demo1234` except the admin (`admin`). This file is git-ignored.",
         "Rebuild the scenario any time with `python -m app.services.demo seed`; remove it all with `remove`.",
         "",
         "| Username | Role | Password |",  # the seeder reads these rows back to keep passwords
@@ -609,7 +829,9 @@ def _write_sheet(passwords: dict[str, str], path: Path) -> None:
 def remove(app_data: Path = config.APP_DATA) -> None:
     """Delete the demo exams, courses, students and persona accounts (and nothing else)."""
     for ex in EXAMS:
-        _forget_exam(exam_id(ex.key))
+        forget_exam(exam_id(ex.key))
+    for eid in CASE_EXAMS:
+        forget_exam(eid)
     _forget_people()
     for name in ("demo_personas.md", "demo_accounts.csv"):
         (app_data / name).unlink(missing_ok=True)
@@ -671,10 +893,12 @@ def _report(rows: list[dict], tolerance: float) -> str:
 
 
 CLEAN_COURSES = (
-    ("ME1001", "Alpha", "teacher_1", (A, B, C, E)),
-    ("ME1002", "Beta", "teacher_1", (A, B, C)),
-    ("ME1003", "Gamma", "teacher_1", ()),
-    ("EE1001", "Delta", "teacher_2", (A, D)),
+    ("ME1001", "Engineering Mechanics", "teacher_1", (A, B, C, E)),
+    ("ME1002", "Thermal and Fluid Sciences", "teacher_1", (A, B, C)),
+    ("DS1001", "Data Science", "teacher_1", ()),
+    ("LA1001", "Language and Science", "teacher_1", ()),
+    ("CS1001", "Programming", "teacher_1", ()),
+    ("EE1001", "Circuits", "teacher_2", (A, D)),
 )  # A: both teachers; B, C, E: teacher_1 only; D: teacher_2 only; F, G: nowhere yet
 
 
@@ -720,6 +944,82 @@ def clean(app_data: Path = config.APP_DATA) -> dict[str, str]:
     return passwords
 
 
+def samples() -> None:
+    """Add the sample exams and the sample assignment, so the screens can be tried at once.
+
+    Mechanics Quiz 1 (published, with regrade requests), the Thermodynamics Midterm (marked, files
+    are PDFs), Circuits Quiz 1 (published, second teacher) and Fluids Homework 1 (an assignment
+    with work handed in). The marks are fabricated, so no model is called. Run after `clean`.
+    """
+    ids = {c["code"]: c["id"] for t in ("teacher_1", "teacher_2") for c in courses.list_courses(t)}
+    for ex in EXAMS:
+        if ex.key not in SAMPLES:  # the real-file work is covered by the four cases
+            continue
+        title, code, kind, owner = SAMPLES[ex.key]
+        storage.create_exam(
+            title, owner=owner, exam_id=exam_id(ex.key), course_id=ids[code], kind=kind
+        )
+        if ex.stage != "draft":
+            _write_uploads(ex, pdf=ex.key == "thermo")
+            _write_run(ex)
+    _scenario_publish_and_regrades()
+    _sample_homework()
+
+
+# key -> (title, course code, kind, owner). Two exams are marked, one is published with regrade
+# requests, and one assignment has students' work in. The titles say what the work is.
+SAMPLES = {
+    "mech": ("Mechanics Quiz 1", "ME1001", "exam", "teacher_1"),
+    "thermo": ("Thermodynamics Midterm", "ME1002", "exam", "teacher_1"),
+    "fluids": ("Fluids Homework 1", "ME1002", "assignment", "teacher_1"),
+    "circuits": ("Circuits Quiz 1", "EE1001", "exam", "teacher_2"),
+}
+
+
+def _sample_homework() -> None:
+    """Open Fluids Homework 1 for hand-in, with two students' work already submitted."""
+    from app.services import submissions
+
+    eid = exam_id("fluids")
+    brief = "\n\n".join(
+        [
+            "Fluids Homework 1",
+            "Q1. [5 marks] Find the pressure at 10 m depth in water "
+            "(rho = 1000 kg/m^3, g = 9.8 m/s^2).",
+            "Q2. [5 marks] State Bernoulli's principle.",
+        ]
+    )
+    key = "\n\n".join(
+        [
+            "Q1. P = rho g h = 1000 x 9.8 x 10 = 98000 Pa (98 kPa).",
+            "Q2. Along a streamline, P + 1/2 rho v^2 + rho g z is constant.",
+        ]
+    )
+    storage.save_uploads(eid, "paper", [("brief.pdf", pdf_bytes(brief))], False, set())
+    storage.save_uploads(eid, "reference", [("model_answer.txt", key.encode())], False, set())
+    deadline = (date.today() + timedelta(days=14)).isoformat()
+    submissions.open_window(
+        eid, deadline, "Submit your answers as a PDF, Word or text file.", "teacher_1",
+        formats=["documents"],
+    )  # fmt: skip
+    a_text = "\n\n".join(
+        [
+            "Q1. The pressure at depth h is P = rho g h, so at 10 m in water it is 98 kPa.",
+            "Q2. Bernoulli: P + 1/2 rho v^2 + rho g z is constant along a streamline.",
+        ]
+    )
+    b_text = "\n\n".join(
+        [
+            "Q1. P = rho g h = 1000 x 9.8 x 10 = 98000 Pa.",
+            "Q2. Energy per volume is conserved.",
+        ]
+    )
+    work = {A: ("homework1.pdf", pdf_bytes(a_text)), B: ("homework1.txt", b_text.encode())}
+    for roll, file in work.items():
+        submissions.submit(eid, roll, [file])
+    submissions.collect(eid, "teacher_1")  # the work is already in the answer sheets
+
+
 def main() -> None:
     """Run the demo command given as the first argument (seed, clean, remove, compare)."""
     action = sys.argv[1] if len(sys.argv) > 1 else ""
@@ -731,6 +1031,8 @@ def main() -> None:
             print(f"  {p.username:10} {p.role:8} {passwords[p.username]:14}{sid:8} {p.title}")
     elif action == "clean":
         clean()
+        if "--samples" in sys.argv:
+            samples()
         print(
             "Demo exams removed; accounts, courses and enrolments reset:",
             config.APP_DATA / "demo_personas.md",

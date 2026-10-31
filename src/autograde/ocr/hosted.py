@@ -1,11 +1,15 @@
-"""Read answer-sheet photos with free hosted vision models (Gemini free tier, OpenRouter `:free`).
+"""Read answer-sheet photos with hosted vision models (OpenRouter, Gemini free tier, Bodhan).
 
-Only models that cost nothing are allowed. Gemini: an allow-list taken from Google's pricing page
-(free-tier models). OpenRouter: the id must end in `:free` and its listed price must be zero.
-Anything else raises before a request is made. API keys come from the environment or the
-git-ignored `.env`, travel in headers (never in a URL) and are never logged.
+- OpenRouter: any vision model it serves. A model whose id ends in `:free` is first checked to be
+  listed at zero price. A paid model is allowed too, and the reported cost of a run is capped (see
+  `OPENROUTER_CAP_USD`), so a mistake stays cheap.
+- Gemini (direct): an allow-list taken from Google's pricing page (free-tier models only).
+- Bodhan IndicOCR: paid per image, with its own per-run cap.
 
-Images should be header-redacted copies (tools/ocr/redact_headers.py): free tiers may keep the data.
+API keys come from the environment or the git-ignored `.env`, travel in headers (never in a URL)
+and are never logged.
+
+Images should be header-redacted copies: free tiers may keep the data.
 """
 
 from __future__ import annotations
@@ -43,7 +47,9 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MODELS = "https://openrouter.ai/api/v1/models"
 
 _free_prices: dict[str, bool] | None = None
-OPENROUTER_CAP_USD = 1.0  # free models should cost nothing; stray costs up to this are tolerated
+# The most an OpenRouter reader may spend in one run, in US dollars. Free models cost nothing, so
+# this is the safety net for paid ones. Raise it with AUTOGRADE_OCR_CAP_USD for a large class.
+OPENROUTER_CAP_USD = float(os.environ.get("AUTOGRADE_OCR_CAP_USD", "1.0"))
 _spent = {"usd": 0.0}
 BODHAN_URL = "https://api.bodhan.ai/v1/chat/completions"
 BODHAN_RUPEES_PER_IMAGE = 0.20  # the only paid reader; a per-run cap keeps a mistake cheap
@@ -135,10 +141,11 @@ def gemini(pages: list[Path], model: str, system: str, user: str) -> str:
     return "".join(texts)
 
 
-def _assert_openrouter_free(model: str) -> None:
+def _check_openrouter_model(model: str) -> None:
+    """Refuse a `:free` model that is not really free. A paid model is allowed (the cap applies)."""
     global _free_prices
     if not model.endswith(":free"):
-        raise LLMError(f"{model!r} does not end in ':free'; only free models are allowed")
+        return
     if _free_prices is None:
         with urllib.request.urlopen(OPENROUTER_MODELS, timeout=60) as resp:
             data = json.load(resp)["data"]
@@ -152,8 +159,8 @@ def _assert_openrouter_free(model: str) -> None:
 
 
 def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
-    """Read page images with a free OpenRouter model and return the text."""
-    _assert_openrouter_free(model)
+    """Read page images with an OpenRouter vision model and return the text."""
+    _check_openrouter_model(model)
     content: list[dict] = [{"type": "text", "text": user}]
     for p in pages:
         media, data = _image_b64(p)

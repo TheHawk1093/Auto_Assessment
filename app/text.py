@@ -14,6 +14,8 @@ import unicodedata
 
 _BLOCK = re.compile(r"\\\[(.+?)\\\]", re.DOTALL)
 _INLINE = re.compile(r"\\\((.+?)\\\)", re.DOTALL)
+_MATH = re.compile(r"\$\$.+?\$\$|\$[^$\n]+?\$", re.DOTALL)
+_MD_CHARS = re.compile(r"([\\`*_{}\[\]<>#|~])")
 
 
 def normalize(text: str) -> str:
@@ -31,3 +33,23 @@ def for_markdown(text: str) -> str:
     text = normalize(text)
     text = _BLOCK.sub(lambda m: f"$${m.group(1)}$$", text)
     return _INLINE.sub(lambda m: f"${m.group(1)}$", text)
+
+
+def plain_for_markdown(text: str) -> str:
+    """Plain text (an answer, feedback) as markdown that keeps maths and line breaks.
+
+    Maths between dollar signs is kept so Streamlit draws it; everything else is escaped so a
+    `*`, `_` or `#` in someone's writing stays as written.
+    """
+    text = for_markdown(text).strip()
+    out, last = [], 0
+    for m in _MATH.finditer(text):
+        out.append(_escape(text[last : m.start()]))
+        out.append(m.group(0))
+        last = m.end()
+    out.append(_escape(text[last:]))
+    return "".join(out)
+
+
+def _escape(part: str) -> str:
+    return _MD_CHARS.sub(lambda m: "\\" + m.group(1), part).replace("\n", "  \n")

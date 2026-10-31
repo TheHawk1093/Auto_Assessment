@@ -17,14 +17,10 @@ def render_panel(exam_id: str) -> None:
     meta = storage.load_meta(exam_id)
     me = session.current_user()["username"]
     with st.container(border=True):
-        st.markdown("**Student submissions (assignments)**")
-        st.caption(
-            "Instead of uploading answers yourself, open a window for the students of this "
-            "exam's course. They submit documents or photos from their own page; you then add "
-            "the work to the answer sheets and mark it like any other."
-        )
+        st.markdown("**Student submissions**")
+        st.caption("Students of the course hand in their work here. Then add it to the sheets.")
         if meta["course_id"] is None:
-            st.info("This exam is not in a course. Put it in one to take submissions.")
+            st.info("Put this assignment in a course to take submissions.")
             return
         is_open, why = submissions.window(exam_id)
         st.markdown(
@@ -77,12 +73,20 @@ def _window_form(exam_id: str, meta: dict, is_open: bool, me: str) -> None:
             "Last day to submit (optional)", value=current, min_value=date.today()
         )
         note = right.text_area("What students should submit", sub["instructions"], height=90)
+        formats = st.multiselect(
+            "File types students may upload",
+            submissions.ALL_GROUPS,
+            default=sub["formats"] or submissions.ALL_GROUPS,
+            format_func=lambda g: submissions.GROUPS[g][0],
+        )
         open_btn, close_btn, _ = st.columns([1, 1, 3])
         if open_btn.form_submit_button(
             "Update" if sub["open"] else "Open submissions", type="primary"
         ):
             try:
-                submissions.open_window(exam_id, deadline.isoformat() if deadline else "", note, me)
+                submissions.open_window(
+                    exam_id, deadline.isoformat() if deadline else "", note, me, formats
+                )
             except ValueError as e:
                 st.error(str(e))
             else:

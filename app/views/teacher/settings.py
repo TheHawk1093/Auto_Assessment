@@ -8,10 +8,8 @@ import streamlit as st
 from app.services import models, settings_spec, storage
 from app.services import results as res
 from app.services.settings_spec import Field
-from app.ui import components as ui
 
-# Which fields sit in which column of the page; add a group name to a Field to move it here.
-MARKS_COLUMNS = (("granularity", "mark_step"), ("strictness", "count_best"))
+CUSTOM_STEP = "Custom step (enter marks)"
 
 
 def render(exam_id: str) -> None:
@@ -21,23 +19,65 @@ def render(exam_id: str) -> None:
     saved = storage.load_meta(exam_id)["settings"]
     info = res.intake(exam_id)
     if info.get("rules", {}).get("found"):
-        st.info(
-            "Rules read from your paper and rubric are applied automatically. "
-            "Anything you set here overrides them."
-        )
+        st.info("Rules in your paper and rubric are applied. Anything set here overrides them.")
     values: dict = {}
-    for col, keys in zip(st.columns(len(MARKS_COLUMNS)), MARKS_COLUMNS, strict=True):
-        for key in keys:
-            values[key] = _widget(settings_spec.BY_KEY[key], saved[key], col, exam_id, info)
+    left, right = st.columns(2)
+    values.update(_part_marks(left, saved, exam_id))
+    values["strictness"] = _widget(settings_spec.BY_KEY["strictness"], saved["strictness"],
+                                   right, exam_id, info)  # fmt: skip
+    values.update(_best_of(st, saved, exam_id))
     for f in settings_spec.FIELDS:
-        if f.group == "notes":
+        if f.group == "notes" and f.key != "struck_out":
             values[f.key] = _widget(f, saved[f.key], st, exam_id, info)
+    values["struck_out"] = _crossed_out(saved["struck_out"], exam_id)
     toggles = [f for f in settings_spec.FIELDS if f.group == "toggles"]
     for col, f in zip(st.columns(len(toggles)), toggles, strict=True):
         values[f.key] = _widget(f, saved[f.key], col, exam_id, info)
     if st.button("Save settings", type="primary"):
         storage.update_settings(exam_id, **values)
         st.success("Saved.")
+
+
+def _part_marks(where, saved: dict, exam_id: str) -> dict:
+    """One choice for how part marks are given, with a custom step as the last option."""
+    f = settings_spec.BY_KEY["granularity"]
+    labels = [*f.options, CUSTOM_STEP]
+    if saved["mark_step"]:
+        index = len(labels) - 1
+    else:
+        index = list(f.options.values()).index(saved["granularity"]) if (
+            saved["granularity"] in f.options.values()) else 0  # fmt: skip
+    pick = where.selectbox(f.label, labels, index=index, key=f"set_{exam_id}_granularity")
+    if pick != CUSTOM_STEP:
+        return {"granularity": f.options[pick], "mark_step": None}
+    step = where.number_input("Marks come in multiples of", min_value=0.05, step=0.05,
+                              value=float(saved["mark_step"] or 0.5),
+                              key=f"set_{exam_id}_mark_step")  # fmt: skip
+    return {"granularity": None, "mark_step": step}
+
+
+def _best_of(where, saved: dict, exam_id: str) -> dict:
+    """'Answer any N' papers: a tick, then how many questions count."""
+    on = where.checkbox("Only the best few questions count (answer any N)",
+                        value=bool(saved["count_best"]), key=f"set_{exam_id}_best_on")  # fmt: skip
+    if not on:
+        return {"count_best": None}
+    n = where.number_input("How many questions count", min_value=1, step=1,
+                           value=int(saved["count_best"] or 1),
+                           key=f"set_{exam_id}_count_best")  # fmt: skip
+    return {"count_best": int(n)}
+
+
+def _crossed_out(saved: list, exam_id: str) -> list[str]:
+    """A small table of questions a student crossed out; they are not marked."""
+    rows = [x.split("=", 1) for x in saved if "=" in x]
+    df = pd.DataFrame(rows, columns=["student", "question"])
+    with st.expander("A student crossed out a question?"):
+        st.caption("List the student and question. It is not marked.")
+        edited = st.data_editor(df, num_rows="dynamic", hide_index=True, width="stretch",
+                                key=f"set_{exam_id}_struck")  # fmt: skip
+    return [f"{r.student.strip()}={r.question.strip()}" for r in edited.itertuples()
+            if str(r.student or "").strip() and str(r.question or "").strip()]
 
 
 def _widget(f: Field, value, where, exam_id: str, info: dict):
@@ -102,24 +142,34 @@ def _model_card(exam_id: str) -> None:
             key=f"model_{exam_id}",
         )
         option = models.get(pick)
-        st.markdown(
-            ui.chips(
-                (models.TIER[option.tier], "blue"),
-                (models.COST[option.cost], "green" if option.cost == "free" else "amber"),
-            ),
-            unsafe_allow_html=True,
-        )
         st.caption(option.blurb)
         if pick != meta["model"]:
             if storage.exam_status(exam_id) != "draft":
-                st.info(
-                    "A different model writes its own marking schemes, so Prepare will run again."
-                )
+                st.info("Prepare will run again for the new model.")
             if st.button("Use this model", type="primary", key=f"use_model_{exam_id}"):
                 storage.set_model(exam_id, pick)
                 st.rerun()
-        locked = [(o, models.availability(o)[1]) for o in models.catalogue() if o not in usable]
-        if locked:
-            with st.expander("Other models (not available)"):
-                for o, why in locked:
-                    st.markdown(f"**{o.label}**  \n{why}")
+        _reader_card(exam_id, meta)
+        with st.expander("Which should I pick?"):
+            for o in usable:
+                st.markdown(f"**{o.label}**: {o.use} {o.price}")
+            for r in models.READERS:
+                st.markdown(f"**{r.label}**: {r.use} {r.price}")
+
+
+def _reader_card(exam_id: str, meta: dict) -> None:
+    """Pick the model that reads handwritten pages (used only for scanned or photographed work)."""
+    ids = [o.id for o in models.READERS]
+    current = meta["reader"] if meta["reader"] in ids else models.DEFAULT_READER
+    labels = {
+        o.id: o.label + ("" if models.reader_availability(o)[0] else " (not available)")
+        for o in models.READERS
+    }
+    pick = st.selectbox(
+        "Reads handwriting with", ids, index=ids.index(current), format_func=labels.get,
+        key=f"settings_reader_{exam_id}",
+    )  # fmt: skip
+    if pick != current:
+        storage.set_reader(exam_id, pick)
+        st.rerun()
+    st.caption(models.get_reader(pick).blurb)

@@ -18,10 +18,10 @@ PAGE_DATASETS = ["digiklausur", "saf", "mohler", "engsaf"]
 
 def register(sub) -> None:
     """Add the commands that build report pages to the subparsers."""
-    sub.add_parser("styles-page", help="build runs/feedback_styles/index.html").set_defaults(
+    sub.add_parser("styles-page", help="build output/runs/feedback_styles/index.html").set_defaults(
         func=cmd_styles
     )
-    sub.add_parser("rubrics-page", help="build runs/rubrics/index.html").set_defaults(
+    sub.add_parser("rubrics-page", help="build output/runs/rubrics/index.html").set_defaults(
         func=cmd_rubrics_page
     )
     cp = sub.add_parser("compare", help="one page, one tab per run, the same N answers in each")
@@ -31,7 +31,7 @@ def register(sub) -> None:
     )  # fmt: skip
     cp.add_argument("--limit", type=int, default=5)
     cp.add_argument("--title", default="Method comparison")
-    cp.add_argument("--out", required=True, help="folder name under runs/")
+    cp.add_argument("--out", required=True, help="folder name under output/runs/")
     cp.set_defaults(func=cmd_compare)
 
 

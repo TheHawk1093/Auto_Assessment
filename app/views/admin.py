@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from app.services import auth, courses, dbadmin, jobs, models, overview, students
+from app.services import auth, courses, db, dbadmin, jobs, models, overview, storage, students
 from app.ui import components as ui
 from app.ui import session
 
@@ -156,19 +156,13 @@ def _edit_course(me: str) -> None:
 
 
 def _models() -> None:
-    """Which models teachers can pick. OpenRouter stays locked until switched on here."""
+    """Which models teachers can pick; any of them can be switched off here."""
     me = session.current_user()["username"]
-    st.info(
-        "Teachers choose from the models switched on here. OpenRouter models are off by default "
-        "so nothing is billed there; switch them on when the balance allows."
-    )
-    st.caption(
-        "A model that is on but unavailable on this machine (no Claude CLI, no API key) is still "
-        "hidden from teachers, and the reason is shown below."
-    )
+    st.caption("Teachers choose from the models switched on here. They see the name, use and cost.")
     with st.form("models"):
         picks: dict[str, bool] = {}
         ids: dict[str, str] = {}
+        st.markdown("**Marking models**")
         for option in models.catalogue():
             ok, why = models.availability(option)
             left, right = st.columns([3, 2], vertical_alignment="center")
@@ -177,27 +171,20 @@ def _models() -> None:
                     option.label, value=models.is_enabled(option), key=f"en_{option.id}"
                 )
                 st.caption(option.blurb)
-                st.markdown(
-                    ui.chips(
-                        (models.TIER[option.tier], "blue"),
-                        (models.COST[option.cost], "green" if option.cost == "free" else "amber"),
-                        ("Available" if ok else why, "green" if ok else "red"),
-                    ),
-                    unsafe_allow_html=True,
-                )
+                if not ok:
+                    st.markdown(ui.chips((why, "red")), unsafe_allow_html=True)
             with right:
-                if option.needs == "openrouter":
-                    ids[option.id] = st.text_input(
-                        "OpenRouter model id", value=option.model, key=f"id_{option.id}"
-                    )
-            st.divider()
+                ids[option.id] = st.text_input(
+                    "Model id", value=option.model, key=f"id_{option.id}"
+                )
+        st.divider()
         st.markdown("**Handwriting readers**")
         reads: dict[str, bool] = {}
         for reader in models.READERS:
             ok, why = models.reader_availability(reader)
             on = bool(models._load().get("enabled", {}).get(reader.id, True))
             reads[reader.id] = st.checkbox(reader.label, value=on, key=f"en_{reader.id}")
-            st.caption(f"{reader.blurb} " + ("" if ok else f"Not usable now: {why}"))
+            st.caption(reader.blurb + ("" if ok else f" Not usable now: {why}"))
         if st.form_submit_button("Save", type="primary"):
             for reader in models.READERS:
                 was = bool(models._load().get("enabled", {}).get(reader.id, True))
@@ -206,7 +193,7 @@ def _models() -> None:
             for option in models.catalogue():
                 if models.is_enabled(option) != picks[option.id]:
                     models.set_enabled(option.id, picks[option.id], me)
-                if option.id in ids and ids[option.id].strip() != option.model:
+                if ids[option.id].strip() != option.model:
                     models.set_model_id(option.id, ids[option.id], me)
             st.success("Saved.")
             st.rerun()
@@ -216,8 +203,9 @@ def _models() -> None:
 
 
 def _exams() -> None:
+    cards = overview.for_owner(None)
     rows = []
-    for card in overview.for_owner(None):
+    for card in cards:
         job = jobs.job_state(card["id"])
         rows.append(
             {
@@ -238,6 +226,61 @@ def _exams() -> None:
         jobs.cancel(busy)
         st.rerun()
     st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+    if cards:
+        _manage_exam(cards)
+
+
+def _manage_exam(cards: list[dict]) -> None:
+    """Admin controls over any teacher's exam: owner, model, reader, publishing, deletion."""
+    me = session.current_user()["username"]
+    st.subheader("Manage an exam")
+    titles = {c["id"]: f"{c['title']} ({c['owner']})" for c in cards}
+    exam_id = st.selectbox("Exam", list(titles), format_func=titles.get, key="admin_exam")
+    meta = storage.load_meta(exam_id)
+    teachers = [u["username"] for u in auth.list_users() if u["role"] in ("teacher", "admin")]
+    left, mid, right = st.columns(3)
+    owner = left.selectbox(
+        "Owner", teachers, index=teachers.index(meta["owner"]) if meta["owner"] in teachers else 0
+    )
+    model_ids = [o.id for o in models.catalogue()]
+    model = mid.selectbox(
+        "Marking model",
+        model_ids,
+        index=model_ids.index(meta["model"]) if meta["model"] in model_ids else 0,
+        format_func=lambda i: models.get(i).label,
+    )
+    reader_ids = [r.id for r in models.READERS]
+    reader = right.selectbox(
+        "Handwriting reader",
+        reader_ids,
+        index=reader_ids.index(meta["reader"]) if meta["reader"] in reader_ids else 0,
+        format_func=lambda i: models.get_reader(i).label,
+    )
+    a, b, c = st.columns(3)
+    if a.button("Save changes", key="admin_exam_save"):
+        if owner != meta["owner"]:
+            meta["owner"] = owner
+            storage.save_meta(exam_id, meta)
+            db.audit(me, "exam_owner", f"{exam_id} -> {owner}")
+        if model != meta["model"]:
+            storage.set_model(exam_id, model)
+        if reader != meta["reader"]:
+            storage.set_reader(exam_id, reader)
+        st.success("Saved.")
+        st.rerun()
+    if meta.get("published") and b.button("Unpublish", key="admin_exam_unpub"):
+        storage.set_published(exam_id, False)
+        db.audit(me, "exam_unpublished", exam_id)
+        st.rerun()
+    with c.popover("Delete this exam"):
+        sure = st.checkbox("Delete its files, marks and regrade requests", key="admin_exam_sure")
+        if st.button("Delete", disabled=not sure, key="admin_exam_del"):
+            if jobs.job_state(exam_id).get("state") == "running":
+                st.error("Cancel the running job first.")
+            else:
+                storage.delete_exam(exam_id)
+                db.audit(me, "exam_deleted", exam_id)
+                st.rerun()
 
 
 # ---------- database ----------

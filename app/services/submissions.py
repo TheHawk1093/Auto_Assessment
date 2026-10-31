@@ -1,11 +1,12 @@
 """Work submitted by students, to be marked by the same pipeline as uploaded answer sheets.
 
-A teacher opens submissions on an exam (optionally with a deadline). Enrolled students then
-upload their own work: typed documents, photos or scans. Who submitted it is known from the
-account, so it never depends on a roll number written on the page. When the window closes the
-teacher collects the submissions into the exam's answer sheets: typed work becomes `<id>.md` with a
-Name / Roll No header; photos become scanned sheets that carry the known identity into the
-reader. From there the exam is prepared and marked as usual.
+A teacher opens submissions on an exam (optionally with a deadline and a list of allowed file
+types). Enrolled students then upload their own work: documents, source code, photos or a zip of
+these. Who submitted it is known from the account, so it never depends on a name written in the
+files. The teacher then collects the submissions into the exam's answer sheets: a student's typed
+files (and the contents of their zip) are joined into one `<id>.md` with a Name / Roll No header
+(`combine.py`); photos become scanned sheets that carry the known identity into the reader. From
+there the exam is prepared and marked as usual.
 """
 
 from __future__ import annotations
@@ -15,13 +16,19 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from app.services import courses, db, notifications, scans, storage, students
+from app import config
+from app.services import combine, courses, db, notifications, scans, storage, students
 from app.services.storage import exam_dir
 from app.text import normalize
-from autograde.intake.files import read_document
 
-TYPED = {".txt", ".md", ".docx", ".pdf"}
-ACCEPT = TYPED | scans.IMAGES
+GROUPS = {
+    "documents": ("Documents (pdf, docx, txt, md)", {".txt", ".md", ".docx", ".pdf"}),
+    "code": ("Code (py, ipynb)", {".py", ".ipynb"}),
+    "images": ("Photos of handwritten work (jpg, png)", {".jpg", ".jpeg", ".png"}),
+    "archives": ("A zip of files", {".zip"}),
+}
+ALL_GROUPS = list(GROUPS)
+TYPED = GROUPS["documents"][1] | GROUPS["code"][1]
 MAX_FILES = 30
 MAX_BYTES = scans.MAX_BYTES
 
@@ -29,6 +36,18 @@ MAX_BYTES = scans.MAX_BYTES
 def folder(exam_id: str, student_id: str) -> Path:
     """Where one student's submission for an exam is kept."""
     return exam_dir(exam_id) / "submissions" / scans.safe(student_id)
+
+
+def allowed(exam_id: str) -> set[str]:
+    """The file types (with the dot) the teacher accepts for this exam."""
+    groups = storage.load_meta(exam_id)["submissions"]["formats"] or ALL_GROUPS
+    return set().union(*(GROUPS[g][1] for g in groups if g in GROUPS))
+
+
+def allowed_labels(exam_id: str) -> list[str]:
+    """The accepted kinds of file, for showing to students."""
+    groups = storage.load_meta(exam_id)["submissions"]["formats"] or ALL_GROUPS
+    return [GROUPS[g][0] for g in groups if g in GROUPS]
 
 
 def window(exam_id: str) -> tuple[bool, str]:
@@ -44,20 +63,36 @@ def window(exam_id: str) -> tuple[bool, str]:
     return True, ""
 
 
-def open_window(exam_id: str, deadline: str, instructions: str, by: str) -> None:
+def open_window(
+    exam_id: str, deadline: str, instructions: str, by: str, formats: list[str] | None = None
+) -> None:
     """Open (or update) the submission window and tell the enrolled students.
 
+    Args:
+        exam_id: The exam.
+        deadline: Last day (YYYY-MM-DD) or empty.
+        instructions: What students should submit.
+        by: The teacher.
+        formats: Accepted groups of file types (keys of GROUPS); empty or None accepts all.
+
     Raises:
-        ValueError: If the exam has no course, or the deadline is not a date.
+        ValueError: If the exam has no course, the deadline is not a date, or a format is unknown.
     """
     meta = storage.load_meta(exam_id)
     if meta["course_id"] is None:
         raise ValueError("Put the exam in a course first: only its students can submit work.")
     if deadline:
         date.fromisoformat(deadline)  # ValueError names a bad date
+    formats = list(formats or [])
+    if unknown := [f for f in formats if f not in GROUPS]:
+        raise ValueError(f"Unknown file type group: {unknown}")
     was_open = meta["submissions"]["open"]
     storage.update_submissions(
-        exam_id, open=True, deadline=deadline, instructions=normalize(instructions).strip()
+        exam_id,
+        open=True,
+        deadline=deadline,
+        instructions=normalize(instructions).strip(),
+        formats=formats,
     )
     db.audit(by, "open_submissions", exam_id)
     if not was_open:
@@ -71,7 +106,7 @@ def open_window(exam_id: str, deadline: str, instructions: str, by: str) -> None
 
 
 def close_window(exam_id: str, by: str) -> None:
-    """Stop accepting hand-ins. What was submitted stays."""
+    """Stop accepting submissions. What was submitted stays."""
     storage.update_submissions(exam_id, open=False)
     db.audit(by, "close_submissions", exam_id)
 
@@ -81,7 +116,7 @@ def open_for(student_id: str) -> list[dict]:
     mine = {c["id"] for c in courses.courses_of(student_id)}
     out = []
     for meta in storage.list_exams():
-        if meta["course_id"] not in mine:
+        if meta["course_id"] not in mine or meta["kind"] != "assignment":
             continue
         is_open, _ = window(meta["id"])
         if is_open or status_of(meta["id"], student_id):
@@ -106,7 +141,7 @@ def submit(exam_id: str, student_id: str, files: list[tuple[str, bytes]]) -> lis
 
     Raises:
         PermissionError: If the window is closed or the student is not enrolled in the course.
-        ValueError: If nothing usable was uploaded or a file is too large.
+        ValueError: If nothing acceptable was uploaded or a file is too large.
     """
     sid = students.clean(student_id)
     meta = storage.load_meta(exam_id)
@@ -115,9 +150,10 @@ def submit(exam_id: str, student_id: str, files: list[tuple[str, bytes]]) -> lis
         raise PermissionError(why)
     if not courses.is_enrolled(meta["course_id"], sid):
         raise PermissionError("You are not enrolled in this course.")
-    good = [(Path(normalize(n)).name, d) for n, d in files if Path(n).suffix.lower() in ACCEPT]
+    ok = allowed(exam_id)
+    good = [(Path(normalize(n)).name, d) for n, d in files if Path(n).suffix.lower() in ok]
     if not good:
-        raise ValueError("Upload a document (txt, md, docx, pdf) or photos (png, jpg, webp).")
+        raise ValueError("This assignment accepts: " + "; ".join(allowed_labels(exam_id)) + ".")
     if len(good) > MAX_FILES:
         raise ValueError(f"At most {MAX_FILES} files at a time.")
     if any(len(d) > MAX_BYTES for _, d in good):
@@ -157,8 +193,10 @@ def roster_status(exam_id: str) -> list[dict]:
     """Every enrolled student with whether they submitted, plus anyone else who did."""
     meta = storage.load_meta(exam_id)
     with db.connect() as c:
-        done = {r["student_id"]: r for r in c.execute(
-            "SELECT * FROM submissions WHERE exam_id = ?", (exam_id,)).fetchall()}  # fmt: skip
+        done = {
+            r["student_id"]: r
+            for r in c.execute("SELECT * FROM submissions WHERE exam_id = ?", (exam_id,))
+        }
     people = {r["student_id"]: r["name"] for r in courses.roster(meta["course_id"] or -1)}
     for sid in done:
         people.setdefault(sid, students.name_of(sid))
@@ -175,12 +213,34 @@ def roster_status(exam_id: str) -> list[dict]:
     ]
 
 
+UNZIPPED = "_unzipped"
+
+
+def files_of(exam_id: str, student_id: str) -> list[Path]:
+    """The student's files, with each zip unpacked beside it (names flattened, sizes capped)."""
+    mine = folder(exam_id, student_id)
+    out = [p for p in sorted(mine.glob("*")) if p.is_file() and p.suffix.lower() != ".zip"]
+    out_dir = mine / UNZIPPED
+    shutil.rmtree(out_dir, ignore_errors=True)
+    for archive in sorted(mine.glob("*.zip")):
+        out_dir.mkdir(exist_ok=True)
+        try:
+            names, _ = storage._extract_zip(
+                archive.read_bytes(), out_dir, config.DOC_EXT | config.CODE_EXT | scans.IMAGES
+            )
+        except Exception:  # noqa: BLE001 - a damaged zip is reported by being empty
+            names = []
+        out += [out_dir / n for n in names]
+    return out
+
+
 def collect(exam_id: str, by: str) -> dict:
     """Turn every submission into answer sheets of the exam.
 
-    A student's typed documents become `<id>.md` (with their identity in the header); if they
-    submitted only photos or a scanned PDF, the pages go to the scans, to be read. Sheets this
-    created earlier are replaced, so collecting again after a late submission is safe.
+    A student's typed files, and what is inside their zips, become one `<id>.md` with their
+    identity in the header; if they submitted only photos or a scanned PDF, the pages go to the
+    scans, to be read. Sheets this created earlier are replaced, so collecting again after a late
+    submission is safe.
 
     Returns:
         {typed, scanned, skipped}: counts and a list of notes.
@@ -192,25 +252,27 @@ def collect(exam_id: str, by: str) -> dict:
         if not row["handed_in"]:
             continue
         sid, name = row["student_id"], students.name_of(row["student_id"])
-        mine = folder(exam_id, sid)
-        docs = [mine / f for f in row["files"] if Path(f).suffix.lower() in TYPED]
-        pics = [mine / f for f in row["files"] if Path(f).suffix.lower() in scans.IMAGES]
-        texts = []
-        for doc in docs:
-            try:
-                texts.append(read_document(doc).strip())
-            except ValueError:  # a PDF with no text layer is a scan after all
-                pics.append(doc)
+        everything = files_of(exam_id, sid)
+        docs = [f for f in everything if f.suffix.lower() in TYPED]
+        pics = [f for f in everything if f.suffix.lower() in scans.IMAGES]
+        body, unreadable = combine.combine(docs)
+        for bad in unreadable:
+            file = next(f for f in docs if f.name == bad)
+            if file.suffix.lower() == ".pdf":  # a PDF with no text layer is a scan after all
+                pics.append(file)
+            else:
+                skipped.append(f"{sid}: {bad} could not be read.")
         sheet = scans.safe(sid)
-        if texts:
+        if body.strip():
             scans.remove_sheet(exam_id, sheet)  # photos from an earlier submission no longer count
-            body = "\n\n".join(t for t in texts if t)
             (answers / f"{sheet}.md").write_text(
                 f"Name: {name}\nRoll No: {sid}\n\n{body}\n", encoding="utf-8"
             )
             typed += 1
             if pics:
-                skipped.append(f"{sid}: photos ignored because a typed document was submitted.")
+                skipped.append(
+                    f"{sid}: photos were not marked because typed files were also submitted."
+                )
         elif pics:
             scans.remove_sheet(exam_id, sheet)  # replace what an earlier collect added
             files, count = [], 0
@@ -223,5 +285,7 @@ def collect(exam_id: str, by: str) -> dict:
             added, bad = scans.add(exam_id, files, known={sheet: {"student_id": sid, "name": name}})
             skipped += [f"{sid}: {b}" for b in bad]
             scanned += 1 if added else 0
+        else:
+            skipped.append(f"{sid}: nothing readable was submitted.")
     db.audit(by, "collect_submissions", f"{exam_id} typed={typed} scanned={scanned}")
     return {"typed": typed, "scanned": scanned, "skipped": skipped}

@@ -26,13 +26,13 @@ class Tab:
     """One tab of the comparison page.
 
     Attributes:
-        run: Folder name under runs/.
+        run: Folder name under output/runs/.
         label: Tab name.
         short: One line under the tab name.
         desc: What this method is, in plain words.
     """
 
-    run: str  # folder name under runs/
+    run: str  # folder name under output/runs/
     label: str
     short: str  # one line under the tab name
     desc: str  # what this method is, in plain words

@@ -15,6 +15,13 @@ from datetime import datetime
 from pathlib import Path
 
 
+def _save(path: Path, state: dict) -> None:
+    """Replace the file in one step, so the app never reads it half written."""
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(state), encoding="utf-8")
+    os.replace(tmp, path)
+
+
 def main() -> None:
     """Run the command after `--`, logging its output and recording how it ended in job.json."""
     exam_dir, kind = Path(sys.argv[1]), sys.argv[2]
@@ -28,7 +35,7 @@ def main() -> None:
         "pid": os.getpid(),
         "started": datetime.now().isoformat(timespec="seconds"),
     }
-    job.write_text(json.dumps(state), encoding="utf-8")
+    _save(job, state)
     with open(exam_dir / "job.log", "w", encoding="utf-8") as log:
         env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}  # Indic text in logs
         code = subprocess.run(
@@ -41,7 +48,7 @@ def main() -> None:
         code=code,
         finished=datetime.now().isoformat(timespec="seconds"),
     )
-    job.write_text(json.dumps(state), encoding="utf-8")
+    _save(job, state)
     _tell_owner(exam_dir, kind, code == 0)
 
 

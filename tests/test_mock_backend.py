@@ -99,5 +99,5 @@ def test_exam_command_runs_offline_end_to_end(tmp_path, monkeypatch):
 
 
 def test_example_configs_load():
-    for name in ("default", "exam", "mock", "poc", "ocr_free"):
+    for name in ("default", "exam", "mock", "poc"):
         assert load_settings(ROOT / "configs" / f"{name}.yaml") is not None
