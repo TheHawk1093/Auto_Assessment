@@ -1,8 +1,8 @@
-# Proof of concept: Haiku for every job, lowest effort, no self-test, no extra votes.
+# Proof of concept: DeepSeek V4.1 Flash for every job, no self-test, no extra votes.
 # Use with small samples: autograde --config configs/poc.yaml poc
-llm: {backend: claude_cli, model: haiku, effort: low, timeout_s: 240, retries: 2}
-judge: {backend: claude_cli, model: haiku, effort: low}
-student: {backend: claude_cli, model: haiku, effort: low}
+llm: {backend: openrouter, model: "deepseek/deepseek-v4.1-flash", timeout_s: 240, retries: 2}
+judge: {backend: openrouter, model: "anthropic/claude-haiku-4.5"}
+student: {backend: openrouter, model: "anthropic/claude-haiku-4.5"}
 pipeline:
   rubric_selftest: false
   read_first: true

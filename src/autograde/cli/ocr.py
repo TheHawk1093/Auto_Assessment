@@ -8,7 +8,6 @@ import logging
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from autograde.cli.common import write_json
 from autograde.config import ReaderConfig, Settings
 from autograde.ocr.readers import build_readers, read_routed
 from autograde.ocr.sheets import Sheet, group_pages, to_items, unsure_spans
@@ -23,11 +22,10 @@ def register(sub) -> None:
     p.add_argument("--out", type=Path, required=True, help="folder to write the results to")
     p.add_argument(
         "--model",
-        help="override the configured reader with this model (Claude unless --provider is set)",
+        help="override the configured reader with this model (needs --provider)",
     )
-    p.add_argument("--effort", help="override the effort in the config")
     p.add_argument(
-        "--provider", choices=["gemini", "openrouter", "bodhan"],
+        "--provider", choices=["openrouter", "bodhan"],
         help="override the configured reader: a hosted model (needs --model; keys in .env)",
     )  # fmt: skip
     p.add_argument("--plain", action="store_true", help="hosted models: plain transcription only")
@@ -41,14 +39,12 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
     if args.provider and not args.model:
         raise SystemExit("--provider needs --model")
     if args.provider or args.model:  # flags override the configured reader and fallbacks
-        spec = ReaderConfig(
-            provider=args.provider or "claude_cli", model=args.model, plain=args.plain
-        )
+        spec = ReaderConfig(provider=args.provider, model=args.model, plain=args.plain)
         specs, routes = [spec], []
     else:
         specs, routes = [settings.ocr.reader, *settings.ocr.fallbacks], settings.ocr.routes
-    readers = build_readers(specs, args.effort)
-    special = build_readers([r.reader for r in routes], args.effort)
+    readers = build_readers(specs)
+    special = build_readers([r.reader for r in routes])
     pairs = list(zip(routes, special, strict=True))
     keys = json.loads(args.key.read_text(encoding="utf-8")) if args.key else {}
     args.out.mkdir(parents=True, exist_ok=True)
@@ -82,9 +78,5 @@ def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
         print(f"{sheet.sheet}: {len(items)} items, {len(unsure_spans(sheet))} unsure spans, "
               f"read by {sheet.reader}")  # fmt: skip
     (args.out / "items.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    clients = [r.client for r in readers + special if r.client]
-    cost = sum(c.usage.cost_usd for c in clients)
-    if clients:
-        write_json(args.out / "usage.json", [c.usage.as_dict() for c in clients])
     done = f"{len(results)}/{len(sheets)} sheets"
-    print(f"wrote {args.out / 'items.jsonl'}  ({done}, Claude cost ${cost:.3f})")
+    print(f"wrote {args.out / 'items.jsonl'}  ({done})")

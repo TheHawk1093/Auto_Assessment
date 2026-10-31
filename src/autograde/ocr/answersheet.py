@@ -13,19 +13,17 @@ import re
 from pathlib import Path
 
 from autograde import prompts
-from autograde.config import LLMConfig
-from autograde.llm import build_client
 from autograde.llm.base import LLMError
 from autograde.ocr.hosted import PROVIDERS
 from autograde.ocr.readers import INDIC_SHARE, is_indic
-from autograde.ocr.transcribe import UNSURE, cli_read
+from autograde.ocr.transcribe import UNSURE
 
 PAPER_LIMIT = 6000  # characters of the question paper shown to the reader, to learn the numbering
 HEADER = re.compile(r"^\s*(name|roll\s*(no\.?|number)?|student\s*id)\s*[:\-]", re.IGNORECASE)
 
 
 def read_answer_sheet(
-    pages: list[Path], provider: str, model: str, paper_text: str = "", effort: str | None = None
+    pages: list[Path], provider: str, model: str, paper_text: str = ""
 ) -> str:
     """Transcribe the pages of one sheet with the given reader and return the document text."""
     user = f"The sheet has {len(pages)} page image(s), in order."
@@ -35,14 +33,9 @@ def read_answer_sheet(
             + paper_text.strip()[:PAPER_LIMIT]
         )
     system = prompts.system("ocr.answersheet")
-    if provider == "claude_cli":
-        client = build_client(LLMConfig(backend="claude_cli", model=model, effort=effort))
-        files = "\n".join(f"Page {i}: {p.resolve()}" for i, p in enumerate(pages, 1))
-        text, usage = cli_read(pages, client, system, f"{user}\nOpen each one:\n{files}")
-    elif provider in PROVIDERS:
-        text = PROVIDERS[provider](pages, model, system, user)
-    else:
+    if provider not in PROVIDERS:
         raise LLMError(f"Unknown reader {provider!r}")
+    text = PROVIDERS[provider](pages, model, system, user)
     text = _plain(_unfence(text))
     if not text.strip():
         raise LLMError("The reader returned nothing for this sheet.")

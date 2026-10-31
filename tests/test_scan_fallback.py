@@ -27,7 +27,7 @@ def _run(tmp_path, monkeypatch, settings, replies):
     (pages / "S1.png").write_bytes(b"\x89PNG")
     tried = []
 
-    def fake_read(_pages, provider, model, _paper, _effort):
+    def fake_read(_pages, provider, model, _paper):
         tried.append(model)
         reply = replies[model]
         if isinstance(reply, Exception):
@@ -37,7 +37,7 @@ def _run(tmp_path, monkeypatch, settings, replies):
     monkeypatch.setattr(scan, "read_answer_sheet", fake_read)
     args = argparse.Namespace(
         provider=None, model=None, paper=None, identities=None, folder=pages,
-        out=tmp_path / "out", per_page=True, summary=None, effort=None,
+        out=tmp_path / "out", per_page=True, summary=None,
     )  # fmt: skip
     scan.cmd_scan(args, settings)
     info = json.loads((tmp_path / "out" / "scan.json").read_text(encoding="utf-8"))["S1"]

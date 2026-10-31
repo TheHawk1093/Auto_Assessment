@@ -17,12 +17,11 @@ recorded.
 | `mock.py` | The `mock` backend: works offline, gives the same answer every time | nothing |
 | `__init__.py` | `build_client(config)` picks the backend named in the config | |
 
-Choose the backend with `llm.backend` in the config file. The other files in this folder
-(`claude_cli.py`, `anthropic_api.py` and `gemini.py`) are backends used during development. They
-are not part of a deployment.
+Choose the backend with `llm.backend` in the config file: `openrouter`, or `mock` for tests. All
+marking calls go through OpenRouter.
 
 Keys are read from the environment or from the git-ignored `.env` file (copy `.env.example`). They
-are never written to a log. `client.name` combines the backend, model and effort, and it names the
+are never written to a log. `client.name` combines the backend and the model, and it names the
 folder that holds the saved marking schemes. A different model therefore never reuses another
 model's schemes.
 

@@ -8,7 +8,7 @@ kept it (faithful), replaced it with the right form (corrected) or lost it (garb
 The pictures are typed in a script font, so reading is easy and any correction is the reader's
 own doing, not a misread.
 
-Run: `python -m autograde.ocr.faithful --reader gemini:<model> --prompt ocr.transcribe --out F`.
+Run: `python -m autograde.ocr.faithful --reader openrouter:<model> --prompt ocr.transcribe --out F`.
 """
 
 from __future__ import annotations
@@ -136,22 +136,14 @@ Reader = Callable[[Path, str], str]  # image, system prompt -> text
 
 
 def make_reader(spec: str) -> Reader:
-    """Build a reader from a `gemini:<model>` or `claude:<model>` spec."""
+    """Build a reader from an `openrouter:<model>` or `bodhan:<model>` spec."""
+    from autograde.ocr.hosted import PROVIDERS
+
     provider, _, model = spec.partition(":")
-    if provider == "gemini":
-        from autograde.ocr.hosted import gemini
-
-        return lambda path, system: gemini([path], model, system, "Transcribe the handwriting.")
-    if provider == "claude":
-        from autograde.config import LLMConfig
-        from autograde.llm import build_client
-        from autograde.ocr.transcribe import cli_read
-
-        client = build_client(LLMConfig(backend="claude_cli", model=model, effort="low"))
-        return lambda path, system: cli_read(
-            [path], client, system, f"Transcribe the handwritten answer in {path.resolve()}."
-        )[0]
-    raise ValueError(f"unknown reader {spec!r}: use gemini:<model> or claude:<model>")
+    if provider not in PROVIDERS:
+        raise ValueError(f"unknown reader {spec!r}: use openrouter:<model> or bodhan:<model>")
+    read = PROVIDERS[provider]
+    return lambda path, system: read([path], model, system, "Transcribe the handwriting.")
 
 
 def run(reader: Reader, system: str, folder: Path, cases: tuple[Case, ...] = CASES) -> dict:
@@ -191,7 +183,7 @@ def summarise(rows: list[dict]) -> dict:
 def main() -> None:
     """Run the faithfulness check for one reader and write the rows."""
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--reader", required=True, help="gemini:<model> or claude:<model>")
+    ap.add_argument("--reader", required=True, help="openrouter:<model> or bodhan:<model>")
     ap.add_argument("--prompt", default="ocr.transcribe", help="system prompt name")
     ap.add_argument("--text", help="a system prompt given directly (for a control), not by name")
     ap.add_argument("--out", type=Path, required=True)

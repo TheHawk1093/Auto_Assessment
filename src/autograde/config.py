@@ -21,15 +21,14 @@ FEEDBACK_STYLES = (
 )
 
 
-Backend = Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini", "mock"]
+Backend = Literal["openrouter", "mock"]  # mock is for tests
 
 
 class LLMConfig(BaseModel):
-    """One model client: which backend, which model and how hard it is asked to think."""
+    """One model client: which backend and which model."""
 
-    backend: Backend = "claude_cli"
-    model: str = "sonnet"
-    effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
+    backend: Backend = "openrouter"
+    model: str = "deepseek/deepseek-v4.1-flash"
     timeout_s: int = 240
     retries: int = 2
 
@@ -37,8 +36,8 @@ class LLMConfig(BaseModel):
 class ReaderConfig(BaseModel):
     """One model that reads photographed answer sheets (it must accept images)."""
 
-    provider: Literal["gemini", "openrouter", "bodhan", "claude_cli"] = "gemini"
-    model: str = "gemini-3.5-flash-lite"  # gemini and openrouter models must be free ones
+    provider: Literal["openrouter", "bodhan"] = "openrouter"
+    model: str = "google/gemini-3.5-flash-lite"
     plain: bool = False  # page text only, no question split; for slow reasoning models
 
 

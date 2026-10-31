@@ -67,7 +67,7 @@ def _stats(run_dir: Path) -> dict:
 
 def _client_name(setup: dict) -> str:
     llm = setup.get("llm", {})
-    name = f"{llm.get('backend', 'claude_cli')}-{llm.get('model', 'sonnet')}"
+    name = f"{llm.get('backend', 'openrouter')}-{llm.get('model', 'deepseek/deepseek-v4.1-flash')}"
     return name + (f"-{llm['effort']}" if llm.get("effort") else "")
 
 

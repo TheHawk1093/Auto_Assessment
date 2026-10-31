@@ -13,8 +13,8 @@ Goal: make the grader work on OCR'd handwritten answers, and measure how much ma
 - `prompts/ocr.transcribe.system.md`: the transcription prompt.
 - `prompts/read.ocr.system.md`: extra text for the read-first pass when input came from OCR.
 
-## Images through the CLI
-The existing CLI client is text only (tools off). A probe showed `claude -p --tools Read --add-dir <folder>` lets the model open an image file by path and read it (haiku read a test image correctly, about $0.002). `transcribe` makes its own CLI call this way. The Anthropic backend sends a base64 image block instead.
+## Reading images
+Page images are sent to a hosted vision model (`hosted.py`): an OpenRouter model, or Bodhan IndicOCR for Indian scripts. The notes below are the measurements behind that choice and include tests made with other readers during development.
 
 ## Public datasets with handwriting and teacher marks (searched, not downloaded)
 Licences were not visible in search results; check each landing page before use.

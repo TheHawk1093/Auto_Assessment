@@ -10,8 +10,7 @@ no model answer" path, read from handwriting.
 Only students of the tune and validate splits are used (`split.json`); the sealed benchmark
 students are never loaded here. Pages are transcribed once by a hosted vision model and the text
 is kept next to the images (`transcripts/`), so marking runs on text and never repeats the
-reading. Run `python -m autograde.datasets.circuit -n 30 --config
-configs/experiments/circuit/circuit_gemini.yaml`.
+reading. Run `python -m autograde.datasets.circuit -n 30 --config configs/exam.yaml`.
 """
 
 from __future__ import annotations
@@ -133,7 +132,7 @@ def main() -> None:
     from autograde.pipeline.figure import make_describer
 
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--config", type=Path, default=Path("configs/experiments/indic/gemini_en.yaml"))
+    ap.add_argument("--config", type=Path, default=Path("configs/exam.yaml"))
     ap.add_argument("-n", type=int, default=30, help="pages to read this time")
     args = ap.parse_args()
     settings = load_settings(args.config)

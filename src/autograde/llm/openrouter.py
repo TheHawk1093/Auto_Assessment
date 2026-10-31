@@ -1,4 +1,4 @@
-"""Backend for OpenRouter (open-source and free models).
+"""Backend for OpenRouter, the one API every marking call goes through.
 
 Needs OPENROUTER_API_KEY, from the environment or from `.env`. The JSON schema is given in the
 prompt and the reply is parsed from the first JSON object in it, since not every free model
@@ -19,7 +19,6 @@ from pathlib import Path
 from autograde.llm.base import LLMClient, LLMError, Usage
 
 URL = "https://openrouter.ai/api/v1/chat/completions"
-GOEDEL_URL = "https://api.goedelmachines.com/v1/chat/completions"
 _RETRY_WAIT = (5, 15, 40)  # seconds to wait after a rate-limit answer
 
 
@@ -130,11 +129,3 @@ class OpenRouterClient(LLMClient):
             cost_usd=float(u.get("cost", 0) or 0),
         )
         return data, usage
-
-
-class GoedelClient(OpenRouterClient):
-    """Goedel Machines serves an OpenAI-compatible API; same request and reply shape."""
-
-    url = GOEDEL_URL
-    key_var = "GOEDEL_API_KEY"
-    prefix = "goedel"

@@ -13,7 +13,6 @@ from __future__ import annotations
 import json
 import os
 import re
-import shutil
 from dataclasses import dataclass, replace
 from pathlib import Path
 
@@ -29,28 +28,19 @@ DEFAULT_READER = "gemini-lite"
 
 @dataclass(frozen=True)
 class ModelOption:
-    """One choice in the model menu: what it suits, what it costs, and how it is reached."""
+    """One choice in the model menu: what it suits, what it costs, and the model id."""
 
     id: str
     label: str
     use: str  # what it suits, in a sentence
     price: str  # cost as listed on OpenRouter
-    backend: str  # goedel | claude_cli | openrouter (never shown to teachers)
-    model: str
-    effort: str | None = None
+    model: str  # the OpenRouter model id
     rubric_model: str | None = None  # a different model writes the marking schemes
-    rubric_backend: str | None = None
-    needs: str = "goedel"  # what must be present: goedel | claude | openrouter
 
     @property
     def blurb(self) -> str:
         """Suits and cost, as one short text for teachers."""
         return f"{self.use} {self.price}"
-
-    @property
-    def key_var(self) -> str:
-        """Name of the environment variable holding the API key, or empty if none."""
-        return {"goedel": "GOEDEL_API_KEY", "openrouter": "OPENROUTER_API_KEY"}.get(self.needs, "")
 
 
 CATALOGUE: list[ModelOption] = [
@@ -58,22 +48,34 @@ CATALOGUE: list[ModelOption] = [
         "deepseek-flash", "DeepSeek V4.1 Flash",
         "Suits most exams: short answers, definitions, routine working.",
         "Cost: $0.045 in / $0.50 out per 1M tokens (about 2 cents for 40 answers).",
-        "goedel", "deepseek/deepseek-v4.1-flash", needs="goedel",
+        "deepseek/deepseek-v4.1-flash",
     ),
     ModelOption(
         "claude-haiku", "Claude Haiku",
         "Suits maths, long working and answers where partial credit needs judgement.",
         "Cost: $1 in / $5 out per 1M tokens.",
-        "claude_cli", "haiku", effort="low", needs="claude",
+        "anthropic/claude-haiku-4.5",
     ),
     ModelOption(
         "deepseek-haiku-schemes", "DeepSeek, with Claude Haiku marking schemes",
         "Suits open-ended answers where the marking scheme matters most.",
         "Cost: DeepSeek rates above, plus Haiku ($1 in / $5 out) once per question.",
-        "goedel", "deepseek/deepseek-v4.1-flash",
-        rubric_model="haiku", rubric_backend="claude_cli", needs="goedel",
+        "deepseek/deepseek-v4.1-flash", rubric_model="anthropic/claude-haiku-4.5",
+    ),
+    ModelOption(
+        "claude-sonnet", "Claude Sonnet",
+        "Suits the hardest maths and long answers where every mark must be argued.",
+        "Cost: $3 in / $15 out per 1M tokens (about $1 for 40 answers).",
+        "anthropic/claude-sonnet-4.5",
+    ),
+    ModelOption(
+        "gpt-mini", "GPT-5.4 mini",
+        "Suits short answers and routine working when you prefer an OpenAI model.",
+        "Cost: $0.75 in / $4.50 out per 1M tokens.",
+        "openai/gpt-5.4-mini",
     ),
 ]  # fmt: skip
+DEFAULT = "deepseek-flash"
 
 
 @dataclass(frozen=True)
@@ -84,9 +86,8 @@ class ReaderOption:
     label: str
     use: str
     price: str
-    provider: str  # openrouter | bodhan | gemini | claude_cli (never shown to teachers)
+    provider: str  # openrouter | bodhan
     model: str
-    needs: str  # openrouter | bodhan | gemini | claude
 
     @property
     def blurb(self) -> str:
@@ -99,21 +100,22 @@ READERS: list[ReaderOption] = [
         "gemini-lite", "Gemini 3.5 Flash-Lite",
         "Suits neat handwriting in English. Quick.",
         "Cost: $0.30 in / $2.50 out per 1M tokens.",
-        "gemini", "gemini-3.5-flash-lite", "gemini",
+        "openrouter", "google/gemini-3.5-flash-lite",
     ),
     ReaderOption(
         "gemini-flash", "Gemini 3.6 Flash",
         "Suits untidy handwriting, or when the quick reader is unsure of many words.",
         "Cost: $0.75 in / $3.75 out per 1M tokens.",
-        "gemini", "gemini-3.6-flash", "gemini",
+        "openrouter", "google/gemini-3.6-flash",
     ),
     ReaderOption(
         "bodhan", "Bodhan IndicOCR",
         "Suits Hindi, Marathi and other Indian-language handwriting.",
         "Cost: about Rs 0.20 per page.",
-        "bodhan", "indic-ocr", "bodhan",
+        "bodhan", "indic-ocr",
     ),
 ]  # fmt: skip
+DEFAULT_READER = "gemini-lite"
 
 
 # ---------- the admin's choices ----------
@@ -184,13 +186,11 @@ def _has_key(var: str) -> bool:
 
 
 def availability(option: ModelOption) -> tuple[bool, str]:
-    """(usable now, why not). Checks the admin's switch, then what the machine has."""
+    """(usable now, why not). Checks the admin's switch, then the OpenRouter key."""
     if not is_enabled(option):
         return False, "Switched off by the administrator."
-    if option.needs == "claude" and not shutil.which("claude"):
-        return False, "The Claude CLI is not installed on this machine."
-    if option.key_var and not _has_key(option.key_var):
-        return False, f"{option.key_var} is not set (environment or .env)."
+    if not _has_key("OPENROUTER_API_KEY"):
+        return False, "OPENROUTER_API_KEY is not set (environment or .env)."
     return True, ""
 
 
@@ -200,17 +200,12 @@ def get_reader(option_id: str) -> ReaderOption:
 
 
 def reader_availability(option: ReaderOption) -> tuple[bool, str]:
-    """(usable now, why not) for a reader: the admin's switch, then the key or the CLI."""
+    """(usable now, why not) for a reader: the admin's switch, then its API key."""
     if not bool(_load().get("enabled", {}).get(option.id, True)):
         return False, "Switched off by the administrator."
-    if option.needs == "claude" and not shutil.which("claude"):
-        return False, "The Claude CLI is not installed on this machine."
-    if option.needs == "bodhan" and not _has_key("INDIC_OCR_API_KEY"):
-        return False, "INDIC_OCR_API_KEY is not set (environment or .env)."
-    if option.needs == "openrouter" and not _has_key("OPENROUTER_API_KEY"):
-        return False, "OPENROUTER_API_KEY is not set (environment or .env)."
-    if option.needs == "gemini" and not _has_key("GEMINI_API_KEY"):
-        return False, "GEMINI_API_KEY is not set (environment or .env)."
+    var = "INDIC_OCR_API_KEY" if option.provider == "bodhan" else "OPENROUTER_API_KEY"
+    if not _has_key(var):
+        return False, f"{var} is not set (environment or .env)."
     return True, ""
 
 
@@ -230,15 +225,11 @@ def usable() -> list[ModelOption]:
 def exam_config(option: ModelOption) -> dict:
     """configs/exam.yaml with the model fields of `option`. Everything else is as the CLI has it."""
     cfg = yaml.safe_load((config.ROOT / config.AUTOGRADE_CONFIG).read_text(encoding="utf-8"))
-    llm = {**cfg["llm"], "backend": option.backend, "model": option.model}
-    llm.pop("effort", None)
-    if option.effort:
-        llm["effort"] = option.effort
-    cfg["llm"] = llm
+    cfg["llm"] = {**cfg["llm"], "backend": "openrouter", "model": option.model}
     cfg["pipeline"] = {
         **cfg["pipeline"],
         "rubric_model": option.rubric_model or option.model,
-        "strong_backend": option.rubric_backend or option.backend,
+        "strong_backend": "openrouter",
     }
     return cfg
 

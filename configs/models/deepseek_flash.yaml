@@ -1,14 +1,13 @@
 # Default settings. Override with: autograde run --config configs/other.yaml
 llm:                        # grader, rubric writer, feedback writer
-  backend: claude_cli       # claude_cli (uses your Claude Code login) | anthropic (needs ANTHROPIC_API_KEY)
-  model: opus
-  effort: medium             # claude_cli alias, or a full model id for the anthropic backend
+  backend: openrouter       # every call goes through OpenRouter (needs OPENROUTER_API_KEY)
+  model: deepseek/deepseek-v4.1-flash   # OpenRouter model id
   timeout_s: 240
   retries: 2                # transport / schema-validation retries per call
 
 judge:                      # scores feedback quality; use a different provider than `llm` when possible
-  backend: claude_cli
-  model: haiku
+  backend: openrouter
+  model: anthropic/claude-haiku-4.5
   timeout_s: 240
   retries: 2
 
@@ -18,12 +17,13 @@ pipeline:
   evidence_policy: flag     # strict: drop credit whose quote is not found | flag: keep and report
   policy: essence           # essence: judge the central idea | literal: original wording
   mark_rule: status         # status: code turns each verdict into marks | model: model's own marks
-  partial_weight: 0.9       # share of a point's marks for a partial verdict
+  partial_weight: 0.5       # share of a point's marks for a partial verdict
   rubric_variant: sized     # sized: points sized to the model answer | generated: original
   grade_retries: 1          # re-mark once if the checks fail
   max_workers: 4            # parallel calls
 
 paths:
   data_dir: data/raw
-  cache_dir: data/cache
-  runs_dir: runs
+  rubrics_dir: output/rubrics
+  runs_dir: output/runs
+  logs_dir: output/logs

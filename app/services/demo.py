@@ -902,6 +902,32 @@ CLEAN_COURSES = (
 )  # A: both teachers; B, C, E: teacher_1 only; D: teacher_2 only; F, G: nowhere yet
 
 
+ACCOUNTS_DOC = config.ROOT / "docs" / "DEMO_ACCOUNTS.md"  # the one demo file kept in git
+
+
+def accounts_markdown(passwords: dict[str, str]) -> str:
+    """The demo accounts and courses as a markdown page: who to sign in as and with what."""
+    lines = [
+        "# Demo accounts",
+        "",
+        "Accounts for trying the app. They hold no real data. Change every password before the",
+        "app is used for anything real.",
+        "",
+        "| Username | Role | Password | Student id |",
+        "|---|---|---|---|",
+    ]
+    lines += [
+        f"| `{p.username}` | {p.role} | `{passwords[p.username]}` | {p.student_id or ''} |"
+        for p in PERSONAS
+    ]
+    lines += ["", "## Courses", ""]
+    lines += [
+        f"- **{c} {t}** ({teacher}): {', '.join(r) or 'nobody'}"
+        for c, t, teacher, r in CLEAN_COURSES
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def clean(app_data: Path = config.APP_DATA) -> dict[str, str]:
     """Reset to an empty start with no exams, keeping the persona accounts.
 
@@ -925,22 +951,9 @@ def clean(app_data: Path = config.APP_DATA) -> dict[str, str]:
         cid = courses.create_course(code, title, teacher, "2026 Autumn", by="demo")
         for roll in rolls:
             courses.enrol(cid, roll, "demo")
-    lines = [
-        "# Test accounts",
-        "",
-        "| Username | Role | Password | Student id |",
-        "|---|---|---|---|",
-    ]
-    lines += [
-        f"| `{p.username}` | {p.role} | `{passwords[p.username]}` | {p.student_id or ''} |"
-        for p in PERSONAS
-    ]
-    lines += ["", "## Courses", ""]
-    lines += [
-        f"- **{c} {t}** ({teacher}): {', '.join(r) or 'nobody'}"
-        for c, t, teacher, r in CLEAN_COURSES
-    ]
-    (app_data / "demo_personas.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    sheet = accounts_markdown(passwords)
+    (app_data / "demo_personas.md").write_text(sheet, encoding="utf-8")
+    ACCOUNTS_DOC.write_text(sheet, encoding="utf-8")  # tracked in git, for people trying the demo
     return passwords
 
 

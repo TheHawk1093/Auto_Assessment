@@ -17,9 +17,8 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field, ValidationError
 
-from autograde import prompts
-from autograde.llm.base import LLMClient, LLMError
-from autograde.ocr.transcribe import MEDIA, UNSURE, cli_read
+from autograde.llm.base import LLMError
+from autograde.ocr.transcribe import MEDIA, UNSURE
 from autograde.schemas import Item
 
 PAGE = re.compile(r"^(?P<sheet>.+?)[_ -]*p(?:age)?[_ -]*(?P<page>\d+)$", re.IGNORECASE)
@@ -76,27 +75,6 @@ def parse_sheet(raw: str) -> Sheet:
         return Sheet.model_validate(json.loads(raw[start : end + 1]))
     except (json.JSONDecodeError, ValidationError) as exc:
         raise LLMError(f"Unusable sheet JSON: {exc}") from exc
-
-
-def extract_sheet(name: str, pages: list[Path], client: LLMClient) -> Sheet:
-    """Read all pages of one sheet. Retries once if the reply is not valid JSON."""
-    if not hasattr(client, "_exe"):
-        raise LLMError("Sheet extraction needs the claude_cli backend")
-    files = "\n".join(f"Page {i}: {p.resolve()}" for i, p in enumerate(pages, 1))
-    user = f"The sheet has {len(pages)} page image(s). Open each one:\n{files}"
-    last: LLMError | None = None
-    for _ in range(2):
-        text, usage = cli_read(pages, client, prompts.system("ocr.sheet"), user)
-        with client._lock:
-            client.usage.add(usage)
-        try:
-            sheet = parse_sheet(text)
-        except LLMError as exc:
-            last = exc
-            continue
-        sheet.sheet, sheet.pages = name, [p.name for p in pages]
-        return sheet
-    raise last or LLMError("Sheet extraction failed")
 
 
 def to_items(sheet: Sheet, dataset: str = "ocr", key: dict[str, str] | None = None) -> list[Item]:

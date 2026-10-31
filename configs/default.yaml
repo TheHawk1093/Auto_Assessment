@@ -1,13 +1,13 @@
 # Default settings. Override with: autograde run --config configs/other.yaml
 llm:                        # grader, rubric writer, feedback writer
-  backend: claude_cli       # claude_cli (uses your Claude Code login) | anthropic (needs ANTHROPIC_API_KEY)
-  model: sonnet             # claude_cli alias, or a full model id for the anthropic backend
+  backend: openrouter       # every call goes through OpenRouter (needs OPENROUTER_API_KEY)
+  model: anthropic/claude-haiku-4.5   # any OpenRouter model id
   timeout_s: 240
   retries: 2                # transport / schema-validation retries per call
 
 judge:                      # scores feedback quality; use a different provider than `llm` when possible
-  backend: claude_cli
-  model: haiku
+  backend: openrouter
+  model: anthropic/claude-haiku-4.5
   timeout_s: 240
   retries: 2
 

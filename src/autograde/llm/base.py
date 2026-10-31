@@ -58,7 +58,7 @@ class LLMClient(ABC):
     @property
     @abstractmethod
     def name(self) -> str:
-        """Short label used in cache paths, e.g. 'claude_cli-sonnet'."""
+        """Short label used in cache paths, e.g. 'openrouter-deepseek/deepseek-v4.1-flash'."""
 
     @abstractmethod
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:

@@ -14,9 +14,8 @@ MAIN = str(config.ROOT / "app" / "main.py")
 
 @pytest.fixture(autouse=True)
 def model_env(env, monkeypatch):
-    """Admin choices in a temp file; pretend the Claude CLI and every key are present."""
+    """Admin choices in a temp file; pretend every API key is present."""
     monkeypatch.setattr(models, "PATH", env / "models.json")
-    monkeypatch.setattr(models.shutil, "which", lambda _: "claude")
     monkeypatch.setattr(models, "_has_key", lambda var: True)
 
 
@@ -34,17 +33,16 @@ def ready_exam(owner: str = "t1") -> str:
 def test_every_model_is_on_by_default_and_needs_its_key(monkeypatch):
     assert set(ids(models.usable())) == {o.id for o in models.CATALOGUE}
     monkeypatch.setattr(models, "_has_key", lambda var: False)
-    monkeypatch.setattr(models.shutil, "which", lambda _: None)
     assert models.usable() == []
     ok, why = models.availability(models.get("deepseek-flash"))
-    assert not ok and "GOEDEL_API_KEY" in why
+    assert not ok and "OPENROUTER_API_KEY" in why
 
 
 def test_teachers_see_what_a_model_suits_and_costs_not_how_it_is_wired():
     for o in models.CATALOGUE + models.READERS:
         text = f"{o.label} {o.blurb}".lower()
         assert o.use and "cost" in o.price.lower()
-        assert not {"goedel", "plan", "cli", "benchmark", "error"} & set(text.split())
+        assert not {"goedel", "gemini api", "plan", "cli", "benchmark", "error"} & set(text.split())
 
 
 def test_admin_can_switch_a_model_off_and_edit_its_id():
@@ -65,15 +63,14 @@ def test_bodhan_is_a_reader_and_needs_its_own_key(monkeypatch):
 def test_exam_config_changes_only_the_model_fields():
     base = yaml.safe_load((config.ROOT / config.AUTOGRADE_CONFIG).read_text(encoding="utf-8"))
     cfg = models.exam_config(models.get("claude-haiku"))
-    assert cfg["llm"]["backend"] == "claude_cli"
-    assert cfg["llm"]["model"] == "haiku" and cfg["llm"]["effort"] == "low"
-    assert cfg["pipeline"]["rubric_model"] == "haiku"
-    assert cfg["pipeline"]["strong_backend"] == "claude_cli"
+    assert cfg["llm"]["backend"] == "openrouter"
+    assert cfg["llm"]["model"] == "anthropic/claude-haiku-4.5"
+    assert cfg["pipeline"]["rubric_model"] == "anthropic/claude-haiku-4.5"
+    assert cfg["pipeline"]["strong_backend"] == "openrouter"
     assert cfg["paths"] == base["paths"] and cfg["pipeline"]["max_workers"] == 4
     mixed = models.exam_config(models.get("deepseek-haiku-schemes"))
-    assert mixed["llm"]["backend"] == "goedel" and mixed["pipeline"]["rubric_model"] == "haiku"
-    assert mixed["pipeline"]["strong_backend"] == "claude_cli"
-    assert "effort" not in models.exam_config(models.get("deepseek-flash"))["llm"]
+    assert mixed["llm"]["model"] == "deepseek/deepseek-v4.1-flash"
+    assert mixed["pipeline"]["rubric_model"] == "anthropic/claude-haiku-4.5"
 
 
 def test_each_exam_runs_with_its_own_model():
@@ -83,7 +80,7 @@ def test_each_exam_runs_with_its_own_model():
     cmd = jobs.build_command(eid, schemes_only=False)
     with open(cmd[cmd.index("--config") + 1], encoding="utf-8") as f:
         written = yaml.safe_load(f)
-    assert written["llm"]["model"] == "haiku" and written["llm"]["effort"] == "low"
+    assert written["llm"]["model"] == "anthropic/claude-haiku-4.5"
 
 
 def test_a_disabled_model_cannot_start_a_job():

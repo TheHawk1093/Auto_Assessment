@@ -15,10 +15,9 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
-from autograde.config import LLMConfig, ReaderConfig, ReaderRoute
-from autograde.llm import LLMClient, build_client
+from autograde.config import ReaderConfig, ReaderRoute
 from autograde.ocr.hosted import extract_sheet_hosted
-from autograde.ocr.sheets import Sheet, extract_sheet, unsure_spans
+from autograde.ocr.sheets import Sheet, unsure_spans
 
 log = logging.getLogger(__name__)
 
@@ -29,27 +28,17 @@ class Reader:
 
     label: str
     read: Callable[[str, list[Path]], Sheet]
-    client: LLMClient | None = None  # set for Claude readers, which report a cost
-    hosted: bool = False  # hosted free tiers are rate-limited, so read one page at a time
 
 
-def build_readers(specs: list[ReaderConfig], effort: str | None = None) -> list[Reader]:
+def build_readers(specs: list[ReaderConfig]) -> list[Reader]:
     """Build one reader per spec, in order."""
-    readers = []
-    for spec in specs:
-        label = f"{spec.provider}:{spec.model}"
-        if spec.provider == "claude_cli":
-            client = build_client(LLMConfig(backend="claude_cli", model=spec.model, effort=effort))
-            readers.append(Reader(label, lambda n, p, c=client: extract_sheet(n, p, c), client))
-        else:
-            readers.append(
-                Reader(
-                    label,
-                    lambda n, p, s=spec: extract_sheet_hosted(n, p, s.provider, s.model, s.plain),
-                    hosted=True,
-                )
-            )
-    return readers
+    return [
+        Reader(
+            f"{spec.provider}:{spec.model}",
+            lambda n, p, s=spec: extract_sheet_hosted(n, p, s.provider, s.model, s.plain),
+        )
+        for spec in specs
+    ]
 
 
 UNSURE_LIMIT = 0.25  # more than this share of words marked unsure: try another reader

@@ -176,8 +176,6 @@ Each reader needs its own key in `.env`:
 |---|---|---|
 | `openrouter` | `OPENROUTER_API_KEY` | Paid models are allowed. A run stops if the cost OpenRouter reports passes $1. Raise the limit with `AUTOGRADE_OCR_CAP_USD` |
 | `bodhan` | `INDIC_OCR_API_KEY` | About Rs 0.20 an image, and a run stops at Rs 30 |
-| `gemini` (direct) | `GEMINI_API_KEY` | Free tier only. The free tier may keep the images |
-| `claude_cli` | none (your Claude Code login) | Uses your Claude plan |
 
 **Bodhan is a fallback here, and it is not measured.** This repository has no accuracy results for
 it. It is last in the default chain, so it is only used when the Gemini readers fail or read

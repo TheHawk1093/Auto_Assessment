@@ -62,9 +62,8 @@ below are text-only unless noted.
 | `deepseek/deepseek-v4-pro-0813` | $0.66 | $1.98 | 1M | no | Writing marking schemes, or hard maths. Cheaper than most strong models |
 | `deepseek/deepseek-v4-pro` | $1.60 | $3.20 | 1M | no | The strongest DeepSeek. Use it only if the cheaper ones fall short |
 
-**In this repo:** `configs/exam.yaml` uses `deepseek/deepseek-v4.1-flash`, but through the
-**Goedel** backend (free, key `GOEDEL_API_KEY`, 4 requests at once), not through OpenRouter. Reaching
-the same model through OpenRouter costs the rates above. **Watch for:** essays (over-credited) and
+**In this repo:** `configs/exam.yaml` uses `deepseek/deepseek-v4.1-flash` through OpenRouter, at the
+rates above. **Watch for:** essays (over-credited) and
 Indian-language answers, which were not measured for DeepSeek here.
 
 ## 2. Gemini family (Google)
@@ -99,9 +98,8 @@ All accept images and have a large context.
 | `anthropic/claude-opus-5.5` | $4.00 | $20.00 | Hardest questions, or writing schemes for open-ended answers |
 | `anthropic/claude-fable-5.1` | $10.00 | $50.00 | Top quality. Too dear for marking every answer |
 
-**In this repo:** the app also offers Claude through the **Claude CLI** (your own Claude Code
-login), which bills your Claude plan and not OpenRouter. The tested Sonnet/Haiku pairing is
-"Sonnet writes the scheme, Haiku marks". **Watch for:** the high output price. Feedback is mostly
+**In this repo:** the app offers Claude Haiku and Claude Sonnet through OpenRouter. The tested
+Sonnet/Haiku pairing is "Sonnet writes the scheme, Haiku marks". **Watch for:** the high output price. Feedback is mostly
 output, so long feedback costs more than the marking.
 
 ## 4. OpenAI family

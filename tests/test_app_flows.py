@@ -126,8 +126,8 @@ def test_the_scan_command_names_the_reader_the_paper_and_known_writers(world):
     storage.set_reader(eid, "gemini-lite")
     cmd = jobs.build_scan_command(eid)
     assert cmd[cmd.index("scan") + 1] == str(scans.folder(eid))
-    assert cmd[cmd.index("--provider") + 1] == "gemini"
-    assert cmd[cmd.index("--model") + 1] == "gemini-3.5-flash-lite"
+    assert cmd[cmd.index("--provider") + 1] == "openrouter"
+    assert cmd[cmd.index("--model") + 1] == "google/gemini-3.5-flash-lite"
     assert "--paper" in cmd and "--identities" in cmd
     assert cmd[cmd.index("--out") + 1] == str(storage.upload_dir(eid, "answers"))
 

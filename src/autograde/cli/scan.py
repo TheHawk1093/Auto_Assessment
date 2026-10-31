@@ -34,9 +34,8 @@ def register(sub) -> None:
     p.add_argument("folder", type=Path, help="images named <sheet>_p<page>.png (or one per sheet)")
     p.add_argument("--out", type=Path, required=True, help="folder for the <sheet>.md documents")
     p.add_argument("--paper", type=Path, help="question paper, so the reader knows the numbering")
-    p.add_argument("--provider", choices=["gemini", "openrouter", "bodhan", "claude_cli"])
+    p.add_argument("--provider", choices=["openrouter", "bodhan"])
     p.add_argument("--model", help="with --provider; default is the configured reader")
-    p.add_argument("--effort", help="claude_cli reader only")
     p.add_argument("--per-page", action="store_true", help="read each image as its own sheet")
     p.add_argument(
         "--identities", type=Path,
@@ -105,7 +104,7 @@ def cmd_scan(args: argparse.Namespace, settings: Settings) -> None:
         best: tuple[tuple[int, float], str, ReaderConfig, list[str]] | None = None
         for spec in chain:
             try:
-                text = read_answer_sheet(pages, spec.provider, spec.model, paper_text, args.effort)
+                text = read_answer_sheet(pages, spec.provider, spec.model, paper_text)
             except Exception as exc:  # noqa: BLE001 - try the next reader
                 error = exc
                 log.warning("%s: reader %s:%s failed: %s", name, spec.provider, spec.model, exc)
@@ -138,7 +137,7 @@ def cmd_scan(args: argparse.Namespace, settings: Settings) -> None:
                 return text, used  # the specialist already read it
             try:
                 second = read_answer_sheet(
-                    pages, spec.provider, spec.model, paper_text, args.effort
+                    pages, spec.provider, spec.model, paper_text
                 )
             except Exception as exc:  # noqa: BLE001 - the first reading stands
                 log.warning("%s: Indic re-read failed (%s); keeping the first reading", name, exc)
@@ -173,10 +172,7 @@ def cmd_scan(args: argparse.Namespace, settings: Settings) -> None:
             **({"degraded": doubts} if doubts else {}),
         }  # fmt: skip
 
-    workers = (
-        1 if reader.provider != "claude_cli" else min(len(sheets), 4)
-    )  # free tiers: one by one
-    with ThreadPoolExecutor(max_workers=workers) as pool:
+    with ThreadPoolExecutor(max_workers=1) as pool:  # one sheet at a time
         for name, info in pool.map(read, sheets):
             summary[name] = info
             print(f"{name}: {info['status']}", {k: v for k, v in info.items() if k != "status"})

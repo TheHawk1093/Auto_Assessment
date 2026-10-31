@@ -36,8 +36,9 @@ def test_all_readers_failing_gives_none():
     )
 
 
-def test_default_reader_is_a_free_gemini_model():
-    assert Settings().ocr.reader.model == "gemini-3.5-flash-lite"
+def test_default_reader_is_an_openrouter_vision_model():
+    assert Settings().ocr.reader.provider == "openrouter"
+    assert Settings().ocr.reader.model == "google/gemini-3.5-flash-lite"
     assert Settings().ocr.fallbacks == []
 
 
@@ -46,12 +47,12 @@ def test_example_config_has_a_fallback_chain_and_separate_marker():
     chain = [cfg.ocr.reader, *cfg.ocr.fallbacks]
     # the user picks the main reader; the others are fallbacks, tried in order
     assert [(r.provider, r.model) for r in chain] == [
-        ("gemini", "gemini-3.5-flash-lite"),
-        ("gemini", "gemini-3.6-flash"),
+        ("openrouter", "google/gemini-3.5-flash-lite"),
+        ("openrouter", "google/gemini-3.6-flash"),
         ("bodhan", "indic-ocr"),
     ]
     assert [(r.when, r.reader.provider) for r in cfg.ocr.routes] == [("indic", "bodhan")]
-    assert cfg.llm.backend == "goedel"  # marking uses a different model from reading
+    assert cfg.llm.backend == "openrouter"  # marking uses a different model from reading
 
 
 def _text_sheet(text: str) -> Sheet:

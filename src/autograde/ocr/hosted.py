@@ -1,9 +1,8 @@
-"""Read answer-sheet photos with hosted vision models (OpenRouter, Gemini free tier, Bodhan).
+"""Read answer-sheet photos with hosted vision models (OpenRouter and Bodhan).
 
 - OpenRouter: any vision model it serves. A model whose id ends in `:free` is first checked to be
   listed at zero price. A paid model is allowed too, and the reported cost of a run is capped (see
   `OPENROUTER_CAP_USD`), so a mistake stays cheap.
-- Gemini (direct): an allow-list taken from Google's pricing page (free-tier models only).
 - Bodhan IndicOCR: paid per image, with its own per-run cap.
 
 API keys come from the environment or the git-ignored `.env`, travel in headers (never in a URL)
@@ -30,19 +29,6 @@ from autograde.ocr.transcribe import MEDIA
 
 ROOT = Path(__file__).resolve().parents[3]
 
-# Free-tier models on ai.google.dev/gemini-api/docs/pricing. "-latest" aliases and Pro are left out.
-GEMINI_FREE = {
-    "gemini-3.8-flash",
-    "gemini-3.6-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-3.1-flash-lite",
-    "gemini-3-flash-preview",
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite",
-    "gemma-4-31b-it",
-    "gemma-4-26b-a4b-it",
-}
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MODELS = "https://openrouter.ai/api/v1/models"
 
@@ -118,29 +104,6 @@ def _image_b64(path: Path) -> tuple[str, str]:
     return media, base64.standard_b64encode(path.read_bytes()).decode()
 
 
-def gemini(pages: list[Path], model: str, system: str, user: str) -> str:
-    """Read page images with a Gemini model on the free-tier allow-list and return the text."""
-    if model not in GEMINI_FREE:
-        raise LLMError(f"{model!r} is not on the free-tier allow-list: {sorted(GEMINI_FREE)}")
-    parts: list[dict] = [{"text": user}]
-    for p in pages:
-        media, data = _image_b64(p)
-        parts.append({"inline_data": {"mime_type": media, "data": data}})
-    body = {
-        "system_instruction": {"parts": [{"text": system}]},
-        "contents": [{"role": "user", "parts": parts}],
-        "generationConfig": {"temperature": 0, "maxOutputTokens": 8192},
-    }
-    out = _call(GEMINI_URL.format(model=model), {"x-goog-api-key": _key("GEMINI_API_KEY")}, body)
-    cands = out.get("candidates") or []
-    if not cands:
-        raise LLMError(f"Gemini returned no candidates: {str(out)[:200]}")
-    texts = [
-        x["text"] for x in cands[0].get("content", {}).get("parts", []) if not x.get("thought")
-    ]
-    return "".join(texts)
-
-
 def _check_openrouter_model(model: str) -> None:
     """Refuse a `:free` model that is not really free. A paid model is allowed (the cap applies)."""
     global _free_prices
@@ -202,13 +165,13 @@ def bodhan(pages: list[Path], model: str, system: str, user: str) -> str:
     return choices[0].get("message", {}).get("content") or ""
 
 
-PROVIDERS = {"gemini": gemini, "openrouter": openrouter, "bodhan": bodhan}
+PROVIDERS = {"openrouter": openrouter, "bodhan": bodhan}
 
 
 def extract_sheet_hosted(
     name: str, pages: list[Path], provider: str, model: str, plain: bool = False
 ) -> Sheet:
-    """Same job and prompt as `extract_sheet`, with a free hosted model. One retry on bad JSON.
+    """Read a sheet from its page images with a hosted model. One retry on bad JSON.
 
     With `plain`, a short transcription prompt is used instead and the whole page text comes back
     as one item: cheaper and quicker for slow reasoning models, but without the question split.
