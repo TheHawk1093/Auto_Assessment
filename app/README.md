@@ -85,28 +85,38 @@ Photos and scans are marked the same way as typed answers, in two steps (`servic
 
 Free reader tiers may keep the images. Use Claude, or redacted copies, for real student work.
 
-## Student hand-ins
+## Submissions (assignments)
 
-The teacher opens a window on an exam (Upload tab, optional deadline and instructions). Enrolled
-students then see **Hand in work** on their page and upload documents or photos; handing in again
-replaces the earlier version until the window closes. The teacher sees who has and has not handed in
+The teacher opens submissions on an exam (Upload tab: optional deadline and instructions). Enrolled
+students then see **Assignments** on their page and upload documents or photos; submitting again
+replaces the earlier version until the window closes. The teacher sees who has and has not submitted
 and presses *Add the work to the answer sheets* (`services/submissions.py`): typed work becomes
 `<id>.md` with the student's name and roll number from their account, photos become scanned sheets
-with the identity already known (so it never depends on handwriting), and the exam is then prepared
-and marked as usual. Collecting again after a late hand-in replaces, never duplicates.
+with the identity already known (so it never depends on handwriting). The exam is then prepared and
+marked exactly like one with uploaded answers, so an assignment is graded by the same pipeline, with
+the same settings, review, publishing and regrades. Collecting again after a late submission replaces,
+never duplicates.
 
 ## Regrade rechecks
 
-On a pending regrade the teacher may decide alone, or press *Ask the pipeline*: the one answer is
+On a pending regrade the teacher may decide alone, or press **Grade autonomously**: the one answer is
 marked again (`autograde recheck`, same marking scheme and run settings, the exam's model or another)
 with the teacher's note, and a proposal (mark and feedback) appears. *Use this proposal* fills the
 decision form; the teacher edits and sends. The student's reason is never given to the model, and
 nothing changes a mark until the teacher sends the decision.
 
+## Admin database access
+
+The admin's **Database** tab lists every table. Names, emails, titles, terms, statuses and marks can be
+edited in place, rows ticked *delete* are removed (the database refuses when other records still use
+them), and students, courses and enrolments can be added. Passwords are never shown, the audit log is
+read-only, and *Back up the database now* saves a copy to `app_data/backups/`. Every change is
+audited (`services/dbadmin.py`).
+
 ## Messages
 
 `services/notifications.py` keeps short in-app messages, shown in the sidebar (refreshing every 20
-seconds): results published, a mark changed, a regrade asked or decided, a hand-in received or
+seconds): results published, a mark changed, a regrade asked or decided, a submission received or
 requested, a job finished, being added to a course. Nothing is sent outside the app.
 
 ## Renaming
