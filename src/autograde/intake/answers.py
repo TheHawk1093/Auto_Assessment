@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from autograde import prompts
 from autograde.intake.figures import anchor_figures
 from autograde.intake.files import read_document
+from autograde.intake.identity import Claim, Person, Resolution, identify, resolve
 from autograde.intake.models import Paper
 from autograde.llm import LLMClient
 from autograde.ocr.sheets import Sheet
@@ -31,8 +32,17 @@ def norm(qid: str) -> str:
 def load_answers(
     path: Path, paper: Paper, client: LLMClient | None = None
 ) -> tuple[Answers, list[str]]:
-    """Answers per student and warnings. `path` is a folder (one file per student, or the output
-    folder of `autograde ocr`) or one JSON file {student: {question id: text}}."""
+    """Read the answers of every student.
+
+    Args:
+        path: A folder (one file per student, or the output folder of `autograde ocr`) or one
+            JSON file {student: {question id: text}}.
+        paper: The question paper the answers belong to.
+        client: Model used to split text where no question markers are found.
+
+    Returns:
+        The answers per student, and warnings.
+    """
     warnings: list[str] = []
     answers: Answers = {}
     if path.is_file():
@@ -54,6 +64,89 @@ def load_answers(
     if not answers:
         warnings.append(f"No answer files found in {path}.")
     return answers, warnings
+
+
+def load_answers_identified(
+    path: Path,
+    paper: Paper,
+    client: LLMClient | None,
+    people: list[Person],
+    fixes: dict[str, str] | None = None,
+) -> tuple[Answers, list[str], list[Resolution]]:
+    """Read the answers like `load_answers`, attributing each sheet by what it says.
+
+    The roll number is tried first, then the name, checked against the student directory; the
+    file name is not used. A sheet that cannot be attributed with confidence is left out of the
+    answers; its resolution says why and who it might be.
+
+    Args:
+        path: As for `load_answers`.
+        paper: The question paper the answers belong to.
+        client: Model used to split text and to pick among candidate students.
+        people: The student directory.
+        fixes: Maps a file name to the student id a teacher has chosen for it.
+
+    Returns:
+        The answers keyed by student id, warnings, and one `Resolution` per sheet.
+    """
+    if path.is_file():  # one JSON keyed by student id: nothing to identify
+        answers, warnings = load_answers(path, paper, client)
+        return answers, warnings, []
+    warnings: list[str] = []
+    entries: list[tuple[Resolution, str | dict[str, str]]] = []  # (who, the text or its answers)
+    for file in sorted(path.iterdir()):
+        if file.name.endswith(".sheet.json"):
+            sheet = Sheet.model_validate_json(file.read_text(encoding="utf-8"))
+            who = sheet.student or sheet.sheet or file.name.removesuffix(".sheet.json")
+            res = resolve(
+                Claim(who, who), file.name.removesuffix(".sheet.json"), people, (), file.name
+            )
+            if (fixes or {}).get(file.name):
+                res = identify(file.name, "", people, None, (), fixes)
+            entries.append((res, {it.question_id: it.student_answer for it in sheet.items}))
+        elif file.suffix.lower() in {".txt", ".md", ".docx", ".pdf"}:
+            text = read_document(file)
+            entries.append((identify(file.name, text, people, client, (), fixes), text))
+    _hold_duplicates(entries)
+    answers: Answers = {}
+    resolutions: list[Resolution] = []
+    for res, payload in entries:
+        resolutions.append(res)
+        if not res.student_id:
+            warnings.append(
+                f"{res.source}: could not tell which student wrote this ({', '.join(res.flags)})."
+            )
+            continue
+        per_q = payload if isinstance(payload, dict) else split_text(payload, paper, client)
+        answers[res.student_id] = _match(per_q, paper, res.student_id, warnings)
+    if not answers:
+        warnings.append(f"No answer files found in {path}.")
+    return answers, warnings, resolutions
+
+
+def _hold_duplicates(entries: list[tuple[Resolution, object]]) -> None:
+    """Hold both sheets when two are attributed to one student.
+
+    Nobody can tell which is the real one, so both are held for a person, unless a teacher has
+    already settled exactly one of them.
+    """
+    by_student: dict[str, list[int]] = {}
+    for i, (res, _) in enumerate(entries):
+        if res.student_id:
+            by_student.setdefault(res.student_id, []).append(i)
+    for sid, group in by_student.items():
+        if len(group) < 2:
+            continue
+        settled = [i for i in group if entries[i][0].method == "teacher"]
+        for i in group:
+            if len(settled) == 1 and i == settled[0]:
+                continue
+            res, payload = entries[i]
+            held = Resolution(
+                res.source, None, res.method, "unresolved", [*res.flags, f"duplicate:{sid}"],
+                res.claimed, res.name, [{"student_id": sid, "name": res.name, "score": 1.0}],
+            )  # fmt: skip
+            entries[i] = (held, payload)
 
 
 def _match(
@@ -86,8 +179,10 @@ def _marker(qid: str) -> re.Pattern[str]:
 
 
 def split_text(text: str, paper: Paper, client: LLMClient | None = None) -> dict[str, str]:
-    """Split one student's text into answers. Question markers are looked for first; when too
-    few are found the model splits the text."""
+    """Split one student's text into answers.
+
+    Question markers are looked for first; when too few are found the model splits the text.
+    """
     spots: list[tuple[int, int, str]] = []
     pos = 0
     for q in paper.questions:

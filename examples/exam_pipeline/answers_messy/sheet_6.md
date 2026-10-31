@@ -1,0 +1,17 @@
+Roll No: S24006
+Name: Gauri Deshmukh
+
+Q1. Stress is force per unit area (σ = F/A) and strain is the change in length divided by the original length (ε = ΔL/L). Hooke's law: stress is proportional to strain within the elastic limit.
+
+Q2. d = 20 mm, A = π × 20² / 4 = 314.16 mm².
+σ = 50 000 / 314.16 = 159.15 MPa.
+
+Q3a. A = π × 12² / 4 = 113.1 mm².
+
+Q3b. δ = FL/AE = 20 000 × 2000 / (113.1 × 200) = 1768 mm.
+
+Q4. When we pull a steel specimen the graph first goes straight, then it bends at the yield point, and finally the specimen breaks.
+
+Q5.
+
+Q6. (crossed out by the student)

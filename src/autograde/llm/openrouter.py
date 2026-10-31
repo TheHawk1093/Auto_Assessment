@@ -1,6 +1,8 @@
-"""Backend for OpenRouter (open-source and free models). Needs OPENROUTER_API_KEY, from the
-environment or from `.env`. The JSON schema is given in the prompt and the reply is parsed
-from the first JSON object in it, since not every free model supports forced structured output.
+"""Backend for OpenRouter (open-source and free models).
+
+Needs OPENROUTER_API_KEY, from the environment or from `.env`. The JSON schema is given in the
+prompt and the reply is parsed from the first JSON object in it, since not every free model
+supports forced structured output.
 """
 
 from __future__ import annotations
@@ -22,6 +24,17 @@ _RETRY_WAIT = (5, 15, 40)  # seconds to wait after a rate-limit answer
 
 
 def api_key(var: str = "OPENROUTER_API_KEY") -> str:
+    """Read an API key from the environment or the `.env` file.
+
+    Args:
+        var: Name of the variable that holds the key.
+
+    Returns:
+        The key.
+
+    Raises:
+        LLMError: If the key is set in neither place.
+    """
     key = os.environ.get(var)
     env = Path(".env")
     if not key and env.exists():
@@ -43,11 +56,14 @@ def first_json_object(text: str) -> dict:
 
 
 class OpenRouterClient(LLMClient):
+    """Chat-completions client; subclasses change `url`, `key_var` and `prefix`."""
+
     url = URL
     key_var = "OPENROUTER_API_KEY"
     prefix = "openrouter"
 
     def __init__(self, model: str, timeout_s: int = 240, retries: int = 2) -> None:
+        """Load the API key for this backend."""
         super().__init__(retries)
         self.model = model
         self.timeout_s = timeout_s
@@ -55,6 +71,7 @@ class OpenRouterClient(LLMClient):
 
     @property
     def name(self) -> str:
+        """Cache label with the model id made filename-safe."""
         return f"{self.prefix}-{self.model.replace('/', '_').replace(':', '_')}"
 
     def _post(self, body: dict) -> dict:

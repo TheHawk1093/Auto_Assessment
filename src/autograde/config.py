@@ -21,8 +21,13 @@ FEEDBACK_STYLES = (
 )
 
 
+Backend = Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini", "mock"]
+
+
 class LLMConfig(BaseModel):
-    backend: Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini"] = "claude_cli"
+    """One model client: which backend, which model and how hard it is asked to think."""
+
+    backend: Backend = "claude_cli"
     model: str = "sonnet"
     effort: str | None = None  # claude_cli only: low | medium | high | xhigh | max
     timeout_s: int = 240
@@ -77,14 +82,18 @@ class TeacherInputs(BaseModel):
     question_notes: dict[str, str] = {}  # the same, for one question key
 
     def for_question(self, key: str) -> str:
+        """Return the notes that apply to one question: the general notes, then its own."""
         return " ".join(t for t in (self.notes, self.question_notes.get(key, "")) if t).strip()
 
     @property
     def is_default(self) -> bool:
+        """Say whether every teacher control is at its default."""
         return self == TeacherInputs()
 
 
 class PipelineConfig(BaseModel):
+    """Switches of the marking pipeline; most pick a prompt variant or turn a stage on or off."""
+
     rubric_selftest: bool = True
     read_first: bool = True  # a first pass reads the answer before marking
     evidence_policy: Literal["strict", "flag"] = "flag"  # strict: drop credit with unfound quotes
@@ -109,9 +118,8 @@ class PipelineConfig(BaseModel):
     code_tests_n: int = 6  # tests the model writes for a code question that came without any
     feedback_n: int = 1  # write this many feedback drafts and keep the best
     deductions: bool = False  # apply the rubric's deductions (needs a strong marker; see DESIGN)
-    strong_backend: Literal["claude_cli", "anthropic", "openrouter", "goedel", "gemini"] | None = (
-        None  # backend of rubric_model and escalate_model; default: the grader's
-    )
+    # backend of rubric_model and escalate_model; default: the grader's
+    strong_backend: Backend | None = None
     rubric_model: str | None = None  # a stronger model writes the schemes once per question
     ocr: Literal["light", "medium", "heavy"] | None = None  # answers are OCR text of this noise
     grade_retries: int = 1
@@ -119,12 +127,16 @@ class PipelineConfig(BaseModel):
 
 
 class PathsConfig(BaseModel):
+    """Where the data, the stored marking schemes and the runs live."""
+
     data_dir: Path = Path("data/raw")
     rubrics_dir: Path = Path("rubrics")
     runs_dir: Path = Path("runs")
 
 
 class Settings(BaseModel):
+    """All settings, as loaded from a YAML config file."""
+
     llm: LLMConfig = LLMConfig()
     judge: LLMConfig = LLMConfig(model="haiku")
     student: LLMConfig = LLMConfig(model="haiku")  # plays the student in the revision test

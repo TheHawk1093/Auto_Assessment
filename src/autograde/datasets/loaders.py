@@ -163,6 +163,19 @@ for _base in BASES:  # English sets translated into other languages (see dataset
 
 
 def load_dataset(name: str, data_dir: Path) -> list[Item]:
+    """Load a dataset by name.
+
+    Args:
+        name: A key of `LOADERS`.
+        data_dir: Folder holding the downloaded data.
+
+    Returns:
+        All items of the dataset.
+
+    Raises:
+        KeyError: If the name is not a known dataset.
+
+    """
     if name not in LOADERS:
         raise KeyError(f"Unknown dataset {name!r}. Choose from {sorted(LOADERS)}.")
     return LOADERS[name](data_dir)

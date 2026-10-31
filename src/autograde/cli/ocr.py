@@ -17,6 +17,7 @@ log = logging.getLogger(__name__)
 
 
 def register(sub) -> None:
+    """Add the `ocr` command and its flags to the subparsers."""
     p = sub.add_parser("ocr", help="read photographed answer sheets into items.jsonl")
     p.add_argument("folder", type=Path, help="images named <sheet>_p<page>.jpeg")
     p.add_argument("--out", type=Path, required=True, help="folder to write the results to")
@@ -36,6 +37,7 @@ def register(sub) -> None:
 
 
 def cmd_ocr(args: argparse.Namespace, settings: Settings) -> None:
+    """Read photographed answer sheets into items and write them to the output folder."""
     if args.provider and not args.model:
         raise SystemExit("--provider needs --model")
     if args.provider or args.model:  # flags override the configured reader and fallbacks

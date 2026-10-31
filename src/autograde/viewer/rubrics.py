@@ -55,6 +55,7 @@ def _rubric_view(record) -> dict | None:
 def dataset_data(
     name: str, data_dir: Path, rubrics_dir: Path, runs_dir: Path, client_name: str
 ) -> dict:
+    """Collect the stored marking schemes for one dataset's questions."""
     items = load_dataset(name, data_dir)
     first = {}
     count: dict[str, int] = {}
@@ -115,6 +116,7 @@ def dataset_data(
 def build_data(
     data_dir: Path, rubrics_dir: Path, runs_dir: Path, client_name: str, datasets
 ) -> dict:
+    """Build the rubrics page data for the given datasets."""
     return {
         "title": "Rubrics at three strictness levels",
         "sets": [dataset_data(d, data_dir, rubrics_dir, runs_dir, client_name) for d in datasets],
@@ -122,6 +124,7 @@ def build_data(
 
 
 def write_page(data: dict, out_path: Path) -> Path:
+    """Write the rubrics page to `out_path` and return the path."""
     template = resources.files(__package__).joinpath("rubrics.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     out_path.parent.mkdir(parents=True, exist_ok=True)

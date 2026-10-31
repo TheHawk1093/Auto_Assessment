@@ -14,6 +14,7 @@ class _Mark(BaseModel):
 
 
 def grade_baseline(item: Item, client: LLMClient) -> Result:
+    """Mark an answer with one prompt and no scheme, clamped to the question's marks."""
     user = prompts.render(
         "baseline.user",
         question=item.question,

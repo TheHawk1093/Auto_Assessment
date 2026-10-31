@@ -17,6 +17,7 @@ PAGE_DATASETS = ["digiklausur", "saf", "mohler", "engsaf"]
 
 
 def register(sub) -> None:
+    """Add the commands that build report pages to the subparsers."""
     sub.add_parser("styles-page", help="build runs/feedback_styles/index.html").set_defaults(
         func=cmd_styles
     )
@@ -35,11 +36,13 @@ def register(sub) -> None:
 
 
 def cmd_styles(args: argparse.Namespace, settings: Settings) -> None:
+    """Build the feedback styles page."""
     data = styles_data(settings.paths.runs_dir)
     print(write_styles(data, settings.paths.runs_dir / "feedback_styles" / "index.html"))
 
 
 def cmd_rubrics_page(args: argparse.Namespace, settings: Settings) -> None:
+    """Build the page listing the stored marking schemes."""
     data = rubrics_data(
         settings.paths.data_dir,
         settings.paths.rubrics_dir,
@@ -51,6 +54,7 @@ def cmd_rubrics_page(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_compare(args: argparse.Namespace, settings: Settings) -> None:
+    """Build the page comparing several runs side by side."""
     tabs = []
     for spec in args.run:
         run, _, rest = spec.partition("=")

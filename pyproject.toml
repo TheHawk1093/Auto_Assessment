@@ -6,6 +6,14 @@ build-backend = "hatchling.build"
 name = "autograde"
 version = "0.1.0"
 description = "Automatic grading of STEM answer sheets with per-point marks and student feedback."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "TheHawk1093" }]
+keywords = ["auto-grading", "education", "llm", "assessment", "feedback"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Education",
+]
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.5",
@@ -18,7 +26,10 @@ dependencies = [
 anthropic = ["anthropic>=0.40"]
 files = ["pypdf>=4"]  # reading PDF question papers and references
 sandbox = ["wasmtime>=25"]  # run student code in WebAssembly (see tools/sandbox/README.md)
-dev = ["pytest>=8", "ruff>=0.5"]
+app = ["streamlit>=1.66", "openpyxl>=3.1", "pypdfium2>=4", "pypdf>=4"]  # the web app (app/); 1.66 added st.iframe
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.5"]
 
 [project.scripts]
 autograde = "autograde.cli:main"
@@ -28,10 +39,26 @@ packages = ["src/autograde"]
 
 [tool.ruff]
 line-length = 100
-src = ["src", "tests"]
+src = [".", "src", "tests"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM"]
+select = ["E", "F", "I", "UP", "B", "SIM", "D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]  # test names say what they check
+"tools/**" = ["D"]  # standalone scripts
+"app/ui/theme.py" = ["E501"]  # the stylesheet
+"app/services/demo.py" = ["E501"]  # sample text for the test personas
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.coverage.run]
+source = ["src/autograde"]
+branch = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

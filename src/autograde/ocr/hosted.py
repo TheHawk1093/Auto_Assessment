@@ -113,6 +113,7 @@ def _image_b64(path: Path) -> tuple[str, str]:
 
 
 def gemini(pages: list[Path], model: str, system: str, user: str) -> str:
+    """Read page images with a Gemini model on the free-tier allow-list and return the text."""
     if model not in GEMINI_FREE:
         raise LLMError(f"{model!r} is not on the free-tier allow-list: {sorted(GEMINI_FREE)}")
     parts: list[dict] = [{"text": user}]
@@ -151,6 +152,7 @@ def _assert_openrouter_free(model: str) -> None:
 
 
 def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
+    """Read page images with a free OpenRouter model and return the text."""
     _assert_openrouter_free(model)
     content: list[dict] = [{"type": "text", "text": user}]
     for p in pages:
@@ -173,8 +175,11 @@ def openrouter(pages: list[Path], model: str, system: str, user: str) -> str:
 
 
 def bodhan(pages: list[Path], model: str, system: str, user: str) -> str:
-    """Bodhan AI IndicOCR (paid, ₹0.20 per image) through its OpenAI-compatible API. It is a
-    document parser, so it gets the images and a one-line request, not our exam-sheet prompt."""
+    """Read page images with Bodhan AI IndicOCR (paid, ₹0.20 per image).
+
+    It is called through its OpenAI-compatible API. It is a document parser, so it gets the
+    images and a one-line request, not our exam-sheet prompt.
+    """
     _bodhan_spent["images"] += len(pages)
     if _bodhan_spent["images"] * BODHAN_RUPEES_PER_IMAGE > BODHAN_CAP_RUPEES:
         raise LLMError(f"Bodhan spend this run passed ₹{BODHAN_CAP_RUPEES:.0f}; stopping")

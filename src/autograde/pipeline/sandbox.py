@@ -88,8 +88,11 @@ def docker_ready() -> str:
 
 
 def _run_wasm(payload: str) -> str:
-    """The runner inside a WebAssembly CPython: no network, no files except a read-only copy of
-    the standard library, a memory cap, and a deadline that stops an endless loop."""
+    """Run the job inside a WebAssembly CPython.
+
+    It has no network, no files except a read-only copy of the standard library, a memory cap,
+    and a deadline that stops an endless loop.
+    """
     import threading
 
     from wasmtime import Config, Engine, Linker, Module, Store, WasiConfig
@@ -130,8 +133,12 @@ def _run_wasm(payload: str) -> str:
 
 
 def run_job(job: dict, mode: str = "wasm") -> dict:
-    """Run {"code", "tests"} and return the runner's result. Raises SandboxError when the job
-    could not be run (as opposed to the student's code failing, which is a normal result)."""
+    """Run {"code", "tests"} and return the runner's result.
+
+    Raises:
+        SandboxError: When the job could not be run (as opposed to the student's code
+            failing, which is a normal result).
+    """
     payload = json.dumps(job)
     if mode == "docker":
         if reason := docker_ready():

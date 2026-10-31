@@ -25,6 +25,8 @@ UNSURE = re.compile(r"\[\?([^\]?]*)\??\]")
 
 @dataclass
 class Transcript:
+    """A transcription and the spans the reader marked unsure."""
+
     text: str
     low_confidence: list[str] = field(default_factory=list)
 

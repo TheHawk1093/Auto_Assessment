@@ -47,9 +47,12 @@ def _mark(value: object) -> str:
 
 
 def export_sheet(runs_dir: Path, names: list[str], per_run: int, seed: int = 0) -> list[dict]:
-    """Up to `per_run` judged answers from each run, picked by a hash of the answer id (not by how
-    they scored), so runs on the same answers give the same ones and variants can be compared.
-    The rows are shuffled, so a rater sees the variants mixed."""
+    """Pick up to `per_run` judged answers from each run for a person to rate.
+
+    Answers are picked by a hash of the answer id (not by how they scored), so runs on the
+    same answers give the same ones and variants can be compared. The rows are shuffled, so
+    a rater sees the variants mixed.
+    """
     rows = []
     for name in names:
         judged = {x["id"]: x for x in _lines(runs_dir / name / "feedback_judgements.jsonl")}
@@ -83,6 +86,7 @@ def _feedback_text(fb: dict) -> str:
 
 
 def write_sheet(rows: list[dict], path: Path) -> None:
+    """Write the rating sheet as a CSV that Excel opens correctly."""
     with path.open("w", encoding="utf-8-sig", newline="") as f:  # BOM: Excel reads Indic text
         writer = csv.DictWriter(f, fieldnames=SHEET_FIELDS)
         writer.writeheader()
@@ -90,6 +94,10 @@ def write_sheet(rows: list[dict], path: Path) -> None:
 
 
 def cohen_kappa(pairs: list[tuple[bool, bool]]) -> float | None:
+    """Return Cohen's kappa for pairs of (judge, person) ratings.
+
+    Returns None when there are no pairs, or when chance agreement is already total.
+    """
     n = len(pairs)
     if not n:
         return None
@@ -101,8 +109,11 @@ def cohen_kappa(pairs: list[tuple[bool, bool]]) -> float | None:
 
 
 def agreement(path: Path) -> dict[str, dict]:
-    """Per question: how many answers the person filled, how often they agree with the judge, and
-    kappa. Rows the person left blank for a question are skipped."""
+    """Compare a person's ratings with the judge's, per question.
+
+    Reports how many answers the person filled, how often they agree with the judge, and
+    kappa. Rows the person left blank for a question are skipped.
+    """
     with path.open(encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
     out = {}

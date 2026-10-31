@@ -1,4 +1,6 @@
-"""Experiment log: one line per run with its settings, prompt fingerprint and score against the
+"""Experiment log of runs, with settings, prompt fingerprint and score against the teacher.
+
+Each run adds one line with its settings, prompt fingerprint and score against the
 teacher's marks, plus a readable table. Purpose: know what changed, what it did, and what to
 fall back to.
 
@@ -36,12 +38,14 @@ def sample_key(entry: dict) -> str:
 
 
 def append_entry(entry: dict, log_path: Path = LOG_PATH) -> None:
+    """Append one entry to the log file as a JSON line."""
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with log_path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 def read_log(log_path: Path = LOG_PATH) -> list[dict]:
+    """Return all entries in the log file, or an empty list if there is none."""
     if not log_path.exists():
         return []
     lines = log_path.read_text(encoding="utf-8").splitlines()
@@ -108,8 +112,11 @@ def comparisons(entries: list[dict], i: int) -> tuple[str, str]:
 
 
 def render_markdown(entries: list[dict]) -> str:
-    """Table of all runs. 'vs base' compares with the baseline on the same sample;
-    'vs prev' with the previous run of the same mode on the same sample. ▲ better, ▼ worse."""
+    """Render all runs as a markdown table.
+
+    'vs base' compares with the baseline on the same sample; 'vs prev' with the previous run
+    of the same mode on the same sample. ▲ better, ▼ worse.
+    """
     lines = [
         "# Experiment results",
         "",

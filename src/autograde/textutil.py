@@ -7,9 +7,12 @@ import unicodedata
 
 
 def words(text: str) -> list[str]:
-    """Lower-cased words in any script. A word is a run of letters, combining marks and digits, so
-    Devanagari, Tamil, Bengali and the like keep their vowel signs; punctuation (including the
-    danda) separates words, as does space."""
+    """Split text into lower-cased words in any script.
+
+    A word is a run of letters, combining marks and digits, so Devanagari, Tamil, Bengali and
+    the like keep their vowel signs; punctuation (including the danda) separates words, as does
+    space.
+    """
     out = []
     for token in re.split(r"[\s/-]+", unicodedata.normalize("NFKC", text).lower()):
         word = "".join(c for c in token if unicodedata.category(c)[0] in "LMN")

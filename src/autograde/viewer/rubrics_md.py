@@ -10,6 +10,7 @@ from autograde.pipeline.run import to_question
 
 
 def rubric_markdown(dataset: str, variant: str, sections: list[str]) -> str:
+    """Join the per-question sections into one markdown document with a heading."""
     head = f"# {dataset}: {variant} rubrics\n\nMarks per point add up to the question total.\n"
     return head + "\n".join(sections)
 

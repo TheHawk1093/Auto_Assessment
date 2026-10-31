@@ -93,3 +93,12 @@ def test_commit_and_tag_in_a_real_repo(tmp_path: Path):
 def test_not_a_repo_is_reported(tmp_path: Path):
     with pytest.raises(GitError):
         commit_experiment(entry(), "-", "-", tmp_path)
+
+
+def test_git_commit_after_a_run_is_opt_in():
+    from autograde.cli import _parser
+
+    base = ["run", "--dataset", "digiklausur", "--name", "x"]
+    assert _parser().parse_args(base).commit is False
+    assert _parser().parse_args([*base, "--commit"]).commit is True
+    assert _parser().parse_args([*base, "--no-commit"]).commit is False  # old flag still accepted

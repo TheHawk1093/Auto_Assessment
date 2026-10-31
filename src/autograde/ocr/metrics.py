@@ -15,11 +15,13 @@ FUZZY = 0.8  # similarity at which a token counts as a near match
 
 
 def tokens(text: str) -> list[str]:
+    """Split text into lower-case words, with the unsure marks and punctuation removed."""
     text = UNSURE.sub(r"\1", text).replace("struck out:", " ")
     return [t for t in (w.strip(".,;:?!()'\"") for w in text.lower().split()) if t]
 
 
 def similar(a: str, b: str) -> float:
+    """Return how alike two strings are, from 0 to 1."""
     return SequenceMatcher(None, a, b).ratio()
 
 
@@ -46,6 +48,7 @@ def precision(truth: str, output: str) -> float:
 
 
 def squash(text: str) -> str:
+    """Reduce text to a form where equal maths written differently compares equal."""
     text = UNSURE.sub(r"\1", text).replace("→", "->").replace("−", "-")
     text = text.replace("\\lambda", "λ").replace("lambda", "λ").replace("{", "").replace("}", "")
     text = re.sub(r"(?<=\d)\s*,\s*(?=-?\d)", " ", text)  # [[1, 2], [3, 4]] equals [[1 2],[3 4]]
@@ -71,8 +74,11 @@ def _numbers(text: str) -> str:
 
 
 def _matrix_found(fact: str, output: str) -> bool:
-    """A written matrix [[a b],[c d]] is found when each of its rows appears as a run of numbers,
-    whatever the layout (one line, one row per line, or matrices side by side)."""
+    """Say whether a written matrix is found in the output.
+
+    A matrix [[a b],[c d]] is found when each of its rows appears as a run of numbers, whatever
+    the layout (one line, one row per line, or matrices side by side).
+    """
     rows = re.findall(r"\[([^\[\]]+)\]", fact)
     if len(rows) < 2:
         return False

@@ -28,8 +28,11 @@ def _is_image(ref: str) -> bool:
 
 
 def anchor_figures(text: str, base: Path) -> str:
-    """Rewrite relative image references to absolute paths. A reference to a file that does not
-    exist is left as it is, so it is reported later as a missing figure."""
+    """Rewrite relative image references to absolute paths.
+
+    A reference to a file that does not exist is left as it is, so it is reported later as a
+    missing figure.
+    """
 
     def fix(ref: str) -> str:
         if not _is_image(ref) or re.match(r"^[a-z]+://", ref):

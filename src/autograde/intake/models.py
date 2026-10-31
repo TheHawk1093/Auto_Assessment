@@ -26,6 +26,8 @@ class QuestionSpec(BaseModel):
 
 
 class Paper(BaseModel):
+    """The question paper: a title and its questions in order."""
+
     title: str = ""
     questions: list[QuestionSpec] = Field(min_length=1)
 
@@ -39,10 +41,12 @@ class Paper(BaseModel):
 
     @property
     def total(self) -> float:
+        """Return the paper's total marks."""
         return round(sum(q.max_mark for q in self.questions), 6)
 
     @property
     def ids(self) -> list[str]:
+        """Return the question ids in paper order."""
         return [q.id for q in self.questions]
 
 
@@ -83,6 +87,12 @@ class ExamRules(BaseModel):
         description="True when a later part is marked on the student's own earlier wrong result; "
         "False when the documents forbid it; empty when nothing is said.",
     )
+    count_best: int | None = Field(
+        default=None,
+        ge=1,
+        description="How many questions count towards the total when candidates may attempt more "
+        "than are needed (the best three of four counts three). Empty when every question counts.",
+    )
     notes: list[str] = Field(
         default_factory=list,
         description="Other exam-wide rules that change how a single answer is marked (for "
@@ -92,4 +102,5 @@ class ExamRules(BaseModel):
 
     @property
     def found(self) -> bool:
+        """Say whether the document gave any rule at all."""
         return self != ExamRules()

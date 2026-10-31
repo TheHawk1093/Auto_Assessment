@@ -142,7 +142,7 @@ def run_ab(
 
 
 def paired(gains: Mapping[str, Mapping]) -> list[dict]:
-    """graded minus alone, per writer, on the same answers (positive: the marking helps)."""
+    """Graded minus alone, per writer, on the same answers (positive: the marking helps)."""
     out = []
     for writer, pair in gains.items():
         row: dict = {"writer": writer}

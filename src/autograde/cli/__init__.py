@@ -9,10 +9,10 @@ import argparse
 import logging
 from pathlib import Path
 
-from autograde.cli import evals, exam, ocr, pages, rubrics, runs
+from autograde.cli import evals, exam, ocr, pages, recheck, rubrics, runs, scan
 from autograde.config import load_settings
 
-MODULES = (runs, evals, rubrics, pages, ocr, exam)
+MODULES = (runs, evals, rubrics, pages, ocr, exam, scan, recheck)
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -25,6 +25,12 @@ def _parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> None:
+    """Parse the command line, set up logging and run the chosen command.
+
+    Args:
+        argv: Arguments to parse; `sys.argv` when None.
+
+    """
     args = _parser().parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     args.func(args, load_settings(args.config))

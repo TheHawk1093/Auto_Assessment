@@ -17,6 +17,7 @@ from autograde.viewer.rubrics_md import export_markdown
 
 
 def register(sub) -> None:
+    """Add the marking scheme commands to the subparsers."""
     rb = sub.add_parser("rubrics", help="write rubrics at each strictness level for a dataset")
     rb.add_argument("--dataset", required=True, choices=sorted(LOADERS))
     rb.add_argument("--levels", default=",".join(LEVELS), help="comma separated")
@@ -37,6 +38,7 @@ def register(sub) -> None:
 
 
 def cmd_rubrics(args: argparse.Namespace, settings: Settings) -> None:
+    """Write marking schemes for a dataset at each strictness level."""
     questions = {}
     for item in load_dataset(args.dataset, settings.paths.data_dir):
         questions.setdefault(item.question_key, to_question(item))
@@ -51,6 +53,7 @@ def cmd_rubrics(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_official(args: argparse.Namespace, settings: Settings) -> None:
+    """Store the official marking schemes as the `official` variant."""
     model = client_name(settings.llm)
     for qid in SPEC:
         record = official_record(qid)
@@ -61,6 +64,7 @@ def cmd_official(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_markdown(args: argparse.Namespace, settings: Settings) -> None:
+    """Export the stored marking schemes of a dataset as markdown."""
     model = client_name(settings.llm)
     for variant in args.variants.split(","):
         path = export_markdown(

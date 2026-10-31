@@ -42,10 +42,12 @@ def _read(name: str) -> str:
 
 
 def render(name: str, **values: object) -> str:
+    """Return the named prompt with its placeholders filled from `values`."""
     return _read(name).format(**values).strip()
 
 
 def system(name: str) -> str:
+    """Return the named stage's system prompt."""
     return _read(f"{name}.system").strip()
 
 

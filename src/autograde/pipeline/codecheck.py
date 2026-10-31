@@ -29,6 +29,15 @@ OTHER_LANGUAGES = re.compile(
 
 @dataclass
 class TestRun:
+    """Outcome of running the teacher's tests on a student's code.
+
+    Attributes:
+        ran: Whether the tests ran at all.
+        passed: Number of tests that passed.
+        total: Number of tests run.
+        failed: The failing test lines.
+    """
+
     __test__ = False  # not a pytest class
     ran: bool
     passed: int = 0
@@ -45,6 +54,7 @@ def extract_code(answer: str) -> str:
 
 
 def is_python(question: str, code: str) -> bool:
+    """Say whether the question and code look like Python rather than another language."""
     if OTHER_LANGUAGES.search(question):
         return False
     return bool(PYTHON_HINT.search(question + "\n" + code))
@@ -63,8 +73,10 @@ def syntax_report(code: str) -> str:
 
 
 def outside_imports(code: str) -> list[str]:
-    """Top-level modules the code imports that are not in the standard library (numpy, pandas...).
-    The WebAssembly interpreter has only the standard library, so such code cannot be run there."""
+    """List top-level imports outside the standard library (numpy, pandas...).
+
+    The WebAssembly interpreter has only the standard library, so such code cannot be run there.
+    """
     try:
         tree = ast.parse(code)
     except SyntaxError:
@@ -79,8 +91,10 @@ def outside_imports(code: str) -> list[str]:
 
 
 def run_tests(code: str, tests: str, sandbox: str = "wasm") -> TestRun:
-    """Run the teacher's tests (one `assert` per line) against the code in the sandbox (see
-    `pipeline/sandbox.py`). Off by default; see the module note on safety."""
+    """Run the teacher's tests (one `assert` per line) against the code in the sandbox.
+
+    See `pipeline/sandbox.py`. Off by default; see the module note on safety.
+    """
     lines = [t for t in tests.splitlines() if t.strip()]
     if not lines:
         return TestRun(False)

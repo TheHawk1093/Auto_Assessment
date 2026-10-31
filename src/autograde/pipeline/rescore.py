@@ -16,6 +16,16 @@ from autograde.schemas import Result, Rubric
 def rescore(
     results: Sequence[Result], rubrics: Mapping[str, Rubric], partial_weight: float
 ) -> list[Result]:
+    """Re-price partial marks on stored results with a new partial-credit weight.
+
+    Args:
+        results: Earlier results; baseline ones (no grading) pass through unchanged.
+        rubrics: Marking schemes by question key.
+        partial_weight: Share of a point's marks given for a partial verdict.
+
+    Returns:
+        New results with the changed grading, total and a `rescored` flag.
+    """
     out: list[Result] = []
     for r in results:
         if r.grading is None:  # baseline results have no verdicts to re-price

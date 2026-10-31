@@ -1,21 +1,55 @@
-.venv/
+# --- Python / tooling ---------------------------------------------------------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+build/
+dist/
 .pytest_cache/
 .ruff_cache/
-*.egg-info/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
 
-# Raw data is re-downloadable and runs are large; the marking schemes in data/cache are kept
-# in git because they change the scores and must be restored with the code.
-data/raw/
-runs/
+# --- virtual environments (create with `uv sync`) -----------------------------------------
+.venv/
+.venv-*/
+venv/
 
-# secrets and editor files
+# --- secrets and local settings -----------------------------------------------------------
 .env
+.env.*
+!.env.example
 *.key
+API.md
+.streamlit/secrets.toml
+
+# --- editors and OS -----------------------------------------------------------------------
 .vscode/
+.idea/
+.DS_Store
+Thumbs.db
 *.log
 runs_*.flag
-.venv-ocr/
 
-API.md
+# --- data: course material and downloads stay local ---------------------------------------
+# Datasets are re-downloadable (`autograde download`) or private (exam papers, answer sheets).
+# Supply your own under data/; see docs/DATASETS.md.
+data/
+
+# --- generated output ---------------------------------------------------------------------
+runs/
+app_data/
+*.db
+sandbox_tmp/
+
+# --- marking schemes ----------------------------------------------------------------------
+# Schemes are cached per model under rubrics/<client_name>/ and regenerated on demand. The
+# `dev` branch tracks the curated ones; the core release ships none.
+rubrics/
+
+# --- one-off experiment history (kept locally, not part of the release) -------------------
+experiments/
+artifacts/
+scripts/
+configs/experiments/

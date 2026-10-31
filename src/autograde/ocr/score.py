@@ -21,6 +21,7 @@ from autograde.ocr.sheets import Sheet
 
 
 def totals(sheet: Sheet) -> dict[str, float]:
+    """Return the teacher's mark per whole question on a sheet."""
     got = dict(sheet.teacher_totals)
     for it in sheet.items:
         root = re.match(r"\d+", it.question_id)
@@ -66,6 +67,7 @@ def score(truth: dict, folder: Path) -> dict[str, dict[str, float | None]]:
 
 
 def main(argv: list[str]) -> None:
+    """Print a score table for each folder of readings against the truth file."""
     truth = json.loads(Path(argv[0]).read_text("utf-8"))
     fmt = lambda v: "  -  " if v is None else f"{v:5.0%}"  # noqa: E731
     print(f"{'run':<22}{'entry':<22}{'recall':>7}{'fuzzy':>7}{'prec':>7}{'facts':>7}{'totals':>7}")

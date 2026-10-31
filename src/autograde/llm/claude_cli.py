@@ -16,6 +16,8 @@ from autograde.llm.base import LLMClient, LLMError, Usage
 
 
 class ClaudeCLIClient(LLMClient):
+    """Client that shells out to `claude -p` with tools turned off."""
+
     def __init__(
         self,
         model: str = "sonnet",
@@ -23,6 +25,7 @@ class ClaudeCLIClient(LLMClient):
         retries: int = 2,
         effort: str | None = None,
     ) -> None:
+        """Find the `claude` executable and make a scratch working directory."""
         super().__init__(retries)
         self.model = model
         self.effort = effort
@@ -34,6 +37,7 @@ class ClaudeCLIClient(LLMClient):
 
     @property
     def name(self) -> str:
+        """Cache label with the model and, if set, the effort level."""
         return f"claude_cli-{self.model}" + (f"-{self.effort}" if self.effort else "")
 
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:

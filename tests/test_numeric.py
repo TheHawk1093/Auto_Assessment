@@ -128,3 +128,13 @@ def test_a_wrong_number_still_says_whether_its_unit_was_right():
     assert bare.final_unit == "missing" and "it has no unit" in describe_result(
         spec(200000, "J"), bare
     )
+
+
+def test_a_minus_set_apart_from_its_number_still_makes_it_negative():
+    from autograde.pipeline.numeric import check_number, find_numbers
+    from autograde.schemas import NumericSpec
+
+    answer = "I used G = (1-F)/(-2) = -0.0906346. So: xk+1 = 0.818731xk - 0.0906346uk"
+    assert [c.value for c in find_numbers("a - 0.5u")] == [-0.5]
+    assert not check_number(answer, NumericSpec(value=0.090635)).value_ok  # the sign was flipped
+    assert check_number("G = 0.0906", NumericSpec(value=0.090635)).value_ok

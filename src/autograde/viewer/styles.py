@@ -54,6 +54,7 @@ def _words(r: Result) -> int:
 
 
 def style_stats(run_dir: Path, results: Sequence[Result]) -> dict:
+    """Collect feedback statistics for one run: counts plus judge, revision and transfer scores."""
     fbs = [r for r in results if r.feedback]
     imps = [x for r in fbs for x in r.feedback.improvements]  # type: ignore[union-attr]
     n = max(1, len(fbs))
@@ -75,6 +76,7 @@ def style_stats(run_dir: Path, results: Sequence[Result]) -> dict:
 
 
 def build_data(runs_dir: Path, n_answers: int = 6) -> dict:
+    """Build the feedback-style comparison page data for each dataset."""
     sets = [("DigiKlausur", "dk_s0_fb_", "neural networks"), ("SAF", "saf_s0_fb_", "networking")]
     out = []
     for label, prefix, topic in sets:
@@ -126,6 +128,7 @@ def build_data(runs_dir: Path, n_answers: int = 6) -> dict:
 
 
 def write_page(data: dict, out_path: Path) -> Path:
+    """Write the styles page to `out_path` and return the path."""
     template = resources.files(__package__).joinpath("styles.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     out_path.parent.mkdir(parents=True, exist_ok=True)

@@ -45,6 +45,7 @@ from autograde.viewer.build import sample_by_mark
 
 
 def register(sub) -> None:
+    """Add the evaluation commands (stress, robustness, review, ...) to the subparsers."""
     st = sub.add_parser("stress", help="robustness test on answers with a known right outcome")
     st.add_argument("--dataset", required=True, choices=sorted(LOADERS))
     st.add_argument("--split", default="dev", choices=["dev", "test"])
@@ -152,12 +153,14 @@ def register(sub) -> None:
 
 
 def cmd_calibrate(args: argparse.Namespace, settings: Settings) -> None:
+    """Fit the partial-credit weight and stretch to teacher marks and print them."""
     results = load_run(settings, args.name)
     rubrics = stored_rubrics(results, settings, read_setup(run_dir(settings, args.name)))
     print(json.dumps(calibrate(results, rubrics), indent=2))
 
 
 def cmd_compliance(args: argparse.Namespace, settings: Settings) -> None:
+    """Print whether marks and feedback move with rubric strictness, one run per level."""
     runs = {}
     for spec in args.run:
         level, _, name = spec.partition("=")
@@ -166,6 +169,7 @@ def cmd_compliance(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_stress(args: argparse.Namespace, settings: Settings) -> None:
+    """Test the marker on built-to-order good and bad answers and print the summary."""
     items = select(
         load_dataset(args.dataset, settings.paths.data_dir), args.split, args.pool, args.seed
     )
@@ -205,6 +209,7 @@ def cmd_stress(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_transfer(args: argparse.Namespace, settings: Settings) -> None:
+    """Test whether a student model improves its answer by using the feedback."""
     run = run_dir(settings, args.name)
     results = load_run_with_feedback(settings, args.name, args.sample)
     grader, student = build_client(settings.llm), build_client(settings.student)
@@ -222,6 +227,7 @@ def cmd_transfer(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_robustness(args: argparse.Namespace, settings: Settings) -> None:
+    """Re-mark rewritten answers against a re-marking control and print the shifts."""
     run = run_dir(settings, args.name)
     results = [r for r in load_run(settings, args.name) if r.grading]
     if args.sample:
@@ -245,20 +251,24 @@ def cmd_robustness(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_review(args: argparse.Namespace, settings: Settings) -> None:
+    """Print which answers of a run are worth a person's look."""
     print(json.dumps(review_stats(load_run(settings, args.name)), indent=2))
 
 
 def cmd_judge_sheet(args: argparse.Namespace, settings: Settings) -> None:
+    """Write the sheet a person fills in to check the feedback judge."""
     rows = export_sheet(settings.paths.runs_dir, args.runs, args.per_run, args.seed)
     write_sheet(rows, args.out)
     print(f"wrote {len(rows)} rows to {args.out}; fill the human_* columns with y or n")
 
 
 def cmd_judge_agreement(args: argparse.Namespace, settings: Settings) -> None:
+    """Print how far the feedback judge agrees with a person's filled-in sheet."""
     print(json.dumps(agreement(args.sheet), indent=2))
 
 
 def cmd_revision(args: argparse.Namespace, settings: Settings) -> None:
+    """Test whether a student who revises with the feedback gains marks."""
     run = run_dir(settings, args.name)
     results = load_run_with_feedback(settings, args.name, args.sample)
     cfg = run_pipeline(run, settings)

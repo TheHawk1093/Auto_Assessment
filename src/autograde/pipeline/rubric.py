@@ -197,8 +197,11 @@ def review_rubric(
 
 
 def full_credit_text(question: Question, rubric: Rubric) -> str:
-    """An answer that should earn full marks, if one is available: the model answer, or else the
-    writer's own answer key. Essay guides describe quality and are not answers."""
+    """Return an answer that should earn full marks, if one is available.
+
+    That is the model answer, or else the writer's own answer key. Essay guides describe
+    quality and are not answers.
+    """
     if question.kind == "essay":
         return ""
     if question.kind == "maths" or not has_reference(question.model_answer):
@@ -227,6 +230,19 @@ def build_record(
     teacher: TeacherInputs | None = None,
     review: str = "off",
 ) -> RubricRecord:
+    """Write a marking scheme for a question and self-test it.
+
+    Args:
+        question: The question to write a scheme for.
+        client: Model used for writing, review and the self-test.
+        run_selftest: Whether to test the scheme against a full-credit answer.
+        variant: Scheme writer variant, e.g. "generated" or "solid".
+        teacher: Teacher controls that reach the writer.
+        review: When to have the scheme reviewed: "off", "no_reference" or "always".
+
+    Returns:
+        The scheme with the self-test result and review notes.
+    """
     rubric = generate_rubric(question, client, variant=variant, teacher=teacher)
     issues: list[str] = []
     unsourced = not question.has_ref
@@ -264,6 +280,7 @@ class RubricStore:
         teacher: TeacherInputs | None = None,
         review: str = "off",
     ) -> None:
+        """Keep the cache folder, the writer client and the writer settings."""
         self.rubrics_dir = rubrics_dir
         self.client = client
         self.run_selftest = run_selftest
@@ -272,6 +289,7 @@ class RubricStore:
         self.review = review
 
     def get(self, question: Question) -> RubricRecord:
+        """Return the cached scheme for a question, writing and caching it on a miss."""
         if question.kind == "mcq":  # a choice is checked by code: nothing to write or cache
             return mcq_record(question, self.client)
         folder = variant_dir(self.variant, self.teacher)
@@ -291,6 +309,7 @@ class RubricStore:
 def rubric_path(
     rubrics_dir: Path, client_name: str, question_key: str, variant: str = "generated"
 ) -> Path:
+    """Return the cache path of a scheme: client folder, variant folder, question file."""
     return rubrics_dir / _slug(client_name) / _slug(variant) / f"{_slug(question_key)}.json"
 
 

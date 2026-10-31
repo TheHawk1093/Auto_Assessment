@@ -1,0 +1,17 @@
+Roll No: S24008
+Name: Harish Pillai
+
+Q1. Stress is force per unit area, σ = F/A, and strain is the ratio of the extension to the original length, so it has no units. Stress causes the strain. Within the limit of proportionality σ = Eε (Hooke's law), where E is Young's modulus, a constant for the material.
+
+Q2. A = π(0.02)²/4 = 3.1416 × 10⁻⁴ m².
+σ = 50 000 / 3.1416 × 10⁻⁴ = 1.59 × 10⁸ Pa = 159 MPa.
+
+Q3a. Radius 6 mm, so A = πr² = π × 6² = 113.1 mm².
+
+Q3b. δ = FL/(AE) = (20 × 10³ × 2) / (113.1 × 10⁻⁶ × 200 × 10⁹) = 1.77 × 10⁻³ m = 1.77 mm.
+
+Q4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Q5. Cut the thin cylinder along a diameter and take one half in equilibrium. The pressure acts on the projected area d × L, so the bursting force is p d L. The walls resist with hoop stress σ on two sections of area tL, so the resisting force is 2σtL. Equating, 2σtL = pdL, so σ = pd/(2t).
+
+Q6. Ductile materials give warning by stretching before they break, and they absorb energy. Mild steel is ductile whereas glass is brittle.

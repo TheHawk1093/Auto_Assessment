@@ -1,0 +1,9 @@
+{
+  "title": "Computer Networks: Quiz 1",
+  "questions": [
+    {"id": "1", "text": "Explain how TCP achieves reliable data transfer over an unreliable network.", "max_mark": 4, "field": "networks"},
+    {"id": "2a", "text": "A host sends data over a link of capacity 10 Mbps with one-way propagation delay 20 ms. Define the bandwidth-delay product.", "max_mark": 2, "field": "networks"},
+    {"id": "2b", "text": "Compute the bandwidth-delay product of this link (10 Mbps, 20 ms) in bits.", "max_mark": 3, "kind": "numeric", "field": "networks"},
+    {"id": "3", "text": "Why does a router use longest-prefix matching when forwarding an IP packet?", "max_mark": 3, "field": "networks"}
+  ]
+}

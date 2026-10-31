@@ -25,6 +25,8 @@ log = logging.getLogger(__name__)
 
 @dataclass
 class Reader:
+    """A way to read a sheet from page images, with a label."""
+
     label: str
     read: Callable[[str, list[Path]], Sheet]
     client: LLMClient | None = None  # set for Claude readers, which report a cost
@@ -32,6 +34,7 @@ class Reader:
 
 
 def build_readers(specs: list[ReaderConfig], effort: str | None = None) -> list[Reader]:
+    """Build one reader per spec, in order."""
     readers = []
     for spec in specs:
         label = f"{spec.provider}:{spec.model}"
@@ -54,8 +57,11 @@ REPEAT_LIMIT = 0.4  # one word making up more than this share of a long page: a 
 
 
 def read_problems(sheet: Sheet) -> list[str]:
-    """Why a read should not be trusted: `empty`, `uncertain` (many unsure words) or `repeating`
-    (the reader got stuck in a loop). An empty list means the read can be used."""
+    """List why a read should not be trusted.
+
+    The reasons are `empty`, `uncertain` (many unsure words) or `repeating` (the reader got
+    stuck in a loop). An empty list means the read can be used.
+    """
     words = " ".join(it.student_answer for it in sheet.items).split()
     if not words:
         return ["empty"]
@@ -119,13 +125,17 @@ INDIC_BLOCKS = (  # Devanagari to Malayalam, Sinhala excluded; also Ol Chiki and
 
 
 def is_indic(ch: str) -> bool:
+    """Say whether a character belongs to an Indian script."""
     return any(lo <= ord(ch) <= hi for lo, hi in INDIC_BLOCKS)
 
 
 def classify(sheet: Sheet) -> set[str]:
-    """Kinds of text on a page: 'german' (prose with common German words), 'math' (mostly
-    digits, brackets and operators, as in matrices and formulas) and 'indic' (mostly letters of
-    an Indian script, found by Unicode block, so Latin-script pages never match)."""
+    """Name the kinds of text on a page.
+
+    The kinds are 'german' (prose with common German words), 'math' (mostly digits, brackets
+    and operators, as in matrices and formulas) and 'indic' (mostly letters of an Indian
+    script, found by Unicode block, so Latin-script pages never match).
+    """
     text = " ".join(it.student_answer for it in sheet.items)
     words = re.findall(r"[a-zäöüß]+", text.lower())
     kinds = set()

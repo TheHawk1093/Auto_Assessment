@@ -18,6 +18,8 @@ from pathlib import Path
 
 
 class GitError(RuntimeError):
+    """Raised when a git command fails."""
+
     pass
 
 
@@ -31,6 +33,7 @@ def _git(args: list[str], cwd: Path) -> str:
 
 
 def is_repo(cwd: Path) -> bool:
+    """Say whether the folder is inside a git work tree."""
     try:
         return _git(["rev-parse", "--is-inside-work-tree"], cwd) == "true"
     except (GitError, FileNotFoundError):
@@ -38,6 +41,7 @@ def is_repo(cwd: Path) -> bool:
 
 
 def tag_name(variant: str, run: str) -> str:
+    """Return the git tag name for a run of a variant."""
     safe = re.sub(r"[^A-Za-z0-9._-]+", "-", f"{variant}-{run}").strip("-.")
     return f"exp-{safe}"
 
@@ -63,6 +67,7 @@ def subject_line(entry: dict) -> str:
 
 
 def commit_message(entry: dict, vs_base: str, vs_prev: str) -> str:
+    """Return the full commit message: the subject line, the scores by band and the changes."""
     o = entry["overall"]
     bands = ", ".join(
         f"{b}: n={v['n']} error={v['mean_abs_error']:.3f}"

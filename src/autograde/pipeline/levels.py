@@ -14,6 +14,7 @@ LEVEL_PARTIAL_WEIGHT = {"lenient": 0.9, "moderate": 0.7, "harsh": 0.5}
 
 
 def dataset_of(question_key: str) -> str:
+    """Return the dataset part of a question key (the text before the first slash)."""
     return question_key.split("/", 1)[0]
 
 

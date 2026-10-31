@@ -8,8 +8,11 @@ from autograde.schemas import Item, Reading
 
 
 def read_answer(item: Item, client: LLMClient, ocr: bool = False) -> Reading | None:
-    """Summarise what the student says. Sees only the question and the answer, never the model
-    answer or the scheme, so the reading cannot be pulled towards the reference wording."""
+    """Summarise what the student says.
+
+    Sees only the question and the answer, never the model
+    answer or the scheme, so the reading cannot be pulled towards the reference wording.
+    """
     if not item.student_answer.strip():
         return None
     user = prompts.render("read.user", question=item.question, student_answer=item.student_answer)

@@ -10,9 +10,12 @@ from autograde.llm.base import LLMClient, LLMError, Usage
 
 
 class AnthropicClient(LLMClient):
+    """Client for the Anthropic Messages API using a forced tool call."""
+
     def __init__(
         self, model: str, timeout_s: int = 240, retries: int = 2, max_tokens: int = 4096
     ) -> None:
+        """Create the API client; the key is read from ANTHROPIC_API_KEY."""
         super().__init__(retries)
         try:
             import anthropic
@@ -25,6 +28,7 @@ class AnthropicClient(LLMClient):
 
     @property
     def name(self) -> str:
+        """Cache label, e.g. 'anthropic-<model>'."""
         return f"anthropic-{self.model}"
 
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:

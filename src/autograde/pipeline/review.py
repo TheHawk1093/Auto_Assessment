@@ -60,9 +60,12 @@ BAD = 0.25  # error of this share of the total or more counts as badly marked
 
 
 def review_stats(results: Sequence[Result]) -> dict:
-    """How many answers are listed, per reason, and (when the teacher's marks are known) whether
+    """Summarise the review list.
+
+    Gives how many answers are listed, per reason, and (when the teacher's marks are known) whether
     the listed ones really are the worse-marked: their error against the rest, and the share of
-    all badly marked answers they contain."""
+    all badly marked answers they contain.
+    """
     rows = [(review_reasons(r), r) for r in results]
     n = len(rows)
     listed = [r for reasons, r in rows if reasons]

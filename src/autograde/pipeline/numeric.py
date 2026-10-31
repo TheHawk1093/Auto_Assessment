@@ -112,6 +112,8 @@ def parse_unit(text: str) -> tuple[float, tuple[int, ...]] | None:
 
 @dataclass
 class Candidate:
+    """A number found in the answer, with the unit written next to it."""
+
     value: float
     unit: str
 
@@ -119,13 +121,16 @@ class Candidate:
 def find_numbers(text: str) -> list[Candidate]:
     """Every number in the text with the unit written right after it, in reading order."""
     out = []
-    for m in _NUMBER.finditer(_clean(text)):
+    text_clean = _clean(text)
+    for m in _NUMBER.finditer(text_clean):
         num = m.group("num")
         raw = num.replace(",", "") if re.search(r",\d{3}", num) else num.replace(",", ".")
         try:
             value = float(raw)
         except ValueError:
             continue
+        if not num.startswith(("-", "+")) and re.search(r"-\s+$", text_clean[: m.start()]):
+            value = -value  # "x - 0.09u": a minus set apart from its number still negates it
         exp = m.group("e") if m.group("e") is not None else m.group("p")
         if exp is not None:
             value *= 10 ** int(exp)
@@ -142,6 +147,8 @@ _CLAIMS_NO_UNIT = re.compile(
 
 @dataclass
 class NumericResult:
+    """Outcome of comparing an answer's final number with a numeric spec."""
+
     found: bool  # some number was written
     value_ok: bool
     unit: str  # ok | missing | wrong | not_needed
@@ -207,8 +214,9 @@ def _unit_state(written: str, wanted: str, expected: tuple[float, tuple[int, ...
 
 
 def describe_result(spec: NumericSpec, res: NumericResult) -> str:
+    """Say in words what was expected and what the check found, for the marker."""
     want = f"{spec.value:g} {spec.unit}".strip()
-    tol = f"{spec.rel_tol:.0%} tolerance" if spec.rel_tol else f"within {spec.abs_tol:g}"
+    tol = f"{spec.rel_tol:.1%} tolerance" if spec.rel_tol else f"within {spec.abs_tol:g}"
     if not res.found:
         return f"Expected final answer {want} ({tol}). No number was found in the answer."
     if not res.value_ok:
@@ -232,11 +240,14 @@ def describe_result(spec: NumericSpec, res: NumericResult) -> str:
 def decide_numeric(
     grading: Grading, rubric: Rubric, answer: str, follow_through: bool = False
 ) -> tuple[Grading, str, list[str]]:
-    """Settle every point that has a numeric spec. Returns the grading, a note for the marker
-    and flags. Value right and unit right: full marks. Value right, unit missing or wrong: the
-    unit share is lost. Value wrong or absent: nothing for this point, except under
-    `follow_through`, where the number may differ because of the student's own earlier result:
-    the marker's verdict then stands and the answer is flagged for the teacher."""
+    """Settle every point that has a numeric spec.
+
+    Returns the grading, a note for the marker and flags. Value right and unit right: full
+    marks. Value right, unit missing or wrong: the unit share is lost. Value wrong or absent:
+    nothing for this point, except under `follow_through`, where the number may differ
+    because of the student's own earlier result: the marker's verdict then stands and the
+    answer is flagged for the teacher.
+    """
     notes, flags = [], []
     verdicts = {v.point_id: v for v in grading.verdicts}
     for point in rubric.points:

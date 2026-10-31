@@ -44,8 +44,10 @@ def load_scaa(root: Path, language: str) -> list[Item]:
 
 
 def load_scaa_hindi(root: Path) -> list[Item]:
+    """Load the Hindi part of SCAA."""
     return load_scaa(root, "Hindi")
 
 
 def load_scaa_marathi(root: Path) -> list[Item]:
+    """Load the Marathi part of SCAA."""
     return load_scaa(root, "Marathi")

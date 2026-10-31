@@ -20,8 +20,11 @@ SHORT_ANSWER_WORDS = 25  # an unquoted credit on an answer this short cites the 
 
 
 def _unicode(text: str) -> str:
-    """Canonical form for comparing text in any script: composed (NFC) and without the invisible
-    joiners that OCR and keyboards add or drop inside Indic words."""
+    """Return a canonical form for comparing text in any script.
+
+    The text is composed (NFC) and has no invisible joiners, which OCR and keyboards add or
+    drop inside Indic words.
+    """
     return unicodedata.normalize("NFC", text).replace("‌", "").replace("‍", "")
 
 
@@ -32,11 +35,14 @@ def _norm(text: str) -> str:
 
 
 def _squash(text: str) -> str:
-    """Letters and digits only. Lets a quote match even when spacing or symbols differ, as
+    """Keep letters and digits only.
+
+    Lets a quote match even when spacing or symbols differ, as
     happens with formulas such as 'W(t+1) = W(t) + n*e*X' versus 'W(t+1)=W(t)+n e X'.
     It ignores operators on purpose: the check asks whether the quote was copied from the
     answer at all, not whether every sign is identical. Combining marks (the vowel signs of
-    Indic scripts) are kept, because they are part of the word."""
+    Indic scripts) are kept, because they are part of the word.
+    """
     return "".join(
         c for c in _unicode(text).lower() if c.isalnum() or unicodedata.category(c).startswith("M")
     )
@@ -66,9 +72,12 @@ def evidence_in_answer(evidence: str, answer: str) -> bool:
 
 
 def _near_copy(frag: str, haystack: str) -> bool:
-    """A quote that is the answer's own words with a few characters changed (a corrected typo, a
-    dropped symbol). Needs most of the quote in long runs, close together: scattered letters or a
-    reworded sentence do not count. Quoted answers like this are marked as well as exact ones."""
+    """Say whether a quote is the answer's own words with a few characters changed.
+
+    That covers a corrected typo or a dropped symbol. Needs most of the quote in long runs,
+    close together: scattered letters or a reworded sentence do not count. Quoted answers like this
+    are marked as well as exact ones.
+    """
     if len(frag) < _NEAR_MIN_CHARS:
         return False
     blocks = [
@@ -156,8 +165,10 @@ def to_step(marks: float, step: float, ceiling: float) -> float:
 
 
 def partial_in_steps(proposed: float, full: float, step: float) -> float | None:
-    """A partial verdict worth a whole number of steps, strictly between 0 and `full`. None when
-    the point is too small to have a step between nothing and everything."""
+    """Round a partial verdict to whole steps, strictly between 0 and `full`.
+
+    Returns None when the point is too small to have a step between nothing and everything.
+    """
     low, high = step, full - step
     if high < low - EPS:
         return None
@@ -353,8 +364,11 @@ def repair(
 
 
 def snap_grading(grading: Grading, rubric: Rubric, step: float) -> Grading:
-    """The last word on granularity: every awarded mark is a multiple of `step` (or the point's
-    full marks), whatever an earlier stage did, such as the form gate scaling marks down."""
+    """Round every awarded mark to a multiple of `step` (or the point's full marks).
+
+    This is the last word on granularity, whatever an earlier stage did, such as the form gate
+    scaling marks down.
+    """
     full = {p.id: p.marks for p in rubric.points}
     verdicts = []
     for v in grading.verdicts:

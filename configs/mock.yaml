@@ -1,0 +1,16 @@
+# Offline configuration: no API key, no network. Marks are word-overlap placeholders that only
+# prove the pipeline runs end to end (see src/autograde/llm/mock.py). Used by the demo and CI.
+llm: {backend: mock, model: offline}
+judge: {backend: mock, model: offline}
+student: {backend: mock, model: offline}
+pipeline:
+  rubric_variant: solid
+  rubric_model: offline
+  strong_backend: mock
+  rubric_selftest: true
+  rubric_review: no_reference
+  read_first: true
+  with_feedback: true
+  feedback_variant: formal
+  max_workers: 2
+paths: {data_dir: data/raw, rubrics_dir: rubrics, runs_dir: runs}

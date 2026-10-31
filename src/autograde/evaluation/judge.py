@@ -22,6 +22,12 @@ CRITERIA = (
 
 
 class Judgement(BaseModel):
+    """The feedback judge's verdict on one answer's feedback.
+
+    Each criterion is true, false, or None when it does not apply to the answer. `note` is the
+    judge's short comment.
+    """
+
     anchored: bool | None
     names_missed_point: bool | None
     explains_why: bool | None
@@ -32,6 +38,7 @@ class Judgement(BaseModel):
 
 
 def judge_one(result: Result, rubric: Rubric, client: LLMClient) -> Judgement:
+    """Judge the feedback on one marked answer against its scheme."""
     assert result.grading is not None and result.feedback is not None
     item = result.item
     user = prompts.render(
@@ -50,6 +57,7 @@ def judge_one(result: Result, rubric: Rubric, client: LLMClient) -> Judgement:
 def judge_all(
     results: Sequence[Result], rubrics: dict[str, Rubric], client: LLMClient, workers: int = 4
 ) -> list[Judgement]:
+    """Judge the feedback on every result in parallel, in input order."""
     with ThreadPoolExecutor(workers) as pool:
         return list(pool.map(lambda r: judge_one(r, rubrics[r.item.question_key], client), results))
 

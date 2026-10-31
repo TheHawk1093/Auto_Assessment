@@ -101,6 +101,7 @@ def _clean(text: object) -> str:
 
 
 def find_folder(root: Path) -> Path:
+    """Find the RiceChem folder under or beside `root`."""
     for cand in (root / FOLDER, root.parent / FOLDER, root / DATASET):
         if cand.exists():
             return cand
@@ -123,6 +124,7 @@ def official_rubric(qid: str) -> Rubric:
 
 
 def official_record(qid: str) -> RubricRecord:
+    """Return the official marking scheme of a question as a stored record."""
     return RubricRecord(question_key=f"{DATASET}/{qid}", rubric=official_rubric(qid))
 
 
@@ -134,6 +136,7 @@ def reference_answer(qid: str) -> str:
 
 
 def load_ricechem(root: Path) -> list[Item]:
+    """Load the RiceChem answers with the teachers' per-point grades."""
     folder = find_folder(root)
     items: list[Item] = []
     for qid, (n, points, (penalty_col, _, _)) in SPEC.items():

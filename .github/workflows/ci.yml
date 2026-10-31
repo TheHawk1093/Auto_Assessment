@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --all-extras
+      - run: uv run ruff check src tests app
+      - run: uv run ruff format --check src tests app
+      - run: uv run pytest --cov --cov-report=term-missing
+      - name: Offline demo (no API key)
+        run: >
+          uv run autograde --config configs/mock.yaml exam
+          --paper examples/exam_demo/paper.json
+          --reference examples/exam_demo/reference_model_only.json
+          --answers examples/exam_demo/answers --name ci_demo

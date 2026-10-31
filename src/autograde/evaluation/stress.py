@@ -36,6 +36,17 @@ Kind = Literal["paste_model", "shuffled", "off_topic", "keyword_list", "fluent_w
 
 
 class Case(BaseModel):
+    """One stress case: an item whose mark should stay above or below a limit.
+
+    Attributes:
+        id: Case id.
+        kind: Kind of stress case.
+        base_id: Id of the item the case was built from.
+        item: The item to mark.
+        check: "at_least" or "at_most", how to compare with `limit`.
+        limit: Threshold as a share of the total marks.
+    """
+
     id: str
     kind: str
     base_id: str
@@ -45,6 +56,8 @@ class Case(BaseModel):
 
 
 class Wrong(BaseModel):
+    """Structured reply holding a deliberately wrong answer."""
+
     answer: str
 
 
@@ -66,6 +79,7 @@ def _keywords(model_answer: str, rng: random.Random, k: int = 10) -> str:
 
 
 def make_wrong(item: Item, client: LLMClient) -> str:
+    """Ask a model for a fluent but wrong answer of about the same length as the student's."""
     user = prompts.render(
         "stress.wrong.user",
         question=item.question,
@@ -114,6 +128,7 @@ def build_cases(
 
 
 def passed(case: Case, predicted: float) -> bool:
+    """Return whether the predicted mark meets the case's limit."""
     frac = predicted / case.item.max_mark
     return frac >= case.limit if case.check == "at_least" else frac <= case.limit
 
@@ -138,6 +153,7 @@ def run_stress(
 
 
 def summarise(rows: Sequence[dict]) -> dict:
+    """Summarise stress results: pass rate overall and per kind of case."""
     kinds = sorted({r["kind"] for r in rows})
     by_kind = {
         k: {

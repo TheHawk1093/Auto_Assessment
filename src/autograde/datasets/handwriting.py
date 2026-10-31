@@ -38,8 +38,11 @@ CIRCUIT_STUDENTS = 8  # of the 18 with TA labels: 4 to tune on, 4 to validate on
 
 
 class _RangedFile(_RemoteFile):
-    """Like `_RemoteFile`, but for a signed link: the size comes from a one-byte range read (HEAD
-    is rejected) and an expired link (they last five minutes) is renewed with `renew()`."""
+    """A `_RemoteFile` for a signed link.
+
+    The size comes from a one-byte range read (HEAD is rejected) and an expired link (they last
+    five minutes) is renewed with `renew()`.
+    """
 
     def __init__(self, renew: Callable[[], str]) -> None:
         self.renew, self.pos = renew, 0
@@ -96,6 +99,7 @@ def _signed_url(url: str) -> str:
 
 
 def download_mendeley(data_dir: Path) -> dict:
+    """Fetch the tune and validate sheets of the Mendeley exam and return the student split."""
     target = data_dir / "mendeley_exam"
     marks = target / "Teacher_manual_marks_Anonymized.csv"
     with marks.open(encoding="utf-8-sig") as f:
@@ -113,6 +117,7 @@ def download_mendeley(data_dir: Path) -> dict:
 
 
 def download_circuit_pages(data_dir: Path) -> dict:
+    """Fetch the labelled tune and validate pages of EDU-CIRCUIT-HW and return the student split."""
     target = data_dir / "circuit_hw"
     labels = target / "manually_checked_TA_label" / "valset1.csv"
     with labels.open(encoding="utf-8-sig", errors="replace") as f:

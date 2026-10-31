@@ -16,9 +16,12 @@ from autograde.ocr.hosted import GEMINI_FREE, GEMINI_URL, _call, _key
 
 
 class GeminiClient(LLMClient):
+    """Text client for free-tier Gemini models."""
+
     prefix = "gemini"
 
     def __init__(self, model: str, timeout_s: int = 240, retries: int = 2) -> None:
+        """Check the model is on the free-tier allow-list."""
         super().__init__(retries)
         if model not in GEMINI_FREE:
             raise LLMError(f"{model!r} is not on the free-tier allow-list: {sorted(GEMINI_FREE)}")
@@ -27,6 +30,7 @@ class GeminiClient(LLMClient):
 
     @property
     def name(self) -> str:
+        """Cache label, e.g. 'gemini-<model>'."""
         return f"{self.prefix}-{self.model}"
 
     def _complete(self, system: str, user: str, schema: dict) -> tuple[dict, Usage]:

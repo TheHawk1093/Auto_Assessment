@@ -47,10 +47,15 @@ POC_ORDER = ("digiklausur", "saf", "mohler", "engsaf", "ricechem")  # simple to 
 def _add_commit_options(p: argparse.ArgumentParser, name_only: bool = False) -> None:
     p.add_argument("--variant", required=not name_only, help="label in the experiment log")
     p.add_argument("--note", default="", help="one line on what this variant changes")
-    p.add_argument("--no-commit", action="store_true", help="skip the git commit and tag")
+    p.add_argument(
+        "--commit", action="store_true",
+        help="after the run, git-add everything, commit with the scores and tag it (default off)",
+    )  # fmt: skip
+    p.add_argument("--no-commit", action="store_true", help=argparse.SUPPRESS)  # old default
 
 
 def register(sub) -> None:
+    """Add the commands that make and inspect runs to the subparsers."""
     dl = sub.add_parser("download", help="fetch the stage-1 datasets into data/raw")
     dl.add_argument("--engsaf", action="store_true", help="also fetch EngSAF (benchmark only)")
     dl.add_argument("--samples", action="store_true", help="also fetch small maths/essay samples")
@@ -84,7 +89,8 @@ def register(sub) -> None:
     poc.add_argument(
         "--rubric-variant", help="rubric for every dataset (default sized; RiceChem official)"
     )
-    poc.add_argument("--no-commit", action="store_true")
+    poc.add_argument("--commit", action="store_true", help="git-commit and tag each run")
+    poc.add_argument("--no-commit", action="store_true", help=argparse.SUPPRESS)
     poc.set_defaults(func=cmd_poc)
 
     judge = sub.add_parser("judge", help="score the feedback of a finished run")
@@ -132,6 +138,7 @@ def register(sub) -> None:
 
 
 def cmd_download(args: argparse.Namespace, settings: Settings) -> None:
+    """Fetch the datasets into the data folder."""
     download_all(settings.paths.data_dir)
     if args.engsaf:
         download_engsaf(settings.paths.data_dir)
@@ -142,6 +149,7 @@ def cmd_download(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_run(args: argparse.Namespace, settings: Settings) -> None:
+    """Mark a sample of a dataset and write the run folder."""
     items = select(
         load_dataset(args.dataset, settings.paths.data_dir),
         args.split,
@@ -182,18 +190,22 @@ def cmd_run(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_report(args: argparse.Namespace, settings: Settings) -> None:
+    """Print the metrics of a finished run."""
     print(json.dumps(report(load_run(settings, args.name)), indent=2))
 
 
 def cmd_log(args: argparse.Namespace, settings: Settings) -> None:
+    """Record the run in the experiment log."""
     print(record_run(run_dir(settings, args.name), args.variant, args.note))
 
 
 def cmd_view(args: argparse.Namespace, settings: Settings) -> None:
+    """Build the run's HTML report."""
     print(write_view(run_dir(settings, args.name), settings, args.limit, args.seed))
 
 
 def cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
+    """Re-price a run's stored verdicts with a different partial-credit weight."""
     src = run_dir(settings, args.name)
     setup = read_setup(src)
     if setup["mode"] != "pipeline":
@@ -211,6 +223,7 @@ def cmd_rescore(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
+    """Rewrite the feedback of a run and save it as a new run."""
     results = load_run(settings, args.name)
     setup = read_setup(run_dir(settings, args.name))
     client = build_client(settings.llm)
@@ -238,6 +251,7 @@ def cmd_refeedback(args: argparse.Namespace, settings: Settings) -> None:
 
 
 def cmd_judge(args: argparse.Namespace, settings: Settings) -> None:
+    """Score the feedback of a run with the judge model."""
     run = run_dir(settings, args.name)
     results = load_run_with_feedback(settings, args.name)
     store = store_for(settings)
@@ -283,7 +297,7 @@ def cmd_poc(args: argparse.Namespace, settings: Settings) -> None:
                     note="proof of concept",
                     perturb_model=None,
                     ocr=None,
-                    no_commit=args.no_commit,
+                    commit=args.commit,
                 ),  # fmt: skip
                 run_settings,
             )

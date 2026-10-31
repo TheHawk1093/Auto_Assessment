@@ -1,5 +1,6 @@
-"""Multiple choice, checked by code. No model marks a choice; a model only explains a wrong one
-(see `feedback.write_mcq_feedback`).
+"""Multiple choice, checked by code.
+
+No model marks a choice; a model only explains a wrong one (see `feedback.write_mcq_feedback`).
 
 The student's answer may be a letter, "(b)", "Option B", "B. Random Forest", the option's own
 words, or, for a question that allows several, "A and C". Anything that cannot be read as exactly
@@ -40,9 +41,12 @@ _RUN_LABEL = re.compile(rf"(?:(?<=\s)|^)\(?({LABEL})[\).:]\s+")
 
 
 def _run_of_labels(question: str) -> dict[str, str]:
-    """Options written one after another on a single line ("A. SVM B. Random Forest C. KNN"),
-    as happens when a paper is read from a document. Only a run of consecutive labels that starts
-    at A (or 1) counts, so a sentence that happens to contain "A." is not read as an option."""
+    """Split options written one after another on a single line.
+
+    For example "A. SVM B. Random Forest C. KNN", as happens when a paper is read from a
+    document. Only a run of consecutive labels that starts
+    at A (or 1) counts, so a sentence that happens to contain "A." is not read as an option.
+    """
     marks = list(_RUN_LABEL.finditer(question))
     for start, first in enumerate(marks):
         if first.group(1).upper() not in ("A", "1"):
@@ -107,11 +111,14 @@ def choices_in(text: str, options: dict[str, str]) -> set[str]:
 
 
 class Choice(BaseModel):
+    """The model's pick of the correct option when the paper gives no key."""
+
     option: str = Field(description="The label of the single best option, such as B.")
     reason: str = Field(description="One sentence on why it is correct.")
 
 
 def mcq_rubric(question: Question, derived_key: str = "") -> Rubric:
+    """Build the one-point scheme for a choice from the key (or the derived key)."""
     key = choices_in(question.model_answer, parse_options(question.text)) or (
         {derived_key.upper()} if derived_key else set()
     )
@@ -127,8 +134,11 @@ def mcq_rubric(question: Question, derived_key: str = "") -> Rubric:
 
 
 def mcq_record(question: Question, client: LLMClient | None = None) -> RubricRecord:
-    """The one-point scheme for a choice. With no answer key in the question, the model chooses
-    the option once (and the scheme says so), so a paper without a key can still be marked."""
+    """Build the one-point scheme for a choice.
+
+    With no answer key in the question, the model chooses the option once (and the scheme says
+    so), so a paper without a key can still be marked.
+    """
     derived, review = "", []
     if client is not None and not choices_in(question.model_answer, parse_options(question.text)):
         options = parse_options(question.text)
@@ -146,8 +156,11 @@ def mcq_record(question: Question, client: LLMClient | None = None) -> RubricRec
 
 
 def mark_mcq(item: Item, rubric: Rubric) -> tuple[Grading, list[str]]:
-    """All or nothing. Flags: `unclear_choice` (nothing readable), `multiple_choices` (more than
-    allowed), `mcq_key_unreadable` (the model answer names no option)."""
+    """Mark a choice all or nothing.
+
+    Flags: `unclear_choice` (nothing readable), `multiple_choices` (more than
+    allowed), `mcq_key_unreadable` (the model answer names no option).
+    """
     options = parse_options(item.question)
     truth = choices_in(item.model_answer, options)
     got = choices_in(item.student_answer, options)

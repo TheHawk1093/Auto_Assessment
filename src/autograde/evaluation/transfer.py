@@ -22,15 +22,21 @@ from autograde.schemas import Item, Result
 
 
 class TransferQ(BaseModel):
+    """A new question on the same idea, with its model answer."""
+
     question: str
     model_answer: str
 
 
 class Attempt(BaseModel):
+    """Structured reply holding a student's attempt."""
+
     answer: str
 
 
 class TransferRow(BaseModel):
+    """Marks on a new question, with and without the earlier feedback."""
+
     id: str
     max_mark: float
     new_question: str
@@ -50,6 +56,7 @@ def _save(path: Path, data: dict) -> None:
 
 
 def make_transfer(item: Item, writer: LLMClient) -> TransferQ:
+    """Write a new question that needs the same idea as the item's question."""
     user = prompts.render(
         "transfer.make.user", question=item.question, model_answer=item.model_answer
     )
@@ -57,6 +64,7 @@ def make_transfer(item: Item, writer: LLMClient) -> TransferQ:
 
 
 def attempt(item: Item, feedback: str, tq: TransferQ, student: LLMClient) -> str:
+    """Return the simulated student's answer to the new question, given the feedback."""
     user = prompts.render(
         "transfer.attempt.user",
         question=item.question,
@@ -88,8 +96,11 @@ def transfer_test(
     cache_dir: Path,
     workers: int = 4,
 ) -> list[TransferRow]:
-    """Only answers that lost marks. New questions and no-feedback attempts are cached in
-    `cache_dir` so every feedback variant is tested on the same new questions."""
+    """Run the transfer test on the answers that lost marks.
+
+    New questions and no-feedback attempts are cached in `cache_dir` so every feedback
+    variant is tested on the same new questions.
+    """
     todo = [
         r
         for r in results

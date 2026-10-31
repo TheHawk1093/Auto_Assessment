@@ -86,8 +86,11 @@ def load_scientsbank(root: Path) -> list[Item]:
 
 
 def load_aes2(root: Path) -> list[Item]:
-    """Persuasive essays with a holistic score from 1 to 6. The prompt each essay answers is
-    not in the data, so every essay is judged as an answer to a general persuasive task."""
+    """Load persuasive essays with a holistic score from 1 to 6.
+
+    The prompt each essay answers is not in the data, so every essay is judged as an answer to a
+    general persuasive task.
+    """
     df = pd.read_csv(root / "aes2" / "train.csv")
     question = "Write a persuasive essay that takes a clear position and supports it."
     return [
@@ -136,8 +139,10 @@ def load_processbench_hard(root: Path) -> list[Item]:
 
 
 def load_imo_grading(root: Path) -> list[Item]:
-    """Olympiad proofs written by models and graded 0 to 7 by humans. The grading guidelines
-    stand in for the teacher's rubric. Among the hardest things to mark."""
+    """Load olympiad proofs written by models and graded 0 to 7 by humans.
+
+    The grading guidelines stand in for the teacher's rubric. Among the hardest things to mark.
+    """
     df = pd.read_parquet(root / "imo_grading" / "train.parquet")
     return [
         Item(

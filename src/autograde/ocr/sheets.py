@@ -26,6 +26,8 @@ PAGE = re.compile(r"^(?P<sheet>.+?)[_ -]*p(?:age)?[_ -]*(?P<page>\d+)$", re.IGNO
 
 
 class SheetItem(BaseModel):
+    """One question read from a sheet: its printed text, the student's writing and marks."""
+
     question_id: str
     page: int | None = None
     question: str = ""
@@ -36,6 +38,8 @@ class SheetItem(BaseModel):
 
 
 class Sheet(BaseModel):
+    """All the questions read from one answer sheet."""
+
     sheet: str = ""
     student: str = ""
     pages: list[str] = Field(default_factory=list)

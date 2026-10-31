@@ -24,10 +24,12 @@ from autograde.viewer import sample_by_mark, sample_spread, write_report
 
 
 def run_dir(settings: Settings, name: str) -> Path:
+    """Return the folder holding the named run."""
     return settings.paths.runs_dir / name
 
 
 def load_run(settings: Settings, name: str) -> list[Result]:
+    """Read all results of the named run."""
     return read_results(run_dir(settings, name) / "results.jsonl")
 
 
@@ -42,14 +44,17 @@ def load_run_with_feedback(
 
 
 def write_json(path: Path, data: object) -> None:
+    """Write `data` to `path` as indented JSON."""
     path.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
 
 def write_lines(path: Path, lines: list[str]) -> None:
+    """Write `lines` to `path`, one per line."""
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def read_setup(run: Path) -> dict:
+    """Read the run's `run.json` setup, or an empty dict when it has none."""
     path = run / "run.json"
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
@@ -142,7 +147,7 @@ def finish(
     print("usage:", usage)
     print("report:", write_view(run, settings))
     print("logged:", record_run(run, args.variant or args.mode, args.note))
-    if not args.no_commit:
+    if getattr(args, "commit", False):
         entries = read_log()
         vs_base, vs_prev = comparisons(entries, len(entries) - 1)
         try:

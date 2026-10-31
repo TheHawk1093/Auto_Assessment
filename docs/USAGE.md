@@ -1,14 +1,13 @@
-# autograde
+# autograde: detailed usage and experiment reference
 
-Grades student answers against model answers with a marking scheme, then writes feedback. Runs with no human step. Plan and decisions: [PROJECT.md](PROJECT.md). Datasets: [DATASETS.md](DATASETS.md).
+The quick start is in the [README](../README.md). This page keeps the full command, switch and experiment reference.
 
 ## Setup (Python 3.11+)
 
 ```bash
-uv venv --python 3.11 .venv
-uv pip install --python .venv/Scripts/python.exe -e ".[dev]"     # add ,anthropic for the API backend
-.venv/Scripts/autograde download                                  # DigiKlausur, SAF, Mohler -> data/raw
-.venv/Scripts/python -m pytest
+uv sync --all-extras          # add --extra anthropic etc. individually if you prefer
+uv run autograde download     # DigiKlausur, SAF, Mohler -> data/raw
+uv run pytest
 ```
 
 ## Use
@@ -76,7 +75,7 @@ on the same sample), then commits the code and tags it.
 - Fall back: `git checkout exp-<variant>-<run>`. Marking schemes in `rubrics/` are committed,
   so the exact schemes come back with the code.
 - Nothing is pushed. Push when you choose: `git push --follow-tags`.
-- `--no-commit` skips the git step for throwaway runs.
+- The git commit and tag happen only with `--commit` (off by default; it runs `git add -A`).
 
 Compare designs on the **same sample** (same dataset, split, `-n`, `--seed`). Tune on one seed and
 confirm on another so a gain is not just fitting the tuning sample.

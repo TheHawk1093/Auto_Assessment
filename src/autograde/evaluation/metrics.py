@@ -15,10 +15,12 @@ LEVELS = 4
 
 
 def level(mark: float, max_mark: float) -> int:
+    """Round a mark to one of the discrete grade levels from 0 to LEVELS."""
     return min(LEVELS, max(0, round(LEVELS * mark / max_mark)))
 
 
 def pearson(xs: Sequence[float], ys: Sequence[float]) -> float | None:
+    """Return the Pearson correlation, or None if there are under two points or no spread."""
     n = len(xs)
     if n < 2:
         return None
@@ -51,6 +53,10 @@ def quadratic_weighted_kappa(a: Sequence[int], b: Sequence[int]) -> float | None
 
 
 def summarise(results: Sequence[Result]) -> dict[str, float | int | None]:
+    """Score predicted marks against the teacher's marks.
+
+    Results without a teacher mark are ignored. Marks are compared as shares of the maximum.
+    """
     rows = [(r.predicted_mark, r.item.human_mark, r.item.max_mark) for r in results
             if r.item.human_mark is not None]  # fmt: skip
     if not rows:
@@ -79,6 +85,11 @@ def band(result: Result) -> str:
 
 
 def report(results: Sequence[Result]) -> dict[str, object]:
+    """Build the full metrics report for a run.
+
+    Returns the overall summary, a summary per teacher-mark band, and the share of results
+    that carry flags.
+    """
     graded = [r for r in results if r.item.human_mark is not None]
     out: dict[str, object] = {"overall": summarise(graded)}
     out["by_band"] = {

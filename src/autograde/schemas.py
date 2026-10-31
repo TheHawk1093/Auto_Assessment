@@ -59,10 +59,12 @@ class Item(BaseModel):
 
     @property
     def question_key(self) -> str:
+        """Return the dataset-qualified question id, shared by every student's answer to it."""
         return f"{self.dataset}/{self.question_id}"
 
     @property
     def has_ref(self) -> bool:
+        """Say whether the item has a model answer or a rubric to mark against."""
         return has_reference(self.model_answer) or has_reference(self.rubric)
 
     def with_key(self, answer_key: str) -> Item:
@@ -85,10 +87,13 @@ class Question(BaseModel):
 
     @property
     def has_ref(self) -> bool:
+        """Say whether the question has a model answer or a rubric to mark against."""
         return has_reference(self.model_answer) or has_reference(self.rubric)
 
 
 class RubricLevel(BaseModel):
+    """One level of part credit for a rubric point."""
+
     share: float = Field(gt=0, lt=1, description="Share of the point's marks, between 0 and 1.")
     says: str = Field(description="What an answer at this level looks like.")
 
@@ -110,6 +115,8 @@ class NumericSpec(BaseModel):
 
 
 class RubricPoint(BaseModel):
+    """One thing a full-mark answer contains, and the marks it is worth."""
+
     id: str = Field(description="Short id such as P1, P2.")
     description: str = Field(description="One checkable thing a correct answer contains.")
     marks: float = Field(gt=0, description="Marks for this point when fully met.")
@@ -130,8 +137,11 @@ class RubricPoint(BaseModel):
     @field_validator("levels", mode="before")
     @classmethod
     def _drop_empty_levels(cls, levels):
-        """A writer may list 'no credit' (0) or 'full credit' (1) as a step: those are not
-        part-marks, so they are dropped rather than failing the whole scheme."""
+        """Drop levels that are not part-marks.
+
+        A writer may list 'no credit' (0) or 'full credit' (1) as a step; those are dropped
+        rather than failing the whole scheme.
+        """
         kept = []
         for lv in levels or []:
             share = lv.get("share") if isinstance(lv, dict) else getattr(lv, "share", None)
@@ -142,6 +152,8 @@ class RubricPoint(BaseModel):
 
 
 class DeductionRule(BaseModel):
+    """An error that takes marks off, listed in the marking scheme."""
+
     id: str = Field(description="Short id such as D1.")
     description: str = Field(
         description="A clear error that costs marks, for example a wrong statement."
@@ -183,6 +195,7 @@ class Rubric(BaseModel):
 
     @property
     def total(self) -> float:
+        """Return the marks of the whole scheme."""
         return round(sum(p.marks for p in self.points), 6)
 
     def stance(self) -> str:
@@ -192,6 +205,7 @@ class Rubric(BaseModel):
         return f"Marking stance: {self.level or 'standard'}. {self.notes}".strip()
 
     def render(self) -> str:
+        """Return the scheme as text for the marker's prompt."""
         lines = [self.stance()] if self.stance() else []
         for p in self.points:
             note = f" Partial credit: {p.partial_credit}" if p.partial_credit else ""
@@ -205,6 +219,8 @@ class Rubric(BaseModel):
 
 
 class AtomicFact(BaseModel):
+    """One claim from the model answer, with a weight."""
+
     text: str = Field(description="One claim that can be true or false on its own.")
     weight: int = Field(ge=1, le=3, description="2 for a core idea, 1 for supporting, 3 rarely.")
 
@@ -241,6 +257,7 @@ class RubricDraft(BaseModel):
     )
 
     def to_rubric(self) -> Rubric:
+        """Return the draft as a rubric."""
         return Rubric(points=self.points, notes=self.notes, answer_key=self.answer_key)
 
 
@@ -269,6 +286,8 @@ Status = Literal["met", "partial", "not_met"]
 
 
 class PointVerdict(BaseModel):
+    """The marker's verdict on one rubric point, with the marks awarded."""
+
     point_id: str
     status: Status
     marks_awarded: float = Field(ge=0)
@@ -282,6 +301,8 @@ class PointVerdict(BaseModel):
 
 
 class Deducted(BaseModel):
+    """An error the marker found in the answer, quoted from it."""
+
     rule_id: str
     evidence: str = Field(
         description="Exact words copied from the student answer showing the error."
@@ -291,6 +312,8 @@ class Deducted(BaseModel):
 
 
 class Grading(BaseModel):
+    """The marker's verdicts on a student answer, one per rubric point, plus any deductions."""
+
     verdicts: list[PointVerdict]
     deductions: list[Deducted] = Field(
         default_factory=list,
@@ -299,6 +322,7 @@ class Grading(BaseModel):
 
     @property
     def total(self) -> float:
+        """Return the marks earned: points met minus deductions, never below zero."""
         earned = sum(v.marks_awarded for v in self.verdicts)
         return round(max(0.0, earned - sum(d.marks for d in self.deductions)), 6)
 
@@ -322,6 +346,8 @@ class Grading(BaseModel):
 
 
 class Improvement(BaseModel):
+    """One thing the student could improve, tied to a rubric point."""
+
     point_id: str
     kind: Literal["partial", "missed", "incorrect"] = Field(
         default="missed",
@@ -339,6 +365,8 @@ class Improvement(BaseModel):
 
 
 class Feedback(BaseModel):
+    """Feedback for one student answer: what it did well, what to improve and a summary."""
+
     asks: str = Field(default="", description="What the question asks for, in one sentence.")
     strengths: list[str] = Field(description="What the student did well, tied to their own words.")
     improvements: list[Improvement]
@@ -406,8 +434,11 @@ class Result(BaseModel):
 
 
 def effective_kind(kind: str, rubric: Rubric) -> str:
-    """The kind that decides which guidance prompts apply. A calculation with a code-checked
-    final answer is numeric whatever it was labelled (a model often says maths)."""
+    """Return the kind that decides which guidance prompts apply.
+
+    A calculation with a code-checked final answer is numeric whatever it was labelled (a model
+    often says maths).
+    """
     if kind in ("short", "maths") and any(p.numeric for p in rubric.points):
         return "numeric"
     return kind

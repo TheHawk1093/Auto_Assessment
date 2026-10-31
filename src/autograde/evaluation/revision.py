@@ -1,6 +1,8 @@
-"""Revision test: does the feedback help? A simulated student rewrites the answer using only the
-feedback, and the grader marks the rewrite. A control rewrite with no feedback shows how much
-of the gain is just rewording. Leakage shows how much of the model answer the feedback gives away.
+"""Revision test: does the feedback help?
+
+A simulated student rewrites the answer using only the feedback, and the grader marks the
+rewrite. A control rewrite with no feedback shows how much of the gain is just rewording.
+Leakage shows how much of the model answer the feedback gives away.
 """
 
 from __future__ import annotations
@@ -24,16 +26,26 @@ NO_FEEDBACK = "No feedback was provided."
 
 
 def answer_digest(answer: str) -> str:
-    """Short hash of the student's answer: the no-feedback control depends on the exact text, and
-    a noisy copy of an answer keeps its item id."""
+    """Return a short hash of the student's answer.
+
+    The no-feedback control depends on the exact text, and a noisy copy of an answer keeps
+    its item id.
+    """
     return hashlib.sha1(answer.encode("utf-8")).hexdigest()[:8]
 
 
 class Revised(BaseModel):
+    """Structured reply holding a rewritten answer."""
+
     answer: str
 
 
 class RevisionRow(BaseModel):
+    """Marks for one answer before and after the revision test.
+
+    Includes the marks with and without feedback, and how much of the model answer leaked.
+    """
+
     id: str
     max_mark: float
     before: float
@@ -54,9 +66,12 @@ def feedback_text(fb: Feedback) -> str:
 
 
 def revise(result: Result, feedback: str, student: LLMClient, own_knowledge: bool = False) -> str:
-    """The student's rewrite. By default the student may use only the answer and the feedback, so
-    the test measures what the feedback hands over; with `own_knowledge` the student may also use
-    what they know, so the feedback has to point them to what they can already supply."""
+    """Return the simulated student's rewrite of the answer.
+
+    By default the student may use only the answer and the feedback, so the test measures
+    what the feedback hands over; with `own_knowledge` the student may also use what they
+    know, so the feedback has to point them to what they can already supply.
+    """
     item = result.item
     user = prompts.render(
         "revise.user", question=item.question, student_answer=item.student_answer, feedback=feedback
@@ -137,10 +152,13 @@ def revision_test(
 
 
 def _per_point(rows: Sequence[RevisionRow]) -> tuple[float | None, float | None]:
-    """Per point, not per total: uptake is the share of points the feedback named that earned
-    more marks in the rewrite; harm is the share of the other points that earned less. A total
-    reaches its ceiling when the rewrite copies the feedback; these two do not hide a point
-    that was fixed while another was broken."""
+    """Return (uptake, harm) measured per point, not per total.
+
+    Uptake is the share of points the feedback named that earned more marks in the rewrite;
+    harm is the share of the other points that earned less. A total reaches its ceiling when
+    the rewrite copies the feedback; these two do not hide a point that was fixed while
+    another was broken.
+    """
     named = fixed = other = broken = 0
     for r in rows:
         after = {v["point_id"]: v["marks"] for v in r.revised_verdicts}

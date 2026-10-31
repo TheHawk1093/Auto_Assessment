@@ -24,6 +24,14 @@ def _keep(grading: Grading, rubric: Rubric) -> tuple[Grading, list[str]]:
 
 @dataclass
 class Checks:
+    """What the code checks found for one answer.
+
+    Attributes:
+        evidence: Facts for the marker, as text.
+        flags: Flags for the teacher.
+        decide: Hook that settles points the code can decide itself.
+    """
+
     evidence: str = ""
     flags: list[str] = field(default_factory=list)
     decide: Decide = _keep
@@ -32,6 +40,17 @@ class Checks:
 def run_checks(
     item: Item, rubric: Rubric, cfg: PipelineConfig, describe: Describer | None = None
 ) -> Checks:
+    """Run the checks that fit this item (numeric, code, figure) before marking.
+
+    Args:
+        item: The answer being marked.
+        rubric: Its marking scheme.
+        cfg: Pipeline switches (follow-through, code execution, sandbox).
+        describe: Vision describer, needed only when the item has figures.
+
+    Returns:
+        The evidence text, flags and the hook that decides code-checkable points.
+    """
     parts: list[str] = []
     out = Checks()
     follow = bool(item.earlier.strip()) and cfg.teacher.follow_through

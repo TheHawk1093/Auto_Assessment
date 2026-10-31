@@ -26,6 +26,8 @@ Describer = Callable[[list[Path], str, str], str]
 
 
 class FigureDescription(BaseModel):
+    """A vision model's text description of a drawing; the marker never sees the image."""
+
     kind: str = Field(default="", description="circuit, graph, flowchart, free-body diagram, ...")
     elements: list[str] = Field(default_factory=list, description="What is drawn, one per item.")
     labels: list[str] = Field(default_factory=list, description="Text and symbols written on it.")
@@ -46,6 +48,7 @@ class FigureDescription(BaseModel):
         ]
 
     def render(self) -> str:
+        """Format the description as text for the marker."""
         parts = [f"Kind: {self.kind or 'unknown'}"]
         for name, items in (
             ("Elements", self.elements),
@@ -71,6 +74,7 @@ def make_describer(settings: Settings) -> Describer:
 
 
 def describe_figure(paths: list[str], describer: Describer) -> FigureDescription:
+    """Have the vision model describe the drawing on the given image pages."""
     pages = [Path(p) for p in paths]
     reply = describer(pages, prompts.system("figure.describe"), "Describe the drawing.")
     return FigureDescription.model_validate(first_json_object(reply))

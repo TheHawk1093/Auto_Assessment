@@ -41,6 +41,15 @@ _SENTENCE = re.compile(r"(?<=[.!?।])\s+")
 
 @dataclass(frozen=True)
 class Perturbation:
+    """A named way of changing an answer, plus what should happen to its mark.
+
+    Attributes:
+        name: Label used in reports.
+        kind: "keep" (mark should not move), "drop" (it should go down) or "control".
+        apply: Function that returns the changed answer text.
+        english_only: Skip this perturbation for answers that are not English.
+    """
+
     name: str
     kind: str  # "keep": the mark should not move; "drop": it should go down; "control"
     apply: Callable[[Item, random.Random], str]
@@ -70,16 +79,19 @@ def spelling(item: Item, rng: random.Random) -> str:
 
 
 def case_and_punctuation(item: Item, rng: random.Random) -> str:
+    """Lower-case the answer and strip punctuation."""
     text = item.student_answer.lower()
     text = re.sub(r"[,;:!?\"'()]", "", text)
     return re.sub(r"\.(?=\s|$)", "", text)
 
 
 def shout(item: Item, rng: random.Random) -> str:
+    """Upper-case the answer."""
     return item.student_answer.upper()
 
 
 def shuffled_sentences(item: Item, rng: random.Random) -> str:
+    """Put the answer's sentences in random order."""
     sentences = _SENTENCE.split(item.student_answer.strip())
     rng.shuffle(sentences)
     return " ".join(sentences)
@@ -89,22 +101,27 @@ _TEXT_SPEAK = {"you": "u", "are": "r", "to": "2", "for": "4", "and": "n", "becau
 
 
 def text_speak(item: Item, rng: random.Random) -> str:
+    """Replace common words with text-message shorthand."""
     return " ".join(_TEXT_SPEAK.get(w.lower(), w) for w in item.student_answer.split())
 
 
 def filler(item: Item, rng: random.Random) -> str:
+    """Wrap the answer in filler phrases that add no content."""
     return f"I think that, basically, {item.student_answer.strip()} That is what I know about this."
 
 
 def irrelevant_sentence(item: Item, rng: random.Random) -> str:
+    """Append a sentence unrelated to the question."""
     return f"{item.student_answer.strip()} The weather today was pleasant and the hall was quiet."
 
 
 def question_repeated(item: Item, rng: random.Random) -> str:
+    """Put the question in front of the answer."""
     return f"{item.question.strip()} {item.student_answer.strip()}"
 
 
 def half_the_answer(item: Item, rng: random.Random) -> str:
+    """Keep only the first half of the answer, by words."""
     words = item.student_answer.split()
     return " ".join(words[: max(1, math.ceil(len(words) / 2))])
 
@@ -125,6 +142,8 @@ NAMES = ("control", *(p.name for p in CODE_PERTURBATIONS), *MODEL_STYLES)
 
 
 class Rewritten(BaseModel):
+    """Structured reply holding a rewritten answer."""
+
     answer: str
 
 
@@ -139,6 +158,16 @@ def rewrite(item: Item, style: str, writer: LLMClient, cache: dict[str, str]) ->
 
 @dataclass
 class Shift:
+    """The change in one answer's mark under one perturbation.
+
+    Attributes:
+        perturbation: Name of the perturbation applied.
+        id: Item id.
+        max_mark: Maximum mark for the question.
+        before: Mark on the original answer.
+        after: Mark on the perturbed answer.
+    """
+
     perturbation: str
     id: str
     max_mark: float
@@ -147,6 +176,7 @@ class Shift:
 
     @property
     def share(self) -> float:
+        """Return the shift as a share of the maximum mark (negative means lower)."""
         return (self.after - self.before) / self.max_mark
 
 
@@ -179,8 +209,10 @@ def robustness_test(
     seed: int = 0,
     workers: int = 4,
 ) -> list[Shift]:
-    """Re-mark each answer under each perturbation. Answers that earned nothing are skipped for
-    the "drop" group (there is nothing to lose)."""
+    """Re-mark each answer under each perturbation and return the mark shifts.
+
+    Answers that earned nothing are skipped for the "drop" group (there is nothing to lose).
+    """
     cache: dict[str, str] = (
         json.loads(cache_path.read_text(encoding="utf-8")) if cache_path.exists() else {}
     )
@@ -206,9 +238,12 @@ def robustness_test(
 
 
 def summarise(shifts: Sequence[Shift]) -> dict[str, dict]:
-    """Per perturbation: how many answers, the average size of the shift, the average signed
-    shift (below zero: marks went down), and the share of answers whose mark moved by MOVED or
-    more. For "drop" perturbations, also the share whose mark went down by DROPPED or more."""
+    """Summarise the shifts per perturbation.
+
+    Gives how many answers, the average size of the shift, the average signed shift (below
+    zero: marks went down), and the share of answers whose mark moved by MOVED or more. For
+    "drop" perturbations, also the share whose mark went down by DROPPED or more.
+    """
     out: dict[str, dict] = {}
     for name in dict.fromkeys(s.perturbation for s in shifts):
         mine = [s.share for s in shifts if s.perturbation == name]

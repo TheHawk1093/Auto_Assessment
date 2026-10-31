@@ -47,6 +47,14 @@ def parse(spec: str) -> tuple[str, float]:
 
 
 def perturb_items(items: Sequence[Item], spec: str, seed: int = 0) -> list[Item]:
+    """Return copies of the items with their student answers degraded as `spec` says.
+
+    Args:
+        items: Items to copy.
+        spec: Kind and fraction, in the form `parse` reads.
+        seed: Seed for the random choices.
+
+    """
     kind, frac = parse(spec)
     out = []
     for item in items:

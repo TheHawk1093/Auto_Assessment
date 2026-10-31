@@ -40,6 +40,7 @@ TEACHER_WEIGHT = {"lenient": 0.9, "moderate": 0.7, "strict": 0.5}  # share for a
 
 
 def to_question(item: Item) -> Question:
+    """Build the `Question` the scheme writer needs from an item."""
     return Question(
         key=item.question_key,
         text=item.question,
@@ -52,6 +53,16 @@ def to_question(item: Item) -> Question:
 
 
 class Marked(NamedTuple):
+    """What marking one item produced.
+
+    Attributes:
+        reading: The first-pass reading of the answer, if any.
+        grading: Per-point verdicts and marks.
+        flags: Flags for the teacher.
+        votes: Total of each marking when voting, else empty.
+        evidence: What the code checks found.
+    """
+
     reading: Reading | None
     grading: Grading
     flags: list[str]
@@ -207,6 +218,7 @@ def grade_item(
 
 
 def read_results(path: Path) -> list[Result]:
+    """Load results from a JSON-lines file; a missing file gives an empty list."""
     if not path.exists():
         return []
     with path.open(encoding="utf-8") as f:

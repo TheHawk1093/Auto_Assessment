@@ -23,6 +23,15 @@ PLACEHOLDER = "/*__DATA__*/null"
 
 @dataclass(frozen=True)
 class Tab:
+    """One tab of the comparison page.
+
+    Attributes:
+        run: Folder name under runs/.
+        label: Tab name.
+        short: One line under the tab name.
+        desc: What this method is, in plain words.
+    """
+
     run: str  # folder name under runs/
     label: str
     short: str  # one line under the tab name
@@ -63,6 +72,7 @@ def _client_name(setup: dict) -> str:
 
 
 def method_data(tab: Tab, runs_dir: Path, rubrics_dir: Path, ids: Sequence[str]) -> dict:
+    """Collect one tab's results and marking schemes for the chosen answer ids."""
     run_dir = runs_dir / tab.run
     setup = _read_json(run_dir / "run.json") or {}
     variant = setup.get("pipeline", {}).get("rubric_variant", "generated")
@@ -132,6 +142,7 @@ def method_data(tab: Tab, runs_dir: Path, rubrics_dir: Path, ids: Sequence[str])
 def build_data(
     tabs: Sequence[Tab], runs_dir: Path, rubrics_dir: Path, n: int, title: str, subtitle: str
 ) -> dict:
+    """Build the page data: `n` answers sampled by mark, shown under every tab."""
     first = [
         Result.model_validate(x) for x in _read_lines(runs_dir / tabs[0].run / "results.jsonl")
     ]
@@ -154,6 +165,7 @@ def build_data(
 
 
 def write_compare(data: dict, out_path: Path) -> Path:
+    """Write the comparison page to `out_path` and return the path."""
     template = resources.files(__package__).joinpath("compare.html").read_text(encoding="utf-8")
     payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     out_path.parent.mkdir(parents=True, exist_ok=True)

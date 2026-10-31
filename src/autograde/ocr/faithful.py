@@ -30,6 +30,8 @@ INDIC_FONT = "Nirmala.ttc"
 
 @dataclass(frozen=True)
 class Case:
+    """A handwritten test sentence and the mistakes in it that a reader must copy."""
+
     text: str
     mistakes: tuple[tuple[str, str], ...]  # (what the student wrote, what is right)
     language: str = "English"
@@ -101,8 +103,11 @@ def norm(text: str) -> str:
 
 
 def verdict(transcript: str, wrong: str, right: str) -> str:
-    """kept: the student's mistake is in the transcript; corrected: the right form is instead;
-    garbled: neither is there."""
+    """Classify a transcript as `kept`, `corrected` or `garbled`.
+
+    kept: the student's mistake is in the transcript; corrected: the right form is instead;
+    garbled: neither is there.
+    """
     t = norm(transcript)
     if norm(wrong) in t:
         return "kept"
@@ -110,6 +115,7 @@ def verdict(transcript: str, wrong: str, right: str) -> str:
 
 
 def render(case: Case, path: Path, font_index: int = 0) -> Path:
+    """Draw the case as a handwriting-style image at `path` and return the path."""
     from PIL import Image, ImageDraw, ImageFont
 
     name = INDIC_FONT if case.language != "English" else SCRIPT_FONTS[font_index % 3]
@@ -130,6 +136,7 @@ Reader = Callable[[Path, str], str]  # image, system prompt -> text
 
 
 def make_reader(spec: str) -> Reader:
+    """Build a reader from a `gemini:<model>` or `claude:<model>` spec."""
     provider, _, model = spec.partition(":")
     if provider == "gemini":
         from autograde.ocr.hosted import gemini
@@ -148,6 +155,7 @@ def make_reader(spec: str) -> Reader:
 
 
 def run(reader: Reader, system: str, folder: Path, cases: tuple[Case, ...] = CASES) -> dict:
+    """Read each case's image and record whether each mistake was kept."""
     rows = []
     for i, case in enumerate(cases):
         image = render(case, folder / f"case{i:02d}.png", i)
@@ -171,6 +179,7 @@ def run(reader: Reader, system: str, folder: Path, cases: tuple[Case, ...] = CAS
 
 
 def summarise(rows: list[dict]) -> dict:
+    """Return the share of mistakes kept, corrected and garbled."""
     done = [r for r in rows if "outcome" in r]
     n = len(done)
     out = {"n": n}
@@ -180,6 +189,7 @@ def summarise(rows: list[dict]) -> dict:
 
 
 def main() -> None:
+    """Run the faithfulness check for one reader and write the rows."""
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--reader", required=True, help="gemini:<model> or claude:<model>")
     ap.add_argument("--prompt", default="ocr.transcribe", help="system prompt name")

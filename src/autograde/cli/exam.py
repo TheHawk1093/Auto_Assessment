@@ -10,14 +10,17 @@ from pathlib import Path
 
 from autograde.cli.common import run_dir, write_json
 from autograde.config import Settings
-from autograde.intake.answers import load_answers
+from autograde.intake.answers import load_answers, load_answers_identified
+from autograde.intake.counting import Counting, parse_struck
 from autograde.intake.exam import (
     build_items,
     exam_key,
     marks_csv,
     schemes_markdown,
     student_markdown,
+    student_of,
 )
+from autograde.intake.identity import load_directories
 from autograde.intake.models import ExamRules
 from autograde.intake.paper import load_paper
 from autograde.intake.reference import load_references
@@ -30,6 +33,7 @@ log = logging.getLogger(__name__)
 
 
 def register(sub) -> None:
+    """Add the `exam` command and its flags to the subparsers."""
     p = sub.add_parser("exam", help="mark an exam from its question paper, references and answers")
     p.add_argument(
         "--paper", type=Path, required=True, help="question paper (txt, md, docx, pdf, json)"
@@ -71,6 +75,14 @@ def register(sub) -> None:
         help="a numerical answer with no formula or working written earns no marks",
     )  # fmt: skip
     p.add_argument(
+        "--count-best", type=int, metavar="N",
+        help="only the N best questions count towards a total (default: read from the paper)",
+    )  # fmt: skip
+    p.add_argument(
+        "--struck-out", action="append", default=[], metavar="STUDENT=Q",
+        help="a question the student struck out, e.g. b2_S04=3 (repeat, or 1,3); it is not marked",
+    )  # fmt: skip
+    p.add_argument(
         "--ignore-rubric-rules", action="store_true",
         help="do not read exam-wide marking rules (whole marks, working required, carry-through) "
         "from the paper and rubric",
@@ -82,6 +94,26 @@ def register(sub) -> None:
     p.add_argument(
         "--code-sandbox", choices=["wasm", "docker", "process"], default="wasm",
         help="where code runs: wasm (default, stdlib only), docker, or process (trusted code only)",
+    )  # fmt: skip
+    p.add_argument(
+        "--directory", type=Path, nargs="+",
+        help="student directory: the app's SQLite database and/or roster CSVs (student_id, name), "
+        "the first taking precedence. "
+        "Each sheet is then attributed to a student by the roll number and name written on it, "
+        "checked against the directory, and not by its file name",
+    )  # fmt: skip
+    p.add_argument(
+        "--course-id", type=int,
+        help="with --directory: the course whose enrolled students are preferred in name matching",
+    )  # fmt: skip
+    p.add_argument(
+        "--identity-fixes", type=Path,
+        help="JSON {file name: student id}: sheets a teacher has attributed by hand",
+    )  # fmt: skip
+    p.add_argument(
+        "--allow-unresolved", action="store_true",
+        help="mark the sheets that were identified and leave out the rest (default: stop before "
+        "marking when any sheet cannot be attributed to a student)",
     )  # fmt: skip
     p.add_argument("--schemes-only", action="store_true", help="write the marking schemes and stop")
     p.set_defaults(func=cmd_exam)
@@ -102,18 +134,31 @@ def rules_markdown(rules: ExamRules) -> str:
         lines.append(
             f"- Follow-through on earlier parts: {'yes' if rules.follow_through else 'no'}."
         )
+    if rules.count_best:
+        lines.append(f"- Only the best {rules.count_best} questions count towards the total.")
     lines += [f"- {n}" for n in rules.notes]
     return "\n".join(lines) + "\n\n"
 
 
 def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
+    """Mark a whole exam from its paper, reference and answer files."""
     client = build_client(settings.llm)
     out = run_dir(settings, args.name)
     out.mkdir(parents=True, exist_ok=True)
 
     paper = load_paper(args.paper, client, args.max_mark)
     refs, warnings = load_references(args.reference, paper, client)
-    answers, more = load_answers(args.answers, paper, client)
+    resolutions = []
+    if args.directory:
+        people = load_directories(args.directory, args.course_id)
+        fixes = {}
+        if args.identity_fixes and args.identity_fixes.exists():
+            fixes = json.loads(args.identity_fixes.read_text(encoding="utf-8"))
+        answers, more, resolutions = load_answers_identified(
+            args.answers, paper, client, people, fixes
+        )
+    else:
+        answers, more = load_answers(args.answers, paper, client)
     warnings += more
     key = exam_key(args.name, paper, refs)
     rules = ExamRules()
@@ -131,6 +176,8 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
             "warnings": warnings,
         },
     )
+    if resolutions:
+        write_json(out / "identity.json", [r.to_dict() for r in resolutions])
     for w in warnings:
         print("warning:", w)
     print(f"{len(paper.questions)} questions, {paper.total:g} marks, {len(answers)} students")
@@ -153,6 +200,8 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
     settings.pipeline.code_exec = args.code_exec
     settings.pipeline.code_sandbox = args.code_sandbox
     items = build_items(key, paper, refs, answers)
+    counting = Counting(args.count_best or rules.count_best, parse_struck(args.struck_out))
+    items = [i for i in items if not counting.is_struck(student_of(i), i.question_id)]
     store = store_for(settings, grader=client)
     records: dict = {}
     first = {i.question_id: i for i in items}
@@ -165,6 +214,12 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
     print("marking schemes:", out / "schemes.md")
     if args.schemes_only:
         return
+    unresolved = [r.source for r in resolutions if r.status == "unresolved"]
+    if unresolved and not args.allow_unresolved:
+        sys.exit(
+            f"stopped: {len(unresolved)} sheet(s) could not be attributed to a student: "
+            f"{', '.join(unresolved)}. Fix them (--identity-fixes) or pass --allow-unresolved."
+        )
 
     write_json(out / "run.json", {"mode": "pipeline", "pipeline": settings.pipeline.model_dump()})
     results = run_items(
@@ -175,7 +230,7 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
         out / "results.jsonl",
         progress=lambda n, total: log.info("marked %d/%d", n, total),
     )
-    (out / "marks.csv").write_text(marks_csv(paper, results), encoding="utf-8")
+    (out / "marks.csv").write_text(marks_csv(paper, results, counting), encoding="utf-8")
     students = out / "students"
     students.mkdir(exist_ok=True)
     by_student: dict[str, list] = {}
@@ -183,7 +238,7 @@ def cmd_exam(args: argparse.Namespace, settings: Settings) -> None:
         by_student.setdefault(r.item.id.split("/")[1], []).append(r)
     for student, rs in by_student.items():
         (students / f"{student}.md").write_text(
-            student_markdown(student, paper, rs), encoding="utf-8"
+            student_markdown(student, paper, rs, counting), encoding="utf-8"
         )
     write_json(out / "usage.json", client.usage.as_dict())
     print(f"marks: {out / 'marks.csv'}   feedback: {students}")

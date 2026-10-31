@@ -28,11 +28,14 @@ DEFAULT_LEAK_LIMIT = 0.35
 
 
 class Pick(BaseModel):
+    """The model's choice among several feedback drafts."""
+
     choice: int  # 1-based number of the best draft
     reason: str
 
 
 def feedback_words(fb: Feedback) -> int:
+    """Count the words in all parts of a piece of feedback."""
     parts = [fb.asks, *fb.strengths, fb.summary]
     for x in fb.improvements:
         parts += [x.issue, x.why, x.fix]
@@ -61,8 +64,11 @@ def problems(fb: Feedback, item: Item, grading: Grading, rubric: Rubric, variant
 
 
 def language_note(language: str) -> str:
-    """How to write in a language: the general note, then `language.<language>` if the
-    language needs its own (kept apart from the English prompts, which never see this)."""
+    """Give the note on how to write in a language.
+
+    The general note comes first, then `language.<language>` if the language needs its own
+    (kept apart from the English prompts, which never see this).
+    """
     if not language:
         return ""
     own = prompts.optional(f"language.{language.lower()}")
@@ -71,9 +77,11 @@ def language_note(language: str) -> str:
 
 
 def _system(name: str, stance: bool, kind: str = "", language: str = "") -> str:
-    """A style's instructions, plus the note on matching the marking stance when there is one, the
-    guidance for this kind of question (`feedback.kind.<kind>.system.md`, if it exists) and the
-    language to write in."""
+    """Build the system prompt for a feedback style.
+
+    Adds the note on matching the marking stance when there is one, the guidance for this kind
+    of question (`feedback.kind.<kind>.system.md`, if it exists) and the language to write in.
+    """
     parts = [prompts.system(name)]
     if stance:
         parts.append(prompts.system("feedback.stance"))
@@ -85,7 +93,7 @@ def _system(name: str, stance: bool, kind: str = "", language: str = "") -> str:
 
 
 def _draft(values: dict, variant: str, client: LLMClient, stance: bool = False) -> Feedback:
-    """standard | hints | formal: one call. critique: a standard draft, then a review pass."""
+    """Standard | hints | formal: one call. critique: a standard draft, then a review pass."""
     user = prompts.render("feedback.user", **values)
     kind, language = values.get("kind", ""), values.get("language", "")
     if variant in STYLES:
@@ -129,8 +137,11 @@ _ENGLISH_OPENER = re.compile(r"^\s*Overall[,:]?\s+")
 
 
 def _finish(fb: Feedback, language: str) -> Feedback:
-    """Mark the language, and drop an English 'Overall,' that the model kept in front of a summary
-    written in the student's language (the labels are added in that language by `Feedback.text`)."""
+    """Mark the language and drop a stray English 'Overall,' from the summary.
+
+    The model sometimes keeps it in front of a summary written in the student's language (the
+    labels are added in that language by `Feedback.text`).
+    """
     if not language:
         return fb
     return fb.model_copy(
@@ -165,8 +176,10 @@ def _write(
     language: str = "",
     evidence: str = "",
 ) -> Feedback:
-    """standard: what is missing and the fix | hints: guide towards the missing idea | critique:
-    draft then review | formal: examiner-report register.
+    """Write feedback for one marked answer in the chosen style.
+
+    Styles: standard (what is missing and the fix), hints (guide towards the missing idea),
+    critique (draft then review), formal (examiner-report register).
 
     With n > 1, n drafts are written, drafts that fail the code checks are dropped, and the
     model picks the best of what is left. `notes` are the teacher's instructions for this
@@ -234,9 +247,12 @@ def _write(
 def write_mcq_feedback(
     item: Item, grading: Grading, client: LLMClient, notes: str = ""
 ) -> Feedback:
-    """Feedback for a wrong or unreadable multiple-choice answer. The choice and the right option
-    are facts from code; the model only explains why the right option is right and why the
-    chosen one tempts and fails. An unreadable choice needs no model: it asks for a clear one."""
+    """Write feedback for a wrong or unreadable multiple-choice answer.
+
+    The choice and the right option are facts from code; the model only explains why the right
+    option is right and why the chosen one tempts and fails. An unreadable choice needs no
+    model: it asks for a clear one.
+    """
     reason = grading.verdicts[0].reason if grading.verdicts else ""
     if "No clear choice" in reason or "More options" in reason:
         issue = "No single clear choice could be read from your answer."

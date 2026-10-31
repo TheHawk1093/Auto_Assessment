@@ -65,4 +65,5 @@ STRINGS: dict[str, dict[str, str]] = {
 
 
 def words(language: str = "") -> dict[str, str]:
+    """Return the fixed wording for a language, English when the language is not known."""
     return STRINGS.get(language.strip().title(), ENGLISH)

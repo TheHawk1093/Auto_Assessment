@@ -60,10 +60,12 @@ def _students(root: Path) -> set[str]:
 
 
 def page_path(root: Path, homework: str, student: str, qid: str) -> Path:
+    """Return the path of one student's page image for a question."""
     return root / homework / student / f"{qid.replace('_', '.')}.png"
 
 
 def transcript_path(root: Path, homework: str, student: str, qid: str) -> Path:
+    """Return the path of the stored transcript of one student's page."""
     return root / "transcripts" / f"{homework}_{student}_{qid}.txt"
 
 
@@ -126,6 +128,7 @@ def transcribe(items: list[Item], describer, data_dir: Path) -> int:
 
 
 def main() -> None:
+    """Transcribe the pages not read yet, one transcript file per page."""
     from autograde.config import load_settings
     from autograde.pipeline.figure import make_describer
 

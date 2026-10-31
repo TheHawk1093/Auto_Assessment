@@ -33,7 +33,8 @@ def load_paper(
     """A structured .json paper is read as it is; any other file is split by the model.
 
     A file holding one question may leave its marks unprinted; `single_question_mark` then gives
-    them. With several questions, missing marks are still refused, never guessed."""
+    them. With several questions, missing marks are still refused, never guessed.
+    """
     if path.suffix.lower() == ".json":
         data = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(data, dict) and "questions" in data:

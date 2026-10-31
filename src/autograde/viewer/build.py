@@ -1,5 +1,8 @@
-"""Build a single self-contained HTML page to read a finished run: question, model answer,
-student answer, teacher mark vs ours, marking points with quotes, and the feedback."""
+"""Build a single self-contained HTML page to read a finished run.
+
+The page shows the question, model answer, student answer, teacher mark vs ours, marking
+points with quotes, and the feedback.
+"""
 
 from __future__ import annotations
 
@@ -43,8 +46,11 @@ def sample_spread(results: Sequence[Result], n: int, seed: int = 0) -> list[Resu
 
 
 def sample_by_mark(results: Sequence[Result], n: int) -> list[Result]:
-    """Pick n results evenly along the teacher's marks (low to high), one per question where
-    possible, so a small sample shows weak, middling and strong answers."""
+    """Pick n results evenly along the teacher's marks, low to high.
+
+    Takes one per question where possible, so a small sample shows weak, middling and strong
+    answers.
+    """
     ranked = sorted(results, key=lambda r: (r.item.human_mark / r.item.max_mark, r.item.id))
     picked: list[Result] = []
     seen: set[str] = set()
@@ -116,6 +122,7 @@ def build_data(
 
 
 def render_html(data: dict) -> str:
+    """Fill the report template with the data and return the HTML."""
     template = resources.files(__package__).joinpath("report.html").read_text(encoding="utf-8")
     return template.replace(PLACEHOLDER, _safe_json(data))
 
@@ -129,6 +136,7 @@ def write_report(
     judgements: dict[str, dict] | None = None,
     run_info: dict | None = None,
 ) -> Path:
+    """Build the report from the results, write it to `out_path` and return the path."""
     data = build_data(results, title, rubrics_dir, client_name, judgements, run_info)
     out_path.write_text(render_html(data), encoding="utf-8")
     return out_path

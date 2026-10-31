@@ -1,5 +1,7 @@
-"""A minimal .xlsx reader (first worksheet, cell values as text), so no spreadsheet library is
-needed to load the datasets that ship as Excel files."""
+"""A minimal .xlsx reader (first worksheet, cell values as text).
+
+It means no spreadsheet library is needed to load the datasets that ship as Excel files.
+"""
 
 from __future__ import annotations
 

@@ -1,6 +1,9 @@
-"""Feedback written without the marking: the writer sees only the question, the model answer and
-the student's answer, and finds the gaps itself. Used to test whether the marking adds anything to
-the feedback (see `evaluation/feedback_ab.py`)."""
+"""Feedback written without the marking, for comparison.
+
+The writer sees only the question, the model answer and the student's answer, and finds the
+gaps itself. Used to test whether the marking adds anything to the feedback (see
+`evaluation/feedback_ab.py`).
+"""
 
 from __future__ import annotations
 
@@ -14,6 +17,8 @@ from autograde.schemas import Feedback, Improvement, Item
 
 
 class AloneImprovement(BaseModel):
+    """One gap the writer found, with why it matters and a fix."""
+
     kind: Literal["partial", "missed", "incorrect"] = "missed"
     issue: str
     why: str = ""
@@ -21,6 +26,8 @@ class AloneImprovement(BaseModel):
 
 
 class AloneFeedback(BaseModel):
+    """Feedback as the unmarked writer returns it, before conversion to `Feedback`."""
+
     asks: str = ""
     strengths: list[str]
     improvements: list[AloneImprovement]

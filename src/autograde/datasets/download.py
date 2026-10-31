@@ -23,6 +23,7 @@ MOHLER_URL = (
 
 
 def download_all(data_dir: Path) -> None:
+    """Clone the git datasets and fetch Mohler into `data_dir`, skipping what is present."""
     data_dir.mkdir(parents=True, exist_ok=True)
     for name, url in GIT_REPOS.items():
         target = data_dir / name
@@ -171,8 +172,15 @@ class _RemoteFile(io.RawIOBase):
 
 
 def download_circuit(data_dir: Path, images: int = 12) -> None:
-    """EDU-CIRCUIT-HW without the 9 GB zip: the rubrics, the TA labels and a few handwritten
-    pages from homework 1, read straight out of the remote archive. `download --circuit`."""
+    """Fetch EDU-CIRCUIT-HW without the 9 GB zip (`download --circuit`).
+
+    Gets the rubrics, the TA labels and a few handwritten pages from homework 1, read straight
+    out of the remote archive.
+
+    Args:
+        data_dir: Folder holding the downloaded data.
+        images: How many page images to fetch.
+    """
     target = data_dir / "circuit_hw"
     if (target / "rubric_outputs").exists():
         return

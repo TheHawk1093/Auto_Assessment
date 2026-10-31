@@ -9,8 +9,11 @@ from autograde.schemas import Result
 
 
 def cascade_report(cheap: list[Result], strong: list[Result]) -> list[dict]:
-    """For each trigger set: the share of answers re-marked and the error if the strong mark
-    replaced the cheap one on exactly those answers. Error is a share of the total marks."""
+    """Score each trigger set for escalating cheap marks to the strong model.
+
+    For each trigger set: the share of answers re-marked and the error if the strong mark
+    replaced the cheap one on exactly those answers. Error is a share of the total marks.
+    """
     strong_by_id = {r.item.id: r for r in strong}
     pairs = [(c, strong_by_id[c.item.id]) for c in cheap if c.item.id in strong_by_id]
     pairs = [(c, s) for c, s in pairs if c.item.human_mark is not None and c.grading]

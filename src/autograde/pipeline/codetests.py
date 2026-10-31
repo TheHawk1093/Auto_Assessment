@@ -27,6 +27,8 @@ MIN_TESTS = 2
 
 
 class Drafted(BaseModel):
+    """A model-written reference solution and the tests it should pass."""
+
     reference: str = Field(description="A correct standard-library Python solution.")
     tests: list[str] = Field(description="One line each: an assert on the student's code.")
 

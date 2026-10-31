@@ -29,16 +29,20 @@ BASES = ("mohler", "digiklausur")
 
 
 class Translated(BaseModel):
+    """A question, model answer and student answer translated together."""
+
     question: str
     model_answer: str
     student_answer: str
 
 
 def cache_path(data_dir: Path, base: str, language: str) -> Path:
+    """Return the cache file of a dataset translated into a language."""
     return data_dir / "translated" / f"{base}_{language.lower()}.json"
 
 
 def translate_item(item: Item, language: str, client: LLMClient) -> Item:
+    """Translate one item into a language; English is returned unchanged under a new id."""
     if language == "English":  # the control: the same items, untouched
         return item.model_copy(
             update={"dataset": f"{item.dataset}_english", "id": f"{item.id}@english"}
@@ -83,6 +87,8 @@ def _read(path: Path) -> list[Item]:
 
 
 def loader(base: str, language: str):
+    """Return a loader that reads the cached translation of `base` into `language`."""
+
     def load(data_dir: Path) -> list[Item]:
         return _read(cache_path(data_dir, base, language))
 
@@ -90,6 +96,7 @@ def loader(base: str, language: str):
 
 
 def main() -> None:
+    """Translate a dataset into a language and cache it."""
     from autograde.config import load_settings
     from autograde.datasets.loaders import load_dataset, select
     from autograde.llm import build_client
